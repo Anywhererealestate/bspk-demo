@@ -1,0 +1,24 @@
+[data-search-results] {
+    margin-top: 0.5rem;
+    max-height: 50vh;
+    overflow-y: scroll;
+
+    [data-search-result] {
+        padding: 0.5rem 0.5rem 1rem 0.5rem;
+        cursor: pointer;
+        border-radius: var(--radius-small);
+
+        span {
+            color: var(--foreground-brand-primary);
+        }
+
+        &:hover {
+            h5 {
+                color: var(--foreground-brand-primary);
+            }
+            background-color: var(--surface-brand-primary-highlight);
+        }
+    }
+}
+
+/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */
