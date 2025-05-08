@@ -6,13 +6,12 @@ on:
       - main
   workflow_dispatch:
 
-environment:
-  name: github-pages
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    environment: github-pages
 
     steps:
       - name: Checkout repo
@@ -37,6 +36,7 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
+    environment: github-pages
     if: github.ref == 'refs/heads/main'
 
     steps:
