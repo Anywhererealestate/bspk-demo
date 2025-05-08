@@ -41,9 +41,12 @@ jobs:
         if: github.ref == 'refs/heads/main'
 
         permissions:
-            contents: read
+            contents: write
             pages: write
             id-token: write
+
+        concurrency:
+            group: ${{ github.workflow }}-${{ github.ref }}
 
         steps:
             - name: Download artifact
