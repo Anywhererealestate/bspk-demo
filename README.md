@@ -1,1 +1,3 @@
-# bspk-demo
+# BSPK Demo Site
+
+<!--- Copyright 2025 Anywhere Real Estate - CC BY 4.0 -->
