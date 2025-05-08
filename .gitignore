@@ -36,3 +36,4 @@ eslint.output.txt
 tests-examples
 src/accessibility-violations
 .scripts/commits.json
+node_modules
