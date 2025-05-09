@@ -18,7 +18,7 @@ const commands: Command[] = [
     // 'npm install @bspk/icons',
 
     'npm uninstall @bspk/ui',
-    `echo "installing @bspk/ui from artifactory..."`,
+    `echo "installing @bspk/ui from npm..."`,
     'npm install @bspk/ui@latest',
 ];
 
