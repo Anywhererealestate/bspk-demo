@@ -3,7 +3,7 @@
  * package.
  */
 
-export const VERSION = '2.3.99' as const;
+export const VERSION = '1.0.0' as const;
 
 export const searchIndex = [
     {
@@ -13,9 +13,16 @@ export const searchIndex = [
         kind: 'Component',
     },
     {
+        title: 'Avatar',
+        content:
+            'A profile component.\n\nA profile is a visual representation of a user or entity. It can be used to display an initials, icon, image, or an overflowCount. aria-label The aria-label for the element. undefined size The size of the profile. small color The color of the profile. grey initials The initials to display in the profile limited to 2 characters. undefined icon The icon to display in the profile. undefined image The url to the image to display in the profile. undefined overflowCount The number of notifications not displayed in a list. undefined',
+        url: '/avatar',
+        kind: 'Component',
+    },
+    {
         title: 'Badge',
         content:
-            "Visual indicator for new items within a parent page represented with a numerical count of new items. count The content of the badge. If larger than 99, the badge will display '99+'. If null or undefined, the badge will be\nhidden. undefined size The size of the badge. small variant The color variant of the badge. primary",
+            "Visual indicator for new items within a parent page represented with a numerical count of new items. count The content of the badge. If larger than 99, the badge will display '99+'. If null or undefined, the badge will\nbe hidden. undefined size The size of the badge. small variant The color variant of the badge. primary",
         url: '/badge',
         kind: 'Component',
     },
@@ -114,7 +121,7 @@ export const searchIndex = [
     {
         title: 'Divider',
         content:
-            'Horizontal thin lines that separates grouped content in a list or other containers with an optional section/group label.\n\nVertical thin lines that separates grouped content or other visual elements within a container. orientation The orientation of the divider. horizontal thickness The thickness of the divider. light padding If the divider padding is shown. true inset The inset (margin) of the divider. The value is a number between 0 and 12, which corresponds to the spacing sizing\nvariables defined in the theme. The inset is applied to the left and right sides of the divider when the\norientation is horizontal, and to the top and bottom when the orientation is vertical. 0',
+            'Horizontal thin lines that separates grouped content in a list or other containers with an optional section/group label.\n\nVertical thin lines that separates grouped content or other visual elements within a container. orientation The orientation of the divider. horizontal thickness The thickness of the divider. light padding If the divider padding is shown. true inset The inset (margin) of the divider. The value is a number between 0 and 12, which corresponds to the spacing\nsizing variables defined in the theme. The inset is applied to the left and right sides of the divider when the\norientation is horizontal, and to the top and bottom when the orientation is vertical. 0',
         url: '/divider',
         kind: 'Component',
     },
@@ -195,14 +202,14 @@ export const searchIndex = [
     {
         title: 'Link',
         content:
-            'This is the standalone link component. Inline links can use the native `a` element. target undefined undefined label The label of the link. undefined trailingIcon The variant of the link. Controls the icon that is displayed and link target. undefined href The [href](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#href) of the link. undefined size The size of the link. base variant Change the color of the link to a subtle color. This is useful for links that are not primary actions, for example\nfooter menus. default',
+            'This is the standalone link component. Inline links can use the native `a` element. target undefined undefined label The label of the link. undefined trailingIcon The variant of the link. Controls the icon that is displayed and link target. undefined href The [href](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#href) of the link. undefined size The size of the link. base variant Change the color of the link to a subtle color. This is useful for links that are not primary actions, for\nexample footer menus. default',
         url: '/link',
         kind: 'Component',
     },
     {
         title: 'ListItem',
         content:
-            'A hybrid interactive component that is used frequently to organize content and offers a wide range of control and navigation in most experiences.\n\nWith its flexible and simple structure, the list item element is core and can meet the needs of many uses cases.\n\nThe ListItem has three main elements: leading element, label, and trailing element.\n\nLeading elements may be one of the following [Icon](/icons), Img, Profile.\n\nTrailing elements may be one of the following [Icon](/icons), Checkbox, ListItemButton, Radio, Switch, Tag, Txt.\n\nThe ListItemButton is a more limited Button with context specific options. active Marks the element as active and displays active state theme. false disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false readOnly Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly). false as The element type to render as. div leading The leading element to display in the ListItem.\n\nLeading elements may only be one of the following [Icon](/icons), Img, Profile. undefined label The label to display in the ListItem. undefined subText The subtext to display in the ListItem. undefined trailing The trailing element to display in the ListItem.\n\nTrailing elements may only be one of the following [Icon](/icons), Checkbox, ListItemButton, Radio, Switch, Tag,\nTxt. undefined',
+            'A hybrid interactive component that is used frequently to organize content and offers a wide range of control and navigation in most experiences.\n\nWith its flexible and simple structure, the list item element is core and can meet the needs of many uses cases.\n\nThe ListItem has three main elements: leading element, label, and trailing element.\n\nLeading elements may be one of the following [Icon](/icons), Img, Avatar.\n\nTrailing elements may be one of the following [Icon](/icons), Checkbox, ListItemButton, Radio, Switch, Tag, Txt.\n\nThe ListItemButton is a more limited Button with context specific options. active Marks the element as active and displays active state theme. false disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false readOnly Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly). false as The element type to render as. div leading The leading element to display in the ListItem.\n\nLeading elements may only be one of the following [Icon](/icons), Img, Avatar. undefined label The label to display in the ListItem. undefined subText The subtext to display in the ListItem. undefined trailing The trailing element to display in the ListItem.\n\nTrailing elements may only be one of the following [Icon](/icons), Checkbox, ListItemButton, Radio, Switch, Tag,\nTxt. undefined',
         url: '/list-item',
         kind: 'Component',
     },
@@ -292,13 +299,6 @@ export const searchIndex = [
         kind: 'Component',
     },
     {
-        title: 'Profile',
-        content:
-            'A profile component.\n\nA profile is a visual representation of a user or entity. It can be used to display an initials, icon, image, or an overflowCount. aria-label The aria-label for the element. undefined size The size of the profile. small color The color of the profile. grey initials The initials to display in the profile limited to 2 characters. undefined icon The icon to display in the profile. undefined image The url to the image to display in the profile. undefined overflowCount The number of notifications not displayed in a list. undefined',
-        url: '/profile',
-        kind: 'Component',
-    },
-    {
         title: 'ProgressBar',
         content:
             'A progress bar is a horizontal visual indicator that let’s the user know the progression of a task or operation occurring in the background. size The size of the progressbar. large completion The current progress of the progressbar. 0 align The label alignment of the progressbar. center label The label of the progressbar. undefined',
@@ -363,7 +363,7 @@ export const searchIndex = [
     {
         title: 'SegmentedControl',
         content:
-            "Navigation tool that organizes content across different screens and views. options The options to display. Each option has a label and an optional leading icon. undefined value The id of the selected option. undefined onChange The function to call when the option is clicked. undefined size The size of the options. medium width The width of the options. If set to 'fill', the options will fill the width of the container. If set to 'hug', the\noptions will be as wide as their content. hug showLabels Determines if the labels of the options should be displayed. If icons are not provided for every option this is\nignored and labels are shown. true label The label of the option. This is the text that will be displayed on the option. undefined disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false value The value of the option. If not provided, the label will be used as the value. undefined icon The the icon to display before the label. undefined iconActive undefined undefined",
+            "Navigation tool that organizes content across different screens and views. options The options to display. Each option has a label and an optional leading icon. undefined value The id of the selected option. undefined onChange The function to call when the option is clicked. undefined size The size of the options. medium width The width of the options. If set to 'fill', the options will fill the width of the container. If set to 'hug',\nthe options will be as wide as their content. hug showLabels Determines if the labels of the options should be displayed. If icons are not provided for every option this is\nignored and labels are shown. true label The label of the option. This is the text that will be displayed on the option. undefined disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false value The value of the option. If not provided, the label will be used as the value. undefined icon The the icon to display before the label. undefined iconActive undefined undefined",
         url: '/segmented-control',
         kind: 'Component',
     },
@@ -464,7 +464,7 @@ export const searchIndex = [
     {
         title: 'TabGroup',
         content:
-            "Navigation tool that organizes content across different screens and views. options The tabs to display. Each tab has a label and an optional leading icon. undefined value The id of the selected tab. undefined onChange The function to call when the tab is clicked. undefined size The size of the tabs. medium width When 'fill' the options will fill the width of the container. When 'hug', the options will be as wide as their\ncontent. hug showTrail When width is 'hug' this determines if the trailing underline should be showing. When width is 'fill' this property\nisn't applicable. false label The label of the tab. This is the text that will be displayed on the tab. undefined disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false value The value of the tab. If not provided, the label will be used as the value. undefined icon The icon to display on the left side of the tab. undefined iconActive The icon to display on the left side of the tab when the tab is active. undefined badge The badge count to display on the tab. undefined",
+            "Navigation tool that organizes content across different screens and views. options The tabs to display. Each tab has a label and an optional leading icon. undefined value The id of the selected tab. undefined onChange The function to call when the tab is clicked. undefined size The size of the tabs. medium width When 'fill' the options will fill the width of the container. When 'hug', the options will be as wide as their\ncontent. hug showTrail When width is 'hug' this determines if the trailing underline should be showing. When width is 'fill' this\nproperty isn't applicable. false label The label of the tab. This is the text that will be displayed on the tab. undefined disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false value The value of the tab. If not provided, the label will be used as the value. undefined icon The icon to display on the left side of the tab. undefined iconActive The icon to display on the left side of the tab when the tab is active. undefined badge The badge count to display on the tab. undefined",
         url: '/tab-group',
         kind: 'Component',
     },
@@ -485,14 +485,14 @@ export const searchIndex = [
     {
         title: 'Textarea',
         content:
-            'A component that allows users to input large amounts of text that could span multiple lines. required Determines if the element is [required](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required). false id The id of the element. If not provided one will be generated. undefined invalid Marks the element as invalid and displays error state theme. false disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false aria-label The aria-label for the element. undefined readOnly Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly). false onChange Callback when the value of the field changes. undefined size The size of the field. medium value The value of the field. undefined name The textarea control name of the field. undefined innerRef The ref of the field. undefined placeholder The placeholder of the field. undefined maxLength The maximum number of characters that the field will accept. undefined minRows The minimum number of rows that the textarea should have. If set the textarea will automatically grow and shrink to\nfit the content. undefined maxRows The maximum number of rows that the textarea should have. If set the textarea will automatically grow and shrink to\nfit the content. undefined',
+            'A component that allows users to input large amounts of text that could span multiple lines. required Determines if the element is [required](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required). false id The id of the element. If not provided one will be generated. undefined invalid Marks the element as invalid and displays error state theme. false disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false aria-label The aria-label for the element. undefined readOnly Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly). false onChange Callback when the value of the field changes. undefined size The size of the field. medium value The value of the field. undefined name The textarea control name of the field. undefined innerRef The ref of the field. undefined placeholder The placeholder of the field. undefined maxLength The maximum number of characters that the field will accept. undefined minRows The minimum number of rows that the textarea should have. If set the textarea will automatically grow and shrink\nto fit the content. undefined maxRows The maximum number of rows that the textarea should have. If set the textarea will automatically grow and shrink\nto fit the content. undefined',
         url: '/textarea',
         kind: 'Component',
     },
     {
         title: 'TextareaField',
         content:
-            'A component that allows users to input large amounts of text that could span multiple lines.\n\nThis component takes properties from the FormField and Textarea components. label The label of the field. undefined errorMessage Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid. undefined helperText The helperText of the field. undefined controlId The id of the control. undefined required Determines if the element is [required](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required). false id The id of the element. If not provided one will be generated. undefined invalid Marks the element as invalid and displays error state theme. false disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false aria-label The aria-label for the element. undefined readOnly Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly). false onChange Callback when the value of the field changes. undefined size The size of the field. medium value The value of the field. undefined name The textarea control name of the field. undefined innerRef The ref of the field. undefined placeholder The placeholder of the field. undefined maxLength The maximum number of characters that the field will accept. undefined minRows The minimum number of rows that the textarea should have. If set the textarea will automatically grow and shrink to\nfit the content. undefined maxRows The maximum number of rows that the textarea should have. If set the textarea will automatically grow and shrink to\nfit the content. undefined',
+            'A component that allows users to input large amounts of text that could span multiple lines.\n\nThis component takes properties from the FormField and Textarea components. label The label of the field. undefined errorMessage Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid. undefined helperText The helperText of the field. undefined controlId The id of the control. undefined required Determines if the element is [required](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required). false id The id of the element. If not provided one will be generated. undefined invalid Marks the element as invalid and displays error state theme. false disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false aria-label The aria-label for the element. undefined readOnly Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly). false onChange Callback when the value of the field changes. undefined size The size of the field. medium value The value of the field. undefined name The textarea control name of the field. undefined innerRef The ref of the field. undefined placeholder The placeholder of the field. undefined maxLength The maximum number of characters that the field will accept. undefined minRows The minimum number of rows that the textarea should have. If set the textarea will automatically grow and shrink\nto fit the content. undefined maxRows The maximum number of rows that the textarea should have. If set the textarea will automatically grow and shrink\nto fit the content. undefined',
         url: '/textarea-field',
         kind: 'Component',
     },

@@ -1,6 +1,6 @@
+import { AvatarProps, Avatar } from '@bspk/ui/Avatar';
 import { Dropdown, DropdownProps } from '@bspk/ui/Dropdown';
 import { MenuItem } from '@bspk/ui/Menu';
-import { ProfileProps, Profile } from '@bspk/ui/Profile';
 import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
 import { ColorVariant } from '@bspk/ui/utils/colorVariants';
@@ -72,11 +72,11 @@ export const dropdownExample: ComponentExampleProps = {
             };
           }}`,
                     };
-                if (state['data-preset-name'] === 'Leading Profile')
+                if (state['data-preset-name'] === 'Leading Avatar')
                     return {
                         output: `{(props) => {
             return {
-              leading: <Profile {...props.item.profile} />,
+              leading: <Avatar {...props.item.profile} />,
             };
           }}`,
                     };
@@ -151,11 +151,11 @@ export const dropdownExample: ComponentExampleProps = {
             }),
         },
         {
-            name: 'Leading Profile',
+            name: 'Leading Avatar',
             state: asProps<
                 DropdownProps<
                     MenuItem & {
-                        profile: ProfileProps;
+                        profile: AvatarProps;
                     }
                 >
             >({
@@ -168,7 +168,7 @@ export const dropdownExample: ComponentExampleProps = {
                 ],
                 renderListItem: (props) => {
                     return {
-                        leading: <Profile size="small" {...props.item.profile} />,
+                        leading: <Avatar size="small" {...props.item.profile} />,
                     };
                 },
             }),
