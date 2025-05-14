@@ -32,6 +32,6 @@ The `ui` package contains all the components, hooks, and utilities that are avai
 
 ### Versioning
 
-The packages are versioned use [semantic release](https://github.com/semantic-release/semantic-release) on Gitlab's CICD pipelines and are available on Artifactory.
+The packages are versioned using [semantic release](https://github.com/semantic-release/semantic-release) on GitHub's CICD pipelines and are available on NPM.
 
 <!--- Copyright 2025 Anywhere Real Estate - CC BY 4.0 -->

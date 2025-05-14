@@ -3,7 +3,7 @@ import { SvgDiamond } from '@bspk/icons/Diamond';
 import { Checkbox } from '@bspk/ui/Checkbox';
 import { Img } from '@bspk/ui/Img';
 import { LEADING_COMPONENTS, ListItem, ListItemProps, TRAILING_COMPONENTS } from '@bspk/ui/ListItem';
-import { Profile } from '@bspk/ui/Profile';
+import { Avatar } from '@bspk/ui/Avatar';
 import { Radio } from '@bspk/ui/Radio';
 import { Switch } from '@bspk/ui/Switch';
 import { Tag } from '@bspk/ui/Tag';
@@ -48,7 +48,7 @@ const createChildrenElement = (state: Record<string, any>, name: string) => {
 
     if (componentName === 'Img') return <Img alt="placeholder" src="/placeholder.svg" />;
 
-    if (componentName === 'Profile') return <Profile aria-label="List Item" initials="LI" />;
+    if (componentName === 'Avatar') return <Avatar aria-label="List Item" initials="LI" />;
 
     if (componentName === 'Tag') {
         return <Tag>Tag</Tag>;

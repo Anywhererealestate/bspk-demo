@@ -50,7 +50,7 @@ export const COMPONENT_PHASE: Record<MetaComponentName, DevPhase> = {
     ListItem: 'DesignReview',
     Menu: 'DesignReview',
     Modal: 'WorkInProgress',
-    Profile: 'DesignReview',
+    Avatar: 'DesignReview',
     MultiSelection: 'Backlog',
     NavigationRail: 'Backlog',
     OTPInput: 'Backlog',

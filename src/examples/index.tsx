@@ -6,6 +6,7 @@ import { SvgDoNotDisturbOn } from '@bspk/icons/DoNotDisturbOn';
 import { SvgSquare } from '@bspk/icons/Square';
 import { SvgSquareFill } from '@bspk/icons/SquareFill';
 import { SvgIcon } from '@bspk/icons/SvgIcon';
+import { Avatar, AvatarProps } from '@bspk/ui/Avatar';
 import { Badge, BadgeProps } from '@bspk/ui/Badge';
 import { BannerAlert, BannerAlertProps } from '@bspk/ui/BannerAlert';
 import { Button } from '@bspk/ui/Button';
@@ -22,7 +23,6 @@ import { Link, LinkProps } from '@bspk/ui/Link';
 import { NumberField } from '@bspk/ui/NumberField';
 import { NumberInput, NumberInputProps } from '@bspk/ui/NumberInput';
 import { Popover, PopoverProps } from '@bspk/ui/Popover';
-import { Profile, ProfileProps } from '@bspk/ui/Profile';
 import { ProgressBar, ProgressBarProps } from '@bspk/ui/ProgressBar';
 import { ProgressCircle, ProgressCircleProps } from '@bspk/ui/ProgressCircle';
 import { ProgressionStepper, ProgressionStepperItem, ProgressionStepperProps } from '@bspk/ui/ProgressionStepper';
@@ -192,7 +192,7 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
     NumberField: {
         Component: NumberField,
     },
-    Profile: {
+    Avatar: {
         renderContainer: {
             style: { display: 'grid', width: '100%', columnFill: 'auto', columnCount: 2, justifyContent: 'center' },
         },
@@ -200,11 +200,11 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
             return (
                 <>
                     <div> {state['data-variant-value']}</div>
-                    <Profile {...state} />
+                    <Avatar {...state} />
                 </>
             );
         },
-        props: typeProps<ProfileProps>([
+        props: typeProps<AvatarProps>([
             {
                 name: 'initials',
                 default: 'BR',
@@ -222,7 +222,7 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
                 },
             },
         ]),
-        presets: setPresets<ProfileProps>([
+        presets: setPresets<AvatarProps>([
             {
                 name: 'Initials',
                 state: { initials: 'BR', icon: undefined, overflowCount: undefined, image: undefined },

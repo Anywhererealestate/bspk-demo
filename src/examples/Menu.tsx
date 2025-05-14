@@ -1,5 +1,5 @@
 import { Menu, MenuProps, MenuItem } from '@bspk/ui/Menu';
-import { ProfileProps, Profile } from '@bspk/ui/Profile';
+import { AvatarProps, Avatar } from '@bspk/ui/Avatar';
 import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
 import { ColorVariant } from '@bspk/ui/utils/colorVariants';
@@ -75,10 +75,10 @@ export const menuExample: ComponentExampleProps = {
             };
           }}`;
 
-                if (state.preset === 'Leading Profile')
+                if (state.preset === 'Leading Avatar')
                     output = `{(props) => {
             return {
-              leading: <Profile {...props.item.profile} />,
+              leading: <Avatar {...props.item.profile} />,
             };
           }}`;
 
@@ -157,11 +157,11 @@ export const menuExample: ComponentExampleProps = {
             }),
         },
         {
-            name: 'Leading Profile',
+            name: 'Leading Avatar',
             state: asProps<
                 MenuProps<
                     MenuItem & {
-                        profile: ProfileProps;
+                        profile: AvatarProps;
                     }
                 >
             >({
@@ -174,7 +174,7 @@ export const menuExample: ComponentExampleProps = {
                 ],
                 renderListItem: (props) => {
                     return {
-                        leading: <Profile size="small" {...props.item.profile} />,
+                        leading: <Avatar size="small" {...props.item.profile} />,
                     };
                 },
             }),
