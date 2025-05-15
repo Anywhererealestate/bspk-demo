@@ -61,7 +61,15 @@ export function ComponentVariants({
                             style={{ marginBottom: 'var(--spacing-sizing-02)' }}
                         >
                             {variants?.map((option) => {
-                                const variantState = { ...state, [prop.name]: option, 'data-variant-value': option };
+                                const variantDefaultStates =
+                                    component.variantDefaults?.[prop.name]?.[option.toString()];
+
+                                const variantState = {
+                                    ...state,
+                                    [prop.name]: option,
+                                    'data-variant-value': option,
+                                    ...variantDefaultStates,
+                                };
                                 const { demoProps } = getPropsFromState(variantState, props, handleProps, logError);
                                 return (
                                     <div data-option-container key={option.toString()}>

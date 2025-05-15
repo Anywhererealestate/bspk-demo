@@ -689,6 +689,22 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
                 ],
             },
         ]),
+        variantDefaults: {
+            variant: {
+                informational: {
+                    header: 'This is informational banner',
+                },
+                success: {
+                    header: 'This is success banner',
+                },
+                warning: {
+                    header: 'This is warning banner',
+                },
+                error: {
+                    header: 'This is error banner',
+                },
+            },
+        },
     },
     CheckboxOption: {
         Component: CheckboxOption,
