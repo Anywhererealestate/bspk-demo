@@ -105,7 +105,7 @@ export function ComponentExample({
                     renderContainer={component?.renderContainer}
                 >
                     {component?.render?.({ demoProps, state: componentState }) || (
-                        <Component data-example-component {...demoProps} {...componentState} />
+                        <Component data-example-component {...componentState} {...demoProps} />
                     )}
                 </CodeExample>
             </ErrorLogContext>

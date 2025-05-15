@@ -1,5 +1,5 @@
-import { Menu, MenuProps, MenuItem } from '@bspk/ui/Menu';
 import { AvatarProps, Avatar } from '@bspk/ui/Avatar';
+import { Menu, MenuProps, MenuItem } from '@bspk/ui/Menu';
 import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
 import { ColorVariant } from '@bspk/ui/utils/colorVariants';
