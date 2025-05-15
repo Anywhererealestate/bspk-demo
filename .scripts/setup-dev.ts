@@ -2,33 +2,57 @@
  * $ vite-node .scripts/setup-dev.ts
  *
  * This script is used to setup the local development environment.
- *
- * It is similar to the prod-test script, but it uses the local version of the UI library.
  */
+import { execSync } from 'child_process';
 import fs from 'fs';
+import path from 'path';
 
-import packageJson from '../package.json';
+const uiRootPath = path.resolve(__dirname, '../../bspk-ui');
+const demoRootPath = path.resolve(__dirname, '../');
 
-import { Command, runCommands } from './utils';
+// ensure the bspk-ui is where we expect it
 
-const commands: Command[] = [
-    // SUPPORT icons later
-    // uninstall local package and install the latest version
-    // 'npm uninstall @bspk/icons',
+if (!fs.existsSync(uiRootPath)) {
+    throw new Error(`bspk-ui not found at ${uiRootPath}`);
+}
 
-    'echo "uninstalling @bspk/ui and referencing local repo... "',
-    'npm uninstall @bspk/ui --force',
-    () => {
-        const newPackage = { ...packageJson };
-        newPackage['dependencies']['@bspk/ui'] = 'file:../bspk-ui/src';
-        fs.writeFileSync('./package.json', JSON.stringify(newPackage, null, 2));
-        return [];
-    },
-    'npm install --force',
-];
+const { version } = JSON.parse(fs.readFileSync(path.join(uiRootPath, 'package.json'), { encoding: 'utf-8' }));
 
-const prodInstalled = !packageJson.dependencies['@bspk/ui'].startsWith('file:');
+// add package json to the bspk-ui/src so we can link to src
 
-runCommands(!prodInstalled ? ['echo "dev already installed"'] : commands);
+fs.writeFileSync(
+    path.join(uiRootPath, 'src/package.json'),
+    `${JSON.stringify(
+        {
+            name: '@bspk/ui',
+            version,
+        },
+        null,
+        4,
+    )}\n`,
+);
 
-/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */
+// run npm link in bspk-ui/src
+
+execSync(`cd "${uiRootPath}/src" && npm link`, { stdio: 'inherit' });
+
+// run npm link @bspk/ui in this repo
+
+execSync(`cd "${demoRootPath}" && npm link @bspk/ui`, { stdio: 'inherit' });
+
+const linkedPath = execSync('npm ls --depth=0')
+    .toString()
+    .match(/@bspk\/ui@.* -> (.*)/)?.[1];
+
+if (!linkedPath)
+    throw new Error(
+        `Could not find linked path (${linkedPath}) for @bspk/ui. Please run npm link @bspk/ui in the demo repo. uiRoot: ${uiRootPath}`,
+    );
+
+const absolutePath = path.resolve(__dirname, '../', linkedPath);
+
+if (!fs.existsSync(absolutePath)) {
+    throw new Error(`Linked path ${absolutePath} does not exist. Please run npm link @bspk/ui in the demo repo.`);
+}
+
+console.log(`Your local development environment is setup! UI is pointing to: "${absolutePath}"`);

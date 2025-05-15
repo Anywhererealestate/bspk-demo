@@ -7,9 +7,9 @@
     "scripts": {
         "build": "npm run meta && tsc -b && vite build && cp dist/index.html dist/404.html",
         "dev:setup": "vite-node ./.scripts/setup-dev.ts",
-        "dev": "rm -rf node_modules/.vite && vite --open | npm run dev:watch",
-        "dev:hack": "npm run dev:setup && npm run meta && npm run dev:demo",
         "dev:watch": "vite-node ./.scripts/watch-dev.ts",
+        "dev:vite": "rm -rf node_modules/.vite && vite --open",
+        "dev": "npm run dev:setup && npm run dev:vite | npm run dev:watch",
         "lint": "eslint && tsc --noemit",
         "lint:fix": "eslint --fix",
         "lint:phases": "vite-node .scripts/lint-phases.ts",
@@ -18,10 +18,10 @@
         "meta": "vite-node ./.scripts/create-meta.tsx",
         "parser": "vite-node .scripts/js-doc-parser.ts",
         "prepare": "husky",
-        "prod": "npm run build && vite preview --open",
-        "update-ui": "vite-node ./.scripts/update-ui.ts && npm run changelog",
+        "preview": "npm run update-ui && npm run build && vite preview --open",
+        "update-ui": "npm unlink @bspk/ui && npm un @bspk/ui && npm i @bspk/ui",
         "test": "TEST_PORT=8675 playwright test",
-        "test:prod": "TEST_PORT=8080 playwright test",
+        "test:preview": "TEST_PORT=8080 playwright test",
         "changelog": "vite-node ./.scripts/changelog.ts"
     },
     "peerDependencies": {
@@ -33,7 +33,7 @@
     "dependencies": {
         "@axe-core/playwright": "^4.10.1",
         "@bspk/icons": "^1.0.3",
-        "@bspk/ui": "^1.0.1",
+        "@bspk/ui": "^1.0.3",
         "@emotion/css": "^11.13.5",
         "@types/react": "^18.3.12",
         "axe-core": "^4.10.2",

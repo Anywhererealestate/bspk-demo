@@ -91,8 +91,6 @@ export function ComponentStateProvider({
 
     const setState = useCallback(
         (update: StateUpdate | StateUpdateDispatch | null) => {
-            console.log({ update });
-
             if (update === null) {
                 resetState();
                 return;

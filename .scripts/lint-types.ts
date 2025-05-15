@@ -37,7 +37,7 @@ typesMeta.forEach((typeMeta) => {
     const typeExample = typeExamples[typeMeta.name as MetaTypeName];
 
     if (!typeExample) {
-        log.push(`No example found`);
+        //log.push(`No example found`);
         return;
     }
 

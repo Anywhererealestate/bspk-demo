@@ -4,6 +4,7 @@ import { Txt } from '@bspk/ui/Txt';
 import { css } from '@emotion/react';
 import { Fragment, useCallback, useMemo } from 'react';
 
+import { PROPERTY_NAME_CUSTOM_SORT } from '../config';
 import { TypePropertyExample, TypePropertyExampleWithControls } from '../types';
 
 import { updateComponentState } from './ComponentStateProvider';
@@ -45,12 +46,6 @@ export function TypeProps({ props, state }: { props: TypePropertyExample[]; stat
 
     const propsWithControl = useMemo(() => props.map(propsWithControls), [props, propsWithControls]);
 
-    const propertyNameSorts = [
-        //
-        ['minRows', 'maxRows'],
-        ['min', 'max'],
-    ];
-
     // Sort props by
     // 1. whether they are editable (have a control)
     // 2. whether they are required
@@ -60,7 +55,7 @@ export function TypeProps({ props, state }: { props: TypePropertyExample[]; stat
 
         if (!a.required !== !b.required) return !a.required > !b.required ? 1 : -1;
 
-        const propertyNameSort = propertyNameSorts.find((arr) => arr.includes(a.name) && arr.includes(b.name));
+        const propertyNameSort = PROPERTY_NAME_CUSTOM_SORT.find((arr) => arr.includes(a.name) && arr.includes(b.name));
 
         if (propertyNameSort) {
             const aIndex = propertyNameSort.indexOf(a.name);

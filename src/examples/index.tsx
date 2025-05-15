@@ -109,10 +109,6 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
                 default: 5,
             },
             {
-                name: 'size',
-                default: 'large',
-            },
-            {
                 name: 'stepCompleted',
                 default: 2,
             },
@@ -287,10 +283,6 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
             {
                 name: 'onChange',
                 default: (value: any) => updateComponentState<TextareaProps>({ value }),
-            },
-            {
-                name: 'value',
-                default: '[Describe the ...]',
             },
         ]),
     },
@@ -579,6 +571,7 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
                         default: '[Call to Action]',
                         controlType: 'string',
                     },
+                    //
                     {
                         name: 'onClick',
                     },

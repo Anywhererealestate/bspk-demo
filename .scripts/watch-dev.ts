@@ -43,7 +43,18 @@ const filesToWatch: FileWatchConfig[] = [
 
 const filesBeingWatched: string[] = [];
 
-filesToWatch.forEach(({ watchPath, callback, ignores }) => {
+const queueTimeouts: Record<string, ReturnType<typeof setTimeout>> = {};
+
+const queueCallback = (watchPath: string) => {
+    if (queueTimeouts[watchPath]) clearTimeout(queueTimeouts[watchPath]);
+
+    queueTimeouts[watchPath] = setTimeout(() => {
+        filesToWatch.find((file) => file.watchPath === watchPath)?.callback();
+        delete queueTimeouts[watchPath];
+    }, 1000);
+};
+
+filesToWatch.forEach(({ watchPath, ignores }) => {
     if (!fs.existsSync(watchPath)) {
         console.error(`File ${watchPath} does not exist.`);
         return;
@@ -53,18 +64,17 @@ filesToWatch.forEach(({ watchPath, callback, ignores }) => {
 
     if (fs.lstatSync(watchPath).isDirectory()) {
         fs.watch(watchPath, { recursive: true }, (_, fileName) => {
-            console.log(`Directory ${watchPath} was changed`);
-
-            console.log(`File ${fileName} was changed in ${watchPath}`, ignores);
+            // console.log(`Directory ${watchPath} was changed`);
 
             if (ignores?.some((ignore) => fileName?.includes(ignore))) {
-                console.log(`Ignoring file ${fileName} in ${watchPath}`);
+                // console.log(`Ignoring file ${fileName} in ${watchPath}`);
                 return;
-            } else {
-                console.log(`File ${fileName} was changed in ${watchPath} not ignored`);
             }
+
+            // console.log(`File ${fileName} was changed in ${watchPath} not ignored`);
+
             try {
-                callback();
+                queueCallback(watchPath);
             } catch (error) {
                 console.error(`Error executing callback for ${watchPath}:`, error);
             }
@@ -76,7 +86,7 @@ filesToWatch.forEach(({ watchPath, callback, ignores }) => {
         if (curr.mtime !== prev.mtime) {
             console.log(`File ${watchPath} was changed`);
             try {
-                callback();
+                queueCallback(watchPath);
             } catch (error) {
                 console.error(`Error executing callback for ${watchPath}:`, error);
             }

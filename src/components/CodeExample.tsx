@@ -50,7 +50,7 @@ export function CodeExample({
                     <div
                         data-example-render
                         ref={exampleRef}
-                        style={{ width: 'fit-content', ...renderContainer?.style }}
+                        style={{ ...renderContainer?.style }}
                         {...(renderContainer || {})}
                     >
                         {children}

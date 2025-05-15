@@ -93,8 +93,6 @@ export function ComponentExample({
 
     const typePropsState = useMemo(() => ({ ...libraryDefaults, ...state }), [libraryDefaults, state]);
 
-    console.log();
-
     return (
         <div css={style} data-example-wrapper>
             <ErrorLogContext id={useId()}>

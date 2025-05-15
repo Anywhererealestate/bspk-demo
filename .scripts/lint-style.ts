@@ -4,12 +4,17 @@
  * This script copies over css files from style package then ensures all CSS variables are defined in all the brand css
  * files.
  */
+import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
-import { getUiPaths } from './utils';
+const linkedPath = execSync('npm ls --depth=0')
+    .toString()
+    .match(/@bspk\/ui@1.0.2 -> (.*)/)?.[1];
 
-const STYLES_DIR = getUiPaths().stylesDir;
+const STYLES_DIR = linkedPath
+    ? path.resolve(__dirname, '../', linkedPath, 'styles')
+    : path.resolve(__dirname, '../node_modules/@bspk/ui/styles');
 
 function variableTest() {
     // variableName: fileName[]

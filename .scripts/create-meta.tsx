@@ -156,7 +156,7 @@ function copyBspkFilesForTests(rootPath: string) {
         'index.ts',
     ].forEach((sourceFile) => {
         fs.mkdirSync(path.resolve(`./tests/bspk-ui`), { recursive: true });
-        fs.copyFileSync(path.resolve(`${rootPath}/src/${sourceFile}`), path.resolve(`./tests/bspk-ui/${sourceFile}`));
+        fs.copyFileSync(path.resolve(`${rootPath}/${sourceFile}`), path.resolve(`./tests/bspk-ui/${sourceFile}`));
     });
 }
 

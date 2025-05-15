@@ -3,7 +3,7 @@
  * package.
  */
 
-export const VERSION = '1.0.0' as const;
+export const VERSION = '1.0.3' as const;
 
 export const searchIndex = [
     {
@@ -15,7 +15,7 @@ export const searchIndex = [
     {
         title: 'Avatar',
         content:
-            'A profile component.\n\nA profile is a visual representation of a user or entity. It can be used to display an initials, icon, image, or an overflowCount. aria-label The aria-label for the element. undefined size The size of the profile. small color The color of the profile. grey initials The initials to display in the profile limited to 2 characters. undefined icon The icon to display in the profile. undefined image The url to the image to display in the profile. undefined overflowCount The number of notifications not displayed in a list. undefined',
+            'An avatar is a visual representation of a user or entity. It can be used to display an initials, icon, image, or an overflowCount. aria-label The aria-label for the element. undefined size The size of the avatar. small color The color of the avatar. grey initials The initials to display in the avatar limited to 2 characters. undefined icon The icon to display in the avatar. undefined image The url to the image to display in the avatar. undefined overflowCount The number of notifications not displayed in a list. undefined',
         url: '/avatar',
         kind: 'Component',
     },
@@ -29,7 +29,7 @@ export const searchIndex = [
     {
         title: 'BannerAlert',
         content:
-            'A visual and contextual message used to communicate an important message or notification to users relating to a status or the body content of a page. variant The color variant of the banner alert. informational onClose The function to call when the banner alert is closed. If not included the close button will not be displayed. undefined header The header of the banner alert. undefined children The children of the banner alert. undefined callToAction This property may be undefined or an object containing required CallToActionButton properties. undefined elevated Is the alert elevated. If true a drop shadow is added. false label The label of the call to action button. undefined onClick The callback function for the call to action button. undefined size The size of the call to action button. undefined',
+            'A visual and contextual message used to communicate an important message or notification to users relating to a status or the body content of a page. variant The color variant of the banner alert. informational onClose The function to call when the banner alert is closed. If not included the close button will not be displayed. undefined header The header of the banner alert. undefined body The body of the banner alert. undefined callToAction This property may be undefined or an object containing required CallToActionButton properties. undefined elevated Is the alert elevated. If true a drop shadow is added. false label The label of the call to action button. undefined onClick The callback function for the call to action button. undefined size The size of the call to action button. undefined',
         url: '/banner-alert',
         kind: 'Component',
     },

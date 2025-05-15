@@ -76,7 +76,7 @@ export function ComponentVariants({
                                         <Tag color="grey">{option.toString()}</Tag>
                                         <div
                                             {...component?.renderContainer}
-                                            style={{ width: 'fit-content', ...component?.renderContainer?.style }}
+                                            style={{ ...component?.renderContainer?.style }}
                                         >
                                             {component?.render?.({ demoProps, state: variantState }) || (
                                                 <Component data-example-component {...variantState} {...demoProps} />
