@@ -11,57 +11,74 @@ import path from 'path';
 
 import { generateBaseStyleExport } from '../../bspk-ui/.scripts/utils';
 
-const filesToWatch: [string, () => void][] = [
-    [
-        path.resolve(__dirname, 'changelog.ts'),
-        () => {
-            execSync('npm run changelog', { stdio: 'inherit' });
-        },
-    ],
+interface FileWatchConfig {
+    watchPath: string;
+    callback: () => void;
+    ignores?: string[];
+}
 
-    [
-        path.resolve(__dirname, '../../bspk-ui/src'),
-        () => {
-            console.warn('bspk-ui/src changed');
+const filesToWatch: FileWatchConfig[] = [
+    {
+        watchPath: path.resolve(__dirname, '../../bspk-ui/src'),
+        callback: () => {
+            const uiRoot = path.resolve(__dirname, '../../bspk-ui');
+            execSync(`cd "${uiRoot}" && npm run meta`, { stdio: 'inherit' });
         },
-    ],
-    [
-        path.resolve(__dirname, '../../bspk-ui/src/styles/base.css'),
-        () => {
+        ignores: ['meta.ts', 'base.css'],
+    },
+    {
+        watchPath: path.resolve(__dirname, '../../bspk-ui/src/styles/base.css'),
+        callback: () => {
             console.log('generateBaseStyleExport');
             generateBaseStyleExport();
         },
-    ],
-    [
-        path.resolve(__dirname, './create-meta.tsx'),
-        () => {
+    },
+    {
+        watchPath: path.resolve(__dirname, './create-meta.tsx'),
+        callback: () => {
             execSync('npm run meta', { stdio: 'inherit' });
         },
-    ],
-    [
-        path.resolve(__dirname, '../src/componentPhases.ts'),
-        () => {
-            console.warn('componentPhases changed');
-        },
-    ],
+    },
 ];
 
 const filesBeingWatched: string[] = [];
 
-filesToWatch.forEach(([file, callback]) => {
-    if (!fs.existsSync(file)) {
-        console.error(`File ${file} does not exist.`);
+filesToWatch.forEach(({ watchPath, callback, ignores }) => {
+    if (!fs.existsSync(watchPath)) {
+        console.error(`File ${watchPath} does not exist.`);
         return;
     }
-    filesBeingWatched.push(file);
 
-    fs.watchFile(file, { interval: 2000 }, (curr, prev) => {
-        if (curr.mtime !== prev.mtime) {
-            console.log(`File ${file} was changed`);
+    filesBeingWatched.push(watchPath);
+
+    if (fs.lstatSync(watchPath).isDirectory()) {
+        fs.watch(watchPath, { recursive: true }, (_, fileName) => {
+            console.log(`Directory ${watchPath} was changed`);
+
+            console.log(`File ${fileName} was changed in ${watchPath}`, ignores);
+
+            if (ignores?.some((ignore) => fileName?.includes(ignore))) {
+                console.log(`Ignoring file ${fileName} in ${watchPath}`);
+                return;
+            } else {
+                console.log(`File ${fileName} was changed in ${watchPath} not ignored`);
+            }
             try {
                 callback();
             } catch (error) {
-                console.error(`Error executing callback for ${file}:`, error);
+                console.error(`Error executing callback for ${watchPath}:`, error);
+            }
+        });
+        return;
+    }
+
+    fs.watchFile(watchPath, { interval: 2000 }, (curr, prev) => {
+        if (curr.mtime !== prev.mtime) {
+            console.log(`File ${watchPath} was changed`);
+            try {
+                callback();
+            } catch (error) {
+                console.error(`Error executing callback for ${watchPath}:`, error);
             }
         }
     });
