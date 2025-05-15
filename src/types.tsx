@@ -67,6 +67,12 @@ export type ComponentExampleProps<Props extends Record<string, any> = Record<str
         state: Record<string, any>;
     }[];
     defaults?: Partial<Props>;
+    /** The default state for each of the variants. */
+    variantDefaults?: {
+        [variantName: string]: {
+            [variantValue: string]: Record<string, any>;
+        };
+    };
 };
 
 export type RouteLink = RouteObject & {
