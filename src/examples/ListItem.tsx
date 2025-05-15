@@ -1,9 +1,9 @@
 import { SvgContentCopy } from '@bspk/icons/ContentCopy';
 import { SvgDiamond } from '@bspk/icons/Diamond';
+import { Avatar } from '@bspk/ui/Avatar';
 import { Checkbox } from '@bspk/ui/Checkbox';
 import { Img } from '@bspk/ui/Img';
 import { LEADING_COMPONENTS, ListItem, ListItemProps, TRAILING_COMPONENTS } from '@bspk/ui/ListItem';
-import { Avatar } from '@bspk/ui/Avatar';
 import { Radio } from '@bspk/ui/Radio';
 import { Switch } from '@bspk/ui/Switch';
 import { Tag } from '@bspk/ui/Tag';

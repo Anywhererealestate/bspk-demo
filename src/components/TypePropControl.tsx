@@ -4,7 +4,6 @@ import { Dropdown } from '@bspk/ui/Dropdown';
 import { NumberInput } from '@bspk/ui/NumberInput';
 import { RadioGroup } from '@bspk/ui/RadioGroup';
 import { Switch } from '@bspk/ui/Switch';
-import { SwitchOption } from '@bspk/ui/SwitchOption';
 import { TextInput } from '@bspk/ui/TextInput';
 import { Textarea } from '@bspk/ui/Textarea';
 
