@@ -40,3 +40,5 @@ The app is deployed via Github Actions to Github pages. See [the deployment work
 
 ### Contribuiting
 See the [Contribuiting Guide](src/docs/CONTRIBUTING.md) and [Code of Conduct](src/docs/CODE_OF_CONDUCT.md).
+
+<!--- Copyright 2025 Anywhere Real Estate - CC BY 4.0 -->
