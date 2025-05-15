@@ -7,7 +7,7 @@ function ensureLatestUIVersion() {
     const versionInstalled = packageJson.dependencies['@bspk/ui']?.replace('^', '') || '';
 
     if (versionInstalled !== latestVersionPublished) {
-        console.info(`Latest version (${latestVersionPublished}) not installed (${versionInstalled}).`);
+        console.error('\n\x1b[31m%s\x1b[0m\n', `pre-commit failed: latest version of  @bspk/ui (${latestVersionPublished}) not installed, found (${versionInstalled}).`);
         process.exit(1);
     }
 }
