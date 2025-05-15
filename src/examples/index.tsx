@@ -36,7 +36,7 @@ import { Skeleton, SkeletonProps } from '@bspk/ui/Skeleton';
 import { Switch, SwitchProps } from '@bspk/ui/Switch';
 import { SwitchGroup, SwitchGroupProps } from '@bspk/ui/SwitchGroup';
 import { SwitchOption, SwitchOptionProps } from '@bspk/ui/SwitchOption';
-import { TabGroup, TabGroupOption, TabGroupProps } from '@bspk/ui/TabGroup';
+import { TabGroup, TabGroupProps } from '@bspk/ui/TabGroup';
 import { Tag, TagProps } from '@bspk/ui/Tag';
 import { TextField, TextFieldProps } from '@bspk/ui/TextField';
 import { TextInput, TextInputProps } from '@bspk/ui/TextInput';
@@ -355,80 +355,46 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
                 name: 'value',
                 default: '1',
             },
+        ]),
+        presets: setPresets<TabGroupProps>([
             {
-                name: 'options',
-                render: (state): TabGroupOption[] => {
-                    const nextOptions = (
-                        [
-                            {
-                                value: '1',
-                                label: 'Option 1',
-                                icon: <SvgDiamond />,
-                                iconActive: <SvgDiamondFill />,
-                                badge: 1,
-                            },
-                            { value: '2', label: 'Disabled 2', disabled: true, icon: <SvgDoNotDisturbOn />, badge: 2 },
-                            {
-                                value: '3',
-                                label: 'Option 3',
-                                icon: <SvgCloud />,
-                                iconActive: <SvgCloudFill />,
-                            },
-                        ] as TabGroupOption[]
-                    ).map((option) => ({
-                        ...option,
-                        icon: state?.['options']?.['include-icon'] ? option.icon : undefined,
-                        badge: state?.['options']?.['include-badge'] ? option.badge : undefined,
-                    }));
-                    return nextOptions;
+                name: 'Default',
+                state: {
+                    value: '1',
+                    options: [
+                        { value: '1', label: 'Option 1' },
+                        { value: '2', label: 'Option 2' },
+                        { value: '3', label: 'Option 3' },
+                    ],
                 },
-                renderCode: (state) => {
-                    const values: string[] = state?.['options']?.['Demo'] || [];
-
-                    const outputDefault = `
-          [
-          { value: '1', label: 'Option 1', icon: <SvgDiamond />, badge: 1 },
-          { value: '2', label: 'Disabled 2', disabled: true, icon: <SvgDoNotDisturbOn />, badge: 2 },
-          { value: '3', label: 'Option 3', icon: <SvgCloud />, iconActive: <SvgCloudFill />},
-          ]
-          `;
-
-                    const imports = [
-                        `import { SvgDiamond } from '@bspk/icons/Diamond';`,
-                        `import { SvgDoNotDisturbOn } from '@bspk/icons/DoNotDisturbOn';`,
-                        `import { SvgCloud } from '@bspk/icons/SvgCloud';`,
-                        `import { SvgCloudFill } from '@bspk/icons/SvgCloudFill';`,
-                    ];
-
-                    const includeIcon = values.includes('Include icon');
-                    const includeBadge = values.includes('Include badge');
-
-                    let output = outputDefault;
-
-                    if (!includeIcon)
-                        output = output.replace(/, icon: <[^>]+>/g, '').replace(/, iconActive: <[^>]+>/g, '');
-
-                    if (!includeBadge) output = output.replace(/, badge: [0-9]+/g, '');
-
-                    return {
-                        output: `{${output}}`,
-                        imports: !includeIcon ? [] : imports,
-                    };
+            },
+            {
+                name: 'With icons',
+                state: {
+                    value: '1',
+                    options: [
+                        { value: '1', label: 'Option 1', icon: <SvgDiamond />, iconActive: <SvgDiamondFill /> },
+                        { value: '2', label: 'Disabled 2', disabled: true, icon: <SvgDoNotDisturbOn /> },
+                        { value: '3', label: 'Option 3', icon: <SvgSquare />, iconActive: <SvgSquareFill /> },
+                    ],
                 },
-                properties: [
-                    {
-                        name: 'include-icon',
-                        label: 'Include icon',
-                        controlType: 'switchOption',
-                        default: true,
-                    },
-                    {
-                        name: 'include-badge',
-                        label: 'Include badge',
-                        controlType: 'switchOption',
-                        default: true,
-                    },
-                ],
+            },
+            {
+                name: 'With badges',
+                state: {
+                    value: '1',
+                    options: [
+                        {
+                            value: '1',
+                            label: 'Option 1',
+                            icon: <SvgDiamond />,
+                            iconActive: <SvgDiamondFill />,
+                            badge: 1,
+                        },
+                        { value: '2', label: 'Disabled 2', disabled: true, icon: <SvgDoNotDisturbOn />, badge: 2 },
+                        { value: '3', label: 'Option 3', icon: <SvgCloud />, iconActive: <SvgCloudFill /> },
+                    ],
+                },
             },
         ]),
     },
@@ -549,57 +515,6 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
             },
         ]),
         props: typeProps<SegmentedControlProps>([
-            // {
-            //   name: 'options',
-            //   render: (state): SegmentedControlProps['options'] => {
-            //     const includeIcon = state?.['options']?.['include-icon'];
-
-            //     return [
-            //       { value: '1', label: 'Option 1', icon: <SvgBolt />, iconActive: <SvgBoltFill /> },
-            //       { value: '2', label: 'Disabled 2', disabled: true, icon: <SvgDoNotDisturbOn /> },
-            //       { value: '3', label: 'Option 3', icon: <SvgSquare /> },
-            //       { value: '4', label: 'Option 4', icon: <SvgTriangle /> },
-            //       { value: '5', label: 'Option 5', icon: <SvgCircle /> },
-            //     ].map((option) => ({
-            //       ...option,
-            //       icon: includeIcon ? option.icon : undefined,
-            //     }));
-            //   },
-            //   renderCode: (state) => {
-            //     const output = `
-            //     [
-            //     { value: '1', label: 'Option 1', icon: <SvgDiamond /> },
-            //     { value: '2', label: 'Disabled 2', disabled: true, icon: <SvgDoNotDisturbOn /> },
-            //     { value: '3', label: 'Option 3', icon: <SvgSquare /> },
-            //     { value: '4', label: 'Option 4', icon: <SvgTriangle /> },
-            //     { value: '5', label: 'Option 5', icon: <SvgCircle /> },
-            //     ]
-            //     `;
-
-            //     const imports = [
-            //       `import { SvgDiamond } from '@bspk/icons/Diamond';`,
-            //       `import { SvgDoNotDisturbOn } from '@bspk/icons/DoNotDisturbOn';`,
-            //       `import { SvgSquare } from '@bspk/icons/Square';`,
-            //       `import { SvgTriangle } from '@bspk/icons/Triangle';`,
-            //       `import { SvgCircle } from '@bspk/icons/Circle';`,
-            //     ];
-
-            //     const includeIcon = state?.['options']?.['include-icon'];
-
-            //     return {
-            //       output: `{${!includeIcon ? output.replace(/, icon: .*>/g, '') : output}}`,
-            //       imports: !includeIcon ? [] : imports,
-            //     };
-            //   },
-            //   properties: [
-            //     {
-            //       name: 'include-icon',
-            //       label: 'Include icon',
-            //       controlType: 'switchOption',
-            //       default: true,
-            //     },
-            //   ],
-            // },
             {
                 name: 'onChange',
                 default: (value: string | undefined) => updateComponentState<SegmentedControlProps>({ value }),
@@ -683,7 +598,7 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
                     {
                         name: 'include-close',
                         label: 'Include',
-                        controlType: 'switchOption',
+                        type: 'boolean',
                         default: false,
                     },
                 ],

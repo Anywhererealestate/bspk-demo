@@ -21,7 +21,6 @@ export function hasPropTypeControl(prop: TypePropertyExample) {
             type === 'string' ||
             type === 'number' ||
             type === 'boolean' ||
-            type === 'switchOption' ||
             prop.options,
     );
 }

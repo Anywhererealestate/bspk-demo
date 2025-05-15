@@ -102,16 +102,6 @@ export function TypePropControl({
         );
     }
 
-    if (controlType === 'switchOption') {
-        return (
-            <SwitchOption
-                checked={!!controlProps.value}
-                data-testid={`${prop.name}-Switch`}
-                label={prop.label || prop.name}
-                {...controlProps}
-            />
-        );
-    }
     if (controlType === 'boolean')
         return (
             <label data-testid={`${prop.name}-Switch`}>
