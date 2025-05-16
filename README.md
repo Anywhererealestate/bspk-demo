@@ -18,17 +18,7 @@ To run the app locally:
 3. Run `npm run dev` to start the application in dev mode.
 
 ### Developing dependencies locally
-It's useful to be able to make changes to `@bspk/ui` components and see them live in the demo app. To do this we need to replace the `@bspk/ui` folder in the application's `node_modules` with our local copy:
-
-1. Create a `package.json` file in your local `bspk-ui/src` folder 
-```
-{
-    "name": "@bspk/ui"
-}
-```
-2. run `npm link` in the same folder `bspk-ui/src`
-3. run `npm link @bspk/ui` in the root of your `bspk-demo/` folder.
-4. run `npm run dev`
+It's useful to be able to make changes to `@bspk/ui` components and see them live in the demo app. To do this ensure that the `bspk-ui` repo shares a parent directory with this repo and is named `bspk-ui`. Running `npm run dev` will link the UI library automatically.
 
 ### Building
 
