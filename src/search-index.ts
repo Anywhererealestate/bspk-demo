@@ -3,7 +3,7 @@
  * package.
  */
 
-export const VERSION = '1.1.9' as const;
+export const VERSION = '1.1.11' as const;
 
 export const searchIndex = [
     {
@@ -23,7 +23,7 @@ export const searchIndex = [
     {
         title: 'BannerAlert',
         content:
-            'A visual and contextual message used to communicate an important message or notification to users relating to a status or the body content of a page. variant The color variant of the banner alert. informational onClose The function to call when the banner alert is closed. If not included the close button will not be displayed. undefined header The header of the banner alert. undefined body The body text of the banner alert. undefined callToAction This property may be undefined or an object containing required CallToActionButton properties. undefined elevated Is the alert elevated. If true a drop shadow is added. false label The label of the call to action button. undefined onClick The callback function for the call to action button. undefined size The size of the call to action button. undefined',
+            'A visual and contextual message used to communicate an important message or notification to users relating to a status or the body content of a page. variant The color variant of the banner alert. informational onClose The function to call when the banner alert is closed. If not included the close button will not be displayed. undefined header The header of the banner alert. undefined body The body of the banner alert. undefined callToAction This property may be undefined or an object containing required CallToActionButton properties. undefined elevated Is the alert elevated. If true a drop shadow is added. false label The label of the call to action button. undefined onClick The callback function for the call to action button. undefined size The size of the call to action button. undefined',
         url: '/banner-alert',
         kind: 'Component',
     },

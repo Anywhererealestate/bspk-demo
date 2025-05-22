@@ -37,3 +37,4 @@ tests-examples
 src/accessibility-violations
 .scripts/commits.json
 node_modules
+tests/bspk-ui/meta.ts

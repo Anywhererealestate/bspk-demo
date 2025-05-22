@@ -8,61 +8,13 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom';
 import { componentsMeta, typesMeta, utilitiesMeta } from 'src/meta';
-import { routes } from 'src/routes';
 import { kebabCase } from 'src/utils/kebabCase';
 
 import { getUIRoot } from '.scripts/utils';
 
-function searchIndex(uiVersion: string) {
-    // hacky way to get around the fact that we're running in node
-    globalThis.window = { location: { hash: '' } } as any;
-    globalThis.document = {
-        querySelector: () => null,
-        querySelectorAll: () => [],
-        createElement: () => null,
-        location: { hash: '' },
-    } as any;
-
-    const entityMap: Record<string, string> = {
-        '&amp;': '&',
-        '&lt;': '<',
-        '&gt;': '>',
-        '&quot;': '"',
-        '&#39;': "'",
-        '&#x2F;': '/',
-        '&#x27;': "'",
-    };
-
+export function searchIndex(uiVersion: string) {
     const index: { title?: string; content?: string; url?: string; kind: string }[] = [];
-
-    index.push(
-        ...routes.flatMap((route) => {
-            if ('noIndex' in route && route.noIndex) return [];
-
-            if ('Component' in route && route.Component) {
-                const { Component } = route;
-
-                const html = renderToString(
-                    <StaticRouter location={route.path!}>
-                        <Component />
-                    </StaticRouter>,
-                );
-
-                return {
-                    title: route.title,
-                    content: processHtml(html),
-                    url: route.path,
-                    kind: 'Page',
-                };
-            }
-
-            return [];
-        }),
-    );
 
     index.push(
         ...componentsMeta.flatMap((component) => {
@@ -124,24 +76,9 @@ function searchIndex(uiVersion: string) {
     execSync(`npx prettier --write "${filePath}"`, { stdio: 'inherit' });
 
     console.info('Search index complete.');
-
-    function processHtml(html: string) {
-        return html
-            .replace(/&[#\w]+;/g, (s) => entityMap[s] || s)
-            .replace(/\n/g, ' ')
-            .replace(/<pre.*?<\/pre>/g, ' ')
-            .replace(/<style.*?<\/style>/g, ' ')
-            .replace(/<[^>]*>/g, ' ')
-            .replace(/\s+/g, ' ')
-            .replace(/Properties Name Description Default Controls/g, ' ')
-            .replace(/Design Review Example Code/g, ' ')
-            .replace(/Backlog Example Code/g, ' ')
-            .replace(/Work in Progress Example Code/g, ' ')
-            .replace(/\s+/g, ' ');
-    }
 }
 
-function copyDocumentation(rootPath: string) {
+export function copyDocumentation(rootPath: string) {
     fs.readdirSync(rootPath).forEach((file) => {
         if (file.endsWith('.md')) {
             fs.copyFileSync(`${rootPath}/${file}`, `./src/docs/${file}`);
@@ -149,7 +86,7 @@ function copyDocumentation(rootPath: string) {
     });
 }
 
-function copyBspkFilesForTests(rootPath: string) {
+export function copyBspkFilesForTests(rootPath: string) {
     [
         //
         [path.resolve(__dirname, '../src/meta.ts'), 'meta.ts'],
@@ -160,12 +97,12 @@ function copyBspkFilesForTests(rootPath: string) {
     });
 }
 
-async function main() {
+export async function main() {
     const rootPath = getUIRoot();
 
-    const uiPackage = JSON.parse(fs.readFileSync(`${rootPath}/package.json`, { encoding: 'utf-8' }));
+    const uiVersion = execSync('npm view @bspk/ui version', { encoding: 'utf-8' }).trim();
 
-    searchIndex(uiPackage.version);
+    searchIndex(uiVersion);
 
     copyDocumentation(rootPath);
 
