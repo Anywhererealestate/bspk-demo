@@ -5,7 +5,7 @@
     "type": "module",
     "license": "CC-BY-4.0",
     "scripts": {
-        "build": "npm run meta && tsc -b && vite build && cp dist/index.html dist/404.html",
+        "build": "npm run meta && vite build && cp dist/index.html dist/404.html",
         "dev:vite": "rm -rf node_modules/.vite && vite --open",
         "dev": "vite-node ./.scripts/setup-dev.ts && npm run dev:vite | vite-node ./.scripts/watch-dev.ts",
         "lint": "eslint && tsc --noemit",
