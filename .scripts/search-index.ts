@@ -6,12 +6,9 @@
  */
 import { execSync } from 'child_process';
 import fs from 'fs';
-import path from 'path';
 
 import { componentsMeta, typesMeta, utilitiesMeta } from 'src/meta';
 import { kebabCase } from 'src/utils/kebabCase';
-
-import { getUIRoot } from '.scripts/utils';
 
 export function searchIndex(uiVersion: string) {
     const index: { title?: string; content?: string; url?: string; kind: string }[] = [];
@@ -78,35 +75,10 @@ export function searchIndex(uiVersion: string) {
     console.info('Search index complete.');
 }
 
-export function copyDocumentation(rootPath: string) {
-    fs.readdirSync(rootPath).forEach((file) => {
-        if (file.endsWith('.md')) {
-            fs.copyFileSync(`${rootPath}/${file}`, `./src/docs/${file}`);
-        }
-    });
-}
-
-export function copyBspkFilesForTests(rootPath: string) {
-    [
-        //
-        [path.resolve(__dirname, '../src/meta.ts'), 'meta.ts'],
-        [path.resolve(rootPath, 'src/index.ts'), 'index.ts'],
-    ].forEach(([sourceFile, fileName]) => {
-        fs.mkdirSync(path.resolve(__dirname, `../tests/bspk-ui`), { recursive: true });
-        fs.copyFileSync(sourceFile, path.resolve(__dirname, `../tests/bspk-ui/${fileName}`));
-    });
-}
-
 export async function main() {
-    const rootPath = getUIRoot();
-
     const uiVersion = execSync('npm view @bspk/ui version', { encoding: 'utf-8' }).trim();
 
     searchIndex(uiVersion);
-
-    copyDocumentation(rootPath);
-
-    copyBspkFilesForTests(rootPath);
 
     process.exit(0);
 }
