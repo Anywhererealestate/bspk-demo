@@ -3,13 +3,11 @@ import { Tag } from '@bspk/ui/Tag';
 import { TextInput } from '@bspk/ui/TextInput';
 import { Txt } from '@bspk/ui/Txt';
 import { useTimeout } from '@bspk/ui/hooks/useTimeout';
-import { css } from '@emotion/react';
 import { Fragment, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { searchIndex } from 'src/search-index';
 
-import { searchIndex } from '../search-index';
-
-import './searchModal.scss';
+import 'src/components/searchModal.scss';
 
 export type Result = {
     title: string;
@@ -110,15 +108,7 @@ export function SearchModal(props: DialogProps) {
     };
 
     return (
-        <Dialog
-            {...props}
-            css={css`
-                [data-dialog-box] {
-                    padding: var(--spacing-sizing-03);
-                }
-            `}
-            placement="top"
-        >
+        <Dialog data-search-modal {...props} placement="top">
             <TextInput
                 aria-label="Search"
                 name="search"

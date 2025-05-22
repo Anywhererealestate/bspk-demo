@@ -18,11 +18,31 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,
-        "noUncheckedSideEffectImports": true
+        "noUncheckedSideEffectImports": true,
+        "jsx": "preserve",
+        "baseUrl": ".",
+        "paths": {
+            "src/*": [
+                "./src/*"
+            ],
+            "components/*": [
+                "./src/components/*"
+            ],
+            "utils/*": [
+                "./src/utils/*"
+            ],
+            "docs/*": [
+                "./src/docs/*"
+            ],
+            "tests/*": [
+                "./tests/*"
+            ],
+        }
     },
     "include": [
         "vite.config.ts",
         "declaration.d.ts",
-        "playwright.config.ts"
-    ]
+        "playwright.config.ts",
+        ".scripts/*",
+    ],
 }

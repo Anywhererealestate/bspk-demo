@@ -1,10 +1,8 @@
 import { SvgIcon } from '@bspk/icons/SvgIcon';
 import { Button, ButtonProps } from '@bspk/ui/Button';
 import { Fab } from '@bspk/ui/Fab';
-
-import { ComponentExampleProps, TypePropertyExample } from '../types';
-
-import { setPresets, typeProps } from './utils';
+import { setPresets, typeProps } from 'src/examples/utils';
+import { ComponentExampleProps, TypePropertyExample } from 'src/types';
 
 export const buttonExampleChildren: Pick<TypePropertyExample, 'default' | 'renderCode'> = {
     renderCode: (state) => {

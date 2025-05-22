@@ -1,9 +1,8 @@
-import { MetaComponentName } from '@bspk/ui/meta';
 import { type AxeResults } from 'axe-core';
 import { createContext, PropsWithChildren, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { MetaComponentName } from 'src/meta';
+import { DemoComponent } from 'src/types';
 import store from 'store';
-
-import { DemoComponent } from '../types';
 
 const componentState = createContext<{
     state: Record<string, any>;

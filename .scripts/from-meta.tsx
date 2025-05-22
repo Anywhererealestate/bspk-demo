@@ -8,14 +8,14 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
-import { componentsMeta, typesMeta, utilitiesMeta } from '@bspk/ui/meta';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
+import { componentsMeta, typesMeta, utilitiesMeta } from 'src/meta';
+import { routes } from 'src/routes';
+import { kebabCase } from 'src/utils/kebabCase';
 
-import packageJson from '../package.json';
-import { routes } from '../src/routes.tsx';
-import { kebabCase } from '../src/utils/kebabCase.ts';
+import { getUIRoot } from '.scripts/utils';
 
 function searchIndex(uiVersion: string) {
     // hacky way to get around the fact that we're running in node
@@ -27,7 +27,7 @@ function searchIndex(uiVersion: string) {
         location: { hash: '' },
     } as any;
 
-    const entityMap = {
+    const entityMap: Record<string, string> = {
         '&amp;': '&',
         '&lt;': '<',
         '&gt;': '>',
@@ -152,23 +152,16 @@ function copyDocumentation(rootPath: string) {
 function copyBspkFilesForTests(rootPath: string) {
     [
         //
-        'meta.ts',
-        'index.ts',
-    ].forEach((sourceFile) => {
-        fs.mkdirSync(path.resolve(`./tests/bspk-ui`), { recursive: true });
-        fs.copyFileSync(path.resolve(`${rootPath}/${sourceFile}`), path.resolve(`./tests/bspk-ui/${sourceFile}`));
+        [path.resolve(__dirname, '../src/meta.ts'), 'meta.ts'],
+        [path.resolve(rootPath, 'src/index.ts'), 'index.ts'],
+    ].forEach(([sourceFile, fileName]) => {
+        fs.mkdirSync(path.resolve(__dirname, `../tests/bspk-ui`), { recursive: true });
+        fs.copyFileSync(sourceFile, path.resolve(__dirname, `../tests/bspk-ui/${fileName}`));
     });
 }
 
 async function main() {
-    const dependency = packageJson?.dependencies?.['@bspk/ui'];
-
-    let rootPath = path.resolve('./node_modules/@bspk/ui');
-
-    if (dependency?.startsWith('file:')) {
-        execSync('cd ../bspk-ui && npm run meta', { stdio: 'inherit' });
-        rootPath = path.resolve(dependency.slice(5), '..');
-    }
+    const rootPath = getUIRoot();
 
     const uiPackage = JSON.parse(fs.readFileSync(`${rootPath}/package.json`, { encoding: 'utf-8' }));
 

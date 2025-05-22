@@ -4,10 +4,8 @@ import { CheckboxOption } from '@bspk/ui/CheckboxOption';
 import { Layout } from '@bspk/ui/Layout';
 import { TextInput as TextInput } from '@bspk/ui/TextInput';
 import { Tooltip } from '@bspk/ui/Tooltip';
-import { css } from '@emotion/react';
 import { Fragment, useMemo, useState, useRef, useEffect } from 'react';
-
-import { Page } from '../components/Page';
+import { Page } from 'src/components/Page';
 
 const titleCase = (word: string) => word[0].toUpperCase() + word.slice(1);
 
@@ -65,7 +63,7 @@ export function Icons() {
         <Page>
             <h1>Icons</h1>
             <p>Click an icon to copy it&apos;s import code.</p>
-            <div css={style}>
+            <div data-page-icons>
                 <div data-filters>
                     <Layout align="center">
                         <CheckboxOption
@@ -141,50 +139,5 @@ export function Icons() {
         </Page>
     );
 }
-
-export const style = css`
-    [data-filters] {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-items: center;
-        gap: var(--spacing-sizing-12);
-        font-size: var(--spacing-sizing-12);
-        margin-bottom: var(--spacing-sizing-02);
-
-        [data-textfield] {
-            margin-left: var(--spacing-sizing-12);
-            max-width: 300px;
-        }
-    }
-
-    [data-icons] {
-        width: auto;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin-bottom: var(--spacing-sizing-18);
-
-        h3 {
-            flex: 1 1 100%;
-        }
-
-        button[data-icon] {
-            border: none;
-            background: none;
-            padding: 0;
-            margin: 0;
-            position: relative;
-            padding: var(--spacing-sizing-06);
-            border-radius: var(--radius-small);
-            color: var(--foreground-neutral-on-surface);
-
-            &:hover {
-                background-color: var(--interactions-hover-opacity);
-                outline: solid 1px var(--surface-brand-primary-highlight);
-            }
-        }
-    }
-`;
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */

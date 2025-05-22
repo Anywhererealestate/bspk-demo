@@ -2,6 +2,13 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+    css: {
+        preprocessorOptions: {
+            scss: {
+                api: 'modern-compiler', // or "modern"
+            },
+        },
+    },
     publicDir: './assets',
     plugins: [react()],
     esbuild: {
@@ -16,6 +23,15 @@ export default defineConfig({
     build: {
         outDir: './dist',
         emptyOutDir: true,
+    },
+    resolve: {
+        alias: {
+            src: '/src',
+            components: '/src/components',
+            utils: '/src/utils',
+            docs: '/src/docs',
+            tests: '/tests',
+        },
     },
 });
 

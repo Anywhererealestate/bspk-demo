@@ -1,5 +1,5 @@
-import { CodeExample } from '../components/CodeExample';
-import { Page } from '../components/Page';
+import { CodeExample } from 'src/components/CodeExample';
+import { Page } from 'src/components/Page';
 
 export function Typography() {
     const sections: { title: string; content: string }[] = [

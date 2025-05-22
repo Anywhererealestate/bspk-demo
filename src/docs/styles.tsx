@@ -1,5 +1,5 @@
-import { Page } from '../components/Page';
-import { Syntax } from '../components/Syntax';
+import { Page } from 'src/components/Page';
+import { Syntax } from 'src/components/Syntax';
 
 export function Stylesheets() {
     return (

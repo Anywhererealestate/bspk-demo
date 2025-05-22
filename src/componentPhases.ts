@@ -1,8 +1,7 @@
-import { MetaComponentName } from '@bspk/ui/meta';
+import { MetaComponentName } from 'src/meta';
+import { DevPhase } from 'src/types';
 
-import { DevPhase } from './types';
-
-export const COMPONENT_PHASE: Record<MetaComponentName, DevPhase> = {
+export const COMPONENT_PHASE: Record<MetaComponentName | string, DevPhase> = {
     StylesProviderAnywhere: 'Utility',
     StylesProviderBetterHomesGardens: 'Utility',
     StylesProviderCartus: 'Utility',

@@ -1,6 +1,5 @@
-import { componentsMeta, utilitiesMeta, typesMeta } from '@bspk/ui/meta';
-
-import { kebabCase } from './kebabCase';
+import { componentsMeta, utilitiesMeta, typesMeta } from 'src/meta';
+import { kebabCase } from 'src/utils/kebabCase';
 
 export const LINKS: Record<string, string> = {
     ...Object.fromEntries(componentsMeta.map((m) => [m.name, `/${kebabCase(m.name)}`])),

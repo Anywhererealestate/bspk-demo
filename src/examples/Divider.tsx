@@ -1,7 +1,6 @@
 import { Divider } from '@bspk/ui/Divider';
-
-import { Placeholder } from '../components/Placeholder';
-import { ComponentExampleProps } from '../types';
+import { ExamplePlaceholder } from 'src/components/ExamplePlaceholder';
+import { ComponentExampleProps } from 'src/types';
 
 export const dividerExample: ComponentExampleProps = {
     Component: Divider,
@@ -20,9 +19,9 @@ export const dividerExample: ComponentExampleProps = {
                     maxWidth: props.orientation !== 'vertical' ? '300px' : 'auto',
                 }}
             >
-                <Placeholder {...dimensions} direction={props.orientation !== 'vertical' ? 'row' : 'column'} />
+                <ExamplePlaceholder {...dimensions} direction={props.orientation !== 'vertical' ? 'row' : 'column'} />
                 <Divider {...props} />
-                <Placeholder {...dimensions} direction={props.orientation !== 'vertical' ? 'row' : 'column'} />
+                <ExamplePlaceholder {...dimensions} direction={props.orientation !== 'vertical' ? 'row' : 'column'} />
             </div>
         );
     },

@@ -1,12 +1,10 @@
 import { SvgContentCopy } from '@bspk/icons/ContentCopy';
 import { Fab } from '@bspk/ui/Fab';
 import { useTimeout } from '@bspk/ui/hooks/useTimeout';
-import { css } from '@emotion/react';
 import hljs from 'highlight.js';
 import { CSSProperties, useEffect, useId, useRef, useState } from 'react';
-
-import { pretty, PrettyParser } from '../utils/pretty';
-import useMountedState from '../utils/useMountState';
+import { pretty, PrettyParser } from 'utils/pretty';
+import useMountedState from 'utils/useMountState';
 
 export function Syntax({
     code: preCode,
@@ -55,7 +53,7 @@ export function Syntax({
     const copyTimeout = useTimeout();
 
     return (
-        <div css={style} data-syntax style={propStyle}>
+        <div data-syntax style={propStyle}>
             <Fab
                 data-copy-code
                 icon={<SvgContentCopy />}
@@ -80,36 +78,5 @@ export function Syntax({
         </div>
     );
 }
-
-export const style = css`
-    position: relative;
-    margin-bottom: var(--spacing-sizing-06);
-
-    pre code.hljs {
-        background-color: var(--background-shade) !important;
-        font-size: 14px;
-    }
-
-    [data-copy-code] {
-        opacity: 0;
-    }
-
-    &:hover [data-copy-code] {
-        opacity: 0.7;
-    }
-
-    /* pre[style] {
-    min-height: var(--spacing-sizing-17);
-    margin: 0 !important;
-    padding: var(--spacing-sizing-04) var(--spacing-sizing-16) var(--spacing-sizing-04) var(--spacing-sizing-04) !important;
-    width: 100% !important;
-
-    code {
-      span {
-        background-color: var(--background-shade) !important;
-      }
-    }
-  } */
-`;
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */

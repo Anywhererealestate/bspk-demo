@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-
-import { kebabCase } from './kebabCase';
+import { kebabCase } from 'src/utils/kebabCase';
 
 export type ActionLog = { message: string; location: string; key: string };
 

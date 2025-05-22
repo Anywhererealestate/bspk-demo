@@ -3,12 +3,11 @@ import js from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import importPlugin from 'eslint-plugin-import';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
+import noRelativeImportPaths from 'eslint-plugin-no-relative-import-paths';
 import pluginReact from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import tsEslint from 'typescript-eslint';
-
-import { eslintDemoRules } from './eslint.demo.mjs';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -35,7 +34,7 @@ export default [
     jsxA11y.flatConfigs.recommended,
     cspellESLintPluginRecommended,
     {
-        plugins: { 'react-hooks': reactHooks },
+        plugins: { 'react-hooks': reactHooks, 'no-relative-import-paths': noRelativeImportPaths },
     },
     {
         ignores: [
@@ -46,10 +45,12 @@ export default [
             'node_modules/**/*',
             'src/search-index.ts',
             'src/accessibility-violations/**',
+            'tests',
         ],
     },
     {
         rules: {
+            'no-relative-import-paths/no-relative-import-paths': 'error',
             'react/self-closing-comp': 'error',
             'react-hooks/rules-of-hooks': 'error',
             'react-hooks/exhaustive-deps': 'warn',
@@ -92,7 +93,6 @@ export default [
             'react/no-unknown-property': ['warn', { ignore: ['css'] }],
             'react/prop-types': 'off',
             'react/react-in-jsx-scope': 'off',
-            ...eslintDemoRules,
         },
     },
 ];

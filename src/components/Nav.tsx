@@ -7,16 +7,13 @@ import { Dialog } from '@bspk/ui/Dialog';
 import { Dropdown } from '@bspk/ui/Dropdown';
 import { MenuButton } from '@bspk/ui/MenuButton';
 import { useModalState } from '@bspk/ui/hooks/useModalState';
-import { css } from '@emotion/react';
 import { useEffect, useId, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-
-import { VERSION } from '../search-index';
-import { useGlobalState, useGlobalSetter } from '../utils/globalState';
-import useHotkeys from '../utils/useHotkeys';
-
-import { NavSide } from './NavSide';
-import { SearchModal } from './SearchModal';
+import { NavSide } from 'src/components/NavSide';
+import { SearchModal } from 'src/components/SearchModal';
+import { VERSION } from 'src/search-index';
+import { useGlobalState, useGlobalSetter } from 'src/utils/globalState';
+import useHotkeys from 'src/utils/useHotkeys';
 
 function useScreenSize<T extends { size: string; minWidth: number }[]>(
     sizesProp: T,
@@ -84,7 +81,7 @@ export function Nav() {
 
     return (
         <>
-            <div css={style} data-navbar>
+            <div data-navbar>
                 <span data-backdrop />
                 <div data-header>
                     {screenSize === 'small' && <MenuButton onClick={() => navModalState.onOpen()} />}
@@ -142,105 +139,5 @@ export function Nav() {
         </>
     );
 }
-
-export const style = css`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    justify-items: center;
-    padding: 0 var(--spacing-sizing-05);
-    box-shadow: var(--drop-shadow-south);
-    height: var(--spacing-sizing-14);
-    position: fixed;
-    width: 100%;
-    z-index: var(--z-index-navbar);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(8px);
-    top: 0;
-
-    [data-backdrop] {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: var(--background-shade);
-        opacity: 0.75;
-        z-index: -1;
-    }
-
-    [data-header] {
-        margin-right: var(--spacing-sizing-03);
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: var(--spacing-sizing-02);
-        justify-content: baseline;
-    }
-
-    > * {
-        margin: 0;
-    }
-
-    [data-logo] {
-        margin: 0;
-        display: flex;
-        align-items: center;
-        flex-direction: row;
-        font: var(--body-large);
-        color: var(--foreground-neutral-on-surface);
-        img {
-            height: var(--spacing-sizing-08);
-            width: auto;
-        }
-        span {
-            display: block;
-            padding: 6px 0 0 var(--spacing-sizing-03);
-            margin-left: var(--spacing-sizing-03);
-            height: var(--spacing-sizing-08);
-            border-left: solid 1px var(--stroke-neutral-low);
-        }
-    }
-
-    [data-theme='dark'] & [data-logo] img {
-        filter: brightness(0) invert(1);
-    }
-
-    [data-navbar-right] {
-        display: flex;
-        gap: var(--spacing-sizing-03);
-        align-items: center;
-        justify-content: flex-end;
-
-        [data-dropdown] {
-            min-width: 200px;
-        }
-    }
-
-    [data-brand-dropdown] {
-        //
-    }
-
-    [data-search-button] {
-        display: flex;
-        gap: var(--spacing-sizing-01);
-        align-items: center;
-        padding: 0 var(--spacing-sizing-03);
-        font: var(--body-base);
-        border: 1px solid var(--stroke-brand-primary);
-        box-shadow: none;
-        color: var(--foreground-neutral-on-surface);
-
-        svg {
-            width: var(--spacing-sizing-05);
-            height: var(--spacing-sizing-05);
-        }
-
-        [data-txt] {
-            color: var(--colors-neutral-48);
-            margin-left: var(--spacing-sizing-03);
-        }
-    }
-`;
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */

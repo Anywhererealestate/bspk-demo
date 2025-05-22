@@ -1,8 +1,6 @@
 import { type Page } from '@playwright/test';
-
-import { COMPONENT_PHASE } from '../src/componentPhases';
-
-import { componentsMeta } from './bspk-ui/meta';
+import { COMPONENT_PHASE } from 'src/componentPhases';
+import { componentsMeta } from 'tests/bspk-ui/meta';
 
 const TEST_PORT = process.env.TEST_PORT || 8080;
 async function gotoUrl(page: Page, pathName: string) {

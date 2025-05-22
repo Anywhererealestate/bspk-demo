@@ -1,9 +1,9 @@
-import { utilitiesMeta } from '@bspk/ui/meta';
 
-import { Markup } from '../components/Markup';
-import { Page } from '../components/Page';
-import { Syntax } from '../components/Syntax';
-import { kebabCase } from '../utils/kebabCase';
+import { Markup } from 'src/components/Markup';
+import { Page } from 'src/components/Page';
+import { Syntax } from 'src/components/Syntax';
+import { utilitiesMeta } from 'src/meta';
+import { kebabCase } from 'utils/kebabCase';
 
 const hooks = utilitiesMeta
     .filter((utility) => utility.name.startsWith('use'))

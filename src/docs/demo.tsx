@@ -1,7 +1,6 @@
 import { ListItem } from '@bspk/ui/ListItem';
 import { Tag } from '@bspk/ui/Tag';
-
-import { Page } from '../components/Page';
+import { Page } from 'src/components/Page';
 
 export function Demo() {
     return (

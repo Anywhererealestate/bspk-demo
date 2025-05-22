@@ -1,11 +1,10 @@
 import { Tag } from '@bspk/ui/Tag';
-import { componentsMeta } from '@bspk/ui/meta';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-
-import { COMPONENT_PHASE } from '../componentPhases';
-import { Page } from '../components/Page';
-import { DEV_PHASES } from '../constants';
+import { COMPONENT_PHASE } from 'src/componentPhases';
+import { Page } from 'src/components/Page';
+import { DEV_PHASES } from 'src/constants';
+import { componentsMeta } from 'src/meta';
 
 const componentExamplesList = Object.entries(COMPONENT_PHASE).map(([name, phase]) => ({
     name,

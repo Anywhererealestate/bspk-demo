@@ -9,35 +9,21 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
-import { generateBaseStyleExport } from '../../bspk-ui/.scripts/utils';
+const localUIPath = path.resolve(__dirname, '../../bspk-ui');
 
 interface FileWatchConfig {
     watchPath: string;
     callback: () => void;
-    ignores?: string[];
+    ignore?: (file: string) => boolean;
 }
 
 const filesToWatch: FileWatchConfig[] = [
     {
-        watchPath: path.resolve(__dirname, '../../bspk-ui/src'),
+        watchPath: path.resolve(localUIPath, 'src'),
         callback: () => {
-            const uiRoot = path.resolve(__dirname, '../../bspk-ui');
-            execSync(`cd "${uiRoot}" && npm run meta`, { stdio: 'inherit' });
+            execSync(`npm run meta`, { stdio: 'inherit' });
         },
-        ignores: ['meta.ts', 'base.css'],
-    },
-    {
-        watchPath: path.resolve(__dirname, '../../bspk-ui/src/styles/base.css'),
-        callback: () => {
-            console.log('generateBaseStyleExport');
-            generateBaseStyleExport();
-        },
-    },
-    {
-        watchPath: path.resolve(__dirname, './create-meta.tsx'),
-        callback: () => {
-            execSync('npm run meta', { stdio: 'inherit' });
-        },
+        ignore: (file) => file.endsWith('.scss'),
     },
 ];
 
@@ -54,7 +40,7 @@ const queueCallback = (watchPath: string) => {
     }, 1000);
 };
 
-filesToWatch.forEach(({ watchPath, ignores }) => {
+filesToWatch.forEach(({ watchPath, ignore }) => {
     if (!fs.existsSync(watchPath)) {
         console.error(`File ${watchPath} does not exist.`);
         return;
@@ -66,7 +52,7 @@ filesToWatch.forEach(({ watchPath, ignores }) => {
         fs.watch(watchPath, { recursive: true }, (_, fileName) => {
             // console.log(`Directory ${watchPath} was changed`);
 
-            if (ignores?.some((ignore) => fileName?.includes(ignore))) {
+            if (!fileName || ignore?.(fileName)) {
                 // console.log(`Ignoring file ${fileName} in ${watchPath}`);
                 return;
             }

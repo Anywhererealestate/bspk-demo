@@ -1,6 +1,5 @@
 import { marked } from 'marked';
-
-import { LINKS } from './links';
+import { LINKS } from 'src/utils/links';
 
 /**
  * Adds links to a string returning ReactNode. Markdown and HTML is supported.

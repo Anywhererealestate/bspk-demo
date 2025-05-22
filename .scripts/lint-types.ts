@@ -4,14 +4,13 @@
  * This script ensures all required fields have default values in examplesType.tsx.
  */
 
-import { MetaTypeName, typesMeta, componentsMeta } from '@bspk/ui/meta';
-
-import { componentExamples } from '../src/examples';
+import { componentExamples } from 'src/examples';
+import { MetaTypeName, typesMeta, componentsMeta } from 'src/meta';
 
 const typeExamples = Object.fromEntries(
     Object.entries(componentExamples)
-        .filter(([, componentExample]) => !componentExample.props)
-        .map(([componentName, componentExample]) => [`${componentName}Props`, componentExample.props]),
+        .filter(([, componentExample]) => !componentExample?.props)
+        .map(([componentName, componentExample]) => [`${componentName}Props`, componentExample!.props]),
 );
 
 const logs: Record<string, any[]> = {};

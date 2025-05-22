@@ -1,6 +1,6 @@
-import { ComponentMeta, MetaComponentName, TypeProperty } from '@bspk/ui/meta';
 import type { ComponentProps, ComponentType, ReactElement, ReactNode } from 'react';
 import type { RouteObject } from 'react-router-dom';
+import { ComponentMeta, MetaComponentName, TypeProperty } from 'src/meta';
 
 export type DemoComponent = ComponentExampleProps &
     Omit<ComponentMeta, 'dependencies'> & {

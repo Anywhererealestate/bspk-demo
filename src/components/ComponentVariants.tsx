@@ -1,15 +1,12 @@
 import { Tag } from '@bspk/ui/Tag';
-import { TypeProperty } from '@bspk/ui/meta';
 import { useErrorLogger } from '@bspk/ui/utils/errors';
-import { css } from '@emotion/react';
-
-import { DemoComponent, TypePropertyExample } from '../types';
-import { getPropsFromState } from '../utils/getPropsFromState';
-import { kebabCase } from '../utils/kebabCase';
-
-import { CodeExample } from './CodeExample';
-import { useComponentState } from './ComponentStateProvider';
-import { Markup } from './Markup';
+import { useComponentState } from 'components//ComponentStateProvider';
+import { Markup } from 'components//Markup';
+import { CodeExample } from 'components/CodeExample';
+import { TypeProperty } from 'src/meta';
+import { DemoComponent, TypePropertyExample } from 'src/types';
+import { getPropsFromState } from 'utils/getPropsFromState';
+import { kebabCase } from 'utils/kebabCase';
 
 export function ComponentVariants({
     props,
@@ -46,7 +43,7 @@ export function ComponentVariants({
             {variantProperties.map((prop) => {
                 const variants = prop.options || [true, false];
                 return (
-                    <section key={prop.name} style={{ margin: 'var(--spacing-sizing-08) 0' }}>
+                    <section data-variants key={prop.name} style={{ margin: 'var(--spacing-sizing-08) 0' }}>
                         <h4 data-nav-target="false" id={kebabCase(`variant-${prop.name}`)}>
                             {prop.name}
                         </h4>
@@ -56,10 +53,7 @@ export function ComponentVariants({
                 <Tag color="grey" key={index}>{variant.toString()}</Tag>
               ))}
             </Layout> */}
-                        <CodeExample
-                            renderContainer={{ css: variantExampleStyle }}
-                            style={{ marginBottom: 'var(--spacing-sizing-02)' }}
-                        >
+                        <CodeExample style={{ marginBottom: 'var(--spacing-sizing-02)' }}>
                             {variants?.map((option) => {
                                 const variantDefaultStates =
                                     component.variantDefaults?.[prop.name]?.[option.toString()];
@@ -92,23 +86,5 @@ export function ComponentVariants({
         </>
     );
 }
-
-const variantExampleStyle = css`
-    display: flex !important;
-    flex-wrap: wrap;
-    gap: var(--spacing-sizing-05);
-
-    [data-option-container] {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-sizing-04);
-        width: 100%;
-
-        & + [data-option-container] {
-            padding-top: var(--spacing-sizing-04);
-            border-top: solid 1px var(--stroke-neutral-base);
-        }
-    }
-`;
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */

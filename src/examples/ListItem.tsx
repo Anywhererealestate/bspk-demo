@@ -8,12 +8,10 @@ import { Radio } from '@bspk/ui/Radio';
 import { Switch } from '@bspk/ui/Switch';
 import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
-
-import { updateComponentState } from '../components/ComponentStateProvider';
-import { ComponentExampleProps } from '../types';
-import { action } from '../utils/actions';
-
-import { typeProps } from './utils';
+import { updateComponentState } from 'src/components/ComponentStateProvider';
+import { typeProps } from 'src/examples/utils';
+import { ComponentExampleProps } from 'src/types';
+import { action } from 'utils/actions';
 
 const createChildrenElement = (state: Record<string, any>, name: string) => {
     const componentName = state[name];

@@ -1,20 +1,20 @@
-import { componentsMeta, MetaComponentName } from '@bspk/ui/meta';
-
-import { ComponentPage } from './components/ComponentPage';
-import { Markdown } from './components/Markdown.tsx';
-import { Page } from './components/Page';
-import { Page404 } from './components/Page404.tsx';
-import Changelog from './docs/CHANGELOG.md?raw';
-import Contributing from './docs/CONTRIBUTING.md?raw';
-import { Demo } from './docs/demo';
-import { Hooks } from './docs/hooks';
-import { Icons } from './docs/icons';
-import Intro from './docs/intro.md?raw';
-import { Progress } from './docs/progress';
-import { Stylesheets } from './docs/styles';
-import { Typography } from './docs/typography.tsx';
-import { componentExamples } from './examples';
-import { RouteLink } from './types';
+/* eslint-disable react/no-multi-comp */
+import { ComponentPage } from 'components/ComponentPage';
+import { Markdown } from 'components/Markdown.tsx';
+import { Page } from 'components/Page';
+import { Page404 } from 'components/Page404.tsx';
+import Changelog from 'docs/CHANGELOG.md?raw';
+import Contributing from 'docs/CONTRIBUTING.md?raw';
+import { Demo } from 'docs/demo';
+import { Hooks } from 'docs/hooks';
+import { Icons } from 'docs/icons';
+import Intro from 'docs/intro.md?raw';
+import { Progress } from 'docs/progress';
+import { Stylesheets } from 'docs/styles';
+import { Typography } from 'docs/typography.tsx';
+import { componentExamples } from 'src/examples';
+import { componentsMeta, MetaComponentName } from 'src/meta';
+import { RouteLink } from 'src/types';
 
 export const routes: RouteLink[] = [
     {

@@ -1,7 +1,6 @@
 import { InlineAlert } from '@bspk/ui/InlineAlert';
 import { useErrorLog } from '@bspk/ui/utils/errors';
-
-import { useActionLog } from '../utils/actions';
+import { useActionLog } from 'utils/actions';
 
 export default function ComponentLogs() {
     const { errors } = useErrorLog();

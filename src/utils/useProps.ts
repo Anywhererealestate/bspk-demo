@@ -1,9 +1,7 @@
-import { MetaTypeName, typesMeta } from '@bspk/ui/meta';
-
-import { DemoComponent, TypePropertyExample } from '../types';
-
-import { action } from './actions';
-import { useMountMemo } from './useMountMemo';
+import { MetaTypeName, typesMeta } from 'src/meta';
+import { DemoComponent, TypePropertyExample } from 'src/types';
+import { action } from 'src/utils/actions';
+import { useMountMemo } from 'src/utils/useMountMemo';
 
 export function useProps(componentExample: DemoComponent & { name: string }) {
     return useMountMemo(() => {

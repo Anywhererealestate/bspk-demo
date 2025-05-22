@@ -3,15 +3,12 @@ import { Button } from '@bspk/ui/Button';
 import { SegmentedControl } from '@bspk/ui/SegmentedControl';
 import { SwitchOption } from '@bspk/ui/SwitchOption';
 import { ErrorLogContext, useErrorLogger } from '@bspk/ui/utils/errors';
-import { css } from '@emotion/react';
 import { useId, useMemo } from 'react';
-
-import { DemoComponent, TypePropertyExample } from '../types';
-import { getPropsFromState } from '../utils/getPropsFromState';
-
-import { CodeExample } from './CodeExample';
-import { useComponentState } from './ComponentStateProvider';
-import { TypeProps } from './TypeProps';
+import { CodeExample } from 'src/components/CodeExample';
+import { useComponentState } from 'src/components/ComponentStateProvider';
+import { TypeProps } from 'src/components/TypeProps';
+import { DemoComponent, TypePropertyExample } from 'src/types';
+import { getPropsFromState } from 'utils/getPropsFromState';
 
 export function ComponentExample({
     component,
@@ -29,7 +26,7 @@ export function ComponentExample({
 >) {
     const { Component } = component;
 
-    const { state, resetState, changed, setState, setPreset } = useComponentState();
+    const { state, resetState, changed, setPreset, setState } = useComponentState();
 
     const handleResetState = () => {
         resetState();
@@ -94,7 +91,7 @@ export function ComponentExample({
     const typePropsState = useMemo(() => ({ ...libraryDefaults, ...state }), [libraryDefaults, state]);
 
     return (
-        <div css={style} data-example-wrapper>
+        <div data-example-wrapper>
             <ErrorLogContext id={useId()}>
                 <CodeExample
                     code={code}
@@ -150,27 +147,5 @@ export function ComponentExample({
         </div>
     );
 }
-
-export const style = css`
-    position: relative;
-
-    [data-example-settings] {
-        margin: var(--spacing-sizing-02) 0 0 0;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        [data-presets] {
-            display: flex;
-            flex-grow: 1;
-            flex-direction: row;
-            justify-content: center;
-        }
-        [data-touch-target-toggle] {
-            display: flex;
-            align-items: center;
-        }
-    }
-`;
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */

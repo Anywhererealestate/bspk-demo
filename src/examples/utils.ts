@@ -1,4 +1,4 @@
-import { TypePropertyExample } from '../types';
+import { TypePropertyExample } from 'src/types';
 
 export const typeProps = <P extends Record<string, any> = Record<string, any>, N = keyof P>(
     p: (Omit<TypePropertyExample, 'name'> & {

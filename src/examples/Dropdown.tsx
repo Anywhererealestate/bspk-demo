@@ -4,11 +4,9 @@ import { MenuItem } from '@bspk/ui/Menu';
 import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
 import { ColorVariant } from '@bspk/ui/utils/colorVariants';
-
-import { updateComponentState } from '../components/ComponentStateProvider';
-import { ComponentExampleProps } from '../types';
-
-import { typeProps, setPresets, asProps } from './utils';
+import { updateComponentState } from 'src/components/ComponentStateProvider';
+import { typeProps, setPresets, asProps } from 'src/examples/utils';
+import { ComponentExampleProps } from 'src/types';
 
 export const dropdownExample: ComponentExampleProps = {
     renderContainer: { style: { width: '300px' } },

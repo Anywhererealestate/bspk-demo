@@ -1,14 +1,12 @@
 import { Button } from '@bspk/ui/Button';
 import { Modal, ModalProps } from '@bspk/ui/Modal';
 import { useModalState } from '@bspk/ui/hooks/useModalState';
-import { typesMeta } from '@bspk/ui/meta';
 import { useId } from 'react';
-
-import { updateComponentState } from '../components/ComponentStateProvider';
-import { ComponentExampleProps, ComponentExampleRenderProps } from '../types';
-import { action } from '../utils/actions';
-
-import { typeProps } from './utils';
+import { updateComponentState } from 'src/components/ComponentStateProvider';
+import { typeProps } from 'src/examples/utils';
+import { typesMeta } from 'src/meta';
+import { ComponentExampleProps, ComponentExampleRenderProps } from 'src/types';
+import { action } from 'utils/actions';
 
 export function ModalRender({ demoProps, state }: ComponentExampleRenderProps) {
     const dialogId = useId();

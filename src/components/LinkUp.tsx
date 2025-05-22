@@ -1,8 +1,7 @@
 import { ElementProps } from '@bspk/ui';
 import { ElementType, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-
-import { LINKS } from '../utils/links';
+import { LINKS } from 'utils/links';
 
 export type LinkUpProps<As extends ElementType = 'span'> = {
     as?: As;

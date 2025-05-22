@@ -6,8 +6,7 @@ import { RadioGroup } from '@bspk/ui/RadioGroup';
 import { Switch } from '@bspk/ui/Switch';
 import { TextInput } from '@bspk/ui/TextInput';
 import { Textarea } from '@bspk/ui/Textarea';
-
-import { TypePropertyExampleWithControls } from '../types';
+import { TypePropertyExampleWithControls } from 'src/types';
 
 const IconNameOptions = Object.keys(iconMeta) as IconName[];
 

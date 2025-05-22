@@ -1,11 +1,10 @@
 import { ElementProps } from '@bspk/ui';
 import { Txt } from '@bspk/ui/Txt';
-import { css } from '@emotion/react';
 import { useRef } from 'react';
 
-const dimension = (value: number | string) => (typeof value === 'number' ? `${value}px` : value);
+const dimension = (value: number | string) => (typeof value === 'number' ? `${value}px` : `${value}`);
 
-export function Placeholder({
+export function ExamplePlaceholder({
     hideSize = false,
     height = 100,
     width = '100%',
@@ -20,18 +19,13 @@ export function Placeholder({
     return (
         <div
             {...props}
-            css={css`
-                width: ${dimension(width)};
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: ${dimension(height)};
-                background-color: var(--surface-neutral-t3-low);
-                flex-direction: ${direction};
-                column-gap: var(--spacing-sizing-01);
-            `}
-            data-placeholder
+            data-example-placeholder
             ref={ref}
+            style={{
+                width: dimension(width),
+                height: dimension(height),
+                flexDirection: direction,
+            }}
         >
             {!hideSize && (
                 <>

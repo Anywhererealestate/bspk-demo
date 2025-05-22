@@ -4,7 +4,7 @@ import prettierPluginHtml from 'prettier/plugins/html';
 import prettierPluginCss from 'prettier/plugins/postcss';
 import prettierPluginTypescript from 'prettier/plugins/typescript';
 
-export type PrettyParser = Extract<BuiltInParserName, 'estree' | 'html' | 'scss' | 'typescript'> | 'none';
+export type PrettyParser = Extract<BuiltInParserName, 'css' | 'estree' | 'html' | 'scss' | 'typescript'> | 'none';
 
 export async function pretty(source: string, parser: PrettyParser) {
     return await format(source, {

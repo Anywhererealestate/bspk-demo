@@ -1,3 +1,4 @@
+/* eslint-disable react/no-multi-comp */
 import { SvgCloud } from '@bspk/icons/Cloud';
 import { SvgCloudFill } from '@bspk/icons/CloudFill';
 import { SvgDiamond } from '@bspk/icons/Diamond';
@@ -44,25 +45,23 @@ import { Textarea, TextareaProps } from '@bspk/ui/Textarea';
 import { TextareaField, TextareaFieldProps } from '@bspk/ui/TextareaField';
 import { Tooltip } from '@bspk/ui/Tooltip';
 import { Txt, TxtProps } from '@bspk/ui/Txt';
-import { MetaComponentName } from '@bspk/ui/meta';
 import { TXT_VARIANTS, TxtVariant } from '@bspk/ui/utils/txtVariants';
 import { useId } from 'react';
-
-import { updateComponentState } from '../components/ComponentStateProvider';
-import { Placeholder } from '../components/Placeholder';
-import { ComponentExampleProps } from '../types';
-import { action } from '../utils/actions';
-
-import { buttonExample, fabExample } from './Button';
-import { dialogExample } from './Dialog';
-import { dividerExample } from './Divider';
-import { dropdownExample } from './Dropdown';
-import { ListItemExample } from './ListItem';
-import { menuExample } from './Menu';
-import { modalExample } from './Modal';
-import { SearchBarExample } from './SearchBar';
-import loremIpsum from './loremIpsum';
-import { setPresets, typeProps } from './utils';
+import { updateComponentState } from 'src/components/ComponentStateProvider';
+import { ExamplePlaceholder } from 'src/components/ExamplePlaceholder';
+import { buttonExample, fabExample } from 'src/examples/Button';
+import { dialogExample } from 'src/examples/Dialog';
+import { dividerExample } from 'src/examples/Divider';
+import { dropdownExample } from 'src/examples/Dropdown';
+import { ListItemExample } from 'src/examples/ListItem';
+import { menuExample } from 'src/examples/Menu';
+import { modalExample } from 'src/examples/Modal';
+import { SearchBarExample } from 'src/examples/SearchBar';
+import loremIpsum from 'src/examples/loremIpsum';
+import { setPresets, typeProps } from 'src/examples/utils';
+import { MetaComponentName } from 'src/meta';
+import { ComponentExampleProps } from 'src/types';
+import { action } from 'utils/actions';
 
 export const componentExamples: Partial<Record<MetaComponentName, ComponentExampleProps>> = {
     Link: {
@@ -291,7 +290,7 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
             return (
                 <>
                     <EmptyState {...state}>
-                        <Placeholder height="200px" width="60%" />
+                        <ExamplePlaceholder height="200px" width="60%" />
                     </EmptyState>
                 </>
             );
@@ -329,7 +328,7 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
 
             return (
                 <Card {...state}>
-                    <Placeholder height={dimensions} width={dimensions} />
+                    <ExamplePlaceholder height={dimensions} width={dimensions} />
                 </Card>
             );
         },
@@ -807,7 +806,7 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
         props: typeProps<TxtProps>([
             {
                 name: 'variant',
-                options: TXT_VARIANTS as TxtVariant[],
+                options: [...TXT_VARIANTS] as TxtVariant[],
             },
         ]),
     },

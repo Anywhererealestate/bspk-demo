@@ -1,8 +1,7 @@
 import { Brand, BRANDS } from '@bspk/ui';
 import { createContext, PropsWithChildren, useContext, useEffect, useMemo, useState } from 'react';
-
-import { StylesProvider } from '../components/StylesProvider';
-import { VERSION } from '../search-index';
+import { StylesProvider } from 'src/components/StylesProvider';
+import { VERSION } from 'src/search-index';
 
 export const COLOR_THEMES = ['light', 'dark'] as const;
 

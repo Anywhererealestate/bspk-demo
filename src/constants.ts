@@ -1,6 +1,5 @@
 import { ColorVariant } from '@bspk/ui/utils/colorVariants';
-
-import { DevPhase } from './types';
+import { DevPhase } from 'src/types';
 
 export const DEV_PHASES: Record<
     DevPhase,

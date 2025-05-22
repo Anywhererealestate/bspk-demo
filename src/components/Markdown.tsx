@@ -1,8 +1,6 @@
+import { Syntax } from 'components/Syntax';
 import MarkdownBase, { RuleType } from 'markdown-to-jsx';
-
-import { PrettyParser } from '../utils/pretty.ts';
-
-import { Syntax } from './Syntax.tsx';
+import { PrettyParser } from 'utils/pretty.ts';
 
 export function Markdown({ md }: { md: string }) {
     return (

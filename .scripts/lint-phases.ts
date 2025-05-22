@@ -4,13 +4,13 @@
  * This script ensures all components not in the backlog have an example.
  */
 
-import { COMPONENT_PHASE } from '../src/componentPhases';
-import { componentExamples } from '../src/examples';
+import { COMPONENT_PHASE } from 'src/componentPhases';
+import { componentExamples } from 'src/examples';
 
 const componentsThatShouldHaveAnExample = Object.entries(COMPONENT_PHASE).filter(([component, phase]) => {
     if (phase === 'Backlog' || phase === 'Utility') return false;
 
-    return !componentExamples[component];
+    return !(component in componentExamples);
 });
 
 if (componentsThatShouldHaveAnExample.length) {

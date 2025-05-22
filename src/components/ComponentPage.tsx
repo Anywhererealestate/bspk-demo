@@ -1,26 +1,23 @@
 import { Button } from '@bspk/ui/Button';
 import { Tag } from '@bspk/ui/Tag';
-import { componentsMeta, MetaComponentName } from '@bspk/ui/meta';
-import { css } from '@emotion/react';
-import { Fragment } from '@emotion/react/jsx-runtime';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-
-import { COMPONENT_PHASE } from '../componentPhases';
-import { DEV_PHASES } from '../constants';
-import { componentExamples } from '../examples';
-import { DemoComponent, DevPhase } from '../types';
-import { kebabCase } from '../utils/kebabCase';
-import { useMountMemo } from '../utils/useMountMemo';
-import { useProps } from '../utils/useProps';
-
-import { ComponentExample } from './ComponentExample';
-import { ComponentStateProvider, resetComponentState } from './ComponentStateProvider';
-import { ComponentVariants } from './ComponentVariants';
-import { ErrorBoundary } from './ErrorBoundary';
-import { Markup } from './Markup';
-import { NavContents } from './NavContents';
-import { Syntax } from './Syntax';
-import { TypeProps } from './TypeProps';
+import { COMPONENT_PHASE } from 'src/componentPhases';
+import { ComponentExample } from 'src/components/ComponentExample';
+import { ComponentStateProvider, resetComponentState } from 'src/components/ComponentStateProvider';
+import { ComponentVariants } from 'src/components/ComponentVariants';
+import { ErrorBoundary } from 'src/components/ErrorBoundary';
+import { Markup } from 'src/components/Markup';
+import { NavContents } from 'src/components/NavContents';
+import { Syntax } from 'src/components/Syntax';
+import { TypeProps } from 'src/components/TypeProps';
+import { DEV_PHASES } from 'src/constants';
+import { componentExamples } from 'src/examples';
+import { componentsMeta, MetaComponentName } from 'src/meta';
+import { DemoComponent, DevPhase } from 'src/types';
+import { kebabCase } from 'src/utils/kebabCase';
+import { useMountMemo } from 'src/utils/useMountMemo';
+import { useProps } from 'src/utils/useProps';
 
 function ComponentPage({ componentName }: { componentName: MetaComponentName }) {
     const component: DemoComponent = useMountMemo(() => {
@@ -45,7 +42,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
 
     return (
         <>
-            <div css={style} data-component-page data-page>
+            <div data-component-page data-page>
                 <header data-header>
                     <h1 data-nav-target data-nav-target-label="Introduction" id="introduction">
                         {component.name}
@@ -196,7 +193,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                     {component.css && (
                         <Syntax
                             code={component.css}
-                            language="scss"
+                            language="css"
                             style={{ maxHeight: '400px', overflowY: 'scroll' }}
                         />
                     )}
@@ -216,13 +213,5 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
 }
 
 export { ComponentPage };
-
-export const style = css`
-    [data-header] {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-`;
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */

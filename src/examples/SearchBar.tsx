@@ -1,9 +1,9 @@
 import { MenuItem } from '@bspk/ui/Menu';
 import { SearchBar } from '@bspk/ui/SearchBar';
 import { useId, useState } from 'react';
+import { updateComponentState } from 'src/components/ComponentStateProvider';
+import { action } from 'utils/actions';
 
-import { updateComponentState } from '../components/ComponentStateProvider';
-import { action } from '../utils/actions';
 
 export function SearchBarExample(state: any) {
     const [filteredSuggestions, setFilteredSuggestions] = useState<MenuItem[] | undefined>();

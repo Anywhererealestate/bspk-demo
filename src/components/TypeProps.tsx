@@ -1,16 +1,13 @@
 import { Table, TableColumn } from '@bspk/ui/Table';
 import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
-import { css } from '@emotion/react';
 import { Fragment, useCallback, useMemo } from 'react';
-
-import { PROPERTY_NAME_CUSTOM_SORT } from '../config';
-import { TypePropertyExample, TypePropertyExampleWithControls } from '../types';
-
-import { updateComponentState } from './ComponentStateProvider';
-import { LinkUp } from './LinkUp';
-import { Markup } from './Markup';
-import { TypePropControl } from './TypePropControl';
+import { updateComponentState } from 'src/components/ComponentStateProvider';
+import { LinkUp } from 'src/components/LinkUp';
+import { Markup } from 'src/components/Markup';
+import { TypePropControl } from 'src/components/TypePropControl';
+import { PROPERTY_NAME_CUSTOM_SORT } from 'src/config';
+import { TypePropertyExample, TypePropertyExampleWithControls } from 'src/types';
 
 export function hasPropTypeControl(prop: TypePropertyExample) {
     const type = prop.controlType || prop.type;
@@ -101,9 +98,9 @@ export function TypeProps({ props, state }: { props: TypePropertyExample[]; stat
         <>
             <Table
                 columns={columns}
-                css={style}
                 data-hide-controls={!showControls}
                 data-props
+                data-type-props
                 rows={propsWithControl.map((prop) => {
                     return {
                         name: (
@@ -202,60 +199,5 @@ export function TypeProps({ props, state }: { props: TypePropertyExample[]; stat
         </>
     );
 }
-
-export const style = css`
-    //grid-template-columns: ;
-
-    &[data-hide-controls='true'] {
-        grid-template-columns: auto 1fr;
-    }
-
-    > div {
-        padding: var(--spacing-sizing-04) var(--spacing-sizing-02);
-
-        &:not([data-row-last]) {
-            border-bottom: var(--stroke-neutral-low-contrast) solid 1px;
-        }
-    }
-
-    /* [data-cell='default'] {
-    &[data-none] {
-      > [data-txt] {
-        color: var(--foreground-neutral-disabled-on-surface);
-      }
-    }
-  } */
-
-    /* [data-cell='name'] {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-
-    [data-txt] {
-      color: var(--foreground-neutral-on-surface);
-      font-weight: 500;
-    }
-  } */
-
-    [data-cell='controls'] {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-sizing-02);
-        padding-bottom: var(--spacing-sizing-04);
-        position: relative;
-
-        label:empty {
-            display: none;
-        }
-    }
-
-    [data-type-options] {
-        display: flex;
-        flex-direction: row;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        max-width: 300px;
-    }
-`;
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */

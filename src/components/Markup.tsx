@@ -1,7 +1,6 @@
 import { marked } from 'marked';
 import { ComponentProps, ElementType, ReactNode } from 'react';
-
-import { LINKS } from '../utils/links';
+import { LINKS } from 'utils/links';
 
 export type WrapHtmlProps<As extends ElementType> = {
     as?: As;

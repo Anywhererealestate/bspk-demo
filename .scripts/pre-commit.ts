@@ -1,6 +1,6 @@
 import { execSync } from 'node:child_process';
 
-import packageJson from '../package.json';
+import packageJson from 'package.json';
 
 function ensureLatestUIVersion() {
     const latestVersionPublished = execSync('npm view @bspk/ui version', { encoding: 'utf-8' }).trim();

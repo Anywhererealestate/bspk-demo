@@ -3,15 +3,9 @@
  * package.
  */
 
-export const VERSION = '1.0.3' as const;
+export const VERSION = '1.1.9' as const;
 
 export const searchIndex = [
-    {
-        title: 'Accordion',
-        content: 'Component description coming soon. children The content of the accordion. undefined',
-        url: '/accordion',
-        kind: 'Component',
-    },
     {
         title: 'Avatar',
         content:
@@ -29,26 +23,8 @@ export const searchIndex = [
     {
         title: 'BannerAlert',
         content:
-            'A visual and contextual message used to communicate an important message or notification to users relating to a status or the body content of a page. variant The color variant of the banner alert. informational onClose The function to call when the banner alert is closed. If not included the close button will not be displayed. undefined header The header of the banner alert. undefined body The body of the banner alert. undefined callToAction This property may be undefined or an object containing required CallToActionButton properties. undefined elevated Is the alert elevated. If true a drop shadow is added. false label The label of the call to action button. undefined onClick The callback function for the call to action button. undefined size The size of the call to action button. undefined',
+            'A visual and contextual message used to communicate an important message or notification to users relating to a status or the body content of a page. variant The color variant of the banner alert. informational onClose The function to call when the banner alert is closed. If not included the close button will not be displayed. undefined header The header of the banner alert. undefined body The body text of the banner alert. undefined callToAction This property may be undefined or an object containing required CallToActionButton properties. undefined elevated Is the alert elevated. If true a drop shadow is added. false label The label of the call to action button. undefined onClick The callback function for the call to action button. undefined size The size of the call to action button. undefined',
         url: '/banner-alert',
-        kind: 'Component',
-    },
-    {
-        title: 'BottomNavigation',
-        content: 'Component description coming soon. children The content of the bottom navigation. undefined',
-        url: '/bottom-navigation',
-        kind: 'Component',
-    },
-    {
-        title: 'BottomSheet',
-        content: 'Component description coming soon. children The content of the bottom sheet. undefined',
-        url: '/bottom-sheet',
-        kind: 'Component',
-    },
-    {
-        title: 'Breadcrumb',
-        content: 'Component description coming soon. children The content of the breadcrumb. undefined',
-        url: '/breadcrumb',
         kind: 'Component',
     },
     {
@@ -59,22 +35,10 @@ export const searchIndex = [
         kind: 'Component',
     },
     {
-        title: 'ButtonDock',
-        content: 'Component description coming soon. children The content of the button dock. undefined',
-        url: '/button-dock',
-        kind: 'Component',
-    },
-    {
         title: 'Card',
         content:
             'Cards are often rectangular and contain various content, such as text, images, icons, multimedia, and interactive elements.\n\nThey are similar in size and shape to playing cards and are intended to encourage users to click or tap to view more details. children The content of the card. undefined showPadding Determines if the padding should be hidden. true variant Determines how the card border will appear. elevated',
         url: '/card',
-        kind: 'Component',
-    },
-    {
-        title: 'Chart',
-        content: 'Component description coming soon. children The content of the chart. undefined',
-        url: '/chart',
         kind: 'Component',
     },
     {
@@ -106,12 +70,6 @@ export const searchIndex = [
         kind: 'Component',
     },
     {
-        title: 'DatePicker',
-        content: 'Component description coming soon. children The content of the datepicker. undefined',
-        url: '/date-picker',
-        kind: 'Component',
-    },
-    {
         title: 'Dialog',
         content:
             'Dialogs display important information that users need to acknowledge. They appear over the interface and block further interactions until an action is selected. id The id of the element. If not provided one will be generated. undefined children The content of the dialog. undefined innerRef A ref to the dialog element. undefined open If the dialog should appear. false onClose Function to call when the dialog is closed. undefined placement The placement of the dialog on the screen. center hideScrim Whether the dialog should have a scrim behind it. false',
@@ -123,12 +81,6 @@ export const searchIndex = [
         content:
             'Horizontal thin lines that separates grouped content in a list or other containers with an optional section/group label.\n\nVertical thin lines that separates grouped content or other visual elements within a container. orientation The orientation of the divider. horizontal thickness The thickness of the divider. light padding If the divider padding is shown. true inset The inset (margin) of the divider. The value is a number between 0 and 12, which corresponds to the spacing\nsizing variables defined in the theme. The inset is applied to the left and right sides of the divider when the\norientation is horizontal, and to the top and bottom when the orientation is vertical. 0',
         url: '/divider',
-        kind: 'Component',
-    },
-    {
-        title: 'Drawer',
-        content: 'Component description coming soon. children The content of the drawer. undefined',
-        url: '/drawer',
         kind: 'Component',
     },
     {
@@ -160,22 +112,10 @@ export const searchIndex = [
         kind: 'Component',
     },
     {
-        title: 'FileUpload',
-        content: 'Component description coming soon. children The content of the fileupload. undefined',
-        url: '/file-upload',
-        kind: 'Component',
-    },
-    {
         title: 'FormField',
         content:
             'Wrapper component for form controls.\n\nChildren may be one of the following: TextInput, Dropdown, DatePicker, or TimePicker. required Determines if the element is [required](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required). false errorMessage Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid. undefined label The label of the field. undefined controlId The id of the control. undefined children The children of the form field. This should be a control such as TextInput, Dropdown, DatePicker, or TimePicker. undefined helperText The helperText of the field. undefined labelTrailing The trailing element of the label. undefined invalid Marks the element as invalid and displays error message. false aria-describedby The id of the control description. undefined aria-errormessage The id of the error message undefined',
         url: '/form-field',
-        kind: 'Component',
-    },
-    {
-        title: 'Image',
-        content: 'Component description coming soon. children The content of the image. undefined',
-        url: '/image',
         kind: 'Component',
     },
     {
@@ -235,18 +175,6 @@ export const searchIndex = [
         kind: 'Component',
     },
     {
-        title: 'MultiSelection',
-        content: 'Component description coming soon. children The content of the multi selection. undefined',
-        url: '/multi-selection',
-        kind: 'Component',
-    },
-    {
-        title: 'NavigationRail',
-        content: 'Component description coming soon. children The content of the navigation rail. undefined',
-        url: '/navigation-rail',
-        kind: 'Component',
-    },
-    {
         title: 'NumberField',
         content:
             'A input element that allows users to either input a numerical value or singularly increase or decrease the values by pressing the (+) or (-).\n\nThis component takes properties from the FormField and NumberInput components. name The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control. undefined id The id of the element. If not provided one will be generated. undefined value The value of the control. undefined invalid Marks the element as invalid and displays error state theme. false disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false size The size of the element. medium onChange Callback when the value changes. undefined readOnly Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly). false centered If the value should be centered between the up & down buttons. false required Determines if the element is [required](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required). false label The label of the field. undefined errorMessage Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid. undefined helperText The helperText of the field. undefined labelTrailing The trailing element of the label. undefined controlId The id of the control. undefined',
@@ -258,30 +186,6 @@ export const searchIndex = [
         content:
             'A input element that allows users to either input a numerical value or singularly increase or decrease the values by pressing the (+) or (-). name The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control. undefined id The id of the element. If not provided one will be generated. undefined invalid Marks the element as invalid and displays error state theme. false disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false size The size of the element. medium aria-label The aria-label for the element. undefined readOnly Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly). false value The value of the control. undefined onChange Callback when the value changes. undefined centered If the value should be centered between the up & down buttons. false max Defines the [maximum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/max) value that is accepted. undefined min Defines the [minimum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/min) value that is accepted. undefined',
         url: '/number-input',
-        kind: 'Component',
-    },
-    {
-        title: 'OTPInput',
-        content: 'Component description coming soon. children The content of the otp input. undefined',
-        url: '/otp-input',
-        kind: 'Component',
-    },
-    {
-        title: 'PageControl',
-        content: 'Component description coming soon. children The content of the page control. undefined',
-        url: '/page-control',
-        kind: 'Component',
-    },
-    {
-        title: 'PasswordInput',
-        content: 'Component description coming soon. children The content of the password input. undefined',
-        url: '/password-input',
-        kind: 'Component',
-    },
-    {
-        title: 'PhoneNumberInput',
-        content: 'Component description coming soon. children The content of the phone number input. undefined',
-        url: '/phone-number-input',
         kind: 'Component',
     },
     {
@@ -322,7 +226,7 @@ export const searchIndex = [
     {
         title: 'ProgressionStepperBar',
         content:
-            'Component description coming soon. stepCount The number of steps in the progress bar. undefined stepCompleted The last step completed. 0 size The size of the progress bar. undefined',
+            'Component description coming soon. stepCount The number of steps in the progress bar. undefined stepCompleted The last step completed. 0 size The size of the progress bar. large',
         url: '/progression-stepper-bar',
         kind: 'Component',
     },
@@ -348,12 +252,6 @@ export const searchIndex = [
         kind: 'Component',
     },
     {
-        title: 'Rating',
-        content: 'Component description coming soon. children The content of the rating. undefined',
-        url: '/rating',
-        kind: 'Component',
-    },
-    {
         title: 'SearchBar',
         content:
             'Component description coming soon. itemCount The number of items to display in the menu 5 items Content to display in the menu. undefined noResultsMessage Message to display when no results are found undefined name The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control. undefined id The id of the element. If not provided one will be generated. undefined size The size of the element. medium aria-label The aria-label for the element. undefined placeholder The placeholder of the field. undefined inputRef The ref of the input. undefined searchValue The current value of the search bar. undefined setSearchValue Handler for state updates. undefined onSelect undefined undefined disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false label The content to display in the menu item. undefined value The value of the menu item. undefined id The unique id of the menu item. undefined',
@@ -372,18 +270,6 @@ export const searchIndex = [
         content:
             "A visual placeholder for an element while it is in a loading state. variant The text variant of the skeleton. If 'other' skeleton will expand to size of nearest relative positioned parent. other lines The number of lines showing. Ignored when variant is other. 1",
         url: '/skeleton',
-        kind: 'Component',
-    },
-    {
-        title: 'SliderInput',
-        content: 'Component description coming soon. children The content of the slider input. undefined',
-        url: '/slider-input',
-        kind: 'Component',
-    },
-    {
-        title: 'Snackbar',
-        content: 'Component description coming soon. children The content of the snackbar. undefined',
-        url: '/snackbar',
         kind: 'Component',
     },
     {
@@ -508,12 +394,6 @@ export const searchIndex = [
         content:
             'A text input that allows users to enter text, numbers or symbols in a singular line. This is the base element and is not intended to be used directly. Use the TextField component. name The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control. undefined required Determines if the element is [required](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required). false id The id of the element. If not provided one will be generated. undefined value The value of the control. undefined invalid Marks the element as invalid and displays error state theme. false disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false size The size of the element. medium aria-label The aria-label for the element. undefined readOnly Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly). false onChange Callback when the value of the field changes. undefined containerRef The ref of the container. undefined inputRef The ref of the input. undefined trailing The trailing element to display in the field. undefined leading The leading element to display in the field. undefined placeholder The placeholder of the field. undefined type The type of the input. undefined autoComplete Specifies if user agent has any permission to provide automated assistance in filling out form field values.\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete off',
         url: '/text-input',
-        kind: 'Component',
-    },
-    {
-        title: 'TimePicker',
-        content: 'Component description coming soon. children The content of the timepicker. undefined',
-        url: '/time-picker',
         kind: 'Component',
     },
     {

@@ -1,7 +1,6 @@
 import { SvgLink } from '@bspk/icons/Link';
 import { ListItem } from '@bspk/ui/ListItem';
 import { Txt } from '@bspk/ui/Txt';
-import { css, Global } from '@emotion/react';
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -59,37 +58,7 @@ export function NavContents() {
 
     return (
         <>
-            <Global
-                styles={css`
-                    [data-nav-target] {
-                        display: block;
-                        position: relative;
-                        font: inherit !important;
-                        font-style: inherit !important;
-                        color: inherit !important;
-                        text-decoration: inherit !important;
-                        width: fit-content;
-
-                        [data-link] {
-                            display: none;
-                            svg {
-                                width: var(--spacing-sizing-05);
-                            }
-                        }
-
-                        &:hover {
-                            [data-link] {
-                                display: block;
-                                position: absolute;
-                                right: calc(var(--spacing-sizing-08) * -1);
-                                top: 0;
-                                opacity: 0.5;
-                            }
-                        }
-                    }
-                `}
-            />
-            <div css={style} data-nav-contents>
+            <div data-nav-contents>
                 <Txt as="div" variant="heading-h4">
                     Content
                 </Txt>
@@ -116,31 +85,5 @@ export function NavContents() {
         </>
     );
 }
-
-export const style = css`
-    position: fixed;
-    top: var(--spacing-sizing-20);
-    right: var(--spacing-sizing-06);
-    margin: 0;
-    padding: 0;
-    width: var(--nav-contents-width);
-
-    [data-txt] {
-        margin: 0;
-    }
-
-    nav {
-        display: flex;
-        flex-direction: column;
-
-        [data-list-item] {
-            border-left: 3px solid transparent;
-
-            &[data-selected] {
-                border-left-color: var(--interactions-neutral-press-opacity);
-            }
-        }
-    }
-`;
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */

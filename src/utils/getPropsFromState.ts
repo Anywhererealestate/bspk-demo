@@ -1,6 +1,5 @@
 import { LogError } from '@bspk/ui/utils/errors';
-
-import { TypePropertyExample } from '../types';
+import { TypePropertyExample } from 'src/types';
 
 export function getPropsFromState(
     state: Record<string, any>,

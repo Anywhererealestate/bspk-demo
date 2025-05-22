@@ -3,12 +3,10 @@ import { SvgRemove } from '@bspk/icons/Remove';
 import { ListItem } from '@bspk/ui/ListItem';
 import { Skeleton } from '@bspk/ui/Skeleton';
 import { Txt } from '@bspk/ui/Txt';
-import { css } from '@emotion/react';
 import axe from 'axe-core';
+import { useComponentState } from 'components/ComponentStateProvider';
+import { Syntax } from 'components/Syntax';
 import { useEffect, useMemo, useRef } from 'react';
-
-import { useComponentState } from './ComponentStateProvider';
-import { Syntax } from './Syntax';
 
 export type AccessibilitySectionProps = {
     context: HTMLElement | null;
@@ -39,7 +37,7 @@ export function AccessibilitySection({ context, code }: AccessibilitySectionProp
     const results = useMemo(() => (code ? axeResults[code] : undefined), [axeResults, code]);
 
     return (
-        <div css={style} data-axe-results>
+        <div data-axe-results>
             <Txt as="h5" variant="heading-h5">
                 Violations
             </Txt>
@@ -51,18 +49,7 @@ export function AccessibilitySection({ context, code }: AccessibilitySectionProp
             ) : (
                 results?.violations.map((violation) => (
                     <div data-axe-violations key={violation.id}>
-                        <ListItem
-                            as="div"
-                            css={css`
-                                color: var(--status-error);
-                                [data-item-label] [data-text] {
-                                    color: var(--status-error);
-                                }
-                            `}
-                            data-axe-violations
-                            label={violation.description}
-                            leading={<SvgRemove />}
-                        />
+                        <ListItem as="div" data-axe-violations label={violation.description} leading={<SvgRemove />} />
                         {violation.nodes.map((node, index) => (
                             <div data-axe-node key={index}>
                                 <Syntax code={node.html} language="html" />
@@ -84,29 +71,11 @@ export function AccessibilitySection({ context, code }: AccessibilitySectionProp
                 <p>No passes reported.</p>
             ) : (
                 results?.passes.map((pass) => (
-                    <ListItem
-                        as="div"
-                        css={css`
-                            color: var(--status-success);
-                            [data-item-label] [data-text] {
-                                color: var(--status-success);
-                            }
-                        `}
-                        data-axe-pass
-                        key={pass.id}
-                        label={pass.description}
-                        leading={<SvgCheck />}
-                    />
+                    <ListItem as="div" data-axe-pass key={pass.id} label={pass.description} leading={<SvgCheck />} />
                 ))
             )}
         </div>
     );
 }
-
-const style = css`
-    display: flex;
-    flex-direction: column;
-    padding: var(--spacing-sizing-05);
-`;
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */
