@@ -3,7 +3,7 @@
  * package.
  */
 
-export const VERSION = '1.1.11' as const;
+export const VERSION = '1.1.12' as const;
 
 export const searchIndex = [
     {
@@ -100,7 +100,7 @@ export const searchIndex = [
     {
         title: 'EmptyState',
         content:
-            'A design pattern component that indicates to users that system has no content to display. children The image or icon to display in the empty state. undefined header The header of the empty state. undefined body The body of the empty state. undefined callToAction This property may be undefined or an object containing required CallToActionButton properties. undefined label The label of the call to action button. undefined onClick The callback function for the call to action button. undefined size The size of the call to action button. undefined',
+            'A design pattern component that indicates to users that system has no content to display. children The image or icon to display in the empty state. undefined header The header of the empty state. undefined body The body of the empty state. undefined bodyAlign The text alignment of the body. center callToAction This property may be undefined or an object containing required CallToActionButton properties. undefined label The label of the call to action button. undefined onClick The callback function for the call to action button. undefined size The size of the call to action button. undefined',
         url: '/empty-state',
         kind: 'Component',
     },
@@ -268,7 +268,7 @@ export const searchIndex = [
     {
         title: 'Skeleton',
         content:
-            "A visual placeholder for an element while it is in a loading state. variant The text variant of the skeleton. If 'other' skeleton will expand to size of nearest relative positioned parent. other lines The number of lines showing. Ignored when variant is other. 1",
+            "A visual placeholder for an element while it is in a loading state. variant The text variant of the skeleton. text textVariant The size of the text. This is only used when variant is 'text'. body-base textLines The number of lines showing. This is only used when variant is 'text'. 3 width The width of the skeleton. This is ignored when variant is 'text', 'profile', or 'thumbnail'. 200 height The height of the skeleton. This is ignored when variant is 'text', 'profile', or 'thumbnail'. 100",
         url: '/skeleton',
         kind: 'Component',
     },

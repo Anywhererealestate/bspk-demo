@@ -1,4 +1,3 @@
-import { SvgContentCopy } from '@bspk/icons/ContentCopy';
 import { Fab } from '@bspk/ui/Fab';
 import { useTimeout } from '@bspk/ui/hooks/useTimeout';
 import hljs from 'highlight.js';
@@ -49,28 +48,27 @@ export function Syntax({
         if (code && element.current?.dataset.highlighted !== 'yes') hljs.highlightElement(element.current);
     }, [code, preId]);
 
-    const [copyLabel, setCopyLabel] = useState(() => 'Copy code');
+    const DEFAULT_COPY_LABEL = 'Copy';
+
+    const [copyLabel, setCopyLabel] = useState(() => DEFAULT_COPY_LABEL);
     const copyTimeout = useTimeout();
 
     return (
         <div data-syntax style={propStyle}>
             <Fab
                 data-copy-code
-                icon={<SvgContentCopy />}
                 label={copyLabel}
                 onClick={() => {
                     if (!navigator?.clipboard?.writeText) return;
 
                     navigator.clipboard.writeText(code);
                     setCopyLabel('Copied');
-                    copyTimeout.set(() => {
-                        setCopyLabel('Copy code');
-                    }, 2000);
+                    copyTimeout.set(() => setCopyLabel(DEFAULT_COPY_LABEL), 2000);
                 }}
                 placement="top-right"
-                showLabel={false}
                 size="small"
                 style={{ marginTop: '-10px', marginRight: '-10px' }}
+                variant="neutral"
             />
             <pre id={preId}>
                 <code className={`language-${language}`}>{code}</code>

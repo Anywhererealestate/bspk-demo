@@ -10,16 +10,13 @@
         "dev": "vite-node ./.scripts/setup-dev.ts && npm run dev:vite | vite-node ./.scripts/watch-dev.ts",
         "lint": "eslint && tsc --noemit",
         "lint:fix": "eslint --fix",
-        "lint:phases": "vite-node .scripts/lint-phases.ts",
         "lint:types": "vite-node .scripts/lint-types.ts",
-        "lint:styles": "vite-node .scripts/lint-style.ts",
         "meta": "vite-node ./.scripts/create-meta.ts && vite-node ./.scripts/search-index.ts",
-        "parser": "vite-node .scripts/js-doc-parser.ts",
         "prepare": "husky",
         "preview": "npm run build && vite preview --port 8080 --open",
         "test": "TEST_PORT=8675 playwright test",
         "test:preview": "TEST_PORT=8080 playwright test",
-        "changelog": "vite-node ./.scripts/changelog.ts"
+        "tasks": "vite-node ./.scripts/index.ts"
     },
     "peerDependencies": {
         "react": "^18.3.1",
@@ -29,7 +26,7 @@
     "dependencies": {
         "@axe-core/playwright": "^4.10.1",
         "@bspk/icons": "^1.0.3",
-        "@bspk/ui": "^1.1.12",
+        "@bspk/ui": "^1.1.13",
         "axe-core": "^4.10.2",
         "highlight.js": "^11.11.1",
         "markdown-to-jsx": "^7.7.4",

@@ -5,9 +5,10 @@
  *
  * It is similar to the prod-test script, but it uses the local version of the UI library.
  */
-import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
+
+import { runMetaLocally } from '.scripts';
 
 const localUIPath = path.resolve(__dirname, '../../bspk-ui');
 
@@ -21,12 +22,7 @@ const filesToWatch: FileWatchConfig[] = [
     {
         watchPath: path.resolve(localUIPath, 'src'),
         callback: () => {
-            const metaFilePath = path.resolve(__dirname, '../src/meta.ts');
-            const uiRoot = path.resolve(__dirname, '../../bspk-ui');
-            console.log(`Running @bspk/ui meta generation script`);
-            execSync(`cd ${uiRoot} && npm run meta ${metaFilePath} && npx eslint --fix ${metaFilePath}`, {
-                stdio: 'inherit',
-            });
+            runMetaLocally();
         },
         ignore: (file) => file.endsWith('.scss'),
     },

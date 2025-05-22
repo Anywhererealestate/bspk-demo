@@ -55,6 +55,18 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                 </header>
                 <article>
                     <Markup>{component.description}</Markup>
+                    {component.usage && (
+                        <>
+                            <h2 data-nav-target id="usage">
+                                Usage
+                            </h2>
+                            {!!component.usage.description && <Markup>{component.usage.description}</Markup>}
+                            <Syntax code={component.usage.code} language="typescript" pretty />
+                        </>
+                    )}
+                    <h2 data-nav-target id="demo">
+                        Demo
+                    </h2>
                     <ErrorBoundary
                         fallback={
                             <>
