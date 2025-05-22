@@ -73,6 +73,10 @@ export type ComponentExampleProps<Props extends Record<string, any> = Record<str
             [variantValue: string]: Record<string, any>;
         };
     };
+    usage?: {
+        description: string;
+        code: string;
+    };
 };
 
 export type RouteLink = RouteObject & {

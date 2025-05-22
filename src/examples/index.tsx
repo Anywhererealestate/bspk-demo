@@ -468,7 +468,6 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
         renderContainer: {
             style: {
                 width: '280px',
-                minHeight: '180px',
                 position: 'relative',
             },
         },
@@ -478,6 +477,23 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
                 render: (state) => (Array.isArray(state?.variant) ? state.variant[0] : state.variant),
             },
         ]),
+        usage: {
+            description: 'The component is designed to be used directly in your components. For instance:',
+            code: `function Example() { return item ? (
+    <img
+      style={{
+        width: 210,
+        height: 118,
+      }}
+      alt={item.title}
+      src={item.src}
+    />
+  ) : (
+    <Skeleton variant="photo" width={210} height={118} />
+  );
+
+}`,
+        },
     },
     SegmentedControl: {
         Component: SegmentedControl,

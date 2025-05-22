@@ -320,6 +320,19 @@ body[data-screen-size='large'] {
         transition: opacity 1s;
         opacity: 1;
     }
+
+    [data-usage] {
+        p {
+            padding: var(--spacing-sizing-02) var(--spacing-sizing-02) 0 var(--spacing-sizing-02);
+            width: 100%;
+        }
+
+        [data-syntax] {
+            margin: 0;
+        }
+
+        // ok
+    }
 }
 
 [data-type-props] {

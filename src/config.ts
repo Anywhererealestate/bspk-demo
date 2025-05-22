@@ -13,4 +13,5 @@ export const PROPERTY_NAME_CUSTOM_SORT = [
     ['minRows', 'maxRows'],
     ['min', 'max'],
     ['header', 'body'],
+    ['variant', 'textVariant', 'textLines'],
 ];

@@ -16,7 +16,7 @@ if (!fs.existsSync(uiRootPath)) {
     throw new Error(`bspk-ui not found at ${uiRootPath}`);
 }
 
-const { version } = JSON.parse(fs.readFileSync(path.join(uiRootPath, 'package.json'), { encoding: 'utf-8' }));
+const version = execSync('npm view @bspk/ui version', { encoding: 'utf-8' }).trim();
 
 // add package json to the bspk-ui/src so we can link to src
 
@@ -39,6 +39,8 @@ execSync(`cd "${uiRootPath}/src" && npm link`, { stdio: 'inherit' });
 // run npm link @bspk/ui in this repo
 
 execSync(`cd "${demoRootPath}" && npm link @bspk/ui`, { stdio: 'inherit' });
+
+// ensures that the linking worked
 
 const linkedPath = execSync('npm ls --depth=0')
     .toString()

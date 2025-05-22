@@ -98,6 +98,7 @@ export function ComponentExample({
                     data-main-example
                     data-show-touch-targets={!!state['data-touch-target'] || undefined}
                     renderContainer={component?.renderContainer}
+                    usage={component?.usage}
                 >
                     {component?.render?.({ demoProps, state: componentState }) || (
                         <Component data-example-component {...componentState} {...demoProps} />

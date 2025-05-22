@@ -5,19 +5,15 @@ import { AccessibilitySection } from 'src/components/AccessibilitySection';
 import ComponentLogs from 'src/components/ComponentLogs';
 import { ErrorBoundary } from 'src/components/ErrorBoundary';
 import { Syntax } from 'src/components/Syntax';
+import { ComponentExampleProps } from 'src/types';
 import { PrettyParser } from 'utils/pretty';
-
-export const TABS = [
-    { label: 'Example', value: 'example' },
-    { label: 'Code', value: 'code' },
-    { label: 'Accessibility', value: 'accessibility' },
-] as const;
 
 export function CodeExample({
     renderContainer,
     code,
     children,
     language = 'typescript',
+    usage,
     ...elementProps
 }: ElementProps<
     {
@@ -25,9 +21,18 @@ export function CodeExample({
         code?: string;
         children: ReactNode;
         language?: PrettyParser;
+        usage?: ComponentExampleProps['usage'];
     },
     'div'
 >) {
+    const TABS = [
+        { label: 'Example', value: 'example' },
+        { label: 'Code', value: 'code' },
+        { label: 'Accessibility', value: 'accessibility' },
+    ];
+
+    if (usage) TABS.push({ label: 'Usage', value: 'usage' });
+
     const [demoTab, setDemoTab] = useState<(typeof TABS)[number]['value']>('example');
 
     const exampleRef = useRef<HTMLDivElement | null>(null);
@@ -62,6 +67,16 @@ export function CodeExample({
             {exampleRef && (
                 <section data-accessibility data-active-tab={demoTab === 'accessibility' || undefined}>
                     {demoTab === 'accessibility' && <AccessibilitySection code={code} context={exampleRef.current} />}
+                </section>
+            )}
+            {usage && (
+                <section data-active-tab={demoTab === 'usage' || undefined} data-usage>
+                    {demoTab === 'usage' && (
+                        <>
+                            <p>{usage.description}</p>
+                            <Syntax code={usage.code} language="typescript" pretty />
+                        </>
+                    )}
                 </section>
             )}
             <ComponentLogs />

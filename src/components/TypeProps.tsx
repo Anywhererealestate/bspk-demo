@@ -117,6 +117,7 @@ export function TypeProps({ props, state }: { props: TypePropertyExample[]; stat
                         ),
                         'description-type': (
                             <>
+                                <Markup data-description>{prop.description}</Markup>
                                 <div data-type-options>
                                     {prop.typeOptions?.map((o) => (
                                         <Tag
@@ -130,7 +131,6 @@ export function TypeProps({ props, state }: { props: TypePropertyExample[]; stat
                                         </Tag>
                                     ))}
                                 </div>
-                                <Markup data-description>{prop.description}</Markup>
                                 {'minimum' in prop && (
                                     <Txt
                                         as="div"

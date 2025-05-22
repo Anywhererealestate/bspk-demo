@@ -7,7 +7,7 @@
     "scripts": {
         "build": "npm run meta && vite build && cp dist/index.html dist/404.html",
         "dev:vite": "rm -rf node_modules/.vite && vite --open",
-        "dev": "vite-node ./.scripts/setup-dev.ts && npm run dev:vite",
+        "dev": "vite-node ./.scripts/setup-dev.ts && npm run dev:vite | vite-node ./.scripts/watch-dev.ts",
         "lint": "eslint && tsc --noemit",
         "lint:fix": "eslint --fix",
         "lint:phases": "vite-node .scripts/lint-phases.ts",
@@ -29,7 +29,7 @@
     "dependencies": {
         "@axe-core/playwright": "^4.10.1",
         "@bspk/icons": "^1.0.3",
-        "@bspk/ui": "^1.1.11",
+        "@bspk/ui": "^1.1.12",
         "axe-core": "^4.10.2",
         "highlight.js": "^11.11.1",
         "markdown-to-jsx": "^7.7.4",
