@@ -15,11 +15,13 @@ export default function ComponentLogs() {
                     {error.message}
                 </InlineAlert>
             ))}
-            {actions.map(({ key, message }) => (
-                <InlineAlert id={key} key={key}>
-                    {message}
-                </InlineAlert>
-            ))}
+            <div data-informational>
+                {actions.map(({ key, message }) => (
+                    <InlineAlert id={key} key={key}>
+                        {message}
+                    </InlineAlert>
+                ))}
+            </div>
         </div>
     );
 }

@@ -183,6 +183,11 @@ body[data-screen-size='large'] {
     background: var(--surface-neutral-t1-base);
     border: solid 1px var(--stroke-neutral-low-contrast);
     border-radius: var(--radius-medium);
+    position: relative;
+
+    &:has([data-actions-errors]) {
+        padding-bottom: var(--spacing-sizing-04);
+    }
 
     [data-example-render] {
         width: 100%;
@@ -191,6 +196,8 @@ body[data-screen-size='large'] {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        position: relative;
+        z-index: 2;
     }
 
     section:not([data-active-tab]) {
@@ -244,11 +251,51 @@ body[data-screen-size='large'] {
     }
 
     [data-actions-errors] {
-        //
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        max-height: 100%;
+        overflow: hidden;
+        z-index: 1;
         padding: var(--spacing-sizing-02);
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         gap: var(--spacing-sizing-01);
+
+        [data-bspk='inline-alert'] {
+            justify-content: unset;
+            width: fit-content;
+            //padding: var(--spacing-sizing-02) var(--spacing-sizing-02);
+        }
+
+        [data-informational] {
+            display: flex;
+            flex-direction: column-reverse;
+            gap: var(--spacing-sizing-01);
+
+            [data-variant='informational'] {
+                width: fit-content;
+                justify-content: unset;
+                position: relative;
+                left: 100%;
+                opacity: 0.25;
+                animation: slide-in 0.5s ease-in-out forwards;
+
+                @keyframes slide-in {
+                    0% {
+                        left: 100%;
+                    }
+                    100% {
+                        left: 0;
+                    }
+                }
+            }
+
+            // actually last shown - column-reverse
+            [data-variant='informational']:first-child {
+                opacity: 1;
+            }
+        }
     }
 
     [data-errors] {
