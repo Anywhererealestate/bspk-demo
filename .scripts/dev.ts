@@ -7,7 +7,7 @@ import { execSync, spawn } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
-import { runMetaLocally } from '.scripts/utils';
+import { runMetaLocally } from '.scripts/tasks/runMetaLocally';
 
 const uiRootPath = path.resolve(__dirname, '../../bspk-ui');
 const demoRootPath = path.resolve(__dirname, '../');
