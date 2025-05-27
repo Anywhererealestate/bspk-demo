@@ -57,8 +57,8 @@ export const componentsMeta: ComponentMeta[] = [
         file: '/Avatar.tsx',
         name: 'Avatar',
         slug: 'avatar',
-        dependencies: [],
-        modified: '2025-05-22T17:15:32.918Z',
+        dependencies: ['Tooltip'],
+        modified: '2025-05-27T20:57:16.292Z',
         css: "[data-bspk='avatar'] {\n    --height: var(--spacing-sizing-10);\n    --font: var(--labels-base);\n    --foreground: var(--foreground-neutral-on-surface);\n    --background: var(--surface-neutral-t3-low);\n\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    padding: 0;\n    height: var(--height);\n    width: var(--height);\n    aspect-ratio: 1 / 1;\n    border-radius: 999px;\n    background-color: var(--background);\n    color: var(--foreground);\n    font: var(--font);\n\n    &:has(img) {\n        overflow: hidden;\n    }\n\n    img {\n        max-width: 100%;\n    }\n\n    &[data-size='x-small'] {\n        --height: var(--spacing-sizing-06);\n        --font: var(--labels-x-small);\n    }\n\n    &[data-size='small'] {\n        --height: var(--spacing-sizing-08);\n        --font: var(--labels-small);\n    }\n\n    &[data-size='medium'] {\n        --height: var(--spacing-sizing-10);\n        --font: var(--labels-base);\n    }\n\n    &[data-size='large'] {\n        --height: var(--spacing-sizing-12);\n        --font: var(--labels-large);\n    }\n\n    &[data-size='x-large'] {\n        --height: var(--spacing-sizing-14);\n        --font: var(--subheader-x-large);\n    }\n\n    &[data-size='xx-large'] {\n        --height: var(--spacing-sizing-17);\n        --font: var(--subheader-xx-large);\n    }\n\n    &[data-size='xxx-large'] {\n        --height: var(--spacing-sizing-19);\n        --font: var(--display-regular-small);\n    }\n\n    &[data-size='xxxx-large'] {\n        --height: var(--spacing-sizing-21);\n        --font: var(--display-regular-medium);\n    }\n\n    &[data-size='xxxxx-large'] {\n        --height: var(--spacing-sizing-23);\n        --font: var(--display-regular-large);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -69,7 +69,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Badge',
         slug: 'badge',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.545Z',
+        modified: '2025-05-27T20:57:16.292Z',
         css: "[data-bspk='badge'] {\n    --size: var(--spacing-sizing-06);\n\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: var(--radius-circular);\n    height: var(--size);\n    min-width: var(--size);\n    padding: 0 var(--spacing-sizing-02);\n\n    &[data-size='x-small'] {\n        --size: var(--spacing-sizing-05);\n\n        padding: 2px var(--spacing-sizing-01);\n    }\n\n    font: var(--labels-x-small);\n    color: var(--foreground-brand-on-primary);\n    background: var(--surface-brand-primary);\n\n    &[data-variant='secondary'] {\n        color: var(--foreground-brand-on-secondary);\n        background: var(--surface-brand-secondary);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -80,7 +80,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'BannerAlert',
         slug: 'banner-alert',
         dependencies: [],
-        modified: '2025-05-22T00:29:07.785Z',
+        modified: '2025-05-27T20:57:16.292Z',
         css: "[data-bspk='banner-alert'] {\n    --color: var(--status-information);\n    --on-color: var(--status-on-information);\n\n    display: flex;\n    flex-direction: row;\n    border: 2px solid var(--color);\n    border-radius: var(--radius-medium);\n    box-sizing: border-box;\n    background-color: var(--surface-neutral-t1-base);\n    width: 100%;\n\n    &[data-variant='error'] {\n        --color: var(--status-error);\n        --on-color: var(--status-on-error);\n    }\n\n    &[data-variant='success'] {\n        --color: var(--status-success);\n        --on-color: var(--status-on-success);\n    }\n\n    &[data-variant='warning'] {\n        --color: var(--status-warning);\n        --on-color: var(--status-on-warning);\n    }\n\n    &[data-elevated] {\n        box-shadow: var(--drop-shadow-raise);\n    }\n\n    [data-icon-bar] {\n        flex: 1;\n        padding: var(--spacing-sizing-04) var(--spacing-sizing-03);\n        background: var(--color);\n        color: var(--on-color);\n\n        svg {\n            width: var(--spacing-sizing-06);\n            height: var(--spacing-sizing-06);\n        }\n    }\n\n    [data-content] {\n        flex: 100%;\n        display: flex;\n        flex-direction: column;\n        padding: var(--spacing-sizing-02) var(--spacing-sizing-02) var(--spacing-sizing-02) var(--spacing-sizing-04);\n\n        header {\n            display: flex;\n            flex-direction: row;\n            gap: var(--spacing-sizing-03);\n            height: var(--spacing-sizing-12);\n            align-items: center;\n\n            span {\n                flex: 1;\n                display: flex;\n                align-items: center;\n                color: var(--foreground-neutral-on-surface);\n                font: var(--heading-h6);\n\n                @media (any-pointer: coarse) {\n                    font: var(--heading-h6);\n                }\n            }\n\n            // close button\n            button {\n                background: none;\n                border: none;\n                cursor: pointer;\n                padding: 0;\n                margin: 0 0 0 auto;\n                color: var(--foreground-neutral-on-surface-variant-01);\n                height: var(--spacing-sizing-08);\n                width: var(--spacing-sizing-08);\n\n                @media (any-pointer: coarse) {\n                    height: var(--spacing-sizing-12);\n                    width: var(--spacing-sizing-12);\n                }\n\n                svg {\n                    width: var(--spacing-sizing-04);\n                    height: var(--spacing-sizing-04);\n                }\n            }\n        }\n\n        [data-body] {\n            display: flex;\n            flex-direction: column;\n            gap: var(--spacing-sizing-02);\n            padding: 0 var(--spacing-sizing-02) var(--spacing-sizing-02) 0;\n\n            span {\n                font: var(--body-base);\n            }\n\n            button {\n                margin-left: auto;\n                background: none;\n                border: none;\n                cursor: pointer;\n                padding: 0 var(--spacing-sizing-03);\n                height: var(--spacing-sizing-12);\n                font: var(--labels-small);\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -91,7 +91,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Button',
         slug: 'button',
         dependencies: ['Tooltip'],
-        modified: '2025-05-19T15:27:05.546Z',
+        modified: '2025-05-27T20:57:16.292Z',
         css: "[data-bspk='button'] {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: center;\n    gap: var(--spacing-sizing-02);\n    border: none;\n    cursor: pointer;\n    box-sizing: border-box;\n    background: transparent;\n    text-decoration: none;\n    width: fit-content;\n    position: relative;\n\n    [data-touch-target] {\n        min-width: var(--spacing-sizing-12);\n        min-height: var(--spacing-sizing-12);\n    }\n\n    &[data-width='hug'] {\n        width: fit-content;\n    }\n\n    &[data-width='fill'] {\n        width: 100%;\n    }\n\n    &[data-size='x-small'] {\n        font-size: var(--typography-size-xs);\n        line-height: var(--typography-line-height-lh-1);\n        height: var(--spacing-sizing-06);\n        min-width: var(--spacing-sizing-06);\n        gap: var(--spacing-sizing-02);\n\n        &:has([data-button-label]),\n        &[data-override] {\n            padding: 0 var(--spacing-sizing-02);\n        }\n\n        [data-button-icon] {\n            width: var(--spacing-sizing-04);\n            height: var(--spacing-sizing-04);\n        }\n    }\n\n    &[data-size='small'] {\n        font-size: var(--typography-size-sm);\n        line-height: var(--typography-line-height-lh-2);\n        height: var(--spacing-sizing-08);\n        min-width: var(--spacing-sizing-08);\n\n        &:has([data-button-label]),\n        &[data-override] {\n            padding: 6px var(--spacing-sizing-04);\n        }\n\n        [data-button-icon] {\n            width: var(--spacing-sizing-05);\n            height: var(--spacing-sizing-05);\n        }\n    }\n\n    &[data-size='medium'] {\n        font-size: var(--typography-size-base);\n        line-height: var(--typography-line-height-lh-2);\n        height: var(--spacing-sizing-10);\n        min-width: var(--spacing-sizing-10);\n\n        &:has([data-button-label]),\n        &[data-override] {\n            padding: var(--spacing-sizing-02) var(--spacing-sizing-04);\n        }\n\n        [data-button-icon] {\n            width: var(--spacing-sizing-05);\n            height: var(--spacing-sizing-05);\n        }\n    }\n\n    &[data-size='large'] {\n        font-size: var(--typography-size-bp-md);\n        line-height: var(--typography-line-height-lh-4);\n        height: var(--spacing-sizing-12);\n        min-width: var(--spacing-sizing-12);\n\n        &:has([data-button-label]),\n        &[data-override] {\n            padding: var(--spacing-sizing-03) var(--spacing-sizing-04);\n        }\n\n        [data-button-icon] {\n            width: var(--spacing-sizing-06);\n            height: var(--spacing-sizing-06);\n        }\n    }\n\n    &[disabled] {\n        cursor: not-allowed;\n    }\n\n    [data-button-icon] {\n        display: flex;\n        flex-direction: column;\n        align-items: center;\n    }\n\n    [data-button-label] {\n        display: flex;\n        flex-direction: row;\n        align-items: center;\n    }\n\n    &[data-variant='primary'] {\n        --primary-background: var(--surface-brand-primary);\n\n        background: linear-gradient(var(--primary-background), var(--primary-background));\n        color: var(--foreground-brand-on-primary);\n        border-radius: var(--radius-small);\n\n        &[disabled] {\n            color: var(--foreground-neutral-disabled-on-surface);\n            background: var(--interactions-disabled-opacity);\n        }\n\n        &:not([disabled]) {\n            [data-pseudo='hover'] > &,\n            &:hover {\n                background:\n                    linear-gradient(var(--interactions-brand-hover-opacity), var(--interactions-brand-hover-opacity)),\n                    linear-gradient(var(--primary-background), var(--primary-background));\n            }\n\n            [data-pseudo='active'] > &,\n            &:active {\n                background:\n                    linear-gradient(var(--interactions-brand-press-opacity), var(--interactions-brand-press-opacity)),\n                    linear-gradient(var(--primary-background), var(--primary-background));\n            }\n\n            [data-pseudo='focus'] > &,\n            &:focus-visible {\n                outline: solid 2px var(--stroke-neutral-focus);\n            }\n        }\n\n        &[data-destructive] {\n            --primary-background: var(--status-error);\n\n            color: var(--foreground-brand-on-primary);\n        }\n    }\n\n    &[data-variant='secondary'] {\n        border: solid 1px var(--stroke-neutral-base);\n        border-radius: var(--radius-small);\n        color: var(--foreground-neutral-on-surface-variant-01);\n\n        &[disabled] {\n            color: var(--foreground-neutral-disabled-on-surface);\n            border: solid 1px var(--stroke-neutral-disabled-light);\n        }\n\n        &:not([disabled]) {\n            [data-pseudo='hover'] > &,\n            &:hover {\n                background-color: var(--interactions-neutral-hover-opacity);\n            }\n\n            [data-pseudo='active'] > &,\n            &:active {\n                background-color: var(--interactions-neutral-press-opacity);\n            }\n\n            [data-pseudo='focus'] > &,\n            &:focus-visible {\n                outline: solid 2px var(--stroke-neutral-focus);\n            }\n        }\n\n        &[data-destructive] {\n            background: transparent;\n            color: var(--status-error);\n            border: solid 1px var(--status-error);\n        }\n    }\n\n    &[data-variant='tertiary'] {\n        background: transparent;\n        color: var(--foreground-neutral-on-surface-variant-01);\n\n        &[disabled] {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n\n        &:not([disabled]) {\n            [data-pseudo='hover'] > &,\n            &:hover {\n                background: var(--interactions-neutral-hover-opacity);\n            }\n\n            [data-pseudo='active'] > &,\n            &:active {\n                background: var(--interactions-neutral-press-opacity);\n            }\n\n            [data-pseudo='focus'] > &,\n            &:focus-visible {\n                outline: solid 2px var(--stroke-neutral-focus);\n            }\n        }\n\n        &[data-destructive] {\n            color: var(--status-error);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: true,
     },
@@ -102,7 +102,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Card',
         slug: 'card',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.547Z',
+        modified: '2025-05-27T20:57:16.292Z',
         css: "[data-bspk='card'] {\n    display: block;\n    background: var(--surface-neutral-t1-base);\n    padding: var(--spacing-sizing-03);\n    border-radius: var(--radius-medium);\n    overflow: hidden;\n\n    &[data-hide-padding] {\n        padding: 0;\n    }\n\n    &[data-variant='outlined'] {\n        border: solid 1px var(--stroke-neutral-low);\n    }\n\n    &[data-variant='elevated'] {\n        box-shadow:\n            0 1px 2px 0 var(--shadow-32),\n            0 1px 3px 1px var(--shadow-15);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -113,7 +113,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Checkbox',
         slug: 'checkbox',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.547Z',
+        modified: '2025-05-27T20:57:16.292Z',
         css: "[data-bspk='checkbox'] {\n    display: block;\n    position: relative;\n    width: var(--spacing-sizing-06);\n    aspect-ratio: 1/1;\n    padding: 2px;\n\n    input[type='checkbox'] {\n        position: absolute;\n        opacity: 0;\n        z-index: 2;\n        width: 100%;\n        height: 100%;\n        top: 0;\n        left: 0;\n        cursor: pointer;\n    }\n\n    span {\n        --stroke: var(--stroke-neutral-base);\n        --inner: none;\n        --background: none;\n        --color: var(--foreground-brand-on-primary);\n\n        box-sizing: border-box;\n        display: flex;\n        width: 20px;\n        aspect-ratio: 1/1;\n        cursor: pointer;\n        border-radius: 2px;\n        border: 2px solid var(--stroke);\n        align-items: center;\n        flex-direction: column;\n        justify-content: center;\n        position: relative;\n        background: var(--background);\n\n        svg[data-checked] {\n            width: 14px;\n            display: none;\n        }\n\n        svg[data-indeterminate] {\n            width: 12px;\n            display: none;\n        }\n\n        color: var(--color);\n    }\n\n    input[type='checkbox']:not(:checked, :indeterminate, :disabled) {\n        &:hover + span {\n            background-color: var(--interactions-neutral-hover-opacity);\n        }\n\n        &:active + span {\n            background-color: var(--interactions-neutral-press-opacity);\n        }\n    }\n\n    input[type='checkbox']:checked + span svg[data-checked],\n    input[type='checkbox']:indeterminate + span svg[data-indeterminate] {\n        display: block;\n    }\n\n    input[type='checkbox']:checked + span,\n    input[type='checkbox']:indeterminate + span {\n        --stroke: var(--stroke-brand-primary);\n        --background: var(--surface-brand-primary);\n    }\n\n    input[type='checkbox']:disabled {\n        pointer-events: none;\n\n        & + span {\n            --stroke: var(--stroke-neutral-interactions-disabled-light);\n        }\n\n        &:is(:checked, :indeterminate) + span {\n            --stroke: transparent;\n            --background: var(--interactions-disabled-opacity);\n            --color: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n\n    input[type='checkbox'][aria-invalid]:not(:disabled) {\n        &:checked + span,\n        &:indeterminate + span {\n            --background: var(--status-error);\n        }\n\n        & + span {\n            --stroke: var(--status-error);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -124,7 +124,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'CheckboxGroup',
         slug: 'checkbox-group',
         dependencies: ['Checkbox', 'ToggleOption'],
-        modified: '2025-05-19T15:27:05.547Z',
+        modified: '2025-05-27T20:57:16.292Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -135,7 +135,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'CheckboxOption',
         slug: 'checkbox-option',
         dependencies: ['Checkbox', 'ToggleOption'],
-        modified: '2025-05-19T15:27:05.548Z',
+        modified: '2025-05-27T20:57:16.292Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -145,7 +145,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Chip',
         slug: 'chip',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.548Z',
+        modified: '2025-05-27T20:57:16.292Z',
         css: "[data-bspk='chip'] {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    width: fit-content;\n    height: var(--spacing-sizing-06);\n    padding: 0 var(--spacing-sizing-02);\n    font: var(--labels-small);\n    color: var(--foreground-neutral-on-surface-variant-01);\n    background-color: var(--surface-neutral-t1-base);\n    border: 1px solid var(--stroke-neutral-low);\n    border-radius: var(--radius-small);\n\n    &:not([data-flat]) {\n        box-shadow: var(--drop-shadow-raise);\n    }\n\n    &[data-variant='filter'] {\n        cursor: pointer;\n    }\n\n    &[data-wrap] {\n        height: auto;\n    }\n\n    &[data-disabled] {\n        color: var(--foreground-neutral-disabled-on-surface);\n        cursor: not-allowed;\n        border-color: var(--stroke-neutral-disabled-light);\n        background-image: \n    //\n\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n    }\n\n    &:not([data-disabled]) {\n        &:hover {\n            background-image: \n    //\n\n                linear-gradient(var(--interactions-neutral-hover-opacity), var(--interactions-neutral-hover-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n        }\n\n        &:active {\n            background-image: \n    //\n\n                linear-gradient(var(--interactions-neutral-press-opacity), var(--interactions-neutral-press-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n        }\n\n        &:focus {\n            outline: 1px solid var(--stroke-neutral-focus);\n            border-color: var(--stroke-neutral-focus);\n        }\n    }\n\n    &[data-selected] {\n        background-color: var(--surface-brand-primary-highlight);\n        border-color: var(--stroke-brand-primary);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -156,7 +156,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Dialog',
         slug: 'dialog',
         dependencies: ['Portal'],
-        modified: '2025-05-19T15:27:05.548Z',
+        modified: '2025-05-27T20:57:16.292Z',
         css: "[data-bspk='dialog'] {\n    position: fixed;\n    inset: 0;\n    z-index: var(--z-index-dialog);\n\n    [data-dialog-box] {\n        text-align: start;\n        position: relative;\n        border-radius: var(--radius-large);\n        box-shadow: var(--drop-shadow-float);\n        background: var(--surface-neutral-t1-base);\n        color: var(--foreground-neutral-on-surface);\n        max-height: calc(100vh - var(--spacing-sizing-24));\n        overflow: scroll;\n        z-index: 2;\n\n        > :first-of-type {\n            margin-top: 0;\n        }\n\n        > :last-child {\n            margin-bottom: 0;\n        }\n\n        // we make the width responsive to the viewport\n        @media (width >= 640px) {\n            width: 90%;\n        }\n\n        @media (width >= 768px) {\n            width: 80%;\n        }\n\n        @media (width >= 1024px) {\n            width: 60%;\n        }\n\n        @media (width >= 1280px) {\n            width: 50%;\n        }\n    }\n\n    [data-dialog-backdrop] {\n        z-index: 1;\n        position: fixed;\n        inset: 0;\n        background-color: var(--background-scrim);\n        opacity: 0;\n        transition: opacity 0.3s;\n    }\n\n    &[data-visibility='show'] {\n        [data-dialog-backdrop] {\n            opacity: 1;\n        }\n    }\n\n    &[data-placement='center'] {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n\n        [data-dialog-box] {\n            transition: opacity 1s;\n            opacity: 0;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                opacity: 1;\n            }\n        }\n    }\n\n    &[data-placement='bottom'] {\n        [data-dialog-box] {\n            position: absolute;\n            border-bottom-left-radius: 0;\n            border-bottom-right-radius: 0;\n            width: 600px;\n            left: 50%;\n            transform: translateX(-50%);\n            bottom: -100vh;\n            transition: bottom 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                bottom: 0;\n            }\n        }\n    }\n\n    &[data-placement='top'] {\n        [data-dialog-box] {\n            position: absolute;\n            border-top-left-radius: 0;\n            border-top-right-radius: 0;\n            width: 600px;\n            left: 50%;\n            transform: translateX(-50%);\n            top: -100vh;\n            transition: top 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                top: 0;\n            }\n        }\n    }\n\n    &[data-placement='left'] {\n        [data-dialog-box] {\n            position: absolute;\n            max-height: unset;\n            width: 280px;\n            height: 100vh;\n            border-bottom-left-radius: 0;\n            border-top-left-radius: 0;\n            left: -100vw;\n            transition: left 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                left: 0;\n            }\n        }\n    }\n\n    &[data-placement='right'] {\n        [data-dialog-box] {\n            position: absolute;\n            max-height: unset;\n            width: 280px;\n            height: 100vh;\n            border-bottom-right-radius: 0;\n            border-top-right-radius: 0;\n            right: -100vw;\n            transition: right 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                right: 0;\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -167,7 +167,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Divider',
         slug: 'divider',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.549Z',
+        modified: '2025-05-27T20:57:16.294Z',
         css: "[data-bspk='divider'] {\n    /*! --inset: is set via inline style */\n\n    display: flex;\n    background-color: var(--stroke-neutral-low);\n    align-self: stretch;\n    place-content: stretch stretch;\n    margin: 0;\n    padding: 0;\n    content: 'hello';\n\n    --length: calc(100% - var(--inset) * 2);\n\n    &,\n    &[data-thickness='light'] {\n        --line-thickness: 1px;\n        --padding: var(--spacing-sizing-02);\n    }\n\n    &[data-thickness='heavy'] {\n        --line-thickness: 2px;\n        --padding: var(--spacing-sizing-04);\n    }\n\n    &, // default\n  &[data-orientation='horizontal'] {\n        width: unset;\n        min-height: unset;\n        height: var(--line-thickness);\n        min-width: var(--length);\n        margin: var(--padding) var(--inset);\n    }\n\n    &[data-orientation='vertical'] {\n        height: unset;\n        min-width: unset;\n        width: var(--line-thickness);\n        min-height: var(--length);\n        margin: var(--inset) var(--padding);\n    }\n\n    &[data-hide-padding] {\n        --padding: 0;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -177,7 +177,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Dropdown',
         slug: 'dropdown',
         dependencies: ['ListItem', 'Menu', 'Portal'],
-        modified: '2025-05-19T15:27:05.549Z',
+        modified: '2025-05-27T20:57:16.294Z',
         css: "[data-bspk='dropdown'] {\n    // default -- size medium not disabled or readonly\n    --dropdown-background: var(--surface-neutral-t1-base);\n    --dropdown-border-color: var(--stroke-neutral-base);\n    --dropdown-text-color: var(--foreground-neutral-on-surface);\n    --dropdown-height: var(--spacing-sizing-10);\n    --dropdown-font: var(--body-base);\n    --dropdown-clear-height: var(--spacing-sizing-05);\n    --dropdown-padding: var(--spacing-sizing-03);\n    --dropdown-icon-width: var(--spacing-sizing-05);\n\n    position: relative;\n    width: 100%;\n    max-width: 280px;\n    outline: unset;\n    min-height: var(--dropdown-height);\n    max-height: var(--dropdown-height);\n    display: flex;\n    flex-direction: row;\n    gap: var(--spacing-sizing-02);\n    flex-grow: 0;\n    flex-shrink: 0;\n    text-align: left;\n    font: var(--dropdown-font);\n    border: 1px solid var(--dropdown-border-color);\n    border-radius: var(--radius-small);\n    background: var(--dropdown-background);\n    padding: 0 var(--dropdown-padding);\n\n    [data-placeholder] {\n        display: block;\n        max-width: 100%;\n        text-overflow: ellipsis;\n        overflow: hidden;\n        padding: 0;\n\n        [data-inner] {\n            min-height: auto;\n            padding: 0;\n        }\n\n        [data-item-label] [data-text] {\n            color: var(--dropdown-text-color);\n        }\n    }\n\n    [data-svg] {\n        display: flex;\n        flex-direction: column;\n        justify-content: center;\n\n        svg {\n            transform: rotate(90deg);\n            width: var(--dropdown-icon-width);\n        }\n    }\n\n    &[data-size='small'] {\n        --dropdown-height: var(--spacing-sizing-08);\n        --dropdown-font: var(--body-small);\n        --dropdown-clear-height: var(--spacing-sizing-05);\n        --dropdown-padding: var(--spacing-sizing-02);\n        --dropdown-icon-width: var(--spacing-sizing-05);\n    }\n\n    &[data-size='large'] {\n        --dropdown-height: var(--spacing-sizing-12);\n        --dropdown-font: var(--body-large);\n        --dropdown-clear-height: var(--spacing-sizing-06);\n        --dropdown-icon-width: var(--spacing-sizing-06);\n    }\n\n    &:disabled {\n        --dropdown-text-color: var(--foreground-neutral-disabled-on-surface);\n        --dropdown-border-color: var(--stroke-neutral-disabled-light);\n        --dropdown-background:\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n\n        &[aria-readonly]:not([data-empty]) {\n            --dropdown-text-color: var(--foreground-neutral-on-surface);\n        }\n    }\n\n    &:not(:disabled) {\n        &:focus {\n            --dropdown-border-color: var(--stroke-brand-primary);\n        }\n\n        &:hover {\n            --dropdown-background:\n                linear-gradient(var(--interactions-neutral-hover-opacity), var(--interactions-neutral-hover-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n        }\n\n        &:active {\n            --dropdown-background:\n                linear-gradient(var(--interactions-neutral-press-opacity), var(--interactions-neutral-press-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n        }\n    }\n\n    &[data-invalid] {\n        --dropdown-border-color: var(--status-error);\n    }\n\n    &[data-empty] {\n        --dropdown-text-color: var(--foreground-neutral-on-surface-variant-03);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -188,7 +188,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'DropdownField',
         slug: 'dropdown-field',
         dependencies: ['Dropdown', 'FormField'],
-        modified: '2025-05-19T15:27:05.549Z',
+        modified: '2025-05-27T20:57:16.294Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -198,7 +198,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'EmptyState',
         slug: 'empty-state',
         dependencies: ['Button', 'Layout', 'Txt'],
-        modified: '2025-05-22T14:45:48.342Z',
+        modified: '2025-05-27T20:57:16.294Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -209,7 +209,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Fab',
         slug: 'fab',
         dependencies: ['Button', 'Tooltip'],
-        modified: '2025-05-19T15:27:05.550Z',
+        modified: '2025-05-27T20:57:16.295Z',
         css: "[data-bspk='fab'] {\n    --placement-offset: var(--spacing-sizing-04);\n\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: center;\n    gap: var(--spacing-sizing-02);\n    border: none;\n    cursor: pointer;\n    box-sizing: border-box;\n    text-decoration: none;\n    z-index: var(--z-index-fab);\n    box-shadow: var(--drop-shadow-float);\n    border-radius: var(--radius-small);\n\n    &[data-container='page'] {\n        position: fixed;\n    }\n\n    &[data-container='local'] {\n        position: absolute;\n    }\n\n    &[data-placement='top-right'] {\n        top: var(--placement-offset);\n        right: var(--placement-offset);\n    }\n\n    &[data-placement='bottom-right'] {\n        bottom: var(--placement-offset);\n        right: var(--placement-offset);\n    }\n\n    &[data-placement='top-left'] {\n        top: var(--placement-offset);\n        left: var(--placement-offset);\n    }\n\n    &[data-placement='bottom-left'] {\n        bottom: var(--placement-offset);\n        left: var(--placement-offset);\n    }\n\n    > [data-fab-icon] {\n        display: flex;\n        flex-direction: column;\n        align-items: center;\n    }\n\n    > [data-fab-label] {\n        display: flex;\n        flex-direction: row;\n        align-items: center;\n    }\n\n    &[data-size='small'] {\n        font: var(--labels-base);\n        height: var(--spacing-sizing-10);\n        padding: 0 var(--spacing-sizing-04);\n\n        > [data-fab-icon] {\n            width: var(--spacing-sizing-05);\n        }\n    }\n\n    &[data-size='medium'] {\n        font: var(--labels-large);\n        height: var(--spacing-sizing-14);\n        padding: 0 var(--spacing-sizing-07);\n\n        > [data-fab-icon] {\n            width: var(--spacing-sizing-06);\n        }\n    }\n\n    &[data-variant='primary'] {\n        --variant-background: var(--surface-brand-primary);\n        --variant-foreground: var(--foreground-brand-on-primary);\n    }\n\n    &[data-variant='secondary'] {\n        --variant-background: var(--surface-brand-secondary);\n        --variant-foreground: var(--foreground-brand-on-secondary);\n    }\n\n    &[data-variant='neutral'] {\n        --variant-background: var(--surface-neutral-t1-base);\n        --variant-foreground: var(--foreground-neutral-on-surface-variant-01);\n    }\n\n    background: var(--variant-background);\n    color: var(--variant-foreground);\n\n    --variant-gradient: linear-gradient(var(--variant-background), var(--variant-background));\n\n    [data-pseudo='hover'] > &,\n    &:hover {\n        background:\n            linear-gradient(var(--interactions-brand-hover-opacity), var(--interactions-brand-hover-opacity)),\n            var(--variant-gradient);\n    }\n\n    [data-pseudo='active'] > &,\n    &:active {\n        background:\n            linear-gradient(var(--interactions-brand-press-opacity), var(--interactions-brand-press-opacity)),\n            var(--variant-gradient);\n    }\n\n    [data-pseudo='focus'] > &,\n    &:focus-visible {\n        outline: solid 2px var(--stroke-neutral-focus);\n    }\n\n    &[data-round] {\n        border-radius: var(--radius-circular);\n        aspect-ratio: 1/1;\n        padding: 0;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -220,8 +220,8 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'FormField',
         slug: 'form-field',
         dependencies: ['InlineAlert', 'Layout', 'Txt'],
-        modified: '2025-05-19T15:27:05.550Z',
-        css: "[data-bspk='form-field'] {\n    box-sizing: border-box;\n    width: 100%;\n    display: flex;\n    flex-direction: column;\n    gap: var(--spacing-sizing-01);\n\n    header label {\n        flex-grow: 1;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+        modified: '2025-05-27T20:57:16.295Z',
+        css: "[data-bspk='form-field'] {\n    box-sizing: border-box;\n    max-width: 100%;\n    width: fit-content;\n    display: flex;\n    flex-direction: column;\n    gap: var(--spacing-sizing-01);\n\n    header label {\n        flex-grow: 1;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
     {
@@ -230,7 +230,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Img',
         slug: 'img',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.550Z',
+        modified: '2025-05-27T20:57:16.295Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -241,8 +241,8 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'InlineAlert',
         slug: 'inline-alert',
         dependencies: ['Txt'],
-        modified: '2025-05-19T15:27:05.550Z',
-        css: "[data-bspk='inline-alert'] {\n    display: flex;\n    align-items: start;\n    justify-content: center;\n    flex-direction: row;\n    gap: var(--spacing-sizing-02);\n\n    [data-txt] {\n        flex: 1;\n    }\n\n    &[data-variant='error'] {\n        color: var(--status-error);\n\n        --first-tone: var(--status-error);\n        --second-tone: var(--status-on-information);\n    }\n\n    &[data-variant='success'] {\n        color: var(--status-success);\n\n        --first-tone: var(--status-success);\n        --second-tone: var(--status-on-success);\n    }\n\n    &[data-variant='warning'] {\n        color: var(--foreground-neutral-on-surface);\n\n        --first-tone: var(--status-warning);\n        --second-tone: var(--status-on-warning);\n    }\n\n    &[data-variant='informational'] {\n        color: var(--status-information);\n\n        --first-tone: var(--status-information);\n        --second-tone: var(--status-on-information);\n    }\n\n    svg {\n        color: var(--first-tone);\n        width: var(--spacing-sizing-05);\n        height: var(--spacing-sizing-05);\n\n        [data-second-tone] {\n            fill: var(--second-tone);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+        modified: '2025-05-27T20:57:16.295Z',
+        css: "[data-bspk='inline-alert'] {\n    display: flex;\n    align-items: start;\n    justify-content: start;\n    flex-direction: row;\n    gap: var(--spacing-sizing-02);\n\n    [data-txt] {\n        flex: 1;\n    }\n\n    &[data-variant='error'] {\n        color: var(--status-error);\n\n        --first-tone: var(--status-error);\n        --second-tone: var(--status-on-information);\n    }\n\n    &[data-variant='success'] {\n        color: var(--status-success);\n\n        --first-tone: var(--status-success);\n        --second-tone: var(--status-on-success);\n    }\n\n    &[data-variant='warning'] {\n        color: var(--foreground-neutral-on-surface);\n\n        --first-tone: var(--status-warning);\n        --second-tone: var(--status-on-warning);\n    }\n\n    &[data-variant='informational'] {\n        color: var(--status-information);\n\n        --first-tone: var(--status-information);\n        --second-tone: var(--status-on-information);\n    }\n\n    svg {\n        color: var(--first-tone);\n        width: var(--spacing-sizing-05);\n        height: var(--spacing-sizing-05);\n\n        [data-second-tone] {\n            fill: var(--second-tone);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
     {
@@ -251,7 +251,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Layout',
         slug: 'layout',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.550Z',
+        modified: '2025-05-27T20:57:16.295Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -261,7 +261,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Link',
         slug: 'link',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.551Z',
+        modified: '2025-05-27T20:57:16.295Z',
         css: "[data-bspk='link'] {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    gap: var(--spacing-sizing-01);\n    font: var(--labels-base);\n\n    &[data-size='large'] {\n        font: var(--labels-large);\n    }\n\n    &[data-size='small'] {\n        font: var(--labels-small);\n    }\n\n    svg {\n        width: var(--spacing-sizing-05);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -272,7 +272,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ListItem',
         slug: 'list-item',
         dependencies: ['Button'],
-        modified: '2025-05-19T15:27:05.551Z',
+        modified: '2025-05-27T20:57:16.295Z',
         css: "[data-bspk='list-item'] {\n    display: block;\n    width: 100%;\n    box-sizing: border-box;\n    padding: 0 var(--spacing-sizing-02);\n    background: unset;\n    border: unset;\n    margin: unset;\n    text-decoration: unset;\n    user-select: none;\n    color: var(--foreground-neutral-on-surface);\n\n    &:is(a),\n    &:is(button),\n    &[onclick],\n    &[role='button'] {\n        cursor: pointer;\n    }\n\n    [data-inner] {\n        height: 100%;\n        width: 100%;\n        min-height: var(--spacing-sizing-09);\n        box-sizing: border-box;\n        display: flex;\n        flex-direction: row;\n        gap: var(--spacing-sizing-03);\n        padding: var(--spacing-sizing-02) 0;\n        justify-items: stretch;\n\n        & > * {\n            min-height: 100%;\n            width: fit-content;\n            display: flex;\n            flex-direction: column;\n            justify-content: space-around;\n            flex: 1;\n            flex-shrink: 0;\n\n            svg {\n                width: 24px;\n                max-width: unset;\n            }\n        }\n    }\n\n    /* &:has(+ [data-list-item]) {\n    [data-inner] {\n      border-bottom: 1px solid var(--stroke-neutral-low);\n    }\n  } */\n\n    &[data-action] {\n        [data-pseudo='focus'] &,\n        &:focus-visible,\n        &:has(*:focus-visible) {\n            // outline: 2px solid var(--stroke-neutral-focus);\n            box-shadow: inset var(--stroke-neutral-focus) 0 0 0 2px;\n\n            [data-inner] {\n                border-color: transparent;\n            }\n        }\n\n        [data-pseudo='hover'] &,\n        &:hover {\n            background-color: var(--interactions-neutral-hover-opacity);\n        }\n\n        [data-pseudo='active'] &,\n        &[data-active],\n        &:active {\n            background-color: var(--interactions-neutral-press-opacity);\n        }\n    }\n\n    [data-component='Img'] > img {\n        height: 36px;\n        width: 36px;\n        max-width: unset;\n    }\n\n    &:is(label) {\n        [data-inner] {\n            border-bottom: 0;\n            gap: var(--spacing-sizing-02);\n        }\n    }\n\n    [data-item-label] {\n        flex: 100%;\n        text-align: left;\n\n        [data-text] {\n            font: var(--labels-base);\n            color: var(--foreground-neutral-on-surface);\n        }\n\n        [data-sub-text] {\n            font: var(--body-small);\n            color: var(--foreground-neutral-on-surface-variant-01);\n        }\n    }\n\n    &[aria-disabled] {\n        [data-text],\n        [data-sub-text] {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -283,7 +283,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Menu',
         slug: 'menu',
         dependencies: ['Checkbox', 'ListItem', 'Txt'],
-        modified: '2025-05-19T15:27:05.551Z',
+        modified: '2025-05-27T20:57:16.296Z',
         css: "[data-bspk='menu'] {\n    /*! --item-count: is set via inline style */\n\n    width: 332px;\n    border: 1px solid var(--stroke-neutral-low);\n    background-color: var(--surface-neutral-t1-base);\n    box-shadow: var(--drop-shadow-float);\n    border-radius: var(--radius-large);\n    display: flex;\n    flex-direction: column;\n\n    --item-size: var(--spacing-sizing-12);\n\n    &[data-floating] {\n        z-index: var(--z-index-dropdown);\n    }\n\n    &[data-item-count] {\n        height: calc(var(--item-count) * var(--item-size));\n        overflow-y: scroll;\n    }\n\n    &[data-no-items] {\n        padding: var(--spacing-sizing-08) var(--spacing-sizing-04);\n        align-items: center;\n        justify-content: center;\n        gap: var(--spacing-sizing-03);\n    }\n\n    [data-list-item] {\n        min-height: var(--item-size);\n        height: var(--item-size);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -293,7 +293,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'MenuButton',
         slug: 'menu-button',
         dependencies: ['Button'],
-        modified: '2025-05-19T15:27:05.552Z',
+        modified: '2025-05-27T20:57:16.296Z',
         css: "[data-bspk='menu-button'] {\n    background: none;\n    border: none;\n    cursor: pointer;\n    padding: 0;\n    height: 48px;\n    width: auto;\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: center;\n    padding-top: var(--spacing-sizing-01);\n    color: var(--foreground-neutral-on-surface-variant-01);\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -304,7 +304,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Modal',
         slug: 'modal',
         dependencies: ['Button', 'Dialog', 'Txt'],
-        modified: '2025-05-19T15:27:05.552Z',
+        modified: '2025-05-27T20:57:16.296Z',
         css: "[data-bspk='modal'] {\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n    gap: var(--spacing-sizing-02);\n    padding: var(--spacing-sizing-04);\n\n    > header {\n        display: flex;\n        flex-direction: row;\n        justify-content: space-between;\n        align-items: center;\n        gap: var(--spacing-sizing-04);\n    }\n\n    main {\n        overflow: auto;\n        flex: 1;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -315,19 +315,19 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'NumberField',
         slug: 'number-field',
         dependencies: ['FormField', 'NumberInput'],
-        modified: '2025-05-19T15:27:05.553Z',
+        modified: '2025-05-27T20:57:16.297Z',
         css: '',
         hasTouchTarget: false,
     },
     {
         description:
-            'A input element that allows users to either input a numerical value or singularly increase or decrease the values by pressing the (+) or (-).',
+            'A input element that allows users to either input a numerical value or singularly increase or decrease the values by pressing the (+) or (-).\n\nThe value of the input is a number. The value is clamped to the min and max values if they are provided.',
         file: '/NumberInput.tsx',
         name: 'NumberInput',
         slug: 'number-input',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.553Z',
-        css: "[data-bspk='number-input'] {\n    // medium\n    --font: var(--body-base);\n    --height: var(--spacing-sizing-10);\n    --svg-width: var(--spacing-sizing-05);\n    --color: var(--foreground-neutral-on-surface);\n\n    width: 100%;\n    display: flex;\n    flex-flow: row nowrap;\n    font: var(--font);\n    height: var(--height);\n    border: 1px solid var(--stroke-neutral-base);\n    border-radius: var(--radius-small);\n    background: var(--surface-neutral-t1-base);\n\n    &:focus-within {\n        border-color: var(--stroke-brand-primary);\n        outline: 1px solid var(--stroke-brand-primary);\n    }\n\n    [data-divider] {\n        width: 4px;\n        border-right: 1px solid var(--stroke-neutral-base);\n\n        // account for border - 3(margin)  * 2 + 2(border)\n        height: calc(var(--height) - 8px);\n        margin: 3px 0;\n    }\n\n    button {\n        min-width: var(--height);\n        background: none;\n        border: none;\n        cursor: pointer;\n        font: var(--font);\n\n        svg {\n            width: var(--svg-width);\n        }\n\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        color: var(--color);\n\n        &:disabled {\n            cursor: not-allowed;\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n\n    input {\n        color: var(--color);\n        min-width: 0;\n        display: block;\n        font: var(--font);\n        text-align: center;\n        padding: 0 var(--spacing-sizing-03);\n        background: transparent;\n        border: none;\n\n        &:focus {\n            outline: none;\n        }\n\n        &::-webkit-outer-spin-button,\n        &::-webkit-inner-spin-button {\n            appearance: none;\n            margin: 0;\n        }\n\n        &[type='number'] {\n            appearance: textfield;\n        }\n    }\n\n    &:not([data-disabled], [data-readonly]) {\n        input,\n        button:not(:disabled) {\n            &:hover {\n                background-color: var(--interactions-hover-opacity);\n            }\n\n            &:active {\n                background-color: var(--interactions-press-opacity);\n            }\n        }\n\n        &[data-invalid] {\n            border-color: var(--status-error);\n            outline-color: var(--status-error);\n        }\n    }\n\n    &[data-disabled],\n    &[data-readonly] {\n        --color: var(--foreground-neutral-disabled-on-surface);\n\n        border-color: var(--stroke-neutral-disabled-light);\n        background:\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n\n        [data-divider] {\n            border-color: var(--stroke-neutral-disabled-light);\n        }\n    }\n\n    &[data-readonly] {\n        input {\n            color: var(--foreground-neutral-on-surface) !important;\n        }\n    }\n\n    &[data-size='small'] {\n        --font: var(--body-small);\n        --height: var(--spacing-sizing-08);\n    }\n\n    &[data-size='large'] {\n        --font: var(--body-large);\n        --height: var(--spacing-sizing-12);\n        --svg-width: var(--spacing-sizing-06);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+        modified: '2025-05-27T20:57:16.297Z',
+        css: "[data-bspk='number-input'] {\n    // medium is the default size\n    --font: var(--body-base);\n    --height: var(--spacing-sizing-10);\n    --svg-width: var(--spacing-sizing-05);\n    --color: var(--foreground-neutral-on-surface);\n\n    width: 100%;\n    display: flex;\n    flex-flow: row nowrap;\n    font: var(--font);\n    height: var(--height);\n    border: 1px solid var(--stroke-neutral-base);\n    border-radius: var(--radius-small);\n    background: var(--surface-neutral-t1-base);\n    max-width: 280px;\n\n    &:focus-within {\n        border-color: var(--stroke-brand-primary);\n    }\n\n    [data-divider] {\n        width: 4px;\n        border-right: 1px solid var(--stroke-neutral-base);\n\n        // account for border - 3(margin)  * 2 + 2(border)\n        height: calc(var(--height) - 8px);\n        margin: 3px 0;\n    }\n\n    button {\n        width: var(--height);\n        height: var(--height);\n        background: none;\n        border: none;\n        cursor: pointer;\n        font: var(--font);\n        flex-shrink: 0;\n\n        svg {\n            width: var(--svg-width);\n        }\n\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        color: var(--color);\n\n        &:disabled {\n            cursor: not-allowed;\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n\n    input {\n        color: var(--color);\n        min-width: 0;\n        display: block;\n        font: var(--font);\n        text-align: center;\n        padding: 0 var(--spacing-sizing-03);\n        background: transparent;\n        border: none;\n        flex-grow: 1;\n\n        &:focus {\n            outline: none;\n        }\n\n        &::-webkit-outer-spin-button,\n        &::-webkit-inner-spin-button {\n            appearance: none;\n            margin: 0;\n        }\n\n        &[type='number'] {\n            appearance: textfield;\n        }\n    }\n\n    &:not([data-disabled], [data-readonly]) {\n        input,\n        button:not(:disabled) {\n            &:hover {\n                background-color: var(--interactions-hover-opacity);\n            }\n\n            &:active {\n                background-color: var(--interactions-press-opacity);\n            }\n        }\n\n        &[data-invalid] {\n            border-color: var(--status-error);\n            outline-color: var(--status-error);\n        }\n    }\n\n    &[data-disabled],\n    &[data-readonly] {\n        --color: var(--foreground-neutral-disabled-on-surface);\n\n        border-color: var(--stroke-neutral-disabled-light);\n        background:\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n\n        [data-divider] {\n            border-color: var(--stroke-neutral-disabled-light);\n        }\n    }\n\n    &[data-readonly] {\n        input {\n            color: var(--foreground-neutral-on-surface) !important;\n        }\n    }\n\n    &[data-size='small'] {\n        --font: var(--body-small);\n        --height: var(--spacing-sizing-08);\n    }\n\n    &[data-size='large'] {\n        --font: var(--body-large);\n        --height: var(--spacing-sizing-12);\n        --svg-width: var(--spacing-sizing-06);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
     {
@@ -336,7 +336,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Popover',
         slug: 'popover',
         dependencies: ['Button', 'Portal', 'Txt'],
-        modified: '2025-05-19T15:27:05.553Z',
+        modified: '2025-05-27T20:57:16.297Z',
         css: "[data-bspk='popover'] {\n    position: absolute;\n    z-index: var(--z-index-tooltip-popover);\n    background: var(--surface-neutral-t1-base);\n    box-shadow: var(--drop-shadow-float);\n    padding: var(--spacing-sizing-04);\n    width: 300px;\n    border-radius: var(--radius-large);\n    display: flex;\n    flex-direction: column;\n\n    header {\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n        margin-bottom: var(--spacing-sizing-02);\n        gap: var(--spacing-sizing-04);\n\n        button {\n            background: none;\n            border: none;\n            cursor: pointer;\n            padding: 0;\n            margin: 0 0 0 auto;\n            color: var(--foreground-neutral-on-surface-variant-01);\n            height: var(--spacing-sizing-06);\n            width: var(--spacing-sizing-06);\n\n            svg {\n                width: var(--spacing-sizing-06);\n                height: var(--spacing-sizing-06);\n            }\n        }\n    }\n\n    --arrow-size: var(--spacing-sizing-02);\n    --arrow-offset: calc(var(--arrow-size) * -2);\n    --arrow-background-color: var(--surface-neutral-t1-base);\n\n    [data-arrow] {\n        z-index: 1;\n        position: absolute;\n        width: 0;\n        height: 0;\n        border-style: solid;\n        border-width: var(--arrow-size) var(--arrow-size) var(--arrow-size) var(--arrow-size);\n        border-color: transparent;\n    }\n\n    &[data-placement^='top'] {\n        [data-arrow] {\n            bottom: var(--arrow-offset);\n            border-top-color: var(--arrow-background-color);\n            filter: drop-shadow(0 2px 1px var(--shadow-10));\n        }\n    }\n\n    &[data-placement^='right'] {\n        [data-arrow] {\n            margin-left: calc(var(--arrow-offset) * 2);\n            border-right-color: var(--arrow-background-color);\n            filter: drop-shadow(-2px 0 1px var(--shadow-10));\n        }\n    }\n\n    &[data-placement^='bottom'] {\n        [data-arrow] {\n            top: var(--arrow-offset);\n            border-bottom-color: var(--arrow-background-color);\n            filter: drop-shadow(0 -2px 1px var(--shadow-10));\n        }\n    }\n\n    &[data-placement='bottom-start'] {\n        [data-arrow] {\n            margin-left: var(--arrow-offset);\n        }\n    }\n\n    &[data-placement='bottom-end'] {\n        [data-arrow] {\n            margin-left: calc(var(--arrow-offset) * -1);\n        }\n    }\n\n    &[data-placement^='left'] {\n        [data-arrow] {\n            right: var(--arrow-offset);\n            border-left-color: var(--arrow-background-color);\n            filter: drop-shadow(2px 0 1px var(--shadow-10));\n        }\n    }\n\n    [data-content] {\n        gap: var(--spacing-sizing-04);\n        display: flex;\n        flex-direction: column;\n    }\n\n    [data-call-to-action] {\n        margin: 0 0 0 auto;\n\n        /* background: none;\n    border: none;\n    cursor: pointer;\n    padding: 0 var(--spacing-sizing-03);\n    height: var(--spacing-sizing-12);\n    font: var(--labels-small);\n    color: var(--foreground-brand-primary); */\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -347,7 +347,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Portal',
         slug: 'portal',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.553Z',
+        modified: '2025-05-27T20:57:16.297Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -358,7 +358,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ProgressBar',
         slug: 'progress-bar',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.554Z',
+        modified: '2025-05-27T20:57:16.297Z',
         css: "[data-bspk='progress-bar'] {\n    /*! --width: is set via inline style */\n\n    display: flex;\n    flex-direction: column;\n    width: 100%;\n    gap: var(--spacing-sizing-01);\n\n    progress {\n        opacity: 0;\n        position: absolute;\n    }\n\n    [data-bar] {\n        width: 100%;\n        height: var(--spacing-sizing-02);\n        background-color: var(--surface-neutral-t3-low);\n        border-radius: var(--radius-small);\n\n        &::after {\n            content: '';\n            display: block;\n            height: 100%;\n            background-color: var(--foreground-brand-primary);\n            border-radius: var(--radius-small);\n            width: var(--width);\n            transition: width 0.3s;\n        }\n    }\n\n    &[data-size='small'] {\n        max-width: 248px;\n\n        [data-bar] {\n            height: var(--spacing-sizing-01);\n        }\n    }\n\n    label {\n        font-size: var(--labels-small);\n        width: 100%;\n        text-align: center;\n    }\n\n    &[data-align='left'] label {\n        text-align: left;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -369,7 +369,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ProgressCircle',
         slug: 'progress-circle',
         dependencies: ['Txt'],
-        modified: '2025-05-19T15:27:05.554Z',
+        modified: '2025-05-27T20:57:16.297Z',
         css: "[data-bspk='progress-circle'] {\n    --animation-speed: 1.5s;\n\n    display: flex;\n    flex-direction: column;\n    gap: var(--spacing-sizing-02);\n    align-items: center;\n    justify-content: center;\n\n    &[data-label-position='top'] {\n        flex-direction: column-reverse;\n    }\n\n    &[data-label-position='left'] {\n        flex-direction: row-reverse;\n    }\n\n    &[data-label-position='right'] {\n        flex-direction: row;\n    }\n\n    svg {\n        color: var(--foreground-brand-secondary);\n        animation: spin var(--animation-speed) linear infinite;\n    }\n\n    @keyframes spin {\n        100% {\n            transform: rotate(360deg);\n        }\n\n        0% {\n            transform: rotate(0deg);\n        }\n    }\n\n    &[data-size='small'] {\n        svg {\n            width: 32px;\n        }\n    }\n\n    &[data-size='medium'] {\n        svg {\n            width: 40px;\n        }\n    }\n\n    &[data-size='large'] {\n        svg {\n            width: 48px;\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -380,7 +380,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ProgressionStepper',
         slug: 'progression-stepper',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.554Z',
+        modified: '2025-05-27T20:57:16.298Z',
         css: "[data-bspk='progression-stepper'] {\n    width: 100%;\n\n    --circle-width: var(--spacing-sizing-09);\n    --active-background-color: var(--surface-brand-primary);\n    --active-foreground-color: var(--foreground-brand-on-primary);\n    --inactive-background-color: var(--surface-neutral-t3-low);\n    --inactive-foreground-color: var(--foreground-neutral-on-surface);\n\n    ol {\n        display: flex;\n        width: 100%;\n        margin: 0;\n        padding: 0;\n\n        li {\n            display: flex;\n            flex-direction: column;\n            list-style: none;\n            margin: 0;\n            padding: 0;\n            gap: var(--spacing-sizing-02);\n\n            [data-line-circle] {\n                display: flex;\n                justify-content: center;\n                align-items: center;\n                flex-direction: row;\n\n                [data-line] {\n                    background-color: var(--inactive-background-color);\n                    height: 2px;\n                    flex-grow: 1;\n                }\n\n                [data-circle] {\n                    display: flex;\n                    justify-content: center;\n                    align-items: center;\n                    width: var(--circle-width);\n                    height: var(--circle-width);\n                    border-radius: 50%;\n                    background-color: none;\n                    border: 2px solid var(--inactive-background-color);\n                    font: var(--labels-large);\n\n                    svg {\n                        display: none;\n                        width: var(--spacing-sizing-06);\n                        height: var(--spacing-sizing-06);\n                    }\n                }\n            }\n\n            [data-content] {\n                display: flex;\n                padding: 0 var(--spacing-sizing-10);\n                font: var(--body-small);\n            }\n\n            &:first-of-type {\n                [data-line='before'] {\n                    visibility: hidden;\n                }\n            }\n\n            &:last-of-type {\n                [data-line='after'] {\n                    visibility: hidden;\n                }\n            }\n\n            &[data-status='complete'] {\n                [data-line] {\n                    background-color: var(--active-background-color);\n                }\n\n                [data-circle] {\n                    background-color: var(--active-background-color);\n                    border: 1px solid var(--active-background-color);\n                    color: var(--active-foreground-color);\n\n                    span {\n                        display: none;\n                    }\n\n                    svg {\n                        display: block;\n                    }\n                }\n            }\n\n            &[data-status='current'] {\n                [data-line='before'] {\n                    background-color: var(--active-background-color);\n                }\n\n                [data-circle] {\n                    border-color: var(--active-background-color);\n                }\n            }\n        }\n    }\n\n    &[data-variant='vertical'] {\n        ol {\n            flex-direction: column;\n        }\n\n        li {\n            flex-direction: row;\n\n            [data-line-circle] {\n                flex-direction: column;\n                width: var(--circle-width);\n\n                [data-line] {\n                    width: 2px;\n                    height: auto;\n                }\n            }\n\n            [data-content] {\n                flex-direction: column;\n                padding: var(--spacing-sizing-10) 0;\n            }\n        }\n    }\n\n    &[data-variant='widget'] {\n        --circle-width: var(--spacing-sizing-05);\n\n        label {\n            display: flex;\n            flex-direction: column;\n            gap: var(--spacing-sizing-02);\n            margin-bottom: var(--spacing-sizing-03);\n            font: var(--body-small);\n\n            [data-title] {\n                font: var(--labels-base);\n                color: var(--foreground-neutral-on-surface);\n            }\n\n            [data-subtitle] {\n                font: var(--body-x-small);\n                color: var(--foreground-neutral-on-surface-variant-02);\n            }\n        }\n\n        ol {\n            align-items: center;\n            min-height: var(--spacing-sizing-09);\n\n            li {\n                [data-line-circle] {\n                    [data-line] {\n                        width: 10px;\n                    }\n                }\n\n                &[data-status='current'] {\n                    --circle-width: var(--spacing-sizing-09);\n                }\n\n                &[data-status='incomplete'] {\n                    [data-circle] {\n                        span {\n                            display: none;\n                        }\n                    }\n                }\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -390,7 +390,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ProgressionStepperBar',
         slug: 'progression-stepper-bar',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.555Z',
+        modified: '2025-05-27T20:57:16.298Z',
         css: "[data-bspk='progression-stepper-bar'] {\n    &[data-size='large'] {\n        --height: var(--spacing-sizing-02);\n    }\n\n    &[data-size='small'] {\n        --height: var(--spacing-sizing-01);\n    }\n\n    display: flex;\n    width: 100%;\n    flex-direction: column;\n    gap: var(--spacing-sizing-01);\n\n    [data-steps] {\n        display: flex;\n        flex-direction: row;\n        gap: var(--spacing-sizing-01);\n        height: var(--height);\n\n        [data-step] {\n            width: 100%;\n            height: var(--height);\n            min-width: var(--spacing-sizing-02);\n            border-radius: var(--radius-small);\n            background: var(--surface-neutral-t3-low);\n\n            &[data-complete] {\n                background: var(--surface-brand-primary);\n            }\n        }\n    }\n\n    label {\n        font: var(--labels-small);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -401,7 +401,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Radio',
         slug: 'radio',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.555Z',
+        modified: '2025-05-27T20:57:16.298Z',
         css: "[data-bspk='radio'] {\n    display: block;\n    position: relative;\n    width: var(--spacing-sizing-06);\n    aspect-ratio: 1/1;\n    padding: 2px;\n\n    input[type='radio'] {\n        position: absolute;\n        opacity: 0;\n        z-index: 2;\n        width: 100%;\n        height: 100%;\n        top: 0;\n        left: 0;\n        cursor: pointer;\n    }\n\n    span {\n        --stroke: var(--stroke-neutral-base);\n        --inner: var(--foreground-brand-primary);\n        --background: none;\n\n        position: relative;\n        z-index: 1;\n        box-sizing: border-box;\n        display: flex;\n        width: var(--spacing-sizing-05);\n        aspect-ratio: 1/1;\n        border-radius: 50%;\n        border: 2px solid var(--stroke);\n        align-items: center;\n        flex-direction: column;\n        justify-content: center;\n        background: var(--background);\n\n        &::before {\n            content: '';\n            display: block;\n            width: var(--spacing-sizing-03);\n            aspect-ratio: 1/1;\n            background: var(--inner);\n            border-radius: var(--radius-circular);\n            opacity: 0;\n        }\n    }\n\n    input[type='radio']:not(:disabled) {\n        &:hover + span {\n            --background: var(--interactions-neutral-hover-opacity);\n        }\n\n        &:active + span {\n            --background: var(--interactions-neutral-press-opacity);\n        }\n\n        &[data-invalid] + span {\n            --stroke: var(--status-error);\n            --inner: var(--status-error);\n        }\n    }\n\n    input[type='radio']:checked + span {\n        --stroke: var(--stroke-brand-primary);\n\n        &::before {\n            opacity: 1;\n        }\n    }\n\n    input[type='radio']:disabled {\n        pointer-events: none;\n\n        & + span {\n            --stroke: var(--stroke-neutral-interactions-disabled-light);\n            --inner: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -412,7 +412,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'RadioGroup',
         slug: 'radio-group',
         dependencies: ['Radio', 'ToggleOption'],
-        modified: '2025-05-19T15:27:05.555Z',
+        modified: '2025-05-27T20:57:16.298Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -423,7 +423,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'RadioOption',
         slug: 'radio-option',
         dependencies: ['Radio', 'ToggleOption'],
-        modified: '2025-05-19T15:27:05.555Z',
+        modified: '2025-05-27T20:57:16.300Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -433,7 +433,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'SearchBar',
         slug: 'search-bar',
         dependencies: ['Menu', 'Portal', 'TextInput'],
-        modified: '2025-05-19T15:27:05.555Z',
+        modified: '2025-05-27T20:57:16.300Z',
         css: "[data-bspk='search-bar'] {\n    display: flex;\n    width: 100%;\n    min-width: 300px;\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -443,7 +443,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'SegmentedControl',
         slug: 'segmented-control',
         dependencies: ['Tooltip'],
-        modified: '2025-05-19T15:27:05.556Z',
+        modified: '2025-05-27T20:57:16.300Z',
         css: "[data-bspk='segmented-control'] {\n    display: flex;\n    flex-direction: row;\n    max-width: 100%;\n\n    --outer-height: var(--spacing-sizing-10);\n    --inner-height: var(--spacing-sizing-08);\n    --svg-width: 20px;\n\n    &[data-width='fill'] {\n        align-items: stretch;\n        width: 100%;\n\n        --btn-flex-grow: 1;\n\n        margin: 0 var(--spacing-sizing-04);\n    }\n\n    &[data-width='hug'] {\n        width: fit-content;\n\n        --btn-flex-grow: 0;\n    }\n\n    &[data-size='small'] {\n        --outer-height: var(--spacing-sizing-08);\n        --inner-height: var(--spacing-sizing-06);\n        --svg-width: 16px;\n    }\n\n    svg {\n        width: var(--svg-width) !important;\n    }\n\n    button {\n        border: 0;\n        cursor: pointer;\n        color: var(--foreground-neutral-on-surface);\n        flex-grow: var(--btn-flex-grow);\n        font: var(--labels-small);\n        margin: 0;\n        height: var(--spacing-sizing-12);\n        background: transparent;\n        position: relative;\n\n        [data-focus-ring] {\n            display: none;\n        }\n\n        [data-outer] {\n            height: var(--outer-height);\n            background: var(--surface-neutral-t3-low);\n            margin: var(--spacing-sizing-01) 0;\n            padding: var(--spacing-sizing-01) 0;\n            display: block;\n        }\n\n        [data-inner] {\n            display: flex;\n            flex-direction: row;\n            align-items: center;\n            height: var(--inner-height);\n            border-bottom: 1px solid transparent;\n            justify-content: center;\n            gap: var(--spacing-sizing-01);\n            border-radius: var(--radius-small);\n            padding: var(--spacing-sizing-02) var(--spacing-sizing-03);\n        }\n\n        &:first-of-type {\n            [data-outer] {\n                border-top-left-radius: var(--radius-medium);\n                border-bottom-left-radius: var(--radius-medium);\n                padding-left: var(--spacing-sizing-01);\n            }\n        }\n\n        &:last-of-type {\n            [data-outer] {\n                border-top-right-radius: var(--radius-medium);\n                border-bottom-right-radius: var(--radius-medium);\n                padding-right: var(--spacing-sizing-01);\n            }\n        }\n\n        &:not(:disabled) {\n            &:hover {\n                [data-inner] {\n                    background: var(--interactions-neutral-hover-opacity);\n                }\n            }\n\n            &:active {\n                [data-inner] {\n                    background: var(--interactions-neutral-press-opacity);\n                }\n            }\n\n            &[data-selected] {\n                [data-inner] {\n                    background: var(--surface-neutral-t1-base);\n                }\n            }\n\n            &:focus-visible {\n                z-index: 2;\n                outline: solid 2px var(--stroke-neutral-focus);\n            }\n        }\n\n        &:disabled {\n            pointer-events: none;\n            color: var(--foreground-neutral-disabled-on-surface);\n            cursor: not-allowed;\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -454,7 +454,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Skeleton',
         slug: 'skeleton',
         dependencies: [],
-        modified: '2025-05-22T19:47:25.934Z',
+        modified: '2025-05-27T20:57:16.300Z',
         usage: {
             code: 'function Example() {\nreturn item ? (\n<img\nstyle={{\nwidth: 210,\nheight: 118,\n}}\nalt={item.title}\nsrc={item.src}\n/>\n) : (\n<Skeleton variant="photo" width={210} height={118} />\n);\n}',
             description: 'This example shows a skeleton loading state for an image but can be used for any element.',
@@ -468,7 +468,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderAnywhere',
         slug: 'styles-provider-anywhere',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.556Z',
+        modified: '2025-05-27T20:57:16.300Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -478,7 +478,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderBetterHomesGardens',
         slug: 'styles-provider-better-homes-gardens',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.556Z',
+        modified: '2025-05-27T20:57:16.300Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -488,7 +488,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderCartus',
         slug: 'styles-provider-cartus',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.556Z',
+        modified: '2025-05-27T20:57:16.300Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -498,7 +498,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderCentury21',
         slug: 'styles-provider-century21',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.557Z',
+        modified: '2025-05-27T20:57:16.300Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -508,7 +508,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderColdwellBanker',
         slug: 'styles-provider-coldwell-banker',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.557Z',
+        modified: '2025-05-27T20:57:16.300Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -518,7 +518,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderCorcoran',
         slug: 'styles-provider-corcoran',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.557Z',
+        modified: '2025-05-27T20:57:16.300Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -528,7 +528,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderDenaliBoss',
         slug: 'styles-provider-denali-boss',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.557Z',
+        modified: '2025-05-27T20:57:16.300Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -538,7 +538,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderEra',
         slug: 'styles-provider-era',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.558Z',
+        modified: '2025-05-27T20:57:16.300Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -548,7 +548,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderSothebys',
         slug: 'styles-provider-sothebys',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.558Z',
+        modified: '2025-05-27T20:57:16.301Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -559,7 +559,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Switch',
         slug: 'switch',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.558Z',
+        modified: '2025-05-27T20:57:16.301Z',
         css: "[data-bspk='switch'] {\n    --track-width: var(--spacing-sizing-09);\n    --toggle-width: var(--spacing-sizing-04);\n    --track-bg: var(--surface-neutral-t4-high);\n    --toggle-bg: var(--foreground-neutral-on-color);\n\n    display: block;\n    margin: 2px;\n\n    input[type='checkbox'] {\n        position: absolute;\n        opacity: 0;\n        width: 100%;\n        height: 100%;\n        top: 0;\n        left: 0;\n        z-index: 2;\n        cursor: pointer;\n    }\n\n    box-sizing: border-box;\n    width: var(--track-width);\n    height: var(--spacing-sizing-05);\n    border-radius: var(--spacing-sizing-05);\n    background-color: var(--track-bg);\n    position: relative;\n    z-index: 1;\n\n    span {\n        display: block;\n        width: var(--toggle-width);\n        height: var(--toggle-width);\n        border-radius: var(--radius-circular);\n        background-color: var(--toggle-bg);\n        transition: left 0.2s;\n        box-shadow: var(--drop-shadow-raise);\n        left: 2px;\n        top: 2px;\n        position: absolute;\n    }\n\n    &:has(input[type='checkbox']:checked) {\n        --track-bg: var(--foreground-brand-primary);\n\n        span {\n            left: calc(var(--track-width) - var(--toggle-width) - 2px);\n        }\n    }\n\n    &:has(input[type='checkbox']:disabled) {\n        input[type='checkbox'] {\n            pointer-events: none;\n        }\n\n        --track-bg: var(--interactions-disabled-opacity);\n        --toggle-bg: var(--foreground-neutral-disabled-on-surface);\n\n        &:has(input[type='checkbox']:checked) span {\n            --toggle-bg: var(--foreground-neutral-disabled-on-color-surface);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -570,7 +570,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'SwitchGroup',
         slug: 'switch-group',
         dependencies: ['Switch', 'ToggleOption'],
-        modified: '2025-05-19T15:27:05.558Z',
+        modified: '2025-05-27T20:57:16.301Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -581,7 +581,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'SwitchOption',
         slug: 'switch-option',
         dependencies: ['Switch', 'ToggleOption'],
-        modified: '2025-05-19T15:27:05.559Z',
+        modified: '2025-05-27T20:57:16.301Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -591,7 +591,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TabGroup',
         slug: 'tab-group',
         dependencies: ['Badge'],
-        modified: '2025-05-19T15:27:05.559Z',
+        modified: '2025-05-27T20:57:16.301Z',
         css: "[data-bspk='tab-group'] {\n    display: flex;\n    flex-direction: row;\n\n    --btn-flex-grow: 0;\n\n    border-bottom: 1px solid var(--stroke-neutral-low);\n    width: 100%;\n\n    &[data-width='fill'] {\n        align-items: stretch;\n        width: 100%;\n\n        --btn-flex-grow: 1;\n    }\n\n    --font: var(--labels-base);\n    --height: var(--spacing-sizing-10);\n\n    &[data-size='small'] {\n        --font: var(--labels-small);\n        --height: var(--spacing-sizing-08);\n    }\n\n    &[data-size='large'] {\n        --font: var(--labels-large);\n        --height: var(--spacing-sizing-12);\n    }\n\n    button {\n        border: 0;\n        cursor: pointer;\n        color: var(--foreground-neutral-on-surface-variant-02);\n        background: none;\n        flex-grow: var(--btn-flex-grow);\n        font: var(--font);\n\n        &:hover {\n            background: var(--interactions-neutral-hover-opacity);\n        }\n\n        &:active {\n            background: var(--interactions-neutral-press-opacity);\n        }\n\n        &:disabled {\n            pointer-events: none;\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n\n        &:focus-visible {\n            outline: solid 2px var(--stroke-neutral-focus);\n        }\n\n        span {\n            display: flex;\n            flex-direction: row;\n            align-items: center;\n            margin: 0 var(--spacing-sizing-04);\n            height: var(--height);\n            justify-content: center;\n            position: relative;\n            gap: var(--spacing-sizing-02);\n\n            svg {\n                width: var(--spacing-sizing-05);\n            }\n        }\n\n        &[data-active] {\n            color: var(--foreground-brand-primary);\n\n            span {\n                &::after {\n                    content: '';\n                    display: block;\n                    width: 100%;\n                    height: 2px;\n                    background-color: var(--stroke-brand-primary);\n                    bottom: -1px;\n                    position: absolute;\n                    border-top-right-radius: 2px;\n                    border-top-left-radius: 2px;\n                }\n\n                svg {\n                    color: var(--surface-brand-primary);\n                }\n            }\n        }\n    }\n\n    &[data-hide-trail] {\n        border-bottom: none;\n\n        button {\n            border-bottom: 1px solid var(--stroke-neutral-low);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -601,7 +601,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Table',
         slug: 'table',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.559Z',
+        modified: '2025-05-27T20:57:16.301Z',
         css: "[data-bspk='table'] {\n    width: 100%;\n    border-collapse: separate;\n    text-align: left;\n    border-spacing: 2rem 0.125rem;\n    display: grid;\n    color: var(--foreground-neutral-on-surface);\n    font: var(--labels-base);\n    border-radius: var(--radius-medium);\n    border: 1px solid var(--stroke-neutral-low);\n\n    [data-cell] {\n        display: flex;\n        flex-direction: column;\n        gap: var(--spacing-sizing-02);\n        padding: var(--spacing-sizing-04);\n        background-color: var(--surface-neutral-t1-base);\n        border-bottom: var(--stroke-neutral-low) solid 1px;\n        font: var(--labels-small);\n\n        p {\n            margin: 0;\n            padding: 0;\n            font: var(--body-small);\n        }\n    }\n\n    [data-head] {\n        display: flex;\n        align-items: center;\n        flex-direction: row;\n        border-bottom: 1px solid var(--stroke-neutral-base);\n        background: var(--surface-neutral-t2-lowest);\n        height: var(--spacing-sizing-10);\n        padding: 0 var(--spacing-sizing-03);\n        font: var(--labels-base);\n\n        &[data-head='first'] {\n            border-top-left-radius: var(--radius-medium);\n        }\n\n        &[data-head='last'] {\n            border-top-right-radius: var(--radius-medium);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -611,18 +611,19 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Tag',
         slug: 'tag',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.559Z',
+        modified: '2025-05-27T20:57:16.301Z',
         css: "[data-bspk='tag'] {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    width: fit-content;\n    position: relative;\n    padding: 0 var(--spacing-sizing-03);\n    border-radius: var(--radius-small);\n    color: var(--foreground) !important;\n    background: var(--background);\n    font: unset;\n    text-decoration: unset;\n    white-space: nowrap;\n\n    &[data-wrap] {\n        height: auto;\n    }\n\n    &[data-variant='pill'] {\n        border-radius: var(--radius-circular);\n    }\n\n    &[data-variant='corner-wrap'] {\n        border-bottom-right-radius: 0;\n    }\n\n    &[data-size='small'] {\n        font: var(--labels-small);\n        height: var(--spacing-sizing-08);\n    }\n\n    &[data-size='x-small'] {\n        font: var(--labels-x-small);\n        height: var(--spacing-sizing-06);\n    }\n\n    &[data-color='white'] {\n        box-shadow: var(--drop-shadow-south);\n    }\n\n    [data-triangle] {\n        position: absolute;\n        bottom: -12px;\n        right: 0;\n        width: 0;\n        height: 0;\n        border-style: solid;\n        border-width: 12px 12px 0 0;\n        border-color: var(--foreground) transparent transparent transparent;\n        transform: rotate(0deg);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
     {
-        description: 'A component that allows users to input large amounts of text that could span multiple lines.',
+        description:
+            'A component that allows users to input large amounts of text that could span multiple lines.\n\nThis component gives you a textarea HTML element that automatically adjusts its height to match the length of the content within maximum and minimum rows. A character counter when a maxLength is set to show the number of characters remaining below the limit.',
         file: '/Textarea.tsx',
         name: 'Textarea',
         slug: 'textarea',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.560Z',
-        css: "[data-bspk='textarea'] {\n    /*! \n    --min-rows: is set via inline style \n    --max-rows: is set via inline style\n    */\n\n    display: grid;\n    width: 100%;\n\n    // &[data-size='medium']\n    --font: var(--body-base);\n    --line-height: 20px;\n    --padding: var(--spacing-sizing-03);\n\n    &[data-size='small'] {\n        --font: var(--body-small);\n        --line-height: 20px;\n        --padding: var(--spacing-sizing-02);\n    }\n\n    &[data-size='large'] {\n        --font: var(--body-large);\n        --line-height: 24px;\n        --padding: var(--spacing-sizing-03);\n    }\n\n    [data-replicated-value] {\n        white-space: pre-wrap;\n        visibility: hidden;\n    }\n\n    textarea,\n    [data-replicated-value] {\n        width: 100%;\n        font: var(--font);\n        border: 1px solid var(--border-color);\n        padding: var(--padding);\n        grid-area: 1 / 1 / 2 / 2;\n        min-height: calc((var(--line-height) * var(--min-rows)) + (var(--padding) * 2));\n        max-height: calc((var(--line-height) * var(--max-rows)) + (var(--padding) * 2));\n    }\n\n    textarea {\n        --border-color: var(--stroke-neutral-base);\n\n        resize: vertical;\n        color: var(--foreground-neutral-on-surface);\n        background-color: var(--surface-neutral-t1-base);\n        border-radius: var(--radius-small);\n\n        &:focus-within {\n            --border-color: var(--stroke-neutral-focus);\n\n            outline: none;\n            color: var(--foreground-neutral-on-surface);\n        }\n\n        &:disabled {\n            pointer-events: none;\n            background: \n    // multiple colors\n\n                linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n\n        &:read-only {\n            background: \n    // multiple colors\n\n                linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n            color: var(--foreground-neutral-on-surface-variant-02);\n            cursor: not-allowed;\n        }\n\n        &[aria-invalid] {\n            --border-color: var(--status-error);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+        modified: '2025-05-27T20:57:16.301Z',
+        css: "[data-bspk='textarea'] {\n    /*! \n    --min-rows: is set via inline style \n    --max-rows: is set via inline style\n    */\n\n    display: grid;\n    width: 100%;\n\n    // &[data-size='medium']\n    --font: var(--body-base);\n    --line-height: 20px;\n    --padding: var(--spacing-sizing-03);\n\n    &[data-size='small'] {\n        --font: var(--body-small);\n        --line-height: 20px;\n        --padding: var(--spacing-sizing-02);\n    }\n\n    &[data-size='large'] {\n        --font: var(--body-large);\n        --line-height: 24px;\n        --padding: var(--spacing-sizing-03);\n    }\n\n    [data-replicated-value] {\n        white-space: pre-wrap;\n        visibility: hidden;\n    }\n\n    textarea,\n    [data-replicated-value] {\n        width: 100%;\n        font: var(--font);\n        border: 1px solid var(--border-color);\n        padding: var(--padding);\n        grid-area: 1 / 1 / 2 / 2;\n        min-height: calc((var(--line-height) * var(--min-rows)) + (var(--padding) * 2));\n        max-height: calc((var(--line-height) * var(--max-rows)) + (var(--padding) * 2));\n    }\n\n    textarea {\n        --border-color: var(--stroke-neutral-base);\n\n        &::placeholder {\n            color: var(--foreground-neutral-on-surface-variant-03);\n        }\n\n        resize: none;\n        color: var(--foreground-neutral-on-surface);\n        background-color: var(--surface-neutral-t1-base);\n        border-radius: var(--radius-small);\n\n        &:focus-within {\n            --border-color: var(--stroke-neutral-focus);\n\n            outline: none;\n            color: var(--foreground-neutral-on-surface);\n        }\n\n        &:disabled {\n            pointer-events: none;\n            background: \n    // multiple colors\n\n                linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n\n        &:read-only {\n            background: \n    // multiple colors\n\n                linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n            cursor: not-allowed;\n        }\n\n        &[aria-invalid] {\n            --border-color: var(--status-error);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
     {
@@ -632,7 +633,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TextareaField',
         slug: 'textarea-field',
         dependencies: ['FormField', 'Textarea', 'Txt'],
-        modified: '2025-05-19T15:27:05.560Z',
+        modified: '2025-05-27T20:57:16.301Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -643,7 +644,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TextField',
         slug: 'text-field',
         dependencies: ['FormField', 'TextInput'],
-        modified: '2025-05-19T15:27:05.560Z',
+        modified: '2025-05-27T20:57:16.301Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -654,7 +655,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TextInput',
         slug: 'text-input',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.560Z',
+        modified: '2025-05-27T20:57:16.301Z',
         css: "[data-bspk='text-input'] {\n    --border-color: var(--stroke-neutral-base);\n\n    display: flex;\n    flex-flow: row nowrap;\n    background-color: var(--surface-neutral-t1-base);\n    border: solid 1px var(--border-color);\n    height: var(--field-height);\n    border-radius: var(--radius-small);\n    padding: 0 var(--field-padding);\n    gap: var(--spacing-sizing-01);\n    width: 100%;\n\n    & > * {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        height: var(--field-height);\n        font: var(--field-font);\n        color: var(--foreground-neutral-on-surface);\n        min-width: 0;\n    }\n\n    &:hover:not(:focus-within) {\n        background: \n    // multiple colors\n\n            linear-gradient(var(--interactions-hover-opacity), var(--interactions-hover-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n    }\n\n    &:active:not(:focus-within) {\n        background: \n    // multiple colors\n\n            linear-gradient(var(--interactions-press-opacity), var(--interactions-press-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n    }\n\n    &[data-readonly] {\n        --border-color: var(--stroke-neutral-disabled-light);\n\n        background: \n    // multiple colors\n\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n    }\n\n    &[data-disabled] {\n        --border-color: var(--stroke-neutral-disabled-light);\n\n        background:\n    // multiple colors\n\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n\n        & > * {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n\n    &[data-invalid] {\n        --border-color: var(--status-error);\n    }\n\n    &[data-size='small'] {\n        --field-padding: var(--spacing-sizing-02);\n        --field-height: var(--spacing-sizing-08);\n        --field-font: var(--body-small);\n        --field-icon-width: var(--spacing-sizing-04);\n        --field-clear-width: var(--spacing-sizing-05);\n    }\n\n    &[data-size='medium'] {\n        --field-padding: var(--spacing-sizing-03);\n        --field-height: var(--spacing-sizing-10);\n        --field-font: var(--body-base);\n        --field-icon-width: var(--spacing-sizing-05);\n        --field-clear-width: var(--spacing-sizing-05);\n    }\n\n    &[data-size='large'] {\n        --field-padding: var(--spacing-sizing-03);\n        --field-height: var(--spacing-sizing-12);\n        --field-font: var(--body-large);\n        --field-icon-width: var(--spacing-sizing-06);\n        --field-clear-width: var(--spacing-sizing-06);\n    }\n\n    [data-leading],\n    [data-trailing] {\n        svg {\n            width: var(--field-icon-width);\n        }\n    }\n\n    label {\n        font: var(--labels-small);\n        color: var(--foreground-neutral-on-surface-variant-01);\n    }\n\n    input {\n        flex: 1;\n        background-color: transparent !important;\n        border: none;\n        outline: none;\n        padding: 0;\n        pointer-events: all;\n        text-overflow: ellipsis;\n\n        &[type='number']::-webkit-inner-spin-button,\n        &[type='number']::-webkit-outer-spin-button {\n            display: none;\n        }\n    }\n\n    button[data-clear] {\n        display: none;\n        border: none;\n        background: none;\n        padding: 0;\n        cursor: pointer;\n        pointer-events: all;\n        margin-left: var(--spacing-sizing-02);\n        padding-right: var(--field-padding);\n\n        svg {\n            pointer-events: none;\n            width: var(--field-clear-width);\n        }\n    }\n\n    &:focus-within {\n        --border-color: var(--stroke-brand-primary);\n\n        button[data-clear] {\n            display: flex;\n        }\n    }\n\n    &:has(button[data-clear]) {\n        padding-right: 0;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -664,7 +665,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ToggleOption',
         slug: 'toggle-option',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.560Z',
+        modified: '2025-05-27T20:57:16.301Z',
         css: "[data-bspk='toggle-option'] {\n    display: flex;\n    width: 100%;\n    box-sizing: border-box;\n    flex-direction: row;\n    padding: 0 var(--spacing-sizing-01) 0 0;\n    gap: var(--spacing-sizing-02);\n    user-select: none;\n    background: unset;\n    border: unset;\n    cursor: pointer;\n    min-height: var(--spacing-sizing-08);\n    align-items: center;\n\n    &:has([data-description]) {\n        align-items: unset;\n    }\n\n    @media (any-pointer: coarse) {\n        min-height: var(--spacing-sizing-12);\n    }\n\n    [data-content] {\n        display: flex;\n        flex-direction: column;\n        padding: 2px 0;\n    }\n\n    [data-label] {\n        color: var(--foreground-neutral-on-surface);\n        font: var(--labels-base);\n    }\n\n    [data-description] {\n        font: var(--body-small);\n        color: var(--foreground-neutral-on-surface-variant-01);\n    }\n\n    &[data-size='small'] {\n        [data-label] {\n            font: var(--labels-small);\n        }\n\n        [data-description] {\n            font: var(--body-x-small);\n        }\n    }\n\n    &[data-size='large'] {\n        [data-label] {\n            font: var(--labels-large);\n        }\n\n        [data-description] {\n            font: var(--body-base);\n        }\n    }\n\n    &:not(:has(:disabled)) {\n        [data-pseudo='focus'] &,\n        &:focus-visible,\n        &:has(*:focus-visible) {\n            outline: var(--stroke-neutral-focus) 2px solid;\n        }\n    }\n\n    &:has(:disabled) {\n        [data-label] {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n\n        [data-description] {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -674,7 +675,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Tooltip',
         slug: 'tooltip',
         dependencies: ['Portal'],
-        modified: '2025-05-19T15:27:05.561Z',
+        modified: '2025-05-27T20:57:16.301Z',
         css: "[data-bspk='tooltip'] {\n    position: fixed;\n    pointer-events: none;\n    z-index: var(--z-index-tooltip-popover);\n\n    [data-text] {\n        display: block;\n        z-index: 2;\n        position: relative;\n        background-color: var(--surface-neutral-inverse);\n        border-radius: var(--radius-small);\n        color: var(--foreground-neutral-on-inverse-surface);\n        box-shadow: var(--drop-shadow-float);\n        font: var(--labels-small);\n        padding: var(--spacing-sizing-01) var(--spacing-sizing-02);\n        border: none;\n        transition: opacity 0.2s ease-in-out;\n        width: max-content;\n    }\n\n    --arrow-size: var(--spacing-sizing-01);\n    --arrow-offset: calc(var(--arrow-size) * -2);\n\n    [data-arrow] {\n        display: block;\n        z-index: 1;\n        position: absolute;\n        width: 0;\n        height: 0;\n        border-style: solid;\n        border-width: var(--arrow-size) var(--arrow-size) var(--arrow-size) var(--arrow-size);\n        border-color: transparent;\n    }\n\n    &[data-placement^='bottom'] {\n        [data-arrow] {\n            top: var(--arrow-offset);\n            border-bottom-color: var(--surface-neutral-inverse);\n        }\n    }\n\n    &[data-placement^='top'] {\n        [data-arrow] {\n            border-top-color: var(--surface-neutral-inverse);\n        }\n    }\n\n    &[data-placement^='right'] {\n        [data-arrow] {\n            margin-left: var(--arrow-offset);\n            border-right-color: var(--surface-neutral-inverse);\n        }\n    }\n\n    &[data-placement^='left'] {\n        [data-arrow] {\n            right: var(--arrow-offset);\n            border-left-color: var(--surface-neutral-inverse);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -684,7 +685,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TopNavigation',
         slug: 'top-navigation',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.561Z',
+        modified: '2025-05-27T20:57:16.302Z',
         css: "[data-bspk='top-navigation'] {\n    display: flex;\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -694,7 +695,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Txt',
         slug: 'txt',
         dependencies: [],
-        modified: '2025-05-22T15:22:55.409Z',
+        modified: '2025-05-27T20:57:16.302Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -766,13 +767,15 @@ export const typesMeta: TypeMeta[] = [
         name: 'AvatarProps',
         properties: [
             {
-                name: 'aria-label',
+                name: 'name',
                 required: true,
-                description: 'The aria-label for the element.',
+                description:
+                    'The name of the person or entity represented by the avatar. This is used for accessibility purposes.',
                 type: 'string',
             },
             {
                 name: 'size',
+                required: false,
                 description: 'The size of the avatar.',
                 default: 'small',
                 type: [
@@ -800,6 +803,7 @@ export const typesMeta: TypeMeta[] = [
             },
             {
                 name: 'color',
+                required: false,
                 description: 'The color of the avatar.',
                 default: 'grey',
                 type: [
@@ -837,23 +841,21 @@ export const typesMeta: TypeMeta[] = [
             },
             {
                 name: 'initials',
+                required: false,
                 description: 'The initials to display in the avatar limited to 2 characters.',
                 type: 'string',
             },
             {
                 name: 'icon',
-                description: 'The icon to display in the avatar.',
+                required: false,
+                description: 'The icon to display in the avatar. This needs to be an icon from the',
                 type: 'React.ReactNode',
             },
             {
                 name: 'image',
+                required: false,
                 description: 'The url to the image to display in the avatar.',
                 type: 'string',
-            },
-            {
-                name: 'overflowCount',
-                description: 'The number of notifications not displayed in a list.',
-                type: 'number',
             },
         ],
         id: 'avatar-props',
@@ -1141,6 +1143,19 @@ export const typesMeta: TypeMeta[] = [
         name: 'CheckboxOptionProps',
         properties: [
             {
+                name: 'invalid',
+                description:
+                    'Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'errorMessage',
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
+                type: 'string',
+            },
+            {
                 name: 'name',
                 required: true,
                 description:
@@ -1152,13 +1167,6 @@ export const typesMeta: TypeMeta[] = [
                 required: true,
                 description: 'The value of the control.',
                 type: 'string',
-            },
-            {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
             },
             {
                 name: 'disabled',
@@ -1215,13 +1223,6 @@ export const typesMeta: TypeMeta[] = [
                 type: 'string',
             },
             {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
-            },
-            {
                 name: 'disabled',
                 required: false,
                 description:
@@ -1233,6 +1234,19 @@ export const typesMeta: TypeMeta[] = [
                 name: 'aria-label',
                 required: true,
                 description: 'The aria-label for the element.',
+                type: 'string',
+            },
+            {
+                name: 'invalid',
+                description:
+                    'Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'errorMessage',
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
                 type: 'string',
             },
             {
@@ -1392,6 +1406,26 @@ export const typesMeta: TypeMeta[] = [
         id: 'common-props-disabled-on-click',
     },
     {
+        name: 'CommonProps<"disabled"|"readOnly">',
+        properties: [
+            {
+                name: 'disabled',
+                description:
+                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'readOnly',
+                description:
+                    'Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).',
+                default: false,
+                type: 'boolean',
+            },
+        ],
+        id: 'common-props-disabled-read-only',
+    },
+    {
         name: 'CommonProps<"id">',
         properties: [
             {
@@ -1421,32 +1455,6 @@ export const typesMeta: TypeMeta[] = [
         id: 'common-props-id-disabled',
     },
     {
-        name: 'CommonProps<"invalid"|"disabled"|"readOnly">',
-        properties: [
-            {
-                name: 'invalid',
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'disabled',
-                description:
-                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'readOnly',
-                description:
-                    'Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).',
-                default: false,
-                type: 'boolean',
-            },
-        ],
-        id: 'common-props-invalid-disabled-read-only',
-    },
-    {
         name: 'CommonProps<"name"|"aria-label">',
         properties: [
             {
@@ -1466,7 +1474,61 @@ export const typesMeta: TypeMeta[] = [
         id: 'common-props-name-aria-label',
     },
     {
-        name: 'CommonProps<"name"|"id"|"invalid"|"disabled"|"size"|"aria-label"|"readOnly">',
+        name: 'CommonProps<"name"|"disabled"|"aria-label",HTMLInputElement>',
+        properties: [
+            {
+                name: 'name',
+                required: true,
+                description:
+                    'The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.',
+                type: 'string',
+            },
+            {
+                name: 'disabled',
+                required: false,
+                description:
+                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'aria-label',
+                required: true,
+                description: 'The aria-label for the element.',
+                type: 'string',
+            },
+        ],
+        id: 'common-props-name-disabled-aria-label-html-input-element',
+    },
+    {
+        name: 'CommonProps<"name"|"disabled"|"aria-label",T>',
+        properties: [
+            {
+                name: 'name',
+                required: true,
+                description:
+                    'The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.',
+                type: 'string',
+            },
+            {
+                name: 'disabled',
+                required: false,
+                description:
+                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'aria-label',
+                required: true,
+                description: 'The aria-label for the element.',
+                type: 'string',
+            },
+        ],
+        id: 'common-props-name-disabled-aria-label-t',
+    },
+    {
+        name: 'CommonProps<"name"|"id"|"disabled"|"size"|"aria-label"|"readOnly">',
         properties: [
             {
                 name: 'name',
@@ -1480,13 +1542,6 @@ export const typesMeta: TypeMeta[] = [
                 required: false,
                 description: 'The id of the element. If not provided one will be generated.',
                 type: 'string',
-            },
-            {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
             },
             {
                 name: 'disabled',
@@ -1519,78 +1574,10 @@ export const typesMeta: TypeMeta[] = [
                 type: 'boolean',
             },
         ],
-        id: 'common-props-name-id-invalid-disabled-size-aria-label-read-only',
+        id: 'common-props-name-id-disabled-size-aria-label-read-only',
     },
     {
-        name: 'CommonProps<"name"|"invalid"|"disabled"|"aria-label",HTMLInputElement>',
-        properties: [
-            {
-                name: 'name',
-                required: true,
-                description:
-                    'The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.',
-                type: 'string',
-            },
-            {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'disabled',
-                required: false,
-                description:
-                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'aria-label',
-                required: true,
-                description: 'The aria-label for the element.',
-                type: 'string',
-            },
-        ],
-        id: 'common-props-name-invalid-disabled-aria-label-html-input-element',
-    },
-    {
-        name: 'CommonProps<"name"|"invalid"|"disabled"|"aria-label",T>',
-        properties: [
-            {
-                name: 'name',
-                required: true,
-                description:
-                    'The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.',
-                type: 'string',
-            },
-            {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'disabled',
-                required: false,
-                description:
-                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'aria-label',
-                required: true,
-                description: 'The aria-label for the element.',
-                type: 'string',
-            },
-        ],
-        id: 'common-props-name-invalid-disabled-aria-label-t',
-    },
-    {
-        name: 'CommonProps<"name"|"required"|"id"|"value"|"invalid"|"disabled"|"size"|"aria-label"|"readOnly">',
+        name: 'CommonProps<"name"|"required"|"id"|"value"|"disabled"|"size"|"aria-label"|"readOnly">',
         properties: [
             {
                 name: 'name',
@@ -1620,13 +1607,6 @@ export const typesMeta: TypeMeta[] = [
                 type: 'string',
             },
             {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
-            },
-            {
                 name: 'disabled',
                 required: false,
                 description:
@@ -1657,7 +1637,7 @@ export const typesMeta: TypeMeta[] = [
                 type: 'boolean',
             },
         ],
-        id: 'common-props-name-required-id-value-invalid-disabled-size-aria-label-read-only',
+        id: 'common-props-name-required-id-value-disabled-size-aria-label-read-only',
     },
     {
         name: 'CommonProps<"name"|"value">',
@@ -1718,7 +1698,7 @@ export const typesMeta: TypeMeta[] = [
         id: 'common-props-name-value-disabled-aria-label-on-click',
     },
     {
-        name: 'CommonProps<"required"|"errorMessage">',
+        name: 'CommonProps<"required">',
         properties: [
             {
                 name: 'required',
@@ -1727,17 +1707,11 @@ export const typesMeta: TypeMeta[] = [
                 default: false,
                 type: 'boolean',
             },
-            {
-                name: 'errorMessage',
-                description:
-                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
-                type: 'string',
-            },
         ],
-        id: 'common-props-required-error-message',
+        id: 'common-props-required',
     },
     {
-        name: 'CommonProps<"required"|"id"|"invalid"|"disabled"|"aria-label"|"readOnly">',
+        name: 'CommonProps<"required"|"id"|"disabled"|"aria-label"|"readOnly">',
         properties: [
             {
                 name: 'required',
@@ -1752,13 +1726,6 @@ export const typesMeta: TypeMeta[] = [
                 required: false,
                 description: 'The id of the element. If not provided one will be generated.',
                 type: 'string',
-            },
-            {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
             },
             {
                 name: 'disabled',
@@ -1783,7 +1750,7 @@ export const typesMeta: TypeMeta[] = [
                 type: 'boolean',
             },
         ],
-        id: 'common-props-required-id-invalid-disabled-aria-label-read-only',
+        id: 'common-props-required-id-disabled-aria-label-read-only',
     },
     {
         name: 'CommonPropsLibrary',
@@ -1832,13 +1799,6 @@ export const typesMeta: TypeMeta[] = [
                 type: 'boolean',
             },
             {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
-            },
-            {
                 name: 'readOnly',
                 required: false,
                 description:
@@ -1851,13 +1811,6 @@ export const typesMeta: TypeMeta[] = [
                 required: true,
                 description:
                     'The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.',
-                type: 'string',
-            },
-            {
-                name: 'errorMessage',
-                required: false,
-                description:
-                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
                 type: 'string',
             },
             {
@@ -2120,13 +2073,6 @@ export const typesMeta: TypeMeta[] = [
                 type: 'string',
             },
             {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
-            },
-            {
                 name: 'disabled',
                 required: false,
                 description:
@@ -2155,6 +2101,19 @@ export const typesMeta: TypeMeta[] = [
                     'Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).',
                 default: false,
                 type: 'boolean',
+            },
+            {
+                name: 'invalid',
+                description:
+                    'Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'errorMessage',
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
+                type: 'string',
             },
             {
                 name: 'onChange',
@@ -2365,6 +2324,13 @@ export const typesMeta: TypeMeta[] = [
                 type: 'boolean',
             },
             {
+                name: 'invalid',
+                description:
+                    'Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.',
+                default: false,
+                type: 'boolean',
+            },
+            {
                 name: 'errorMessage',
                 description:
                     'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
@@ -2386,7 +2352,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'children',
                 required: true,
                 description:
-                    'The children of the form field. This should be a control such as TextInput, Dropdown, DatePicker, or TimePicker.',
+                    'The children of the form field. This should be a control such as TextInput, Dropdown, DatePicker, or\nTimePicker.',
                 type: '(childProps: FieldControlProps) => JSX.Element',
             },
             {
@@ -2450,6 +2416,27 @@ export const typesMeta: TypeMeta[] = [
         id: 'inline-alert-props',
     },
     {
+        name: 'InvalidPropsLibrary',
+        properties: [
+            {
+                name: 'invalid',
+                description:
+                    'Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'errorMessage',
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
+                type: 'string',
+            },
+        ],
+        id: 'invalid-props-library',
+        description:
+            'The props that are common to input elements.\n\nIf an element is invalid it must have an errorMessage.',
+    },
+    {
         name: 'LayoutProps',
         properties: [
             {
@@ -2497,6 +2484,13 @@ export const typesMeta: TypeMeta[] = [
         properties: [
             {
                 name: 'target',
+            },
+            {
+                name: 'disabled',
+                description:
+                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
+                default: false,
+                type: 'boolean',
             },
             {
                 name: 'label',
@@ -2850,67 +2844,17 @@ export const typesMeta: TypeMeta[] = [
         name: 'NumberFieldProps',
         properties: [
             {
-                name: 'name',
-                required: true,
-                description:
-                    'The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.',
-                type: 'string',
-            },
-            {
-                name: 'id',
-                required: false,
-                description: 'The id of the element. If not provided one will be generated.',
-                type: 'string',
-            },
-            {
-                name: 'value',
-                required: false,
-                description: 'The value of the control.',
-                type: 'number',
-            },
-            {
                 name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'disabled',
-                required: false,
                 description:
-                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
+                    'Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.',
                 default: false,
                 type: 'boolean',
             },
             {
-                name: 'size',
-                required: false,
-                description: 'The size of the element.',
-                default: 'medium',
-                type: ['small', 'medium', 'large'],
-                options: ['small', 'medium', 'large'],
-            },
-            {
-                name: 'onChange',
-                required: true,
-                description: 'Callback when the value changes.',
-                type: 'object',
-            },
-            {
-                name: 'readOnly',
-                required: false,
+                name: 'errorMessage',
                 description:
-                    'Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'centered',
-                required: false,
-                description: 'If the value should be centered between the up & down buttons.',
-                default: false,
-                type: 'boolean',
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
+                type: 'string',
             },
             {
                 name: 'required',
@@ -2951,6 +2895,64 @@ export const typesMeta: TypeMeta[] = [
                 description: 'The id of the control.',
                 type: 'string',
             },
+            {
+                name: 'name',
+                required: true,
+                description:
+                    'The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.',
+                type: 'string',
+            },
+            {
+                name: 'id',
+                required: false,
+                description: 'The id of the element. If not provided one will be generated.',
+                type: 'string',
+            },
+            {
+                name: 'value',
+                required: false,
+                description: 'The value of the control.',
+                type: 'number',
+            },
+            {
+                name: 'disabled',
+                required: false,
+                description:
+                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'size',
+                required: false,
+                description: 'The size of the element.',
+                default: 'medium',
+                type: ['small', 'medium', 'large'],
+                options: ['small', 'medium', 'large'],
+            },
+            {
+                name: 'onChange',
+                required: true,
+                description: 'Callback when the value changes.',
+                type: 'object',
+            },
+            {
+                name: 'readOnly',
+                required: false,
+                description:
+                    'Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'align',
+                required: false,
+                description:
+                    'The alignment of the input box. Centered between the plus and minus buttons or to the left of the buttons.',
+                default: 'center',
+                type: ['center', 'left'],
+                options: ['center', 'left'],
+            },
         ],
         id: 'number-field-props',
     },
@@ -2969,13 +2971,6 @@ export const typesMeta: TypeMeta[] = [
                 required: false,
                 description: 'The id of the element. If not provided one will be generated.',
                 type: 'string',
-            },
-            {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
             },
             {
                 name: 'disabled',
@@ -3008,6 +3003,19 @@ export const typesMeta: TypeMeta[] = [
                 type: 'boolean',
             },
             {
+                name: 'invalid',
+                description:
+                    'Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'errorMessage',
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
+                type: 'string',
+            },
+            {
                 name: 'value',
                 required: false,
                 description: 'The value of the control.',
@@ -3020,25 +3028,31 @@ export const typesMeta: TypeMeta[] = [
                 type: 'object',
             },
             {
-                name: 'centered',
+                name: 'align',
                 required: false,
-                description: 'If the value should be centered between the up & down buttons.',
-                default: false,
-                type: 'boolean',
+                description:
+                    'The alignment of the input box. Centered between the plus and minus buttons or to the left of the buttons.',
+                default: 'center',
+                type: ['center', 'left'],
+                options: ['center', 'left'],
             },
             {
                 name: 'max',
                 required: false,
                 description:
-                    'Defines the [maximum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/max) value that is accepted.',
+                    'Defines the [maximum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/max) value that is\naccepted.',
+                default: 99,
                 type: 'number',
+                minimum: 1,
+                maximum: 99,
             },
             {
                 name: 'min',
                 required: false,
                 description:
-                    'Defines the [minimum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/min) value that is accepted.',
+                    'Defines the [minimum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/min) value that is\naccepted.',
                 type: 'number',
+                minimum: 0,
             },
         ],
         id: 'number-input-props',
@@ -3078,7 +3092,7 @@ export const typesMeta: TypeMeta[] = [
         id: 'pick-button-props-as-icon-on-click-as-show-label-tool-tip',
     },
     {
-        name: 'Pick<CheckboxProps,"name"|"value"|"invalid"|"disabled"|"onChange"|"checked"|"indeterminate">',
+        name: 'Pick<CheckboxProps,"name"|"value"|"disabled"|"onChange"|"checked"|"indeterminate">',
         properties: [
             {
                 name: 'name',
@@ -3092,13 +3106,6 @@ export const typesMeta: TypeMeta[] = [
                 required: true,
                 description: 'The value of the control.',
                 type: 'string',
-            },
-            {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
             },
             {
                 name: 'disabled',
@@ -3130,7 +3137,20 @@ export const typesMeta: TypeMeta[] = [
                 type: 'boolean',
             },
         ],
-        id: 'pick-checkbox-props-name-value-invalid-disabled-on-change-checked-indeterminate',
+        id: 'pick-checkbox-props-name-value-disabled-on-change-checked-indeterminate',
+    },
+    {
+        name: 'Pick<CommonPropsLibrary,"disabled">',
+        properties: [
+            {
+                name: 'disabled',
+                description:
+                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
+                default: false,
+                type: 'boolean',
+            },
+        ],
+        id: 'pick-common-props-library-disabled',
     },
     {
         name: 'Pick<DropdownProps,"name"|"value"|"disabled"|"options"|"size"|"onChange"|"placeholder"|"readOnly"|"placement"|"itemCount">',
@@ -3406,7 +3426,7 @@ export const typesMeta: TypeMeta[] = [
         references: ['RenderListItemParams'],
     },
     {
-        name: 'Pick<NumberInputProps,"name"|"id"|"value"|"invalid"|"disabled"|"size"|"onChange"|"readOnly"|"centered">',
+        name: 'Pick<NumberInputProps,"name"|"id"|"value"|"disabled"|"size"|"onChange"|"readOnly"|"align">',
         properties: [
             {
                 name: 'name',
@@ -3426,13 +3446,6 @@ export const typesMeta: TypeMeta[] = [
                 required: false,
                 description: 'The value of the control.',
                 type: 'number',
-            },
-            {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
             },
             {
                 name: 'disabled',
@@ -3465,17 +3478,19 @@ export const typesMeta: TypeMeta[] = [
                 type: 'boolean',
             },
             {
-                name: 'centered',
+                name: 'align',
                 required: false,
-                description: 'If the value should be centered between the up & down buttons.',
-                default: false,
-                type: 'boolean',
+                description:
+                    'The alignment of the input box. Centered between the plus and minus buttons or to the left of the buttons.',
+                default: 'center',
+                type: ['center', 'left'],
+                options: ['center', 'left'],
             },
         ],
-        id: 'pick-number-input-props-name-id-value-invalid-disabled-size-on-change-read-only-centered',
+        id: 'pick-number-input-props-name-id-value-disabled-size-on-change-read-only-align',
     },
     {
-        name: 'Pick<RadioProps,"name"|"value"|"invalid"|"disabled"|"onChange"|"checked">',
+        name: 'Pick<RadioProps,"name"|"value"|"disabled"|"onChange"|"checked">',
         properties: [
             {
                 name: 'name',
@@ -3489,13 +3504,6 @@ export const typesMeta: TypeMeta[] = [
                 required: true,
                 description: 'The value of the control.',
                 type: 'string',
-            },
-            {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
             },
             {
                 name: 'disabled',
@@ -3519,7 +3527,7 @@ export const typesMeta: TypeMeta[] = [
                 type: 'boolean',
             },
         ],
-        id: 'pick-radio-props-name-value-invalid-disabled-on-change-checked',
+        id: 'pick-radio-props-name-value-disabled-on-change-checked',
     },
     {
         name: 'Pick<TextInputProps,"name"|"id"|"size"|"aria-label"|"placeholder"|"inputRef">',
@@ -3567,7 +3575,7 @@ export const typesMeta: TypeMeta[] = [
         id: 'pick-text-input-props-name-id-size-aria-label-placeholder-input-ref',
     },
     {
-        name: 'Pick<TextInputProps,"name"|"required"|"type"|"value"|"invalid"|"disabled"|"size"|"onChange"|"autoComplete"|"placeholder"|"readOnly"|"leading"|"trailing"|"inputRef">',
+        name: 'Pick<TextInputProps,"name"|"required"|"type"|"value"|"disabled"|"size"|"onChange"|"autoComplete"|"placeholder"|"readOnly"|"leading"|"trailing"|"inputRef">',
         properties: [
             {
                 name: 'name',
@@ -3596,13 +3604,6 @@ export const typesMeta: TypeMeta[] = [
                 required: false,
                 description: 'The value of the control.',
                 type: 'string',
-            },
-            {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
             },
             {
                 name: 'disabled',
@@ -3666,7 +3667,53 @@ export const typesMeta: TypeMeta[] = [
                 type: 'object',
             },
         ],
-        id: 'pick-text-input-props-name-required-type-value-invalid-disabled-size-on-change-auto-complete-placeholder-read-only-leading-trailing-input-ref',
+        id: 'pick-text-input-props-name-required-type-value-disabled-size-on-change-auto-complete-placeholder-read-only-leading-trailing-input-ref',
+    },
+    {
+        name: 'Pick<ToggleControlProps<HTMLInputElement>,"name"|"value"|"disabled"|"aria-label"|"onChange"|"checked">',
+        properties: [
+            {
+                name: 'name',
+                required: true,
+                description:
+                    'The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.',
+                type: 'string',
+            },
+            {
+                name: 'value',
+                required: true,
+                description: 'The value of the control.',
+                type: 'string',
+            },
+            {
+                name: 'disabled',
+                required: false,
+                description:
+                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'aria-label',
+                required: true,
+                description: 'The aria-label for the element.',
+                type: 'string',
+            },
+            {
+                name: 'onChange',
+                required: true,
+                description: 'The function to call when the control is checked or unchecked.',
+                type: '(checked, Event) => void',
+            },
+            {
+                name: 'checked',
+                required: false,
+                description: 'Marks the control as checked.',
+                default: false,
+                type: 'boolean',
+            },
+        ],
+        id: 'pick-toggle-control-props-html-input-element-name-value-disabled-aria-label-on-change-checked',
     },
     {
         name: 'Pick<ToggleControlProps<HTMLInputElement>,"value">',
@@ -4031,6 +4078,19 @@ export const typesMeta: TypeMeta[] = [
         name: 'RadioOptionProps',
         properties: [
             {
+                name: 'invalid',
+                description:
+                    'Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'errorMessage',
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
+                type: 'string',
+            },
+            {
                 name: 'name',
                 required: true,
                 description:
@@ -4042,13 +4102,6 @@ export const typesMeta: TypeMeta[] = [
                 required: true,
                 description: 'The value of the control.',
                 type: 'string',
-            },
-            {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
             },
             {
                 name: 'disabled',
@@ -4090,6 +4143,19 @@ export const typesMeta: TypeMeta[] = [
         name: 'RadioProps',
         properties: [
             {
+                name: 'invalid',
+                description:
+                    'Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'errorMessage',
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
+                type: 'string',
+            },
+            {
                 name: 'name',
                 required: true,
                 description:
@@ -4101,13 +4167,6 @@ export const typesMeta: TypeMeta[] = [
                 required: true,
                 description: 'The value of the control.',
                 type: 'string',
-            },
-            {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
             },
             {
                 name: 'disabled',
@@ -4305,17 +4364,54 @@ export const typesMeta: TypeMeta[] = [
         references: ['MenuItem'],
     },
     {
+        name: 'SegmentedControlOption',
+        properties: [
+            {
+                name: 'label',
+                required: true,
+                description: 'The label of the option. This is the text that will be displayed on the option.',
+                type: 'string',
+            },
+            {
+                name: 'disabled',
+                required: false,
+                description:
+                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'value',
+                required: false,
+                description: 'The value of the option. If not provided, the label will be used as the value.',
+                type: 'string',
+            },
+            {
+                name: 'icon',
+                required: false,
+                description: 'The the icon to display before the label.',
+                type: 'React.ReactNode',
+            },
+            {
+                name: 'iconActive',
+                required: false,
+                type: 'React.ReactNode',
+            },
+        ],
+        id: 'segmented-control-option',
+    },
+    {
         name: 'SegmentedControlProps',
         properties: [
             {
                 name: 'options',
                 required: true,
                 description: 'The options to display. Each option has a label and an optional leading icon.',
-                type: 'SegmentedToggleOption[]',
+                type: 'SegmentedControlOption[]',
             },
             {
                 name: 'value',
-                required: false,
+                required: true,
                 description: 'The id of the selected option.',
                 type: 'string',
             },
@@ -4352,44 +4448,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'segmented-control-props',
-        references: ['SegmentedToggleOption'],
-    },
-    {
-        name: 'SegmentedToggleOption',
-        properties: [
-            {
-                name: 'label',
-                required: true,
-                description: 'The label of the option. This is the text that will be displayed on the option.',
-                type: 'string',
-            },
-            {
-                name: 'disabled',
-                required: false,
-                description:
-                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'value',
-                required: false,
-                description: 'The value of the option. If not provided, the label will be used as the value.',
-                type: 'string',
-            },
-            {
-                name: 'icon',
-                required: false,
-                description: 'The the icon to display before the label.',
-                type: 'React.ReactNode',
-            },
-            {
-                name: 'iconActive',
-                required: false,
-                type: 'React.ReactNode',
-            },
-        ],
-        id: 'segmented-toggle-option',
+        references: ['SegmentedControlOption'],
     },
     {
         name: 'SkeletonProps',
@@ -4682,7 +4741,8 @@ export const typesMeta: TypeMeta[] = [
             {
                 name: 'value',
                 required: false,
-                description: 'The value of the tab. If not provided, the label will be used as the value.',
+                description:
+                    'The value of the tab sent to onChange when selected.\n\nIf not provided, the label will be used as the value.',
                 type: 'string',
             },
             {
@@ -4717,7 +4777,7 @@ export const typesMeta: TypeMeta[] = [
             },
             {
                 name: 'value',
-                required: false,
+                required: true,
                 description: 'The id of the selected tab.',
                 type: 'string',
             },
@@ -4923,13 +4983,6 @@ export const typesMeta: TypeMeta[] = [
                 type: 'string',
             },
             {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
-            },
-            {
                 name: 'disabled',
                 required: false,
                 description:
@@ -4952,15 +5005,28 @@ export const typesMeta: TypeMeta[] = [
                 type: 'boolean',
             },
             {
+                name: 'invalid',
+                description:
+                    'Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'errorMessage',
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
+                type: 'string',
+            },
+            {
                 name: 'onChange',
                 required: true,
                 description: 'Callback when the value of the field changes.',
                 type: '(next: String, Event) => void',
             },
             {
-                name: 'size',
+                name: 'textSize',
                 required: false,
-                description: 'The size of the field.',
+                description: 'The text size of the field.',
                 default: 'medium',
                 type: ['small', 'medium', 'large'],
                 options: ['small', 'medium', 'large'],
@@ -4969,7 +5035,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'value',
                 required: false,
                 description: 'The value of the field.',
-                type: 'string',
+                type: 'multiline',
             },
             {
                 name: 'name',
@@ -4998,17 +5064,19 @@ export const typesMeta: TypeMeta[] = [
             {
                 name: 'minRows',
                 required: false,
-                description:
-                    'The minimum number of rows that the textarea should have. If set the textarea will automatically grow and shrink\nto fit the content.',
+                description: 'The minimum number of rows that the textarea will show.',
+                default: 3,
                 type: 'number',
                 minimum: 3,
+                maximum: 10,
             },
             {
                 name: 'maxRows',
                 required: false,
-                description:
-                    'The maximum number of rows that the textarea should have. If set the textarea will automatically grow and shrink\nto fit the content.',
+                description: 'The maximum number of rows that the textarea will show.',
+                default: 10,
                 type: 'number',
+                minimum: 3,
                 maximum: 10,
             },
         ],
@@ -5032,13 +5100,6 @@ export const typesMeta: TypeMeta[] = [
                 type: 'string',
             },
             {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
-            },
-            {
                 name: 'disabled',
                 required: false,
                 description:
@@ -5061,15 +5122,28 @@ export const typesMeta: TypeMeta[] = [
                 type: 'boolean',
             },
             {
+                name: 'invalid',
+                description:
+                    'Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'errorMessage',
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
+                type: 'string',
+            },
+            {
                 name: 'onChange',
                 required: true,
                 description: 'Callback when the value of the field changes.',
                 type: '(next: String, Event) => void',
             },
             {
-                name: 'size',
+                name: 'textSize',
                 required: false,
-                description: 'The size of the field.',
+                description: 'The text size of the field.',
                 default: 'medium',
                 type: ['small', 'medium', 'large'],
                 options: ['small', 'medium', 'large'],
@@ -5078,7 +5152,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'value',
                 required: false,
                 description: 'The value of the field.',
-                type: 'string',
+                type: 'multiline',
             },
             {
                 name: 'name',
@@ -5107,17 +5181,19 @@ export const typesMeta: TypeMeta[] = [
             {
                 name: 'minRows',
                 required: false,
-                description:
-                    'The minimum number of rows that the textarea should have. If set the textarea will automatically grow and shrink\nto fit the content.',
+                description: 'The minimum number of rows that the textarea will show.',
+                default: 3,
                 type: 'number',
                 minimum: 3,
+                maximum: 10,
             },
             {
                 name: 'maxRows',
                 required: false,
-                description:
-                    'The maximum number of rows that the textarea should have. If set the textarea will automatically grow and shrink\nto fit the content.',
+                description: 'The maximum number of rows that the textarea will show.',
+                default: 10,
                 type: 'number',
+                minimum: 3,
                 maximum: 10,
             },
         ],
@@ -5126,6 +5202,19 @@ export const typesMeta: TypeMeta[] = [
     {
         name: 'TextFieldProps',
         properties: [
+            {
+                name: 'invalid',
+                description:
+                    'Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'errorMessage',
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
+                type: 'string',
+            },
             {
                 name: 'name',
                 required: true,
@@ -5153,13 +5242,6 @@ export const typesMeta: TypeMeta[] = [
                 required: false,
                 description: 'The value of the control.',
                 type: 'string',
-            },
-            {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
             },
             {
                 name: 'disabled',
@@ -5287,13 +5369,6 @@ export const typesMeta: TypeMeta[] = [
                 type: 'string',
             },
             {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
-            },
-            {
                 name: 'disabled',
                 required: false,
                 description:
@@ -5322,6 +5397,19 @@ export const typesMeta: TypeMeta[] = [
                     'Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).',
                 default: false,
                 type: 'boolean',
+            },
+            {
+                name: 'invalid',
+                description:
+                    'Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'errorMessage',
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
+                type: 'string',
             },
             {
                 name: 'onChange',
@@ -5387,13 +5475,6 @@ export const typesMeta: TypeMeta[] = [
                 type: 'string',
             },
             {
-                name: 'invalid',
-                required: false,
-                description: 'Marks the element as invalid and displays error state theme.',
-                default: false,
-                type: 'boolean',
-            },
-            {
                 name: 'disabled',
                 required: false,
                 description:
@@ -5405,6 +5486,19 @@ export const typesMeta: TypeMeta[] = [
                 name: 'aria-label',
                 required: true,
                 description: 'The aria-label for the element.',
+                type: 'string',
+            },
+            {
+                name: 'invalid',
+                description:
+                    'Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'errorMessage',
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
                 type: 'string',
             },
             {
@@ -5640,18 +5734,18 @@ export type MetaTypeName =
     | 'CommonProps<"aria-label">'
     | 'CommonProps<"disabled">'
     | 'CommonProps<"disabled"|"onClick">'
+    | 'CommonProps<"disabled"|"readOnly">'
     | 'CommonProps<"id">'
     | 'CommonProps<"id"|"disabled">'
-    | 'CommonProps<"invalid"|"disabled"|"readOnly">'
     | 'CommonProps<"name"|"aria-label">'
-    | 'CommonProps<"name"|"id"|"invalid"|"disabled"|"size"|"aria-label"|"readOnly">'
-    | 'CommonProps<"name"|"invalid"|"disabled"|"aria-label",HTMLInputElement>'
-    | 'CommonProps<"name"|"invalid"|"disabled"|"aria-label",T>'
-    | 'CommonProps<"name"|"required"|"id"|"value"|"invalid"|"disabled"|"size"|"aria-label"|"readOnly">'
+    | 'CommonProps<"name"|"disabled"|"aria-label",HTMLInputElement>'
+    | 'CommonProps<"name"|"disabled"|"aria-label",T>'
+    | 'CommonProps<"name"|"id"|"disabled"|"size"|"aria-label"|"readOnly">'
+    | 'CommonProps<"name"|"required"|"id"|"value"|"disabled"|"size"|"aria-label"|"readOnly">'
     | 'CommonProps<"name"|"value">'
     | 'CommonProps<"name"|"value"|"disabled"|"aria-label"|"onClick">'
-    | 'CommonProps<"required"|"errorMessage">'
-    | 'CommonProps<"required"|"id"|"invalid"|"disabled"|"aria-label"|"readOnly">'
+    | 'CommonProps<"required">'
+    | 'CommonProps<"required"|"id"|"disabled"|"aria-label"|"readOnly">'
     | 'CommonPropsLibrary'
     | 'DialogProps'
     | 'DividerProps'
@@ -5665,6 +5759,7 @@ export type MetaTypeName =
     | 'FormFieldProps'
     | 'ImgProps'
     | 'InlineAlertProps'
+    | 'InvalidPropsLibrary'
     | 'LayoutProps'
     | 'LinkProps'
     | 'ListItemProps'
@@ -5677,7 +5772,8 @@ export type MetaTypeName =
     | 'NumberFieldProps'
     | 'NumberInputProps'
     | 'Pick<ButtonProps<As>,"icon"|"onClick"|"as"|"showLabel"|"toolTip">'
-    | 'Pick<CheckboxProps,"name"|"value"|"invalid"|"disabled"|"onChange"|"checked"|"indeterminate">'
+    | 'Pick<CheckboxProps,"name"|"value"|"disabled"|"onChange"|"checked"|"indeterminate">'
+    | 'Pick<CommonPropsLibrary,"disabled">'
     | 'Pick<DropdownProps,"name"|"value"|"disabled"|"options"|"size"|"onChange"|"placeholder"|"readOnly"|"placement"|"itemCount">'
     | 'Pick<FormFieldProps,"label"|"errorMessage"|"helperText"|"controlId">'
     | 'Pick<FormFieldProps,"label"|"errorMessage"|"helperText"|"labelTrailing"|"controlId">'
@@ -5685,10 +5781,11 @@ export type MetaTypeName =
     | 'Pick<MenuProps,"itemCount"|"items"|"noResultsMessage">'
     | 'Pick<MenuProps<M>,"activeIndex"|"isMulti"|"selectedValues">'
     | 'Pick<MenuProps<O>,"onChange"|"isMulti"|"itemCount"|"renderListItem">'
-    | 'Pick<NumberInputProps,"name"|"id"|"value"|"invalid"|"disabled"|"size"|"onChange"|"readOnly"|"centered">'
-    | 'Pick<RadioProps,"name"|"value"|"invalid"|"disabled"|"onChange"|"checked">'
+    | 'Pick<NumberInputProps,"name"|"id"|"value"|"disabled"|"size"|"onChange"|"readOnly"|"align">'
+    | 'Pick<RadioProps,"name"|"value"|"disabled"|"onChange"|"checked">'
     | 'Pick<TextInputProps,"name"|"id"|"size"|"aria-label"|"placeholder"|"inputRef">'
-    | 'Pick<TextInputProps,"name"|"required"|"type"|"value"|"invalid"|"disabled"|"size"|"onChange"|"autoComplete"|"placeholder"|"readOnly"|"leading"|"trailing"|"inputRef">'
+    | 'Pick<TextInputProps,"name"|"required"|"type"|"value"|"disabled"|"size"|"onChange"|"autoComplete"|"placeholder"|"readOnly"|"leading"|"trailing"|"inputRef">'
+    | 'Pick<ToggleControlProps<HTMLInputElement>,"name"|"value"|"disabled"|"aria-label"|"onChange"|"checked">'
     | 'Pick<ToggleControlProps<HTMLInputElement>,"value">'
     | 'Pick<ToggleOptionProps,"label"|"description">'
     | 'Pick<ToggleOptionProps,"label"|"size"|"description">'
@@ -5708,8 +5805,8 @@ export type MetaTypeName =
     | 'Required<CommonProps<"value">>'
     | 'Required<Pick<ButtonProps<As>,"label">>'
     | 'SearchBarProps'
+    | 'SegmentedControlOption'
     | 'SegmentedControlProps'
-    | 'SegmentedToggleOption'
     | 'SkeletonProps'
     | 'SwitchGroupOption'
     | 'SwitchGroupProps'

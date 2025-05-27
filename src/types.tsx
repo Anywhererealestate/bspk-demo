@@ -62,10 +62,7 @@ export type ComponentExampleProps<Props extends Record<string, any> = Record<str
     };
     props?: TypePropertyExample[];
     hideVariants?: string[] | true;
-    presets?: {
-        name: string;
-        state: Record<string, any>;
-    }[];
+    presets?: Preset<Props>[];
     defaults?: Partial<Props>;
     /** The default state for each of the variants. */
     variantDefaults?: {
@@ -73,6 +70,17 @@ export type ComponentExampleProps<Props extends Record<string, any> = Record<str
             [variantValue: string]: Record<string, any>;
         };
     };
+};
+
+export type Preset<TComponentProps> = {
+    /** The name of the preset. This is used to display the preset in the UI. */
+    name: string;
+    /** The state of the component. This is used to set the initial state of the component. */
+    state?: Partial<TComponentProps>;
+    /** The props of the component. This is used to set props of the component. These values can't be changed in the UI. */
+    props?: Partial<TComponentProps>;
+    /** Determines if the preset is the default preset. This is used to set the initial state of the component. */
+    isDefault?: boolean;
 };
 
 export type RouteLink = RouteObject & {

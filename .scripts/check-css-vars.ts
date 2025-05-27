@@ -1,3 +1,3 @@
-import { reportMissingVariables } from '.scripts';
+import { reportMissingVariables } from '.scripts/utils';
 
 reportMissingVariables();

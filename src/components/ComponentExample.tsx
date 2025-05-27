@@ -90,6 +90,10 @@ export function ComponentExample({
 
     const typePropsState = useMemo(() => ({ ...libraryDefaults, ...state }), [libraryDefaults, state]);
 
+    const currentPreset = useMemo(() => {
+        return component.presets?.[Number(state['data-preset-index'] || 0)];
+    }, [state, component.presets]);
+
     return (
         <div data-example-wrapper>
             <ErrorLogContext id={useId()}>
@@ -100,8 +104,16 @@ export function ComponentExample({
                     renderContainer={component?.renderContainer}
                     usage={component?.usage}
                 >
-                    {component?.render?.({ demoProps, state: componentState }) || (
-                        <Component data-example-component {...componentState} {...demoProps} />
+                    {component?.render?.({
+                        demoProps: { ...demoProps, ...currentPreset?.props },
+                        state: componentState,
+                    }) || (
+                        <Component
+                            data-example-component
+                            {...componentState}
+                            {...demoProps}
+                            {...currentPreset?.props}
+                        />
                     )}
                 </CodeExample>
             </ErrorLogContext>

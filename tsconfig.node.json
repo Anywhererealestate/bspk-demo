@@ -43,6 +43,7 @@
         "vite.config.ts",
         "declaration.d.ts",
         "playwright.config.ts",
-        ".scripts/*",
+        ".scripts/**/*.ts",
+        ".scripts/*.ts",
     ],
 }

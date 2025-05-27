@@ -9,7 +9,7 @@ import { TypePropControl } from 'src/components/TypePropControl';
 import { PROPERTY_NAME_CUSTOM_SORT } from 'src/config';
 import { TypePropertyExample, TypePropertyExampleWithControls } from 'src/types';
 
-export function hasPropTypeControl(prop: TypePropertyExample) {
+export function hasPropTypeControl(prop: TypePropertyExample): boolean {
     const type = prop.controlType || prop.type;
 
     return Boolean(
@@ -134,14 +134,20 @@ export function TypeProps({ props, state }: { props: TypePropertyExample[]; stat
                                 {'minimum' in prop && (
                                     <Txt
                                         as="div"
-                                        color="neutral-low-contrast"
+                                        style={{
+                                            fontStyle: 'italic',
+                                            color: 'var(--foreground-neutral-on-surface-variant-02)',
+                                        }}
                                         variant="labels-small"
                                     >{`Minimum: ${prop.minimum}`}</Txt>
                                 )}
                                 {'maximum' in prop && (
                                     <Txt
                                         as="div"
-                                        color="neutral-low-contrast"
+                                        style={{
+                                            fontStyle: 'italic',
+                                            color: 'var(--foreground-neutral-on-surface-variant-02)',
+                                        }}
                                         variant="labels-small"
                                     >{`Maximum: ${prop.maximum}`}</Txt>
                                 )}

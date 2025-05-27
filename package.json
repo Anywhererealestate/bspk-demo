@@ -7,16 +7,15 @@
     "scripts": {
         "build": "npm run meta && vite build && cp dist/index.html dist/404.html",
         "dev:vite": "rm -rf node_modules/.vite && vite --open",
-        "dev": "vite-node ./.scripts/setup-dev.ts && npm run dev:vite | vite-node ./.scripts/watch-dev.ts",
+        "dev": "vite-node ./.scripts/dev.ts",
         "lint": "eslint && tsc --noemit",
         "lint:fix": "eslint --fix",
-        "lint:types": "vite-node .scripts/lint-types.ts",
         "meta": "vite-node ./.scripts/create-meta.ts && vite-node ./.scripts/search-index.ts",
         "prepare": "husky",
         "preview": "npm run build && vite preview --port 8080 --open",
         "test": "TEST_PORT=8675 playwright test",
         "test:preview": "TEST_PORT=8080 playwright test",
-        "tasks": "vite-node ./.scripts/index.ts"
+        "tasks": "vite-node ./.scripts/tasks.ts"
     },
     "peerDependencies": {
         "react": "^18.3.1",
@@ -26,7 +25,7 @@
     "dependencies": {
         "@axe-core/playwright": "^4.10.1",
         "@bspk/icons": "^1.0.3",
-        "@bspk/ui": "^1.1.13",
+        "@bspk/ui": "^1.1.17",
         "axe-core": "^4.10.2",
         "highlight.js": "^11.11.1",
         "markdown-to-jsx": "^7.7.4",

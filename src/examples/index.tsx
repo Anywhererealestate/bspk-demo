@@ -1,6 +1,4 @@
 /* eslint-disable react/no-multi-comp */
-import { SvgCloud } from '@bspk/icons/Cloud';
-import { SvgCloudFill } from '@bspk/icons/CloudFill';
 import { SvgDiamond } from '@bspk/icons/Diamond';
 import { SvgDiamondFill } from '@bspk/icons/DiamondFill';
 import { SvgDoNotDisturbOn } from '@bspk/icons/DoNotDisturbOn';
@@ -37,7 +35,6 @@ import { Skeleton, SkeletonProps } from '@bspk/ui/Skeleton';
 import { Switch, SwitchProps } from '@bspk/ui/Switch';
 import { SwitchGroup, SwitchGroupProps } from '@bspk/ui/SwitchGroup';
 import { SwitchOption, SwitchOptionProps } from '@bspk/ui/SwitchOption';
-import { TabGroup, TabGroupProps } from '@bspk/ui/TabGroup';
 import { Tag, TagProps } from '@bspk/ui/Tag';
 import { TextField, TextFieldProps } from '@bspk/ui/TextField';
 import { TextInput, TextInputProps } from '@bspk/ui/TextInput';
@@ -57,6 +54,7 @@ import { ListItemExample } from 'src/examples/ListItem';
 import { menuExample } from 'src/examples/Menu';
 import { modalExample } from 'src/examples/Modal';
 import { SearchBarExample } from 'src/examples/SearchBar';
+import { tabGroupExample } from 'src/examples/TabGroup';
 import loremIpsum from 'src/examples/loremIpsum';
 import { setPresets, typeProps } from 'src/examples/utils';
 import { MetaComponentName } from 'src/meta';
@@ -187,6 +185,71 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
     NumberField: {
         Component: NumberField,
     },
+    // AvatarGroup: {
+    //     renderContainer: {
+    //         style: { width: '300px' },
+    //     },
+    //     Component: AvatarGroup,
+    //     presets: setPresets<AvatarGroupProps>([
+    //         {
+    //             name: 'Default',
+    //             state: {
+    //                 items: [
+    //                     {
+    //                         name: 'Mario Bros',
+    //                         color: 'blue',
+    //                     },
+    //                     {
+    //                         name: 'Luigi Bros',
+    //                         color: 'green',
+    //                     },
+    //                     {
+    //                         name: 'Princess Peach',
+    //                         color: 'pink',
+    //                     },
+    //                 ],
+    //                 max: 5,
+    //             },
+    //         },
+    //         {
+    //             name: 'With overflowCount',
+    //             state: {
+    //                 items: [
+    //                     { name: 'Andre Giant', color: 'blue' },
+    //                     {
+    //                         name: 'Mario Mario',
+    //                         color: 'blue',
+    //                     },
+    //                     {
+    //                         name: 'Luigi Mario',
+    //                         color: 'green',
+    //                     },
+    //                     {
+    //                         name: 'Princess Peach',
+    //                         color: 'pink',
+    //                     },
+    //                     {
+    //                         name: 'Donkey Kong',
+    //                         color: 'red',
+    //                     },
+    //                     {
+    //                         name: 'Yoshi',
+    //                         color: 'green',
+    //                     },
+    //                     {
+    //                         name: 'Wario',
+    //                         color: 'yellow',
+    //                     },
+    //                     {
+    //                         name: 'Waluigi',
+    //                         color: 'purple',
+    //                     },
+    //                 ],
+    //                 max: 5,
+    //             },
+    //         },
+    //     ]),
+    // },
     Avatar: {
         renderContainer: {
             style: { display: 'grid', width: '100%', columnFill: 'auto', columnCount: 2, justifyContent: 'center' },
@@ -201,8 +264,8 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
         },
         props: typeProps<AvatarProps>([
             {
-                name: 'initials',
-                default: 'BR',
+                name: 'name',
+                default: 'Andre Giant',
             },
             {
                 name: 'icon',
@@ -220,24 +283,19 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
         presets: setPresets<AvatarProps>([
             {
                 name: 'Initials',
-                state: { initials: 'BR', icon: undefined, overflowCount: undefined, image: undefined },
+                state: { initials: 'AG', icon: undefined, image: undefined },
             },
             {
                 name: 'Icon',
-                state: { icon: 'Person', initials: undefined, overflowCount: undefined, image: undefined },
+                state: { icon: 'Person', initials: undefined, image: undefined },
             },
             {
                 name: 'Image',
-                state: { initials: undefined, icon: undefined, overflowCount: undefined, image: '/profile.jpg' },
+                state: { initials: undefined, icon: undefined, image: '/profile.jpg' },
             },
             {
-                name: 'Overflow',
-                state: {
-                    overflowCount: 4,
-                    initials: undefined,
-                    icon: undefined,
-                    image: undefined,
-                },
+                name: 'Name only',
+                state: { initials: undefined, icon: undefined, image: undefined },
             },
         ]),
     },
@@ -333,62 +391,7 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
             );
         },
     },
-    TabGroup: {
-        Component: (state) => {
-            return <TabGroup {...state} />;
-        },
-        props: typeProps<TabGroupProps>([
-            {
-                name: 'onChange',
-                default: (value: string | undefined) => updateComponentState<TabGroupProps>({ value }),
-            },
-            {
-                name: 'value',
-                default: '1',
-            },
-        ]),
-        presets: setPresets<TabGroupProps>([
-            {
-                name: 'Default',
-                state: {
-                    value: '1',
-                    options: [
-                        { value: '1', label: 'Option 1' },
-                        { value: '2', label: 'Option 2' },
-                        { value: '3', label: 'Option 3' },
-                    ],
-                },
-            },
-            {
-                name: 'With icons',
-                state: {
-                    value: '1',
-                    options: [
-                        { value: '1', label: 'Option 1', icon: <SvgDiamond />, iconActive: <SvgDiamondFill /> },
-                        { value: '2', label: 'Disabled 2', disabled: true, icon: <SvgDoNotDisturbOn /> },
-                        { value: '3', label: 'Option 3', icon: <SvgSquare />, iconActive: <SvgSquareFill /> },
-                    ],
-                },
-            },
-            {
-                name: 'With badges',
-                state: {
-                    value: '1',
-                    options: [
-                        {
-                            value: '1',
-                            label: 'Option 1',
-                            icon: <SvgDiamond />,
-                            iconActive: <SvgDiamondFill />,
-                            badge: 1,
-                        },
-                        { value: '2', label: 'Disabled 2', disabled: true, icon: <SvgDoNotDisturbOn />, badge: 2 },
-                        { value: '3', label: 'Option 3', icon: <SvgCloud />, iconActive: <SvgCloudFill /> },
-                    ],
-                },
-            },
-        ]),
-    },
+    TabGroup: tabGroupExample,
     Badge: {
         Component: (state) => {
             return (
@@ -485,6 +488,8 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
                 name: 'Default',
                 state: {
                     value: '1',
+                },
+                props: {
                     options: [
                         { value: '1', label: 'Option 1' },
                         { value: '2', label: 'Option 2' },
@@ -496,6 +501,8 @@ export const componentExamples: Partial<Record<MetaComponentName, ComponentExamp
                 name: 'With icons',
                 state: {
                     value: '1',
+                },
+                props: {
                     options: [
                         { value: '1', label: 'Option 1', icon: <SvgDiamond />, iconActive: <SvgDiamondFill /> },
                         { value: '2', label: 'Disabled 2', disabled: true, icon: <SvgDoNotDisturbOn /> },

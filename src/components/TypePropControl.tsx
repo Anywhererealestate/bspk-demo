@@ -30,7 +30,7 @@ export function TypePropControl({
         onChange,
     };
 
-    if (prop.multiline) return <Textarea id="" {...controlProps} size="small" />;
+    if (prop.multiline) return <Textarea id="" {...controlProps} textSize="small" />;
 
     if (controlType === 'number')
         return (
@@ -50,16 +50,19 @@ export function TypePropControl({
     const controlOptions: string[] =
         controlType === 'icon' ? IconNameOptions : prop.options?.map((o) => o.toString()) || [];
 
+    const options =
+        controlOptions?.map((option) => ({
+            value: option,
+            label: option,
+        })) || [];
+
+    if (!prop.required && !prop.default) options.unshift({ value: undefined as unknown as string, label: 'None' });
+
     if (controlType === 'checkboxes') {
         return (
             <CheckboxGroup
                 data-testid={`${prop.name}-CheckboxGroup`}
-                options={
-                    controlOptions.map((option) => ({
-                        value: option,
-                        label: option,
-                    })) || []
-                }
+                options={options}
                 {...controlProps}
                 values={controlProps.value}
             />
@@ -73,31 +76,14 @@ export function TypePropControl({
                     <Dropdown
                         data-testid={`${prop.name}-Dropdown`}
                         id=""
-                        options={
-                            controlOptions?.map((option) => ({
-                                label: option,
-                                value: option,
-                            })) || []
-                        }
+                        options={options}
                         size="small"
                         {...controlProps}
                     />
                 </>
             );
 
-        return (
-            <RadioGroup
-                data-testid={`${prop.name}-RadioGroup`}
-                options={
-                    controlOptions.map((option) => ({
-                        value: option,
-                        label: option,
-                    })) || []
-                }
-                size="small"
-                {...controlProps}
-            />
-        );
+        return <RadioGroup data-testid={`${prop.name}-RadioGroup`} options={options} size="small" {...controlProps} />;
     }
 
     if (controlType === 'boolean')

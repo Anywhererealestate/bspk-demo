@@ -13,6 +13,10 @@ tanzanite
 voilet
 inversed
 
+# PROPER NAMES
+Yoshi
+Wario
+Waluigi
 
 # BRANDS
 

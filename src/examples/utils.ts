@@ -1,4 +1,4 @@
-import { TypePropertyExample } from 'src/types';
+import { Preset, TypePropertyExample } from 'src/types';
 
 export const typeProps = <P extends Record<string, any> = Record<string, any>, N = keyof P>(
     p: (Omit<TypePropertyExample, 'name'> & {
@@ -10,13 +10,7 @@ export const typeProps = <P extends Record<string, any> = Record<string, any>, N
 
 export const asProps = <P extends Record<string, any>>(p: Partial<P>): Partial<P> => p;
 
-export const setPresets = <P extends Record<string, any>>(
-    p: {
-        name: string;
-        state: Partial<P>;
-        default?: boolean;
-    }[],
-) => p;
+export const setPresets = <P extends Record<string, any>>(p: Preset<P>[]) => p;
 
 export const defaults = <P extends Record<string, any>>(x: Partial<P>) => x;
 

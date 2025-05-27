@@ -205,7 +205,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                     {component.css && (
                         <Syntax
                             code={component.css}
-                            language="css"
+                            language="scss"
                             style={{ maxHeight: '400px', overflowY: 'scroll' }}
                         />
                     )}
