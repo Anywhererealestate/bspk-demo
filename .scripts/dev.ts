@@ -7,8 +7,6 @@ import { execSync, spawn } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
-import { runMetaLocally } from '.scripts/tasks/runMetaLocally';
-
 const uiRootPath = path.resolve(__dirname, '../../bspk-ui');
 const demoRootPath = path.resolve(__dirname, '../');
 
@@ -104,7 +102,7 @@ function watchFiles() {
         {
             watchPath: path.resolve(localUIPath, 'src'),
             callback: () => {
-                runMetaLocally();
+                execSync('npx tsx ./.scripts/tasks/runMetaLocally.ts', { stdio: 'inherit' });
             },
             ignore: (file) => file.endsWith('.scss'),
         },
