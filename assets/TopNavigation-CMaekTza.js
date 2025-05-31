@@ -1,0 +1,1 @@
+import{j as jsxRuntimeExports,s as styleAdd}from"./index-BxIXo2LF.js";styleAdd("[data-bspk=top-navigation]{display:flex}");function TopNavigation({children}){return jsxRuntimeExports.jsx("div",{"data-bspk":"top-navigation",children})}TopNavigation.bspkName="TopNavigation";export{TopNavigation};
