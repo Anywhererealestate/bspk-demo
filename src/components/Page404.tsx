@@ -1,6 +1,6 @@
+import { Page } from 'components/Page';
 import { useLocation } from 'react-router-dom';
 import { COMPONENT_PHASE } from 'src/componentPhases';
-import { Page } from 'src/components/Page';
 import { kebabCase } from 'src/utils/kebabCase';
 
 export function Page404() {

@@ -1,18 +1,22 @@
+import { DemoPreset } from '@bspk/ui/demo/examples';
 import { type AxeResults } from 'axe-core';
 import { createContext, PropsWithChildren, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { MetaComponentName } from 'src/meta';
 import { DemoComponent } from 'src/types';
 import store from 'store';
 
-const componentState = createContext<{
+type ComponentContext<Props = Record<string, any>> = {
     state: Record<string, any>;
-    setState: (state: Record<string, any>) => void;
+    setState: (state: Partial<Props>) => void;
     resetState: () => void;
     changed: boolean;
     axeResults: Record<string, AxeResults>;
     setAxeResults: (axeResult: AxeResults | undefined, html: string) => void;
-    setPreset: (index: number | string) => void;
-}>({
+    setPreset: (index: string) => void;
+    preset?: DemoPreset;
+    component: DemoComponent;
+};
+
+const componentContext = createContext<ComponentContext>({
     state: {},
     setState: () => {},
     resetState: () => {},
@@ -20,6 +24,7 @@ const componentState = createContext<{
     axeResults: {},
     setAxeResults: () => {},
     setPreset: () => {},
+    component: undefined as unknown as DemoComponent,
 });
 
 export type StateUpdate = Record<string, any>;
@@ -32,11 +37,11 @@ function componentStateUpdateEvent(update: StateUpdate | StateUpdateDispatch | n
     return new CustomEvent(COMPONENT_STATE_EVENT, { detail: update });
 }
 
-export function updateComponentState<P extends Record<string, any>>(update: Partial<P> | ((state: P) => P)) {
+export function updateComponentContext<P extends Record<string, any>>(update: Partial<P> | ((state: P) => P)) {
     document.dispatchEvent(componentStateUpdateEvent(update));
 }
 
-export function resetComponentState() {
+export function resetComponentContext() {
     document.dispatchEvent(componentStateUpdateEvent(null));
 }
 
@@ -55,30 +60,15 @@ function deepEqualObjects(obj1: Record<string, any>, obj2: Record<string, any>):
     return keys1.every((key) => keys2.includes(key) && deepEqualObjects(obj1[key], obj2[key]));
 }
 
-export function ComponentStateProvider({
-    children,
-    defaultState: defaultStateProp,
-    component,
-}: PropsWithChildren<{ defaultState: Record<string, any>; component: DemoComponent }>) {
-    const componentName = component.name as MetaComponentName;
+export function ComponentProvider({ children, component }: PropsWithChildren<{ component: DemoComponent }>) {
+    const { name, defaultState, presets } = component;
 
-    const defaultState = useMemo(() => {
-        if (component.presets?.length)
-            return {
-                ...defaultStateProp,
-                ...component.presets[0].state,
-                'data-preset-index': 0,
-                'data-preset-name': component.presets[0].name,
-            };
-        return defaultStateProp;
-    }, [component.presets, defaultStateProp]);
-
-    const storeKey = useMemo(() => `bspk-${componentName}`, [componentName]);
-    const storeKeyAxeResults = useMemo(() => `bspk-${componentName}-axe-results`, [componentName]);
+    const storeKey = useMemo(() => `bspk-${name}`, [name]);
+    const storeKeyAxeResults = useMemo(() => `bspk-${name}-axe-results`, [name]);
 
     const [state, setAllState] = useState<Record<string, any>>(store.get(storeKey) || defaultState);
     const [axeResults, setAllAxeResults] = useState<Record<string, any>>(store.get(storeKeyAxeResults) || {});
-
+    const [presetValue, setPreset] = useState<string | undefined>(() => presets?.[0]?.value);
     const [changed, setChanged] = useState(!deepEqualObjects(state, defaultState));
 
     const resetState = useCallback(() => {
@@ -116,41 +106,37 @@ export function ComponentStateProvider({
     }, [axeResults, storeKeyAxeResults]);
 
     useEffect(() => {
-        const listener = (event: any) => setState(event.detail as StateUpdate | StateUpdateDispatch);
+        const listener = (event: any) => {
+            // console.log('Component state update event received:', event.detail);
+            setState(event.detail as StateUpdate | StateUpdateDispatch);
+        };
         document.addEventListener(COMPONENT_STATE_EVENT, listener);
         return () => document.removeEventListener(COMPONENT_STATE_EVENT, listener);
     }, [setState, state]);
 
     return (
-        <componentState.Provider
+        <componentContext.Provider
             value={{
+                component,
                 state,
                 setState,
                 resetState,
                 changed,
                 axeResults,
                 setAxeResults,
-                setPreset: (index: number | string) => {
-                    const preset = component.presets?.[index as number];
-
-                    if (!preset) return;
-
-                    setAllState({
-                        ...defaultStateProp,
-                        ...preset.state,
-                        'data-preset-index': index,
-                        'data-preset-name': preset.name,
-                    });
+                setPreset: (nextPresetId) => {
+                    if (presets?.some((p) => p.value === nextPresetId)) setPreset(nextPresetId);
                 },
+                preset: presets?.find((p) => p.value === presetValue),
             }}
         >
             {children}
-        </componentState.Provider>
+        </componentContext.Provider>
     );
 }
 
-export function useComponentState() {
-    return useContext(componentState);
+export function useComponentContext() {
+    return useContext(componentContext);
 }
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */

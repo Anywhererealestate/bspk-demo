@@ -4,24 +4,40 @@ import { ListItem } from '@bspk/ui/ListItem';
 import { Skeleton } from '@bspk/ui/Skeleton';
 import { Txt } from '@bspk/ui/Txt';
 import axe from 'axe-core';
-import { useComponentState } from 'components/ComponentStateProvider';
+import { useComponentContext } from 'components/ComponentProvider';
 import { Syntax } from 'components/Syntax';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 export type AccessibilitySectionProps = {
     context: HTMLElement | null;
-    code: string | undefined;
 };
 
-export function AccessibilitySection({ context, code }: AccessibilitySectionProps) {
-    const { axeResults, setAxeResults } = useComponentState();
+export function AccessibilitySection({ context }: AccessibilitySectionProps) {
+    const { axeResults, setAxeResults } = useComponentContext();
 
     const loadingRef = useRef(false);
 
     const runTimeout = useRef<ReturnType<typeof setTimeout>>();
 
+    const [code, setCode] = useState<string>('');
+
     useEffect(() => {
-        if (!context || !code || axeResults[code] || loadingRef.current) return;
+        if (!context) return;
+
+        const observer = new MutationObserver(() => {
+            setCode(context.innerHTML || '');
+        });
+
+        // Start observing the target node for configured mutations
+        observer.observe(context, {
+            attributes: true,
+            childList: true,
+            subtree: true,
+        });
+    }, [context]);
+
+    useEffect(() => {
+        if (!context || axeResults[code] || loadingRef.current) return;
         loadingRef.current = true;
         if (runTimeout.current) clearTimeout(runTimeout.current);
 
@@ -42,7 +58,7 @@ export function AccessibilitySection({ context, code }: AccessibilitySectionProp
                 Violations
             </Txt>
 
-            {!results && <Skeleton lines={3} variant="body-base" />}
+            {!results && <Skeleton textLines={3} textVariant="body-base" />}
 
             {results?.violations.length === 0 ? (
                 <p style={{ color: 'var(--status-success)' }}>No accessibility violations found.</p>
@@ -65,7 +81,7 @@ export function AccessibilitySection({ context, code }: AccessibilitySectionProp
                 Passes
             </Txt>
 
-            {!results && <Skeleton lines={3} variant="body-base" />}
+            {!results && <Skeleton textLines={3} textVariant="body-base" />}
 
             {results?.passes.length === 0 ? (
                 <p>No passes reported.</p>

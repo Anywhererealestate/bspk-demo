@@ -1,8 +1,9 @@
+import { ErrorBoundary } from 'components/ErrorBoundary';
+import { Nav } from 'components/Nav';
 import { Outlet } from 'react-router';
+import { GlobalStateProvider } from 'src/components/GlobalStateProvider';
+
 import 'src/components/root.scss';
-import { ErrorBoundary } from 'src/components/ErrorBoundary';
-import { Nav } from 'src/components/Nav';
-import { GlobalStateProvider } from 'src/utils/globalState';
 
 export function Root() {
     return (

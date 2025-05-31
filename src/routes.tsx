@@ -3,16 +3,16 @@ import { ComponentPage } from 'components/ComponentPage';
 import { Markdown } from 'components/Markdown.tsx';
 import { Page } from 'components/Page';
 import { Page404 } from 'components/Page404.tsx';
-import Changelog from 'docs/CHANGELOG.md?raw';
-import Contributing from 'docs/CONTRIBUTING.md?raw';
-import { Demo } from 'docs/demo';
-import { Hooks } from 'docs/hooks';
-import { Icons } from 'docs/icons';
-import Intro from 'docs/intro.md?raw';
-import { Progress } from 'docs/progress';
-import { Stylesheets } from 'docs/styles';
-import { Typography } from 'docs/typography.tsx';
-import { componentExamples } from 'src/examples';
+import { COMPONENT_PHASE } from 'src/componentPhases';
+import Changelog from 'src/docs/CHANGELOG.md?raw';
+import Contributing from 'src/docs/CONTRIBUTING.md?raw';
+import { Demo } from 'src/docs/demo';
+import { Hooks } from 'src/docs/hooks';
+import { Icons } from 'src/docs/icons';
+import Intro from 'src/docs/intro.md?raw';
+import { Progress } from 'src/docs/progress';
+import { Stylesheets } from 'src/docs/styles';
+import { Typography } from 'src/docs/typography.tsx';
 import { componentsMeta, MetaComponentName } from 'src/meta';
 import { RouteLink } from 'src/types';
 
@@ -60,7 +60,9 @@ export const routes: RouteLink[] = [
     {
         title: 'Components',
         children: componentsMeta.flatMap((component): RouteLink[] => {
-            if (!componentExamples[component.name as MetaComponentName]) return [];
+            const phase = COMPONENT_PHASE[component.name as MetaComponentName];
+
+            if (['Utility', 'Backlog'].includes(phase)) return [];
 
             return [
                 {

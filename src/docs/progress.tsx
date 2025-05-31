@@ -1,8 +1,8 @@
 import { Tag } from '@bspk/ui/Tag';
+import { Page } from 'components/Page';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { COMPONENT_PHASE } from 'src/componentPhases';
-import { Page } from 'src/components/Page';
 import { DEV_PHASES } from 'src/constants';
 import { componentsMeta } from 'src/meta';
 

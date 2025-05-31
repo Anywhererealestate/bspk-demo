@@ -5,9 +5,12 @@ import { Fragment } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { routes } from 'src/routes';
 import { RouteLink } from 'src/types';
+import { useGlobalState } from 'src/utils/globalState';
 
-export const NavSide = ({ resetGlobalState }: { resetGlobalState: () => void }) => {
+export const NavSide = () => {
     const location = useLocation();
+    const { resetGlobalState } = useGlobalState();
+
     return (
         <nav data-navigation>
             <div role="menu">

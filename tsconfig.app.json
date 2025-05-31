@@ -35,9 +35,6 @@
             "utils/*": [
                 "./src/utils/*"
             ],
-            "docs/*": [
-                "./src/docs/*"
-            ],
             "tests/*": [
                 "./tests/*"
             ],
@@ -45,6 +42,6 @@
     },
     "include": [
         "src",
-        "declaration.d.ts"
+        "declaration.d.ts",
     ],
 }

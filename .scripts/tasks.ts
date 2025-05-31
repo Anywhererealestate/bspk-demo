@@ -25,7 +25,7 @@ export const TASKS: Task[] = [
         item: 3,
         description: 'Ensure latest version of @bspk/ui is installed',
         name: 'ensureLatestUIVersion',
-        exec: 'npx tsx ./.scripts/tasks/ensureLatestUIVersion.ts',
+        exec: 'npx tsx ./.scripts/tasks/ensureLatestUIVersion.ts run',
     },
     {
         item: 4,
@@ -37,12 +37,6 @@ export const TASKS: Task[] = [
         description: 'Update the @bspk/ui package to the latest version / run css vars checker',
         name: 'updateUI',
         exec: 'npm unlink @bspk/ui && npm un @bspk/ui && npm i @bspk/ui && npx tsx ./.scripts/tasks/reportMissingVariables.ts',
-    },
-    {
-        item: 6,
-        description: 'Lint types',
-        name: 'lintTypes',
-        exec: 'npx tsx ./.scripts/tasks/lintTypes.ts',
     },
 ] as const;
 
