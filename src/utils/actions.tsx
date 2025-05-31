@@ -30,7 +30,8 @@ export function useActionLog() {
         const demoActionListener = (e: any) => {
             const message = e.detail;
 
-            const key = kebabCase(`${document.location.hash} // ${message}${Date.now()}`);
+            const key = kebabCase(`${document.location.hash} // ${message} ${Date.now()}`);
+
             setActions([{ location: document.location.hash, message, key }, ...actions]);
 
             // start fade out

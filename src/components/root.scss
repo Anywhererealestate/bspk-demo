@@ -107,7 +107,7 @@ body[data-screen-size='large'] {
 
 [data-show-touch-targets] {
     [data-touch-target] {
-        border: 1px dashed #ff4f8d;
+        border: 3px dashed #ff4f8d;
         display: block;
         opacity: 1 !important;
         z-index: 2 !important;
@@ -185,12 +185,9 @@ body[data-screen-size='large'] {
     border-radius: var(--radius-medium);
     position: relative;
 
-    &:has([data-actions-errors]) {
-        padding-bottom: var(--spacing-sizing-04);
-    }
-
     [data-example-render] {
-        width: 100%;
+        width: 300px;
+        margin: 0 auto;
         min-width: 280px;
         display: flex;
         flex-direction: column;
@@ -251,12 +248,14 @@ body[data-screen-size='large'] {
     }
 
     [data-actions-errors] {
+        pointer-events: none;
         position: absolute;
         left: 0;
         bottom: 0;
         max-height: 100%;
+        width: 100%;
         overflow: hidden;
-        z-index: 1;
+        z-index: 100;
         padding: var(--spacing-sizing-02);
         display: flex;
         flex-direction: column-reverse;
@@ -271,29 +270,50 @@ body[data-screen-size='large'] {
         [data-informational] {
             display: flex;
             flex-direction: column-reverse;
-            gap: var(--spacing-sizing-01);
 
             [data-variant='informational'] {
                 width: fit-content;
                 justify-content: unset;
                 position: relative;
-                left: 100%;
                 opacity: 0.25;
-                animation: slide-in 0.5s ease-in-out forwards;
-
-                @keyframes slide-in {
-                    0% {
-                        left: 100%;
-                    }
-                    100% {
-                        left: 0;
-                    }
-                }
+                padding: var(--spacing-sizing-02) var(--spacing-sizing-04);
             }
 
             // actually last shown - column-reverse
             [data-variant='informational']:first-child {
-                opacity: 1;
+                position: relative;
+                animation: slide-in 0.5s ease-in-out forwards;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: var(--background-base);
+                    opacity: 0.85;
+                    z-index: 1;
+                }
+
+                & > * {
+                    position: relative;
+                    z-index: 2;
+                }
+
+                @keyframes slide-in {
+                    0% {
+                        opacity: 0;
+                        right: 50%;
+                    }
+                    70% {
+                        opacity: 0.15;
+                    }
+                    100% {
+                        right: 0;
+                        opacity: 1;
+                    }
+                }
             }
         }
     }
@@ -628,7 +648,7 @@ code {
         display: flex;
         flex-direction: column;
 
-        [data-list-item] {
+        [data-bspk='list-item'] {
             border-left: 3px solid transparent;
 
             &[data-selected] {

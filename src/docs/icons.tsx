@@ -4,8 +4,8 @@ import { CheckboxOption } from '@bspk/ui/CheckboxOption';
 import { Layout } from '@bspk/ui/Layout';
 import { TextInput as TextInput } from '@bspk/ui/TextInput';
 import { Tooltip } from '@bspk/ui/Tooltip';
+import { Page } from 'components/Page';
 import { Fragment, useMemo, useState, useRef, useEffect } from 'react';
-import { Page } from 'src/components/Page';
 
 const titleCase = (word: string) => word[0].toUpperCase() + word.slice(1);
 

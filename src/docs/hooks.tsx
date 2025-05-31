@@ -1,7 +1,6 @@
-
-import { Markup } from 'src/components/Markup';
-import { Page } from 'src/components/Page';
-import { Syntax } from 'src/components/Syntax';
+import { Markup } from 'components/Markup';
+import { Page } from 'components/Page';
+import { Syntax } from 'components/Syntax';
 import { utilitiesMeta } from 'src/meta';
 import { kebabCase } from 'utils/kebabCase';
 

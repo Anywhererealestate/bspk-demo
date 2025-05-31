@@ -6,7 +6,7 @@ import { RadioGroup } from '@bspk/ui/RadioGroup';
 import { Switch } from '@bspk/ui/Switch';
 import { TextInput } from '@bspk/ui/TextInput';
 import { Textarea } from '@bspk/ui/Textarea';
-import { TypePropertyExampleWithControls } from 'src/types';
+import { TypePropertyDemoWithControls } from '@bspk/ui/demo/utils';
 
 const IconNameOptions = Object.keys(iconMeta) as IconName[];
 
@@ -17,11 +17,11 @@ export function TypePropControl({
 }: {
     value: any;
     onChange: (nextValue: any) => void;
-    prop: TypePropertyExampleWithControls;
+    prop: TypePropertyDemoWithControls;
 }) {
     if (!prop) return null;
 
-    const controlType = prop.controlType || prop.type;
+    const type = prop.type;
 
     const controlProps = {
         'aria-label': prop.name,
@@ -32,7 +32,7 @@ export function TypePropControl({
 
     if (prop.multiline) return <Textarea id="" {...controlProps} textSize="small" />;
 
-    if (controlType === 'number')
+    if (type === 'number')
         return (
             <NumberInput
                 data-testid={`${prop.name}-Input`}
@@ -44,11 +44,11 @@ export function TypePropControl({
             />
         );
 
-    if (controlType === 'string')
+    if (type === 'string')
         return <TextInput data-testid={`${prop.name}-Input`} id="" size="small" type="text" {...controlProps} />;
 
     const controlOptions: string[] =
-        controlType === 'icon' ? IconNameOptions : prop.options?.map((o) => o.toString()) || [];
+        type === 'BspkIcon' ? IconNameOptions : prop.options?.map((o) => o.toString()) || [];
 
     const options =
         controlOptions?.map((option) => ({
@@ -58,7 +58,7 @@ export function TypePropControl({
 
     if (!prop.required && !prop.default) options.unshift({ value: undefined as unknown as string, label: 'None' });
 
-    if (controlType === 'checkboxes') {
+    if (type === 'checkboxes') {
         return (
             <CheckboxGroup
                 data-testid={`${prop.name}-CheckboxGroup`}
@@ -70,7 +70,7 @@ export function TypePropControl({
     }
 
     if (controlOptions.length > 0) {
-        if (controlOptions.length > 5 || controlType === 'select')
+        if (controlOptions.length > 5 || type === 'select')
             return (
                 <>
                     <Dropdown
@@ -79,6 +79,8 @@ export function TypePropControl({
                         options={options}
                         size="small"
                         {...controlProps}
+                        onChange={(next) => onChange(next[0])}
+                        value={[controlProps.value].filter((v) => v !== undefined)}
                     />
                 </>
             );
@@ -86,7 +88,7 @@ export function TypePropControl({
         return <RadioGroup data-testid={`${prop.name}-RadioGroup`} options={options} size="small" {...controlProps} />;
     }
 
-    if (controlType === 'boolean')
+    if (type === 'boolean')
         return (
             <label data-testid={`${prop.name}-Switch`}>
                 <Switch checked={!!controlProps.value} {...controlProps} />

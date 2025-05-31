@@ -7,12 +7,12 @@ import { Dialog } from '@bspk/ui/Dialog';
 import { Dropdown } from '@bspk/ui/Dropdown';
 import { MenuButton } from '@bspk/ui/MenuButton';
 import { useModalState } from '@bspk/ui/hooks/useModalState';
+import { NavSide } from 'components/NavSide';
+import { SearchModal } from 'components/SearchModal';
 import { useEffect, useId, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { NavSide } from 'src/components/NavSide';
-import { SearchModal } from 'src/components/SearchModal';
 import { VERSION } from 'src/search-index';
-import { useGlobalState, useGlobalSetter } from 'src/utils/globalState';
+import { useGlobalState } from 'src/utils/globalState';
 import useHotkeys from 'src/utils/useHotkeys';
 
 function useScreenSize<T extends { size: string; minWidth: number }[]>(
@@ -42,8 +42,7 @@ function useScreenSize<T extends { size: string; minWidth: number }[]>(
 export function Nav() {
     const { onOpen, ...searchModalProps } = useModalState();
     const navModalState = useModalState();
-    const { brand, theme } = useGlobalState();
-    const { setBrand, resetGlobalState, setTheme } = useGlobalSetter();
+    const { brand, theme, setBrand, setTheme } = useGlobalState();
 
     const screenSize = useScreenSize([
         {
@@ -131,10 +130,10 @@ export function Nav() {
             </div>
             {screenSize === 'small' ? (
                 <Dialog aria-label="Navigation" {...navModalState} placement="left">
-                    <NavSide resetGlobalState={resetGlobalState} />
+                    <NavSide />
                 </Dialog>
             ) : (
-                <NavSide resetGlobalState={resetGlobalState} />
+                <NavSide />
             )}
         </>
     );

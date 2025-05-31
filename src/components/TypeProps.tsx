@@ -1,38 +1,36 @@
 import { Table, TableColumn } from '@bspk/ui/Table';
 import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
+import { TypePropertyDemo, TypePropertyDemoWithControls } from '@bspk/ui/demo/utils';
+import { updateComponentContext } from 'components/ComponentProvider';
+import { LinkUp } from 'components/LinkUp';
+import { Markup } from 'components/Markup';
+import { TypePropControl } from 'components/TypePropControl';
 import { Fragment, useCallback, useMemo } from 'react';
-import { updateComponentState } from 'src/components/ComponentStateProvider';
-import { LinkUp } from 'src/components/LinkUp';
-import { Markup } from 'src/components/Markup';
-import { TypePropControl } from 'src/components/TypePropControl';
 import { PROPERTY_NAME_CUSTOM_SORT } from 'src/config';
-import { TypePropertyExample, TypePropertyExampleWithControls } from 'src/types';
 
-export function hasPropTypeControl(prop: TypePropertyExample): boolean {
-    const type = prop.controlType || prop.type;
-
-    return Boolean(
+const hasPropTypeControl = (prop: TypePropertyDemo) =>
+    Boolean(
         prop.properties ||
-            type === 'icon' ||
-            type === 'multiline' ||
-            type === 'string' ||
-            type === 'number' ||
-            type === 'boolean' ||
+            prop.type === 'icon' ||
+            prop.type === 'multiline' ||
+            prop.type === 'string' ||
+            prop.type === 'number' ||
+            prop.type === 'boolean' ||
             prop.options,
     );
-}
 
-export function TypeProps({ props, state }: { props: TypePropertyExample[]; state?: Record<string, any> }) {
+export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?: Record<string, any> }) {
     const showControls = !!state;
 
-    const propsWithControls = useCallback((prop: TypePropertyExample) => {
-        const nextProp: TypePropertyExampleWithControls = {
+    const propsWithControls = useCallback((prop: TypePropertyDemo) => {
+        const nextProp: TypePropertyDemoWithControls = {
             ...prop,
             typeOptions: [],
             haveControl: hasPropTypeControl(prop),
             multiline: prop.type === 'multiline',
             properties: prop.properties?.map(propsWithControls),
+            libraryDefault: prop.default,
         };
         if (nextProp.type === 'multiline') nextProp.type = 'string';
 
@@ -73,7 +71,7 @@ export function TypeProps({ props, state }: { props: TypePropertyExample[]; stat
             },
             {
                 key: 'description-type',
-                label: 'Type / Description',
+                label: 'Description / Type',
                 width: '1fr',
             },
             {
@@ -169,14 +167,14 @@ export function TypeProps({ props, state }: { props: TypePropertyExample[]; stat
                         controls: showControls && (
                             <>
                                 {prop.properties ? (
-                                    (prop.properties as TypePropertyExampleWithControls[]).map(
+                                    (prop.properties as TypePropertyDemoWithControls[]).map(
                                         (childProp) =>
                                             childProp?.haveControl && (
                                                 <Fragment key={childProp.name}>
                                                     {/* {!childProp.type?.endsWith('Field') && <Txt variant="labels-small">{childProp.name}</Txt>} */}
                                                     <TypePropControl
                                                         onChange={(nextValue) =>
-                                                            updateComponentState({
+                                                            updateComponentContext({
                                                                 ...state,
                                                                 [prop.name]: {
                                                                     ...state[prop.name],
@@ -192,7 +190,7 @@ export function TypeProps({ props, state }: { props: TypePropertyExample[]; stat
                                     )
                                 ) : (
                                     <TypePropControl
-                                        onChange={(nextValue) => updateComponentState({ [prop.name]: nextValue })}
+                                        onChange={(nextValue) => updateComponentContext({ [prop.name]: nextValue })}
                                         prop={prop}
                                         value={state[prop.name]}
                                     />

@@ -4,7 +4,7 @@
  * Components should be imported directly like "import { Txt } from @bspk/ui/Txt".
  */
 
-import { ChangeEvent, MouseEvent as ReactMouseEvent, ComponentProps, JSXElementConstructor, ReactNode } from 'react';
+import { ChangeEvent, ComponentProps, JSXElementConstructor, ReactNode } from 'react';
 
 export type AlertVariant = 'error' | 'informational' | 'success' | 'warning';
 
@@ -131,7 +131,7 @@ export type CommonPropsLibrary<T extends HTMLElement = HTMLElement> = {
      * @param event - The mouse event.
      * @returns Void
      */
-    onClick?: (event: ReactMouseEvent<T, MouseEvent>) => void;
+    onClick?: (event: React.MouseEvent<T, MouseEvent>) => void;
 };
 
 export type Brand =

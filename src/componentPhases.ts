@@ -1,10 +1,10 @@
+import { DevPhase } from '@bspk/ui/demo/examples';
 import { MetaComponentName } from 'src/meta';
-import { DevPhase } from 'src/types';
 
 export const COMPONENT_PHASE: Record<MetaComponentName | string, DevPhase> = {
     Accordion: 'Backlog',
     Avatar: 'DesignReview',
-    AvatarGroup: 'DesignReview',
+    AvatarGroup: 'Backlog',
     Badge: 'DesignReview',
     BannerAlert: 'DesignReview',
     BottomNavigation: 'Backlog',
@@ -49,13 +49,13 @@ export const COMPONENT_PHASE: Record<MetaComponentName | string, DevPhase> = {
     Portal: 'Utility',
     ProgressBar: 'DesignReview',
     ProgressCircle: 'AccessibilityReview',
-    ProgressionStepper: 'DesignReview',
+    ProgressionStepper: 'Backlog',
     ProgressionStepperBar: 'DesignReview',
     Radio: 'DesignReview',
     RadioGroup: 'DesignReview',
     RadioOption: 'DesignReview',
     Rating: 'Backlog',
-    SearchBar: 'DesignReview',
+    SearchBar: 'Backlog',
     SegmentedControl: 'DesignReview',
     Skeleton: 'DesignReview',
     SliderInput: 'Backlog',

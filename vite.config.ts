@@ -29,7 +29,6 @@ export default defineConfig({
             src: '/src',
             components: '/src/components',
             utils: '/src/utils',
-            docs: '/src/docs',
             tests: '/tests',
         },
     },

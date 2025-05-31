@@ -1,5 +1,5 @@
-import { CodeExample } from 'src/components/CodeExample';
-import { Page } from 'src/components/Page';
+import { CodeExample } from 'components/CodeExample';
+import { Page } from 'components/Page';
 
 export function Typography() {
     const sections: { title: string; content: string }[] = [
@@ -192,7 +192,7 @@ H<sub>2</sub>O
                 <section key={index} style={{ margin: '2rem 0' }}>
                     <h3>{section.title}</h3>
 
-                    <CodeExample code={section.content} language="html">
+                    <CodeExample>
                         <div dangerouslySetInnerHTML={{ __html: section.content }} />
                     </CodeExample>
                 </section>

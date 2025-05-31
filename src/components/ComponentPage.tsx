@@ -1,44 +1,25 @@
 import { Button } from '@bspk/ui/Button';
 import { Tag } from '@bspk/ui/Tag';
+import { ComponentPageExample } from 'components/ComponentPageExample';
+import { ComponentProvider, resetComponentContext } from 'components/ComponentProvider';
+import { ComponentVariants } from 'components/ComponentVariants';
+import { ErrorBoundary } from 'components/ErrorBoundary';
+import { Markup } from 'components/Markup';
+import { NavContents } from 'components/NavContents';
+import { Syntax } from 'components/Syntax';
+import { TypeProps } from 'components/TypeProps';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { COMPONENT_PHASE } from 'src/componentPhases';
-import { ComponentExample } from 'src/components/ComponentExample';
-import { ComponentStateProvider, resetComponentState } from 'src/components/ComponentStateProvider';
-import { ComponentVariants } from 'src/components/ComponentVariants';
-import { ErrorBoundary } from 'src/components/ErrorBoundary';
-import { Markup } from 'src/components/Markup';
-import { NavContents } from 'src/components/NavContents';
-import { Syntax } from 'src/components/Syntax';
-import { TypeProps } from 'src/components/TypeProps';
 import { DEV_PHASES } from 'src/constants';
-import { componentExamples } from 'src/examples';
-import { componentsMeta, MetaComponentName } from 'src/meta';
-import { DemoComponent, DevPhase } from 'src/types';
+import { MetaComponentName } from 'src/meta';
 import { kebabCase } from 'src/utils/kebabCase';
-import { useMountMemo } from 'src/utils/useMountMemo';
-import { useProps } from 'src/utils/useProps';
+import { useComponentDemo } from 'src/utils/useComponentDemo';
 
 function ComponentPage({ componentName }: { componentName: MetaComponentName }) {
-    const component: DemoComponent = useMountMemo(() => {
-        const componentMeta = componentsMeta.find((c) => c.name === componentName)!;
-        return {
-            ...componentMeta,
-            ...componentExamples[componentName]!,
-            name: componentName,
-            props: componentExamples[componentName]?.props,
-            dependencies: componentMeta.dependencies.map((d) => componentsMeta.find((c) => c.name === d)!),
-            dependents: componentsMeta.flatMap((c) => (c.dependencies.includes(componentName) ? c : [])),
-        };
-    });
+    const component = useComponentDemo(componentName);
 
-    const { defaultState, props, libraryDefaults, references, handleProps } = useProps(component);
-
-    if (!component || !component.Component) return <h1>Component not available.</h1>;
-
-    const componentPhaseId: DevPhase = COMPONENT_PHASE[component.name as keyof typeof COMPONENT_PHASE] || 'Backlog';
-
-    const phase = DEV_PHASES[componentPhaseId];
+    if (!component) return <h1>Component not available.</h1>;
 
     return (
         <>
@@ -47,9 +28,9 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                     <h1 data-nav-target data-nav-target-label="Introduction" id="introduction">
                         {component.name}
                     </h1>
-                    {phase && (
-                        <Tag as="div" color={phase.color}>
-                            {phase.title}
+                    {component.phase && (
+                        <Tag as="div" color={component.phase.color}>
+                            {component.phase.title}
                         </Tag>
                     )}
                 </header>
@@ -73,26 +54,21 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                 <p>Failed to render component.</p>
                                 <Button
                                     label="Reset"
-                                    onClick={() => resetComponentState()}
+                                    onClick={() => resetComponentContext()}
                                     size="small"
                                     variant="secondary"
                                 />
                             </>
                         }
                     >
-                        <ComponentStateProvider component={component} defaultState={defaultState}>
-                            <ComponentExample
-                                component={component}
-                                handleProps={handleProps}
-                                libraryDefaults={libraryDefaults}
-                                props={props}
-                            />
-                            {!!references?.length && (
+                        <ComponentProvider component={component}>
+                            <ComponentPageExample />
+                            {!!component.references?.length && (
                                 <>
                                     <h3 data-nav-target id="references">
                                         References
                                     </h3>
-                                    {references.map((ref) => (
+                                    {component.references.map((ref) => (
                                         <Fragment key={ref.id}>
                                             <h4 data-nav-target="false" id={kebabCase(ref.name)}>
                                                 {ref.name}
@@ -104,9 +80,9 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                 </>
                             )}
                             {(!component.hideVariants || Array.isArray(component.hideVariants)) && (
-                                <ComponentVariants component={component} handleProps={handleProps} props={props} />
+                                <ComponentVariants />
                             )}
-                        </ComponentStateProvider>
+                        </ComponentProvider>
                     </ErrorBoundary>
 
                     {!!component.dependencies.length && (
