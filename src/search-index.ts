@@ -3,7 +3,7 @@
  * package.
  */
 
-export const VERSION = '1.1.20' as const;
+export const VERSION = '1.1.21' as const;
 
 export const searchIndex = [
     {
