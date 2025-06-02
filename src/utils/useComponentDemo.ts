@@ -140,7 +140,7 @@ export function useComponentDemo(componentName: MetaComponentName) {
         const componentPhaseId: DevPhase = COMPONENT_PHASE[componentName] || 'Backlog';
 
         const presets = componentExample?.presets?.map((p, index) => ({ ...p, value: `preset-${index}` }));
-        if (presets && presets.length > 0) presets.unshift({ label: 'Default', value: 'default' });
+        if (presets && presets.length > 0) presets.unshift({ label: 'Custom', value: 'custom' });
 
         const nextComponent: DemoComponent = {
             ...componentMeta,
