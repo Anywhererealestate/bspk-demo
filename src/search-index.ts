@@ -3,7 +3,7 @@
  * package.
  */
 
-export const VERSION = '1.1.19' as const;
+export const VERSION = '1.1.20' as const;
 
 export const searchIndex = [
     {
@@ -261,7 +261,7 @@ export const searchIndex = [
     {
         title: 'SearchBar',
         content:
-            'Component description coming soon. itemCount The number of items to display in the menu 5 noResultsMessage Message to display when no results are found undefined name The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control. undefined id The id of the element. If not provided one will be generated. undefined size The size of the element. medium aria-label The aria-label for the element. undefined placeholder The placeholder of the field. undefined inputRef The ref of the input. undefined value The current value of the search bar. undefined onChange Handler for state updates. undefined onSelect undefined undefined items Content to display in the menu. undefined noResultsMessage Message to display when no results are found undefined disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false label The content to display in the menu item. undefined value The value of the menu item. undefined id The unique id of the menu item. undefined',
+            'Component description coming soon. itemCount The number of items to display in the menu 5 noResultsMessage Message to display when no results are found undefined name The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control. undefined id The id of the element. If not provided one will be generated. undefined size The size of the element. medium aria-label The aria-label for the element. undefined placeholder The placeholder of the field. undefined inputRef The ref of the input. undefined value The current value of the search bar. Search onChange Handler for state updates. undefined onSelect undefined undefined items Content to display in the menu. undefined noResultsMessage Message to display when no results are found undefined showMenu Whether to show or hide menu. true disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false label The content to display in the menu item. undefined value The value of the menu item. undefined id The unique id of the menu item. undefined',
         url: '/search-bar',
         kind: 'Component',
     },
