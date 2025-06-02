@@ -1,0 +1,1 @@
+import{j as jsxRuntimeExports,h as ToggleOption,R as Radio}from"./index--7PZ0EUh.js";function RadioOption({label,description,...checkboxProps}){return jsxRuntimeExports.jsx(ToggleOption,{"data-bspk":"radio-option",description,label,children:jsxRuntimeExports.jsx(Radio,{...checkboxProps,"aria-label":label})})}RadioOption.bspkName="RadioOption";export{RadioOption};
