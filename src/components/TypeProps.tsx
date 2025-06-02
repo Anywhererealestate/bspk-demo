@@ -1,12 +1,12 @@
 import { Table, TableColumn } from '@bspk/ui/Table';
 import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
-import { TypePropertyDemo, TypePropertyDemoWithControls } from '@bspk/ui/demo/utils';
+import { TypePropertyDemo, TypePropertyDemoWithControls } from '@bspk/ui/demo/examples';
 import { updateComponentContext } from 'components/ComponentProvider';
 import { LinkUp } from 'components/LinkUp';
 import { Markup } from 'components/Markup';
 import { TypePropControl } from 'components/TypePropControl';
-import { Fragment, useCallback, useMemo } from 'react';
+import { Fragment, useMemo } from 'react';
 import { PROPERTY_NAME_CUSTOM_SORT } from 'src/config';
 
 const hasPropTypeControl = (prop: TypePropertyDemo) =>
@@ -15,31 +15,34 @@ const hasPropTypeControl = (prop: TypePropertyDemo) =>
             prop.type === 'icon' ||
             prop.type === 'multiline' ||
             prop.type === 'string' ||
+            prop.type === 'string,boolean' ||
             prop.type === 'number' ||
             prop.type === 'boolean' ||
+            (Array.isArray(prop.type) && prop.type.join() === 'string,boolean') ||
             prop.options,
     );
+
+const propsWithControls = (prop: TypePropertyDemo) => {
+    const nextProp: TypePropertyDemoWithControls = {
+        ...prop,
+        typeOptions: [],
+        haveControl: hasPropTypeControl(prop),
+        multiline: prop.type === 'multiline',
+        properties: prop.properties?.map(propsWithControls),
+        libraryDefault: prop.default,
+    };
+    if (nextProp.type === 'multiline') nextProp.type = 'string';
+    if (nextProp.type === 'string,boolean') nextProp.type = ['string', 'boolean'];
+
+    nextProp.typeOptions = nextProp.type ? [nextProp.type].flat() : nextProp.options;
+
+    return nextProp;
+};
 
 export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?: Record<string, any> }) {
     const showControls = !!state;
 
-    const propsWithControls = useCallback((prop: TypePropertyDemo) => {
-        const nextProp: TypePropertyDemoWithControls = {
-            ...prop,
-            typeOptions: [],
-            haveControl: hasPropTypeControl(prop),
-            multiline: prop.type === 'multiline',
-            properties: prop.properties?.map(propsWithControls),
-            libraryDefault: prop.default,
-        };
-        if (nextProp.type === 'multiline') nextProp.type = 'string';
-
-        nextProp.typeOptions = nextProp.type ? [nextProp.type].flat() : nextProp.options;
-
-        return nextProp;
-    }, []);
-
-    const propsWithControl = useMemo(() => props.map(propsWithControls), [props, propsWithControls]);
+    const propsWithControl = useMemo(() => props.map(propsWithControls), [props]);
 
     // Sort props by
     // 1. whether they are editable (have a control)

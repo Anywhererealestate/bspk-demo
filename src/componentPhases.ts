@@ -55,7 +55,7 @@ export const COMPONENT_PHASE: Record<MetaComponentName | string, DevPhase> = {
     RadioGroup: 'DesignReview',
     RadioOption: 'DesignReview',
     Rating: 'Backlog',
-    SearchBar: 'Backlog',
+    SearchBar: 'DesignReview',
     SegmentedControl: 'DesignReview',
     Skeleton: 'DesignReview',
     SliderInput: 'Backlog',

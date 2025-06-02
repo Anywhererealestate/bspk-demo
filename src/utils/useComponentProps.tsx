@@ -24,8 +24,6 @@ export function useComponentProps(
 
     const renderedProps: Record<string, any> = propRenderOverrides?.(combinedState, { ...context, preset }) || {};
 
-    // console.log({ combinedState, propsFromState, functionProps, renderedProps });
-
     return { ...combinedState, ...propsFromState, ...functionProps, ...renderedProps };
 }
 

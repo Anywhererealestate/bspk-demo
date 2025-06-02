@@ -6,7 +6,7 @@ import { RadioGroup } from '@bspk/ui/RadioGroup';
 import { Switch } from '@bspk/ui/Switch';
 import { TextInput } from '@bspk/ui/TextInput';
 import { Textarea } from '@bspk/ui/Textarea';
-import { TypePropertyDemoWithControls } from '@bspk/ui/demo/utils';
+import { TypePropertyDemoWithControls } from '@bspk/ui/demo/examples';
 
 const IconNameOptions = Object.keys(iconMeta) as IconName[];
 
@@ -44,7 +44,7 @@ export function TypePropControl({
             />
         );
 
-    if (type === 'string')
+    if (type === 'string' || (Array.isArray(type) && type.join() === 'string,boolean'))
         return <TextInput data-testid={`${prop.name}-Input`} id="" size="small" type="text" {...controlProps} />;
 
     const controlOptions: string[] =
