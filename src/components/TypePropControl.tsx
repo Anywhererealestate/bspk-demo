@@ -85,7 +85,15 @@ export function TypePropControl({
                 </>
             );
 
-        return <RadioGroup data-testid={`${prop.name}-RadioGroup`} options={options} size="small" {...controlProps} />;
+        return (
+            <RadioGroup
+                data-testid={`${prop.name}-RadioGroup`}
+                label={prop.name}
+                options={options}
+                showLabel={false}
+                {...controlProps}
+            />
+        );
     }
 
     if (type === 'boolean')

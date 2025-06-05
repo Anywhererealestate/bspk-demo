@@ -57,12 +57,17 @@ export type UtilityMeta = BaseMeta & {
 export const componentsMeta: ComponentMeta[] = [
     {
         description:
-            'An avatar is a visual representation of a user or entity. It can be used to display an initials, icon, image.\n\nThe image if provided is displayed first, followed by the icon if provided, and finally the initials.\n\nIf no initials are provided, the first two letters of the name will be used as initials.',
+            'An avatar is a visual representation of a user or entity. It can be used to display an initials, icon, image.',
         file: '/Avatar.tsx',
         name: 'Avatar',
         slug: 'avatar',
         dependencies: ['Tooltip'],
-        modified: '2025-06-02T20:49:15.474Z',
+        modified: '2025-06-05T15:01:35.192Z',
+        usage: {
+            code: 'import { Avatar } from \'@bspk/ui/Avatar\';\nimport { SvgPerson } from \'@bspk/icons/Person\';\n\nfunction Example() {\nreturn (\n<Avatar\nname="Jane Doe"\ninitials="JD"\ncolor="blue"\nsize="large"\nicon={<SvgPerson />}\nimage="/profile.jpg"\nshowTooltip={true}\n/>\n);\n}',
+            description:
+                'The image if provided is displayed first, followed by the icon if provided, and finally the initials. If no initials are provided, the first two letters of the name will be used as initials.',
+        },
         css: "[data-bspk='avatar'] {\n    --height: var(--spacing-sizing-10);\n    --font: var(--labels-base);\n    --svg-size: var(--spacing-sizing-10);\n\n    &:not([data-color]) {\n        --foreground: var(--foreground-neutral-on-surface);\n        --background: var(--surface-neutral-t3-low);\n    }\n\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    padding: 0;\n    height: var(--height);\n    width: var(--height);\n    aspect-ratio: 1 / 1;\n    border-radius: 999px;\n    background-color: var(--background);\n    color: var(--foreground);\n    font: var(--font);\n\n    &:has(img) {\n        overflow: hidden;\n    }\n\n    img {\n        max-width: 100%;\n    }\n\n    svg {\n        width: var(--svg-size);\n        height: var(--svg-size);\n    }\n\n    [data-icon] {\n        display: flex;\n        align-items: center;\n        justify-content: center;\n    }\n\n    &[data-size='x-small'] {\n        --height: var(--spacing-sizing-06);\n        --font: var(--labels-x-small);\n        --svg-size: var(--spacing-sizing-04);\n    }\n\n    &[data-size='small'] {\n        --height: var(--spacing-sizing-08);\n        --font: var(--labels-small);\n        --svg-size: var(--spacing-sizing-05);\n    }\n\n    &[data-size='medium'] {\n        --height: var(--spacing-sizing-10);\n        --font: var(--labels-base);\n        --svg-size: var(--spacing-sizing-05);\n    }\n\n    &[data-size='large'] {\n        --height: var(--spacing-sizing-12);\n        --font: var(--labels-large);\n        --svg-size: var(--spacing-sizing-06);\n    }\n\n    &[data-size='x-large'] {\n        --height: var(--spacing-sizing-14);\n        --font: var(--subheader-x-large);\n        --svg-size: var(--spacing-sizing-08);\n    }\n\n    &[data-size='xx-large'] {\n        --height: var(--spacing-sizing-17);\n        --font: var(--subheader-xx-large);\n        --svg-size: var(--spacing-sizing-09);\n    }\n\n    &[data-size='xxx-large'] {\n        --height: var(--spacing-sizing-19);\n        --font: var(--display-regular-small);\n        --svg-size: var(--spacing-sizing-12);\n    }\n\n    &[data-size='xxxx-large'] {\n        --height: var(--spacing-sizing-21);\n        --font: var(--display-regular-medium);\n        --svg-size: var(--spacing-sizing-15);\n    }\n\n    &[data-size='xxxxx-large'] {\n        --height: var(--spacing-sizing-23);\n        --font: var(--display-regular-large);\n        --svg-size: var(--spacing-sizing-17);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -72,7 +77,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'AvatarGroup',
         slug: 'avatar-group',
         dependencies: ['Avatar'],
-        modified: '2025-06-02T20:49:15.474Z',
+        modified: '2025-06-05T15:01:35.192Z',
+        usage: {
+            code: "import { AvatarGroup } from '@bspk/ui/AvatarGroup';\n\nexport function Example() {\nreturn (\n<AvatarGroup\nitems={[\n{ name: 'Jane Doe', image: '/path/to/image.jpg' },\n{ name: 'John Smith', initials: 'JS' },\n]}\n/>\n);\n}",
+        },
         css: "[data-bspk='avatar-group'] {\n    width: 100%;\n\n    [data-wrap] {\n        width: 100%;\n        display: flex;\n        flex-direction: row;\n        align-items: end;\n        justify-content: end;\n        gap: var(--spacing-sizing-02);\n        overflow: hidden;\n\n        & > * + * {\n            // margin-left: calc(var(--spacing-sizing-01) * -1);\n        }\n    }\n}\n",
         hasTouchTarget: false,
     },
@@ -83,8 +91,12 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Badge',
         slug: 'badge',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.474Z',
-        css: "[data-bspk='badge'] {\n    --size: var(--spacing-sizing-06);\n\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: var(--radius-circular);\n    height: var(--size);\n    width: fit-content;\n    min-width: var(--size);\n    padding: 0 var(--spacing-sizing-02);\n\n    &[data-size='x-small'] {\n        --size: var(--spacing-sizing-05);\n\n        padding: 2px var(--spacing-sizing-01);\n    }\n\n    font: var(--labels-x-small);\n    color: var(--foreground-brand-on-primary);\n    background: var(--surface-brand-primary);\n\n    &[data-variant='secondary'] {\n        color: var(--foreground-brand-on-secondary);\n        background: var(--surface-brand-secondary);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+        modified: '2025-06-05T15:01:35.192Z',
+        usage: {
+            code: 'import { Badge } from \'@bspk/ui/badge\';\n\nfunction Example() {\nreturn <Badge count={5} size="small" variant="primary" />;\n}',
+            description: 'This example shows a badge with a count of 5, size small, and primary variant.',
+        },
+        css: "[data-bspk='badge'] {\n    --size: var(--spacing-sizing-06);\n\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    border-radius: var(--radius-circular);\n    height: var(--size);\n    width: fit-content;\n    min-width: var(--size);\n    padding: 0 var(--spacing-sizing-02);\n    font: var(--labels-x-small);\n    color: var(--foreground-brand-on-primary);\n    background: var(--surface-brand-primary);\n\n    &[data-size='x-small'] {\n        --size: var(--spacing-sizing-05);\n\n        padding: 2px var(--spacing-sizing-01);\n    }\n\n    &[data-variant='secondary'] {\n        color: var(--foreground-brand-on-secondary);\n        background: var(--surface-brand-secondary);\n    }\n\n    &[data-surface-border] {\n        position: relative;\n\n        &::after {\n            display: block;\n            content: ' ';\n            position: absolute;\n            inset: 0;\n            border-radius: var(--radius-circular);\n            border: 2px solid var(--surface-neutral-t1-base);\n            z-index: 1;\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
     {
@@ -94,7 +106,12 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'BannerAlert',
         slug: 'banner-alert',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.475Z',
+        modified: '2025-06-05T15:01:35.193Z',
+        usage: {
+            code: 'import { BannerAlert } from \'@bspk/ui/BannerAlert\';\n\nfunction Example() {\n<BannerAlert\nvariant="error"\nheader="Error"\nbody="There was an error processing your request."\nonClose={() => console.log(\'Alert closed\')}\n/>;\n}',
+            description:
+                'This example shows how to use the BannerAlert component with an error variant, a header, and a body message.',
+        },
         css: "[data-bspk='banner-alert'] {\n    --color: var(--status-information);\n    --on-color: var(--status-on-information);\n\n    display: flex;\n    flex-direction: row;\n    border: 2px solid var(--color);\n    border-radius: var(--radius-medium);\n    box-sizing: border-box;\n    background-color: var(--surface-neutral-t1-base);\n    width: 100%;\n\n    &[data-variant='error'] {\n        --color: var(--status-error);\n        --on-color: var(--status-on-error);\n    }\n\n    &[data-variant='success'] {\n        --color: var(--status-success);\n        --on-color: var(--status-on-success);\n    }\n\n    &[data-variant='warning'] {\n        --color: var(--status-warning);\n        --on-color: var(--status-on-warning);\n    }\n\n    &[data-elevated] {\n        box-shadow: var(--drop-shadow-raise);\n    }\n\n    [data-icon-bar] {\n        flex: 1;\n        padding: var(--spacing-sizing-04) var(--spacing-sizing-03);\n        background: var(--color);\n        color: var(--on-color);\n\n        svg {\n            width: var(--spacing-sizing-06);\n            height: var(--spacing-sizing-06);\n        }\n    }\n\n    [data-content] {\n        flex: 100%;\n        display: flex;\n        flex-direction: column;\n        padding: var(--spacing-sizing-02) var(--spacing-sizing-02) var(--spacing-sizing-02) var(--spacing-sizing-04);\n\n        header {\n            display: flex;\n            flex-direction: row;\n            gap: var(--spacing-sizing-03);\n            height: var(--spacing-sizing-12);\n            align-items: center;\n\n            span {\n                flex: 1;\n                display: flex;\n                align-items: center;\n                color: var(--foreground-neutral-on-surface);\n                font: var(--heading-h6);\n\n                @media (any-pointer: coarse) {\n                    font: var(--heading-h6);\n                }\n            }\n\n            // close button\n            button {\n                background: none;\n                border: none;\n                cursor: pointer;\n                padding: 0;\n                margin: 0 0 0 auto;\n                color: var(--foreground-neutral-on-surface-variant-01);\n                height: var(--spacing-sizing-08);\n                width: var(--spacing-sizing-08);\n\n                @media (any-pointer: coarse) {\n                    height: var(--spacing-sizing-12);\n                    width: var(--spacing-sizing-12);\n                }\n\n                svg {\n                    width: var(--spacing-sizing-04);\n                    height: var(--spacing-sizing-04);\n                }\n            }\n        }\n\n        [data-body] {\n            display: flex;\n            flex-direction: column;\n            gap: var(--spacing-sizing-02);\n            padding: 0 var(--spacing-sizing-02) var(--spacing-sizing-02) 0;\n\n            span {\n                font: var(--body-base);\n            }\n\n            button {\n                margin-left: auto;\n                background: none;\n                border: none;\n                cursor: pointer;\n                padding: 0 var(--spacing-sizing-03);\n                height: var(--spacing-sizing-12);\n                font: var(--labels-small);\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -105,7 +122,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Button',
         slug: 'button',
         dependencies: ['Tooltip'],
-        modified: '2025-06-02T20:49:15.475Z',
+        modified: '2025-06-05T15:01:35.193Z',
+        usage: {
+            code: 'import { Button } from \'@bspk/ui/Button\';\nimport { SvgPerson } from \'@bspk/icons/Person\';\n\nfunction Example() {\nreturn (\n<Button\nlabel="Click Me"\nsize="medium"\nvariant="primary"\nonClick={() => console.log(\'Button clicked\')}\nicon={<SvgPerson />}\n/>\n);\n}',
+        },
         css: "[data-bspk='button'] {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: center;\n    gap: var(--spacing-sizing-02);\n    border: none;\n    cursor: pointer;\n    box-sizing: border-box;\n    background: transparent;\n    text-decoration: none;\n    width: fit-content;\n    font-family: var(--typeface);\n    position: relative;\n\n    [data-touch-target] {\n        min-width: var(--spacing-sizing-12);\n        min-height: var(--spacing-sizing-12);\n    }\n\n    &[data-width='hug'] {\n        width: fit-content;\n    }\n\n    &[data-width='fill'] {\n        width: 100%;\n    }\n\n    &[data-size='x-small'] {\n        font-size: var(--typography-size-xs);\n        line-height: var(--typography-line-height-lh-1);\n        height: var(--spacing-sizing-06);\n        min-width: var(--spacing-sizing-06);\n        gap: var(--spacing-sizing-02);\n\n        &:has([data-button-label]),\n        &[data-override] {\n            padding: 0 var(--spacing-sizing-02);\n        }\n\n        [data-button-icon] {\n            width: var(--spacing-sizing-04);\n            height: var(--spacing-sizing-04);\n        }\n    }\n\n    &[data-size='small'] {\n        font-size: var(--typography-size-sm);\n        line-height: var(--typography-line-height-lh-2);\n        height: var(--spacing-sizing-08);\n        min-width: var(--spacing-sizing-08);\n\n        &:has([data-button-label]),\n        &[data-override] {\n            padding: 6px var(--spacing-sizing-04);\n        }\n\n        [data-button-icon] {\n            width: var(--spacing-sizing-05);\n            height: var(--spacing-sizing-05);\n        }\n    }\n\n    &[data-size='medium'] {\n        font-size: var(--typography-size-base);\n        line-height: var(--typography-line-height-lh-2);\n        height: var(--spacing-sizing-10);\n        min-width: var(--spacing-sizing-10);\n\n        &:has([data-button-label]),\n        &[data-override] {\n            padding: var(--spacing-sizing-02) var(--spacing-sizing-04);\n        }\n\n        [data-button-icon] {\n            width: var(--spacing-sizing-05);\n            height: var(--spacing-sizing-05);\n        }\n    }\n\n    &[data-size='large'] {\n        font-size: var(--typography-size-bp-md);\n        line-height: var(--typography-line-height-lh-4);\n        height: var(--spacing-sizing-12);\n        min-width: var(--spacing-sizing-12);\n\n        &:has([data-button-label]),\n        &[data-override] {\n            padding: var(--spacing-sizing-03) var(--spacing-sizing-04);\n        }\n\n        [data-button-icon] {\n            width: var(--spacing-sizing-06);\n            height: var(--spacing-sizing-06);\n        }\n    }\n\n    &[disabled] {\n        cursor: not-allowed;\n    }\n\n    [data-button-icon] {\n        display: flex;\n        flex-direction: column;\n        align-items: center;\n    }\n\n    [data-button-label] {\n        display: flex;\n        flex-direction: row;\n        align-items: center;\n    }\n\n    &[data-variant='primary'] {\n        --primary-background: var(--surface-brand-primary);\n\n        background: linear-gradient(var(--primary-background), var(--primary-background));\n        color: var(--foreground-brand-on-primary);\n        border-radius: var(--radius-small);\n\n        &[disabled] {\n            color: var(--foreground-neutral-disabled-on-surface);\n            background: var(--interactions-disabled-opacity);\n        }\n\n        &:not([disabled]) {\n            [data-pseudo='hover'] > &,\n            &:hover {\n                background:\n                    linear-gradient(var(--interactions-brand-hover-opacity), var(--interactions-brand-hover-opacity)),\n                    linear-gradient(var(--primary-background), var(--primary-background));\n            }\n\n            [data-pseudo='active'] > &,\n            &:active {\n                background:\n                    linear-gradient(var(--interactions-brand-press-opacity), var(--interactions-brand-press-opacity)),\n                    linear-gradient(var(--primary-background), var(--primary-background));\n            }\n\n            [data-pseudo='focus'] > &,\n            &:focus-visible {\n                outline: solid 2px var(--stroke-neutral-focus);\n            }\n        }\n\n        &[data-destructive] {\n            --primary-background: var(--status-error);\n\n            color: var(--foreground-brand-on-primary);\n        }\n    }\n\n    &[data-variant='secondary'] {\n        border: solid 1px var(--stroke-neutral-base);\n        border-radius: var(--radius-small);\n        color: var(--foreground-neutral-on-surface-variant-01);\n\n        &[disabled] {\n            color: var(--foreground-neutral-disabled-on-surface);\n            border: solid 1px var(--stroke-neutral-disabled-light);\n        }\n\n        &:not([disabled]) {\n            [data-pseudo='hover'] > &,\n            &:hover {\n                background-color: var(--interactions-neutral-hover-opacity);\n            }\n\n            [data-pseudo='active'] > &,\n            &:active {\n                background-color: var(--interactions-neutral-press-opacity);\n            }\n\n            [data-pseudo='focus'] > &,\n            &:focus-visible {\n                outline: solid 2px var(--stroke-neutral-focus);\n            }\n        }\n\n        &[data-destructive] {\n            background: transparent;\n            color: var(--status-error);\n            border: solid 1px var(--status-error);\n        }\n    }\n\n    &[data-variant='tertiary'] {\n        background: transparent;\n        color: var(--foreground-neutral-on-surface-variant-01);\n\n        &[disabled] {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n\n        &:not([disabled]) {\n            [data-pseudo='hover'] > &,\n            &:hover {\n                background: var(--interactions-neutral-hover-opacity);\n            }\n\n            [data-pseudo='active'] > &,\n            &:active {\n                background: var(--interactions-neutral-press-opacity);\n            }\n\n            [data-pseudo='focus'] > &,\n            &:focus-visible {\n                outline: solid 2px var(--stroke-neutral-focus);\n            }\n        }\n\n        &[data-destructive] {\n            color: var(--status-error);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: true,
     },
@@ -116,7 +136,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Card',
         slug: 'card',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.475Z',
+        modified: '2025-06-05T15:01:35.193Z',
+        usage: {
+            code: 'import { Card } from \'@bspk/ui/card\';\n\nfunction Example() {\nreturn (\n<Card variant="elevated" showPadding={false}>\n<h3>Card Title</h3>\n<p>This is some content inside the card.</p>\n</Card>\n);\n}',
+        },
         css: "[data-bspk='card'] {\n    display: block;\n    background: var(--surface-neutral-t1-base);\n    padding: var(--spacing-sizing-03);\n    border-radius: var(--radius-medium);\n    overflow: hidden;\n\n    &[data-hide-padding] {\n        padding: 0;\n    }\n\n    &[data-variant='outlined'] {\n        border: solid 1px var(--stroke-neutral-low);\n    }\n\n    &[data-variant='elevated'] {\n        box-shadow:\n            0 1px 2px 0 var(--shadow-32),\n            0 1px 3px 1px var(--shadow-15);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -127,7 +150,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Checkbox',
         slug: 'checkbox',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.475Z',
+        modified: '2025-06-05T15:01:35.193Z',
+        usage: {
+            code: 'import { Checkbox } from \'@bspk/ui/Checkbox\';\n\nfunction Example() {\nconst [checked, setChecked] = React.useState(false);\n\nreturn (\n<label htmlFor="sample-checkbox">\n<Checkbox\naria-label="Sample"\nchecked={checked}\nid="sample-checkbox"\nname="sample-checkbox"\nonChange={(nextChecked) => setChecked(nextChecked)}\nvalue="sample"\n/>\nCheckbox Label\n</label>\n);\n}',
+        },
         css: "[data-bspk='checkbox'] {\n    display: block;\n    position: relative;\n    width: var(--spacing-sizing-06);\n    aspect-ratio: 1/1;\n    padding: 2px;\n\n    input[type='checkbox'] {\n        position: absolute;\n        opacity: 0;\n        z-index: 2;\n        width: 100%;\n        height: 100%;\n        top: 0;\n        left: 0;\n        cursor: pointer;\n    }\n\n    span {\n        --stroke: var(--stroke-neutral-base);\n        --inner: none;\n        --background: none;\n        --color: var(--foreground-brand-on-primary);\n\n        box-sizing: border-box;\n        display: flex;\n        width: 20px;\n        aspect-ratio: 1/1;\n        cursor: pointer;\n        border-radius: 2px;\n        border: 2px solid var(--stroke);\n        align-items: center;\n        flex-direction: column;\n        justify-content: center;\n        position: relative;\n        background: var(--background);\n\n        svg[data-checked] {\n            width: 14px;\n            display: none;\n        }\n\n        svg[data-indeterminate] {\n            width: 12px;\n            display: none;\n        }\n\n        color: var(--color);\n    }\n\n    input[type='checkbox']:not(:checked, :indeterminate, :disabled) {\n        &:hover + span {\n            background-color: var(--interactions-neutral-hover-opacity);\n        }\n\n        &:active + span {\n            background-color: var(--interactions-neutral-press-opacity);\n        }\n    }\n\n    input[type='checkbox']:checked + span svg[data-checked],\n    input[type='checkbox']:indeterminate + span svg[data-indeterminate] {\n        display: block;\n    }\n\n    input[type='checkbox']:checked + span,\n    input[type='checkbox']:indeterminate + span {\n        --stroke: var(--stroke-brand-primary);\n        --background: var(--surface-brand-primary);\n    }\n\n    input[type='checkbox']:disabled {\n        pointer-events: none;\n\n        & + span {\n            --stroke: var(--stroke-neutral-interactions-disabled-light);\n        }\n\n        &:is(:checked, :indeterminate) + span {\n            --stroke: transparent;\n            --background: var(--interactions-disabled-opacity);\n            --color: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n\n    input[type='checkbox'][aria-invalid]:not(:disabled) {\n        &:checked + span,\n        &:indeterminate + span {\n            --background: var(--status-error);\n        }\n\n        & + span {\n            --stroke: var(--status-error);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -138,18 +164,24 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'CheckboxGroup',
         slug: 'checkbox-group',
         dependencies: ['Checkbox', 'ToggleOption'],
-        modified: '2025-06-02T20:49:15.475Z',
+        modified: '2025-06-05T15:01:35.193Z',
+        usage: {
+            code: "import { CheckboxGroup } from '@bspk/ui/CheckboxGroup';\n\nfunction Example() {\nconst [values, setValues] = React.useState<string[]>([]);\n\nreturn (\n<CheckboxGroup\naria-label=\"Example Checkbox Group\"\nname=\"example-checkbox-group\"\noptions={[\n{ label: 'Option 1', value: 'option1' },\n{ label: 'Option 2', value: 'option2' },\n{ label: 'Option 3', value: 'option3' },\n]}\nvalues={values}\nonChange={(nextValues: string[]) => {\nsetValues(nextValues);\n}}\n/>\n);\n}",
+        },
         css: '',
         hasTouchTarget: false,
     },
     {
         description:
-            'A control that allows users to choose one or more items from a list or turn an feature on or off.',
+            'A control that allows users to choose one or more items from a list or turn an feature on or off.\n\nIf only a Checkbox is needed, consider using the `Checkbox` component directly.',
         file: '/CheckboxOption.tsx',
         name: 'CheckboxOption',
         slug: 'checkbox-option',
         dependencies: ['Checkbox', 'ToggleOption'],
-        modified: '2025-06-02T20:49:15.475Z',
+        modified: '2025-06-05T15:01:35.193Z',
+        usage: {
+            code: 'import { CheckboxOption } from \'@bspk/ui/CheckboxOption\';\n\nfunction Example() {\nconst [checked, setChecked] = React.useState(false);\nreturn (\n<CheckboxOption\nchecked={checked}\ndescription="This is an example checkbox option."\nlabel="Example Checkbox"\nname="example-checkbox-name"\nonChange={(nextChecked, event) => {\nsetChecked(nextChecked);\nconsole.log(\'Checkbox changed:\', nextChecked, event);\n}}\nvalue="example-checkbox-value"\n/>\n);\n}',
+        },
         css: '',
         hasTouchTarget: false,
     },
@@ -159,7 +191,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Chip',
         slug: 'chip',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.475Z',
+        modified: '2025-06-05T15:01:35.193Z',
+        usage: {
+            code: "import { Chip } from '@bspk/ui/Chip';\n\nfunction Example() {\nreturn (\n<Chip variant=\"filter\" onClick={() => console.log('Chip clicked!')}>\nExample Chip\n</Chip>\n);\n}",
+        },
         css: "[data-bspk='chip'] {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    width: fit-content;\n    height: var(--spacing-sizing-06);\n    padding: 0 var(--spacing-sizing-02);\n    font: var(--labels-small);\n    color: var(--foreground-neutral-on-surface-variant-01);\n    background-color: var(--surface-neutral-t1-base);\n    border: 1px solid var(--stroke-neutral-low);\n    border-radius: var(--radius-small);\n\n    &:not([data-flat]) {\n        box-shadow: var(--drop-shadow-raise);\n    }\n\n    &[data-variant='filter'] {\n        cursor: pointer;\n    }\n\n    &[data-wrap] {\n        height: auto;\n    }\n\n    &[data-disabled] {\n        color: var(--foreground-neutral-disabled-on-surface);\n        cursor: not-allowed;\n        border-color: var(--stroke-neutral-disabled-light);\n        background-image: \n    //\n\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n    }\n\n    &:not([data-disabled]) {\n        &:hover {\n            background-image: \n    //\n\n                linear-gradient(var(--interactions-neutral-hover-opacity), var(--interactions-neutral-hover-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n        }\n\n        &:active {\n            background-image: \n    //\n\n                linear-gradient(var(--interactions-neutral-press-opacity), var(--interactions-neutral-press-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n        }\n\n        &:focus {\n            outline: 1px solid var(--stroke-neutral-focus);\n            border-color: var(--stroke-neutral-focus);\n        }\n    }\n\n    &[data-selected] {\n        background-color: var(--surface-brand-primary-highlight);\n        border-color: var(--stroke-brand-primary);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -170,7 +205,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Dialog',
         slug: 'dialog',
         dependencies: ['Portal'],
-        modified: '2025-06-02T20:49:15.475Z',
+        modified: '2025-06-05T15:01:35.193Z',
+        usage: {
+            code: "import { Dialog } from '@bspk/ui/Dialog';\nimport { Button } from '@bspk/ui/Button';\n\nfunction Example() {\nconst [open, setOpen] = React.useState(false);\n\nreturn (\n<>\n<Button label=\"Open Dialog\" onClick={() => setOpen(true)} />\n<Dialog open={open} onClose={() => setOpen(false)}>\n<h1>Dialog Title</h1>\n<p>This is the content of the dialog.</p>\n<button onClick={() => setOpen(false)}>Close</button>\n</Dialog>\n</>\n);\n}",
+        },
         css: "[data-bspk='dialog'] {\n    position: fixed;\n    inset: 0;\n    z-index: var(--z-index-dialog);\n\n    [data-dialog-box] {\n        text-align: start;\n        position: relative;\n        border-radius: var(--radius-large);\n        box-shadow: var(--drop-shadow-float);\n        background: var(--surface-neutral-t1-base);\n        color: var(--foreground-neutral-on-surface);\n        max-height: calc(100vh - var(--spacing-sizing-24));\n        overflow: scroll;\n        z-index: 2;\n\n        > :first-of-type {\n            margin-top: 0;\n        }\n\n        > :last-child {\n            margin-bottom: 0;\n        }\n\n        // we make the width responsive to the viewport\n        @media (width >= 640px) {\n            width: 90%;\n        }\n\n        @media (width >= 768px) {\n            width: 80%;\n        }\n\n        @media (width >= 1024px) {\n            width: 60%;\n        }\n\n        @media (width >= 1280px) {\n            width: 50%;\n        }\n    }\n\n    [data-dialog-backdrop] {\n        z-index: 1;\n        position: fixed;\n        inset: 0;\n        background-color: var(--background-scrim);\n        opacity: 0;\n        transition: opacity 0.3s;\n    }\n\n    &[data-visibility='show'] {\n        [data-dialog-backdrop] {\n            opacity: 1;\n        }\n    }\n\n    &[data-placement='center'] {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n\n        [data-dialog-box] {\n            transition: opacity 1s;\n            opacity: 0;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                opacity: 1;\n            }\n        }\n    }\n\n    &[data-placement='bottom'] {\n        [data-dialog-box] {\n            position: absolute;\n            border-bottom-left-radius: 0;\n            border-bottom-right-radius: 0;\n            width: 600px;\n            left: 50%;\n            transform: translateX(-50%);\n            bottom: -100vh;\n            transition: bottom 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                bottom: 0;\n            }\n        }\n    }\n\n    &[data-placement='top'] {\n        [data-dialog-box] {\n            position: absolute;\n            border-top-left-radius: 0;\n            border-top-right-radius: 0;\n            width: 600px;\n            left: 50%;\n            transform: translateX(-50%);\n            top: -100vh;\n            transition: top 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                top: 0;\n            }\n        }\n    }\n\n    &[data-placement='left'] {\n        [data-dialog-box] {\n            position: absolute;\n            max-height: unset;\n            width: 280px;\n            height: 100vh;\n            border-bottom-left-radius: 0;\n            border-top-left-radius: 0;\n            left: -100vw;\n            transition: left 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                left: 0;\n            }\n        }\n    }\n\n    &[data-placement='right'] {\n        [data-dialog-box] {\n            position: absolute;\n            max-height: unset;\n            width: 280px;\n            height: 100vh;\n            border-bottom-right-radius: 0;\n            border-top-right-radius: 0;\n            right: -100vw;\n            transition: right 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                right: 0;\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -181,7 +219,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Divider',
         slug: 'divider',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.475Z',
+        modified: '2025-06-05T15:01:35.193Z',
+        usage: {
+            code: 'import { Divider } from \'@bspk/ui/Divider\';\n\nfunction Example() {\nreturn (\n<div>\n<p>Content above the divider</p>\n<Divider orientation="horizontal" />\n<p>Content below the divider</p>\n</div>\n);\n}',
+        },
         css: "[data-bspk='divider'] {\n    /*! --inset: is set via inline style */\n\n    display: flex;\n    background-color: var(--stroke-neutral-low);\n    align-self: stretch;\n    place-content: stretch stretch;\n    margin: 0;\n    padding: 0;\n    content: 'hello';\n\n    --length: calc(100% - var(--inset) * 2);\n\n    &,\n    &[data-thickness='light'] {\n        --line-thickness: 1px;\n        --padding: var(--spacing-sizing-02);\n    }\n\n    &[data-thickness='heavy'] {\n        --line-thickness: 2px;\n        --padding: var(--spacing-sizing-04);\n\n        border-radius: var(--radius-circular);\n    }\n\n    &, // default\n  &[data-orientation='horizontal'] {\n        width: unset;\n        min-height: unset;\n        height: var(--line-thickness);\n        min-width: var(--length);\n        margin: var(--padding) var(--inset);\n    }\n\n    &[data-orientation='vertical'] {\n        height: unset;\n        min-width: unset;\n        width: var(--line-thickness);\n        min-height: var(--length);\n        margin: var(--inset) var(--padding);\n    }\n\n    &[data-hide-padding] {\n        --padding: 0;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -191,7 +232,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Dropdown',
         slug: 'dropdown',
         dependencies: ['ListItem', 'Menu', 'Portal'],
-        modified: '2025-06-02T20:49:15.475Z',
+        modified: '2025-06-05T15:01:35.193Z',
+        usage: {
+            code: "import { Dropdown } from '@bspk/ui/Dropdown';\n\nexport function Example() {\nconst [selected, setSelected] = React.useState<string[]>([]);\nreturn (\n<Dropdown\naria-label=\"Select an option\"\nitemCount={5}\nname=\"example-dropdown\"\nonChange={setSelected}\noptions={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]}\nplaceholder=\"Select an option\"\nsize=\"medium\"\nvalue={selected}\n/>\n);\n}",
+        },
         css: "[data-bspk='dropdown'] {\n    // default -- size medium not disabled or readonly\n\n    --dropdown-background: var(--surface-neutral-t1-base);\n    --dropdown-border-color: var(--stroke-neutral-base);\n    --dropdown-text-color: var(--foreground-neutral-on-surface);\n    --dropdown-height: var(--spacing-sizing-10);\n    --dropdown-font: var(--body-base);\n    --dropdown-clear-height: var(--spacing-sizing-05);\n    --dropdown-padding: var(--spacing-sizing-03);\n    --dropdown-icon-width: var(--spacing-sizing-05);\n\n    position: relative;\n    width: 100%;\n    max-width: 280px;\n    outline: unset;\n    min-height: var(--dropdown-height);\n    max-height: var(--dropdown-height);\n    display: flex;\n    flex-direction: row;\n    gap: var(--spacing-sizing-02);\n    flex-grow: 0;\n    flex-shrink: 0;\n    text-align: left;\n    font: var(--dropdown-font);\n    border: 1px solid var(--dropdown-border-color);\n    border-radius: var(--radius-small);\n    background: var(--dropdown-background);\n    padding: 0 var(--dropdown-padding);\n\n    [data-placeholder] {\n        display: block;\n        max-width: 100%;\n        text-overflow: ellipsis;\n        overflow: hidden;\n        padding: 0;\n\n        [data-inner] {\n            min-height: auto;\n            padding: 0;\n        }\n\n        [data-item-label] [data-text] {\n            color: var(--dropdown-text-color);\n        }\n    }\n\n    [data-svg] {\n        display: flex;\n        flex-direction: column;\n        justify-content: center;\n\n        svg {\n            transform: rotate(90deg);\n            width: var(--dropdown-icon-width);\n        }\n    }\n\n    [data-bspk='list-item'][data-selected] {\n        background: var(--surface-brand-primary-highlight);\n    }\n\n    &[data-size='small'] {\n        --dropdown-height: var(--spacing-sizing-08);\n        --dropdown-font: var(--body-small);\n        --dropdown-clear-height: var(--spacing-sizing-05);\n        --dropdown-padding: var(--spacing-sizing-02);\n        --dropdown-icon-width: var(--spacing-sizing-05);\n    }\n\n    &[data-size='large'] {\n        --dropdown-height: var(--spacing-sizing-12);\n        --dropdown-font: var(--body-large);\n        --dropdown-clear-height: var(--spacing-sizing-06);\n        --dropdown-icon-width: var(--spacing-sizing-06);\n    }\n\n    &:disabled {\n        --dropdown-text-color: var(--foreground-neutral-disabled-on-surface);\n        --dropdown-border-color: var(--stroke-neutral-disabled-light);\n        --dropdown-background:\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n\n        &[aria-readonly]:not([data-empty]) {\n            --dropdown-text-color: var(--foreground-neutral-on-surface);\n        }\n    }\n\n    &:not(:disabled) {\n        &:focus {\n            --dropdown-border-color: var(--stroke-brand-primary);\n        }\n\n        &:hover {\n            --dropdown-background:\n                linear-gradient(var(--interactions-neutral-hover-opacity), var(--interactions-neutral-hover-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n        }\n\n        &:active {\n            --dropdown-background:\n                linear-gradient(var(--interactions-neutral-press-opacity), var(--interactions-neutral-press-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n        }\n    }\n\n    &[data-invalid] {\n        --dropdown-border-color: var(--status-error);\n    }\n\n    &[data-empty] {\n        --dropdown-text-color: var(--foreground-neutral-on-surface-variant-03);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -202,7 +246,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'DropdownField',
         slug: 'dropdown-field',
         dependencies: ['Dropdown', 'FormField'],
-        modified: '2025-06-02T20:49:15.475Z',
+        modified: '2025-06-05T15:01:35.194Z',
+        usage: {
+            code: "import { DropdownField } from '@bspk/ui/DropdownField';\n\nexport function Example() {\nconst [state, setState] = React.useState(['option1']);\nreturn (\n<DropdownField\ncontrolId=\"Example controlId\"\nlabel=\"Example label\"\nname=\"Example name\"\nonChange={(nextValue) => setState(nextValue)}\noptions={[\n{ label: 'Option 1', value: 'option1' },\n{ label: 'Option 2', value: 'option2' },\n{ label: 'Option 3', value: 'option3' },\n]}\nplaceholder=\"Select one...\"\nvalue={state}\n/>\n);\n}",
+        },
         css: '',
         hasTouchTarget: false,
     },
@@ -212,7 +259,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'EmptyState',
         slug: 'empty-state',
         dependencies: ['Button', 'Layout', 'Txt'],
-        modified: '2025-06-02T20:49:15.475Z',
+        modified: '2025-06-05T15:01:35.194Z',
+        usage: {
+            code: 'import { EmptyState } from \'@bspk/ui/EmptyState\';\n\nexport function Example() {\nreturn (\n<EmptyState body="Example body" header="Example header">\nExample EmptyState\n</EmptyState>\n);\n}',
+        },
         css: '',
         hasTouchTarget: false,
     },
@@ -223,7 +273,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Fab',
         slug: 'fab',
         dependencies: ['Button', 'Tooltip'],
-        modified: '2025-06-02T20:49:15.476Z',
+        modified: '2025-06-05T15:01:35.194Z',
+        usage: {
+            code: 'import { SvgBolt } from \'@bspk/icons/Bolt\';\nimport { Fab } from \'@bspk/ui/Fab\';\n\nexport function Example() {\nreturn <Fab icon={<SvgBolt />} label="Example label" placement="bottom-right" variant="neutral" />;\n}',
+        },
         css: "[data-bspk='fab'] {\n    --placement-offset: var(--spacing-sizing-04);\n\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: center;\n    gap: var(--spacing-sizing-02);\n    border: none;\n    cursor: pointer;\n    box-sizing: border-box;\n    text-decoration: none;\n    z-index: var(--z-index-fab);\n    box-shadow: var(--drop-shadow-float);\n    border-radius: var(--radius-small);\n\n    &[data-container='page'] {\n        position: fixed;\n    }\n\n    &[data-container='local'] {\n        position: absolute;\n    }\n\n    &[data-placement='top-right'] {\n        top: var(--placement-offset);\n        right: var(--placement-offset);\n    }\n\n    &[data-placement='bottom-right'] {\n        bottom: var(--placement-offset);\n        right: var(--placement-offset);\n    }\n\n    &[data-placement='top-left'] {\n        top: var(--placement-offset);\n        left: var(--placement-offset);\n    }\n\n    &[data-placement='bottom-left'] {\n        bottom: var(--placement-offset);\n        left: var(--placement-offset);\n    }\n\n    > [data-fab-icon] {\n        display: flex;\n        flex-direction: column;\n        align-items: center;\n    }\n\n    > [data-fab-label] {\n        display: flex;\n        flex-direction: row;\n        align-items: center;\n    }\n\n    &[data-size='small'] {\n        font: var(--labels-base);\n        height: var(--spacing-sizing-10);\n        padding: 0 var(--spacing-sizing-04);\n\n        > [data-fab-icon] {\n            width: var(--spacing-sizing-05);\n        }\n    }\n\n    &[data-size='medium'] {\n        font: var(--labels-large);\n        height: var(--spacing-sizing-14);\n        padding: 0 var(--spacing-sizing-07);\n\n        > [data-fab-icon] {\n            width: var(--spacing-sizing-06);\n        }\n    }\n\n    &[data-variant='primary'] {\n        --variant-background: var(--surface-brand-primary);\n        --variant-foreground: var(--foreground-brand-on-primary);\n    }\n\n    &[data-variant='secondary'] {\n        --variant-background: var(--surface-brand-secondary);\n        --variant-foreground: var(--foreground-brand-on-secondary);\n    }\n\n    &[data-variant='neutral'] {\n        --variant-background: var(--surface-neutral-t1-base);\n        --variant-foreground: var(--foreground-neutral-on-surface-variant-01);\n    }\n\n    background: var(--variant-background);\n    color: var(--variant-foreground);\n\n    --variant-gradient: linear-gradient(var(--variant-background), var(--variant-background));\n\n    [data-pseudo='hover'] > &,\n    &:hover {\n        background:\n            linear-gradient(var(--interactions-brand-hover-opacity), var(--interactions-brand-hover-opacity)),\n            var(--variant-gradient);\n    }\n\n    [data-pseudo='active'] > &,\n    &:active {\n        background:\n            linear-gradient(var(--interactions-brand-press-opacity), var(--interactions-brand-press-opacity)),\n            var(--variant-gradient);\n    }\n\n    [data-pseudo='focus'] > &,\n    &:focus-visible {\n        outline: solid 2px var(--stroke-neutral-focus);\n    }\n\n    &[data-round] {\n        border-radius: var(--radius-circular);\n        aspect-ratio: 1/1;\n        padding: 0;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -234,7 +287,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'FormField',
         slug: 'form-field',
         dependencies: ['InlineAlert', 'Layout', 'Txt'],
-        modified: '2025-06-02T20:49:15.476Z',
+        modified: '2025-06-05T15:01:35.194Z',
+        usage: {
+            code: 'import { TextInput } from \'../../src/TextInput\';\nimport { FormField } from \'@bspk/ui/FormField\';\n\nexport function Example() {\nconst [state, setState] = React.useState<string | undefined>(undefined);\nreturn (\n<FormField controlId="Example controlId" label="Example label">\n{(fieldProps) => {\nreturn (\n<TextInput\naria-label="example aria-label"\nname="example-text"\nonChange={(next) => {\nsetState(next);\n}}\nvalue={state}\n{...fieldProps}\n/>\n);\n}}\n</FormField>\n);\n}',
+        },
         css: "[data-bspk='form-field'] {\n    box-sizing: border-box;\n    max-width: 100%;\n    width: fit-content;\n    display: flex;\n    flex-direction: column;\n    gap: var(--spacing-sizing-01);\n\n    header label {\n        flex-grow: 1;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -244,7 +300,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Img',
         slug: 'img',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.476Z',
+        modified: '2025-06-05T15:01:35.194Z',
+        usage: {
+            code: 'import { Img } from \'@bspk/ui/Img\';\n\nexport function Example() {\nreturn <Img alt="Example alt" src="Example src" />;\n}',
+        },
         css: '',
         hasTouchTarget: false,
     },
@@ -255,7 +314,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'InlineAlert',
         slug: 'inline-alert',
         dependencies: ['Txt'],
-        modified: '2025-06-02T20:49:15.477Z',
+        modified: '2025-06-05T15:01:35.194Z',
+        usage: {
+            code: 'import { InlineAlert } from \'@bspk/ui/InlineAlert\';\n\nexport function Example() {\nreturn <InlineAlert variant="informational">Example informational inline alert</InlineAlert>;\n}',
+        },
         css: "[data-bspk='inline-alert'] {\n    display: flex;\n    align-items: start;\n    justify-content: start;\n    flex-direction: row;\n    gap: var(--spacing-sizing-02);\n\n    [data-txt] {\n        flex: 1;\n    }\n\n    &[data-variant='error'] {\n        color: var(--status-error);\n\n        --first-tone: var(--status-error);\n        --second-tone: var(--status-on-information);\n    }\n\n    &[data-variant='success'] {\n        color: var(--status-success);\n\n        --first-tone: var(--status-success);\n        --second-tone: var(--status-on-success);\n    }\n\n    &[data-variant='warning'] {\n        color: var(--foreground-neutral-on-surface);\n\n        --first-tone: var(--status-warning);\n        --second-tone: var(--status-on-warning);\n    }\n\n    &[data-variant='informational'] {\n        color: var(--status-information);\n\n        --first-tone: var(--status-information);\n        --second-tone: var(--status-on-information);\n    }\n\n    svg {\n        color: var(--first-tone);\n        width: var(--spacing-sizing-05);\n        height: var(--spacing-sizing-05);\n\n        [data-second-tone] {\n            fill: var(--second-tone);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -265,7 +327,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Layout',
         slug: 'layout',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.477Z',
+        modified: '2025-06-05T15:01:35.194Z',
+        usage: {
+            code: "import { Layout } from '@bspk/ui/Layout';\n\nexport function Example() {\nreturn <Layout>Low effort example</Layout>;\n}",
+        },
         css: '',
         hasTouchTarget: false,
     },
@@ -275,7 +340,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Link',
         slug: 'link',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.477Z',
+        modified: '2025-06-05T15:01:35.194Z',
+        usage: {
+            code: 'import { Link } from \'@bspk/ui/Link\';\n\nexport function Example() {\nreturn <Link href="https://bspk.dev" label="Example label" trailingIcon="external" />;\n}',
+        },
         css: "[data-bspk='link'] {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    gap: var(--spacing-sizing-01);\n    font: var(--labels-base);\n\n    &[data-size='large'] {\n        font: var(--labels-large);\n    }\n\n    &[data-size='small'] {\n        font: var(--labels-small);\n    }\n\n    svg {\n        width: var(--spacing-sizing-05);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -286,7 +354,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ListItem',
         slug: 'list-item',
         dependencies: ['Button'],
-        modified: '2025-06-02T20:49:15.477Z',
+        modified: '2025-06-05T15:01:35.195Z',
+        usage: {
+            code: 'import { SvgSquare } from \'@bspk/icons/square\';\nimport { ListItem } from \'@bspk/ui/ListItem\';\n\nexport function Example() {\nreturn (\n<ListItem\nlabel="Example label"\nleading={<SvgSquare />}\nsubText="Example subtest"\ntrailing={<ListItem.Button label="Click me" onClick={() => console.log(\'Hello world\')} />}\n/>\n);\n}',
+        },
         css: "[data-bspk='list-item'] {\n    display: block;\n    width: 100%;\n    box-sizing: border-box;\n    padding: 0 var(--spacing-sizing-02);\n    background: unset;\n    border: unset;\n    margin: unset;\n    text-decoration: unset;\n    user-select: none;\n    color: var(--foreground-neutral-on-surface);\n\n    &:is(a),\n    &:is(button),\n    &[onclick],\n    &[role='button'] {\n        cursor: pointer;\n    }\n\n    [data-inner] {\n        height: 100%;\n        width: 100%;\n        min-height: var(--spacing-sizing-09);\n        box-sizing: border-box;\n        display: flex;\n        flex-direction: row;\n        gap: var(--spacing-sizing-03);\n        padding: var(--spacing-sizing-02) 0;\n        justify-items: stretch;\n\n        & > * {\n            min-height: 100%;\n            width: fit-content;\n            display: flex;\n            flex-direction: column;\n            justify-content: space-around;\n            flex: 1;\n            flex-shrink: 0;\n\n            svg {\n                width: 24px;\n                max-width: unset;\n            }\n        }\n    }\n\n    /* &:has(+ [data-bspk=\"list-item\"]) {\n    [data-inner] {\n      border-bottom: 1px solid var(--stroke-neutral-low);\n    }\n  } */\n\n    &[data-action] {\n        [data-pseudo='focus'] &,\n        &:focus-visible,\n        &:has(*:focus-visible) {\n            // outline: 2px solid var(--stroke-neutral-focus);\n            box-shadow: inset var(--stroke-neutral-focus) 0 0 0 2px;\n\n            [data-inner] {\n                border-color: transparent;\n            }\n        }\n\n        [data-pseudo='hover'] &,\n        &:hover {\n            background-color: var(--interactions-neutral-hover-opacity);\n        }\n\n        [data-pseudo='active'] &,\n        &[data-active],\n        &:active {\n            background-color: var(--interactions-neutral-press-opacity);\n        }\n    }\n\n    [data-trailing]:has(input) {\n        pointer-events: none;\n    }\n\n    [data-component='Img'] > img {\n        height: 36px;\n        width: 36px;\n        max-width: unset;\n    }\n\n    &:is(label) {\n        [data-inner] {\n            border-bottom: 0;\n            gap: var(--spacing-sizing-02);\n        }\n    }\n\n    [data-item-label] {\n        flex: 100%;\n        text-align: left;\n\n        [data-text] {\n            font: var(--labels-base);\n            color: var(--foreground-neutral-on-surface);\n        }\n\n        [data-sub-text] {\n            font: var(--body-small);\n            color: var(--foreground-neutral-on-surface-variant-01);\n        }\n    }\n\n    &[aria-disabled] {\n        [data-text],\n        [data-sub-text] {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -297,7 +368,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Menu',
         slug: 'menu',
         dependencies: ['Checkbox', 'ListItem'],
-        modified: '2025-06-02T20:49:15.477Z',
+        modified: '2025-06-05T15:01:35.195Z',
+        usage: {
+            code: "import React from 'react';\n\nimport { Menu } from '@bspk/ui/Menu';\n\nexport function Example() {\nconst [selected, setSelected] = React.useState<string[]>([]);\n\nreturn (\n<Menu\nitems={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]}\nonChange={(selectedValues: string[]) => setSelected(selectedValues)}\nselectedValues={selected}\n/>\n);\n}",
+        },
         css: "[data-bspk='menu'] {\n    /*! --item-count: is set via inline style */\n\n    width: 332px;\n    border: 1px solid var(--stroke-neutral-low);\n    background-color: var(--surface-neutral-t1-base);\n    box-shadow: var(--drop-shadow-float);\n    border-radius: var(--radius-large);\n    display: flex;\n    flex-direction: column;\n\n    --item-size: var(--spacing-sizing-12);\n\n    &[data-floating] {\n        z-index: var(--z-index-dropdown);\n    }\n\n    &[data-item-count] {\n        height: calc(var(--item-count) * var(--item-size));\n        overflow-y: scroll;\n    }\n\n    &[data-no-items] {\n        padding: var(--spacing-sizing-08) var(--spacing-sizing-04);\n        align-items: center;\n        justify-content: center;\n        gap: var(--spacing-sizing-03);\n    }\n\n    [data-bspk='list-item'] {\n        min-height: var(--item-size);\n        height: var(--item-size);\n\n        &[data-selected] {\n            background-color: var(--surface-brand-primary-highlight);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -307,18 +381,24 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'MenuButton',
         slug: 'menu-button',
         dependencies: ['Button'],
-        modified: '2025-06-02T20:49:15.478Z',
+        modified: '2025-06-05T15:01:35.195Z',
+        usage: {
+            code: "import { MenuButton } from '@bspk/ui/MenuButton';\n\nexport function Example() {\nreturn <MenuButton />;\n}",
+        },
         css: "[data-bspk='menu-button'] {\n    background: none;\n    border: none;\n    cursor: pointer;\n    padding: 0;\n    height: 48px;\n    width: auto;\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: center;\n    padding-top: var(--spacing-sizing-01);\n    color: var(--foreground-neutral-on-surface-variant-01);\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
     {
         description:
-            'Modals display important information that users need to acknowledge. They appear over the interface and block further interactions until an action is selected. Modal is a wrapper around the Dialog component that provides a header and footer for the dialog.\n\nTODO: Add support for custom header and footer',
+            'Modals display important information that users need to acknowledge. They appear over the interface and block further interactions until an action is selected. Modal is a wrapper around the Dialog component that provides a header and footer for the dialog.',
         file: '/Modal.tsx',
         name: 'Modal',
         slug: 'modal',
         dependencies: ['Button', 'Dialog', 'Txt'],
-        modified: '2025-06-02T20:49:15.478Z',
+        modified: '2025-06-05T15:01:35.195Z',
+        usage: {
+            code: 'import React from \'react\';\n\nimport { Button } from \'@bspk/ui/Button\';\nimport { Modal } from \'@bspk/ui/Modal\';\n\nexport function Example() {\nconst [open, setOpen] = React.useState(false);\n\nreturn (\n<>\n<Button label="Open Dialog" onClick={() => setOpen(true)} />\n<Modal\ndescription="Example description"\nheader="Example header"\nonClose={() => setOpen(false)}\nopen={open}\n>\nExample Modal\n</Modal>\n</>\n);\n}',
+        },
         css: "[data-bspk='modal'] {\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n    gap: var(--spacing-sizing-02);\n    padding: var(--spacing-sizing-04);\n\n    > header {\n        display: flex;\n        flex-direction: row;\n        justify-content: space-between;\n        align-items: center;\n        gap: var(--spacing-sizing-04);\n    }\n\n    main {\n        overflow: auto;\n        flex: 1;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -329,7 +409,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'NumberField',
         slug: 'number-field',
         dependencies: ['FormField', 'NumberInput'],
-        modified: '2025-06-02T20:49:15.479Z',
+        modified: '2025-06-05T15:01:35.195Z',
+        usage: {
+            code: 'import React from \'react\';\n\nimport { NumberField } from \'@bspk/ui/NumberField\';\n\nexport function Example() {\nconst [state, setState] = React.useState<number>();\n\nreturn (\n<NumberField\ncontrolId="Example controlId"\nlabel="Example label"\nname="Example name"\nonChange={(nextValue) => setState(nextValue)}\nvalue={state}\n/>\n);\n}',
+        },
         css: '',
         hasTouchTarget: false,
     },
@@ -340,7 +423,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'NumberInput',
         slug: 'number-input',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.479Z',
+        modified: '2025-06-05T15:01:35.196Z',
+        usage: {
+            code: 'import { NumberInput } from \'@bspk/ui/NumberInput\';\n\nexport function Example() {\nconst [state, setState] = React.useState<number>();\n\nreturn (\n<NumberInput\naria-label="Example aria-label"\nname="Example name"\nonChange={(nextValue) => setState(nextValue)}\nvalue={state}\n/>\n);\n}',
+        },
         css: "[data-bspk='number-input'] {\n    // medium is the default size\n    --font: var(--body-base);\n    --height: var(--spacing-sizing-10);\n    --svg-width: var(--spacing-sizing-05);\n    --color: var(--foreground-neutral-on-surface);\n\n    width: 100%;\n    display: flex;\n    flex-flow: row nowrap;\n    font: var(--font);\n    height: var(--height);\n    border: 1px solid var(--stroke-neutral-base);\n    border-radius: var(--radius-small);\n    background: var(--surface-neutral-t1-base);\n    max-width: 280px;\n\n    &:focus-within {\n        border-color: var(--stroke-brand-primary);\n    }\n\n    [data-divider] {\n        width: 4px;\n        border-right: 1px solid var(--stroke-neutral-base);\n\n        // account for border - 3(margin)  * 2 + 2(border)\n        height: calc(var(--height) - 8px);\n        margin: 3px 0;\n    }\n\n    button {\n        width: var(--height);\n        height: var(--height);\n        background: none;\n        border: none;\n        cursor: pointer;\n        font: var(--font);\n        flex-shrink: 0;\n\n        svg {\n            width: var(--svg-width);\n        }\n\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        color: var(--color);\n\n        &:disabled {\n            cursor: not-allowed;\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n\n    input {\n        color: var(--color);\n        min-width: 0;\n        display: block;\n        font: var(--font);\n        text-align: center;\n        padding: 0 var(--spacing-sizing-03);\n        background: transparent;\n        border: none;\n        flex-grow: 1;\n\n        &:focus {\n            outline: none;\n        }\n\n        &::-webkit-outer-spin-button,\n        &::-webkit-inner-spin-button {\n            appearance: none;\n            margin: 0;\n        }\n\n        &[type='number'] {\n            appearance: textfield;\n        }\n    }\n\n    &:not([data-disabled], [data-readonly]) {\n        input,\n        button:not(:disabled) {\n            &:hover {\n                background-color: var(--interactions-hover-opacity);\n            }\n\n            &:active {\n                background-color: var(--interactions-press-opacity);\n            }\n        }\n\n        &[data-invalid] {\n            border-color: var(--status-error);\n            outline-color: var(--status-error);\n        }\n    }\n\n    &[data-disabled],\n    &[data-readonly] {\n        --color: var(--foreground-neutral-disabled-on-surface);\n\n        border-color: var(--stroke-neutral-disabled-light);\n        background:\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n\n        [data-divider] {\n            border-color: var(--stroke-neutral-disabled-light);\n        }\n    }\n\n    &[data-readonly] {\n        input {\n            color: var(--foreground-neutral-on-surface) !important;\n        }\n    }\n\n    &[data-size='small'] {\n        --font: var(--body-small);\n        --height: var(--spacing-sizing-08);\n    }\n\n    &[data-size='large'] {\n        --font: var(--body-large);\n        --height: var(--spacing-sizing-12);\n        --svg-width: var(--spacing-sizing-06);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -350,7 +436,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Popover',
         slug: 'popover',
         dependencies: ['Button', 'Portal', 'Txt'],
-        modified: '2025-06-02T20:49:15.478Z',
+        modified: '2025-06-05T15:01:35.195Z',
+        usage: {
+            code: "import { useState } from 'react';\nimport { Popover } from '@bspk/ui/Popover';\nimport { Button } from '@bspk/ui/Button';\n\nexport function Example() {\nconst [showPopover, setShowPopover] = useState<boolean>(false);\n\nconst togglePopover = () => setShowPopover(!showPopover);\nconst onPopoverCallToActionClick = () => alert('Action clicked');\n\nreturn (\n<Popover\nplacement=\"bottom\"\ncontent=\"This is a popover content\"\nheader=\"Popover Header\"\ncallToAction={{\nlabel: 'Action',\nonClick: onPopoverCallToActionClick,\n}}\n>\n<Button label=\"Toggle popover\" onClick={togglePopover} />\n</Popover>\n);\n}",
+        },
         css: "[data-bspk='popover'] {\n    position: absolute;\n    z-index: var(--z-index-tooltip-popover);\n    background: var(--surface-neutral-t1-base);\n    box-shadow: var(--drop-shadow-float);\n    padding: var(--spacing-sizing-04);\n    width: 300px;\n    border-radius: var(--radius-large);\n    display: flex;\n    flex-direction: column;\n\n    header {\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n        margin-bottom: var(--spacing-sizing-02);\n        gap: var(--spacing-sizing-04);\n\n        button {\n            background: none;\n            border: none;\n            cursor: pointer;\n            padding: 0;\n            margin: 0 0 0 auto;\n            color: var(--foreground-neutral-on-surface-variant-01);\n            height: var(--spacing-sizing-06);\n            width: var(--spacing-sizing-06);\n\n            svg {\n                width: var(--spacing-sizing-06);\n                height: var(--spacing-sizing-06);\n            }\n        }\n    }\n\n    --arrow-size: var(--spacing-sizing-02);\n    --arrow-offset: calc(var(--arrow-size) * -2);\n    --arrow-background-color: var(--surface-neutral-t1-base);\n\n    [data-arrow] {\n        z-index: 1;\n        position: absolute;\n        width: 0;\n        height: 0;\n        border-style: solid;\n        border-width: var(--arrow-size) var(--arrow-size) var(--arrow-size) var(--arrow-size);\n        border-color: transparent;\n    }\n\n    &[data-placement^='top'] {\n        [data-arrow] {\n            bottom: var(--arrow-offset);\n            border-top-color: var(--arrow-background-color);\n            filter: drop-shadow(0 2px 1px var(--shadow-10));\n        }\n    }\n\n    &[data-placement^='right'] {\n        [data-arrow] {\n            margin-left: calc(var(--arrow-offset) * 2);\n            border-right-color: var(--arrow-background-color);\n            filter: drop-shadow(-2px 0 1px var(--shadow-10));\n        }\n    }\n\n    &[data-placement^='bottom'] {\n        [data-arrow] {\n            top: var(--arrow-offset);\n            border-bottom-color: var(--arrow-background-color);\n            filter: drop-shadow(0 -2px 1px var(--shadow-10));\n        }\n    }\n\n    &[data-placement='bottom-start'] {\n        [data-arrow] {\n            margin-left: var(--arrow-offset);\n        }\n    }\n\n    &[data-placement='bottom-end'] {\n        [data-arrow] {\n            margin-left: calc(var(--arrow-offset) * -1);\n        }\n    }\n\n    &[data-placement^='left'] {\n        [data-arrow] {\n            right: var(--arrow-offset);\n            border-left-color: var(--arrow-background-color);\n            filter: drop-shadow(2px 0 1px var(--shadow-10));\n        }\n    }\n\n    [data-content] {\n        gap: var(--spacing-sizing-04);\n        display: flex;\n        flex-direction: column;\n    }\n\n    [data-call-to-action] {\n        margin: 0 0 0 auto;\n\n        /* background: none;\n    border: none;\n    cursor: pointer;\n    padding: 0 var(--spacing-sizing-03);\n    height: var(--spacing-sizing-12);\n    font: var(--labels-small);\n    color: var(--foreground-brand-primary); */\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -361,7 +450,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Portal',
         slug: 'portal',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.479Z',
+        modified: '2025-06-05T15:01:35.196Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -372,8 +461,11 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ProgressBar',
         slug: 'progress-bar',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.479Z',
-        css: "[data-bspk='progress-bar'] {\n    /*! --width: is set via inline style */\n\n    display: flex;\n    flex-direction: column;\n    width: 100%;\n    gap: var(--spacing-sizing-01);\n\n    progress {\n        opacity: 0;\n        position: absolute;\n    }\n\n    [data-bar] {\n        width: 100%;\n        height: var(--spacing-sizing-02);\n        background-color: var(--surface-neutral-t3-low);\n        border-radius: var(--radius-small);\n\n        &::after {\n            content: '';\n            display: block;\n            height: 100%;\n            background-color: var(--foreground-brand-primary);\n            border-radius: var(--radius-small);\n            width: var(--width);\n            transition: width 0.3s;\n        }\n    }\n\n    &[data-size='small'] {\n        max-width: 248px;\n\n        [data-bar] {\n            height: var(--spacing-sizing-01);\n        }\n    }\n\n    label {\n        font-size: var(--labels-small);\n        width: 100%;\n        text-align: center;\n    }\n\n    &[data-align='left'] label {\n        text-align: left;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+        modified: '2025-06-05T15:01:35.196Z',
+        usage: {
+            code: 'import { ProgressBar } from \'@bspk/ui/ProgressBar\';\n\nexport function Example() {\nreturn (\n<ProgressBar label="Example label" completion={50} />\n);\n}',
+        },
+        css: "[data-bspk='progress-bar'] {\n    /*! --width: is set via inline style */\n\n    display: flex;\n    flex-direction: column;\n    width: 100%;\n    gap: var(--spacing-sizing-01);\n\n    progress {\n        opacity: 0;\n        position: absolute;\n    }\n\n    [data-bar] {\n        width: 100%;\n        height: var(--spacing-sizing-02);\n        background-color: var(--surface-neutral-t3-low);\n        border-radius: var(--radius-small);\n\n        &::after {\n            content: '';\n            display: block;\n            height: 100%;\n            background-color: var(--foreground-brand-primary);\n            border-radius: var(--radius-small);\n            width: var(--width);\n            transition: width 0.3s;\n        }\n    }\n\n    &[data-size='small'] {\n        [data-bar] {\n            height: var(--spacing-sizing-01);\n        }\n    }\n\n    label {\n        font-size: var(--labels-small);\n        width: 100%;\n        text-align: center;\n    }\n\n    &[data-align='left'] label {\n        text-align: left;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
     {
@@ -383,7 +475,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ProgressCircle',
         slug: 'progress-circle',
         dependencies: ['Txt'],
-        modified: '2025-06-02T20:49:15.479Z',
+        modified: '2025-06-05T15:01:35.196Z',
+        usage: {
+            code: 'import { ProgressCircle } from \'@bspk/ui/ProgressCircle\';\n\nexport function Example() {\nreturn (\n<ProgressCircle label="Example label"/>\n);\n}',
+        },
         css: "[data-bspk='progress-circle'] {\n    --animation-speed: 1.5s;\n\n    display: flex;\n    flex-direction: column;\n    gap: var(--spacing-sizing-02);\n    align-items: center;\n    justify-content: center;\n\n    &[data-label-position='top'] {\n        flex-direction: column-reverse;\n    }\n\n    &[data-label-position='left'] {\n        flex-direction: row-reverse;\n    }\n\n    &[data-label-position='right'] {\n        flex-direction: row;\n    }\n\n    svg {\n        color: var(--foreground-brand-secondary);\n        animation: spin var(--animation-speed) linear infinite;\n    }\n\n    @keyframes spin {\n        100% {\n            transform: rotate(360deg);\n        }\n\n        0% {\n            transform: rotate(0deg);\n        }\n    }\n\n    &[data-size='small'] {\n        svg {\n            width: 32px;\n        }\n    }\n\n    &[data-size='medium'] {\n        svg {\n            width: 40px;\n        }\n    }\n\n    &[data-size='large'] {\n        svg {\n            width: 48px;\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -394,7 +489,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ProgressionStepper',
         slug: 'progression-stepper',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.479Z',
+        modified: '2025-06-05T15:01:35.196Z',
+        usage: {
+            code: "import { ProgressionStepper } from '@bspk/ui/ProgressionStepper';\n\nexport function Example() {\nreturn (\n<ProgressionStepper steps={[\n{ name: 'Step 1' },\n{ name: 'Step 2' },\n{ name: 'Step 3' },\n]} />\n);\n}",
+        },
         css: "[data-bspk='progression-stepper'] {\n    width: 100%;\n\n    --circle-width: var(--spacing-sizing-09);\n    --active-background-color: var(--surface-brand-primary);\n    --active-foreground-color: var(--foreground-brand-on-primary);\n    --inactive-background-color: var(--surface-neutral-t3-low);\n    --inactive-foreground-color: var(--foreground-neutral-on-surface);\n\n    ol {\n        display: flex;\n        width: 100%;\n        margin: 0;\n        padding: 0;\n\n        li {\n            display: flex;\n            flex-direction: column;\n            list-style: none;\n            margin: 0;\n            padding: 0;\n            gap: var(--spacing-sizing-02);\n\n            [data-line-circle] {\n                display: flex;\n                justify-content: center;\n                align-items: center;\n                flex-direction: row;\n\n                [data-line] {\n                    background-color: var(--inactive-background-color);\n                    height: 2px;\n                    flex-grow: 1;\n                }\n\n                [data-circle] {\n                    display: flex;\n                    justify-content: center;\n                    align-items: center;\n                    width: var(--circle-width);\n                    height: var(--circle-width);\n                    border-radius: 50%;\n                    background-color: none;\n                    border: 2px solid var(--inactive-background-color);\n                    font: var(--labels-large);\n\n                    svg {\n                        display: none;\n                        width: var(--spacing-sizing-06);\n                        height: var(--spacing-sizing-06);\n                    }\n                }\n            }\n\n            [data-content] {\n                display: flex;\n                padding: 0 var(--spacing-sizing-10);\n                font: var(--body-small);\n            }\n\n            &:first-of-type {\n                [data-line='before'] {\n                    visibility: hidden;\n                }\n            }\n\n            &:last-of-type {\n                [data-line='after'] {\n                    visibility: hidden;\n                }\n            }\n\n            &[data-status='complete'] {\n                [data-line] {\n                    background-color: var(--active-background-color);\n                }\n\n                [data-circle] {\n                    background-color: var(--active-background-color);\n                    border: 1px solid var(--active-background-color);\n                    color: var(--active-foreground-color);\n\n                    span {\n                        display: none;\n                    }\n\n                    svg {\n                        display: block;\n                    }\n                }\n            }\n\n            &[data-status='current'] {\n                [data-line='before'] {\n                    background-color: var(--active-background-color);\n                }\n\n                [data-circle] {\n                    border-color: var(--active-background-color);\n                }\n            }\n        }\n    }\n\n    &[data-variant='vertical'] {\n        ol {\n            flex-direction: column;\n        }\n\n        li {\n            flex-direction: row;\n\n            [data-line-circle] {\n                flex-direction: column;\n                width: var(--circle-width);\n\n                [data-line] {\n                    width: 2px;\n                    height: auto;\n                }\n            }\n\n            [data-content] {\n                flex-direction: column;\n                padding: var(--spacing-sizing-10) 0;\n            }\n        }\n    }\n\n    &[data-variant='widget'] {\n        --circle-width: var(--spacing-sizing-05);\n\n        label {\n            display: flex;\n            flex-direction: column;\n            gap: var(--spacing-sizing-02);\n            margin-bottom: var(--spacing-sizing-03);\n            font: var(--body-small);\n\n            [data-title] {\n                font: var(--labels-base);\n                color: var(--foreground-neutral-on-surface);\n            }\n\n            [data-subtitle] {\n                font: var(--body-x-small);\n                color: var(--foreground-neutral-on-surface-variant-02);\n            }\n        }\n\n        ol {\n            align-items: center;\n            min-height: var(--spacing-sizing-09);\n\n            li {\n                [data-line-circle] {\n                    [data-line] {\n                        width: 10px;\n                    }\n                }\n\n                &[data-status='current'] {\n                    --circle-width: var(--spacing-sizing-09);\n                }\n\n                &[data-status='incomplete'] {\n                    [data-circle] {\n                        span {\n                            display: none;\n                        }\n                    }\n                }\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -404,7 +502,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ProgressionStepperBar',
         slug: 'progression-stepper-bar',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.479Z',
+        modified: '2025-06-05T15:01:35.196Z',
         css: "[data-bspk='progression-stepper-bar'] {\n    &[data-size='large'] {\n        --height: var(--spacing-sizing-02);\n    }\n\n    &[data-size='small'] {\n        --height: var(--spacing-sizing-01);\n    }\n\n    display: flex;\n    width: 100%;\n    flex-direction: column;\n    gap: var(--spacing-sizing-01);\n\n    [data-steps] {\n        display: flex;\n        flex-direction: row;\n        gap: var(--spacing-sizing-01);\n        height: var(--height);\n\n        [data-step] {\n            width: 100%;\n            height: var(--height);\n            min-width: var(--spacing-sizing-02);\n            border-radius: var(--radius-small);\n            background: var(--surface-neutral-t3-low);\n\n            &[data-complete] {\n                background: var(--surface-brand-primary);\n            }\n        }\n    }\n\n    label {\n        font: var(--labels-small);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -415,7 +513,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Radio',
         slug: 'radio',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.479Z',
+        modified: '2025-06-05T15:01:35.196Z',
         css: "[data-bspk='radio'] {\n    display: block;\n    position: relative;\n    width: var(--spacing-sizing-06);\n    aspect-ratio: 1/1;\n    padding: 2px;\n\n    input[type='radio'] {\n        position: absolute;\n        opacity: 0;\n        z-index: 2;\n        width: 100%;\n        height: 100%;\n        top: 0;\n        left: 0;\n        cursor: pointer;\n    }\n\n    span {\n        --stroke: var(--stroke-neutral-base);\n        --inner: var(--foreground-brand-primary);\n        --background: none;\n\n        position: relative;\n        z-index: 1;\n        box-sizing: border-box;\n        display: flex;\n        width: var(--spacing-sizing-05);\n        aspect-ratio: 1/1;\n        border-radius: 50%;\n        border: 2px solid var(--stroke);\n        align-items: center;\n        flex-direction: column;\n        justify-content: center;\n        background: var(--background);\n\n        &::before {\n            content: '';\n            display: block;\n            width: var(--spacing-sizing-03);\n            aspect-ratio: 1/1;\n            background: var(--inner);\n            border-radius: var(--radius-circular);\n            opacity: 0;\n        }\n    }\n\n    input[type='radio']:not(:disabled) {\n        &:hover + span {\n            --background: var(--interactions-neutral-hover-opacity);\n        }\n\n        &:active + span {\n            --background: var(--interactions-neutral-press-opacity);\n        }\n\n        &[data-invalid] + span {\n            --stroke: var(--status-error);\n            --inner: var(--status-error);\n        }\n    }\n\n    input[type='radio']:checked + span {\n        --stroke: var(--stroke-brand-primary);\n\n        &::before {\n            opacity: 1;\n        }\n    }\n\n    input[type='radio']:disabled {\n        pointer-events: none;\n\n        & + span {\n            --stroke: var(--stroke-neutral-interactions-disabled-light);\n            --inner: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -426,18 +524,21 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'RadioGroup',
         slug: 'radio-group',
         dependencies: ['Radio', 'ToggleOption'],
-        modified: '2025-06-02T20:49:15.479Z',
-        css: '',
+        modified: '2025-06-05T15:01:35.196Z',
+        usage: {
+            code: "import { useState } from 'react';\nimport { RadioGroup } from '@bspk/ui/RadioGroup';\n\nexport function Example() {\nconst [selectedOption, setSelectedOption] = useState<string>('1');\n\nreturn (\n<RadioGroup\nname=\"Example name\"\nonChange={(nextValue) => setSelectedOption(nextValue)}\noptions={[\n{\nvalue: '1',\nlabel: 'Option 1',\ndescription: 'Description here',\n},\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n]}\nvalue={selectedOption}\n/>\n);\n}",
+        },
+        css: "[data-bspk='radio-group'] {\n    display: flex;\n    flex-direction: column;\n    gap: var(--spacing-sizing-01);\n}\n",
         hasTouchTarget: false,
     },
     {
         description:
-            'A control that allows users to choose one or more items from a list or turn an feature on or off.',
+            'A control that allows users to choose one or more items from a list or turn an feature on or off.\n\nIf only a radio button is needed, consider using the `Radio` component directly.',
         file: '/RadioOption.tsx',
         name: 'RadioOption',
         slug: 'radio-option',
         dependencies: ['Radio', 'ToggleOption'],
-        modified: '2025-06-02T20:49:15.479Z',
+        modified: '2025-06-05T15:01:35.196Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -447,7 +548,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'SearchBar',
         slug: 'search-bar',
         dependencies: ['Menu', 'Portal', 'TextInput', 'Txt'],
-        modified: '2025-06-02T20:49:15.480Z',
+        modified: '2025-06-05T15:01:35.197Z',
+        usage: {
+            code: "import { useState } from 'react';\nimport { SearchBar } from '@bspk/ui/SearchBar';\n\nexport function Example() {\nconst [searchText, setSearchText] = useState<string>('');\n\nconst handleItemSelect = (item) =>\nconsole.log('Selected item:', item);\n\nreturn (\n<SearchBar\naria-label=\"Example aria-label\"\nitems={[\n{ value: '1', label: 'Apple Pie' },\n{ value: '2', label: 'Banana Split' },\n{ value: '3', label: 'Cherry Tart' },\n{ value: '4', label: 'Dragonfruit Sorbet' },\n{ value: '5', label: 'Elderberry Jam' },\n{ value: '6', label: 'Fig Newton' },\n{ value: '7', label: 'Grape Soda' },\n{ value: '8', label: 'Honeydew Smoothie' },\n{ value: '9', label: 'Ice Cream Sandwich' },\n{ value: '10', label: 'Jackfruit Pudding' },\n]}\nname=\"Example name\"\nplaceholder=\"Search\"\nvalue={searchText}\nonChange={setSearchText}\nonSelect={handleItemSelect}\n/>\n);\n}",
+        },
         css: "[data-bspk='search-bar'] {\n    display: flex;\n    width: 100%;\n    min-width: 300px;\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -457,7 +561,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'SegmentedControl',
         slug: 'segmented-control',
         dependencies: ['Tooltip'],
-        modified: '2025-06-02T20:49:15.480Z',
+        modified: '2025-06-05T15:01:35.197Z',
+        usage: {
+            code: "import { useState } from 'react';\nimport { SegmentedControl } from '@bspk/ui/SegmentedControl';\n\nexport function Example() {\nconst [selectedOption, setSelectedOption] = useState<string>();\n\nreturn (\n<SegmentedControl\nonChange={setSelectedOption}\noptions={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n]}\nvalue={selectedOption}\n/>\n);\n}",
+        },
         css: "[data-bspk='segmented-control'] {\n    display: flex;\n    flex-direction: row;\n    max-width: 100%;\n\n    --outer-height: var(--spacing-sizing-10);\n    --inner-height: var(--spacing-sizing-08);\n    --svg-width: 20px;\n\n    &[data-width='fill'] {\n        align-items: stretch;\n        width: 100%;\n\n        --btn-flex-grow: 1;\n\n        margin: 0 var(--spacing-sizing-04);\n    }\n\n    &[data-width='hug'] {\n        width: fit-content;\n\n        --btn-flex-grow: 0;\n    }\n\n    &[data-size='small'] {\n        --outer-height: var(--spacing-sizing-08);\n        --inner-height: var(--spacing-sizing-06);\n        --svg-width: 16px;\n    }\n\n    svg {\n        width: var(--svg-width) !important;\n    }\n\n    button {\n        border: 0;\n        cursor: pointer;\n        color: var(--foreground-neutral-on-surface);\n        flex-grow: var(--btn-flex-grow);\n        font: var(--labels-small);\n        margin: 0;\n        height: var(--spacing-sizing-12);\n        background: transparent;\n        position: relative;\n        white-space: nowrap;\n\n        [data-focus-ring] {\n            display: none;\n        }\n\n        [data-outer] {\n            height: var(--outer-height);\n            background: var(--surface-neutral-t3-low);\n            margin: var(--spacing-sizing-01) 0;\n            padding: var(--spacing-sizing-01) 0;\n            display: block;\n        }\n\n        [data-inner] {\n            display: flex;\n            flex-direction: row;\n            align-items: center;\n            height: var(--inner-height);\n            border-bottom: 1px solid transparent;\n            justify-content: center;\n            gap: var(--spacing-sizing-01);\n            border-radius: var(--radius-small);\n            padding: var(--spacing-sizing-02) var(--spacing-sizing-03);\n        }\n\n        &:first-of-type {\n            [data-outer] {\n                border-top-left-radius: var(--radius-medium);\n                border-bottom-left-radius: var(--radius-medium);\n                padding-left: var(--spacing-sizing-01);\n            }\n        }\n\n        &:last-of-type {\n            [data-outer] {\n                border-top-right-radius: var(--radius-medium);\n                border-bottom-right-radius: var(--radius-medium);\n                padding-right: var(--spacing-sizing-01);\n            }\n        }\n\n        &:not(:disabled) {\n            &:hover {\n                [data-inner] {\n                    background: var(--interactions-neutral-hover-opacity);\n                }\n            }\n\n            &:active {\n                [data-inner] {\n                    background: var(--interactions-neutral-press-opacity);\n                }\n            }\n\n            &[data-selected] {\n                [data-inner] {\n                    background: var(--surface-neutral-t1-base);\n                }\n            }\n\n            &:focus-visible {\n                z-index: 2;\n                outline: solid 2px var(--stroke-neutral-focus);\n            }\n        }\n\n        &:disabled {\n            pointer-events: none;\n            color: var(--foreground-neutral-disabled-on-surface);\n            cursor: not-allowed;\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -468,9 +575,9 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Skeleton',
         slug: 'skeleton',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.480Z',
+        modified: '2025-06-05T15:01:35.197Z',
         usage: {
-            code: 'function Example() {\nreturn item ? (\n<img\nstyle={{\nwidth: 210,\nheight: 118,\n}}\nalt={item.title}\nsrc={item.src}\n/>\n) : (\n<Skeleton variant="photo" width={210} height={118} />\n);\n}',
+            code: 'import { Skeleton } from \'@bspk/ui/skeleton\';\n\nfunction Example(item: { title: string; src: string } | null) {\nreturn item ? (\n<img\nstyle={{\nwidth: 210,\nheight: 118,\n}}\nalt={item.title}\nsrc={item.src}\n/>\n) : (\n<Skeleton variant="photo" width={210} height={118} />\n);\n}',
             description: 'This example shows a skeleton loading state for an image but can be used for any element.',
         },
         css: "[data-bspk='skeleton'] {\n    /*! \n    --text-margin: is set via inline style\n    --text-height: is set via inline style\n    --height: is set via inline style\n    --width: is set via inline style\n    */\n\n    display: flex;\n    flex-direction: column;\n    gap: var(--text-margin);\n    animation: skeleton-pulse 1.5s infinite;\n    background: var(--foreground-neutral-skeleton-element);\n\n    @keyframes skeleton-pulse {\n        0% {\n            opacity: 0.8;\n        }\n\n        50% {\n            opacity: 0.4;\n        }\n\n        100% {\n            opacity: 0.8;\n        }\n    }\n\n    &[data-variant='rectangular'],\n    &[data-variant='photo'] {\n        min-width: var(--spacing-sizing-08);\n        min-height: var(--spacing-sizing-08);\n        height: var(--height, var(--width));\n        width: var(--width, var(--height));\n        border-radius: var(--radius-small);\n    }\n\n    &[data-variant='photo'] {\n        border-radius: var(--radius-medium);\n    }\n\n    &[data-variant='circular'] {\n        border-radius: 100%;\n        width: var(--width);\n        aspect-ratio: 1/1;\n    }\n\n    &[data-variant='profile'] {\n        border-radius: 100%;\n        width: var(--spacing-sizing-10);\n        aspect-ratio: 1/1;\n    }\n\n    &[data-variant='thumbnail'] {\n        width: var(--spacing-sizing-12);\n        height: var(--spacing-sizing-12);\n        border-radius: var(--radius-small);\n    }\n\n    &[data-variant='text'] {\n        background: transparent;\n        min-height: unset;\n        max-height: unset;\n        width: 100%;\n        height: fit-content;\n\n        [data-line] {\n            width: 100%;\n            background: var(--foreground-neutral-skeleton-element);\n            border-radius: var(--radius-small);\n            height: var(--text-height);\n        }\n\n        // if there are 2 lines or more, make the last line 80% width\n        &:has([data-line]:nth-child(2)) {\n            [data-line]:last-child {\n                width: 80%;\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
@@ -482,7 +589,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderAnywhere',
         slug: 'styles-provider-anywhere',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.480Z',
+        modified: '2025-06-05T15:01:35.197Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -492,7 +599,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderBetterHomesGardens',
         slug: 'styles-provider-better-homes-gardens',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.480Z',
+        modified: '2025-06-05T15:01:35.197Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -502,7 +609,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderCartus',
         slug: 'styles-provider-cartus',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.480Z',
+        modified: '2025-06-05T15:01:35.197Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -512,7 +619,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderCentury21',
         slug: 'styles-provider-century21',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.481Z',
+        modified: '2025-06-05T15:01:35.197Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -522,7 +629,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderColdwellBanker',
         slug: 'styles-provider-coldwell-banker',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.480Z',
+        modified: '2025-06-05T15:01:35.197Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -532,7 +639,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderCorcoran',
         slug: 'styles-provider-corcoran',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.481Z',
+        modified: '2025-06-05T15:01:35.197Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -542,7 +649,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderDenaliBoss',
         slug: 'styles-provider-denali-boss',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.480Z',
+        modified: '2025-06-05T15:01:35.197Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -552,7 +659,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderEra',
         slug: 'styles-provider-era',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.481Z',
+        modified: '2025-06-05T15:01:35.197Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -562,40 +669,32 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderSothebys',
         slug: 'styles-provider-sothebys',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.481Z',
+        modified: '2025-06-05T15:01:35.197Z',
         css: '',
         hasTouchTarget: false,
     },
     {
         description:
-            'A control element that allows users to toggle between two states, typically representing on/off and inherits immediate reaction in each state. This is the base element and if used directly you must wrap it with a label. This will more often be used in the SwitchOption or SwitchGroup component.',
+            'A control element that allows users to toggle between two states, typically representing on/off and inherits immediate reaction in each state. This is the base element and if used directly you must wrap it with a label. This will more often be used in the SwitchOption component.',
         file: '/Switch.tsx',
         name: 'Switch',
         slug: 'switch',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.481Z',
+        modified: '2025-06-05T15:01:35.197Z',
+        usage: {
+            code: 'import { useState } from \'react\';\nimport { Switch } from \'@bspk/ui/Switch\';\n\nexport function Example() {\nconst [isChecked, setIsChecked] = useState<boolean>(false);\n\nreturn (\n<Switch\naria-label="Example aria-label"\nname="Example name"\nonChange={setIsChecked}\nchecked={isChecked}\n/>\n);\n}',
+        },
         css: "[data-bspk='switch'] {\n    --track-width: var(--spacing-sizing-09);\n    --toggle-width: var(--spacing-sizing-04);\n    --track-bg: var(--surface-neutral-t4-high);\n    --toggle-bg: var(--foreground-neutral-on-color);\n\n    display: block;\n    margin: 2px;\n\n    input[type='checkbox'] {\n        position: absolute;\n        opacity: 0;\n        width: 100%;\n        height: 100%;\n        top: 0;\n        left: 0;\n        z-index: 2;\n        cursor: pointer;\n    }\n\n    box-sizing: border-box;\n    width: var(--track-width);\n    height: var(--spacing-sizing-05);\n    border-radius: var(--spacing-sizing-05);\n    background-color: var(--track-bg);\n    position: relative;\n    z-index: 1;\n\n    span {\n        display: block;\n        width: var(--toggle-width);\n        height: var(--toggle-width);\n        border-radius: var(--radius-circular);\n        background-color: var(--toggle-bg);\n        transition: left 0.2s;\n        box-shadow: var(--drop-shadow-raise);\n        left: 2px;\n        top: 2px;\n        position: absolute;\n    }\n\n    &:has(input[type='checkbox']:checked) {\n        --track-bg: var(--foreground-brand-primary);\n\n        span {\n            left: calc(var(--track-width) - var(--toggle-width) - 2px);\n        }\n    }\n\n    &:has(input[type='checkbox']:disabled) {\n        input[type='checkbox'] {\n            pointer-events: none;\n        }\n\n        --track-bg: var(--interactions-disabled-opacity);\n        --toggle-bg: var(--foreground-neutral-disabled-on-surface);\n\n        &:has(input[type='checkbox']:checked) span {\n            --toggle-bg: var(--foreground-neutral-disabled-on-color-surface);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
     {
         description:
-            'A group of switches that allows users to choose one or more items from a list or turn an feature on or off.',
-        file: '/SwitchGroup.tsx',
-        name: 'SwitchGroup',
-        slug: 'switch-group',
-        dependencies: ['Switch', 'ToggleOption'],
-        modified: '2025-06-02T20:49:15.481Z',
-        css: '',
-        hasTouchTarget: false,
-    },
-    {
-        description:
-            'A control that allows users to choose one or more items from a list or turn an feature on or off.',
+            'A control that allows users to choose one or more items from a list or turn an feature on or off.\n\nIf only a switch is needed, consider using the `Switch` component directly.',
         file: '/SwitchOption.tsx',
         name: 'SwitchOption',
         slug: 'switch-option',
         dependencies: ['Switch', 'ToggleOption'],
-        modified: '2025-06-02T20:49:15.481Z',
+        modified: '2025-06-05T15:01:35.197Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -605,7 +704,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TabGroup',
         slug: 'tab-group',
         dependencies: ['Badge'],
-        modified: '2025-06-02T20:49:15.481Z',
+        modified: '2025-06-05T15:01:35.198Z',
+        usage: {
+            code: "import { useState } from 'react';\nimport { TabGroup } from '@bspk/ui/TabGroup';\n\nexport function Example() {\nconst [selectedTab, setSelectedTab] = useState<string>();\n\nreturn (\n<TabGroup\nonChange={setSelectedTab}\noptions={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n]}\nvalue={selectedTab}\n/>\n);\n}",
+        },
         css: "[data-bspk='tab-group'] {\n    display: flex;\n    flex-direction: row;\n\n    --btn-flex-grow: 0;\n\n    border-bottom: 1px solid var(--stroke-neutral-low);\n    width: 100%;\n\n    &[data-width='fill'] {\n        align-items: stretch;\n        width: 100%;\n\n        --btn-flex-grow: 1;\n    }\n\n    --font: var(--labels-base);\n    --height: var(--spacing-sizing-10);\n\n    &[data-size='small'] {\n        --font: var(--labels-small);\n        --height: var(--spacing-sizing-08);\n    }\n\n    &[data-size='large'] {\n        --font: var(--labels-large);\n        --height: var(--spacing-sizing-12);\n    }\n\n    button {\n        border: 0;\n        cursor: pointer;\n        color: var(--foreground-neutral-on-surface-variant-02);\n        background: none;\n        flex-grow: var(--btn-flex-grow);\n        font: var(--font);\n        white-space: nowrap;\n\n        &:hover {\n            background: var(--interactions-neutral-hover-opacity);\n        }\n\n        &:active {\n            background: var(--interactions-neutral-press-opacity);\n        }\n\n        &:disabled {\n            pointer-events: none;\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n\n        &:focus-visible {\n            outline: solid 2px var(--stroke-neutral-focus);\n        }\n\n        span {\n            display: flex;\n            flex-direction: row;\n            align-items: center;\n            margin: 0 var(--spacing-sizing-04);\n            height: var(--height);\n            justify-content: center;\n            position: relative;\n            gap: var(--spacing-sizing-02);\n\n            svg {\n                width: var(--spacing-sizing-05);\n            }\n        }\n\n        &[data-active] {\n            color: var(--foreground-brand-primary);\n\n            span {\n                &::after {\n                    content: '';\n                    display: block;\n                    width: 100%;\n                    height: 2px;\n                    background-color: var(--stroke-brand-primary);\n                    bottom: -1px;\n                    position: absolute;\n                    border-top-right-radius: 2px;\n                    border-top-left-radius: 2px;\n                }\n\n                svg {\n                    color: var(--surface-brand-primary);\n                }\n            }\n        }\n    }\n\n    &[data-hide-trail] {\n        border-bottom: none;\n\n        button {\n            border-bottom: 1px solid var(--stroke-neutral-low);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -615,7 +717,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Table',
         slug: 'table',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.481Z',
+        modified: '2025-06-05T15:01:35.198Z',
         css: "[data-bspk='table'] {\n    width: 100%;\n    border-collapse: separate;\n    text-align: left;\n    border-spacing: 2rem 0.125rem;\n    display: grid;\n    color: var(--foreground-neutral-on-surface);\n    font: var(--labels-base);\n    border-radius: var(--radius-medium);\n    border: 1px solid var(--stroke-neutral-low);\n\n    [data-cell] {\n        display: flex;\n        flex-direction: column;\n        gap: var(--spacing-sizing-02);\n        padding: var(--spacing-sizing-04);\n        background-color: var(--surface-neutral-t1-base);\n        border-bottom: var(--stroke-neutral-low) solid 1px;\n        font: var(--labels-small);\n\n        p {\n            margin: 0;\n            padding: 0;\n            font: var(--body-small);\n        }\n    }\n\n    [data-head] {\n        display: flex;\n        align-items: center;\n        flex-direction: row;\n        border-bottom: 1px solid var(--stroke-neutral-base);\n        background: var(--surface-neutral-t2-lowest);\n        height: var(--spacing-sizing-10);\n        padding: 0 var(--spacing-sizing-03);\n        font: var(--labels-base);\n\n        &[data-head='first'] {\n            border-top-left-radius: var(--radius-medium);\n        }\n\n        &[data-head='last'] {\n            border-top-right-radius: var(--radius-medium);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -625,7 +727,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Tag',
         slug: 'tag',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.482Z',
+        modified: '2025-06-05T15:01:35.198Z',
+        usage: {
+            code: 'import { Tag } from \'@bspk/ui/Tag\';\n\nexport function Example() {\nreturn (\n<Tag variant="flat" color="primary">\nExample Tag\n</Tag>\n);\n}',
+        },
         css: "[data-bspk='tag'] {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    width: fit-content;\n    position: relative;\n    padding: 0 var(--spacing-sizing-03);\n    border-radius: var(--radius-small);\n    color: var(--foreground) !important;\n    background: var(--background);\n    font: unset;\n    text-decoration: unset;\n    white-space: nowrap;\n    pointer-events: none;\n\n    &[data-wrap] {\n        height: auto;\n    }\n\n    &[data-variant='pill'] {\n        border-radius: var(--radius-circular);\n    }\n\n    &[data-variant='corner-wrap'] {\n        border-bottom-right-radius: 0;\n    }\n\n    &[data-size='small'] {\n        font: var(--labels-small);\n        height: var(--spacing-sizing-08);\n    }\n\n    &[data-size='x-small'] {\n        font: var(--labels-x-small);\n        height: var(--spacing-sizing-06);\n    }\n\n    &[data-color='white'] {\n        box-shadow: var(--drop-shadow-south);\n    }\n\n    [data-triangle] {\n        position: absolute;\n        bottom: -12px;\n        right: 0;\n        width: 0;\n        height: 0;\n        border-style: solid;\n        border-width: 12px 12px 0 0;\n        border-color: var(--foreground) transparent transparent transparent;\n        transform: rotate(0deg);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -636,8 +741,11 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Textarea',
         slug: 'textarea',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.482Z',
-        css: "[data-bspk='textarea'] {\n    /*! \n    --min-rows: is set via inline style \n    --max-rows: is set via inline style\n    */\n\n    display: grid;\n    width: 100%;\n\n    // &[data-size='medium']\n    --font: var(--body-base);\n    --line-height: 20px;\n    --padding: var(--spacing-sizing-03);\n\n    &[data-size='small'] {\n        --font: var(--body-small);\n        --line-height: 20px;\n        --padding: var(--spacing-sizing-02);\n    }\n\n    &[data-size='large'] {\n        --font: var(--body-large);\n        --line-height: 24px;\n        --padding: var(--spacing-sizing-03);\n    }\n\n    [data-replicated-value] {\n        white-space: pre-wrap;\n        visibility: hidden;\n    }\n\n    textarea,\n    [data-replicated-value] {\n        width: 100%;\n        font: var(--font);\n        border: 1px solid var(--border-color);\n        padding: var(--padding);\n        grid-area: 1 / 1 / 2 / 2;\n        min-height: calc((var(--line-height) * var(--min-rows)) + (var(--padding) * 2));\n        max-height: calc((var(--line-height) * var(--max-rows)) + (var(--padding) * 2));\n    }\n\n    textarea {\n        --border-color: var(--stroke-neutral-base);\n\n        &::placeholder {\n            color: var(--foreground-neutral-on-surface-variant-03);\n        }\n\n        resize: none;\n        color: var(--foreground-neutral-on-surface);\n        background-color: var(--surface-neutral-t1-base);\n        border-radius: var(--radius-small);\n\n        &:focus-within {\n            --border-color: var(--stroke-neutral-focus);\n\n            outline: none;\n            color: var(--foreground-neutral-on-surface);\n        }\n\n        &:disabled {\n            pointer-events: none;\n            background: \n    // multiple colors\n\n                linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n\n        &:read-only {\n            background: \n    // multiple colors\n\n                linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n            cursor: not-allowed;\n        }\n\n        &[aria-invalid] {\n            --border-color: var(--status-error);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+        modified: '2025-06-05T15:01:35.198Z',
+        usage: {
+            code: "import { useState } from 'react';\nimport { Textarea } from '@bspk/ui/Textarea';\n\nexport function Example() {\nconst [value, setValue] = useState<string>('');\n\nreturn (\n<Textarea\naria-label=\"Example aria-label\"\nname=\"Example name\"\nonChange={setValue}\nvalue={value}\n/>\n);\n}",
+        },
+        css: "[data-bspk='textarea'] {\n    /*! \n    --min-rows: is set via inline style \n    --max-rows: is set via inline style\n    */\n\n    display: grid;\n    width: 100%;\n\n    // &[data-size='medium']\n    --font: var(--body-base);\n    --line-height: 20px;\n    --padding: var(--spacing-sizing-03);\n\n    &[data-size='small'] {\n        --font: var(--body-small);\n        --line-height: 20px;\n        --padding: var(--spacing-sizing-02);\n    }\n\n    &[data-size='large'] {\n        --font: var(--body-large);\n        --line-height: 24px;\n        --padding: var(--spacing-sizing-03);\n    }\n\n    [data-replicated-value] {\n        white-space: pre-wrap;\n        visibility: hidden;\n        overflow-y: hidden;\n    }\n\n    textarea,\n    [data-replicated-value] {\n        width: 100%;\n        font: var(--font);\n        border: 1px solid var(--border-color);\n        padding: var(--padding);\n        grid-area: 1 / 1 / 2 / 2;\n        min-height: calc((var(--line-height) * var(--min-rows)) + (var(--padding) * 2));\n        max-height: calc((var(--line-height) * var(--max-rows)) + (var(--padding) * 2));\n        max-width: 100%;\n    }\n\n    textarea {\n        --border-color: var(--stroke-neutral-base);\n\n        text-wrap: break-word;\n\n        &::placeholder {\n            color: var(--foreground-neutral-on-surface-variant-03);\n        }\n\n        resize: none;\n        color: var(--foreground-neutral-on-surface);\n        background-color: var(--surface-neutral-t1-base);\n        border-radius: var(--radius-small);\n\n        &:focus-within {\n            --border-color: var(--stroke-neutral-focus);\n\n            outline: none;\n            color: var(--foreground-neutral-on-surface);\n        }\n\n        &:disabled {\n            pointer-events: none;\n            background: \n    // multiple colors\n\n                linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n\n        &:read-only {\n            background: \n    // multiple colors\n\n                linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n            cursor: not-allowed;\n        }\n\n        &[aria-invalid] {\n            --border-color: var(--status-error);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
     {
@@ -647,7 +755,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TextareaField',
         slug: 'textarea-field',
         dependencies: ['FormField', 'Textarea', 'Txt'],
-        modified: '2025-06-02T20:49:15.482Z',
+        modified: '2025-06-05T15:01:35.198Z',
+        usage: {
+            code: 'import { useState } from \'react\';\nimport { TextareaField } from \'@bspk/ui/TextareaField\';\n\nexport function Example() {\nconst [value, setValue] = useState<string>();\n\nreturn (\n<TextareaField\naria-label="Example aria-label"\ncontrolId="Example controlId"\nlabel="Example label"\nname="Example name"\nonChange={setValue}\nvalue={value}\n/>\n);\n}',
+        },
         css: '',
         hasTouchTarget: false,
     },
@@ -658,7 +769,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TextField',
         slug: 'text-field',
         dependencies: ['FormField', 'TextInput'],
-        modified: '2025-06-02T20:49:15.482Z',
+        modified: '2025-06-05T15:01:35.198Z',
+        usage: {
+            code: 'import { useState } from \'react\';\nimport { TextField } from \'@bspk/ui/TextField\';\n\nexport function Example() {\nconst [value, setValue] = useState<string>(\'\');\n\nreturn (\n<TextField\ncontrolId="Example controlId"\nlabel="Example label"\nname="Example name"\nonChange={setValue}\nvalue={value}\n/>\n);\n}',
+        },
         css: '',
         hasTouchTarget: false,
     },
@@ -669,7 +783,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TextInput',
         slug: 'text-input',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.482Z',
+        modified: '2025-06-05T15:01:35.199Z',
+        usage: {
+            code: "import { useState } from 'react';\nimport { TextInput } from '@bspk/ui/TextInput';\n\nexport function Example() {\nconst [value, setValue] = useState<string>('');\n\nreturn (\n<TextInput\naria-label=\"Example aria-label\"\nname=\"Example name\"\nonChange={setValue}\nvalue={value}\n/>\n);\n}",
+        },
         css: "[data-bspk='text-input'] {\n    --border-color: var(--stroke-neutral-base);\n\n    display: flex;\n    flex-flow: row nowrap;\n    background-color: var(--surface-neutral-t1-base);\n    border: solid 1px var(--border-color);\n    height: var(--field-height);\n    border-radius: var(--radius-small);\n    padding: 0 0 0 var(--field-padding);\n    gap: var(--spacing-sizing-01);\n    width: 100%;\n\n    & > * {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        height: var(--field-height);\n        font: var(--field-font);\n        color: var(--foreground-neutral-on-surface);\n        min-width: 0;\n    }\n\n    &:hover:not(:focus-within) {\n        background:\n            linear-gradient(var(--interactions-hover-opacity), var(--interactions-hover-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n    }\n\n    &:active:not(:focus-within) {\n        background:\n            linear-gradient(var(--interactions-press-opacity), var(--interactions-press-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n    }\n\n    &[data-readonly] {\n        --border-color: var(--stroke-neutral-disabled-light);\n\n        background:\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n    }\n\n    &[data-disabled] {\n        --border-color: var(--stroke-neutral-disabled-light);\n\n        background:\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n\n        & > * {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n\n    &[data-invalid] {\n        --border-color: var(--status-error);\n    }\n\n    &[data-size='small'] {\n        --field-padding: var(--spacing-sizing-02);\n        --field-height: var(--spacing-sizing-08);\n        --field-font: var(--body-small);\n        --field-icon-width: var(--spacing-sizing-04);\n        --field-clear-width: var(--spacing-sizing-05);\n    }\n\n    &[data-size='medium'] {\n        --field-padding: var(--spacing-sizing-03);\n        --field-height: var(--spacing-sizing-10);\n        --field-font: var(--body-base);\n        --field-icon-width: var(--spacing-sizing-05);\n        --field-clear-width: var(--spacing-sizing-05);\n    }\n\n    &[data-size='large'] {\n        --field-padding: var(--spacing-sizing-03);\n        --field-height: var(--spacing-sizing-12);\n        --field-font: var(--body-large);\n        --field-icon-width: var(--spacing-sizing-06);\n        --field-clear-width: var(--spacing-sizing-06);\n    }\n\n    [data-leading],\n    [data-trailing] {\n        svg {\n            width: var(--field-icon-width);\n        }\n    }\n\n    label {\n        font: var(--labels-small);\n        color: var(--foreground-neutral-on-surface-variant-01);\n    }\n\n    input {\n        flex: 1;\n        background-color: transparent !important;\n        border: none;\n        outline: none;\n        padding: 0;\n        pointer-events: all;\n        text-overflow: ellipsis;\n\n        &[type='number']::-webkit-inner-spin-button,\n        &[type='number']::-webkit-outer-spin-button {\n            display: none;\n        }\n    }\n\n    button[data-clear] {\n        display: flex;\n        border: none;\n        background: none;\n        padding: 0;\n        cursor: pointer;\n        pointer-events: all;\n        margin-left: var(--spacing-sizing-02);\n        padding-right: var(--field-padding);\n\n        svg {\n            pointer-events: none;\n            width: var(--field-clear-width);\n        }\n    }\n\n    &:not(:focus-within),\n    &[data-empty],\n    &[data-readonly],\n    &[data-disabled] {\n        padding-right: var(--field-padding);\n\n        button[data-clear] {\n            display: none;\n        }\n    }\n\n    &:focus-within {\n        --border-color: var(--stroke-brand-primary);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -679,8 +796,8 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ToggleOption',
         slug: 'toggle-option',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.482Z',
-        css: "[data-bspk='toggle-option'] {\n    display: flex;\n    width: 100%;\n    box-sizing: border-box;\n    flex-direction: row;\n    padding: 0 var(--spacing-sizing-01) 0 0;\n    gap: var(--spacing-sizing-02);\n    user-select: none;\n    background: unset;\n    border: unset;\n    cursor: pointer;\n    min-height: var(--spacing-sizing-08);\n    align-items: center;\n\n    &:has([data-description]) {\n        align-items: unset;\n    }\n\n    @media (any-pointer: coarse) {\n        min-height: var(--spacing-sizing-12);\n    }\n\n    [data-content] {\n        display: flex;\n        flex-direction: column;\n        padding: 2px 0;\n    }\n\n    [data-label] {\n        color: var(--foreground-neutral-on-surface);\n        font: var(--labels-base);\n    }\n\n    [data-description] {\n        font: var(--body-small);\n        color: var(--foreground-neutral-on-surface-variant-01);\n    }\n\n    &[data-size='small'] {\n        [data-label] {\n            font: var(--labels-small);\n        }\n\n        [data-description] {\n            font: var(--body-x-small);\n        }\n    }\n\n    &[data-size='large'] {\n        [data-label] {\n            font: var(--labels-large);\n        }\n\n        [data-description] {\n            font: var(--body-base);\n        }\n    }\n\n    &:not(:has(:disabled)) {\n        [data-pseudo='focus'] &,\n        &:focus-visible,\n        &:has(*:focus-visible) {\n            outline: var(--stroke-neutral-focus) 2px solid;\n        }\n    }\n\n    &:has(:disabled) {\n        [data-label] {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n\n        [data-description] {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+        modified: '2025-06-05T15:01:35.199Z',
+        css: "[data-bspk='toggle-option'] {\n    display: flex;\n    width: 100%;\n    box-sizing: border-box;\n    flex-direction: row;\n    padding: 0 var(--spacing-sizing-01) 0 0;\n    gap: var(--spacing-sizing-02);\n    user-select: none;\n    background: unset;\n    border: unset;\n    cursor: pointer;\n    min-height: var(--spacing-sizing-08);\n    align-items: center;\n\n    &:has([data-description]) {\n        align-items: unset;\n    }\n\n    // this media query targets touch devices\n    @media (any-pointer: coarse) {\n        min-height: var(--spacing-sizing-12);\n    }\n\n    [data-content] {\n        display: flex;\n        flex-direction: column;\n        padding: 2px 0;\n    }\n\n    [data-label] {\n        color: var(--foreground-neutral-on-surface);\n        font: var(--labels-base);\n    }\n\n    [data-description] {\n        font: var(--body-small);\n        color: var(--foreground-neutral-on-surface-variant-01);\n    }\n\n    &:not(:has(:disabled)) {\n        [data-pseudo='focus'] &,\n        &:focus-visible,\n        &:has(*:focus-visible) {\n            outline: var(--stroke-neutral-focus) 2px solid;\n        }\n    }\n\n    &:has(:disabled) {\n        [data-label] {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n\n        [data-description] {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
     {
@@ -689,7 +806,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Tooltip',
         slug: 'tooltip',
         dependencies: ['Portal'],
-        modified: '2025-06-02T20:49:15.482Z',
+        modified: '2025-06-05T15:01:35.199Z',
+        usage: {
+            code: 'import { Tooltip } from \'@bspk/ui/Tooltip\';\nimport { Button } from \'@bspk/ui/Button\';\n\nexport function Example() {\nreturn (\n<Tooltip label="I explain what this button does" placement="top">\n<Button>Click me</Button>\n</Tooltip>\n);\n}',
+        },
         css: "[data-bspk='tooltip'] {\n    position: fixed;\n    pointer-events: none;\n    z-index: var(--z-index-tooltip-popover);\n\n    [data-text] {\n        display: block;\n        z-index: 2;\n        position: relative;\n        background-color: var(--surface-neutral-inverse);\n        border-radius: var(--radius-small);\n        color: var(--foreground-neutral-on-inverse-surface);\n        box-shadow: var(--drop-shadow-float);\n        font: var(--labels-small);\n        padding: var(--spacing-sizing-01) var(--spacing-sizing-02);\n        border: none;\n        transition: opacity 0.2s ease-in-out;\n        width: max-content;\n    }\n\n    --arrow-size: var(--spacing-sizing-01);\n    --arrow-offset: calc(var(--arrow-size) * -2);\n\n    [data-arrow] {\n        display: block;\n        z-index: 1;\n        position: absolute;\n        width: 0;\n        height: 0;\n        border-style: solid;\n        border-width: var(--arrow-size) var(--arrow-size) var(--arrow-size) var(--arrow-size);\n        border-color: transparent;\n    }\n\n    &[data-placement^='bottom'] {\n        [data-arrow] {\n            top: var(--arrow-offset);\n            border-bottom-color: var(--surface-neutral-inverse);\n        }\n    }\n\n    &[data-placement^='top'] {\n        [data-arrow] {\n            border-top-color: var(--surface-neutral-inverse);\n        }\n    }\n\n    &[data-placement^='right'] {\n        [data-arrow] {\n            margin-left: var(--arrow-offset);\n            border-right-color: var(--surface-neutral-inverse);\n        }\n    }\n\n    &[data-placement^='left'] {\n        [data-arrow] {\n            right: var(--arrow-offset);\n            border-left-color: var(--surface-neutral-inverse);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -699,7 +819,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TopNavigation',
         slug: 'top-navigation',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.482Z',
+        modified: '2025-06-05T15:01:35.199Z',
         css: "[data-bspk='top-navigation'] {\n    display: flex;\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -709,7 +829,10 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Txt',
         slug: 'txt',
         dependencies: [],
-        modified: '2025-06-02T20:49:15.482Z',
+        modified: '2025-06-05T15:01:35.199Z',
+        usage: {
+            code: "import { Txt } from '@bspk/ui/Txt';\n\nexport function Example() {\nreturn <Txt>Example Txt</Txt>;\n}",
+        },
         css: '',
         hasTouchTarget: false,
     },
@@ -759,13 +882,6 @@ export const utilitiesMeta: UtilityMeta[] = [
             "import { Radio } from '@bspk/ui/Radio';\nimport { useRadioState } from '@bspk/ui/hooks/useRadioState';\n\nexport function Example() {\nconst { radioProps } = useRadioState('fruits');\nreturn <Radio aria-label=\"cherry\" {...radioProps('cherry')} />;\n}",
         file: '/hooks/useRadioState.ts',
         name: 'useRadioState',
-    },
-    {
-        description: 'A hook to manage the state of a group of switches. Used alongside the SwitchGroup component.',
-        example:
-            "import { Switch } from '@bspk/ui/Switch';\nimport { useSwitchGroupState } from '@bspk/ui/hooks/useSwitchGroupState';\n\nexport function Example() {\nconst allValues = ['Red', 'Orange', 'Yellow', 'Green'];\n\nconst { allSwitchProps, switchProps, values } = useSwitchGroupState(allValues, 'fruits');\n\nreturn (\n<>\n<pre>Selected Values: {values.join(', ')}</pre>\n<Switch aria-label=\"All\" {...allSwitchProps} />\n{allValues.map((value) => (\n<Switch key={value} aria-label={value} {...switchProps(value)} />\n))}\n</>\n);\n}",
-        file: '/hooks/useSwitchGroupState.ts',
-        name: 'useSwitchGroupState',
     },
     {
         description: 'A hook that creates a timeout that is automatically cleared when the component is unmounted.',
@@ -975,10 +1091,8 @@ export const typesMeta: TypeMeta[] = [
             {
                 name: 'icon',
                 required: false,
-                description:
-                    'The icon to display in the avatar. This needs to be an icon from the @bspk/icons library.',
+                description: 'The icon to display in the avatar. This needs to be an icon from the',
                 type: 'BspkIcon',
-                example: '<SvgPerson />',
             },
             {
                 name: 'image',
@@ -1004,8 +1118,11 @@ export const typesMeta: TypeMeta[] = [
                 name: 'count',
                 required: false,
                 description:
-                    "The content of the badge. If larger than 99, the badge will display '99+'. If null or undefined, the badge will\nbe hidden.",
+                    "The content of the badge. If larger than 99, the badge will display '99+'. If null or undefined, the badge will be hidden.",
+                default: 1,
                 type: 'number',
+                minimum: 1,
+                example: '5',
             },
             {
                 name: 'size',
@@ -1022,6 +1139,13 @@ export const typesMeta: TypeMeta[] = [
                 default: 'primary',
                 type: ['primary', 'secondary'],
                 options: ['primary', 'secondary'],
+            },
+            {
+                name: 'surfaceBorder',
+                required: false,
+                description: 'Whether the badge should have a border that matches the surface color.',
+                default: false,
+                type: 'boolean',
             },
         ],
         id: 'badge-props',
@@ -1223,14 +1347,14 @@ export const typesMeta: TypeMeta[] = [
             {
                 name: 'label',
                 required: true,
-                description: 'The label of the field. Also used as the aria-label of the checkbox.',
+                description: 'The label of the option. Also used as the aria-label of the checkbox.',
                 type: 'string',
             },
             {
                 name: 'description',
                 required: false,
-                description: 'The description of the field.',
-                type: 'string',
+                description: 'The description of the option.',
+                type: 'multiline',
             },
             {
                 name: 'value',
@@ -1268,6 +1392,8 @@ export const typesMeta: TypeMeta[] = [
                 required: true,
                 description: 'The options for the checkboxes.',
                 type: 'Array<CheckboxGroupOption>',
+                example:
+                    "[\n{ label: 'Option 1', value: 'option1' },\n{ label: 'Option 2', value: 'option2' },\n{ label: 'Option 3', value: 'option3' },\n]",
             },
             {
                 name: 'values',
@@ -1349,14 +1475,14 @@ export const typesMeta: TypeMeta[] = [
             {
                 name: 'label',
                 required: true,
-                description: 'The label of the field. Also used as the aria-label of the checkbox.',
+                description: 'The label of the option. Also used as the aria-label of the checkbox.',
                 type: 'string',
             },
             {
                 name: 'description',
                 required: false,
-                description: 'The description of the field.',
-                type: 'string',
+                description: 'The description of the option.',
+                type: 'multiline',
             },
             {
                 name: 'onChange',
@@ -1416,7 +1542,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'indeterminate',
                 required: false,
                 description:
-                    'If the checkbox is partially checked or\n[indeterminate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes).',
+                    'If the checkbox is partially checked or [indeterminate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes).',
                 default: false,
                 type: 'boolean',
             },
@@ -1617,25 +1743,6 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'common-props-name',
-    },
-    {
-        name: 'CommonProps<"name"|"aria-label">',
-        properties: [
-            {
-                name: 'name',
-                required: true,
-                description:
-                    'The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.',
-                type: 'string',
-            },
-            {
-                name: 'aria-label',
-                required: true,
-                description: 'The aria-label for the element.',
-                type: 'string',
-            },
-        ],
-        id: 'common-props-name-aria-label',
     },
     {
         name: 'CommonProps<"name"|"disabled"|"aria-label">',
@@ -2099,7 +2206,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'inset',
                 required: false,
                 description:
-                    'The inset (margin) of the divider. The value is a number between 0 and 12, which corresponds to the spacing\nsizing variables defined in the theme. The inset is applied to the left and right sides of the divider when the\norientation is horizontal, and to the top and bottom when the orientation is vertical.',
+                    'The inset (margin) of the divider. The value is a number between 0 and 12, which corresponds to the spacing sizing variables defined in the theme. The inset is applied to the left and right sides of the divider when the orientation is horizontal, and to the top and bottom when the orientation is vertical.',
                 default: 0,
                 type: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
                 options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
@@ -2552,7 +2659,8 @@ export const typesMeta: TypeMeta[] = [
             {
                 name: 'errorMessage',
                 required: false,
-                description: 'Marks the element as invalid and displays error message.',
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
                 type: 'string',
             },
             {
@@ -2571,7 +2679,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'children',
                 required: true,
                 description:
-                    'The children of the form field. This should be a control such as TextInput, Dropdown, DatePicker, or\nTimePicker.',
+                    'The children of the form field. This should be a control such as TextInput, Dropdown, DatePicker, or TimePicker.',
                 type: '(childProps: FieldControlProps) => JSX.Element',
             },
             {
@@ -2753,7 +2861,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'variant',
                 required: false,
                 description:
-                    'Change the color of the link to a subtle color. This is useful for links that are not primary actions, for\nexample footer menus.',
+                    'Change the color of the link to a subtle color. This is useful for links that are not primary actions, for example footer menus.',
                 default: 'default',
                 type: ['default', 'subtle', 'subtle-inverse'],
                 options: ['default', 'subtle', 'subtle-inverse'],
@@ -2817,7 +2925,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'trailing',
                 required: false,
                 description:
-                    'The trailing element to display in the ListItem.\n\nTrailing elements may only be one of the following [Icon](/icons), Checkbox, ListItemButton, Radio, Switch, Tag,\nTxt.',
+                    'The trailing element to display in the ListItem.\n\nTrailing elements may only be one of the following [Icon](/icons), Checkbox, ListItemButton, Radio, Switch, Tag, Txt.',
                 type: 'ReactNode',
             },
         ],
@@ -2951,7 +3059,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'selectAll',
                 required: false,
                 description:
-                    'The label for the "Select All" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to "Select All". If a string, it will be used as the label. If false the select\nall option will not be rendered.',
+                    'The label for the "Select All" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to "Select All". If a string, it will be used as the label. If false the select all option will not be rendered.',
                 default: false,
                 type: 'string,boolean',
             },
@@ -3272,7 +3380,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'max',
                 required: false,
                 description:
-                    'Defines the [maximum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/max) value that is\naccepted.',
+                    'Defines the [maximum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/max) value that is accepted.',
                 default: 99,
                 type: 'number',
                 minimum: 1,
@@ -3282,7 +3390,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'min',
                 required: false,
                 description:
-                    'Defines the [minimum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/min) value that is\naccepted.',
+                    'Defines the [minimum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/min) value that is accepted.',
                 type: 'number',
                 minimum: 0,
             },
@@ -3761,7 +3869,7 @@ export const typesMeta: TypeMeta[] = [
         id: 'pick-radio-props-name-value-disabled-checked',
     },
     {
-        name: 'Pick<TextInputProps,"name"|"id"|"size"|"aria-label"|"placeholder"|"inputRef">',
+        name: 'Pick<TextInputProps,"name"|"id"|"size"|"aria-label"|"inputRef">',
         properties: [
             {
                 name: 'name',
@@ -3791,19 +3899,13 @@ export const typesMeta: TypeMeta[] = [
                 type: 'string',
             },
             {
-                name: 'placeholder',
-                required: false,
-                description: 'The placeholder of the field.',
-                type: 'string',
-            },
-            {
                 name: 'inputRef',
                 required: false,
                 description: 'The ref of the input.',
                 type: 'object',
             },
         ],
-        id: 'pick-text-input-props-name-id-size-aria-label-placeholder-input-ref',
+        id: 'pick-text-input-props-name-id-size-aria-label-input-ref',
     },
     {
         name: 'Pick<TextInputProps,"name"|"required"|"type"|"value"|"disabled"|"size"|"onChange"|"autoComplete"|"placeholder"|"readOnly"|"leading"|"trailing"|"inputRef">',
@@ -3863,7 +3965,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'autoComplete',
                 required: false,
                 description:
-                    'Specifies if user agent has any permission to provide automated assistance in filling out form field values.\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete',
+                    'Specifies if user agent has any permission to provide automated\nassistance in filling out form field values.\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete',
                 default: 'off',
             },
             {
@@ -3907,42 +4009,17 @@ export const typesMeta: TypeMeta[] = [
             {
                 name: 'label',
                 required: true,
-                description: 'The label of the field. Also used as the aria-label of the checkbox.',
+                description: 'The label of the option. Also used as the aria-label of the checkbox.',
                 type: 'string',
             },
             {
                 name: 'description',
                 required: false,
-                description: 'The description of the field.',
-                type: 'string',
+                description: 'The description of the option.',
+                type: 'multiline',
             },
         ],
         id: 'pick-toggle-option-props-label-description',
-    },
-    {
-        name: 'Pick<ToggleOptionProps,"label"|"size"|"description">',
-        properties: [
-            {
-                name: 'label',
-                required: true,
-                description: 'The label of the field. Also used as the aria-label of the checkbox.',
-                type: 'string',
-            },
-            {
-                name: 'size',
-                required: false,
-                description: 'The size of the control option label.',
-                type: ['small', 'base', 'large'],
-                options: ['small', 'base', 'large'],
-            },
-            {
-                name: 'description',
-                required: false,
-                description: 'The description of the field.',
-                type: 'string',
-            },
-        ],
-        id: 'pick-toggle-option-props-label-size-description',
     },
     {
         name: 'PopoverProps',
@@ -4223,14 +4300,14 @@ export const typesMeta: TypeMeta[] = [
             {
                 name: 'label',
                 required: true,
-                description: 'The label of the field. Also used as the aria-label of the checkbox.',
+                description: 'The label of the option. Also used as the aria-label of the checkbox.',
                 type: 'string',
             },
             {
                 name: 'description',
                 required: false,
-                description: 'The description of the field.',
-                type: 'string',
+                description: 'The description of the option.',
+                type: 'multiline',
             },
             {
                 name: 'value',
@@ -4271,15 +4348,20 @@ export const typesMeta: TypeMeta[] = [
                 description: 'The options for the radios.',
                 type: 'Array<RadioGroupOption>',
                 example:
-                    "[\n{ value: '1', label: 'Option 1', description: 'Description here' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n]",
+                    "[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2', description: 'Description here' },\n{ value: '3', label: 'Option 3' },\n]",
             },
             {
-                name: 'size',
+                name: 'label',
+                required: true,
+                description: 'The label of the radio group.',
+                type: 'string',
+            },
+            {
+                name: 'showLabel',
                 required: false,
-                description: 'The size of the radio group labels.',
-                default: 'base',
-                type: ['small', 'base', 'large'],
-                options: ['small', 'base', 'large'],
+                description: "Shows the RadioGroup label. When label isn't showing it is used as the aria-label prop.",
+                default: true,
+                type: 'boolean',
             },
         ],
         id: 'radio-group-props',
@@ -4334,14 +4416,14 @@ export const typesMeta: TypeMeta[] = [
             {
                 name: 'label',
                 required: true,
-                description: 'The label of the field. Also used as the aria-label of the checkbox.',
+                description: 'The label of the option. Also used as the aria-label of the checkbox.',
                 type: 'string',
             },
             {
                 name: 'description',
                 required: false,
-                description: 'The description of the field.',
-                type: 'string',
+                description: 'The description of the option.',
+                type: 'multiline',
             },
             {
                 name: 'onChange',
@@ -4534,12 +4616,6 @@ export const typesMeta: TypeMeta[] = [
                 type: 'string',
             },
             {
-                name: 'placeholder',
-                required: false,
-                description: 'The placeholder of the field.',
-                type: 'string',
-            },
-            {
                 name: 'inputRef',
                 required: false,
                 description: 'The ref of the input.',
@@ -4549,6 +4625,12 @@ export const typesMeta: TypeMeta[] = [
                 name: 'value',
                 required: false,
                 description: 'The current value of the search bar.',
+                type: 'string',
+            },
+            {
+                name: 'placeholder',
+                required: true,
+                description: 'The placeholder of the field.',
                 default: 'Search',
                 type: 'string',
             },
@@ -4594,21 +4676,21 @@ export const typesMeta: TypeMeta[] = [
             {
                 name: 'label',
                 required: true,
-                description: 'The label of the option. This is the text that will be displayed on the option.',
+                description: 'The label of the option. This is the text that will be displayed on the\noption.',
                 type: 'string',
             },
             {
                 name: 'disabled',
                 required: false,
                 description:
-                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
+                    'Determines if the element is\n[disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
                 default: false,
                 type: 'boolean',
             },
             {
                 name: 'value',
                 required: false,
-                description: 'The value of the option. If not provided, the label will be used as the value.',
+                description: 'The value of the option. If not provided, the label will be used as the\nvalue.',
                 type: 'string',
             },
             {
@@ -4662,7 +4744,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'width',
                 required: false,
                 description:
-                    "The width of the options. If set to 'fill', the options will fill the width of the container. If set to 'hug',\nthe options will be as wide as their content.",
+                    "The width of the options. If set to 'fill', the options will fill the width of the container. If set to 'hug', the options will be as wide as their content.",
                 default: 'hug',
                 type: ['fill', 'hug'],
                 options: ['fill', 'hug'],
@@ -4671,7 +4753,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'showLabels',
                 required: false,
                 description:
-                    'Determines if the labels of the options should be displayed. If icons are not provided for every option this is\nignored and labels are shown.',
+                    'Determines if the labels of the options should be displayed. If icons are not provided for every option this is ignored and labels are shown.',
                 default: true,
                 type: 'boolean',
             },
@@ -4777,70 +4859,6 @@ export const typesMeta: TypeMeta[] = [
         id: 'skeleton-props',
     },
     {
-        name: 'SwitchGroupOption',
-        properties: [
-            {
-                name: 'label',
-                required: true,
-                description: 'The label of the field. Also used as the aria-label of the checkbox.',
-                type: 'string',
-            },
-            {
-                name: 'description',
-                required: false,
-                description: 'The description of the field.',
-                type: 'string',
-            },
-            {
-                name: 'value',
-                required: true,
-                description: 'The value of the control.',
-                type: 'string',
-            },
-        ],
-        id: 'switch-group-option',
-    },
-    {
-        name: 'SwitchGroupProps',
-        properties: [
-            {
-                name: 'name',
-                required: true,
-                description:
-                    'The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.',
-                type: 'string',
-            },
-            {
-                name: 'aria-label',
-                required: true,
-                description: 'The aria-label for the element.',
-                type: 'string',
-            },
-            {
-                name: 'onChange',
-                required: true,
-                description: 'The function to call when the switches are changed.',
-                type: 'function',
-            },
-            {
-                name: 'options',
-                required: true,
-                description: 'The options for the switches.',
-                type: 'Array<SwitchGroupOption>',
-                example:
-                    "[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n]",
-            },
-            {
-                name: 'value',
-                required: false,
-                description: 'The values of the switches in the on state.',
-                type: 'Array<string>',
-            },
-        ],
-        id: 'switch-group-props',
-        references: ['SwitchGroupOption'],
-    },
-    {
         name: 'SwitchOptionProps',
         properties: [
             {
@@ -4880,21 +4898,14 @@ export const typesMeta: TypeMeta[] = [
             {
                 name: 'label',
                 required: true,
-                description: 'The label of the field. Also used as the aria-label of the checkbox.',
+                description: 'The label of the option. Also used as the aria-label of the checkbox.',
                 type: 'string',
-            },
-            {
-                name: 'size',
-                required: false,
-                description: 'The size of the control option label.',
-                type: ['small', 'base', 'large'],
-                options: ['small', 'base', 'large'],
             },
             {
                 name: 'description',
                 required: false,
-                description: 'The description of the field.',
-                type: 'string',
+                description: 'The description of the option.',
+                type: 'multiline',
             },
         ],
         id: 'switch-option-props',
@@ -4990,7 +5001,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'disabled',
                 required: false,
                 description:
-                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
+                    'Determines if the element is\n[disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
                 default: false,
                 type: 'boolean',
             },
@@ -5058,7 +5069,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'width',
                 required: false,
                 description:
-                    "When 'fill' the options will fill the width of the container. When 'hug', the options will be as wide as their\ncontent.",
+                    "When 'fill' the options will fill the width of the container. When 'hug', the options will be as wide as their content.",
                 default: 'hug',
                 type: ['fill', 'hug'],
                 options: ['fill', 'hug'],
@@ -5067,7 +5078,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'showTrail',
                 required: false,
                 description:
-                    "When width is 'hug' this determines if the trailing underline should be showing. When width is 'fill' this\nproperty isn't applicable.",
+                    "When width is 'hug' this determines if the trailing underline should be showing. When width is 'fill' this property isn't applicable.",
                 default: false,
                 type: 'boolean',
             },
@@ -5484,6 +5495,37 @@ export const typesMeta: TypeMeta[] = [
                 type: 'string',
             },
             {
+                name: 'label',
+                required: true,
+                description: 'The label of the field.',
+                type: 'string',
+            },
+            {
+                name: 'errorMessage',
+                required: false,
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
+                type: 'string',
+            },
+            {
+                name: 'helperText',
+                required: false,
+                description: 'The helperText of the field.',
+                type: 'string',
+            },
+            {
+                name: 'labelTrailing',
+                required: false,
+                description: 'The trailing element of the label.',
+                type: 'React.ReactNode',
+            },
+            {
+                name: 'controlId',
+                required: true,
+                description: 'The id of the control.',
+                type: 'string',
+            },
+            {
                 name: 'name',
                 required: true,
                 description:
@@ -5538,7 +5580,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'autoComplete',
                 required: false,
                 description:
-                    'Specifies if user agent has any permission to provide automated assistance in filling out form field values.\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete',
+                    'Specifies if user agent has any permission to provide automated\nassistance in filling out form field values.\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete',
                 default: 'off',
             },
             {
@@ -5572,37 +5614,6 @@ export const typesMeta: TypeMeta[] = [
                 required: false,
                 description: 'The ref of the input.',
                 type: 'object',
-            },
-            {
-                name: 'label',
-                required: true,
-                description: 'The label of the field.',
-                type: 'string',
-            },
-            {
-                name: 'errorMessage',
-                required: false,
-                description:
-                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
-                type: 'string',
-            },
-            {
-                name: 'helperText',
-                required: false,
-                description: 'The helperText of the field.',
-                type: 'string',
-            },
-            {
-                name: 'labelTrailing',
-                required: false,
-                description: 'The trailing element of the label.',
-                type: 'React.ReactNode',
-            },
-            {
-                name: 'controlId',
-                required: true,
-                description: 'The id of the control.',
-                type: 'string',
             },
         ],
         id: 'text-field-props',
@@ -5730,7 +5741,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'autoComplete',
                 required: false,
                 description:
-                    'Specifies if user agent has any permission to provide automated assistance in filling out form field values.\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete',
+                    'Specifies if user agent has any permission to provide automated assistance in filling out form field values. https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete',
                 default: 'off',
             },
         ],
@@ -5742,27 +5753,20 @@ export const typesMeta: TypeMeta[] = [
             {
                 name: 'label',
                 required: true,
-                description: 'The label of the field. Also used as the aria-label of the checkbox.',
+                description: 'The label of the option. Also used as the aria-label of the checkbox.',
                 type: 'string',
             },
             {
                 name: 'description',
                 required: false,
-                description: 'The description of the field.',
-                type: 'string',
+                description: 'The description of the option.',
+                type: 'multiline',
             },
             {
                 name: 'children',
                 required: false,
                 description: 'The control element to use.',
                 type: 'React.ReactElement<any,string|React.JSXElementConstructor<any>>_1',
-            },
-            {
-                name: 'size',
-                required: false,
-                description: 'The size of the control option label.',
-                type: ['small', 'base', 'large'],
-                options: ['small', 'base', 'large'],
             },
         ],
         id: 'toggle-option-props',
@@ -5775,34 +5779,8 @@ export const typesMeta: TypeMeta[] = [
                 required: false,
                 description: 'The placement of the tooltip.',
                 default: 'top',
-                type: [
-                    'bottom',
-                    'bottom-end',
-                    'bottom-start',
-                    'left',
-                    'left-end',
-                    'left-start',
-                    'right',
-                    'right-end',
-                    'right-start',
-                    'top',
-                    'top-end',
-                    'top-start',
-                ],
-                options: [
-                    'bottom',
-                    'bottom-end',
-                    'bottom-start',
-                    'left',
-                    'left-end',
-                    'left-start',
-                    'right',
-                    'right-end',
-                    'right-start',
-                    'top',
-                    'top-end',
-                    'top-start',
-                ],
+                type: ['bottom', 'left', 'right', 'top'],
+                options: ['bottom', 'left', 'right', 'top'],
             },
             {
                 name: 'label',
@@ -5823,7 +5801,7 @@ export const typesMeta: TypeMeta[] = [
                 type: 'boolean',
             },
             {
-                name: 'tail',
+                name: 'showTail',
                 required: false,
                 description: 'Determines if the tooltip should hide the tail.',
                 default: true,
@@ -6127,7 +6105,6 @@ export type MetaTypeName =
     | 'CommonProps<"id">'
     | 'CommonProps<"id"|"disabled">'
     | 'CommonProps<"name">'
-    | 'CommonProps<"name"|"aria-label">'
     | 'CommonProps<"name"|"disabled"|"aria-label">'
     | 'CommonProps<"name"|"id"|"disabled"|"size"|"aria-label"|"readOnly">'
     | 'CommonProps<"name"|"required"|"id"|"value"|"disabled"|"size"|"aria-label"|"readOnly">'
@@ -6172,10 +6149,9 @@ export type MetaTypeName =
     | 'Pick<MenuProps<T>,"selectAll"|"isMulti"|"itemCount"|"renderListItem">'
     | 'Pick<NumberInputProps,"name"|"id"|"value"|"disabled"|"size"|"onChange"|"readOnly"|"align">'
     | 'Pick<RadioProps,"name"|"value"|"disabled"|"checked">'
-    | 'Pick<TextInputProps,"name"|"id"|"size"|"aria-label"|"placeholder"|"inputRef">'
+    | 'Pick<TextInputProps,"name"|"id"|"size"|"aria-label"|"inputRef">'
     | 'Pick<TextInputProps,"name"|"required"|"type"|"value"|"disabled"|"size"|"onChange"|"autoComplete"|"placeholder"|"readOnly"|"leading"|"trailing"|"inputRef">'
     | 'Pick<ToggleOptionProps,"label"|"description">'
-    | 'Pick<ToggleOptionProps,"label"|"size"|"description">'
     | 'PopoverProps'
     | 'PortalProps'
     | 'Preset'
@@ -6195,8 +6171,6 @@ export type MetaTypeName =
     | 'SegmentedControlOption'
     | 'SegmentedControlProps'
     | 'SkeletonProps'
-    | 'SwitchGroupOption'
-    | 'SwitchGroupProps'
     | 'SwitchOptionProps'
     | 'SwitchProps'
     | 'T'
@@ -6266,7 +6240,6 @@ export type MetaComponentName =
     | 'StylesProviderEra'
     | 'StylesProviderSothebys'
     | 'Switch'
-    | 'SwitchGroup'
     | 'SwitchOption'
     | 'TabGroup'
     | 'Table'
@@ -6366,7 +6339,6 @@ export const components: Partial<Record<MetaComponentName, React.LazyExoticCompo
         import('@bspk/ui/StylesProviderSothebys').then((module) => ({ default: module.StylesProviderSothebys })),
     ),
     Switch: React.lazy(() => import('@bspk/ui/Switch').then((module) => ({ default: module.Switch }))),
-    SwitchGroup: React.lazy(() => import('@bspk/ui/SwitchGroup').then((module) => ({ default: module.SwitchGroup }))),
     SwitchOption: React.lazy(() =>
         import('@bspk/ui/SwitchOption').then((module) => ({ default: module.SwitchOption })),
     ),
