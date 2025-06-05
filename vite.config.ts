@@ -15,6 +15,9 @@ export default defineConfig({
         minifyIdentifiers: false,
     },
     server: {
+        hmr: {
+            host: 'localhost',
+        },
         port: 8675,
     },
     preview: {
