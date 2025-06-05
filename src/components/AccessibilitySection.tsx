@@ -6,7 +6,7 @@ import { Txt } from '@bspk/ui/Txt';
 import axe from 'axe-core';
 import { useComponentContext } from 'components/ComponentProvider';
 import { Syntax } from 'components/Syntax';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 
 export type AccessibilitySectionProps = {
     context: HTMLElement | null;
@@ -19,35 +19,24 @@ export function AccessibilitySection({ context }: AccessibilitySectionProps) {
 
     const runTimeout = useRef<ReturnType<typeof setTimeout>>();
 
-    const [code, setCode] = useState<string>('');
+    const code = context?.innerHTML || '';
 
     useEffect(() => {
-        if (!context) return;
-
-        const observer = new MutationObserver(() => {
-            setCode(context.innerHTML || '');
-        });
-
-        // Start observing the target node for configured mutations
-        observer.observe(context, {
-            attributes: true,
-            childList: true,
-            subtree: true,
-        });
-    }, [context]);
-
-    useEffect(() => {
-        if (!context || axeResults[code] || loadingRef.current) return;
+        if (!context || !code || axeResults[code] || loadingRef.current) return;
         loadingRef.current = true;
         if (runTimeout.current) clearTimeout(runTimeout.current);
 
         runTimeout.current = setTimeout(() => {
             axe.run(context).then((results) => {
                 setAxeResults(results, code);
-                console.info('Accessibility Results', { results });
                 loadingRef.current = false;
             });
         }, 1000);
+
+        return () => {
+            if (runTimeout.current) clearTimeout(runTimeout.current);
+            loadingRef.current = false;
+        };
     }, [context, setAxeResults, axeResults, code, runTimeout]);
 
     const results = useMemo(() => (code ? axeResults[code] : undefined), [axeResults, code]);

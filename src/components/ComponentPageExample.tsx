@@ -63,7 +63,6 @@ export function ComponentPageExample() {
                             label="Show Touch Target"
                             name="data-touch-target"
                             onChange={(checked) => setShowTouchTarget(checked)}
-                            size="small"
                         />
                     </div>
                 )}
