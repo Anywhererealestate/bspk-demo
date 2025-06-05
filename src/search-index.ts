@@ -3,7 +3,7 @@
  * package.
  */
 
-export const VERSION = '1.1.22' as const;
+export const VERSION = '1.1.23' as const;
 
 export const searchIndex = [
     {
@@ -23,7 +23,7 @@ export const searchIndex = [
     {
         title: 'Badge',
         content:
-            "Visual indicator for new items within a parent page represented with a numerical count of new items. count The content of the badge. If larger than 99, the badge will display '99+'. If null or undefined, the badge will be hidden. 1 size The size of the badge. small variant The color variant of the badge. primary surfaceBorder Whether the badge should have a border that matches the surface color. false",
+            "Visual indicator for new items within a parent page represented with a numerical count of new items. count The content of the badge. If larger than 99, the badge will display '99+'. If null or undefined, the badge will be hidden. 1 size The size of the badge. small variant The color variant of the badge. primary surfaceBorder Whether the badge should have a border that matches the surface color. false children The context for which the badge is applied.\n\nCould be a button, link, or any other element that the badge is associated with. undefined",
         url: '/badge',
         kind: 'Component',
     },
@@ -149,7 +149,7 @@ export const searchIndex = [
     {
         title: 'Link',
         content:
-            'This is the standalone link component. Inline links can use the native `a` element. target undefined undefined disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false label The label of the link. undefined trailingIcon The variant of the link. Controls the icon that is displayed and link target. undefined href The [href](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#href) of the link. undefined size The size of the link. base variant Change the color of the link to a subtle color. This is useful for links that are not primary actions, for example footer menus. default',
+            'This is the standalone link component. Inline links can use the native `a` element. disabled Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled). false label The label of the link. undefined trailingIcon The variant of the link. Controls the icon that is displayed and link target. undefined href The [href](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#href) of the link. undefined size The size of the link. base variant Change the color of the link to a subtle color. This is useful for links that are not primary actions, for example footer menus. default target The [target](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#target) of the link. If the `trailingIcon` is set to `external`, this will default to `_blank`. _self',
         url: '/link',
         kind: 'Component',
     },
