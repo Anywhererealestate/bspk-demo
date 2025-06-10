@@ -1,7 +1,7 @@
 import { Brand, BRANDS } from '@bspk/ui';
 import { PropsWithChildren, useState, useMemo, useEffect } from 'react';
 import { StylesProvider } from 'src/components/StylesProvider';
-import { VERSION } from 'src/search-index';
+import { VERSION } from 'src/meta';
 import {
     GlobalState,
     GlobalStateContext,

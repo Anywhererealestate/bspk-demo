@@ -18,6 +18,7 @@ export type TypeMeta = BaseMeta & {
     id: string;
     references?: string[];
     properties?: TypeProperty[];
+    components?: string[];
 };
 
 export type TypeProperty = {
@@ -38,7 +39,6 @@ export type TypeProperty = {
 export type ComponentMeta = BaseMeta & {
     slug: string;
     dependencies: string[];
-    modified: string;
     css: string;
     hasTouchTarget: boolean;
     usage?: {
@@ -54,6 +54,8 @@ export type UtilityMeta = BaseMeta & {
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */
 
+export const VERSION = '1.1.31' as const;
+
 export const componentsMeta: ComponentMeta[] = [
     {
         description:
@@ -62,7 +64,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Avatar',
         slug: 'avatar',
         dependencies: ['Tooltip'],
-        modified: '2025-06-10T14:07:53.358Z',
         usage: {
             code: 'import { Avatar } from \'@bspk/ui/Avatar\';\nimport { SvgPerson } from \'@bspk/icons/Person\';\n\nfunction Example() {\nreturn (\n<Avatar\nname="Jane Doe"\ninitials="JD"\ncolor="blue"\nsize="large"\nicon={<SvgPerson />}\nimage="/profile.jpg"\nshowTooltip={true}\n/>\n);\n}',
             description:
@@ -77,7 +78,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'AvatarGroup',
         slug: 'avatar-group',
         dependencies: ['Avatar'],
-        modified: '2025-06-10T14:07:53.358Z',
         usage: {
             code: "import { AvatarGroup } from '@bspk/ui/AvatarGroup';\n\nexport function Example() {\nreturn (\n<AvatarGroup\nitems={[\n{ name: 'Jane Doe', image: '/path/to/image.jpg' },\n{ name: 'John Smith', initials: 'JS' },\n]}\n/>\n);\n}",
         },
@@ -91,7 +91,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Badge',
         slug: 'badge',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.358Z',
         usage: {
             code: 'import { Badge } from \'@bspk/ui/badge\';\n\nfunction Example() {\nreturn <Badge count={5} size="small" variant="primary" />;\n}',
             description: 'This example shows a badge with a count of 5, size small, and primary variant.',
@@ -106,7 +105,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'BannerAlert',
         slug: 'banner-alert',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.358Z',
         usage: {
             code: 'import { BannerAlert } from \'@bspk/ui/BannerAlert\';\n\nfunction Example() {\n<BannerAlert\nvariant="error"\nheader="Error"\nbody="There was an error processing your request."\nonClose={() => console.log(\'Alert closed\')}\n/>;\n}',
             description:
@@ -122,7 +120,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Button',
         slug: 'button',
         dependencies: ['Tooltip'],
-        modified: '2025-06-10T14:07:53.358Z',
         usage: {
             code: 'import { Button } from \'@bspk/ui/Button\';\nimport { SvgPerson } from \'@bspk/icons/Person\';\n\nfunction Example() {\nreturn (\n<Button\nlabel="Click Me"\nsize="medium"\nvariant="primary"\nonClick={() => console.log(\'Button clicked\')}\nicon={<SvgPerson />}\n/>\n);\n}',
         },
@@ -136,7 +133,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Card',
         slug: 'card',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.359Z',
         usage: {
             code: 'import { Card } from \'@bspk/ui/card\';\n\nfunction Example() {\nreturn (\n<Card variant="elevated" showPadding={false}>\n<h3>Card Title</h3>\n<p>This is some content inside the card.</p>\n</Card>\n);\n}',
         },
@@ -150,7 +146,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Checkbox',
         slug: 'checkbox',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.359Z',
         usage: {
             code: 'import { Checkbox } from \'@bspk/ui/Checkbox\';\n\nfunction Example() {\nconst [checked, setChecked] = React.useState(false);\n\nreturn (\n<label htmlFor="sample-checkbox">\n<Checkbox\naria-label="Sample"\nchecked={checked}\nid="sample-checkbox"\nname="sample-checkbox"\nonChange={(nextChecked) => setChecked(nextChecked)}\nvalue="sample"\n/>\nCheckbox Label\n</label>\n);\n}',
         },
@@ -164,7 +159,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'CheckboxGroup',
         slug: 'checkbox-group',
         dependencies: ['Checkbox', 'ToggleOption'],
-        modified: '2025-06-10T14:07:53.359Z',
         usage: {
             code: "import { CheckboxGroup } from '@bspk/ui/CheckboxGroup';\n\nfunction Example() {\nconst [values, setValues] = React.useState<string[]>([]);\n\nreturn (\n<CheckboxGroup\naria-label=\"Example Checkbox Group\"\nname=\"example-checkbox-group\"\noptions={[\n{ label: 'Option 1', value: 'option1' },\n{ label: 'Option 2', value: 'option2' },\n{ label: 'Option 3', value: 'option3' },\n]}\nvalues={values}\nonChange={(nextValues: string[]) => {\nsetValues(nextValues);\n}}\n/>\n);\n}",
         },
@@ -178,7 +172,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'CheckboxOption',
         slug: 'checkbox-option',
         dependencies: ['Checkbox', 'ToggleOption'],
-        modified: '2025-06-10T14:07:53.359Z',
         usage: {
             code: 'import { CheckboxOption } from \'@bspk/ui/CheckboxOption\';\n\nfunction Example() {\nconst [checked, setChecked] = React.useState(false);\nreturn (\n<CheckboxOption\nchecked={checked}\ndescription="This is an example checkbox option."\nlabel="Example Checkbox"\nname="example-checkbox-name"\nonChange={(nextChecked, event) => {\nsetChecked(nextChecked);\nconsole.log(\'Checkbox changed:\', nextChecked, event);\n}}\nvalue="example-checkbox-value"\n/>\n);\n}',
         },
@@ -191,7 +184,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Chip',
         slug: 'chip',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.359Z',
         usage: {
             code: "import { Chip } from '@bspk/ui/Chip';\n\nfunction Example() {\nreturn (\n<Chip variant=\"filter\" onClick={() => console.log('Chip clicked!')}>\nExample Chip\n</Chip>\n);\n}",
         },
@@ -205,7 +197,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Dialog',
         slug: 'dialog',
         dependencies: ['Portal'],
-        modified: '2025-06-10T14:07:53.359Z',
         usage: {
             code: "import { Dialog } from '@bspk/ui/Dialog';\nimport { Button } from '@bspk/ui/Button';\n\nfunction Example() {\nconst [open, setOpen] = React.useState(false);\n\nreturn (\n<>\n<Button label=\"Open Dialog\" onClick={() => setOpen(true)} />\n<Dialog open={open} onClose={() => setOpen(false)}>\n<h1>Dialog Title</h1>\n<p>This is the content of the dialog.</p>\n<button onClick={() => setOpen(false)}>Close</button>\n</Dialog>\n</>\n);\n}",
         },
@@ -219,7 +210,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Divider',
         slug: 'divider',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.359Z',
         usage: {
             code: 'import { Divider } from \'@bspk/ui/Divider\';\n\nfunction Example() {\nreturn (\n<div>\n<p>Content above the divider</p>\n<Divider orientation="horizontal" />\n<p>Content below the divider</p>\n</div>\n);\n}',
         },
@@ -232,7 +222,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'EmptyState',
         slug: 'empty-state',
         dependencies: ['Button', 'Layout', 'Txt'],
-        modified: '2025-06-10T14:07:53.359Z',
         usage: {
             code: 'import { EmptyState } from \'@bspk/ui/EmptyState\';\n\nexport function Example() {\nreturn (\n<EmptyState body="Example body" header="Example header">\nExample EmptyState\n</EmptyState>\n);\n}',
         },
@@ -246,7 +235,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Fab',
         slug: 'fab',
         dependencies: ['Button', 'Tooltip'],
-        modified: '2025-06-10T14:07:53.366Z',
         usage: {
             code: 'import { SvgBolt } from \'@bspk/icons/Bolt\';\nimport { Fab } from \'@bspk/ui/Fab\';\n\nexport function Example() {\nreturn <Fab icon={<SvgBolt />} label="Example label" placement="bottom-right" variant="neutral" />;\n}',
         },
@@ -260,7 +248,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'FormField',
         slug: 'form-field',
         dependencies: ['InlineAlert', 'Layout', 'Txt'],
-        modified: '2025-06-10T14:07:53.366Z',
         usage: {
             code: 'import { TextInput } from \'@bspk/ui/TextInput\';\nimport { FormField } from \'@bspk/ui/FormField\';\n\nexport function Example() {\nconst [state, setState] = React.useState<string | undefined>(undefined);\nreturn (\n<FormField controlId="Example controlId" label="Example label">\n{(fieldProps) => {\nreturn (\n<TextInput\naria-label="example aria-label"\nname="example-text"\nonChange={(next) => {\nsetState(next);\n}}\nvalue={state}\n{...fieldProps}\n/>\n);\n}}\n</FormField>\n);\n}',
         },
@@ -273,7 +260,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Img',
         slug: 'img',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: 'import { Img } from \'@bspk/ui/Img\';\n\nexport function Example() {\nreturn <Img alt="Example alt" src="Example src" />;\n}',
         },
@@ -287,7 +273,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'InlineAlert',
         slug: 'inline-alert',
         dependencies: ['Txt'],
-        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: 'import { InlineAlert } from \'@bspk/ui/InlineAlert\';\n\nexport function Example() {\nreturn <InlineAlert variant="informational">Example informational inline alert</InlineAlert>;\n}',
         },
@@ -300,7 +285,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Layout',
         slug: 'layout',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: "import { Layout } from '@bspk/ui/Layout';\n\nexport function Example() {\nreturn <Layout>Low effort example</Layout>;\n}",
         },
@@ -313,7 +297,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Link',
         slug: 'link',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: 'import { Link } from \'@bspk/ui/Link\';\n\nexport function Example() {\nreturn <Link href="https://bspk.dev" label="Example label" trailingIcon="external" />;\n}',
         },
@@ -327,7 +310,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ListItem',
         slug: 'list-item',
         dependencies: ['Button'],
-        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: 'import { SvgSquare } from \'@bspk/icons/Square\';\nimport { ListItem } from \'@bspk/ui/ListItem\';\n\nexport function Example() {\nreturn (\n<ListItem\nlabel="Example label"\nleading={<SvgSquare />}\nsubText="Example subtest"\ntrailing={<ListItem.Button label="Click me" onClick={() => console.log(\'Hello world\')} />}\n/>\n);\n}',
         },
@@ -341,7 +323,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Menu',
         slug: 'menu',
         dependencies: ['Checkbox', 'ListItem'],
-        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: "import React from 'react';\n\nimport { Menu } from '@bspk/ui/Menu';\n\nexport function Example() {\nconst [selected, setSelected] = React.useState<string[]>([]);\n\nreturn (\n<Menu\nitems={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]}\nonChange={(selectedValues: string[]) => setSelected(selectedValues)}\nselectedValues={selected}\n/>\n);\n}",
         },
@@ -354,7 +335,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'MenuButton',
         slug: 'menu-button',
         dependencies: ['Button'],
-        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: "import { MenuButton } from '@bspk/ui/MenuButton';\n\nexport function Example() {\nreturn <MenuButton />;\n}",
         },
@@ -368,7 +348,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Modal',
         slug: 'modal',
         dependencies: ['Button', 'Dialog', 'Txt'],
-        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: 'import React from \'react\';\n\nimport { Button } from \'@bspk/ui/Button\';\nimport { Modal } from \'@bspk/ui/Modal\';\n\nexport function Example() {\nconst [open, setOpen] = React.useState(false);\n\nreturn (\n<>\n<Button label="Open Dialog" onClick={() => setOpen(true)} />\n<Modal\ndescription="Example description"\nheader="Example header"\nonClose={() => setOpen(false)}\nopen={open}\n>\nExample Modal\n</Modal>\n</>\n);\n}',
         },
@@ -382,7 +361,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'NumberField',
         slug: 'number-field',
         dependencies: ['FormField', 'NumberInput'],
-        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: 'import React from \'react\';\n\nimport { NumberField } from \'@bspk/ui/NumberField\';\n\nexport function Example() {\nconst [state, setState] = React.useState<number>();\n\nreturn (\n<NumberField\ncontrolId="Example controlId"\nlabel="Example label"\nname="Example name"\nonChange={(nextValue) => setState(nextValue)}\nvalue={state}\n/>\n);\n}',
         },
@@ -396,7 +374,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'NumberInput',
         slug: 'number-input',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: 'import { NumberInput } from \'@bspk/ui/NumberInput\';\n\nexport function Example() {\nconst [state, setState] = React.useState<number>();\n\nreturn (\n<NumberInput\naria-label="Example aria-label"\nname="Example name"\nonChange={(nextValue) => setState(nextValue)}\nvalue={state}\n/>\n);\n}',
         },
@@ -409,7 +386,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Popover',
         slug: 'popover',
         dependencies: ['Button', 'Portal', 'Txt'],
-        modified: '2025-06-10T14:07:53.368Z',
         usage: {
             code: "import { useState } from 'react';\nimport { Popover } from '@bspk/ui/Popover';\nimport { Button } from '@bspk/ui/Button';\n\nexport function Example() {\nconst [showPopover, setShowPopover] = useState<boolean>(false);\n\nconst togglePopover = () => setShowPopover(!showPopover);\nconst onPopoverCallToActionClick = () => alert('Action clicked');\n\nreturn (\n<Popover\nplacement=\"bottom\"\ncontent=\"This is a popover content\"\nheader=\"Popover Header\"\ncallToAction={{\nlabel: 'Action',\nonClick: onPopoverCallToActionClick,\n}}\n>\n<Button label=\"Toggle popover\" onClick={togglePopover} />\n</Popover>\n);\n}",
         },
@@ -423,7 +399,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Portal',
         slug: 'portal',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.368Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -434,7 +409,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ProgressBar',
         slug: 'progress-bar',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.368Z',
         usage: {
             code: 'import { ProgressBar } from \'@bspk/ui/ProgressBar\';\n\nexport function Example() {\nreturn <ProgressBar label="Example label" completion={50} />;\n}',
         },
@@ -448,7 +422,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ProgressCircle',
         slug: 'progress-circle',
         dependencies: ['Txt'],
-        modified: '2025-06-10T14:07:53.368Z',
         usage: {
             code: 'import { ProgressCircle } from \'@bspk/ui/ProgressCircle\';\n\nexport function Example() {\nreturn <ProgressCircle label="Example label" />;\n}',
         },
@@ -462,7 +435,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ProgressionStepper',
         slug: 'progression-stepper',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.368Z',
         usage: {
             code: "import { ProgressionStepper } from '@bspk/ui/ProgressionStepper';\n\nexport function Example() {\nreturn <ProgressionStepper steps={[{ name: 'Step 1' }, { name: 'Step 2' }, { name: 'Step 3' }]} />;\n}",
         },
@@ -475,7 +447,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ProgressionStepperBar',
         slug: 'progression-stepper-bar',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.368Z',
         css: "[data-bspk='progression-stepper-bar'] {\n    &[data-size='large'] {\n        --height: var(--spacing-sizing-02);\n    }\n\n    &[data-size='small'] {\n        --height: var(--spacing-sizing-01);\n    }\n\n    display: flex;\n    width: 100%;\n    flex-direction: column;\n    gap: var(--spacing-sizing-01);\n\n    [data-steps] {\n        display: flex;\n        flex-direction: row;\n        gap: var(--spacing-sizing-01);\n        height: var(--height);\n\n        [data-step] {\n            width: 100%;\n            height: var(--height);\n            min-width: var(--spacing-sizing-02);\n            border-radius: var(--radius-small);\n            background: var(--surface-neutral-t3-low);\n\n            &[data-complete] {\n                background: var(--surface-brand-primary);\n            }\n        }\n    }\n\n    label {\n        font: var(--labels-small);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -486,7 +457,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Radio',
         slug: 'radio',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.368Z',
         css: "[data-bspk='radio'] {\n    display: block;\n    position: relative;\n    width: var(--spacing-sizing-06);\n    aspect-ratio: 1/1;\n    padding: 2px;\n\n    input[type='radio'] {\n        position: absolute;\n        opacity: 0;\n        z-index: 2;\n        width: 100%;\n        height: 100%;\n        top: 0;\n        left: 0;\n        cursor: pointer;\n    }\n\n    span {\n        --stroke: var(--stroke-neutral-base);\n        --inner: var(--foreground-brand-primary);\n        --background: none;\n\n        position: relative;\n        z-index: 1;\n        box-sizing: border-box;\n        display: flex;\n        width: var(--spacing-sizing-05);\n        aspect-ratio: 1/1;\n        border-radius: 50%;\n        border: 2px solid var(--stroke);\n        align-items: center;\n        flex-direction: column;\n        justify-content: center;\n        background: var(--background);\n\n        &::before {\n            content: '';\n            display: block;\n            width: var(--spacing-sizing-03);\n            aspect-ratio: 1/1;\n            background: var(--inner);\n            border-radius: var(--radius-circular);\n            opacity: 0;\n        }\n    }\n\n    input[type='radio']:not(:disabled) {\n        &:hover + span {\n            --background: var(--interactions-neutral-hover-opacity);\n        }\n\n        &:active + span {\n            --background: var(--interactions-neutral-press-opacity);\n        }\n\n        &[data-invalid] + span {\n            --stroke: var(--status-error);\n            --inner: var(--status-error);\n        }\n    }\n\n    input[type='radio']:checked + span {\n        --stroke: var(--stroke-brand-primary);\n\n        &::before {\n            opacity: 1;\n        }\n    }\n\n    input[type='radio']:disabled {\n        pointer-events: none;\n\n        & + span {\n            --stroke: var(--stroke-neutral-interactions-disabled-light);\n            --inner: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -497,7 +467,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'RadioGroup',
         slug: 'radio-group',
         dependencies: ['Radio', 'ToggleOption'],
-        modified: '2025-06-10T14:07:53.368Z',
         usage: {
             code: "import { useState } from 'react';\nimport { RadioGroup } from '@bspk/ui/RadioGroup';\n\nexport function Example() {\nconst [selectedOption, setSelectedOption] = useState<string>('1');\n\nreturn (\n<RadioGroup\nname=\"Example name\"\nonChange={(nextValue) => setSelectedOption(nextValue)}\noptions={[\n{\nvalue: '1',\nlabel: 'Option 1',\ndescription: 'Description here',\n},\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n]}\nvalue={selectedOption}\n/>\n);\n}",
         },
@@ -511,7 +480,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'RadioOption',
         slug: 'radio-option',
         dependencies: ['Radio', 'ToggleOption'],
-        modified: '2025-06-10T14:07:53.368Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -521,7 +489,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'SearchBar',
         slug: 'search-bar',
         dependencies: ['Menu', 'Portal', 'TextInput', 'Txt'],
-        modified: '2025-06-10T14:07:53.368Z',
         usage: {
             code: "import { useState } from 'react';\nimport { SearchBar } from '@bspk/ui/SearchBar';\n\nexport function Example() {\nconst [searchText, setSearchText] = useState<string>('');\n\nconst handleItemSelect = (item) => console.log('Selected item:', item);\n\nreturn (\n<SearchBar\naria-label=\"Example aria-label\"\nitems={[\n{ value: '1', label: 'Apple Pie' },\n{ value: '2', label: 'Banana Split' },\n{ value: '3', label: 'Cherry Tart' },\n{ value: '4', label: 'Dragonfruit Sorbet' },\n{ value: '5', label: 'Elderberry Jam' },\n{ value: '6', label: 'Fig Newton' },\n{ value: '7', label: 'Grape Soda' },\n{ value: '8', label: 'Honeydew Smoothie' },\n{ value: '9', label: 'Ice Cream Sandwich' },\n{ value: '10', label: 'Jackfruit Pudding' },\n]}\nname=\"Example name\"\nplaceholder=\"Search\"\nvalue={searchText}\nonChange={setSearchText}\nonSelect={handleItemSelect}\n/>\n);\n}",
         },
@@ -534,7 +501,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'SegmentedControl',
         slug: 'segmented-control',
         dependencies: ['Tooltip'],
-        modified: '2025-06-10T14:07:53.368Z',
         usage: {
             code: "import { useState } from 'react';\nimport { SegmentedControl } from '@bspk/ui/SegmentedControl';\n\nexport function Example() {\nconst [selectedOption, setSelectedOption] = useState<string>();\n\nreturn (\n<SegmentedControl\nonChange={setSelectedOption}\noptions={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n]}\nvalue={selectedOption}\n/>\n);\n}",
         },
@@ -547,7 +513,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Select',
         slug: 'select',
         dependencies: ['ListItem', 'Menu', 'Portal'],
-        modified: '2025-06-10T14:07:53.369Z',
         usage: {
             code: "import { Select } from '@bspk/ui/Select';\n\nexport function Example() {\nconst [selected, setSelected] = React.useState<string[]>([]);\nreturn (\n<Select\naria-label=\"Select an option\"\nitemCount={5}\nname=\"example-select\"\nonChange={setSelected}\noptions={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]}\nplaceholder=\"Select an option\"\nsize=\"medium\"\nvalue={selected}\n/>\n);\n}",
         },
@@ -561,7 +526,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'SelectField',
         slug: 'select-field',
         dependencies: ['FormField', 'Select'],
-        modified: '2025-06-10T14:07:53.369Z',
         usage: {
             code: "import { SelectField } from '@bspk/ui/SelectField';\n\nexport function Example() {\nconst [state, setState] = React.useState(['option1']);\nreturn (\n<SelectField\ncontrolId=\"Example controlId\"\nlabel=\"Example label\"\nname=\"Example name\"\nonChange={(nextValue) => setState(nextValue)}\noptions={[\n{ label: 'Option 1', value: 'option1' },\n{ label: 'Option 2', value: 'option2' },\n{ label: 'Option 3', value: 'option3' },\n]}\nplaceholder=\"Select one...\"\nvalue={state}\n/>\n);\n}",
         },
@@ -575,7 +539,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Skeleton',
         slug: 'skeleton',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.369Z',
         usage: {
             code: 'import { Skeleton } from \'@bspk/ui/skeleton\';\n\nfunction Example(item: { title: string; src: string } | null) {\nreturn item ? (\n<img\nstyle={{\nwidth: 210,\nheight: 118,\n}}\nalt={item.title}\nsrc={item.src}\n/>\n) : (\n<Skeleton variant="photo" width={210} height={118} />\n);\n}',
             description: 'This example shows a skeleton loading state for an image but can be used for any element.',
@@ -589,7 +552,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderAnywhere',
         slug: 'styles-provider-anywhere',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -599,7 +561,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderBetterHomesGardens',
         slug: 'styles-provider-better-homes-gardens',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -609,7 +570,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderCartus',
         slug: 'styles-provider-cartus',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -619,7 +579,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderCentury21',
         slug: 'styles-provider-century21',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -629,7 +588,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderColdwellBanker',
         slug: 'styles-provider-coldwell-banker',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -639,7 +597,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderCorcoran',
         slug: 'styles-provider-corcoran',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -649,7 +606,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderDenaliBoss',
         slug: 'styles-provider-denali-boss',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -659,7 +615,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderEra',
         slug: 'styles-provider-era',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -669,7 +624,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderSothebys',
         slug: 'styles-provider-sothebys',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -680,7 +634,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Switch',
         slug: 'switch',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.369Z',
         usage: {
             code: 'import { useState } from \'react\';\nimport { Switch } from \'@bspk/ui/Switch\';\n\nexport function Example() {\nconst [isChecked, setIsChecked] = useState<boolean>(false);\n\nreturn (\n<Switch\naria-label="Example aria-label"\nname="Example name"\nonChange={setIsChecked}\nchecked={isChecked}\n/>\n);\n}',
         },
@@ -694,7 +647,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'SwitchOption',
         slug: 'switch-option',
         dependencies: ['Switch', 'ToggleOption'],
-        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -704,7 +656,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TabGroup',
         slug: 'tab-group',
         dependencies: ['Badge'],
-        modified: '2025-06-10T14:07:53.369Z',
         usage: {
             code: "import { useState } from 'react';\nimport { TabGroup } from '@bspk/ui/TabGroup';\n\nexport function Example() {\nconst [selectedTab, setSelectedTab] = useState<string>();\n\nreturn (\n<TabGroup\nonChange={setSelectedTab}\noptions={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n]}\nvalue={selectedTab}\n/>\n);\n}",
         },
@@ -717,7 +668,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Table',
         slug: 'table',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.369Z',
         css: "[data-bspk='table'] {\n    width: 100%;\n    border-collapse: separate;\n    text-align: left;\n    border-spacing: 2rem 0.125rem;\n    display: grid;\n    color: var(--foreground-neutral-on-surface);\n    font: var(--labels-base);\n    border-radius: var(--radius-medium);\n    border: 1px solid var(--stroke-neutral-low);\n\n    [data-cell] {\n        display: flex;\n        flex-direction: column;\n        gap: var(--spacing-sizing-02);\n        padding: var(--spacing-sizing-04);\n        background-color: var(--surface-neutral-t1-base);\n        border-bottom: var(--stroke-neutral-low) solid 1px;\n        font: var(--labels-small);\n\n        p {\n            margin: 0;\n            padding: 0;\n            font: var(--body-small);\n        }\n    }\n\n    [data-head] {\n        display: flex;\n        align-items: center;\n        flex-direction: row;\n        border-bottom: 1px solid var(--stroke-neutral-base);\n        background: var(--surface-neutral-t2-lowest);\n        height: var(--spacing-sizing-10);\n        padding: 0 var(--spacing-sizing-03);\n        font: var(--labels-base);\n\n        &[data-head='first'] {\n            border-top-left-radius: var(--radius-medium);\n        }\n\n        &[data-head='last'] {\n            border-top-right-radius: var(--radius-medium);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -727,7 +677,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Tag',
         slug: 'tag',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.369Z',
         usage: {
             code: 'import { Tag } from \'@bspk/ui/Tag\';\n\nexport function Example() {\nreturn (\n<Tag variant="flat" color="primary">\nExample Tag\n</Tag>\n);\n}',
         },
@@ -741,7 +690,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Textarea',
         slug: 'textarea',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.369Z',
         usage: {
             code: "import { useState } from 'react';\nimport { Textarea } from '@bspk/ui/Textarea';\n\nexport function Example() {\nconst [value, setValue] = useState<string>('');\n\nreturn <Textarea aria-label=\"Example aria-label\" name=\"Example name\" onChange={setValue} value={value} />;\n}",
         },
@@ -755,7 +703,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TextareaField',
         slug: 'textarea-field',
         dependencies: ['FormField', 'Textarea', 'Txt'],
-        modified: '2025-06-10T14:07:53.370Z',
         usage: {
             code: 'import { useState } from \'react\';\nimport { TextareaField } from \'@bspk/ui/TextareaField\';\n\nexport function Example() {\nconst [value, setValue] = useState<string>();\n\nreturn (\n<TextareaField\naria-label="Example aria-label"\ncontrolId="Example controlId"\nlabel="Example label"\nname="Example name"\nonChange={setValue}\nvalue={value}\n/>\n);\n}',
         },
@@ -769,7 +716,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TextField',
         slug: 'text-field',
         dependencies: ['FormField', 'TextInput'],
-        modified: '2025-06-10T14:07:53.370Z',
         usage: {
             code: 'import { useState } from \'react\';\nimport { TextField } from \'@bspk/ui/TextField\';\n\nexport function Example() {\nconst [value, setValue] = useState<string>(\'\');\n\nreturn (\n<TextField\ncontrolId="Example controlId"\nlabel="Example label"\nname="Example name"\nonChange={setValue}\nvalue={value}\n/>\n);\n}',
         },
@@ -783,7 +729,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TextInput',
         slug: 'text-input',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.370Z',
         usage: {
             code: "import { useState } from 'react';\nimport { TextInput } from '@bspk/ui/TextInput';\n\nexport function Example() {\nconst [value, setValue] = useState<string>('');\n\nreturn <TextInput aria-label=\"Example aria-label\" name=\"Example name\" onChange={setValue} value={value} />;\n}",
         },
@@ -796,7 +741,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ToggleOption',
         slug: 'toggle-option',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.370Z',
         css: "[data-bspk='toggle-option'] {\n    display: flex;\n    width: 100%;\n    box-sizing: border-box;\n    flex-direction: row;\n    padding: 0 var(--spacing-sizing-01) 0 0;\n    gap: var(--spacing-sizing-02);\n    user-select: none;\n    background: unset;\n    border: unset;\n    cursor: pointer;\n    min-height: var(--spacing-sizing-08);\n    align-items: center;\n\n    &:has([data-description]) {\n        align-items: unset;\n    }\n\n    // this media query targets touch devices\n    @media (any-pointer: coarse) {\n        min-height: var(--spacing-sizing-12);\n    }\n\n    [data-content] {\n        display: flex;\n        flex-direction: column;\n        padding: 2px 0;\n    }\n\n    [data-label] {\n        color: var(--foreground-neutral-on-surface);\n        font: var(--labels-base);\n    }\n\n    [data-description] {\n        font: var(--body-small);\n        color: var(--foreground-neutral-on-surface-variant-01);\n    }\n\n    &:not(:has(:disabled)) {\n        [data-pseudo='focus'] &,\n        &:focus-visible,\n        &:has(*:focus-visible) {\n            outline: var(--stroke-neutral-focus) 2px solid;\n        }\n    }\n\n    &:has(:disabled) {\n        [data-label] {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n\n        [data-description] {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -806,7 +750,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Tooltip',
         slug: 'tooltip',
         dependencies: ['Portal'],
-        modified: '2025-06-10T14:07:53.370Z',
         usage: {
             code: 'import { Tooltip } from \'@bspk/ui/Tooltip\';\nimport { Button } from \'@bspk/ui/Button\';\n\nexport function Example() {\nreturn (\n<Tooltip label="I explain what this button does" placement="top">\n<Button>Click me</Button>\n</Tooltip>\n);\n}',
         },
@@ -819,7 +762,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TopNavigation',
         slug: 'top-navigation',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.370Z',
         css: "[data-bspk='top-navigation'] {\n    display: flex;\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -829,7 +771,6 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Txt',
         slug: 'txt',
         dependencies: [],
-        modified: '2025-06-10T14:07:53.370Z',
         usage: {
             code: "import { Txt } from '@bspk/ui/Txt';\n\nexport function Example() {\nreturn <Txt>Example Txt</Txt>;\n}",
         },
@@ -930,6 +871,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'avatar-group-props',
+        components: ['AvatarGroup'],
         references: ['AvatarItem'],
     },
     {
@@ -1001,6 +943,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'avatar-item',
+        components: ['AvatarGroup'],
     },
     {
         name: 'AvatarProps',
@@ -1110,6 +1053,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'avatar-props',
+        components: ['Avatar'],
     },
     {
         name: 'BadgeProps',
@@ -1156,6 +1100,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'badge-props',
+        components: ['Badge'],
     },
     {
         name: 'BannerAlertProps',
@@ -1203,6 +1148,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'banner-alert-props',
+        components: ['BannerAlert'],
         references: ['CallToActionButton'],
     },
     {
@@ -1295,6 +1241,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'button-props',
+        components: ['Button'],
     },
     {
         name: 'CallToActionButton',
@@ -1320,6 +1267,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'call-to-action-button',
+        components: ['BannerAlert', 'EmptyState', 'Popover'],
     },
     {
         name: 'CardProps',
@@ -1347,6 +1295,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'card-props',
+        components: ['Card'],
     },
     {
         name: 'CheckboxGroupOption',
@@ -1371,6 +1320,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'checkbox-group-option',
+        components: ['CheckboxGroup'],
     },
     {
         name: 'CheckboxGroupProps',
@@ -1423,6 +1373,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'checkbox-group-props',
+        components: ['CheckboxGroup'],
         references: ['CheckboxGroupOption'],
     },
     {
@@ -1499,6 +1450,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'checkbox-option-props',
+        components: ['CheckboxOption'],
     },
     {
         name: 'CheckboxProps',
@@ -1568,6 +1520,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'checkbox-props',
+        components: ['Checkbox'],
     },
     {
         name: 'ChipProps',
@@ -1628,6 +1581,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'chip-props',
+        components: ['Chip'],
     },
     {
         name: 'CommonProps<"active"|"disabled"|"readOnly">',
@@ -1657,6 +1611,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'common-props-active-disabled-read-only',
+        components: [],
     },
     {
         name: 'CommonProps<"aria-label">',
@@ -1669,6 +1624,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'common-props-aria-label',
+        components: [],
     },
     {
         name: 'CommonProps<"disabled">',
@@ -1683,6 +1639,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'common-props-disabled',
+        components: [],
     },
     {
         name: 'CommonProps<"disabled"|"readOnly">',
@@ -1705,6 +1662,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'common-props-disabled-read-only',
+        components: [],
     },
     {
         name: 'CommonProps<"id">',
@@ -1717,6 +1675,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'common-props-id',
+        components: [],
     },
     {
         name: 'CommonProps<"id"|"disabled">',
@@ -1737,6 +1696,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'common-props-id-disabled',
+        components: [],
     },
     {
         name: 'CommonProps<"name">',
@@ -1750,6 +1710,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'common-props-name',
+        components: [],
     },
     {
         name: 'CommonProps<"name"|"disabled"|"aria-label">',
@@ -1777,6 +1738,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'common-props-name-disabled-aria-label',
+        components: [],
     },
     {
         name: 'CommonProps<"name"|"id"|"disabled"|"size"|"aria-label"|"readOnly">',
@@ -1826,6 +1788,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'common-props-name-id-disabled-size-aria-label-read-only',
+        components: [],
     },
     {
         name: 'CommonProps<"name"|"required"|"id"|"value"|"disabled"|"size"|"aria-label"|"readOnly">',
@@ -1889,6 +1852,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'common-props-name-required-id-value-disabled-size-aria-label-read-only',
+        components: [],
     },
     {
         name: 'CommonProps<"name"|"value"|"disabled"|"aria-label">',
@@ -1922,6 +1886,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'common-props-name-value-disabled-aria-label',
+        components: [],
     },
     {
         name: 'CommonProps<"required">',
@@ -1936,6 +1901,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'common-props-required',
+        components: [],
     },
     {
         name: 'CommonProps<"required"|"id"|"disabled"|"aria-label"|"readOnly">',
@@ -1978,6 +1944,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'common-props-required-id-disabled-aria-label-read-only',
+        components: [],
     },
     {
         name: 'CommonPropsLibrary',
@@ -2054,6 +2021,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'common-props-library',
+        components: [],
     },
     {
         name: 'ComponentExample',
@@ -2099,6 +2067,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'component-example',
+        components: [],
     },
     {
         name: 'DemoPreset',
@@ -2130,6 +2099,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'demo-preset',
+        components: [],
     },
     {
         name: 'DialogProps',
@@ -2182,6 +2152,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'dialog-props',
+        components: ['Dialog'],
     },
     {
         name: 'DividerProps',
@@ -2220,11 +2191,13 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'divider-props',
+        components: ['Divider'],
     },
     {
         name: 'ElementProps',
         properties: [],
         id: 'element-props',
+        components: [],
     },
     {
         name: 'EmptyStateProps',
@@ -2264,6 +2237,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'empty-state-props',
+        components: ['EmptyState'],
         references: ['CallToActionButton'],
     },
     {
@@ -2342,6 +2316,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'fab-props',
+        components: ['Fab'],
     },
     {
         name: 'FieldControlProps',
@@ -2367,6 +2342,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'field-control-props',
+        components: ['FormField'],
     },
     {
         name: 'FormFieldProps',
@@ -2427,6 +2403,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'form-field-props',
+        components: ['FormField'],
         references: ['FieldControlProps'],
     },
     {
@@ -2446,6 +2423,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'img-props',
+        components: ['Img'],
     },
     {
         name: 'InlineAlertProps',
@@ -2472,6 +2450,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'inline-alert-props',
+        components: ['InlineAlert'],
     },
     {
         name: 'InvalidPropsLibrary',
@@ -2495,6 +2474,7 @@ export const typesMeta: TypeMeta[] = [
         id: 'invalid-props-library',
         description:
             'The props that are common to input elements.\n\nIf an element is invalid it must have an errorMessage.',
+        components: [],
     },
     {
         name: 'LayoutProps',
@@ -2544,6 +2524,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'layout-props',
+        components: ['Layout'],
     },
     {
         name: 'LinkProps',
@@ -2605,6 +2586,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'link-props',
+        components: ['Link'],
     },
     {
         name: 'ListItemProps',
@@ -2667,6 +2649,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'list-item-props',
+        components: ['ListItem'],
     },
     {
         name: 'MenuButtonProps',
@@ -2686,6 +2669,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'menu-button-props',
+        components: ['MenuButton'],
     },
     {
         name: 'MenuItem',
@@ -2719,6 +2703,7 @@ export const typesMeta: TypeMeta[] = [
         ],
         id: 'menu-item',
         description: 'The props for the menu items.',
+        components: ['Menu', 'SearchBar'],
     },
     {
         name: 'MenuProps',
@@ -2809,6 +2794,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'menu-props',
+        components: ['Menu'],
         references: ['MenuItem', 'RenderListItemParams'],
     },
     {
@@ -2874,6 +2860,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'modal-props',
+        components: ['Modal'],
     },
     {
         name: 'NavOption',
@@ -2912,6 +2899,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'nav-option',
+        components: [],
     },
     {
         name: 'NumberFieldProps',
@@ -3030,6 +3018,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'number-field-props',
+        components: ['NumberField'],
     },
     {
         name: 'NumberInputProps',
@@ -3133,6 +3122,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'number-input-props',
+        components: ['NumberInput'],
     },
     {
         name: 'Pick<ButtonProps<As>,"icon"|"onClick"|"as"|"showLabel"|"toolTip">',
@@ -3172,6 +3162,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'pick-button-props-as-icon-on-click-as-show-label-tool-tip',
+        components: [],
     },
     {
         name: 'Pick<CheckboxProps,"name"|"value"|"disabled"|"checked"|"indeterminate">',
@@ -3214,6 +3205,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'pick-checkbox-props-name-value-disabled-checked-indeterminate',
+        components: [],
     },
     {
         name: 'Pick<CommonPropsLibrary,"disabled">',
@@ -3228,6 +3220,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'pick-common-props-library-disabled',
+        components: [],
     },
     {
         name: 'Pick<FormFieldProps,"label"|"errorMessage"|"helperText"|"controlId">',
@@ -3259,6 +3252,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'pick-form-field-props-label-error-message-helper-text-control-id',
+        components: [],
     },
     {
         name: 'Pick<FormFieldProps,"label"|"errorMessage"|"helperText"|"labelTrailing"|"controlId">',
@@ -3296,6 +3290,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'pick-form-field-props-label-error-message-helper-text-label-trailing-control-id',
+        components: [],
     },
     {
         name: 'Pick<FormFieldProps,"required"|"label"|"errorMessage"|"helperText"|"labelTrailing"|"controlId">',
@@ -3341,6 +3336,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'pick-form-field-props-required-label-error-message-helper-text-label-trailing-control-id',
+        components: [],
     },
     {
         name: 'Pick<MenuProps<T>,"activeIndex"|"isMulti"|"selectedValues">',
@@ -3366,6 +3362,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'pick-menu-props-t-active-index-is-multi-selected-values',
+        components: [],
     },
     {
         name: 'Pick<MenuProps<T>,"itemCount"|"noResultsMessage">',
@@ -3387,6 +3384,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'pick-menu-props-t-item-count-no-results-message',
+        components: [],
     },
     {
         name: 'Pick<MenuProps<T>,"selectAll"|"isMulti"|"itemCount"|"renderListItem">',
@@ -3424,6 +3422,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'pick-menu-props-t-select-all-is-multi-item-count-render-list-item',
+        components: [],
         references: ['RenderListItemParams'],
     },
     {
@@ -3489,6 +3488,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'pick-number-input-props-name-id-value-disabled-size-on-change-read-only-align',
+        components: [],
     },
     {
         name: 'Pick<RadioProps,"name"|"value"|"disabled"|"checked">',
@@ -3523,6 +3523,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'pick-radio-props-name-value-disabled-checked',
+        components: [],
     },
     {
         name: 'Pick<SelectProps,"name"|"value"|"disabled"|"options"|"size"|"onChange"|"placeholder"|"readOnly"|"placement"|"itemCount">',
@@ -3603,6 +3604,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'pick-select-props-name-value-disabled-options-size-on-change-placeholder-read-only-placement-item-count',
+        components: [],
         references: ['SelectOption'],
     },
     {
@@ -3643,6 +3645,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'pick-text-input-props-name-id-size-aria-label-input-ref',
+        components: [],
     },
     {
         name: 'Pick<TextInputProps,"name"|"required"|"type"|"value"|"disabled"|"size"|"onChange"|"autoComplete"|"placeholder"|"readOnly"|"leading"|"trailing"|"inputRef">',
@@ -3739,6 +3742,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'pick-text-input-props-name-required-type-value-disabled-size-on-change-auto-complete-placeholder-read-only-leading-trailing-input-ref',
+        components: [],
     },
     {
         name: 'Pick<ToggleOptionProps,"label"|"description">',
@@ -3757,6 +3761,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'pick-toggle-option-props-label-description',
+        components: [],
     },
     {
         name: 'Pick<UseFloatingProps,"placement"|"offsetOptions"|"refWidth">',
@@ -3798,6 +3803,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'pick-use-floating-props-placement-offset-options-ref-width',
+        components: [],
     },
     {
         name: 'PopoverProps',
@@ -3870,6 +3876,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'popover-props',
+        components: ['Popover'],
         references: ['CallToActionButton'],
     },
     {
@@ -3889,6 +3896,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'portal-props',
+        components: ['Portal'],
     },
     {
         name: 'Preset',
@@ -3915,6 +3923,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'preset',
+        components: [],
     },
     {
         name: 'ProgressBarProps',
@@ -3953,6 +3962,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'progress-bar-props',
+        components: ['ProgressBar'],
     },
     {
         name: 'ProgressCircleProps',
@@ -3981,6 +3991,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'progress-circle-props',
+        components: ['ProgressCircle'],
     },
     {
         name: 'ProgressionStepperBarProps',
@@ -4013,6 +4024,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'progression-stepper-bar-props',
+        components: ['ProgressionStepperBar'],
     },
     {
         name: 'ProgressionStepperItem',
@@ -4038,6 +4050,7 @@ export const typesMeta: TypeMeta[] = [
         ],
         id: 'progression-stepper-item',
         description: 'A progress stepper item is a single step in the progress bar.',
+        components: ['ProgressionStepper'],
     },
     {
         name: 'ProgressionStepperProps',
@@ -4070,6 +4083,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'progression-stepper-props',
+        components: ['ProgressionStepper'],
         references: ['ProgressionStepperItem'],
     },
     {
@@ -4095,6 +4109,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'radio-group-option',
+        components: ['RadioGroup'],
     },
     {
         name: 'RadioGroupProps',
@@ -4143,6 +4158,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'radio-group-props',
+        components: ['RadioGroup'],
         references: ['RadioGroupOption'],
     },
     {
@@ -4211,6 +4227,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'radio-option-props',
+        components: ['RadioOption'],
     },
     {
         name: 'RadioProps',
@@ -4272,6 +4289,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'radio-props',
+        components: ['Radio'],
     },
     {
         name: 'RenderListItemParams',
@@ -4323,6 +4341,7 @@ export const typesMeta: TypeMeta[] = [
         ],
         id: 'render-list-item-params',
         description: 'The props for the renderListItem function. Useful for customizing menu list items.',
+        components: ['Menu', 'Select'],
     },
     {
         name: 'Required<CommonProps<"value">>',
@@ -4335,6 +4354,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'required-common-props-value',
+        components: [],
     },
     {
         name: 'Required<Pick<ButtonProps<As>,"label">>',
@@ -4347,6 +4367,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'required-pick-button-props-as-label',
+        components: [],
     },
     {
         name: 'SearchBarProps',
@@ -4446,6 +4467,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'search-bar-props',
+        components: ['SearchBar'],
         references: ['MenuItem'],
     },
     {
@@ -4485,6 +4507,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'segmented-control-option',
+        components: ['SegmentedControl'],
     },
     {
         name: 'SegmentedControlProps',
@@ -4537,6 +4560,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'segmented-control-props',
+        components: ['SegmentedControl'],
         references: ['SegmentedControlOption'],
     },
     {
@@ -4657,6 +4681,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'select-field-props',
+        components: ['SelectField'],
         references: ['SelectOption'],
     },
     {
@@ -4676,6 +4701,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'select-option',
+        components: ['Select', 'SelectField'],
     },
     {
         name: 'SelectProps',
@@ -4813,6 +4839,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'select-props',
+        components: ['Select'],
         references: ['RenderListItemParams', 'SelectOption'],
     },
     {
@@ -4911,6 +4938,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'skeleton-props',
+        components: ['Skeleton'],
     },
     {
         name: 'SwitchOptionProps',
@@ -4963,6 +4991,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'switch-option-props',
+        components: ['SwitchOption'],
     },
     {
         name: 'SwitchProps',
@@ -5009,6 +5038,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'switch-props',
+        components: ['Switch'],
     },
     {
         name: 'T',
@@ -5041,6 +5071,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 't',
+        components: [],
     },
     {
         name: 'TabGroupOption',
@@ -5086,6 +5117,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'tab-group-option',
+        components: ['TabGroup'],
     },
     {
         name: 'TabGroupProps',
@@ -5138,6 +5170,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'tab-group-props',
+        components: ['TabGroup'],
         references: ['TabGroupOption'],
     },
     {
@@ -5165,6 +5198,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'table-column',
+        components: [],
     },
     {
         name: 'TableProps',
@@ -5183,6 +5217,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'table-props',
+        components: ['Table'],
     },
     {
         name: 'TagProps',
@@ -5264,6 +5299,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'tag-props',
+        components: ['Tag'],
     },
     {
         name: 'TextareaFieldProps',
@@ -5409,6 +5445,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'textarea-field-props',
+        components: ['TextareaField'],
     },
     {
         name: 'TextareaProps',
@@ -5529,6 +5566,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'textarea-props',
+        components: ['Textarea'],
     },
     {
         name: 'TextFieldProps',
@@ -5671,6 +5709,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'text-field-props',
+        components: ['TextField'],
     },
     {
         name: 'TextInputProps',
@@ -5800,6 +5839,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'text-input-props',
+        components: ['TextInput'],
     },
     {
         name: 'ToggleOptionProps',
@@ -5824,6 +5864,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'toggle-option-props',
+        components: ['ToggleOption'],
     },
     {
         name: 'TooltipProps',
@@ -5863,6 +5904,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'tooltip-props',
+        components: ['Tooltip'],
     },
     {
         name: 'TopNavigationProps',
@@ -5875,6 +5917,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'top-navigation-props',
+        components: ['TopNavigation'],
     },
     {
         name: 'TxtProps',
@@ -5960,6 +6003,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'txt-props',
+        components: ['Txt'],
     },
     {
         name: 'TypePropertyDemo',
@@ -6036,6 +6080,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'type-property-demo',
+        components: [],
     },
     {
         name: 'TypePropertyDemoWithControls',
@@ -6135,6 +6180,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'type-property-demo-with-controls',
+        components: [],
     },
     {
         name: 'UseComboboxProps',
@@ -6207,6 +6253,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'use-combobox-props',
+        components: [],
     },
     {
         name: 'UseFloatingProps',
@@ -6269,6 +6316,7 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'use-floating-props',
+        components: [],
     },
 ] as const;
 

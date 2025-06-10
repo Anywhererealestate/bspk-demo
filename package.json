@@ -25,7 +25,7 @@
     "dependencies": {
         "@axe-core/playwright": "^4.10.1",
         "@bspk/icons": "^1.0.3",
-        "@bspk/ui": "^1.1.28",
+        "@bspk/ui": "^1.1.31",
         "axe-core": "^4.10.2",
         "highlight.js": "^11.11.1",
         "markdown-to-jsx": "^7.7.4",
@@ -66,8 +66,8 @@
         "typescript": "5.6.3",
         "typescript-eslint": "8.13.0",
         "typescript-json-schema": "^0.65.1",
-        "vite": "^5.4.12",
-        "vite-node": "^2.1.8",
+        "vite": "^6.3.5",
+        "vite-node": "^3.2.3",
         "watcher": "^2.3.1"
     }
 }

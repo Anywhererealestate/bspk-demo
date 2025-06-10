@@ -3,8 +3,6 @@
  * package.
  */
 
-export const VERSION = '1.1.28' as const;
-
 export const searchIndex = [
     {
         title: 'Avatar',

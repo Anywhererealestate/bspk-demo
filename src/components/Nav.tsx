@@ -11,7 +11,7 @@ import { NavSide } from 'components/NavSide';
 import { SearchModal } from 'components/SearchModal';
 import { useEffect, useId, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { VERSION } from 'src/search-index';
+import { VERSION } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
 import useHotkeys from 'src/utils/useHotkeys';
 
