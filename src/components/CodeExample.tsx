@@ -4,22 +4,32 @@ import { AccessibilitySection } from 'components/AccessibilitySection';
 import ComponentLogs from 'components/ComponentLogs';
 import { ErrorBoundary } from 'components/ErrorBoundary';
 import { CSSProperties, ReactNode, useRef, useState } from 'react';
+import { Syntax } from 'src/components/Syntax';
+import { PrettyParser } from 'src/utils/pretty';
 
 export function CodeExample({
     children,
     containerStyle,
+    accessibility,
+    code,
     ...elementProps
 }: ElementProps<
     {
         containerStyle?: CSSProperties;
         children: ReactNode;
+        accessibility?: boolean;
+        code?: {
+            language?: PrettyParser | undefined;
+            str: string;
+        };
     },
     'div'
 >) {
-    const TABS = [
-        { label: 'Example', value: 'example' },
-        { label: 'Accessibility', value: 'accessibility' },
-    ];
+    const TABS = [{ label: 'Example', value: 'example' }];
+
+    if (accessibility) TABS.push({ label: 'Accessibility', value: 'accessibility' });
+
+    if (code) TABS.push({ label: 'Code', value: 'code' });
 
     const [demoTab, setDemoTab] = useState<(typeof TABS)[number]['value']>('example');
 
@@ -44,6 +54,11 @@ export function CodeExample({
             {exampleRef && (
                 <section data-accessibility data-active-tab={demoTab === 'accessibility' || undefined}>
                     {demoTab === 'accessibility' && <AccessibilitySection context={exampleRef.current} />}
+                </section>
+            )}
+            {code && (
+                <section data-active-tab={demoTab === 'code' || undefined} data-code>
+                    <Syntax code={code.str || ''} language={code.language} />
                 </section>
             )}
             <ComponentLogs />

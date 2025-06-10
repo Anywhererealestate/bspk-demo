@@ -185,14 +185,6 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                             style={{ maxHeight: '400px', overflowY: 'scroll' }}
                         />
                     )}
-
-                    <h5 style={{ marginTop: 'var(--spacing-sizing-18)' }}>Last Modified</h5>
-                    <p style={{ paddingBottom: 'var(--spacing-sizing-18)' }}>
-                        {new Intl.DateTimeFormat('en-US', {
-                            dateStyle: 'full',
-                            timeStyle: 'long',
-                        }).format(new Date(component.modified))}
-                    </p>
                 </article>
             </div>
             <NavContents />
