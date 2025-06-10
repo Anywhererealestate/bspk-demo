@@ -1,7 +1,39 @@
 import { DevPhase } from '@bspk/ui/demo/examples';
 import { MetaComponentName } from 'src/meta';
 
-export const COMPONENT_PHASE: Record<MetaComponentName | string, DevPhase> = {
+export const BACKLOG_COMPONENTS = [
+    'Accordion',
+    'AvatarGroup',
+    'BottomNavigation',
+    'BottomSheet',
+    'Breadcrumb',
+    'ButtonDock',
+    'Chart',
+    'DatePicker',
+    'Drawer',
+    'FileUpload',
+    'FormField',
+    'Image',
+    'Img',
+    'MultiSelection',
+    'NavigationRail',
+    'OTPInput',
+    'PageControl',
+    'PasswordInput',
+    'PhoneNumberInput',
+    'ProgressionStepper',
+    'Rating',
+    'SliderInput',
+    'Snackbar',
+    'Table',
+    'TimePicker',
+    'ToggleOption',
+    'TopNavigation',
+] as const;
+
+export type BacklogComponentName = (typeof BACKLOG_COMPONENTS)[number];
+
+export const COMPONENT_PHASE: Record<BacklogComponentName | MetaComponentName, DevPhase> = {
     Accordion: 'Backlog',
     Avatar: 'DesignReview',
     AvatarGroup: 'Backlog',
@@ -22,8 +54,8 @@ export const COMPONENT_PHASE: Record<MetaComponentName | string, DevPhase> = {
     Dialog: 'Utility',
     Divider: 'DesignReview',
     Drawer: 'Backlog',
-    Dropdown: 'DesignReview',
-    DropdownField: 'DesignReview',
+    Select: 'DesignReview',
+    SelectField: 'DesignReview',
     EmptyState: 'DesignReview',
     Fab: 'DesignReview',
     FileUpload: 'Backlog',

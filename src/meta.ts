@@ -62,7 +62,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Avatar',
         slug: 'avatar',
         dependencies: ['Tooltip'],
-        modified: '2025-06-05T15:51:41.481Z',
+        modified: '2025-06-10T14:07:53.358Z',
         usage: {
             code: 'import { Avatar } from \'@bspk/ui/Avatar\';\nimport { SvgPerson } from \'@bspk/icons/Person\';\n\nfunction Example() {\nreturn (\n<Avatar\nname="Jane Doe"\ninitials="JD"\ncolor="blue"\nsize="large"\nicon={<SvgPerson />}\nimage="/profile.jpg"\nshowTooltip={true}\n/>\n);\n}',
             description:
@@ -77,7 +77,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'AvatarGroup',
         slug: 'avatar-group',
         dependencies: ['Avatar'],
-        modified: '2025-06-04T21:07:04.412Z',
+        modified: '2025-06-10T14:07:53.358Z',
         usage: {
             code: "import { AvatarGroup } from '@bspk/ui/AvatarGroup';\n\nexport function Example() {\nreturn (\n<AvatarGroup\nitems={[\n{ name: 'Jane Doe', image: '/path/to/image.jpg' },\n{ name: 'John Smith', initials: 'JS' },\n]}\n/>\n);\n}",
         },
@@ -91,7 +91,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Badge',
         slug: 'badge',
         dependencies: [],
-        modified: '2025-06-05T20:10:28.312Z',
+        modified: '2025-06-10T14:07:53.358Z',
         usage: {
             code: 'import { Badge } from \'@bspk/ui/badge\';\n\nfunction Example() {\nreturn <Badge count={5} size="small" variant="primary" />;\n}',
             description: 'This example shows a badge with a count of 5, size small, and primary variant.',
@@ -106,7 +106,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'BannerAlert',
         slug: 'banner-alert',
         dependencies: [],
-        modified: '2025-06-04T21:07:04.412Z',
+        modified: '2025-06-10T14:07:53.358Z',
         usage: {
             code: 'import { BannerAlert } from \'@bspk/ui/BannerAlert\';\n\nfunction Example() {\n<BannerAlert\nvariant="error"\nheader="Error"\nbody="There was an error processing your request."\nonClose={() => console.log(\'Alert closed\')}\n/>;\n}',
             description:
@@ -122,7 +122,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Button',
         slug: 'button',
         dependencies: ['Tooltip'],
-        modified: '2025-06-04T21:07:04.412Z',
+        modified: '2025-06-10T14:07:53.358Z',
         usage: {
             code: 'import { Button } from \'@bspk/ui/Button\';\nimport { SvgPerson } from \'@bspk/icons/Person\';\n\nfunction Example() {\nreturn (\n<Button\nlabel="Click Me"\nsize="medium"\nvariant="primary"\nonClick={() => console.log(\'Button clicked\')}\nicon={<SvgPerson />}\n/>\n);\n}',
         },
@@ -136,7 +136,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Card',
         slug: 'card',
         dependencies: [],
-        modified: '2025-06-04T21:07:04.413Z',
+        modified: '2025-06-10T14:07:53.359Z',
         usage: {
             code: 'import { Card } from \'@bspk/ui/card\';\n\nfunction Example() {\nreturn (\n<Card variant="elevated" showPadding={false}>\n<h3>Card Title</h3>\n<p>This is some content inside the card.</p>\n</Card>\n);\n}',
         },
@@ -150,7 +150,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Checkbox',
         slug: 'checkbox',
         dependencies: [],
-        modified: '2025-06-04T21:07:04.413Z',
+        modified: '2025-06-10T14:07:53.359Z',
         usage: {
             code: 'import { Checkbox } from \'@bspk/ui/Checkbox\';\n\nfunction Example() {\nconst [checked, setChecked] = React.useState(false);\n\nreturn (\n<label htmlFor="sample-checkbox">\n<Checkbox\naria-label="Sample"\nchecked={checked}\nid="sample-checkbox"\nname="sample-checkbox"\nonChange={(nextChecked) => setChecked(nextChecked)}\nvalue="sample"\n/>\nCheckbox Label\n</label>\n);\n}',
         },
@@ -164,7 +164,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'CheckboxGroup',
         slug: 'checkbox-group',
         dependencies: ['Checkbox', 'ToggleOption'],
-        modified: '2025-06-04T21:07:04.413Z',
+        modified: '2025-06-10T14:07:53.359Z',
         usage: {
             code: "import { CheckboxGroup } from '@bspk/ui/CheckboxGroup';\n\nfunction Example() {\nconst [values, setValues] = React.useState<string[]>([]);\n\nreturn (\n<CheckboxGroup\naria-label=\"Example Checkbox Group\"\nname=\"example-checkbox-group\"\noptions={[\n{ label: 'Option 1', value: 'option1' },\n{ label: 'Option 2', value: 'option2' },\n{ label: 'Option 3', value: 'option3' },\n]}\nvalues={values}\nonChange={(nextValues: string[]) => {\nsetValues(nextValues);\n}}\n/>\n);\n}",
         },
@@ -178,7 +178,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'CheckboxOption',
         slug: 'checkbox-option',
         dependencies: ['Checkbox', 'ToggleOption'],
-        modified: '2025-06-05T14:58:19.213Z',
+        modified: '2025-06-10T14:07:53.359Z',
         usage: {
             code: 'import { CheckboxOption } from \'@bspk/ui/CheckboxOption\';\n\nfunction Example() {\nconst [checked, setChecked] = React.useState(false);\nreturn (\n<CheckboxOption\nchecked={checked}\ndescription="This is an example checkbox option."\nlabel="Example Checkbox"\nname="example-checkbox-name"\nonChange={(nextChecked, event) => {\nsetChecked(nextChecked);\nconsole.log(\'Checkbox changed:\', nextChecked, event);\n}}\nvalue="example-checkbox-value"\n/>\n);\n}',
         },
@@ -191,7 +191,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Chip',
         slug: 'chip',
         dependencies: [],
-        modified: '2025-06-04T21:07:04.413Z',
+        modified: '2025-06-10T14:07:53.359Z',
         usage: {
             code: "import { Chip } from '@bspk/ui/Chip';\n\nfunction Example() {\nreturn (\n<Chip variant=\"filter\" onClick={() => console.log('Chip clicked!')}>\nExample Chip\n</Chip>\n);\n}",
         },
@@ -205,7 +205,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Dialog',
         slug: 'dialog',
         dependencies: ['Portal'],
-        modified: '2025-06-04T21:07:04.414Z',
+        modified: '2025-06-10T14:07:53.359Z',
         usage: {
             code: "import { Dialog } from '@bspk/ui/Dialog';\nimport { Button } from '@bspk/ui/Button';\n\nfunction Example() {\nconst [open, setOpen] = React.useState(false);\n\nreturn (\n<>\n<Button label=\"Open Dialog\" onClick={() => setOpen(true)} />\n<Dialog open={open} onClose={() => setOpen(false)}>\n<h1>Dialog Title</h1>\n<p>This is the content of the dialog.</p>\n<button onClick={() => setOpen(false)}>Close</button>\n</Dialog>\n</>\n);\n}",
         },
@@ -219,38 +219,11 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Divider',
         slug: 'divider',
         dependencies: [],
-        modified: '2025-06-04T21:07:04.414Z',
+        modified: '2025-06-10T14:07:53.359Z',
         usage: {
             code: 'import { Divider } from \'@bspk/ui/Divider\';\n\nfunction Example() {\nreturn (\n<div>\n<p>Content above the divider</p>\n<Divider orientation="horizontal" />\n<p>Content below the divider</p>\n</div>\n);\n}',
         },
         css: "[data-bspk='divider'] {\n    /*! --inset: is set via inline style */\n\n    display: flex;\n    background-color: var(--stroke-neutral-low);\n    align-self: stretch;\n    place-content: stretch stretch;\n    margin: 0;\n    padding: 0;\n    content: 'hello';\n\n    --length: calc(100% - var(--inset) * 2);\n\n    &,\n    &[data-thickness='light'] {\n        --line-thickness: 1px;\n        --padding: var(--spacing-sizing-02);\n    }\n\n    &[data-thickness='heavy'] {\n        --line-thickness: 2px;\n        --padding: var(--spacing-sizing-04);\n\n        border-radius: var(--radius-circular);\n    }\n\n    &, // default\n  &[data-orientation='horizontal'] {\n        width: unset;\n        min-height: unset;\n        height: var(--line-thickness);\n        min-width: var(--length);\n        margin: var(--padding) var(--inset);\n    }\n\n    &[data-orientation='vertical'] {\n        height: unset;\n        min-width: unset;\n        width: var(--line-thickness);\n        min-height: var(--length);\n        margin: var(--inset) var(--padding);\n    }\n\n    &[data-hide-padding] {\n        --padding: 0;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
-        hasTouchTarget: false,
-    },
-    {
-        description: 'A field element that allows users to select one option from a list of available choices. *',
-        file: '/Dropdown.tsx',
-        name: 'Dropdown',
-        slug: 'dropdown',
-        dependencies: ['ListItem', 'Menu', 'Portal'],
-        modified: '2025-06-05T18:43:43.842Z',
-        usage: {
-            code: "import { Dropdown } from '@bspk/ui/Dropdown';\n\nexport function Example() {\nconst [selected, setSelected] = React.useState<string[]>([]);\nreturn (\n<Dropdown\naria-label=\"Select an option\"\nitemCount={5}\nname=\"example-dropdown\"\nonChange={setSelected}\noptions={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]}\nplaceholder=\"Select an option\"\nsize=\"medium\"\nvalue={selected}\n/>\n);\n}",
-        },
-        css: "[data-bspk='dropdown'] {\n    // default -- size medium not disabled or readonly\n\n    --dropdown-background: var(--surface-neutral-t1-base);\n    --dropdown-border-color: var(--stroke-neutral-base);\n    --dropdown-text-color: var(--foreground-neutral-on-surface);\n    --dropdown-height: var(--spacing-sizing-10);\n    --dropdown-font: var(--body-base);\n    --dropdown-clear-height: var(--spacing-sizing-05);\n    --dropdown-padding: var(--spacing-sizing-03);\n    --dropdown-icon-width: var(--spacing-sizing-05);\n\n    position: relative;\n    width: 100%;\n    max-width: 280px;\n    outline: unset;\n    min-height: var(--dropdown-height);\n    max-height: var(--dropdown-height);\n    display: flex;\n    flex-direction: row;\n    gap: var(--spacing-sizing-02);\n    flex-grow: 0;\n    flex-shrink: 0;\n    text-align: left;\n    font: var(--dropdown-font);\n    border: 1px solid var(--dropdown-border-color);\n    border-radius: var(--radius-small);\n    background: var(--dropdown-background);\n    padding: 0 var(--dropdown-padding);\n\n    [data-placeholder] {\n        display: block;\n        max-width: 100%;\n        text-overflow: ellipsis;\n        overflow: hidden;\n        padding: 0;\n\n        [data-inner] {\n            min-height: auto;\n            padding: 0;\n        }\n\n        [data-item-label] [data-text] {\n            color: var(--dropdown-text-color);\n        }\n    }\n\n    [data-svg] {\n        display: flex;\n        flex-direction: column;\n        justify-content: center;\n\n        svg {\n            transform: rotate(90deg);\n            width: var(--dropdown-icon-width);\n        }\n    }\n\n    [data-bspk='list-item'][data-selected] {\n        background: var(--surface-brand-primary-highlight);\n    }\n\n    &[data-size='small'] {\n        --dropdown-height: var(--spacing-sizing-08);\n        --dropdown-font: var(--body-small);\n        --dropdown-clear-height: var(--spacing-sizing-05);\n        --dropdown-padding: var(--spacing-sizing-02);\n        --dropdown-icon-width: var(--spacing-sizing-05);\n    }\n\n    &[data-size='large'] {\n        --dropdown-height: var(--spacing-sizing-12);\n        --dropdown-font: var(--body-large);\n        --dropdown-clear-height: var(--spacing-sizing-06);\n        --dropdown-icon-width: var(--spacing-sizing-06);\n    }\n\n    &:disabled {\n        --dropdown-text-color: var(--foreground-neutral-disabled-on-surface);\n        --dropdown-border-color: var(--stroke-neutral-disabled-light);\n        --dropdown-background:\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n\n        &[aria-readonly]:not([data-empty]) {\n            --dropdown-text-color: var(--foreground-neutral-on-surface);\n        }\n    }\n\n    &:not(:disabled) {\n        &:focus {\n            --dropdown-border-color: var(--stroke-brand-primary);\n        }\n\n        &:hover {\n            --dropdown-background:\n                linear-gradient(var(--interactions-neutral-hover-opacity), var(--interactions-neutral-hover-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n        }\n\n        &:active {\n            --dropdown-background:\n                linear-gradient(var(--interactions-neutral-press-opacity), var(--interactions-neutral-press-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n        }\n    }\n\n    &[data-invalid] {\n        --dropdown-border-color: var(--status-error);\n    }\n\n    &[data-empty] {\n        --dropdown-text-color: var(--foreground-neutral-on-surface-variant-03);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
-        hasTouchTarget: false,
-    },
-    {
-        description:
-            'A component that allows users to input large amounts of text that could span multiple lines.\n\nThis component takes properties from the FormField and Dropdown components.',
-        file: '/DropdownField.tsx',
-        name: 'DropdownField',
-        slug: 'dropdown-field',
-        dependencies: ['Dropdown', 'FormField'],
-        modified: '2025-06-04T21:07:04.414Z',
-        usage: {
-            code: "import { DropdownField } from '@bspk/ui/DropdownField';\n\nexport function Example() {\nconst [state, setState] = React.useState(['option1']);\nreturn (\n<DropdownField\ncontrolId=\"Example controlId\"\nlabel=\"Example label\"\nname=\"Example name\"\nonChange={(nextValue) => setState(nextValue)}\noptions={[\n{ label: 'Option 1', value: 'option1' },\n{ label: 'Option 2', value: 'option2' },\n{ label: 'Option 3', value: 'option3' },\n]}\nplaceholder=\"Select one...\"\nvalue={state}\n/>\n);\n}",
-        },
-        css: '',
         hasTouchTarget: false,
     },
     {
@@ -259,7 +232,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'EmptyState',
         slug: 'empty-state',
         dependencies: ['Button', 'Layout', 'Txt'],
-        modified: '2025-06-04T21:07:04.414Z',
+        modified: '2025-06-10T14:07:53.359Z',
         usage: {
             code: 'import { EmptyState } from \'@bspk/ui/EmptyState\';\n\nexport function Example() {\nreturn (\n<EmptyState body="Example body" header="Example header">\nExample EmptyState\n</EmptyState>\n);\n}',
         },
@@ -273,7 +246,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Fab',
         slug: 'fab',
         dependencies: ['Button', 'Tooltip'],
-        modified: '2025-06-04T21:07:04.415Z',
+        modified: '2025-06-10T14:07:53.366Z',
         usage: {
             code: 'import { SvgBolt } from \'@bspk/icons/Bolt\';\nimport { Fab } from \'@bspk/ui/Fab\';\n\nexport function Example() {\nreturn <Fab icon={<SvgBolt />} label="Example label" placement="bottom-right" variant="neutral" />;\n}',
         },
@@ -282,12 +255,12 @@ export const componentsMeta: ComponentMeta[] = [
     },
     {
         description:
-            'Wrapper component for form controls.\n\nChildren may be one of the following: TextInput, Dropdown, DatePicker, or TimePicker.',
+            'Wrapper component for form controls.\n\nChildren may be one of the following: TextInput, Select, DatePicker, or TimePicker.',
         file: '/FormField.tsx',
         name: 'FormField',
         slug: 'form-field',
         dependencies: ['InlineAlert', 'Layout', 'Txt'],
-        modified: '2025-06-05T20:10:28.312Z',
+        modified: '2025-06-10T14:07:53.366Z',
         usage: {
             code: 'import { TextInput } from \'@bspk/ui/TextInput\';\nimport { FormField } from \'@bspk/ui/FormField\';\n\nexport function Example() {\nconst [state, setState] = React.useState<string | undefined>(undefined);\nreturn (\n<FormField controlId="Example controlId" label="Example label">\n{(fieldProps) => {\nreturn (\n<TextInput\naria-label="example aria-label"\nname="example-text"\nonChange={(next) => {\nsetState(next);\n}}\nvalue={state}\n{...fieldProps}\n/>\n);\n}}\n</FormField>\n);\n}',
         },
@@ -300,7 +273,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Img',
         slug: 'img',
         dependencies: [],
-        modified: '2025-06-04T21:07:04.415Z',
+        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: 'import { Img } from \'@bspk/ui/Img\';\n\nexport function Example() {\nreturn <Img alt="Example alt" src="Example src" />;\n}',
         },
@@ -314,7 +287,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'InlineAlert',
         slug: 'inline-alert',
         dependencies: ['Txt'],
-        modified: '2025-06-04T21:07:04.415Z',
+        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: 'import { InlineAlert } from \'@bspk/ui/InlineAlert\';\n\nexport function Example() {\nreturn <InlineAlert variant="informational">Example informational inline alert</InlineAlert>;\n}',
         },
@@ -327,7 +300,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Layout',
         slug: 'layout',
         dependencies: [],
-        modified: '2025-06-04T21:07:04.415Z',
+        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: "import { Layout } from '@bspk/ui/Layout';\n\nexport function Example() {\nreturn <Layout>Low effort example</Layout>;\n}",
         },
@@ -340,7 +313,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Link',
         slug: 'link',
         dependencies: [],
-        modified: '2025-06-05T20:10:28.312Z',
+        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: 'import { Link } from \'@bspk/ui/Link\';\n\nexport function Example() {\nreturn <Link href="https://bspk.dev" label="Example label" trailingIcon="external" />;\n}',
         },
@@ -354,7 +327,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ListItem',
         slug: 'list-item',
         dependencies: ['Button'],
-        modified: '2025-06-05T20:10:28.313Z',
+        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: 'import { SvgSquare } from \'@bspk/icons/Square\';\nimport { ListItem } from \'@bspk/ui/ListItem\';\n\nexport function Example() {\nreturn (\n<ListItem\nlabel="Example label"\nleading={<SvgSquare />}\nsubText="Example subtest"\ntrailing={<ListItem.Button label="Click me" onClick={() => console.log(\'Hello world\')} />}\n/>\n);\n}',
         },
@@ -368,7 +341,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Menu',
         slug: 'menu',
         dependencies: ['Checkbox', 'ListItem'],
-        modified: '2025-06-05T14:58:19.213Z',
+        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: "import React from 'react';\n\nimport { Menu } from '@bspk/ui/Menu';\n\nexport function Example() {\nconst [selected, setSelected] = React.useState<string[]>([]);\n\nreturn (\n<Menu\nitems={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]}\nonChange={(selectedValues: string[]) => setSelected(selectedValues)}\nselectedValues={selected}\n/>\n);\n}",
         },
@@ -381,7 +354,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'MenuButton',
         slug: 'menu-button',
         dependencies: ['Button'],
-        modified: '2025-06-04T21:07:04.416Z',
+        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: "import { MenuButton } from '@bspk/ui/MenuButton';\n\nexport function Example() {\nreturn <MenuButton />;\n}",
         },
@@ -395,7 +368,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Modal',
         slug: 'modal',
         dependencies: ['Button', 'Dialog', 'Txt'],
-        modified: '2025-06-04T21:07:04.417Z',
+        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: 'import React from \'react\';\n\nimport { Button } from \'@bspk/ui/Button\';\nimport { Modal } from \'@bspk/ui/Modal\';\n\nexport function Example() {\nconst [open, setOpen] = React.useState(false);\n\nreturn (\n<>\n<Button label="Open Dialog" onClick={() => setOpen(true)} />\n<Modal\ndescription="Example description"\nheader="Example header"\nonClose={() => setOpen(false)}\nopen={open}\n>\nExample Modal\n</Modal>\n</>\n);\n}',
         },
@@ -409,7 +382,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'NumberField',
         slug: 'number-field',
         dependencies: ['FormField', 'NumberInput'],
-        modified: '2025-06-04T21:07:04.417Z',
+        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: 'import React from \'react\';\n\nimport { NumberField } from \'@bspk/ui/NumberField\';\n\nexport function Example() {\nconst [state, setState] = React.useState<number>();\n\nreturn (\n<NumberField\ncontrolId="Example controlId"\nlabel="Example label"\nname="Example name"\nonChange={(nextValue) => setState(nextValue)}\nvalue={state}\n/>\n);\n}',
         },
@@ -423,7 +396,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'NumberInput',
         slug: 'number-input',
         dependencies: [],
-        modified: '2025-06-04T21:07:04.417Z',
+        modified: '2025-06-10T14:07:53.367Z',
         usage: {
             code: 'import { NumberInput } from \'@bspk/ui/NumberInput\';\n\nexport function Example() {\nconst [state, setState] = React.useState<number>();\n\nreturn (\n<NumberInput\naria-label="Example aria-label"\nname="Example name"\nonChange={(nextValue) => setState(nextValue)}\nvalue={state}\n/>\n);\n}',
         },
@@ -436,7 +409,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Popover',
         slug: 'popover',
         dependencies: ['Button', 'Portal', 'Txt'],
-        modified: '2025-06-04T21:07:25.768Z',
+        modified: '2025-06-10T14:07:53.368Z',
         usage: {
             code: "import { useState } from 'react';\nimport { Popover } from '@bspk/ui/Popover';\nimport { Button } from '@bspk/ui/Button';\n\nexport function Example() {\nconst [showPopover, setShowPopover] = useState<boolean>(false);\n\nconst togglePopover = () => setShowPopover(!showPopover);\nconst onPopoverCallToActionClick = () => alert('Action clicked');\n\nreturn (\n<Popover\nplacement=\"bottom\"\ncontent=\"This is a popover content\"\nheader=\"Popover Header\"\ncallToAction={{\nlabel: 'Action',\nonClick: onPopoverCallToActionClick,\n}}\n>\n<Button label=\"Toggle popover\" onClick={togglePopover} />\n</Popover>\n);\n}",
         },
@@ -450,7 +423,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Portal',
         slug: 'portal',
         dependencies: [],
-        modified: '2025-05-28T17:24:08.071Z',
+        modified: '2025-06-10T14:07:53.368Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -461,9 +434,9 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ProgressBar',
         slug: 'progress-bar',
         dependencies: [],
-        modified: '2025-06-04T21:07:25.768Z',
+        modified: '2025-06-10T14:07:53.368Z',
         usage: {
-            code: 'import { ProgressBar } from \'@bspk/ui/ProgressBar\';\n\nexport function Example() {\nreturn (\n<ProgressBar label="Example label" completion={50} />\n);\n}',
+            code: 'import { ProgressBar } from \'@bspk/ui/ProgressBar\';\n\nexport function Example() {\nreturn <ProgressBar label="Example label" completion={50} />;\n}',
         },
         css: "[data-bspk='progress-bar'] {\n    /*! --width: is set via inline style */\n\n    display: flex;\n    flex-direction: column;\n    width: 100%;\n    gap: var(--spacing-sizing-01);\n\n    progress {\n        opacity: 0;\n        position: absolute;\n    }\n\n    [data-bar] {\n        width: 100%;\n        height: var(--spacing-sizing-02);\n        background-color: var(--surface-neutral-t3-low);\n        border-radius: var(--radius-small);\n\n        &::after {\n            content: '';\n            display: block;\n            height: 100%;\n            background-color: var(--foreground-brand-primary);\n            border-radius: var(--radius-small);\n            width: var(--width);\n            transition: width 0.3s;\n        }\n    }\n\n    &[data-size='small'] {\n        [data-bar] {\n            height: var(--spacing-sizing-01);\n        }\n    }\n\n    label {\n        font-size: var(--labels-small);\n        width: 100%;\n        text-align: center;\n    }\n\n    &[data-align='left'] label {\n        text-align: left;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
@@ -475,9 +448,9 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ProgressCircle',
         slug: 'progress-circle',
         dependencies: ['Txt'],
-        modified: '2025-06-04T21:07:25.768Z',
+        modified: '2025-06-10T14:07:53.368Z',
         usage: {
-            code: 'import { ProgressCircle } from \'@bspk/ui/ProgressCircle\';\n\nexport function Example() {\nreturn (\n<ProgressCircle label="Example label"/>\n);\n}',
+            code: 'import { ProgressCircle } from \'@bspk/ui/ProgressCircle\';\n\nexport function Example() {\nreturn <ProgressCircle label="Example label" />;\n}',
         },
         css: "[data-bspk='progress-circle'] {\n    --animation-speed: 1.5s;\n\n    display: flex;\n    flex-direction: column;\n    gap: var(--spacing-sizing-02);\n    align-items: center;\n    justify-content: center;\n\n    &[data-label-position='top'] {\n        flex-direction: column-reverse;\n    }\n\n    &[data-label-position='left'] {\n        flex-direction: row-reverse;\n    }\n\n    &[data-label-position='right'] {\n        flex-direction: row;\n    }\n\n    svg {\n        color: var(--foreground-brand-secondary);\n        animation: spin var(--animation-speed) linear infinite;\n    }\n\n    @keyframes spin {\n        100% {\n            transform: rotate(360deg);\n        }\n\n        0% {\n            transform: rotate(0deg);\n        }\n    }\n\n    &[data-size='small'] {\n        svg {\n            width: 32px;\n        }\n    }\n\n    &[data-size='medium'] {\n        svg {\n            width: 40px;\n        }\n    }\n\n    &[data-size='large'] {\n        svg {\n            width: 48px;\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
@@ -489,9 +462,9 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ProgressionStepper',
         slug: 'progression-stepper',
         dependencies: [],
-        modified: '2025-06-04T21:07:25.768Z',
+        modified: '2025-06-10T14:07:53.368Z',
         usage: {
-            code: "import { ProgressionStepper } from '@bspk/ui/ProgressionStepper';\n\nexport function Example() {\nreturn (\n<ProgressionStepper steps={[\n{ name: 'Step 1' },\n{ name: 'Step 2' },\n{ name: 'Step 3' },\n]} />\n);\n}",
+            code: "import { ProgressionStepper } from '@bspk/ui/ProgressionStepper';\n\nexport function Example() {\nreturn <ProgressionStepper steps={[{ name: 'Step 1' }, { name: 'Step 2' }, { name: 'Step 3' }]} />;\n}",
         },
         css: "[data-bspk='progression-stepper'] {\n    width: 100%;\n\n    --circle-width: var(--spacing-sizing-09);\n    --active-background-color: var(--surface-brand-primary);\n    --active-foreground-color: var(--foreground-brand-on-primary);\n    --inactive-background-color: var(--surface-neutral-t3-low);\n    --inactive-foreground-color: var(--foreground-neutral-on-surface);\n\n    ol {\n        display: flex;\n        width: 100%;\n        margin: 0;\n        padding: 0;\n\n        li {\n            display: flex;\n            flex-direction: column;\n            list-style: none;\n            margin: 0;\n            padding: 0;\n            gap: var(--spacing-sizing-02);\n\n            [data-line-circle] {\n                display: flex;\n                justify-content: center;\n                align-items: center;\n                flex-direction: row;\n\n                [data-line] {\n                    background-color: var(--inactive-background-color);\n                    height: 2px;\n                    flex-grow: 1;\n                }\n\n                [data-circle] {\n                    display: flex;\n                    justify-content: center;\n                    align-items: center;\n                    width: var(--circle-width);\n                    height: var(--circle-width);\n                    border-radius: 50%;\n                    background-color: none;\n                    border: 2px solid var(--inactive-background-color);\n                    font: var(--labels-large);\n\n                    svg {\n                        display: none;\n                        width: var(--spacing-sizing-06);\n                        height: var(--spacing-sizing-06);\n                    }\n                }\n            }\n\n            [data-content] {\n                display: flex;\n                padding: 0 var(--spacing-sizing-10);\n                font: var(--body-small);\n            }\n\n            &:first-of-type {\n                [data-line='before'] {\n                    visibility: hidden;\n                }\n            }\n\n            &:last-of-type {\n                [data-line='after'] {\n                    visibility: hidden;\n                }\n            }\n\n            &[data-status='complete'] {\n                [data-line] {\n                    background-color: var(--active-background-color);\n                }\n\n                [data-circle] {\n                    background-color: var(--active-background-color);\n                    border: 1px solid var(--active-background-color);\n                    color: var(--active-foreground-color);\n\n                    span {\n                        display: none;\n                    }\n\n                    svg {\n                        display: block;\n                    }\n                }\n            }\n\n            &[data-status='current'] {\n                [data-line='before'] {\n                    background-color: var(--active-background-color);\n                }\n\n                [data-circle] {\n                    border-color: var(--active-background-color);\n                }\n            }\n        }\n    }\n\n    &[data-variant='vertical'] {\n        ol {\n            flex-direction: column;\n        }\n\n        li {\n            flex-direction: row;\n\n            [data-line-circle] {\n                flex-direction: column;\n                width: var(--circle-width);\n\n                [data-line] {\n                    width: 2px;\n                    height: auto;\n                }\n            }\n\n            [data-content] {\n                flex-direction: column;\n                padding: var(--spacing-sizing-10) 0;\n            }\n        }\n    }\n\n    &[data-variant='widget'] {\n        --circle-width: var(--spacing-sizing-05);\n\n        label {\n            display: flex;\n            flex-direction: column;\n            gap: var(--spacing-sizing-02);\n            margin-bottom: var(--spacing-sizing-03);\n            font: var(--body-small);\n\n            [data-title] {\n                font: var(--labels-base);\n                color: var(--foreground-neutral-on-surface);\n            }\n\n            [data-subtitle] {\n                font: var(--body-x-small);\n                color: var(--foreground-neutral-on-surface-variant-02);\n            }\n        }\n\n        ol {\n            align-items: center;\n            min-height: var(--spacing-sizing-09);\n\n            li {\n                [data-line-circle] {\n                    [data-line] {\n                        width: 10px;\n                    }\n                }\n\n                &[data-status='current'] {\n                    --circle-width: var(--spacing-sizing-09);\n                }\n\n                &[data-status='incomplete'] {\n                    [data-circle] {\n                        span {\n                            display: none;\n                        }\n                    }\n                }\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
@@ -502,7 +475,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ProgressionStepperBar',
         slug: 'progression-stepper-bar',
         dependencies: [],
-        modified: '2025-05-30T18:17:11.743Z',
+        modified: '2025-06-10T14:07:53.368Z',
         css: "[data-bspk='progression-stepper-bar'] {\n    &[data-size='large'] {\n        --height: var(--spacing-sizing-02);\n    }\n\n    &[data-size='small'] {\n        --height: var(--spacing-sizing-01);\n    }\n\n    display: flex;\n    width: 100%;\n    flex-direction: column;\n    gap: var(--spacing-sizing-01);\n\n    [data-steps] {\n        display: flex;\n        flex-direction: row;\n        gap: var(--spacing-sizing-01);\n        height: var(--height);\n\n        [data-step] {\n            width: 100%;\n            height: var(--height);\n            min-width: var(--spacing-sizing-02);\n            border-radius: var(--radius-small);\n            background: var(--surface-neutral-t3-low);\n\n            &[data-complete] {\n                background: var(--surface-brand-primary);\n            }\n        }\n    }\n\n    label {\n        font: var(--labels-small);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -513,7 +486,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Radio',
         slug: 'radio',
         dependencies: [],
-        modified: '2025-06-04T18:37:54.731Z',
+        modified: '2025-06-10T14:07:53.368Z',
         css: "[data-bspk='radio'] {\n    display: block;\n    position: relative;\n    width: var(--spacing-sizing-06);\n    aspect-ratio: 1/1;\n    padding: 2px;\n\n    input[type='radio'] {\n        position: absolute;\n        opacity: 0;\n        z-index: 2;\n        width: 100%;\n        height: 100%;\n        top: 0;\n        left: 0;\n        cursor: pointer;\n    }\n\n    span {\n        --stroke: var(--stroke-neutral-base);\n        --inner: var(--foreground-brand-primary);\n        --background: none;\n\n        position: relative;\n        z-index: 1;\n        box-sizing: border-box;\n        display: flex;\n        width: var(--spacing-sizing-05);\n        aspect-ratio: 1/1;\n        border-radius: 50%;\n        border: 2px solid var(--stroke);\n        align-items: center;\n        flex-direction: column;\n        justify-content: center;\n        background: var(--background);\n\n        &::before {\n            content: '';\n            display: block;\n            width: var(--spacing-sizing-03);\n            aspect-ratio: 1/1;\n            background: var(--inner);\n            border-radius: var(--radius-circular);\n            opacity: 0;\n        }\n    }\n\n    input[type='radio']:not(:disabled) {\n        &:hover + span {\n            --background: var(--interactions-neutral-hover-opacity);\n        }\n\n        &:active + span {\n            --background: var(--interactions-neutral-press-opacity);\n        }\n\n        &[data-invalid] + span {\n            --stroke: var(--status-error);\n            --inner: var(--status-error);\n        }\n    }\n\n    input[type='radio']:checked + span {\n        --stroke: var(--stroke-brand-primary);\n\n        &::before {\n            opacity: 1;\n        }\n    }\n\n    input[type='radio']:disabled {\n        pointer-events: none;\n\n        & + span {\n            --stroke: var(--stroke-neutral-interactions-disabled-light);\n            --inner: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -524,7 +497,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'RadioGroup',
         slug: 'radio-group',
         dependencies: ['Radio', 'ToggleOption'],
-        modified: '2025-06-05T14:58:19.214Z',
+        modified: '2025-06-10T14:07:53.368Z',
         usage: {
             code: "import { useState } from 'react';\nimport { RadioGroup } from '@bspk/ui/RadioGroup';\n\nexport function Example() {\nconst [selectedOption, setSelectedOption] = useState<string>('1');\n\nreturn (\n<RadioGroup\nname=\"Example name\"\nonChange={(nextValue) => setSelectedOption(nextValue)}\noptions={[\n{\nvalue: '1',\nlabel: 'Option 1',\ndescription: 'Description here',\n},\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n]}\nvalue={selectedOption}\n/>\n);\n}",
         },
@@ -538,7 +511,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'RadioOption',
         slug: 'radio-option',
         dependencies: ['Radio', 'ToggleOption'],
-        modified: '2025-06-05T14:58:19.214Z',
+        modified: '2025-06-10T14:07:53.368Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -548,9 +521,9 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'SearchBar',
         slug: 'search-bar',
         dependencies: ['Menu', 'Portal', 'TextInput', 'Txt'],
-        modified: '2025-06-04T21:07:25.769Z',
+        modified: '2025-06-10T14:07:53.368Z',
         usage: {
-            code: "import { useState } from 'react';\nimport { SearchBar } from '@bspk/ui/SearchBar';\n\nexport function Example() {\nconst [searchText, setSearchText] = useState<string>('');\n\nconst handleItemSelect = (item) =>\nconsole.log('Selected item:', item);\n\nreturn (\n<SearchBar\naria-label=\"Example aria-label\"\nitems={[\n{ value: '1', label: 'Apple Pie' },\n{ value: '2', label: 'Banana Split' },\n{ value: '3', label: 'Cherry Tart' },\n{ value: '4', label: 'Dragonfruit Sorbet' },\n{ value: '5', label: 'Elderberry Jam' },\n{ value: '6', label: 'Fig Newton' },\n{ value: '7', label: 'Grape Soda' },\n{ value: '8', label: 'Honeydew Smoothie' },\n{ value: '9', label: 'Ice Cream Sandwich' },\n{ value: '10', label: 'Jackfruit Pudding' },\n]}\nname=\"Example name\"\nplaceholder=\"Search\"\nvalue={searchText}\nonChange={setSearchText}\nonSelect={handleItemSelect}\n/>\n);\n}",
+            code: "import { useState } from 'react';\nimport { SearchBar } from '@bspk/ui/SearchBar';\n\nexport function Example() {\nconst [searchText, setSearchText] = useState<string>('');\n\nconst handleItemSelect = (item) => console.log('Selected item:', item);\n\nreturn (\n<SearchBar\naria-label=\"Example aria-label\"\nitems={[\n{ value: '1', label: 'Apple Pie' },\n{ value: '2', label: 'Banana Split' },\n{ value: '3', label: 'Cherry Tart' },\n{ value: '4', label: 'Dragonfruit Sorbet' },\n{ value: '5', label: 'Elderberry Jam' },\n{ value: '6', label: 'Fig Newton' },\n{ value: '7', label: 'Grape Soda' },\n{ value: '8', label: 'Honeydew Smoothie' },\n{ value: '9', label: 'Ice Cream Sandwich' },\n{ value: '10', label: 'Jackfruit Pudding' },\n]}\nname=\"Example name\"\nplaceholder=\"Search\"\nvalue={searchText}\nonChange={setSearchText}\nonSelect={handleItemSelect}\n/>\n);\n}",
         },
         css: "[data-bspk='search-bar'] {\n    display: flex;\n    width: 100%;\n    min-width: 300px;\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
@@ -561,11 +534,38 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'SegmentedControl',
         slug: 'segmented-control',
         dependencies: ['Tooltip'],
-        modified: '2025-06-04T21:07:25.769Z',
+        modified: '2025-06-10T14:07:53.368Z',
         usage: {
             code: "import { useState } from 'react';\nimport { SegmentedControl } from '@bspk/ui/SegmentedControl';\n\nexport function Example() {\nconst [selectedOption, setSelectedOption] = useState<string>();\n\nreturn (\n<SegmentedControl\nonChange={setSelectedOption}\noptions={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n]}\nvalue={selectedOption}\n/>\n);\n}",
         },
         css: "[data-bspk='segmented-control'] {\n    display: flex;\n    flex-direction: row;\n    max-width: 100%;\n\n    --outer-height: var(--spacing-sizing-10);\n    --inner-height: var(--spacing-sizing-08);\n    --svg-width: 20px;\n\n    &[data-width='fill'] {\n        align-items: stretch;\n        width: 100%;\n\n        --btn-flex-grow: 1;\n\n        margin: 0 var(--spacing-sizing-04);\n    }\n\n    &[data-width='hug'] {\n        width: fit-content;\n\n        --btn-flex-grow: 0;\n    }\n\n    &[data-size='small'] {\n        --outer-height: var(--spacing-sizing-08);\n        --inner-height: var(--spacing-sizing-06);\n        --svg-width: 16px;\n    }\n\n    svg {\n        width: var(--svg-width) !important;\n    }\n\n    button {\n        border: 0;\n        cursor: pointer;\n        color: var(--foreground-neutral-on-surface);\n        flex-grow: var(--btn-flex-grow);\n        font: var(--labels-small);\n        margin: 0;\n        height: var(--spacing-sizing-12);\n        background: transparent;\n        position: relative;\n        white-space: nowrap;\n\n        [data-focus-ring] {\n            display: none;\n        }\n\n        [data-outer] {\n            height: var(--outer-height);\n            background: var(--surface-neutral-t3-low);\n            margin: var(--spacing-sizing-01) 0;\n            padding: var(--spacing-sizing-01) 0;\n            display: block;\n        }\n\n        [data-inner] {\n            display: flex;\n            flex-direction: row;\n            align-items: center;\n            height: var(--inner-height);\n            border-bottom: 1px solid transparent;\n            justify-content: center;\n            gap: var(--spacing-sizing-01);\n            border-radius: var(--radius-small);\n            padding: var(--spacing-sizing-02) var(--spacing-sizing-03);\n        }\n\n        &:first-of-type {\n            [data-outer] {\n                border-top-left-radius: var(--radius-medium);\n                border-bottom-left-radius: var(--radius-medium);\n                padding-left: var(--spacing-sizing-01);\n            }\n        }\n\n        &:last-of-type {\n            [data-outer] {\n                border-top-right-radius: var(--radius-medium);\n                border-bottom-right-radius: var(--radius-medium);\n                padding-right: var(--spacing-sizing-01);\n            }\n        }\n\n        &:not(:disabled) {\n            &:hover {\n                [data-inner] {\n                    background: var(--interactions-neutral-hover-opacity);\n                }\n            }\n\n            &:active {\n                [data-inner] {\n                    background: var(--interactions-neutral-press-opacity);\n                }\n            }\n\n            &[data-selected] {\n                [data-inner] {\n                    background: var(--surface-neutral-t1-base);\n                }\n            }\n\n            &:focus-visible {\n                z-index: 2;\n                outline: solid 2px var(--stroke-neutral-focus);\n            }\n        }\n\n        &:disabled {\n            pointer-events: none;\n            color: var(--foreground-neutral-disabled-on-surface);\n            cursor: not-allowed;\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+        hasTouchTarget: false,
+    },
+    {
+        description: 'A field element that allows users to select one option from a list of available choices. *',
+        file: '/Select.tsx',
+        name: 'Select',
+        slug: 'select',
+        dependencies: ['ListItem', 'Menu', 'Portal'],
+        modified: '2025-06-10T14:07:53.369Z',
+        usage: {
+            code: "import { Select } from '@bspk/ui/Select';\n\nexport function Example() {\nconst [selected, setSelected] = React.useState<string[]>([]);\nreturn (\n<Select\naria-label=\"Select an option\"\nitemCount={5}\nname=\"example-select\"\nonChange={setSelected}\noptions={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]}\nplaceholder=\"Select an option\"\nsize=\"medium\"\nvalue={selected}\n/>\n);\n}",
+        },
+        css: "[data-bspk='select'] {\n    // default -- size medium not disabled or readonly\n\n    --select-background: var(--surface-neutral-t1-base);\n    --select-border-color: var(--stroke-neutral-base);\n    --select-text-color: var(--foreground-neutral-on-surface);\n    --select-height: var(--spacing-sizing-10);\n    --select-font: var(--body-base);\n    --select-clear-height: var(--spacing-sizing-05);\n    --select-padding: var(--spacing-sizing-03);\n    --select-icon-width: var(--spacing-sizing-05);\n\n    position: relative;\n    width: 100%;\n    max-width: 280px;\n    outline: unset;\n    min-height: var(--select-height);\n    max-height: var(--select-height);\n    display: flex;\n    flex-direction: row;\n    gap: var(--spacing-sizing-02);\n    flex-grow: 0;\n    flex-shrink: 0;\n    text-align: left;\n    font: var(--select-font);\n    border: 1px solid var(--select-border-color);\n    border-radius: var(--radius-small);\n    background: var(--select-background);\n    padding: 0 var(--select-padding);\n\n    [data-placeholder] {\n        display: block;\n        max-width: 100%;\n        text-overflow: ellipsis;\n        overflow: hidden;\n        padding: 0;\n\n        [data-inner] {\n            min-height: auto;\n            padding: 0;\n        }\n\n        [data-item-label] [data-text] {\n            color: var(--select-text-color);\n        }\n    }\n\n    [data-icon] {\n        display: flex;\n        flex-direction: column;\n        justify-content: center;\n\n        svg {\n            transform: rotate(90deg);\n            width: var(--select-icon-width);\n        }\n    }\n\n    [data-bspk='list-item'][data-selected] {\n        background: var(--surface-brand-primary-highlight);\n    }\n\n    &[data-size='small'] {\n        --select-height: var(--spacing-sizing-08);\n        --select-font: var(--body-small);\n        --select-clear-height: var(--spacing-sizing-05);\n        --select-padding: var(--spacing-sizing-02);\n        --select-icon-width: var(--spacing-sizing-05);\n    }\n\n    &[data-size='large'] {\n        --select-height: var(--spacing-sizing-12);\n        --select-font: var(--body-large);\n        --select-clear-height: var(--spacing-sizing-06);\n        --select-icon-width: var(--spacing-sizing-06);\n    }\n\n    &:disabled {\n        --select-text-color: var(--foreground-neutral-disabled-on-surface);\n        --select-border-color: var(--stroke-neutral-disabled-light);\n        --select-background:\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n\n        &[aria-readonly]:not([data-empty]) {\n            --select-text-color: var(--foreground-neutral-on-surface);\n        }\n    }\n\n    &:not(:disabled) {\n        &:focus {\n            --select-border-color: var(--stroke-brand-primary);\n        }\n\n        &:hover {\n            --select-background:\n                linear-gradient(var(--interactions-neutral-hover-opacity), var(--interactions-neutral-hover-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n        }\n\n        &:active {\n            --select-background:\n                linear-gradient(var(--interactions-neutral-press-opacity), var(--interactions-neutral-press-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n        }\n    }\n\n    &[data-invalid] {\n        --select-border-color: var(--status-error);\n    }\n\n    &[data-empty] {\n        --select-text-color: var(--foreground-neutral-on-surface-variant-03);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+        hasTouchTarget: false,
+    },
+    {
+        description:
+            'A component that allows users to input large amounts of text that could span multiple lines.\n\nThis component takes properties from the FormField and Select components.',
+        file: '/SelectField.tsx',
+        name: 'SelectField',
+        slug: 'select-field',
+        dependencies: ['FormField', 'Select'],
+        modified: '2025-06-10T14:07:53.369Z',
+        usage: {
+            code: "import { SelectField } from '@bspk/ui/SelectField';\n\nexport function Example() {\nconst [state, setState] = React.useState(['option1']);\nreturn (\n<SelectField\ncontrolId=\"Example controlId\"\nlabel=\"Example label\"\nname=\"Example name\"\nonChange={(nextValue) => setState(nextValue)}\noptions={[\n{ label: 'Option 1', value: 'option1' },\n{ label: 'Option 2', value: 'option2' },\n{ label: 'Option 3', value: 'option3' },\n]}\nplaceholder=\"Select one...\"\nvalue={state}\n/>\n);\n}",
+        },
+        css: '',
         hasTouchTarget: false,
     },
     {
@@ -575,7 +575,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Skeleton',
         slug: 'skeleton',
         dependencies: [],
-        modified: '2025-06-04T21:07:04.423Z',
+        modified: '2025-06-10T14:07:53.369Z',
         usage: {
             code: 'import { Skeleton } from \'@bspk/ui/skeleton\';\n\nfunction Example(item: { title: string; src: string } | null) {\nreturn item ? (\n<img\nstyle={{\nwidth: 210,\nheight: 118,\n}}\nalt={item.title}\nsrc={item.src}\n/>\n) : (\n<Skeleton variant="photo" width={210} height={118} />\n);\n}',
             description: 'This example shows a skeleton loading state for an image but can be used for any element.',
@@ -589,7 +589,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderAnywhere',
         slug: 'styles-provider-anywhere',
         dependencies: [],
-        modified: '2025-05-23T18:13:00.983Z',
+        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -599,7 +599,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderBetterHomesGardens',
         slug: 'styles-provider-better-homes-gardens',
         dependencies: [],
-        modified: '2025-05-27T15:01:49.268Z',
+        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -609,7 +609,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderCartus',
         slug: 'styles-provider-cartus',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.556Z',
+        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -619,7 +619,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderCentury21',
         slug: 'styles-provider-century21',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.557Z',
+        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -629,7 +629,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderColdwellBanker',
         slug: 'styles-provider-coldwell-banker',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.557Z',
+        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -639,7 +639,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderCorcoran',
         slug: 'styles-provider-corcoran',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.557Z',
+        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -649,7 +649,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderDenaliBoss',
         slug: 'styles-provider-denali-boss',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.557Z',
+        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -659,7 +659,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderEra',
         slug: 'styles-provider-era',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.558Z',
+        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -669,7 +669,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'StylesProviderSothebys',
         slug: 'styles-provider-sothebys',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.558Z',
+        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -680,7 +680,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Switch',
         slug: 'switch',
         dependencies: [],
-        modified: '2025-06-05T14:58:19.215Z',
+        modified: '2025-06-10T14:07:53.369Z',
         usage: {
             code: 'import { useState } from \'react\';\nimport { Switch } from \'@bspk/ui/Switch\';\n\nexport function Example() {\nconst [isChecked, setIsChecked] = useState<boolean>(false);\n\nreturn (\n<Switch\naria-label="Example aria-label"\nname="Example name"\nonChange={setIsChecked}\nchecked={isChecked}\n/>\n);\n}',
         },
@@ -694,7 +694,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'SwitchOption',
         slug: 'switch-option',
         dependencies: ['Switch', 'ToggleOption'],
-        modified: '2025-06-05T14:58:19.215Z',
+        modified: '2025-06-10T14:07:53.369Z',
         css: '',
         hasTouchTarget: false,
     },
@@ -704,7 +704,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TabGroup',
         slug: 'tab-group',
         dependencies: ['Badge'],
-        modified: '2025-06-04T21:07:25.770Z',
+        modified: '2025-06-10T14:07:53.369Z',
         usage: {
             code: "import { useState } from 'react';\nimport { TabGroup } from '@bspk/ui/TabGroup';\n\nexport function Example() {\nconst [selectedTab, setSelectedTab] = useState<string>();\n\nreturn (\n<TabGroup\nonChange={setSelectedTab}\noptions={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n]}\nvalue={selectedTab}\n/>\n);\n}",
         },
@@ -717,7 +717,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Table',
         slug: 'table',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.559Z',
+        modified: '2025-06-10T14:07:53.369Z',
         css: "[data-bspk='table'] {\n    width: 100%;\n    border-collapse: separate;\n    text-align: left;\n    border-spacing: 2rem 0.125rem;\n    display: grid;\n    color: var(--foreground-neutral-on-surface);\n    font: var(--labels-base);\n    border-radius: var(--radius-medium);\n    border: 1px solid var(--stroke-neutral-low);\n\n    [data-cell] {\n        display: flex;\n        flex-direction: column;\n        gap: var(--spacing-sizing-02);\n        padding: var(--spacing-sizing-04);\n        background-color: var(--surface-neutral-t1-base);\n        border-bottom: var(--stroke-neutral-low) solid 1px;\n        font: var(--labels-small);\n\n        p {\n            margin: 0;\n            padding: 0;\n            font: var(--body-small);\n        }\n    }\n\n    [data-head] {\n        display: flex;\n        align-items: center;\n        flex-direction: row;\n        border-bottom: 1px solid var(--stroke-neutral-base);\n        background: var(--surface-neutral-t2-lowest);\n        height: var(--spacing-sizing-10);\n        padding: 0 var(--spacing-sizing-03);\n        font: var(--labels-base);\n\n        &[data-head='first'] {\n            border-top-left-radius: var(--radius-medium);\n        }\n\n        &[data-head='last'] {\n            border-top-right-radius: var(--radius-medium);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -727,7 +727,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Tag',
         slug: 'tag',
         dependencies: [],
-        modified: '2025-06-04T21:07:25.770Z',
+        modified: '2025-06-10T14:07:53.369Z',
         usage: {
             code: 'import { Tag } from \'@bspk/ui/Tag\';\n\nexport function Example() {\nreturn (\n<Tag variant="flat" color="primary">\nExample Tag\n</Tag>\n);\n}',
         },
@@ -741,9 +741,9 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Textarea',
         slug: 'textarea',
         dependencies: [],
-        modified: '2025-06-05T14:58:19.215Z',
+        modified: '2025-06-10T14:07:53.369Z',
         usage: {
-            code: "import { useState } from 'react';\nimport { Textarea } from '@bspk/ui/Textarea';\n\nexport function Example() {\nconst [value, setValue] = useState<string>('');\n\nreturn (\n<Textarea\naria-label=\"Example aria-label\"\nname=\"Example name\"\nonChange={setValue}\nvalue={value}\n/>\n);\n}",
+            code: "import { useState } from 'react';\nimport { Textarea } from '@bspk/ui/Textarea';\n\nexport function Example() {\nconst [value, setValue] = useState<string>('');\n\nreturn <Textarea aria-label=\"Example aria-label\" name=\"Example name\" onChange={setValue} value={value} />;\n}",
         },
         css: "[data-bspk='textarea'] {\n    /*! \n    --min-rows: is set via inline style \n    --max-rows: is set via inline style\n    */\n\n    display: grid;\n    width: 100%;\n\n    // &[data-size='medium']\n    --font: var(--body-base);\n    --line-height: 20px;\n    --padding: var(--spacing-sizing-03);\n\n    &[data-size='small'] {\n        --font: var(--body-small);\n        --line-height: 20px;\n        --padding: var(--spacing-sizing-02);\n    }\n\n    &[data-size='large'] {\n        --font: var(--body-large);\n        --line-height: 24px;\n        --padding: var(--spacing-sizing-03);\n    }\n\n    [data-replicated-value] {\n        white-space: pre-wrap;\n        visibility: hidden;\n        overflow-y: hidden;\n    }\n\n    textarea,\n    [data-replicated-value] {\n        width: 100%;\n        font: var(--font);\n        border: 1px solid var(--border-color);\n        padding: var(--padding);\n        grid-area: 1 / 1 / 2 / 2;\n        min-height: calc((var(--line-height) * var(--min-rows)) + (var(--padding) * 2));\n        max-height: calc((var(--line-height) * var(--max-rows)) + (var(--padding) * 2));\n        max-width: 100%;\n    }\n\n    textarea {\n        --border-color: var(--stroke-neutral-base);\n\n        text-wrap: break-word;\n\n        &::placeholder {\n            color: var(--foreground-neutral-on-surface-variant-03);\n        }\n\n        resize: none;\n        color: var(--foreground-neutral-on-surface);\n        background-color: var(--surface-neutral-t1-base);\n        border-radius: var(--radius-small);\n\n        &:focus-within {\n            --border-color: var(--stroke-neutral-focus);\n\n            outline: none;\n            color: var(--foreground-neutral-on-surface);\n        }\n\n        &:disabled {\n            pointer-events: none;\n            background: \n    // multiple colors\n\n                linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n\n        &:read-only {\n            background: \n    // multiple colors\n\n                linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n                linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n            cursor: not-allowed;\n        }\n\n        &[aria-invalid] {\n            --border-color: var(--status-error);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
@@ -755,7 +755,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TextareaField',
         slug: 'textarea-field',
         dependencies: ['FormField', 'Textarea', 'Txt'],
-        modified: '2025-06-04T21:07:25.772Z',
+        modified: '2025-06-10T14:07:53.370Z',
         usage: {
             code: 'import { useState } from \'react\';\nimport { TextareaField } from \'@bspk/ui/TextareaField\';\n\nexport function Example() {\nconst [value, setValue] = useState<string>();\n\nreturn (\n<TextareaField\naria-label="Example aria-label"\ncontrolId="Example controlId"\nlabel="Example label"\nname="Example name"\nonChange={setValue}\nvalue={value}\n/>\n);\n}',
         },
@@ -769,7 +769,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TextField',
         slug: 'text-field',
         dependencies: ['FormField', 'TextInput'],
-        modified: '2025-06-04T21:07:25.771Z',
+        modified: '2025-06-10T14:07:53.370Z',
         usage: {
             code: 'import { useState } from \'react\';\nimport { TextField } from \'@bspk/ui/TextField\';\n\nexport function Example() {\nconst [value, setValue] = useState<string>(\'\');\n\nreturn (\n<TextField\ncontrolId="Example controlId"\nlabel="Example label"\nname="Example name"\nonChange={setValue}\nvalue={value}\n/>\n);\n}',
         },
@@ -783,9 +783,9 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TextInput',
         slug: 'text-input',
         dependencies: [],
-        modified: '2025-06-04T21:07:25.771Z',
+        modified: '2025-06-10T14:07:53.370Z',
         usage: {
-            code: "import { useState } from 'react';\nimport { TextInput } from '@bspk/ui/TextInput';\n\nexport function Example() {\nconst [value, setValue] = useState<string>('');\n\nreturn (\n<TextInput\naria-label=\"Example aria-label\"\nname=\"Example name\"\nonChange={setValue}\nvalue={value}\n/>\n);\n}",
+            code: "import { useState } from 'react';\nimport { TextInput } from '@bspk/ui/TextInput';\n\nexport function Example() {\nconst [value, setValue] = useState<string>('');\n\nreturn <TextInput aria-label=\"Example aria-label\" name=\"Example name\" onChange={setValue} value={value} />;\n}",
         },
         css: "[data-bspk='text-input'] {\n    --border-color: var(--stroke-neutral-base);\n\n    display: flex;\n    flex-flow: row nowrap;\n    background-color: var(--surface-neutral-t1-base);\n    border: solid 1px var(--border-color);\n    height: var(--field-height);\n    border-radius: var(--radius-small);\n    padding: 0 0 0 var(--field-padding);\n    gap: var(--spacing-sizing-01);\n    width: 100%;\n\n    & > * {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        height: var(--field-height);\n        font: var(--field-font);\n        color: var(--foreground-neutral-on-surface);\n        min-width: 0;\n    }\n\n    &:hover:not(:focus-within) {\n        background:\n            linear-gradient(var(--interactions-hover-opacity), var(--interactions-hover-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n    }\n\n    &:active:not(:focus-within) {\n        background:\n            linear-gradient(var(--interactions-press-opacity), var(--interactions-press-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n    }\n\n    &[data-readonly] {\n        --border-color: var(--stroke-neutral-disabled-light);\n\n        background:\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n    }\n\n    &[data-disabled] {\n        --border-color: var(--stroke-neutral-disabled-light);\n\n        background:\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n\n        & > * {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n\n    &[data-invalid] {\n        --border-color: var(--status-error);\n    }\n\n    &[data-size='small'] {\n        --field-padding: var(--spacing-sizing-02);\n        --field-height: var(--spacing-sizing-08);\n        --field-font: var(--body-small);\n        --field-icon-width: var(--spacing-sizing-04);\n        --field-clear-width: var(--spacing-sizing-05);\n    }\n\n    &[data-size='medium'] {\n        --field-padding: var(--spacing-sizing-03);\n        --field-height: var(--spacing-sizing-10);\n        --field-font: var(--body-base);\n        --field-icon-width: var(--spacing-sizing-05);\n        --field-clear-width: var(--spacing-sizing-05);\n    }\n\n    &[data-size='large'] {\n        --field-padding: var(--spacing-sizing-03);\n        --field-height: var(--spacing-sizing-12);\n        --field-font: var(--body-large);\n        --field-icon-width: var(--spacing-sizing-06);\n        --field-clear-width: var(--spacing-sizing-06);\n    }\n\n    [data-leading],\n    [data-trailing] {\n        svg {\n            width: var(--field-icon-width);\n        }\n    }\n\n    label {\n        font: var(--labels-small);\n        color: var(--foreground-neutral-on-surface-variant-01);\n    }\n\n    input {\n        flex: 1;\n        background-color: transparent !important;\n        border: none;\n        outline: none;\n        padding: 0;\n        pointer-events: all;\n        text-overflow: ellipsis;\n\n        &[type='number']::-webkit-inner-spin-button,\n        &[type='number']::-webkit-outer-spin-button {\n            display: none;\n        }\n    }\n\n    button[data-clear] {\n        display: flex;\n        border: none;\n        background: none;\n        padding: 0;\n        cursor: pointer;\n        pointer-events: all;\n        margin-left: var(--spacing-sizing-02);\n        padding-right: var(--field-padding);\n\n        svg {\n            pointer-events: none;\n            width: var(--field-clear-width);\n        }\n    }\n\n    &:not(:focus-within),\n    &[data-empty],\n    &[data-readonly],\n    &[data-disabled] {\n        padding-right: var(--field-padding);\n\n        button[data-clear] {\n            display: none;\n        }\n    }\n\n    &:focus-within {\n        --border-color: var(--stroke-brand-primary);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
@@ -796,7 +796,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'ToggleOption',
         slug: 'toggle-option',
         dependencies: [],
-        modified: '2025-06-05T14:58:19.216Z',
+        modified: '2025-06-10T14:07:53.370Z',
         css: "[data-bspk='toggle-option'] {\n    display: flex;\n    width: 100%;\n    box-sizing: border-box;\n    flex-direction: row;\n    padding: 0 var(--spacing-sizing-01) 0 0;\n    gap: var(--spacing-sizing-02);\n    user-select: none;\n    background: unset;\n    border: unset;\n    cursor: pointer;\n    min-height: var(--spacing-sizing-08);\n    align-items: center;\n\n    &:has([data-description]) {\n        align-items: unset;\n    }\n\n    // this media query targets touch devices\n    @media (any-pointer: coarse) {\n        min-height: var(--spacing-sizing-12);\n    }\n\n    [data-content] {\n        display: flex;\n        flex-direction: column;\n        padding: 2px 0;\n    }\n\n    [data-label] {\n        color: var(--foreground-neutral-on-surface);\n        font: var(--labels-base);\n    }\n\n    [data-description] {\n        font: var(--body-small);\n        color: var(--foreground-neutral-on-surface-variant-01);\n    }\n\n    &:not(:has(:disabled)) {\n        [data-pseudo='focus'] &,\n        &:focus-visible,\n        &:has(*:focus-visible) {\n            outline: var(--stroke-neutral-focus) 2px solid;\n        }\n    }\n\n    &:has(:disabled) {\n        [data-label] {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n\n        [data-description] {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -806,7 +806,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Tooltip',
         slug: 'tooltip',
         dependencies: ['Portal'],
-        modified: '2025-06-05T21:09:22.364Z',
+        modified: '2025-06-10T14:07:53.370Z',
         usage: {
             code: 'import { Tooltip } from \'@bspk/ui/Tooltip\';\nimport { Button } from \'@bspk/ui/Button\';\n\nexport function Example() {\nreturn (\n<Tooltip label="I explain what this button does" placement="top">\n<Button>Click me</Button>\n</Tooltip>\n);\n}',
         },
@@ -819,7 +819,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'TopNavigation',
         slug: 'top-navigation',
         dependencies: [],
-        modified: '2025-05-19T15:27:05.561Z',
+        modified: '2025-06-10T14:07:53.370Z',
         css: "[data-bspk='top-navigation'] {\n    display: flex;\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
@@ -829,7 +829,7 @@ export const componentsMeta: ComponentMeta[] = [
         name: 'Txt',
         slug: 'txt',
         dependencies: [],
-        modified: '2025-06-04T21:07:25.772Z',
+        modified: '2025-06-10T14:07:53.370Z',
         usage: {
             code: "import { Txt } from '@bspk/ui/Txt';\n\nexport function Example() {\nreturn <Txt>Example Txt</Txt>;\n}",
         },
@@ -854,8 +854,7 @@ export const utilitiesMeta: UtilityMeta[] = [
         name: 'useCheckboxState',
     },
     {
-        description:
-            'This hook provides keyboard navigation for a list of elements. Used inside the Dropdown component.',
+        description: 'This hook provides keyboard navigation for a list of elements. Used inside the Select component.',
         example:
             "import { useRef } from 'react';\nimport { useKeyboardNavigation } from '@bspk/ui/hooks/useKeyboardNavigation';\n\nexport function Example() {\nconst containerRef = useRef<HTMLDivElement>(null);\nconst { selectedIndex, setSelectedIndex, handleKeyNavigation } = useKeyboardNavigation(containerRef.current, () => true);\n\nreturn (\n<div ref={containerRef} onKeyDown={handleKeyNavigation} tabIndex={0}>\n{items.map((item, index) => (\n<div key={index} data-selected={selectedIndex === index}>\n{item}\n</div>\n))}\n</div>\n);\n}",
         file: '/hooks/useKeyboardNavigation.ts',
@@ -870,9 +869,9 @@ export const utilitiesMeta: UtilityMeta[] = [
     },
     {
         description:
-            'A hook which calls a method when a click occurs outside of the provided ref. Used inside the Dropdown and Modal components.',
+            'A hook which calls a method when a click occurs outside of the provided ref. Used inside the DropDown and Modal components.',
         example:
-            "import { useOutsideClick } from '@bspk/ui/hooks/useOutsideClick';\nimport React, { useRef, useState } from 'react';\n\nexport function Dropdown() {\nconst [isOpen, setIsOpen] = useState(false);\nconst containerRef = useRef<HTMLDivElement>(null);\n\nuseOutsideClick([containerRef.current], () => setIsOpen(false));\n\nreturn (\n<>\n{isOpen && (\n<div className=\"custom-popup\" ref={containerRef}>\nContent\n</div>\n)}\n</>\n);\n}",
+            "import { useOutsideClick } from '@bspk/ui/hooks/useOutsideClick';\nimport React, { useRef, useState } from 'react';\n\nexport function Example() {\nconst [isOpen, setIsOpen] = useState(false);\nconst containerRef = useRef<HTMLDivElement>(null);\n\nuseOutsideClick([containerRef.current], () => setIsOpen(false));\n\nreturn (\n<>\n{isOpen && (\n<div className=\"custom-popup\" ref={containerRef}>\nContent\n</div>\n)}\n</>\n);\n}",
         file: '/hooks/useOutsideClick.ts',
         name: 'useOutsideClick',
     },
@@ -1093,6 +1092,7 @@ export const typesMeta: TypeMeta[] = [
                 required: false,
                 description: 'The icon to display in the avatar. This needs to be an icon from the',
                 type: 'BspkIcon',
+                example: '<SvgPerson />',
             },
             {
                 name: 'image',
@@ -2222,282 +2222,6 @@ export const typesMeta: TypeMeta[] = [
         id: 'divider-props',
     },
     {
-        name: 'DropdownFieldProps',
-        properties: [
-            {
-                name: 'name',
-                required: true,
-                description:
-                    'The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.',
-                type: 'string',
-            },
-            {
-                name: 'value',
-                required: false,
-                description: 'Array of selected values',
-                type: 'Array<string>',
-            },
-            {
-                name: 'disabled',
-                required: false,
-                description:
-                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'options',
-                required: true,
-                description: 'Array of options to display in the dropdown',
-                type: 'Array<DropdownOption>',
-            },
-            {
-                name: 'size',
-                required: false,
-                description: 'The size of the element.',
-                default: 'medium',
-                type: ['small', 'medium', 'large'],
-                options: ['small', 'medium', 'large'],
-            },
-            {
-                name: 'onChange',
-                required: false,
-                description: 'The function to call when the selected values change.',
-                type: 'function',
-            },
-            {
-                name: 'placeholder',
-                required: false,
-                description: 'Placeholder for the dropdown',
-                default: 'Select one...',
-                type: 'string',
-            },
-            {
-                name: 'readOnly',
-                required: false,
-                description:
-                    'Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'placement',
-                required: false,
-                description:
-                    'The placement of the dropdown menu. Will be ignored if the menu is too close to the edge of the screen.',
-                default: 'bottom',
-                type: ['bottom', 'top'],
-                options: ['bottom', 'top'],
-            },
-            {
-                name: 'itemCount',
-                required: false,
-                description: 'The number of items to display in the menu',
-                default: 5,
-                type: 'number',
-                minimum: 3,
-                maximum: 10,
-            },
-            {
-                name: 'required',
-                required: false,
-                description:
-                    'Determines if the element is [required](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required).',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'label',
-                required: true,
-                description: 'The label of the field.',
-                type: 'string',
-            },
-            {
-                name: 'errorMessage',
-                required: false,
-                description:
-                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
-                type: 'string',
-            },
-            {
-                name: 'helperText',
-                required: false,
-                description: 'The helperText of the field.',
-                type: 'string',
-            },
-            {
-                name: 'labelTrailing',
-                required: false,
-                description: 'The trailing element of the label.',
-                type: 'React.ReactNode',
-            },
-            {
-                name: 'controlId',
-                required: true,
-                description: 'The id of the control.',
-                type: 'string',
-            },
-        ],
-        id: 'dropdown-field-props',
-        references: ['DropdownOption'],
-    },
-    {
-        name: 'DropdownOption',
-        properties: [
-            {
-                name: 'value',
-                required: true,
-                description: 'The value of the option.',
-                type: 'string',
-            },
-            {
-                name: 'label',
-                required: true,
-                description: 'The label of the option. This is the text that will be displayed on the option.',
-                type: 'string',
-            },
-        ],
-        id: 'dropdown-option',
-    },
-    {
-        name: 'DropdownProps',
-        properties: [
-            {
-                name: 'name',
-                required: true,
-                description:
-                    'The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.',
-                type: 'string',
-            },
-            {
-                name: 'id',
-                required: false,
-                description: 'The id of the element. If not provided one will be generated.',
-                type: 'string',
-            },
-            {
-                name: 'disabled',
-                required: false,
-                description:
-                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'size',
-                required: false,
-                description: 'The size of the element.',
-                default: 'medium',
-                type: ['small', 'medium', 'large'],
-                options: ['small', 'medium', 'large'],
-            },
-            {
-                name: 'aria-label',
-                required: true,
-                description: 'The aria-label for the element.',
-                type: 'string',
-            },
-            {
-                name: 'readOnly',
-                required: false,
-                description:
-                    'Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'invalid',
-                required: false,
-                description:
-                    'Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'errorMessage',
-                required: false,
-                description:
-                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
-                type: 'string',
-            },
-            {
-                name: 'selectAll',
-                required: false,
-                description:
-                    'The label for the "Select All" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to "Select All". If a string, it will be used as the label. If false the select\nall option will not be rendered.',
-                default: false,
-                type: 'string,boolean',
-            },
-            {
-                name: 'isMulti',
-                required: false,
-                description: 'Whether the menu allows multiple selections.',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'itemCount',
-                required: false,
-                description: 'The number of items to display in the menu',
-                default: 5,
-                type: 'number',
-                minimum: 3,
-                maximum: 10,
-            },
-            {
-                name: 'renderListItem',
-                required: false,
-                description:
-                    'A function which given data about the list item returns additional list item props used to render the list items.',
-                type: '(props: RenderListItemParams) => ComponentProps<typeof ListItem> ;',
-            },
-            {
-                name: 'options',
-                required: true,
-                description: 'Array of options to display in the dropdown',
-                type: 'Array<DropdownOption>',
-                example:
-                    "[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]",
-            },
-            {
-                name: 'value',
-                required: false,
-                description: 'Array of selected values',
-                type: 'Array<string>',
-            },
-            {
-                name: 'placeholder',
-                required: false,
-                description: 'Placeholder for the dropdown',
-                default: 'Select one...',
-                type: 'string',
-            },
-            {
-                name: 'placement',
-                required: false,
-                description:
-                    'The placement of the dropdown menu. Will be ignored if the menu is too close to the edge of the screen.',
-                default: 'bottom',
-                type: ['bottom', 'top'],
-                options: ['bottom', 'top'],
-            },
-            {
-                name: 'style',
-                required: false,
-                description: 'The style of the dropdown.',
-                type: 'React.CSSProperties',
-            },
-            {
-                name: 'onChange',
-                required: false,
-                description: 'The function to call when the selected values change.',
-                type: 'function',
-            },
-        ],
-        id: 'dropdown-props',
-        references: ['RenderListItemParams', 'DropdownOption'],
-    },
-    {
         name: 'ElementProps',
         properties: [],
         id: 'element-props',
@@ -2686,7 +2410,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'children',
                 required: true,
                 description:
-                    'The children of the form field. This should be a control such as TextInput, Dropdown, DatePicker, or TimePicker.',
+                    'The children of the form field. This should be a control such as TextInput, Select, DatePicker, or TimePicker.',
                 type: '(childProps: FieldControlProps) => JSX.Element',
             },
             {
@@ -3506,87 +3230,6 @@ export const typesMeta: TypeMeta[] = [
         id: 'pick-common-props-library-disabled',
     },
     {
-        name: 'Pick<DropdownProps,"name"|"value"|"disabled"|"options"|"size"|"onChange"|"placeholder"|"readOnly"|"placement"|"itemCount">',
-        properties: [
-            {
-                name: 'name',
-                required: true,
-                description:
-                    'The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.',
-                type: 'string',
-            },
-            {
-                name: 'value',
-                required: false,
-                description: 'Array of selected values',
-                type: 'Array<string>',
-            },
-            {
-                name: 'disabled',
-                required: false,
-                description:
-                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'options',
-                required: true,
-                description: 'Array of options to display in the dropdown',
-                type: 'Array<DropdownOption>',
-            },
-            {
-                name: 'size',
-                required: false,
-                description: 'The size of the element.',
-                default: 'medium',
-                type: ['small', 'medium', 'large'],
-                options: ['small', 'medium', 'large'],
-            },
-            {
-                name: 'onChange',
-                required: false,
-                description: 'The function to call when the selected values change.',
-                type: 'function',
-            },
-            {
-                name: 'placeholder',
-                required: false,
-                description: 'Placeholder for the dropdown',
-                default: 'Select one...',
-                type: 'string',
-            },
-            {
-                name: 'readOnly',
-                required: false,
-                description:
-                    'Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).',
-                default: false,
-                type: 'boolean',
-            },
-            {
-                name: 'placement',
-                required: false,
-                description:
-                    'The placement of the dropdown menu. Will be ignored if the menu is too close to the edge of the screen.',
-                default: 'bottom',
-                type: ['bottom', 'top'],
-                options: ['bottom', 'top'],
-            },
-            {
-                name: 'itemCount',
-                required: false,
-                description: 'The number of items to display in the menu',
-                default: 5,
-                type: 'number',
-                minimum: 3,
-                maximum: 10,
-            },
-        ],
-        id: 'pick-dropdown-props-name-value-disabled-options-size-on-change-placeholder-read-only-placement-item-count',
-        references: ['DropdownOption'],
-    },
-    {
         name: 'Pick<FormFieldProps,"label"|"errorMessage"|"helperText"|"controlId">',
         properties: [
             {
@@ -3882,6 +3525,87 @@ export const typesMeta: TypeMeta[] = [
         id: 'pick-radio-props-name-value-disabled-checked',
     },
     {
+        name: 'Pick<SelectProps,"name"|"value"|"disabled"|"options"|"size"|"onChange"|"placeholder"|"readOnly"|"placement"|"itemCount">',
+        properties: [
+            {
+                name: 'name',
+                required: true,
+                description:
+                    'The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.',
+                type: 'string',
+            },
+            {
+                name: 'value',
+                required: false,
+                description: 'Array of selected values',
+                type: 'Array<string>',
+            },
+            {
+                name: 'disabled',
+                required: false,
+                description:
+                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'options',
+                required: true,
+                description: 'Array of options to display in the select',
+                type: 'Array<SelectOption>',
+            },
+            {
+                name: 'size',
+                required: false,
+                description: 'The size of the element.',
+                default: 'medium',
+                type: ['small', 'medium', 'large'],
+                options: ['small', 'medium', 'large'],
+            },
+            {
+                name: 'onChange',
+                required: false,
+                description: 'The function to call when the selected values change.',
+                type: 'function',
+            },
+            {
+                name: 'placeholder',
+                required: false,
+                description: 'Placeholder for the select',
+                default: 'Select one...',
+                type: 'string',
+            },
+            {
+                name: 'readOnly',
+                required: false,
+                description:
+                    'Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'placement',
+                required: false,
+                description:
+                    'The placement of the select menu. Will be ignored if the menu is too close to the edge of the screen.',
+                default: 'bottom',
+                type: ['bottom', 'top'],
+                options: ['bottom', 'top'],
+            },
+            {
+                name: 'itemCount',
+                required: false,
+                description: 'The number of items to display in the menu',
+                default: 5,
+                type: 'number',
+                minimum: 3,
+                maximum: 10,
+            },
+        ],
+        id: 'pick-select-props-name-value-disabled-options-size-on-change-placeholder-read-only-placement-item-count',
+        references: ['SelectOption'],
+    },
+    {
         name: 'Pick<TextInputProps,"name"|"id"|"size"|"aria-label"|"inputRef">',
         properties: [
             {
@@ -3978,7 +3702,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'autoComplete',
                 required: false,
                 description:
-                    'Specifies if user agent has any permission to provide automated\nassistance in filling out form field values.\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete',
+                    'Specifies if user agent has any permission to provide automated assistance in filling out form field values.\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete',
                 default: 'off',
             },
             {
@@ -4033,6 +3757,47 @@ export const typesMeta: TypeMeta[] = [
             },
         ],
         id: 'pick-toggle-option-props-label-description',
+    },
+    {
+        name: 'Pick<UseFloatingProps,"placement"|"offsetOptions"|"refWidth">',
+        properties: [
+            {
+                name: 'placement',
+                required: true,
+                description:
+                    'The preferred placement of the floating element.\n\nThis determines where the floating element will be positioned relative to the reference element.',
+                default: 'bottom',
+                type: 'Placement',
+                options: [
+                    'bottom',
+                    'bottom-end',
+                    'bottom-start',
+                    'left',
+                    'left-end',
+                    'left-start',
+                    'right',
+                    'right-end',
+                    'right-start',
+                    'top',
+                    'top-end',
+                    'top-start',
+                ],
+            },
+            {
+                name: 'offsetOptions',
+                required: false,
+                description: 'The offset options for the floating element.',
+                default: 0,
+            },
+            {
+                name: 'refWidth',
+                required: false,
+                description:
+                    'When set to true, the width of the floating element will match the width of the reference element.\n\nWhen set to an HTMLElement, the width of the floating element will match the width of that HTMLElement.',
+                default: true,
+            },
+        ],
+        id: 'pick-use-floating-props-placement-offset-options-ref-width',
     },
     {
         name: 'PopoverProps',
@@ -4361,7 +4126,7 @@ export const typesMeta: TypeMeta[] = [
                 description: 'The options for the radios.',
                 type: 'Array<RadioGroupOption>',
                 example:
-                    "[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2', description: 'Description here' },\n{ value: '3', label: 'Option 3' },\n]",
+                    "[\n{\nvalue: '1',\nlabel: 'Option 1',\n},\n{\nvalue: '2',\nlabel: 'Option 2',\ndescription: 'Description here',\n},\n{ value: '3', label: 'Option 3' },\n]",
             },
             {
                 name: 'label',
@@ -4689,21 +4454,21 @@ export const typesMeta: TypeMeta[] = [
             {
                 name: 'label',
                 required: true,
-                description: 'The label of the option. This is the text that will be displayed on the\noption.',
+                description: 'The label of the option. This is the text that will be displayed on the option.',
                 type: 'string',
             },
             {
                 name: 'disabled',
                 required: false,
                 description:
-                    'Determines if the element is\n[disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
+                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
                 default: false,
                 type: 'boolean',
             },
             {
                 name: 'value',
                 required: false,
-                description: 'The value of the option. If not provided, the label will be used as the\nvalue.',
+                description: 'The value of the option. If not provided, the label will be used as the value.',
                 type: 'string',
             },
             {
@@ -4773,6 +4538,282 @@ export const typesMeta: TypeMeta[] = [
         ],
         id: 'segmented-control-props',
         references: ['SegmentedControlOption'],
+    },
+    {
+        name: 'SelectFieldProps',
+        properties: [
+            {
+                name: 'name',
+                required: true,
+                description:
+                    'The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.',
+                type: 'string',
+            },
+            {
+                name: 'value',
+                required: false,
+                description: 'Array of selected values',
+                type: 'Array<string>',
+            },
+            {
+                name: 'disabled',
+                required: false,
+                description:
+                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'options',
+                required: true,
+                description: 'Array of options to display in the select',
+                type: 'Array<SelectOption>',
+            },
+            {
+                name: 'size',
+                required: false,
+                description: 'The size of the element.',
+                default: 'medium',
+                type: ['small', 'medium', 'large'],
+                options: ['small', 'medium', 'large'],
+            },
+            {
+                name: 'onChange',
+                required: false,
+                description: 'The function to call when the selected values change.',
+                type: 'function',
+            },
+            {
+                name: 'placeholder',
+                required: false,
+                description: 'Placeholder for the select',
+                default: 'Select one...',
+                type: 'string',
+            },
+            {
+                name: 'readOnly',
+                required: false,
+                description:
+                    'Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'placement',
+                required: false,
+                description:
+                    'The placement of the select menu. Will be ignored if the menu is too close to the edge of the screen.',
+                default: 'bottom',
+                type: ['bottom', 'top'],
+                options: ['bottom', 'top'],
+            },
+            {
+                name: 'itemCount',
+                required: false,
+                description: 'The number of items to display in the menu',
+                default: 5,
+                type: 'number',
+                minimum: 3,
+                maximum: 10,
+            },
+            {
+                name: 'required',
+                required: false,
+                description:
+                    'Determines if the element is [required](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required).',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'label',
+                required: true,
+                description: 'The label of the field.',
+                type: 'string',
+            },
+            {
+                name: 'errorMessage',
+                required: false,
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
+                type: 'string',
+            },
+            {
+                name: 'helperText',
+                required: false,
+                description: 'The helperText of the field.',
+                type: 'string',
+            },
+            {
+                name: 'labelTrailing',
+                required: false,
+                description: 'The trailing element of the label.',
+                type: 'React.ReactNode',
+            },
+            {
+                name: 'controlId',
+                required: true,
+                description: 'The id of the control.',
+                type: 'string',
+            },
+        ],
+        id: 'select-field-props',
+        references: ['SelectOption'],
+    },
+    {
+        name: 'SelectOption',
+        properties: [
+            {
+                name: 'value',
+                required: true,
+                description: 'The value of the option.',
+                type: 'string',
+            },
+            {
+                name: 'label',
+                required: true,
+                description: 'The label of the option. This is the text that will be displayed on the option.',
+                type: 'string',
+            },
+        ],
+        id: 'select-option',
+    },
+    {
+        name: 'SelectProps',
+        properties: [
+            {
+                name: 'name',
+                required: true,
+                description:
+                    'The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.',
+                type: 'string',
+            },
+            {
+                name: 'id',
+                required: false,
+                description: 'The id of the element. If not provided one will be generated.',
+                type: 'string',
+            },
+            {
+                name: 'disabled',
+                required: false,
+                description:
+                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'size',
+                required: false,
+                description: 'The size of the element.',
+                default: 'medium',
+                type: ['small', 'medium', 'large'],
+                options: ['small', 'medium', 'large'],
+            },
+            {
+                name: 'aria-label',
+                required: true,
+                description: 'The aria-label for the element.',
+                type: 'string',
+            },
+            {
+                name: 'readOnly',
+                required: false,
+                description:
+                    'Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'invalid',
+                required: false,
+                description:
+                    'Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'errorMessage',
+                required: false,
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
+                type: 'string',
+            },
+            {
+                name: 'selectAll',
+                required: false,
+                description:
+                    'The label for the "Select All" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to "Select All". If a string, it will be used as the label. If false the select\nall option will not be rendered.',
+                default: false,
+                type: 'string,boolean',
+            },
+            {
+                name: 'isMulti',
+                required: false,
+                description: 'Whether the menu allows multiple selections.',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'itemCount',
+                required: false,
+                description: 'The number of items to display in the menu',
+                default: 5,
+                type: 'number',
+                minimum: 3,
+                maximum: 10,
+            },
+            {
+                name: 'renderListItem',
+                required: false,
+                description:
+                    'A function which given data about the list item returns additional list item props used to render the list items.',
+                type: '(props: RenderListItemParams) => ComponentProps<typeof ListItem> ;',
+            },
+            {
+                name: 'options',
+                required: true,
+                description: 'Array of options to display in the select',
+                type: 'Array<SelectOption>',
+                example:
+                    "[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]",
+            },
+            {
+                name: 'value',
+                required: false,
+                description: 'Array of selected values',
+                type: 'Array<string>',
+            },
+            {
+                name: 'placeholder',
+                required: false,
+                description: 'Placeholder for the select',
+                default: 'Select one...',
+                type: 'string',
+            },
+            {
+                name: 'placement',
+                required: false,
+                description:
+                    'The placement of the select menu. Will be ignored if the menu is too close to the edge of the screen.',
+                default: 'bottom',
+                type: ['bottom', 'top'],
+                options: ['bottom', 'top'],
+            },
+            {
+                name: 'style',
+                required: false,
+                description: 'The style of the select.',
+                type: 'React.CSSProperties',
+            },
+            {
+                name: 'onChange',
+                required: false,
+                description: 'The function to call when the selected values change.',
+                type: 'function',
+            },
+        ],
+        id: 'select-props',
+        references: ['RenderListItemParams', 'SelectOption'],
     },
     {
         name: 'SkeletonProps',
@@ -5014,7 +5055,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'disabled',
                 required: false,
                 description:
-                    'Determines if the element is\n[disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
+                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
                 default: false,
                 type: 'boolean',
             },
@@ -5508,37 +5549,6 @@ export const typesMeta: TypeMeta[] = [
                 type: 'string',
             },
             {
-                name: 'label',
-                required: true,
-                description: 'The label of the field.',
-                type: 'string',
-            },
-            {
-                name: 'errorMessage',
-                required: false,
-                description:
-                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
-                type: 'string',
-            },
-            {
-                name: 'helperText',
-                required: false,
-                description: 'The helperText of the field.',
-                type: 'string',
-            },
-            {
-                name: 'labelTrailing',
-                required: false,
-                description: 'The trailing element of the label.',
-                type: 'React.ReactNode',
-            },
-            {
-                name: 'controlId',
-                required: true,
-                description: 'The id of the control.',
-                type: 'string',
-            },
-            {
                 name: 'name',
                 required: true,
                 description:
@@ -5593,7 +5603,7 @@ export const typesMeta: TypeMeta[] = [
                 name: 'autoComplete',
                 required: false,
                 description:
-                    'Specifies if user agent has any permission to provide automated\nassistance in filling out form field values.\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete',
+                    'Specifies if user agent has any permission to provide automated assistance in filling out form field values.\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete',
                 default: 'off',
             },
             {
@@ -5627,6 +5637,37 @@ export const typesMeta: TypeMeta[] = [
                 required: false,
                 description: 'The ref of the input.',
                 type: 'object',
+            },
+            {
+                name: 'label',
+                required: true,
+                description: 'The label of the field.',
+                type: 'string',
+            },
+            {
+                name: 'errorMessage',
+                required: false,
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
+                type: 'string',
+            },
+            {
+                name: 'helperText',
+                required: false,
+                description: 'The helperText of the field.',
+                type: 'string',
+            },
+            {
+                name: 'labelTrailing',
+                required: false,
+                description: 'The trailing element of the label.',
+                type: 'React.ReactNode',
+            },
+            {
+                name: 'controlId',
+                required: true,
+                description: 'The id of the control.',
+                type: 'string',
             },
         ],
         id: 'text-field-props',
@@ -6095,6 +6136,140 @@ export const typesMeta: TypeMeta[] = [
         ],
         id: 'type-property-demo-with-controls',
     },
+    {
+        name: 'UseComboboxProps',
+        properties: [
+            {
+                name: 'disabled',
+                required: false,
+                description:
+                    'Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'readOnly',
+                required: false,
+                description:
+                    'Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'invalid',
+                required: false,
+                description:
+                    'Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.',
+                default: false,
+                type: 'boolean',
+            },
+            {
+                name: 'errorMessage',
+                required: false,
+                description:
+                    'Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.',
+                type: 'string',
+            },
+            {
+                name: 'placement',
+                required: true,
+                description:
+                    'The preferred placement of the floating element.\n\nThis determines where the floating element will be positioned relative to the reference element.',
+                default: 'bottom',
+                type: 'Placement',
+                options: [
+                    'bottom',
+                    'bottom-end',
+                    'bottom-start',
+                    'left',
+                    'left-end',
+                    'left-start',
+                    'right',
+                    'right-end',
+                    'right-start',
+                    'top',
+                    'top-end',
+                    'top-start',
+                ],
+            },
+            {
+                name: 'offsetOptions',
+                required: false,
+                description: 'The offset options for the floating element.',
+                default: 0,
+            },
+            {
+                name: 'refWidth',
+                required: false,
+                description:
+                    'When set to true, the width of the floating element will match the width of the reference element.\n\nWhen set to an HTMLElement, the width of the floating element will match the width of that HTMLElement.',
+                default: true,
+            },
+        ],
+        id: 'use-combobox-props',
+    },
+    {
+        name: 'UseFloatingProps',
+        properties: [
+            {
+                name: 'placement',
+                required: true,
+                description:
+                    'The preferred placement of the floating element.\n\nThis determines where the floating element will be positioned relative to the reference element.',
+                default: 'bottom',
+                type: 'Placement',
+                options: [
+                    'bottom',
+                    'bottom-end',
+                    'bottom-start',
+                    'left',
+                    'left-end',
+                    'left-start',
+                    'right',
+                    'right-end',
+                    'right-start',
+                    'top',
+                    'top-end',
+                    'top-start',
+                ],
+            },
+            {
+                name: 'arrowRef',
+                required: false,
+                description: 'A ref object for the arrow element.',
+                type: 'React.MutableRefObject<HTMLElement|null>',
+            },
+            {
+                name: 'strategy',
+                required: false,
+                description:
+                    "The positioning strategy ('absolute' or 'fixed').\n\nWhen set to 'fixed', the floating element will be positioned relative to the viewport.\n\nWhen set to 'absolute', the floating element will be positioned relative to the nearest positioned ancestor.",
+                default: 'fixed',
+                type: ['absolute', 'fixed'],
+                options: ['absolute', 'fixed'],
+            },
+            {
+                name: 'offsetOptions',
+                required: false,
+                description: 'The offset options for the floating element.',
+                default: 0,
+            },
+            {
+                name: 'refWidth',
+                required: false,
+                description:
+                    'When set to true, the width of the floating element will match the width of the reference element.\n\nWhen set to an HTMLElement, the width of the floating element will match the width of that HTMLElement.',
+                default: true,
+            },
+            {
+                name: 'hide',
+                required: false,
+                description: 'Whether to hide the floating element.',
+                type: 'boolean',
+            },
+        ],
+        id: 'use-floating-props',
+    },
 ] as const;
 
 export type MetaTypeName =
@@ -6129,9 +6304,6 @@ export type MetaTypeName =
     | 'DemoPreset'
     | 'DialogProps'
     | 'DividerProps'
-    | 'DropdownFieldProps'
-    | 'DropdownOption'
-    | 'DropdownProps'
     | 'ElementProps'
     | 'EmptyStateProps'
     | 'FabProps'
@@ -6153,7 +6325,6 @@ export type MetaTypeName =
     | 'Pick<ButtonProps<As>,"icon"|"onClick"|"as"|"showLabel"|"toolTip">'
     | 'Pick<CheckboxProps,"name"|"value"|"disabled"|"checked"|"indeterminate">'
     | 'Pick<CommonPropsLibrary,"disabled">'
-    | 'Pick<DropdownProps,"name"|"value"|"disabled"|"options"|"size"|"onChange"|"placeholder"|"readOnly"|"placement"|"itemCount">'
     | 'Pick<FormFieldProps,"label"|"errorMessage"|"helperText"|"controlId">'
     | 'Pick<FormFieldProps,"label"|"errorMessage"|"helperText"|"labelTrailing"|"controlId">'
     | 'Pick<FormFieldProps,"required"|"label"|"errorMessage"|"helperText"|"labelTrailing"|"controlId">'
@@ -6162,9 +6333,11 @@ export type MetaTypeName =
     | 'Pick<MenuProps<T>,"selectAll"|"isMulti"|"itemCount"|"renderListItem">'
     | 'Pick<NumberInputProps,"name"|"id"|"value"|"disabled"|"size"|"onChange"|"readOnly"|"align">'
     | 'Pick<RadioProps,"name"|"value"|"disabled"|"checked">'
+    | 'Pick<SelectProps,"name"|"value"|"disabled"|"options"|"size"|"onChange"|"placeholder"|"readOnly"|"placement"|"itemCount">'
     | 'Pick<TextInputProps,"name"|"id"|"size"|"aria-label"|"inputRef">'
     | 'Pick<TextInputProps,"name"|"required"|"type"|"value"|"disabled"|"size"|"onChange"|"autoComplete"|"placeholder"|"readOnly"|"leading"|"trailing"|"inputRef">'
     | 'Pick<ToggleOptionProps,"label"|"description">'
+    | 'Pick<UseFloatingProps,"placement"|"offsetOptions"|"refWidth">'
     | 'PopoverProps'
     | 'PortalProps'
     | 'Preset'
@@ -6183,6 +6356,9 @@ export type MetaTypeName =
     | 'SearchBarProps'
     | 'SegmentedControlOption'
     | 'SegmentedControlProps'
+    | 'SelectFieldProps'
+    | 'SelectOption'
+    | 'SelectProps'
     | 'SkeletonProps'
     | 'SwitchOptionProps'
     | 'SwitchProps'
@@ -6201,7 +6377,9 @@ export type MetaTypeName =
     | 'TopNavigationProps'
     | 'TxtProps'
     | 'TypePropertyDemo'
-    | 'TypePropertyDemoWithControls';
+    | 'TypePropertyDemoWithControls'
+    | 'UseComboboxProps'
+    | 'UseFloatingProps';
 
 export type MetaComponentName =
     | 'Avatar'
@@ -6216,8 +6394,6 @@ export type MetaComponentName =
     | 'Chip'
     | 'Dialog'
     | 'Divider'
-    | 'Dropdown'
-    | 'DropdownField'
     | 'EmptyState'
     | 'Fab'
     | 'FormField'
@@ -6242,6 +6418,8 @@ export type MetaComponentName =
     | 'RadioOption'
     | 'SearchBar'
     | 'SegmentedControl'
+    | 'Select'
+    | 'SelectField'
     | 'Skeleton'
     | 'StylesProviderAnywhere'
     | 'StylesProviderBetterHomesGardens'
@@ -6283,10 +6461,6 @@ export const components: Partial<Record<MetaComponentName, React.LazyExoticCompo
     Chip: React.lazy(() => import('@bspk/ui/Chip').then((module) => ({ default: module.Chip }))),
     Dialog: React.lazy(() => import('@bspk/ui/Dialog').then((module) => ({ default: module.Dialog }))),
     Divider: React.lazy(() => import('@bspk/ui/Divider').then((module) => ({ default: module.Divider }))),
-    Dropdown: React.lazy(() => import('@bspk/ui/Dropdown').then((module) => ({ default: module.Dropdown }))),
-    DropdownField: React.lazy(() =>
-        import('@bspk/ui/DropdownField').then((module) => ({ default: module.DropdownField })),
-    ),
     EmptyState: React.lazy(() => import('@bspk/ui/EmptyState').then((module) => ({ default: module.EmptyState }))),
     Fab: React.lazy(() => import('@bspk/ui/Fab').then((module) => ({ default: module.Fab }))),
     FormField: React.lazy(() => import('@bspk/ui/FormField').then((module) => ({ default: module.FormField }))),
@@ -6319,6 +6493,8 @@ export const components: Partial<Record<MetaComponentName, React.LazyExoticCompo
     SegmentedControl: React.lazy(() =>
         import('@bspk/ui/SegmentedControl').then((module) => ({ default: module.SegmentedControl })),
     ),
+    Select: React.lazy(() => import('@bspk/ui/Select').then((module) => ({ default: module.Select }))),
+    SelectField: React.lazy(() => import('@bspk/ui/SelectField').then((module) => ({ default: module.SelectField }))),
     Skeleton: React.lazy(() => import('@bspk/ui/Skeleton').then((module) => ({ default: module.Skeleton }))),
     StylesProviderAnywhere: React.lazy(() =>
         import('@bspk/ui/StylesProviderAnywhere').then((module) => ({ default: module.StylesProviderAnywhere })),

@@ -1,8 +1,8 @@
 import { IconName, meta as iconMeta } from '@bspk/icons/meta';
 import { CheckboxGroup } from '@bspk/ui/CheckboxGroup';
-import { Dropdown } from '@bspk/ui/Dropdown';
 import { NumberInput } from '@bspk/ui/NumberInput';
 import { RadioGroup } from '@bspk/ui/RadioGroup';
+import { Select } from '@bspk/ui/Select';
 import { Switch } from '@bspk/ui/Switch';
 import { TextInput } from '@bspk/ui/TextInput';
 import { Textarea } from '@bspk/ui/Textarea';
@@ -73,7 +73,7 @@ export function TypePropControl({
         if (controlOptions.length > 5 || type === 'select')
             return (
                 <>
-                    <Dropdown
+                    <Select
                         data-testid={`${prop.name}-Dropdown`}
                         id=""
                         options={options}

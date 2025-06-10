@@ -12,7 +12,7 @@ export async function pretty(source: string, parser: PrettyParser) {
         singleQuote: true,
         trailingComma: 'all',
         tabWidth: 2,
-        printWidth: 90,
+        printWidth: 120,
         parser,
         plugins: [prettierPluginTypescript, prettierPluginEstree, prettierPluginCss, prettierPluginHtml],
     }).catch((err) => {

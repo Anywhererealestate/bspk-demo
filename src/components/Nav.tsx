@@ -4,8 +4,8 @@ import { SvgSearch } from '@bspk/icons/Search';
 import { Brand, BRANDS } from '@bspk/ui';
 import { Button } from '@bspk/ui/Button';
 import { Dialog } from '@bspk/ui/Dialog';
-import { Dropdown } from '@bspk/ui/Dropdown';
 import { MenuButton } from '@bspk/ui/MenuButton';
+import { Select } from '@bspk/ui/Select';
 import { useModalState } from '@bspk/ui/hooks/useModalState';
 import { NavSide } from 'components/NavSide';
 import { SearchModal } from 'components/SearchModal';
@@ -98,7 +98,7 @@ export function Nav() {
                         variant="secondary"
                     />
                     <div data-brand-dropdown>
-                        <Dropdown
+                        <Select
                             aria-label="Brand"
                             id={useId()}
                             name="brand"
