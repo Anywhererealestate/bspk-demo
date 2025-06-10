@@ -39,6 +39,7 @@ export function ComponentPageExample() {
         <div data-example-wrapper>
             <ErrorLogContext id={errorId}>
                 <CodeExample
+                    accessibility
                     containerStyle={containerStyle}
                     data-main-example
                     data-show-touch-targets={showTouchTarget || undefined}
