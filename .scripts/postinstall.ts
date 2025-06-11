@@ -8,7 +8,7 @@ if (DEV_GIT_TOKEN) {
 
     // execSync(`echo '//npm.pkg.github.com/:_authToken=${DEV_GIT_TOKEN}' > .npmrc `, { stdio: 'inherit' });
 
-    execSync(`npm install github:Anywhererealestate/bspk-ui#dev`, { stdio: 'inherit' });
+    // execSync(`npm install github:Anywhererealestate/bspk-ui#dev`, { stdio: 'inherit' });
 } else {
     console.log('DEV_GIT_TOKEN not set, skipping dev package installation.');
 }
