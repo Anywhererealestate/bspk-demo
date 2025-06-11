@@ -1,5 +1,5 @@
 // if it's dev mode, we install the dev version of the ui package
-import { execSync } from 'child_process';
+// import { execSync } from 'child_process';
 
 const DEV_GIT_TOKEN = process.env.DEV_GIT_TOKEN;
 
