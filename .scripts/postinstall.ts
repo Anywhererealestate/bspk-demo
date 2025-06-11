@@ -6,7 +6,7 @@ const DEV_GIT_TOKEN = process.env.DEV_GIT_TOKEN;
 if (DEV_GIT_TOKEN) {
     console.log('Installing dev version of bspk-ui package...');
 
-    execSync(`git+https://${DEV_GIT_TOKEN}:x-oauth-basic@github:Anywhererealestate/bspk-ui#dev`, {
+    execSync(`npm install git+https://${DEV_GIT_TOKEN}:x-oauth-basic@github:Anywhererealestate/bspk-ui#dev`, {
         stdio: 'inherit',
     });
 } else {
