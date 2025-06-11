@@ -1,11 +1,14 @@
+/* eslint-disable react/no-multi-comp */
+import { LinkDemo } from '@bspk/ui/demo/LinkDemo';
 import { CodeExample } from 'components/CodeExample';
 import { Page } from 'components/Page';
+import { ComponentType } from 'react';
 
 export function Typography() {
-    const sections: { title: string; content: string }[] = [
+    const sections: { title: string; code?: string; Content?: ComponentType }[] = [
         {
             title: 'Headings',
-            content: `
+            code: `
 <h1>Heading 1</h1>
 <h2>Heading 2</h2>
 <h3>Heading 3</h3>
@@ -16,7 +19,7 @@ export function Typography() {
         },
         {
             title: 'Paragraphs',
-            content: `
+            code: `
 <p>
   This is a sample paragraph. It contains some text to demonstrate the paragraph styling.
   You can use paragraphs to separate blocks of text and make your content more readable.
@@ -25,7 +28,7 @@ export function Typography() {
         },
         {
             title: 'Unordered List',
-            content: `
+            code: `
 <ul>
   <li>List item 1</li>
   <li>List item 2</li>
@@ -35,7 +38,7 @@ export function Typography() {
         },
         {
             title: 'Ordered List',
-            content: `
+            code: `
 <ol>
   <li>List item 1</li>
   <li>List item 2</li>
@@ -45,7 +48,7 @@ export function Typography() {
         },
         {
             title: 'Blockquote',
-            content: `
+            code: `
 <blockquote>
   This is a blockquote. It is used to highlight a section of text, often a quote from another source.
   <cite>Someone famous in Source Title</cite>
@@ -54,19 +57,24 @@ export function Typography() {
         },
         {
             title: 'Horizontal Rule',
-            content: `
+            code: `
 <hr />
       `,
         },
         {
             title: 'Links',
-            content: `
-<a href="#">This is a link</a>
-      `,
+            Content: () => {
+                return (
+                    <>
+                        <p>This is your basic inline link. For sizing and other options use the Link Component.</p>
+                        <LinkDemo />
+                    </>
+                );
+            },
         },
         {
             title: 'Tables',
-            content: `
+            code: `
 <table>
   <thead>
     <tr>
@@ -97,85 +105,85 @@ export function Typography() {
         },
         {
             title: 'Keyboard',
-            content: `
+            code: `
 To save the file, press <kbd>Cmd</kbd> + <kbd>S</kbd> on your keyboard.
       `,
         },
         {
             title: 'Abbreviation',
-            content: `
+            code: `
 The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.
       `,
         },
         {
             title: 'Mark',
-            content: `
+            code: `
 You can use the <mark>mark</mark> element to <mark>highlight</mark> text.
       `,
         },
         {
             title: 'Subscript',
-            content: `
+            code: `
 H<sub>2</sub>O
       `,
         },
         {
             title: 'Superscript',
-            content: `
+            code: `
 10<sup>10</sup>
       `,
         },
         {
             title: 'Deleted Text',
-            content: `
+            code: `
 <del>This text has been deleted</del>
       `,
         },
         {
             title: 'Inserted Text',
-            content: `
+            code: `
 <ins>This text has been inserted</ins>
       `,
         },
         {
             title: 'Small Text',
-            content: `
+            code: `
 <small>This is smaller text</small>
       `,
         },
         {
             title: 'Strong Text',
-            content: `
+            code: `
 <strong>This is strong text</strong>
       `,
         },
         {
             title: 'Emphasized Text',
-            content: `
+            code: `
 <em>This is emphasized text</em>
       `,
         },
         {
             title: 'Italic Text',
-            content: `
+            code: `
 <i>This is italic text</i>
       `,
         },
         {
             title: 'Bold Text',
-            content: `
+            code: `
 <b>This is bold text</b>
       `,
         },
         {
             title: 'Underlined Text',
-            content: `
+            code: `
 <u>This is underlined text</u>
       `,
         },
         {
             title: 'Strikethrough Text',
-            content: `
+            code: `
 <s>This is strikethrough text</s>
       `,
         },
@@ -188,13 +196,21 @@ H<sub>2</sub>O
                 Without using any additional CSS, you can use the following standard HTML elements and have the bespoke
                 styles applied.
             </p>
-            {sections.map((section, index) => (
+            {sections.map(({ title, Content: Content, code: content }, index) => (
                 <section key={index} style={{ margin: '2rem 0' }}>
-                    <h3>{section.title}</h3>
-
-                    <CodeExample>
-                        <div dangerouslySetInnerHTML={{ __html: section.content }} />
-                    </CodeExample>
+                    <h3>{title}</h3>
+                    {content ? (
+                        <CodeExample
+                            code={{
+                                str: content,
+                                language: 'html',
+                            }}
+                        >
+                            <div dangerouslySetInnerHTML={{ __html: content }} />
+                        </CodeExample>
+                    ) : (
+                        Content && <Content />
+                    )}
                 </section>
             ))}
         </Page>

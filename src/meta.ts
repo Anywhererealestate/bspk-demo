@@ -54,7 +54,7 @@ export type UtilityMeta = BaseMeta & {
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */
 
-export const VERSION = '1.1.31' as const;
+export const VERSION = '1.1.32' as const;
 
 export const componentsMeta: ComponentMeta[] = [
     {
@@ -534,7 +534,7 @@ export const componentsMeta: ComponentMeta[] = [
     },
     {
         description:
-            'A visual placeholder for an element while it is in a loading state.\n\nThe data for your components might not be immediately available. You can improve the perceived responsiveness of the page by using skeletons. It feels like things are happening immediately, then the information is incrementally displayed on the screen.',
+            'A visual placeholder for an element while it is in a loading state.\n\nThe data for your components might not be immediately available. You can improve the perceived responsiveness of the page by using skeletons. It feels like things are happening immediately, then the information is incrementally displayed on the screen.\n\nThis component can be used to create skeletons for various types of content, such as text, images, or profiles.\n\nYou can use this component directly or use the specific use case components: SkeletonPhoto, SkeletonProfile, SkeletonRectangular, SkeletonText, SkeletonThumbnail, SkeletonCircular.',
         file: '/Skeleton.tsx',
         name: 'Skeleton',
         slug: 'skeleton',
@@ -543,7 +543,7 @@ export const componentsMeta: ComponentMeta[] = [
             code: 'import { Skeleton } from \'@bspk/ui/skeleton\';\n\nfunction Example(item: { title: string; src: string } | null) {\nreturn item ? (\n<img\nstyle={{\nwidth: 210,\nheight: 118,\n}}\nalt={item.title}\nsrc={item.src}\n/>\n) : (\n<Skeleton variant="photo" width={210} height={118} />\n);\n}',
             description: 'This example shows a skeleton loading state for an image but can be used for any element.',
         },
-        css: "[data-bspk='skeleton'] {\n    /*! \n    --text-margin: is set via inline style\n    --text-height: is set via inline style\n    --height: is set via inline style\n    --width: is set via inline style\n    */\n\n    display: flex;\n    flex-direction: column;\n    gap: var(--text-margin);\n    animation: skeleton-pulse 1.5s infinite;\n    background: var(--foreground-neutral-skeleton-element);\n\n    @keyframes skeleton-pulse {\n        0% {\n            opacity: 0.8;\n        }\n\n        50% {\n            opacity: 0.4;\n        }\n\n        100% {\n            opacity: 0.8;\n        }\n    }\n\n    &[data-variant='rectangular'],\n    &[data-variant='photo'] {\n        min-width: var(--spacing-sizing-08);\n        min-height: var(--spacing-sizing-08);\n        height: var(--height, var(--width));\n        width: var(--width, var(--height));\n        border-radius: var(--radius-small);\n    }\n\n    &[data-variant='photo'] {\n        border-radius: var(--radius-medium);\n    }\n\n    &[data-variant='circular'] {\n        border-radius: 100%;\n        width: var(--width);\n        aspect-ratio: 1/1;\n    }\n\n    &[data-variant='profile'] {\n        border-radius: 100%;\n        width: var(--spacing-sizing-10);\n        aspect-ratio: 1/1;\n    }\n\n    &[data-variant='thumbnail'] {\n        width: var(--spacing-sizing-12);\n        height: var(--spacing-sizing-12);\n        border-radius: var(--radius-small);\n    }\n\n    &[data-variant='text'] {\n        background: transparent;\n        min-height: unset;\n        max-height: unset;\n        width: 100%;\n        height: fit-content;\n\n        [data-line] {\n            width: 100%;\n            background: var(--foreground-neutral-skeleton-element);\n            border-radius: var(--radius-small);\n            height: var(--text-height);\n        }\n\n        // if there are 2 lines or more, make the last line 80% width\n        &:has([data-line]:nth-child(2)) {\n            [data-line]:last-child {\n                width: 80%;\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+        css: "[data-bspk='skeleton'] {\n    /*! \n    --text-margin: is set via inline style\n    --text-height: is set via inline style\n    --height: is set via inline style\n    --width: is set via inline style\n    --fade-out-duration is set via inline style\n    */\n\n    --fade-out-duration: var(--fade-out-duration, 1s);\n\n    display: flex;\n    flex-direction: column;\n    gap: var(--text-margin);\n    animation: skeleton-pulse 1.5s infinite;\n    background: var(--foreground-neutral-skeleton-element);\n\n    @keyframes skeleton-pulse {\n        0% {\n            opacity: 0.8;\n        }\n\n        50% {\n            opacity: 0.4;\n        }\n\n        100% {\n            opacity: 0.8;\n        }\n    }\n\n    &[data-variant='rectangular'],\n    &[data-variant='photo'] {\n        min-width: var(--spacing-sizing-08);\n        min-height: var(--spacing-sizing-08);\n        height: var(--height, var(--width));\n        width: var(--width, var(--height));\n        border-radius: var(--radius-small);\n    }\n\n    &[data-variant='photo'] {\n        border-radius: var(--radius-medium);\n    }\n\n    &[data-variant='circular'] {\n        border-radius: 100%;\n        width: var(--width);\n        aspect-ratio: 1/1;\n    }\n\n    &[data-variant='profile'] {\n        border-radius: 100%;\n        width: var(--spacing-sizing-10);\n        aspect-ratio: 1/1;\n    }\n\n    &[data-variant='thumbnail'] {\n        width: var(--spacing-sizing-12);\n        height: var(--spacing-sizing-12);\n        border-radius: var(--radius-small);\n    }\n\n    &[data-variant='text'] {\n        background: transparent;\n        min-height: unset;\n        max-height: unset;\n        width: 100%;\n        height: fit-content;\n\n        [data-line] {\n            width: 100%;\n            background: var(--foreground-neutral-skeleton-element);\n            border-radius: var(--radius-small);\n            height: var(--text-height);\n        }\n\n        // if there are 2 lines or more, make the last line 80% width\n        &:has([data-line]:nth-child(2)) {\n            [data-line]:last-child {\n                width: 80%;\n            }\n        }\n    }\n\n    &[data-loaded] {\n        transition: opacity var(--fade-out-duration) ease-in-out;\n        opacity: 0;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
         hasTouchTarget: false,
     },
     {
@@ -4935,6 +4935,21 @@ export const typesMeta: TypeMeta[] = [
                     "The height of the skeleton. This is ignored when variant is 'text', 'profile', or 'thumbnail'.",
                 default: 100,
                 type: 'string,number',
+            },
+            {
+                name: 'children',
+                required: false,
+                description:
+                    'The content of the skeleton.\n\nWhen the value is truthy the skeleton will render the content, otherwise it will render a placeholder.',
+                type: 'React.ReactNode',
+            },
+            {
+                name: 'loaded',
+                required: false,
+                description:
+                    'Indicates whether the skeleton content is loaded or not.\n\nThis ensures the skeleton is hidden when children is loaded but contains no content.',
+                default: false,
+                type: 'boolean',
             },
         ],
         id: 'skeleton-props',
