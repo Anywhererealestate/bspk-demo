@@ -7,7 +7,7 @@ const DEV_GIT_TOKEN = process.env.DEV_GIT_TOKEN;
 if (DEV_GIT_TOKEN) {
     console.log('Installing dev version of bspk-ui package...');
 
-    execSync(`echo '//npm.pkg.github.com/:_authToken=\${DEV_GIT_TOKEN}' > .npmrc `, { stdio: 'inherit' });
+    execSync(`sudo echo '//npm.pkg.github.com/:_authToken=${DEV_GIT_TOKEN}' > .npmrc `, { stdio: 'inherit' });
 
     execSync(`npm install github:Anywhererealestate/bspk-ui#dev`, { stdio: 'inherit' });
 } else {
