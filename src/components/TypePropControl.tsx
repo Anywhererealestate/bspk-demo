@@ -70,7 +70,7 @@ export function TypePropControl({
     }
 
     if (controlOptions.length > 0) {
-        if (controlOptions.length > 5 || type === 'select')
+        if (controlOptions.length > 2 || type === 'select')
             return (
                 <>
                     <Select
