@@ -6,7 +6,7 @@
     "license": "CC-BY-4.0",
     "scripts": {
         "build": "npm run create-meta && vite-node ./.scripts/search-index.ts && vite build && cp dist/index.html dist/404.html",
-        "dev": "vite-node ./.scripts/dev.ts && rm -rf node_modules/.vite && vite --open",
+        "dev": "vite-node ./.scripts/dev.ts && npm run create-meta && rm -rf node_modules/.vite && vite --open",
         "lint": "eslint && tsc --noemit",
         "lint:fix": "eslint --fix",
         "create-meta": "vite-node ./.scripts/create-meta.ts",
@@ -14,8 +14,7 @@
         "preview": "npm run build && vite preview --port 8080 --open",
         "test": "TEST_PORT=8675 playwright test",
         "test:preview": "TEST_PORT=8080 playwright test",
-        "tasks": "vite-node ./.scripts/tasks.ts",
-        "postinstall": "vite-node ./.scripts/postinstall.ts"
+        "tasks": "vite-node ./.scripts/tasks.ts"
     },
     "peerDependencies": {
         "react": "^18.3.1",

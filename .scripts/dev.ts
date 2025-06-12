@@ -22,7 +22,7 @@ execSync(
     [
         // add package json to the bspk-ui/src so we can link to src
         `cd "${uiRootPath}"`,
-        `echo '{ "name": "@bspk/ui", "version": "${version}" }' > 'src/package.json'`,
+        `echo '{ "name": "@bspk/ui", "version": "${version}007" }' > 'src/package.json'`,
         // run npm link in bspk-ui/src
         `cd "${uiRootPath}/src"`,
         `npm link`,

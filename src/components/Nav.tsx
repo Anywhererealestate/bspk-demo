@@ -11,7 +11,7 @@ import { NavSide } from 'components/NavSide';
 import { SearchModal } from 'components/SearchModal';
 import { useEffect, useId, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { MODE, VERSION } from 'src/meta';
+import { MODE, VERSION, UI_HASH } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
 import useHotkeys from 'src/utils/useHotkeys';
 
@@ -87,7 +87,12 @@ export function Nav() {
                     <h1 data-logo>
                         <img alt="Bespoke" src="/logo.png" style={{ height: 32 }} />
                         <span>Version: {VERSION}</span>
-                        {MODE === 'development' && <span>DEV</span>}
+                        {MODE === 'development' && (
+                            <span>
+                                DEV
+                                {UI_HASH ? ` (${UI_HASH})` : ''}
+                            </span>
+                        )}
                     </h1>
                 </div>
                 <div data-navbar-right="">
