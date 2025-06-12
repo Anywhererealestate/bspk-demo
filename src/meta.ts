@@ -1,6 +1,6 @@
 import React from 'react';
 
-export { MODE, UI_HASH, VERSION, componentsMeta, typesMeta, utilitiesMeta } from 'src/meta.json';
+export { MODE, UI_HASH, VERSION, BUILD, componentsMeta, typesMeta, utilitiesMeta } from 'src/meta.json';
 
 /**
  * This file is used to build the meta types for the project. It's used in the build-meta.ts file and also copied in to

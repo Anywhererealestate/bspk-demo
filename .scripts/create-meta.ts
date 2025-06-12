@@ -36,8 +36,13 @@ if (DEV_GIT_TOKEN) {
 }
 
 // Get the current commit hash of the @bspk/ui package
-const hash = execSync('npm list @bspk/ui', { encoding: 'utf-8' }).trim().split('#')[1].substring(0, 7);
+const hash = execSync('npm list @bspk/ui', { encoding: 'utf-8' }).trim().split('#')[1]?.substring(0, 7) || 'unknown';
 
-execSync(`npm explore @bspk/ui -- npm run meta out=${demoRoot} hash=${hash}`, { stdio: 'inherit' });
+const build =
+    execSync(`npm explore @bspk/ui -- git rev-list --count origin/main..origin/dev`, {
+        encoding: 'utf-8',
+    }).trim() || '0';
+
+execSync(`npm explore @bspk/ui -- npm run meta out=${demoRoot} hash=${hash} build=${build}`, { stdio: 'inherit' });
 
 execSync(`npx eslint --fix ${demoRoot}/meta.ts`, { stdio: 'inherit' });

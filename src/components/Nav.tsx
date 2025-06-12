@@ -11,7 +11,7 @@ import { NavSide } from 'components/NavSide';
 import { SearchModal } from 'components/SearchModal';
 import { useEffect, useId, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { MODE, VERSION, UI_HASH } from 'src/meta';
+import { MODE, VERSION, UI_HASH, BUILD } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
 import useHotkeys from 'src/utils/useHotkeys';
 
@@ -86,7 +86,10 @@ export function Nav() {
                     {screenSize === 'small' && <MenuButton onClick={() => navModalState.onOpen()} />}
                     <h1 data-logo>
                         <img alt="Bespoke" src="/logo.png" style={{ height: 32 }} />
-                        <span>Version: {VERSION}</span>
+                        <span>
+                            Version: {VERSION}
+                            {BUILD ? `.${BUILD}` : ''}
+                        </span>
                         {MODE === 'development' && (
                             <span>
                                 DEV
