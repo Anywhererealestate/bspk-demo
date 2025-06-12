@@ -1,0 +1,269 @@
+{
+  "LAST_UPDATED": "2025-06-12T05:20:37.176Z",
+  "VERSION": "1.1.32.local",
+  "UI_HASH": "local",
+  "MODE": "development",
+  "componentsMeta": [
+    {
+      "description": "An avatar is a visual representation of a user or entity. It can be used to display an initials, icon, or image.",
+      "file": "/Avatar.tsx",
+      "name": "Avatar",
+      "slug": "avatar",
+      "dependencies": [],
+      "usage": {
+        "code": "import { Avatar } from '@bspk/ui/Avatar';\nimport { SvgPerson } from '@bspk/icons/Person';\n\nfunction Example() {\nreturn (\n<Avatar\nname=\"Jane Doe\"\ninitials=\"JD\"\ncolor=\"blue\"\nsize=\"large\"\nicon={<SvgPerson />}\nimage=\"/profile.jpg\"\nshowTooltip={true}\n/>\n);\n}",
+        "description": "The image if provided is displayed first, followed by the icon if provided, and finally the initials. If no initials are provided, the first two letters of the name will be used as initials."
+      },
+      "css": "[data-bspk='avatar'] {\n    --height: var(--spacing-sizing-10);\n    --font: var(--labels-base);\n    --svg-size: var(--spacing-sizing-10);\n\n    &:not([data-color]) {\n        --foreground: var(--foreground-neutral-on-surface);\n        --background: var(--surface-neutral-t3-low);\n    }\n\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    padding: 0;\n    height: var(--height);\n    width: var(--height);\n    aspect-ratio: 1 / 1;\n    border-radius: 999px;\n    background-color: var(--background);\n    color: var(--foreground);\n    font: var(--font);\n\n    &:has(img) {\n        overflow: hidden;\n    }\n\n    img {\n        max-width: 100%;\n    }\n\n    svg {\n        width: var(--svg-size);\n        height: var(--svg-size);\n    }\n\n    [data-icon] {\n        display: flex;\n        align-items: center;\n        justify-content: center;\n    }\n\n    &[data-size='x-small'] {\n        --height: var(--spacing-sizing-06);\n        --font: var(--labels-x-small);\n        --svg-size: var(--spacing-sizing-04);\n    }\n\n    &[data-size='small'] {\n        --height: var(--spacing-sizing-08);\n        --font: var(--labels-small);\n        --svg-size: var(--spacing-sizing-05);\n    }\n\n    &[data-size='medium'] {\n        --height: var(--spacing-sizing-10);\n        --font: var(--labels-base);\n        --svg-size: var(--spacing-sizing-05);\n    }\n\n    &[data-size='large'] {\n        --height: var(--spacing-sizing-12);\n        --font: var(--labels-large);\n        --svg-size: var(--spacing-sizing-06);\n    }\n\n    &[data-size='x-large'] {\n        --height: var(--spacing-sizing-14);\n        --font: var(--subheader-x-large);\n        --svg-size: var(--spacing-sizing-08);\n    }\n\n    &[data-size='xx-large'] {\n        --height: var(--spacing-sizing-17);\n        --font: var(--subheader-xx-large);\n        --svg-size: var(--spacing-sizing-09);\n    }\n\n    &[data-size='xxx-large'] {\n        --height: var(--spacing-sizing-19);\n        --font: var(--display-regular-small);\n        --svg-size: var(--spacing-sizing-12);\n    }\n\n    &[data-size='xxxx-large'] {\n        --height: var(--spacing-sizing-21);\n        --font: var(--display-regular-medium);\n        --svg-size: var(--spacing-sizing-15);\n    }\n\n    &[data-size='xxxxx-large'] {\n        --height: var(--spacing-sizing-23);\n        --font: var(--display-regular-large);\n        --svg-size: var(--spacing-sizing-17);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+      "hasTouchTarget": false
+    }
+  ],
+  "utilitiesMeta": [],
+  "typesMeta": [
+    {
+      "name": "AvatarProps",
+      "properties": [
+        {
+          "name": "name",
+          "required": true,
+          "description": "The name of the person or entity represented by the avatar. This is used for accessibility purposes.",
+          "type": "string",
+          "example": "Jane Doe"
+        },
+        {
+          "name": "size",
+          "required": false,
+          "description": "The size of the avatar.",
+          "default": "small",
+          "type": [
+            "x-small",
+            "small",
+            "medium",
+            "large",
+            "x-large",
+            "xx-large",
+            "xxx-large",
+            "xxxx-large",
+            "xxxxx-large"
+          ],
+          "options": [
+            "x-small",
+            "small",
+            "medium",
+            "large",
+            "x-large",
+            "xx-large",
+            "xxx-large",
+            "xxxx-large",
+            "xxxxx-large"
+          ]
+        },
+        {
+          "name": "color",
+          "required": false,
+          "description": "The color of the avatar.",
+          "default": "grey",
+          "type": [
+            "blue",
+            "green",
+            "grey",
+            "lime",
+            "magenta",
+            "orange",
+            "pink",
+            "primary",
+            "purple",
+            "red",
+            "secondary",
+            "teal",
+            "white",
+            "yellow"
+          ],
+          "options": [
+            "blue",
+            "green",
+            "grey",
+            "lime",
+            "magenta",
+            "orange",
+            "pink",
+            "primary",
+            "purple",
+            "red",
+            "secondary",
+            "teal",
+            "white",
+            "yellow"
+          ]
+        },
+        {
+          "name": "initials",
+          "required": false,
+          "description": "The initials to display in the avatar limited to 2 characters.\n\nIf not provided, the first two letters of the name will be used as initials.",
+          "type": "string",
+          "example": "JD"
+        },
+        {
+          "name": "icon",
+          "required": false,
+          "description": "The icon to display in the avatar. This needs to be an icon from the",
+          "type": "BspkIcon",
+          "example": "<SvgPerson />"
+        },
+        {
+          "name": "image",
+          "required": false,
+          "description": "The url to the image to display in the avatar.",
+          "type": "string",
+          "example": "/profile.jpg"
+        },
+        {
+          "name": "showTooltip",
+          "required": false,
+          "description": "Whether to show the represeneetd user's name as a tooltip.",
+          "default": true,
+          "type": "boolean"
+        }
+      ],
+      "id": "avatar-props",
+      "components": [
+        "Avatar"
+      ]
+    },
+    {
+      "name": "PortalProps",
+      "properties": [
+        {
+          "name": "children",
+          "required": true,
+          "description": "The content to render in the portal.",
+          "type": "React.ReactNode"
+        },
+        {
+          "name": "container",
+          "required": false,
+          "description": "The container to render the portal in.",
+          "type": "HTMLElement"
+        }
+      ],
+      "id": "portal-props",
+      "components": []
+    },
+    {
+      "name": "TooltipProps",
+      "properties": [
+        {
+          "name": "placement",
+          "required": false,
+          "description": "The placement of the tooltip.",
+          "default": "top",
+          "type": [
+            "bottom",
+            "left",
+            "right",
+            "top"
+          ],
+          "options": [
+            "bottom",
+            "left",
+            "right",
+            "top"
+          ]
+        },
+        {
+          "name": "label",
+          "required": true,
+          "description": "The tooltip content.",
+          "type": "string"
+        },
+        {
+          "name": "children",
+          "required": true,
+          "description": "A single element that will trigger the tooltip when hovered over.",
+          "type": "ReactElement"
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "description": "Determines if the tooltip is disabled.",
+          "type": "boolean"
+        },
+        {
+          "name": "showTail",
+          "required": false,
+          "description": "Determines if the tooltip should hide the tail.",
+          "default": true,
+          "type": "boolean"
+        }
+      ],
+      "id": "tooltip-props",
+      "components": []
+    },
+    {
+      "name": "UseFloatingProps",
+      "properties": [
+        {
+          "name": "placement",
+          "required": true,
+          "description": "The preferred placement of the floating element.\n\nThis determines where the floating element will be positioned relative to the reference element.",
+          "default": "bottom",
+          "type": "Placement",
+          "options": [
+            "bottom",
+            "bottom-end",
+            "bottom-start",
+            "left",
+            "left-end",
+            "left-start",
+            "right",
+            "right-end",
+            "right-start",
+            "top",
+            "top-end",
+            "top-start"
+          ]
+        },
+        {
+          "name": "arrowRef",
+          "required": false,
+          "description": "A ref object for the arrow element.",
+          "type": "React.MutableRefObject<HTMLElement|null>"
+        },
+        {
+          "name": "strategy",
+          "required": false,
+          "description": "The positioning strategy ('absolute' or 'fixed').\n\nWhen set to 'fixed', the floating element will be positioned relative to the viewport.\n\nWhen set to 'absolute', the floating element will be positioned relative to the nearest positioned ancestor.",
+          "default": "fixed",
+          "type": [
+            "absolute",
+            "fixed"
+          ],
+          "options": [
+            "absolute",
+            "fixed"
+          ]
+        },
+        {
+          "name": "offsetOptions",
+          "required": false,
+          "description": "The offset options for the floating element.",
+          "default": 0
+        },
+        {
+          "name": "refWidth",
+          "required": false,
+          "description": "When set to true, the width of the floating element will match the width of the reference element.\n\nWhen set to an HTMLElement, the width of the floating element will match the width of that HTMLElement.",
+          "default": true
+        },
+        {
+          "name": "hide",
+          "required": false,
+          "description": "Whether to hide the floating element.",
+          "type": "boolean"
+        }
+      ],
+      "id": "use-floating-props",
+      "components": []
+    }
+  ]
+}

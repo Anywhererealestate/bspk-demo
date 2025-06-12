@@ -5,12 +5,11 @@
     "type": "module",
     "license": "CC-BY-4.0",
     "scripts": {
-        "build": "npm run meta && vite build && cp dist/index.html dist/404.html",
-        "dev:vite": "rm -rf node_modules/.vite && vite --open",
-        "dev": "vite-node ./.scripts/dev.ts",
+        "build": "npm run create-meta && vite-node ./.scripts/search-index.ts && vite build && cp dist/index.html dist/404.html",
+        "dev": "vite-node ./.scripts/dev.ts && rm -rf node_modules/.vite && vite --open",
         "lint": "eslint && tsc --noemit",
         "lint:fix": "eslint --fix",
-        "meta": "vite-node ./.scripts/create-meta.ts && vite-node ./.scripts/search-index.ts",
+        "create-meta": "vite-node ./.scripts/create-meta.ts",
         "prepare": "husky",
         "preview": "npm run build && vite preview --port 8080 --open",
         "test": "TEST_PORT=8675 playwright test",
@@ -69,6 +68,7 @@
         "typescript-json-schema": "^0.65.1",
         "vite": "^6.3.5",
         "vite-node": "^3.2.3",
+        "vite-plugin-run": "^0.6.1",
         "watcher": "^2.3.1"
     }
 }

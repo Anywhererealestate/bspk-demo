@@ -10,12 +10,6 @@ type Task = {
 
 export const TASKS: Task[] = [
     {
-        item: 1,
-        description: '(Local) Run the @bspk/ui meta generation script',
-        name: 'runMetaLocally',
-        exec: 'npx tsx ./.scripts/tasks/runMetaLocally.ts',
-    },
-    {
         item: 2,
         description: 'Report missing CSS variables',
         name: 'reportMissingVariables',
