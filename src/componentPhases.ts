@@ -1,4 +1,4 @@
-import { DevPhase } from '@bspk/ui/demo/examples';
+import { DevPhase } from '@bspk/ui/demo/utils';
 import { MetaComponentName } from 'src/meta';
 
 export const BACKLOG_COMPONENTS = [

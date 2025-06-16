@@ -1,4 +1,4 @@
-import { ComponentExample, DemoPreset, DevPhase, TypePropertyDemo } from '@bspk/ui/demo/examples';
+import { ComponentExample, DemoPreset, DevPhase, TypePropertyDemo } from '@bspk/ui/demo/utils';
 import { ColorVariant } from '@bspk/ui/utils/colorVariants';
 import type { RouteObject } from 'react-router-dom';
 import { ComponentMeta, TypeMeta } from 'src/meta';

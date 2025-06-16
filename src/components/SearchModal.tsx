@@ -5,7 +5,7 @@ import { Txt } from '@bspk/ui/Txt';
 import { useTimeout } from '@bspk/ui/hooks/useTimeout';
 import { Fragment, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { searchIndex } from 'src/search-index';
+import searchIndex from 'src/search-index.json';
 
 import 'src/components/searchModal.scss';
 

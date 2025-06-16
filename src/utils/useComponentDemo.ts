@@ -1,8 +1,8 @@
-import { DevPhase, TypePropertyDemo } from '@bspk/ui/demo/examples';
+import { examples } from '@bspk/ui/demo/examples';
+import { DevPhase, TypePropertyDemo } from '@bspk/ui/demo/utils';
 import { COMPONENT_PHASE } from 'src/componentPhases';
 import { updateComponentContext } from 'src/components/ComponentProvider';
 import { DEV_PHASES } from 'src/constants';
-import { componentExamples } from 'src/examples';
 import { TypeProperty, MetaComponentName, componentsMeta, typesMeta } from 'src/meta';
 import { DemoComponent } from 'src/types';
 import { action } from 'src/utils/actions';
@@ -133,7 +133,11 @@ export function useComponentDemo(componentName: MetaComponentName) {
         }
 
         const typeMeta = typesMeta?.find((t) => t.name === `${componentName}Props`);
-        const componentExample = componentExamples[componentName];
+
+        const componentExample =
+            examples[componentName] && typeof examples[componentName] === 'function'
+                ? examples[componentName]({ action, setState: updateComponentContext })
+                : examples[componentName];
 
         const { props, functionProps, defaultState } = setPropExamples(typeMeta?.properties || []);
 
