@@ -3,7 +3,7 @@ import { DemoPreset } from '@bspk/ui/demo/utils';
 import { useErrorLogger } from '@bspk/ui/utils/errors';
 import { Markup } from 'components//Markup';
 import { CodeExample } from 'components/CodeExample';
-import { useComponentContext } from 'src/components/ComponentProvider';
+import { updateComponentContext, useComponentContext } from 'src/components/ComponentProvider';
 import { components, TypeProperty } from 'src/meta';
 import { DemoComponent } from 'src/types';
 import { useComponentProps } from 'src/utils/useComponentProps';
@@ -101,7 +101,13 @@ function VariantExample({
         },
     );
 
-    return <>{component.render?.({ props: componentProps, preset, Component }) || <Component {...componentProps} />}</>;
+    return (
+        <>
+            {component.render?.({ props: componentProps, preset, Component, setState: updateComponentContext }) || (
+                <Component {...componentProps} />
+            )}
+        </>
+    );
 }
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */

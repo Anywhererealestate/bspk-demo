@@ -3,7 +3,6 @@ import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
 import { TypePropertyDemo, TypePropertyDemoWithControls } from '@bspk/ui/demo/utils';
 import { updateComponentContext } from 'components/ComponentProvider';
-import { LinkUp } from 'components/LinkUp';
 import { Markup } from 'components/Markup';
 import { TypePropControl } from 'components/TypePropControl';
 import { Fragment, useMemo } from 'react';
@@ -128,7 +127,7 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
                                             variant="flat"
                                             wrap={typeof o === 'string' && o?.includes('=>')}
                                         >
-                                            <LinkUp>{o.toString()}</LinkUp>
+                                            {o.toString()}
                                         </Tag>
                                     ))}
                                 </div>
