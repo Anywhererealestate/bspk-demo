@@ -44,7 +44,24 @@ export function TypePropControl({
             />
         );
 
-    if (type === 'string' || (Array.isArray(type) && type.join() === 'string,boolean'))
+    if (Array.isArray(type) && type.sort().join() === 'boolean,string') {
+        return (
+            <label data-testid={`${prop.name}-Switch`}>
+                <Switch checked={!!controlProps.value} {...controlProps} />
+                {!!controlProps.value && (
+                    <TextInput
+                        data-testid={`${prop.name}-Input`}
+                        size="small"
+                        {...controlProps}
+                        style={{ marginTop: '10px' }}
+                        value={typeof controlProps.value === 'string' ? controlProps.value : ''}
+                    />
+                )}
+            </label>
+        );
+    }
+
+    if (type === 'string')
         return <TextInput data-testid={`${prop.name}-Input`} id="" size="small" type="text" {...controlProps} />;
 
     const controlOptions: string[] =

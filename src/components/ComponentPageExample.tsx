@@ -3,7 +3,7 @@ import { SegmentedControl } from '@bspk/ui/SegmentedControl';
 import { SwitchOption } from '@bspk/ui/SwitchOption';
 import { ErrorLogContext } from '@bspk/ui/utils/errors';
 import { CodeExample } from 'components/CodeExample';
-import { useComponentContext } from 'components/ComponentProvider';
+import { updateComponentContext, useComponentContext } from 'components/ComponentProvider';
 import { TypeProps } from 'components/TypeProps';
 import { useId, useMemo } from 'react';
 import { components } from 'src/meta';
@@ -44,7 +44,9 @@ export function ComponentPageExample() {
                     data-main-example
                     data-show-touch-targets={showTouchTarget || undefined}
                 >
-                    {component.render?.({ props, preset, Component }) || <Component {...props} />}
+                    {component.render?.({ props, preset, Component, setState: updateComponentContext }) || (
+                        <Component {...props} />
+                    )}
                 </CodeExample>
             </ErrorLogContext>
             <div data-example-settings>

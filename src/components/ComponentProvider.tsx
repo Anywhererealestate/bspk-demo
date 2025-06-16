@@ -66,6 +66,11 @@ export function ComponentProvider({ children, component }: PropsWithChildren<{ c
     const storeKey = useMemo(() => `bspk-${name}`, [name]);
     const storeKeyAxeResults = useMemo(() => `bspk-${name}-axe-results`, [name]);
 
+    useEffect(() => {
+        const storeValue = store.get(storeKey);
+        if (storeValue) console.warn('Component state loaded from store. Reset state to clear.', storeValue);
+    }, [storeKey]);
+
     const [state, setAllState] = useState<Record<string, any>>(store.get(storeKey) || defaultState);
     const [axeResults, setAllAxeResults] = useState<Record<string, any>>(store.get(storeKeyAxeResults) || {});
     const [presetValue, setPreset] = useState<string | undefined>(() => presets?.[0]?.value);

@@ -49,7 +49,9 @@ const getDefaultState = (prop: TypePropertyDemo): any => {
 const getExample = (prop: TypeProperty, propNames: string[]): any => {
     const setState = updateComponentContext;
 
-    const defaultValue = typeof prop.example === 'undefined' ? prop.default : prop.example;
+    let defaultValue = typeof prop.example === 'undefined' ? prop.default : prop.example;
+
+    if (typeof defaultValue === 'string') defaultValue = defaultValue.trim();
 
     if (prop.type === 'BspkIcon' && typeof defaultValue === 'string') {
         const matchedIcon = defaultValue.match(/<Svg(.*?) \/>/);
@@ -78,6 +80,11 @@ const getExample = (prop: TypeProperty, propNames: string[]): any => {
 
     if (typeof prop.type === 'string' && prop.type.startsWith('Array<')) {
         return evalSafe(defaultValue, []);
+    }
+
+    if (typeof defaultValue === 'string' && defaultValue.startsWith('{') && defaultValue.endsWith('}')) {
+        const evaluated = evalSafe(`(${defaultValue})`, {});
+        return evaluated;
     }
 
     if (defaultValue) return defaultValue;

@@ -1,5 +1,5 @@
 {
-  "LAST_UPDATED": "2025-06-16T17:02:31.008Z",
+  "LAST_UPDATED": "2025-06-16T21:48:43.055Z",
   "VERSION": "1.1.32",
   "UI_HASH": "local",
   "BUILD": "0",
@@ -145,9 +145,7 @@
       "file": "/Dialog.tsx",
       "name": "Dialog",
       "slug": "dialog",
-      "dependencies": [
-        "Portal"
-      ],
+      "dependencies": [],
       "usage": {
         "code": "import { Dialog } from '@bspk/ui/Dialog';\nimport { Button } from '@bspk/ui/Button';\n\nfunction Example() {\nconst [open, setOpen] = React.useState(false);\n\nreturn (\n<>\n<Button label=\"Open Dialog\" onClick={() => setOpen(true)} />\n<Dialog open={open} onClose={() => setOpen(false)}>\n<h1>Dialog Title</h1>\n<p>This is the content of the dialog.</p>\n<button onClick={() => setOpen(false)}>Close</button>\n</Dialog>\n</>\n);\n}"
       },
@@ -282,10 +280,7 @@
       "file": "/Menu.tsx",
       "name": "Menu",
       "slug": "menu",
-      "dependencies": [
-        "Checkbox",
-        "ListItem"
-      ],
+      "dependencies": [],
       "usage": {
         "code": "import React from 'react';\n\nimport { Menu } from '@bspk/ui/Menu';\n\nexport function Example() {\nconst [selected, setSelected] = React.useState<string[]>([]);\n\nreturn (\n<Menu\nitems={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]}\nonChange={(selectedValues: string[]) => setSelected(selectedValues)}\nselectedValues={selected}\n/>\n);\n}"
       },
@@ -311,15 +306,11 @@
       "file": "/Modal.tsx",
       "name": "Modal",
       "slug": "modal",
-      "dependencies": [
-        "Button",
-        "Dialog",
-        "Txt"
-      ],
+      "dependencies": [],
       "usage": {
         "code": "import React from 'react';\n\nimport { Button } from '@bspk/ui/Button';\nimport { Modal } from '@bspk/ui/Modal';\n\nexport function Example() {\nconst [open, setOpen] = React.useState(false);\n\nreturn (\n<>\n<Button label=\"Open Dialog\" onClick={() => setOpen(true)} />\n<Modal\ndescription=\"Example description\"\nheader=\"Example header\"\nonClose={() => setOpen(false)}\nopen={open}\n>\nExample Modal\n</Modal>\n</>\n);\n}"
       },
-      "css": "[data-bspk='modal'] {\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n    gap: var(--spacing-sizing-02);\n    padding: var(--spacing-sizing-04);\n\n    > header {\n        display: flex;\n        flex-direction: row;\n        justify-content: space-between;\n        align-items: center;\n        gap: var(--spacing-sizing-04);\n    }\n\n    main {\n        overflow: auto;\n        flex: 1;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+      "css": "[data-bspk='modal'] {\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n    gap: var(--spacing-sizing-02);\n    padding: var(--spacing-sizing-04);\n\n    > header {\n        display: flex;\n        flex-direction: row;\n        justify-content: space-between;\n        align-items: center;\n        gap: var(--spacing-sizing-04);\n    }\n\n    main {\n        overflow: auto;\n        flex: 1;\n        padding: var(--spacing-sizing-04) 0;\n    }\n\n    > footer {\n        display: flex;\n        flex-direction: row-reverse;\n        justify-content: flex-start;\n        gap: var(--spacing-sizing-04);\n    }\n\n    // we make the width responsive to the viewport\n    @media (width < 640px) {\n        > footer {\n            [data-bspk='button'] {\n                width: 50%;\n            }\n\n            &[data-button-format='vertical'] {\n                flex-direction: column-reverse;\n\n                [data-bspk='button'] {\n                    width: 100%;\n                }\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
       "hasTouchTarget": false
     },
     {
@@ -1288,9 +1279,7 @@
         }
       ],
       "id": "button-props",
-      "components": [
-        "Button"
-      ]
+      "components": []
     },
     {
       "name": "CallToActionButton",
@@ -1326,11 +1315,7 @@
         }
       ],
       "id": "call-to-action-button",
-      "components": [
-        "BannerAlert",
-        "EmptyState",
-        "Popover"
-      ]
+      "components": []
     },
     {
       "name": "CardProps",
@@ -1571,7 +1556,7 @@
         {
           "name": "indeterminate",
           "required": false,
-          "description": "If the checkbox is partially checked or [indeterminate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes).",
+          "description": "If the checkbox is partially checked or\n[indeterminate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes).",
           "default": false,
           "type": "boolean"
         },
@@ -1590,9 +1575,7 @@
         }
       ],
       "id": "checkbox-props",
-      "components": [
-        "Checkbox"
-      ]
+      "components": []
     },
     {
       "name": "ChipProps",
@@ -2220,17 +2203,15 @@
           ]
         },
         {
-          "name": "hideScrim",
+          "name": "showScrim",
           "required": false,
           "description": "Whether the dialog should have a scrim behind it.",
-          "default": false,
+          "default": true,
           "type": "boolean"
         }
       ],
       "id": "dialog-props",
-      "components": [
-        "Dialog"
-      ]
+      "components": []
     },
     {
       "name": "DividerProps",
@@ -2337,7 +2318,7 @@
           "name": "body",
           "required": true,
           "description": "The body of the empty state.",
-          "type": "string"
+          "type": "multiline"
         },
         {
           "name": "bodyAlign",
@@ -2346,19 +2327,17 @@
           "default": "center",
           "type": [
             "center",
-            "left",
-            "right"
+            "left"
           ],
           "options": [
             "center",
-            "left",
-            "right"
+            "left"
           ]
         },
         {
           "name": "callToAction",
           "required": false,
-          "description": "This property may be undefined or an object containing required CallToActionButton properties.",
+          "description": "Optional CallToActionButton properties.",
           "type": "CallToActionButton"
         }
       ],
@@ -2874,14 +2853,12 @@
         {
           "name": "trailing",
           "required": false,
-          "description": "The trailing element to display in the ListItem.\n\nTrailing elements may only be one of the following [Icon](/icons), Checkbox, ListItemButton, Radio, Switch, Tag, Txt.",
+          "description": "The trailing element to display in the ListItem.\n\nTrailing elements may only be one of the following [Icon](/icons), Checkbox, ListItemButton, Radio, Switch, Tag,\nTxt.",
           "type": "ReactNode"
         }
       ],
       "id": "list-item-props",
-      "components": [
-        "ListItem"
-      ]
+      "components": []
     },
     {
       "name": "MenuButtonProps",
@@ -2937,8 +2914,7 @@
       "id": "menu-item",
       "description": "The props for the menu items.",
       "components": [
-        "Menu",
-        "SearchBar"
+        "Menu"
       ]
     },
     {
@@ -3044,18 +3020,6 @@
           "type": "string"
         },
         {
-          "name": "children",
-          "required": false,
-          "description": "The content of the dialog.",
-          "type": "React.ReactNode"
-        },
-        {
-          "name": "innerRef",
-          "required": false,
-          "description": "A ref to the dialog element.",
-          "type": "object"
-        },
-        {
           "name": "open",
           "required": false,
           "description": "If the dialog should appear.",
@@ -3069,48 +3033,67 @@
           "type": "function"
         },
         {
-          "name": "placement",
+          "name": "innerRef",
           "required": false,
-          "description": "The placement of the dialog on the screen.",
-          "default": "center",
-          "type": [
-            "bottom",
-            "center",
-            "left",
-            "right",
-            "top"
-          ],
-          "options": [
-            "bottom",
-            "center",
-            "left",
-            "right",
-            "top"
-          ]
-        },
-        {
-          "name": "hideScrim",
-          "required": false,
-          "description": "Whether the dialog should have a scrim behind it.",
-          "default": false,
-          "type": "boolean"
+          "description": "A ref to the dialog element.",
+          "type": "object"
         },
         {
           "name": "header",
           "required": true,
           "description": "Modal header.",
-          "type": "string"
+          "type": "string",
+          "example": "Change your email"
         },
         {
           "name": "description",
           "required": true,
-          "description": "Modal description.",
-          "type": "string"
+          "description": "Modal description. Used for the [aria-description](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-description) attribute.",
+          "type": "string",
+          "example": "Email change confirmation."
+        },
+        {
+          "name": "cancelButton",
+          "required": false,
+          "description": "Whether to show the cancel button in the footer.\n\nProviding a string will set the label of the cancel button.",
+          "default": false,
+          "type": "string,boolean"
+        },
+        {
+          "name": "callToAction",
+          "required": false,
+          "description": "The call to action button to display in the footer of the modal.",
+          "type": "ModalCallToAction",
+          "example": "{\nlabel: 'Confirm',\nonClick: () => action('Confirm clicked'),\n}"
+        },
+        {
+          "name": "buttonFormat",
+          "required": false,
+          "description": "The format of the buttons in the footer. Ignored if not mobile.",
+          "default": "horizontal",
+          "type": [
+            "horizontal",
+            "vertical"
+          ],
+          "options": [
+            "horizontal",
+            "vertical"
+          ]
+        },
+        {
+          "name": "children",
+          "required": false,
+          "description": "The content of the modal.",
+          "type": "multiline",
+          "example": "Are you sure you want to change your email address? A confirmation email will be sent to your new address to verify the change. Please check your inbox and follow the instructions to complete the process."
         }
       ],
       "id": "modal-props",
       "components": [
         "Modal"
+      ],
+      "references": [
+        "ModalCallToAction"
       ]
     },
     {
@@ -3481,6 +3464,44 @@
         }
       ],
       "id": "pick-common-props-library-disabled",
+      "components": []
+    },
+    {
+      "name": "Pick<DialogProps,\"id\"|\"open\"|\"children\"|\"onClose\"|\"innerRef\">",
+      "properties": [
+        {
+          "name": "id",
+          "required": false,
+          "description": "The id of the element. If not provided one will be generated.",
+          "type": "string"
+        },
+        {
+          "name": "open",
+          "required": false,
+          "description": "If the dialog should appear.",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "children",
+          "required": false,
+          "description": "The content of the dialog.",
+          "type": "multiline"
+        },
+        {
+          "name": "onClose",
+          "required": true,
+          "description": "Function to call when the dialog is closed.",
+          "type": "function"
+        },
+        {
+          "name": "innerRef",
+          "required": false,
+          "description": "A ref to the dialog element.",
+          "type": "object"
+        }
+      ],
+      "id": "pick-dialog-props-id-open-children-on-close-inner-ref",
       "components": []
     },
     {
@@ -4190,9 +4211,7 @@
         }
       ],
       "id": "portal-props",
-      "components": [
-        "Portal"
-      ]
+      "components": []
     },
     {
       "name": "Preset",
@@ -4689,8 +4708,7 @@
       "id": "render-list-item-params",
       "description": "The props for the renderListItem function. Useful for customizing menu list items.",
       "components": [
-        "Menu",
-        "Select"
+        "Menu"
       ]
     },
     {
@@ -6393,9 +6411,7 @@
         }
       ],
       "id": "tooltip-props",
-      "components": [
-        "Tooltip"
-      ]
+      "components": []
     },
     {
       "name": "TopNavigationProps",
@@ -6496,9 +6512,7 @@
         }
       ],
       "id": "txt-props",
-      "components": [
-        "Txt"
-      ]
+      "components": []
     },
     {
       "name": "TypePropertyDemo",
@@ -6809,6 +6823,237 @@
       ],
       "id": "use-floating-props",
       "components": []
+    },
+    {
+      "name": "DemoPreset<Record<string,unknown>>",
+      "properties": [
+        {
+          "name": "label",
+          "required": true,
+          "description": "The name of the preset. This is used to display the preset in the UI.",
+          "type": "string"
+        },
+        {
+          "name": "state",
+          "required": false,
+          "description": "The props of the component. This is used to set props of the component. These values can't be changed in the UI.",
+          "type": "Partial<Record<string,unknown>>"
+        },
+        {
+          "name": "isDefault",
+          "required": false,
+          "description": "Determines if the preset is the default preset. This is used to set the initial state of the component.",
+          "type": "boolean"
+        },
+        {
+          "name": "value",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "id": "demo-preset-record-string-unknown",
+      "components": []
+    },
+    {
+      "name": "Pick<ButtonProps,\"variant\"|\"label\"|\"onClick\">",
+      "properties": [
+        {
+          "name": "variant",
+          "required": false,
+          "description": "The color variant of the button.",
+          "default": "primary",
+          "type": [
+            "primary",
+            "secondary",
+            "tertiary"
+          ],
+          "options": [
+            "primary",
+            "secondary",
+            "tertiary"
+          ]
+        },
+        {
+          "name": "label",
+          "required": true,
+          "description": "The label of the button.",
+          "type": "string"
+        },
+        {
+          "name": "onClick",
+          "required": false,
+          "description": "The function to call when the button is clicked.",
+          "type": "function"
+        }
+      ],
+      "id": "pick-button-props-variant-label-on-click",
+      "components": []
+    },
+    {
+      "name": "Pick<DialogProps,\"id\"|\"open\"|\"onClose\"|\"innerRef\">",
+      "properties": [
+        {
+          "name": "id",
+          "required": false,
+          "description": "The id of the element. If not provided one will be generated.",
+          "type": "string"
+        },
+        {
+          "name": "open",
+          "required": false,
+          "description": "If the dialog should appear.",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "onClose",
+          "required": true,
+          "description": "Function to call when the dialog is closed.",
+          "type": "function"
+        },
+        {
+          "name": "innerRef",
+          "required": false,
+          "description": "A ref to the dialog element.",
+          "type": "object"
+        }
+      ],
+      "id": "pick-dialog-props-id-open-on-close-inner-ref",
+      "components": []
+    },
+    {
+      "name": "ModalButtonProps",
+      "properties": [
+        {
+          "name": "variant",
+          "required": false,
+          "description": "The color variant of the button.",
+          "default": "primary",
+          "type": [
+            "primary",
+            "secondary",
+            "tertiary"
+          ],
+          "options": [
+            "primary",
+            "secondary",
+            "tertiary"
+          ]
+        },
+        {
+          "name": "label",
+          "required": true,
+          "description": "The label of the button.",
+          "type": "string"
+        },
+        {
+          "name": "onClick",
+          "required": false,
+          "description": "The function to call when the button is clicked.",
+          "type": "function"
+        }
+      ],
+      "id": "modal-button-props",
+      "components": [
+        "Modal"
+      ]
+    },
+    {
+      "name": "Pick<CallToActionButton,\"label\"|\"onClick\">",
+      "properties": [
+        {
+          "name": "label",
+          "required": true,
+          "description": "The label of the call to action button.",
+          "type": "string"
+        },
+        {
+          "name": "onClick",
+          "required": true,
+          "description": "The callback function for the call to action button.",
+          "type": "function"
+        }
+      ],
+      "id": "pick-call-to-action-button-label-on-click",
+      "components": []
+    },
+    {
+      "name": "Pick<ButtonProps,\"label\"|\"onClick\">",
+      "properties": [
+        {
+          "name": "label",
+          "required": true,
+          "description": "The label of the button.",
+          "type": "string"
+        },
+        {
+          "name": "onClick",
+          "required": false,
+          "description": "The function to call when the button is clicked.",
+          "type": "function"
+        }
+      ],
+      "id": "pick-button-props-label-on-click",
+      "components": [
+        "Modal"
+      ]
+    },
+    {
+      "name": "Pick<ButtonProps,\"label\">",
+      "properties": [
+        {
+          "name": "label",
+          "required": true,
+          "description": "The label of the button.",
+          "type": "string"
+        }
+      ],
+      "id": "pick-button-props-label",
+      "components": [
+        "Modal"
+      ]
+    },
+    {
+      "name": "Pick<ButtonProps,\"destructive\">",
+      "properties": [
+        {
+          "name": "destructive",
+          "required": false,
+          "description": "The function of the button is destructive.",
+          "default": false,
+          "type": "boolean"
+        }
+      ],
+      "id": "pick-button-props-destructive",
+      "components": []
+    },
+    {
+      "name": "ModalCallToAction",
+      "properties": [
+        {
+          "name": "destructive",
+          "required": false,
+          "description": "The function of the button is destructive.",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "label",
+          "required": true,
+          "description": "The label of the call to action button.",
+          "type": "string"
+        },
+        {
+          "name": "onClick",
+          "required": true,
+          "description": "The callback function for the call to action button.",
+          "type": "function"
+        }
+      ],
+      "id": "modal-call-to-action",
+      "components": [
+        "Modal"
+      ]
     }
   ]
 }
