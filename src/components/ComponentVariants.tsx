@@ -1,5 +1,5 @@
 import { Tag } from '@bspk/ui/Tag';
-import { DemoPreset } from '@bspk/ui/demo/examples';
+import { DemoPreset } from '@bspk/ui/demo/utils';
 import { useErrorLogger } from '@bspk/ui/utils/errors';
 import { Markup } from 'components//Markup';
 import { CodeExample } from 'components/CodeExample';

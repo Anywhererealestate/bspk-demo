@@ -1,4 +1,4 @@
-import { DevPhase } from '@bspk/ui/demo/examples';
+import { DevPhase } from '@bspk/ui/demo/utils';
 import { DemoComponent } from 'src/types';
 
 export const DEV_PHASES: Record<DevPhase, DemoComponent['phase']> = {
