@@ -16,8 +16,8 @@ export default function ComponentLogs() {
                 </InlineAlert>
             ))}
             <div data-informational>
-                {actions.map(({ key, message }) => (
-                    <InlineAlert id={key} key={key}>
+                {actions.map(({ key, message, variant }) => (
+                    <InlineAlert id={key} key={key} variant={variant || 'informational'}>
                         {message}
                     </InlineAlert>
                 ))}

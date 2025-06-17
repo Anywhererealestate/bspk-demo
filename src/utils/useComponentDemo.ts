@@ -72,7 +72,7 @@ const getExample = (prop: TypeProperty, propNames: string[]): any => {
                     setState({ value });
                 };
 
-            return () => action(`onChange function called without value or checked`);
+            return () => action(`onChange function called without value or checked`, 'warning');
         };
 
         return evalSafe(defaultValue, defaultExample()) as () => void;

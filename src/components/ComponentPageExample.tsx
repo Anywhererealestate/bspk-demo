@@ -3,29 +3,24 @@ import { SegmentedControl } from '@bspk/ui/SegmentedControl';
 import { SwitchOption } from '@bspk/ui/SwitchOption';
 import { ErrorLogContext } from '@bspk/ui/utils/errors';
 import { CodeExample } from 'components/CodeExample';
-import { updateComponentContext, useComponentContext } from 'components/ComponentProvider';
+import { useComponentContext } from 'components/ComponentProvider';
 import { TypeProps } from 'components/TypeProps';
 import { useId } from 'react';
+import { ComponentRender } from 'src/components/ComponentRender';
 import { components } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
-import { useComponentProps } from 'src/utils/useComponentProps';
 
 export function ComponentPageExample() {
     const { state, resetState, changed, setPreset, preset, component } = useComponentContext();
 
     const { setShowTouchTarget, showTouchTarget } = useGlobalState();
-    const props = useComponentProps({ 'data-example-component': true });
 
     const errorId = useId();
 
-    const renderId = useId();
-
     const containerStyle =
-        typeof component.containerStyle === 'function' ? component.containerStyle(props) : component.containerStyle;
+        typeof component.containerStyle === 'function' ? component.containerStyle(state) : component.containerStyle;
 
-    const Component = components[component.name as keyof typeof components];
-
-    if (!Component) {
+    if (!components[component.name as keyof typeof components]) {
         console.warn(`Component "${component.name}" not found in components meta.`);
         return <h1>Component not available.</h1>;
     }
@@ -39,13 +34,7 @@ export function ComponentPageExample() {
                     data-main-example
                     data-show-touch-targets={showTouchTarget || undefined}
                 >
-                    {component.render?.({
-                        props,
-                        preset,
-                        Component,
-                        setState: updateComponentContext,
-                        id: renderId,
-                    }) || <Component {...props} />}
+                    <ComponentRender />
                 </CodeExample>
             </ErrorLogContext>
             <div data-example-settings>

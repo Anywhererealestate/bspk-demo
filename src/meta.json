@@ -1,5 +1,5 @@
 {
-  "LAST_UPDATED": "2025-06-17T04:57:49.222Z",
+  "LAST_UPDATED": "2025-06-17T16:01:58.030Z",
   "VERSION": "1.1.32",
   "UI_HASH": "local",
   "BUILD": "0",
@@ -103,7 +103,10 @@
       "file": "/CheckboxGroup.tsx",
       "name": "CheckboxGroup",
       "slug": "checkbox-group",
-      "dependencies": [],
+      "dependencies": [
+        "Checkbox",
+        "ToggleOption"
+      ],
       "usage": {
         "code": "import { CheckboxGroup } from '@bspk/ui/CheckboxGroup';\n\nfunction Example() {\nconst [values, setValues] = React.useState<string[]>([]);\n\nreturn (\n<CheckboxGroup\naria-label=\"Example Checkbox Group\"\nname=\"example-checkbox-group\"\noptions={[\n{ label: 'Option 1', value: 'option1' },\n{ label: 'Option 2', value: 'option2' },\n{ label: 'Option 3', value: 'option3' },\n]}\nvalues={values}\nonChange={(nextValues: string[]) => {\nsetValues(nextValues);\n}}\n/>\n);\n}"
       },
@@ -265,7 +268,9 @@
       "file": "/ListItem.tsx",
       "name": "ListItem",
       "slug": "list-item",
-      "dependencies": [],
+      "dependencies": [
+        "Button"
+      ],
       "usage": {
         "code": "import { SvgSquare } from '@bspk/icons/Square';\nimport { ListItem } from '@bspk/ui/ListItem';\n\nexport function Example() {\nreturn (\n<ListItem\nlabel=\"Example label\"\nleading={<SvgSquare />}\nsubText=\"Example subtest\"\ntrailing={<ListItem.Button label=\"Click me\" onClick={() => console.log('Hello world')} />}\n/>\n);\n}"
       },
@@ -1283,7 +1288,9 @@
         }
       ],
       "id": "button-props",
-      "components": []
+      "components": [
+        "Button"
+      ]
     },
     {
       "name": "CallToActionButton",
@@ -1319,7 +1326,11 @@
         }
       ],
       "id": "call-to-action-button",
-      "components": []
+      "components": [
+        "BannerAlert",
+        "EmptyState",
+        "Popover"
+      ]
     },
     {
       "name": "CardProps",
@@ -1574,7 +1585,7 @@
         {
           "name": "indeterminate",
           "required": false,
-          "description": "If the checkbox is partially checked or\n[indeterminate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes).",
+          "description": "If the checkbox is partially checked or [indeterminate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes).",
           "default": false,
           "type": "boolean"
         },
@@ -1593,7 +1604,9 @@
         }
       ],
       "id": "checkbox-props",
-      "components": []
+      "components": [
+        "Checkbox"
+      ]
     },
     {
       "name": "ChipProps",
@@ -1686,19 +1699,6 @@
       "components": []
     },
     {
-      "name": "CommonProps<\"aria-label\">",
-      "properties": [
-        {
-          "name": "aria-label",
-          "required": true,
-          "description": "The aria-label for the element.",
-          "type": "string"
-        }
-      ],
-      "id": "common-props-aria-label",
-      "components": []
-    },
-    {
       "name": "CommonProps<\"disabled\">",
       "properties": [
         {
@@ -1710,6 +1710,33 @@
         }
       ],
       "id": "common-props-disabled",
+      "components": []
+    },
+    {
+      "name": "CommonProps<\"disabled\"|\"aria-label\"|\"readOnly\">",
+      "properties": [
+        {
+          "name": "disabled",
+          "required": false,
+          "description": "Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "aria-label",
+          "required": true,
+          "description": "The aria-label for the element.",
+          "type": "string"
+        },
+        {
+          "name": "readOnly",
+          "required": false,
+          "description": "Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).",
+          "default": false,
+          "type": "boolean"
+        }
+      ],
+      "id": "common-props-disabled-aria-label-read-only",
       "components": []
     },
     {
@@ -4330,7 +4357,9 @@
         }
       ],
       "id": "portal-props",
-      "components": []
+      "components": [
+        "Portal"
+      ]
     },
     {
       "name": "Preset",
@@ -5534,6 +5563,13 @@
           "type": "boolean"
         },
         {
+          "name": "readOnly",
+          "required": false,
+          "description": "Only exists as a alias for `disabled` and to match other input properties.",
+          "default": false,
+          "type": "boolean"
+        },
+        {
           "name": "label",
           "required": true,
           "description": "The label of the option. Also used as the aria-label of the checkbox.",
@@ -6482,7 +6518,9 @@
         }
       ],
       "id": "toggle-option-props",
-      "components": []
+      "components": [
+        "ToggleOption"
+      ]
     },
     {
       "name": "TooltipProps",
@@ -6532,7 +6570,9 @@
         }
       ],
       "id": "tooltip-props",
-      "components": []
+      "components": [
+        "Tooltip"
+      ]
     },
     {
       "name": "TopNavigationProps",
@@ -6633,7 +6673,9 @@
         }
       ],
       "id": "txt-props",
-      "components": []
+      "components": [
+        "Txt"
+      ]
     },
     {
       "name": "TypePropertyDemo",
@@ -6928,60 +6970,6 @@
         }
       ],
       "id": "use-floating-props",
-      "components": []
-    },
-    {
-      "name": "Required<CommonProps<\"value\"|\"disabled\"|\"readOnly\">>",
-      "properties": [
-        {
-          "name": "value",
-          "required": true,
-          "description": "The value of the control.",
-          "type": "string"
-        },
-        {
-          "name": "disabled",
-          "required": true,
-          "description": "Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).",
-          "default": false,
-          "type": "boolean"
-        },
-        {
-          "name": "readOnly",
-          "required": true,
-          "description": "Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).",
-          "default": false,
-          "type": "boolean"
-        }
-      ],
-      "id": "required-common-props-value-disabled-read-only",
-      "components": []
-    },
-    {
-      "name": "CommonProps<\"disabled\"|\"aria-label\"|\"readOnly\">",
-      "properties": [
-        {
-          "name": "disabled",
-          "required": false,
-          "description": "Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).",
-          "default": false,
-          "type": "boolean"
-        },
-        {
-          "name": "aria-label",
-          "required": true,
-          "description": "The aria-label for the element.",
-          "type": "string"
-        },
-        {
-          "name": "readOnly",
-          "required": false,
-          "description": "Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).",
-          "default": false,
-          "type": "boolean"
-        }
-      ],
-      "id": "common-props-disabled-aria-label-read-only",
       "components": []
     }
   ]
