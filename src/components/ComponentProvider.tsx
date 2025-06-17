@@ -2,6 +2,7 @@ import { DemoPreset } from '@bspk/ui/demo/utils';
 import { type AxeResults } from 'axe-core';
 import { createContext, PropsWithChildren, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { DemoComponent } from 'src/types';
+import { action } from 'src/utils/actions';
 import store from 'store';
 
 type ComponentContext<Props = Record<string, any>> = {
@@ -61,7 +62,7 @@ function deepEqualObjects(obj1: Record<string, any>, obj2: Record<string, any>):
 }
 
 export function ComponentProvider({ children, component }: PropsWithChildren<{ component: DemoComponent }>) {
-    const { name, defaultState, presets } = component;
+    const { name, defaultState, presets, functionProps } = component;
 
     const storeKey = useMemo(() => `bspk-${name}`, [name]);
     const storeKeyAxeResults = useMemo(() => `bspk-${name}-axe-results`, [name]);
@@ -95,6 +96,7 @@ export function ComponentProvider({ children, component }: PropsWithChildren<{ c
             setAllState(typeof update === 'function' ? update : (prev) => ({ ...prev, ...update }));
             setChanged(true);
 
+            // this is a preset update so we don't want to set the preset
             if (presetUpdate) return;
 
             const presetStateValueUpdated =
@@ -156,7 +158,13 @@ export function ComponentProvider({ children, component }: PropsWithChildren<{ c
                     const nextPreset = presets?.find((p) => p.value === nextPresetId);
                     if (!nextPreset) return;
                     setPreset(nextPresetId);
-                    setState(nextPreset.state || {}, true);
+
+                    if (!nextPreset.state) return;
+
+                    action(`Preset ${nextPreset.label} state applied`, 'success');
+
+                    // we include functionProps
+                    setState({ ...functionProps, ...nextPreset.state }, true);
                 },
                 preset,
             }}
