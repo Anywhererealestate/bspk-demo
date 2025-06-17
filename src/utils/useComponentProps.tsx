@@ -1,6 +1,6 @@
 import { SvgIcon } from '@bspk/icons/SvgIcon';
 import { meta } from '@bspk/icons/meta';
-import { TypePropertyDemo } from '@bspk/ui/demo/examples';
+import { TypePropertyDemo } from '@bspk/ui/demo/utils';
 import { useComponentContext } from 'src/components/ComponentProvider';
 
 /**
@@ -10,21 +10,16 @@ import { useComponentContext } from 'src/components/ComponentProvider';
  * It combines the component's state, any overrides, and properties derived from the component's props and renders them
  * into a single object that can be used to render the component.
  */
-export function useComponentProps(
-    overrideState?: Record<string, any>,
-    context?: Record<string, any>,
-): Record<string, any> {
-    const { component, state, preset } = useComponentContext();
+export function useComponentProps(overrideState?: Record<string, any>): Record<string, any> {
+    const { component, state } = useComponentContext();
 
-    const { props, propRenderOverrides, functionProps } = component;
+    const { props, functionProps } = component;
 
-    const combinedState = { ...state, ...overrideState, ...preset?.state };
+    const combinedState = { ...state, ...overrideState };
 
     const propsFromState: Record<string, any> = getPropsFromState(props, combinedState);
 
-    const renderedProps: Record<string, any> = propRenderOverrides?.(combinedState, { ...context, preset }) || {};
-
-    return { ...combinedState, ...propsFromState, ...functionProps, ...renderedProps };
+    return { ...combinedState, ...propsFromState, ...functionProps };
 }
 
 function getPropsFromState(props: TypePropertyDemo[], state: Record<string, any>): Record<string, any> {

@@ -73,8 +73,10 @@ export function ComponentProvider({ children, component }: PropsWithChildren<{ c
 
     const [state, setAllState] = useState<Record<string, any>>(store.get(storeKey) || defaultState);
     const [axeResults, setAllAxeResults] = useState<Record<string, any>>(store.get(storeKeyAxeResults) || {});
-    const [presetValue, setPreset] = useState<string | undefined>(() => presets?.[0]?.value);
+    const [presetValue, setPreset] = useState<string | undefined>('custom');
     const [changed, setChanged] = useState(!deepEqualObjects(state, defaultState));
+
+    const preset = useMemo(() => presets?.find((p) => p.value === presetValue), [presets, presetValue]);
 
     const resetState = useCallback(() => {
         setChanged(false);
@@ -84,15 +86,36 @@ export function ComponentProvider({ children, component }: PropsWithChildren<{ c
     }, [defaultState, storeKey, storeKeyAxeResults]);
 
     const setState = useCallback(
-        (update: StateUpdate | StateUpdateDispatch | null) => {
+        (update: StateUpdate | StateUpdateDispatch | null, presetUpdate?: boolean) => {
             if (update === null) {
                 resetState();
                 return;
             }
+
             setAllState(typeof update === 'function' ? update : (prev) => ({ ...prev, ...update }));
             setChanged(true);
+
+            if (presetUpdate) return;
+
+            const presetStateValueUpdated =
+                // if the update is a function, we don't check for preset state overlap
+                typeof update === 'function' ||
+                // if there is no preset, we don't check for preset state overlap
+                (preset?.state &&
+                    // if the preset state is empty, we don't check for preset state overlap
+                    Object.keys(preset.state).length > 0 &&
+                    // if the update overlaps with the preset state, we reset the preset to custom
+                    update &&
+                    // check if any property in the preset state is updated
+                    Object.entries(preset.state).some(
+                        ([propName, value]) => update[propName] !== undefined && update[propName] !== value,
+                    ));
+
+            if (presetStateValueUpdated)
+                // hear we reset the preset to custom if the update overlaps with the preset state
+                setPreset('custom');
         },
-        [resetState],
+        [preset?.state, resetState],
     );
 
     const setAxeResults = (axeResult: AxeResults | undefined, code: string) => {
@@ -117,7 +140,7 @@ export function ComponentProvider({ children, component }: PropsWithChildren<{ c
         };
         document.addEventListener(COMPONENT_STATE_EVENT, listener);
         return () => document.removeEventListener(COMPONENT_STATE_EVENT, listener);
-    }, [setState, state]);
+    }, [setState, state, preset]);
 
     return (
         <componentContext.Provider
@@ -130,9 +153,12 @@ export function ComponentProvider({ children, component }: PropsWithChildren<{ c
                 axeResults,
                 setAxeResults,
                 setPreset: (nextPresetId) => {
-                    if (presets?.some((p) => p.value === nextPresetId)) setPreset(nextPresetId);
+                    const nextPreset = presets?.find((p) => p.value === nextPresetId);
+                    if (!nextPreset) return;
+                    setPreset(nextPresetId);
+                    setState(nextPreset.state || {}, true);
                 },
-                preset: presets?.find((p) => p.value === presetValue),
+                preset,
             }}
         >
             {children}

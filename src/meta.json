@@ -1,5 +1,5 @@
 {
-  "LAST_UPDATED": "2025-06-16T21:48:43.055Z",
+  "LAST_UPDATED": "2025-06-17T04:57:49.222Z",
   "VERSION": "1.1.32",
   "UI_HASH": "local",
   "BUILD": "0",
@@ -103,10 +103,7 @@
       "file": "/CheckboxGroup.tsx",
       "name": "CheckboxGroup",
       "slug": "checkbox-group",
-      "dependencies": [
-        "Checkbox",
-        "ToggleOption"
-      ],
+      "dependencies": [],
       "usage": {
         "code": "import { CheckboxGroup } from '@bspk/ui/CheckboxGroup';\n\nfunction Example() {\nconst [values, setValues] = React.useState<string[]>([]);\n\nreturn (\n<CheckboxGroup\naria-label=\"Example Checkbox Group\"\nname=\"example-checkbox-group\"\noptions={[\n{ label: 'Option 1', value: 'option1' },\n{ label: 'Option 2', value: 'option2' },\n{ label: 'Option 3', value: 'option3' },\n]}\nvalues={values}\nonChange={(nextValues: string[]) => {\nsetValues(nextValues);\n}}\n/>\n);\n}"
       },
@@ -145,11 +142,13 @@
       "file": "/Dialog.tsx",
       "name": "Dialog",
       "slug": "dialog",
-      "dependencies": [],
+      "dependencies": [
+        "Portal"
+      ],
       "usage": {
         "code": "import { Dialog } from '@bspk/ui/Dialog';\nimport { Button } from '@bspk/ui/Button';\n\nfunction Example() {\nconst [open, setOpen] = React.useState(false);\n\nreturn (\n<>\n<Button label=\"Open Dialog\" onClick={() => setOpen(true)} />\n<Dialog open={open} onClose={() => setOpen(false)}>\n<h1>Dialog Title</h1>\n<p>This is the content of the dialog.</p>\n<button onClick={() => setOpen(false)}>Close</button>\n</Dialog>\n</>\n);\n}"
       },
-      "css": "[data-bspk='dialog'] {\n    position: fixed;\n    inset: 0;\n    z-index: var(--z-index-dialog);\n\n    [data-dialog-box] {\n        text-align: start;\n        position: relative;\n        border-radius: var(--radius-large);\n        box-shadow: var(--drop-shadow-float);\n        background: var(--surface-neutral-t1-base);\n        color: var(--foreground-neutral-on-surface);\n        max-height: calc(100vh - var(--spacing-sizing-24));\n        overflow: scroll;\n        z-index: 2;\n\n        > :first-of-type {\n            margin-top: 0;\n        }\n\n        > :last-child {\n            margin-bottom: 0;\n        }\n\n        // we make the width responsive to the viewport\n        @media (width >= 640px) {\n            width: 90%;\n        }\n\n        @media (width >= 768px) {\n            width: 80%;\n        }\n\n        @media (width >= 1024px) {\n            width: 60%;\n        }\n\n        @media (width >= 1280px) {\n            width: 50%;\n        }\n    }\n\n    [data-dialog-backdrop] {\n        z-index: 1;\n        position: fixed;\n        inset: 0;\n        background-color: var(--background-scrim);\n        opacity: 0;\n        transition: opacity 0.3s;\n    }\n\n    &[data-visibility='show'] {\n        [data-dialog-backdrop] {\n            opacity: 1;\n        }\n    }\n\n    &[data-placement='center'] {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n\n        [data-dialog-box] {\n            transition: opacity 1s;\n            opacity: 0;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                opacity: 1;\n            }\n        }\n    }\n\n    &[data-placement='bottom'] {\n        [data-dialog-box] {\n            position: absolute;\n            border-bottom-left-radius: 0;\n            border-bottom-right-radius: 0;\n            width: 600px;\n            left: 50%;\n            transform: translateX(-50%);\n            bottom: -100vh;\n            transition: bottom 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                bottom: 0;\n            }\n        }\n    }\n\n    &[data-placement='top'] {\n        [data-dialog-box] {\n            position: absolute;\n            border-top-left-radius: 0;\n            border-top-right-radius: 0;\n            width: 600px;\n            left: 50%;\n            transform: translateX(-50%);\n            top: -100vh;\n            transition: top 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                top: 0;\n            }\n        }\n    }\n\n    &[data-placement='left'] {\n        [data-dialog-box] {\n            position: absolute;\n            max-height: unset;\n            width: 280px;\n            height: 100vh;\n            border-bottom-left-radius: 0;\n            border-top-left-radius: 0;\n            left: -100vw;\n            transition: left 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                left: 0;\n            }\n        }\n    }\n\n    &[data-placement='right'] {\n        [data-dialog-box] {\n            position: absolute;\n            max-height: unset;\n            width: 280px;\n            height: 100vh;\n            border-bottom-right-radius: 0;\n            border-top-right-radius: 0;\n            right: -100vw;\n            transition: right 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                right: 0;\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+      "css": "[data-bspk='dialog'] {\n    position: fixed;\n    inset: 0;\n    z-index: var(--z-index-dialog);\n\n    [data-dialog-box] {\n        text-align: start;\n        position: relative;\n        border-radius: var(--radius-large);\n        box-shadow: var(--drop-shadow-float);\n        background: var(--surface-neutral-t1-base);\n        color: var(--foreground-neutral-on-surface);\n        max-height: calc(100vh - var(--spacing-sizing-24));\n        overflow: scroll;\n        z-index: 2;\n\n        > :first-of-type {\n            margin-top: 0;\n        }\n\n        > :last-child {\n            margin-bottom: 0;\n        }\n\n        width: calc(100% - var(--spacing-sizing-08));\n\n        // we make the width responsive to the viewport\n        @media (width >= 640px) {\n            width: 90%;\n        }\n\n        @media (width >= 768px) {\n            width: 80%;\n        }\n\n        @media (width >= 1024px) {\n            width: 60%;\n        }\n\n        @media (width >= 1280px) {\n            width: 50%;\n        }\n    }\n\n    [data-dialog-backdrop] {\n        z-index: 1;\n        position: fixed;\n        inset: 0;\n        background-color: var(--background-scrim);\n        opacity: 0;\n        transition: opacity 0.3s;\n    }\n\n    &[data-visibility='show'] {\n        [data-dialog-backdrop] {\n            opacity: 1;\n        }\n    }\n\n    &[data-placement='center'] {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n\n        [data-dialog-box] {\n            transition: opacity 1s;\n            opacity: 0;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                opacity: 1;\n            }\n        }\n    }\n\n    &[data-placement='bottom'] {\n        [data-dialog-box] {\n            position: absolute;\n            border-bottom-left-radius: 0;\n            border-bottom-right-radius: 0;\n            width: 600px;\n            left: 50%;\n            transform: translateX(-50%);\n            bottom: -100vh;\n            transition: bottom 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                bottom: 0;\n            }\n        }\n    }\n\n    &[data-placement='top'] {\n        [data-dialog-box] {\n            position: absolute;\n            border-top-left-radius: 0;\n            border-top-right-radius: 0;\n            width: 600px;\n            left: 50%;\n            transform: translateX(-50%);\n            top: -100vh;\n            transition: top 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                top: 0;\n            }\n        }\n    }\n\n    &[data-placement='left'] {\n        [data-dialog-box] {\n            position: absolute;\n            max-height: unset;\n            width: 280px;\n            height: 100vh;\n            border-bottom-left-radius: 0;\n            border-top-left-radius: 0;\n            left: -100vw;\n            transition: left 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                left: 0;\n            }\n        }\n    }\n\n    &[data-placement='right'] {\n        [data-dialog-box] {\n            position: absolute;\n            max-height: unset;\n            width: 280px;\n            height: 100vh;\n            border-bottom-right-radius: 0;\n            border-top-right-radius: 0;\n            right: -100vw;\n            transition: right 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                right: 0;\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
       "hasTouchTarget": false
     },
     {
@@ -208,7 +207,7 @@
       "usage": {
         "code": "import { TextInput } from '@bspk/ui/TextInput';\nimport { FormField } from '@bspk/ui/FormField';\n\nexport function Example() {\nconst [state, setState] = React.useState<string | undefined>(undefined);\nreturn (\n<FormField controlId=\"Example controlId\" label=\"Example label\">\n{(fieldProps) => {\nreturn (\n<TextInput\naria-label=\"example aria-label\"\nname=\"example-text\"\nonChange={(next) => {\nsetState(next);\n}}\nvalue={state}\n{...fieldProps}\n/>\n);\n}}\n</FormField>\n);\n}"
       },
-      "css": "[data-bspk='form-field'] {\n    box-sizing: border-box;\n    max-width: 100%;\n    width: fit-content;\n    display: flex;\n    flex-direction: column;\n    gap: var(--spacing-sizing-01);\n\n    header label {\n        flex-grow: 1;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+      "css": "[data-bspk='form-field'] {\n    box-sizing: border-box;\n    width: 100%;\n    display: flex;\n    flex-direction: column;\n    gap: var(--spacing-sizing-01);\n\n    header label {\n        flex-grow: 1;\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
       "hasTouchTarget": false
     },
     {
@@ -266,9 +265,7 @@
       "file": "/ListItem.tsx",
       "name": "ListItem",
       "slug": "list-item",
-      "dependencies": [
-        "Button"
-      ],
+      "dependencies": [],
       "usage": {
         "code": "import { SvgSquare } from '@bspk/icons/Square';\nimport { ListItem } from '@bspk/ui/ListItem';\n\nexport function Example() {\nreturn (\n<ListItem\nlabel=\"Example label\"\nleading={<SvgSquare />}\nsubText=\"Example subtest\"\ntrailing={<ListItem.Button label=\"Click me\" onClick={() => console.log('Hello world')} />}\n/>\n);\n}"
       },
@@ -280,7 +277,10 @@
       "file": "/Menu.tsx",
       "name": "Menu",
       "slug": "menu",
-      "dependencies": [],
+      "dependencies": [
+        "Checkbox",
+        "ListItem"
+      ],
       "usage": {
         "code": "import React from 'react';\n\nimport { Menu } from '@bspk/ui/Menu';\n\nexport function Example() {\nconst [selected, setSelected] = React.useState<string[]>([]);\n\nreturn (\n<Menu\nitems={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]}\nonChange={(selectedValues: string[]) => setSelected(selectedValues)}\nselectedValues={selected}\n/>\n);\n}"
       },
@@ -306,7 +306,11 @@
       "file": "/Modal.tsx",
       "name": "Modal",
       "slug": "modal",
-      "dependencies": [],
+      "dependencies": [
+        "Button",
+        "Dialog",
+        "Txt"
+      ],
       "usage": {
         "code": "import React from 'react';\n\nimport { Button } from '@bspk/ui/Button';\nimport { Modal } from '@bspk/ui/Modal';\n\nexport function Example() {\nconst [open, setOpen] = React.useState(false);\n\nreturn (\n<>\n<Button label=\"Open Dialog\" onClick={() => setOpen(true)} />\n<Modal\ndescription=\"Example description\"\nheader=\"Example header\"\nonClose={() => setOpen(false)}\nopen={open}\n>\nExample Modal\n</Modal>\n</>\n);\n}"
       },
@@ -715,7 +719,7 @@
       "usage": {
         "code": "import { useState } from 'react';\nimport { TextInput } from '@bspk/ui/TextInput';\n\nexport function Example() {\nconst [value, setValue] = useState<string>('');\n\nreturn <TextInput aria-label=\"Example aria-label\" name=\"Example name\" onChange={setValue} value={value} />;\n}"
       },
-      "css": "[data-bspk='text-input'] {\n    --border-color: var(--stroke-neutral-base);\n\n    display: flex;\n    flex-flow: row nowrap;\n    background-color: var(--surface-neutral-t1-base);\n    border: solid 1px var(--border-color);\n    height: var(--field-height);\n    border-radius: var(--radius-small);\n    padding: 0 0 0 var(--field-padding);\n    gap: var(--spacing-sizing-01);\n    width: 100%;\n\n    & > * {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        height: var(--field-height);\n        font: var(--field-font);\n        color: var(--foreground-neutral-on-surface);\n        min-width: 0;\n    }\n\n    &:hover:not(:focus-within) {\n        background:\n            linear-gradient(var(--interactions-hover-opacity), var(--interactions-hover-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n    }\n\n    &:active:not(:focus-within) {\n        background:\n            linear-gradient(var(--interactions-press-opacity), var(--interactions-press-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n    }\n\n    &[data-readonly] {\n        --border-color: var(--stroke-neutral-disabled-light);\n\n        background:\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n    }\n\n    &[data-disabled] {\n        --border-color: var(--stroke-neutral-disabled-light);\n\n        background:\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n\n        & > * {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n\n    &[data-invalid] {\n        --border-color: var(--status-error);\n    }\n\n    &[data-size='small'] {\n        --field-padding: var(--spacing-sizing-02);\n        --field-height: var(--spacing-sizing-08);\n        --field-font: var(--body-small);\n        --field-icon-width: var(--spacing-sizing-04);\n        --field-clear-width: var(--spacing-sizing-05);\n    }\n\n    &[data-size='medium'] {\n        --field-padding: var(--spacing-sizing-03);\n        --field-height: var(--spacing-sizing-10);\n        --field-font: var(--body-base);\n        --field-icon-width: var(--spacing-sizing-05);\n        --field-clear-width: var(--spacing-sizing-05);\n    }\n\n    &[data-size='large'] {\n        --field-padding: var(--spacing-sizing-03);\n        --field-height: var(--spacing-sizing-12);\n        --field-font: var(--body-large);\n        --field-icon-width: var(--spacing-sizing-06);\n        --field-clear-width: var(--spacing-sizing-06);\n    }\n\n    [data-leading],\n    [data-trailing] {\n        svg {\n            width: var(--field-icon-width);\n        }\n    }\n\n    label {\n        font: var(--labels-small);\n        color: var(--foreground-neutral-on-surface-variant-01);\n    }\n\n    input {\n        flex: 1;\n        background-color: transparent !important;\n        border: none;\n        outline: none;\n        padding: 0;\n        pointer-events: all;\n        text-overflow: ellipsis;\n\n        &[type='number']::-webkit-inner-spin-button,\n        &[type='number']::-webkit-outer-spin-button {\n            display: none;\n        }\n    }\n\n    button[data-clear] {\n        display: flex;\n        border: none;\n        background: none;\n        padding: 0;\n        cursor: pointer;\n        pointer-events: all;\n        margin-left: var(--spacing-sizing-02);\n        padding-right: var(--field-padding);\n\n        svg {\n            pointer-events: none;\n            width: var(--field-clear-width);\n        }\n    }\n\n    &:not(:focus-within),\n    &[data-empty],\n    &[data-readonly],\n    &[data-disabled] {\n        padding-right: var(--field-padding);\n\n        button[data-clear] {\n            display: none;\n        }\n    }\n\n    &:focus-within {\n        --border-color: var(--stroke-brand-primary);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+      "css": "[data-bspk='text-input'] {\n    --border-color: var(--stroke-neutral-base);\n\n    display: flex;\n    flex-flow: row nowrap;\n    background-color: var(--surface-neutral-t1-base);\n    border: solid 1px var(--border-color);\n    height: var(--field-height);\n    border-radius: var(--radius-small);\n    padding: 0 0 0 var(--field-padding);\n    gap: var(--spacing-sizing-01);\n    width: 100%;\n\n    & > * {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        height: var(--field-height);\n        font: var(--field-font);\n        color: var(--foreground-neutral-on-surface);\n        min-width: 0;\n    }\n\n    &:hover:not(:focus-within) {\n        background:\n            linear-gradient(var(--interactions-hover-opacity), var(--interactions-hover-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n    }\n\n    &:active:not(:focus-within) {\n        background:\n            linear-gradient(var(--interactions-press-opacity), var(--interactions-press-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n    }\n\n    &[data-readonly] {\n        --border-color: var(--stroke-neutral-disabled-light);\n\n        background:\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n    }\n\n    &[data-disabled],\n    &:has(input[disabled]) {\n        --border-color: var(--stroke-neutral-disabled-light);\n\n        background:\n            linear-gradient(var(--interactions-disabled-opacity), var(--interactions-disabled-opacity)),\n            linear-gradient(var(--surface-neutral-t1-base), var(--surface-neutral-t1-base));\n\n        & > * {\n            color: var(--foreground-neutral-disabled-on-surface);\n        }\n    }\n\n    &[data-invalid] {\n        --border-color: var(--status-error);\n    }\n\n    &[data-size='small'] {\n        --field-padding: var(--spacing-sizing-02);\n        --field-height: var(--spacing-sizing-08);\n        --field-font: var(--body-small);\n        --field-icon-width: var(--spacing-sizing-04);\n        --field-clear-width: var(--spacing-sizing-05);\n    }\n\n    &[data-size='medium'] {\n        --field-padding: var(--spacing-sizing-03);\n        --field-height: var(--spacing-sizing-10);\n        --field-font: var(--body-base);\n        --field-icon-width: var(--spacing-sizing-05);\n        --field-clear-width: var(--spacing-sizing-05);\n    }\n\n    &[data-size='large'] {\n        --field-padding: var(--spacing-sizing-03);\n        --field-height: var(--spacing-sizing-12);\n        --field-font: var(--body-large);\n        --field-icon-width: var(--spacing-sizing-06);\n        --field-clear-width: var(--spacing-sizing-06);\n    }\n\n    [data-leading],\n    [data-trailing] {\n        svg {\n            width: var(--field-icon-width);\n        }\n    }\n\n    label {\n        font: var(--labels-small);\n        color: var(--foreground-neutral-on-surface-variant-01);\n    }\n\n    input {\n        flex: 1;\n        background-color: transparent !important;\n        border: none;\n        outline: none;\n        padding: 0;\n        pointer-events: all;\n        text-overflow: ellipsis;\n\n        &[type='number']::-webkit-inner-spin-button,\n        &[type='number']::-webkit-outer-spin-button {\n            display: none;\n        }\n    }\n\n    button[data-clear] {\n        display: flex;\n        border: none;\n        background: none;\n        padding: 0;\n        cursor: pointer;\n        pointer-events: all;\n        margin-left: var(--spacing-sizing-02);\n        padding-right: var(--field-padding);\n\n        svg {\n            pointer-events: none;\n            width: var(--field-clear-width);\n        }\n    }\n\n    &:not(:focus-within),\n    &[data-empty],\n    &[data-readonly],\n    &[data-disabled] {\n        padding-right: var(--field-padding);\n\n        button[data-clear] {\n            display: none;\n        }\n    }\n\n    &:focus-within {\n        --border-color: var(--stroke-brand-primary);\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
       "hasTouchTarget": false
     },
     {
@@ -1386,10 +1390,24 @@
       "name": "CheckboxGroupProps",
       "properties": [
         {
+          "name": "disabled",
+          "required": false,
+          "description": "Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).",
+          "default": false,
+          "type": "boolean"
+        },
+        {
           "name": "aria-label",
           "required": true,
           "description": "The aria-label for the element.",
           "type": "string"
+        },
+        {
+          "name": "readOnly",
+          "required": false,
+          "description": "Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).",
+          "default": false,
+          "type": "boolean"
         },
         {
           "name": "onChange",
@@ -2086,12 +2104,6 @@
           "description": "The style of the wrapping component.\n\n//"
         },
         {
-          "name": "propRenderOverrides",
-          "required": false,
-          "description": "Takes the current state and returns the props to be passed to the component.\n\nThis is useful for dynamically generating props based on the state and context of the component.",
-          "type": "object"
-        },
-        {
           "name": "hideVariants",
           "required": false,
           "description": "True to hide all or a list of variants to hide.\n\nHelpful for hiding variants that can have unexpected collisions with the other examples."
@@ -2106,12 +2118,6 @@
           "name": "render",
           "required": false,
           "description": "The component to render in the example.\n\nBy default, this will be the component that is being documented.\n\nIf you only need to update the props of the component, you can use renderProps.",
-          "type": "object"
-        },
-        {
-          "name": "propControlsOverrides",
-          "required": false,
-          "description": "Useful for overriding the default props controls in the demo.\n\nIf you change the type of a prop, you will probably need to specificy how to render them in renderProps.\n\nSee the ListItem example for an of how to use this.",
           "type": "object"
         }
       ],
@@ -2146,6 +2152,36 @@
         }
       ],
       "id": "demo-preset",
+      "components": []
+    },
+    {
+      "name": "DemoPreset<Record<string,unknown>>",
+      "properties": [
+        {
+          "name": "label",
+          "required": true,
+          "description": "The name of the preset. This is used to display the preset in the UI.",
+          "type": "string"
+        },
+        {
+          "name": "state",
+          "required": false,
+          "description": "The props of the component. This is used to set props of the component. These values can't be changed in the UI.",
+          "type": "Partial<Record<string,unknown>>"
+        },
+        {
+          "name": "isDefault",
+          "required": false,
+          "description": "Determines if the preset is the default preset. This is used to set the initial state of the component.",
+          "type": "boolean"
+        },
+        {
+          "name": "value",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "id": "demo-preset-record-string-unknown",
       "components": []
     },
     {
@@ -2211,7 +2247,9 @@
         }
       ],
       "id": "dialog-props",
-      "components": []
+      "components": [
+        "Dialog"
+      ]
     },
     {
       "name": "DividerProps",
@@ -2836,7 +2874,13 @@
           "name": "leading",
           "required": false,
           "description": "The leading element to display in the ListItem.\n\nLeading elements may only be one of the following [Icon](/icons), Img, Avatar.",
-          "type": "React.ReactNode"
+          "type": "React.ReactNode",
+          "exampleType": "select",
+          "options": [
+            "Icon",
+            "Img",
+            "Avatar"
+          ]
         },
         {
           "name": "label",
@@ -2853,12 +2897,24 @@
         {
           "name": "trailing",
           "required": false,
-          "description": "The trailing element to display in the ListItem.\n\nTrailing elements may only be one of the following [Icon](/icons), Checkbox, ListItemButton, Radio, Switch, Tag,\nTxt.",
-          "type": "ReactNode"
+          "description": "The trailing element to display in the ListItem.\n\nTrailing elements may only be one of the following [Icon](/icons), Checkbox, ListItemButton, Radio, Switch, Tag, Txt.",
+          "type": "React.ReactNode",
+          "exampleType": "select",
+          "options": [
+            "Checkbox",
+            "Icon",
+            "ListItemButton",
+            "Radio",
+            "Switch",
+            "Tag",
+            "Txt"
+          ]
         }
       ],
       "id": "list-item-props",
-      "components": []
+      "components": [
+        "ListItem"
+      ]
     },
     {
       "name": "MenuButtonProps",
@@ -2914,7 +2970,8 @@
       "id": "menu-item",
       "description": "The props for the menu items.",
       "components": [
-        "Menu"
+        "Menu",
+        "SearchBar"
       ]
     },
     {
@@ -3008,6 +3065,34 @@
       "references": [
         "MenuItem",
         "RenderListItemParams"
+      ]
+    },
+    {
+      "name": "ModalCallToAction",
+      "properties": [
+        {
+          "name": "destructive",
+          "required": false,
+          "description": "The function of the button is destructive.",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "label",
+          "required": true,
+          "description": "The label of the call to action button.",
+          "type": "string"
+        },
+        {
+          "name": "onClick",
+          "required": true,
+          "description": "The callback function for the call to action button.",
+          "type": "function"
+        }
+      ],
+      "id": "modal-call-to-action",
+      "components": [
+        "Modal"
       ]
     },
     {
@@ -3374,6 +3459,20 @@
       ]
     },
     {
+      "name": "Pick<ButtonProps,\"destructive\">",
+      "properties": [
+        {
+          "name": "destructive",
+          "required": false,
+          "description": "The function of the button is destructive.",
+          "default": false,
+          "type": "boolean"
+        }
+      ],
+      "id": "pick-button-props-destructive",
+      "components": []
+    },
+    {
       "name": "Pick<ButtonProps<As>,\"icon\"|\"onClick\"|\"as\"|\"showLabel\"|\"toolTip\">",
       "properties": [
         {
@@ -3410,6 +3509,25 @@
         }
       ],
       "id": "pick-button-props-as-icon-on-click-as-show-label-tool-tip",
+      "components": []
+    },
+    {
+      "name": "Pick<CallToActionButton,\"label\"|\"onClick\">",
+      "properties": [
+        {
+          "name": "label",
+          "required": true,
+          "description": "The label of the call to action button.",
+          "type": "string"
+        },
+        {
+          "name": "onClick",
+          "required": true,
+          "description": "The callback function for the call to action button.",
+          "type": "function"
+        }
+      ],
+      "id": "pick-call-to-action-button-label-on-click",
       "components": []
     },
     {
@@ -3467,7 +3585,7 @@
       "components": []
     },
     {
-      "name": "Pick<DialogProps,\"id\"|\"open\"|\"children\"|\"onClose\"|\"innerRef\">",
+      "name": "Pick<DialogProps,\"id\"|\"open\"|\"onClose\"|\"innerRef\">",
       "properties": [
         {
           "name": "id",
@@ -3483,12 +3601,6 @@
           "type": "boolean"
         },
         {
-          "name": "children",
-          "required": false,
-          "description": "The content of the dialog.",
-          "type": "multiline"
-        },
-        {
           "name": "onClose",
           "required": true,
           "description": "Function to call when the dialog is closed.",
@@ -3501,7 +3613,7 @@
           "type": "object"
         }
       ],
-      "id": "pick-dialog-props-id-open-children-on-close-inner-ref",
+      "id": "pick-dialog-props-id-open-on-close-inner-ref",
       "components": []
     },
     {
@@ -3536,18 +3648,12 @@
       "components": []
     },
     {
-      "name": "Pick<FormFieldProps,\"label\"|\"errorMessage\"|\"helperText\"|\"labelTrailing\"|\"controlId\">",
+      "name": "Pick<FormFieldProps,\"label\"|\"helperText\"|\"labelTrailing\"|\"controlId\">",
       "properties": [
         {
           "name": "label",
           "required": true,
           "description": "The label of the field.",
-          "type": "string"
-        },
-        {
-          "name": "errorMessage",
-          "required": false,
-          "description": "Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.",
           "type": "string"
         },
         {
@@ -3569,7 +3675,7 @@
           "type": "string"
         }
       ],
-      "id": "pick-form-field-props-label-error-message-helper-text-label-trailing-control-id",
+      "id": "pick-form-field-props-label-helper-text-label-trailing-control-id",
       "components": []
     },
     {
@@ -3953,7 +4059,7 @@
       "components": []
     },
     {
-      "name": "Pick<TextInputProps,\"name\"|\"required\"|\"type\"|\"value\"|\"disabled\"|\"size\"|\"onChange\"|\"autoComplete\"|\"placeholder\"|\"readOnly\"|\"leading\"|\"trailing\"|\"inputRef\">",
+      "name": "Pick<TextInputProps,\"name\"|\"required\"|\"type\"|\"value\"|\"invalid\"|\"disabled\"|\"size\"|\"onChange\"|\"autoComplete\"|\"placeholder\"|\"readOnly\"|\"errorMessage\"|\"leading\"|\"trailing\"|\"inputRef\">",
       "properties": [
         {
           "name": "name",
@@ -3989,6 +4095,13 @@
           "type": "string"
         },
         {
+          "name": "invalid",
+          "required": false,
+          "description": "Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.",
+          "default": false,
+          "type": "boolean"
+        },
+        {
           "name": "disabled",
           "required": false,
           "description": "Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).",
@@ -4020,7 +4133,7 @@
         {
           "name": "autoComplete",
           "required": false,
-          "description": "Specifies if user agent has any permission to provide automated assistance in filling out form field values.\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete",
+          "description": "Specifies if user agent has any permission to provide automated assistance in filling out form field values",
           "default": "off"
         },
         {
@@ -4035,6 +4148,12 @@
           "description": "Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).",
           "default": false,
           "type": "boolean"
+        },
+        {
+          "name": "errorMessage",
+          "required": false,
+          "description": "Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.",
+          "type": "string"
         },
         {
           "name": "leading",
@@ -4055,7 +4174,7 @@
           "type": "object"
         }
       ],
-      "id": "pick-text-input-props-name-required-type-value-disabled-size-on-change-auto-complete-placeholder-read-only-leading-trailing-input-ref",
+      "id": "pick-text-input-props-name-required-type-value-invalid-disabled-size-on-change-auto-complete-placeholder-read-only-error-message-leading-trailing-input-ref",
       "components": []
     },
     {
@@ -4708,7 +4827,8 @@
       "id": "render-list-item-params",
       "description": "The props for the renderListItem function. Useful for customizing menu list items.",
       "components": [
-        "Menu"
+        "Menu",
+        "Select"
       ]
     },
     {
@@ -5471,6 +5591,13 @@
           "required": true,
           "description": "The function to call when the control is checked or unchecked.",
           "type": "function"
+        },
+        {
+          "name": "readOnly",
+          "required": false,
+          "description": "Only exists as a alias for `disabled` and to match other input properties.",
+          "default": false,
+          "type": "boolean"
         }
       ],
       "id": "switch-props",
@@ -6050,19 +6177,6 @@
       "name": "TextFieldProps",
       "properties": [
         {
-          "name": "invalid",
-          "required": false,
-          "description": "Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.",
-          "default": false,
-          "type": "boolean"
-        },
-        {
-          "name": "errorMessage",
-          "required": false,
-          "description": "Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.",
-          "type": "string"
-        },
-        {
           "name": "name",
           "required": true,
           "description": "The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.",
@@ -6096,6 +6210,13 @@
           "type": "string"
         },
         {
+          "name": "invalid",
+          "required": false,
+          "description": "Marks the element as invalid and displays error state theme.\n\nIf the errorMessage is empty the error state theme will not appear.",
+          "default": false,
+          "type": "boolean"
+        },
+        {
           "name": "disabled",
           "required": false,
           "description": "Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).",
@@ -6127,7 +6248,7 @@
         {
           "name": "autoComplete",
           "required": false,
-          "description": "Specifies if user agent has any permission to provide automated assistance in filling out form field values.\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete",
+          "description": "Specifies if user agent has any permission to provide automated assistance in filling out form field values",
           "default": "off"
         },
         {
@@ -6142,6 +6263,12 @@
           "description": "Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).",
           "default": false,
           "type": "boolean"
+        },
+        {
+          "name": "errorMessage",
+          "required": false,
+          "description": "Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.",
+          "type": "string"
         },
         {
           "name": "leading",
@@ -6165,12 +6292,6 @@
           "name": "label",
           "required": true,
           "description": "The label of the field.",
-          "type": "string"
-        },
-        {
-          "name": "errorMessage",
-          "required": false,
-          "description": "Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.",
           "type": "string"
         },
         {
@@ -6296,13 +6417,15 @@
           "name": "trailing",
           "required": false,
           "description": "The trailing element to display in the field.",
-          "type": "React.ReactNode"
+          "type": "React.ReactNode",
+          "exampleType": "string"
         },
         {
           "name": "leading",
           "required": false,
           "description": "The leading element to display in the field.",
-          "type": "React.ReactNode"
+          "type": "React.ReactNode",
+          "exampleType": "string"
         },
         {
           "name": "placeholder",
@@ -6327,7 +6450,7 @@
         {
           "name": "autoComplete",
           "required": false,
-          "description": "Specifies if user agent has any permission to provide automated assistance in filling out form field values. https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete",
+          "description": "Specifies if user agent has any permission to provide automated assistance in filling out form field values",
           "default": "off"
         }
       ],
@@ -6359,9 +6482,7 @@
         }
       ],
       "id": "toggle-option-props",
-      "components": [
-        "ToggleOption"
-      ]
+      "components": []
     },
     {
       "name": "TooltipProps",
@@ -6555,11 +6676,6 @@
           "type": "array"
         },
         {
-          "name": "properties",
-          "required": false,
-          "type": "array"
-        },
-        {
           "name": "references",
           "required": false,
           "type": "array"
@@ -6570,9 +6686,9 @@
           "type": "number"
         },
         {
-          "name": "properties",
+          "name": "exampleType",
           "required": false,
-          "type": "array"
+          "type": "string"
         },
         {
           "name": "libraryDefault",
@@ -6636,11 +6752,6 @@
           "type": "array"
         },
         {
-          "name": "properties",
-          "required": false,
-          "type": "array"
-        },
-        {
           "name": "references",
           "required": false,
           "type": "array"
@@ -6651,9 +6762,9 @@
           "type": "number"
         },
         {
-          "name": "properties",
+          "name": "exampleType",
           "required": false,
-          "type": "array"
+          "type": "string"
         },
         {
           "name": "libraryDefault",
@@ -6676,11 +6787,6 @@
         {
           "name": "typeOptions",
           "required": true
-        },
-        {
-          "name": "properties",
-          "required": false,
-          "type": "array"
         },
         {
           "name": "multiline",
@@ -6825,235 +6931,58 @@
       "components": []
     },
     {
-      "name": "DemoPreset<Record<string,unknown>>",
+      "name": "Required<CommonProps<\"value\"|\"disabled\"|\"readOnly\">>",
       "properties": [
-        {
-          "name": "label",
-          "required": true,
-          "description": "The name of the preset. This is used to display the preset in the UI.",
-          "type": "string"
-        },
-        {
-          "name": "state",
-          "required": false,
-          "description": "The props of the component. This is used to set props of the component. These values can't be changed in the UI.",
-          "type": "Partial<Record<string,unknown>>"
-        },
-        {
-          "name": "isDefault",
-          "required": false,
-          "description": "Determines if the preset is the default preset. This is used to set the initial state of the component.",
-          "type": "boolean"
-        },
         {
           "name": "value",
           "required": true,
+          "description": "The value of the control.",
           "type": "string"
-        }
-      ],
-      "id": "demo-preset-record-string-unknown",
-      "components": []
-    },
-    {
-      "name": "Pick<ButtonProps,\"variant\"|\"label\"|\"onClick\">",
-      "properties": [
-        {
-          "name": "variant",
-          "required": false,
-          "description": "The color variant of the button.",
-          "default": "primary",
-          "type": [
-            "primary",
-            "secondary",
-            "tertiary"
-          ],
-          "options": [
-            "primary",
-            "secondary",
-            "tertiary"
-          ]
         },
         {
-          "name": "label",
+          "name": "disabled",
           "required": true,
-          "description": "The label of the button.",
-          "type": "string"
-        },
-        {
-          "name": "onClick",
-          "required": false,
-          "description": "The function to call when the button is clicked.",
-          "type": "function"
-        }
-      ],
-      "id": "pick-button-props-variant-label-on-click",
-      "components": []
-    },
-    {
-      "name": "Pick<DialogProps,\"id\"|\"open\"|\"onClose\"|\"innerRef\">",
-      "properties": [
-        {
-          "name": "id",
-          "required": false,
-          "description": "The id of the element. If not provided one will be generated.",
-          "type": "string"
-        },
-        {
-          "name": "open",
-          "required": false,
-          "description": "If the dialog should appear.",
+          "description": "Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).",
           "default": false,
           "type": "boolean"
         },
         {
-          "name": "onClose",
+          "name": "readOnly",
           "required": true,
-          "description": "Function to call when the dialog is closed.",
-          "type": "function"
-        },
-        {
-          "name": "innerRef",
-          "required": false,
-          "description": "A ref to the dialog element.",
-          "type": "object"
-        }
-      ],
-      "id": "pick-dialog-props-id-open-on-close-inner-ref",
-      "components": []
-    },
-    {
-      "name": "ModalButtonProps",
-      "properties": [
-        {
-          "name": "variant",
-          "required": false,
-          "description": "The color variant of the button.",
-          "default": "primary",
-          "type": [
-            "primary",
-            "secondary",
-            "tertiary"
-          ],
-          "options": [
-            "primary",
-            "secondary",
-            "tertiary"
-          ]
-        },
-        {
-          "name": "label",
-          "required": true,
-          "description": "The label of the button.",
-          "type": "string"
-        },
-        {
-          "name": "onClick",
-          "required": false,
-          "description": "The function to call when the button is clicked.",
-          "type": "function"
-        }
-      ],
-      "id": "modal-button-props",
-      "components": [
-        "Modal"
-      ]
-    },
-    {
-      "name": "Pick<CallToActionButton,\"label\"|\"onClick\">",
-      "properties": [
-        {
-          "name": "label",
-          "required": true,
-          "description": "The label of the call to action button.",
-          "type": "string"
-        },
-        {
-          "name": "onClick",
-          "required": true,
-          "description": "The callback function for the call to action button.",
-          "type": "function"
-        }
-      ],
-      "id": "pick-call-to-action-button-label-on-click",
-      "components": []
-    },
-    {
-      "name": "Pick<ButtonProps,\"label\"|\"onClick\">",
-      "properties": [
-        {
-          "name": "label",
-          "required": true,
-          "description": "The label of the button.",
-          "type": "string"
-        },
-        {
-          "name": "onClick",
-          "required": false,
-          "description": "The function to call when the button is clicked.",
-          "type": "function"
-        }
-      ],
-      "id": "pick-button-props-label-on-click",
-      "components": [
-        "Modal"
-      ]
-    },
-    {
-      "name": "Pick<ButtonProps,\"label\">",
-      "properties": [
-        {
-          "name": "label",
-          "required": true,
-          "description": "The label of the button.",
-          "type": "string"
-        }
-      ],
-      "id": "pick-button-props-label",
-      "components": [
-        "Modal"
-      ]
-    },
-    {
-      "name": "Pick<ButtonProps,\"destructive\">",
-      "properties": [
-        {
-          "name": "destructive",
-          "required": false,
-          "description": "The function of the button is destructive.",
+          "description": "Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).",
           "default": false,
           "type": "boolean"
         }
       ],
-      "id": "pick-button-props-destructive",
+      "id": "required-common-props-value-disabled-read-only",
       "components": []
     },
     {
-      "name": "ModalCallToAction",
+      "name": "CommonProps<\"disabled\"|\"aria-label\"|\"readOnly\">",
       "properties": [
         {
-          "name": "destructive",
+          "name": "disabled",
           "required": false,
-          "description": "The function of the button is destructive.",
+          "description": "Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).",
           "default": false,
           "type": "boolean"
         },
         {
-          "name": "label",
+          "name": "aria-label",
           "required": true,
-          "description": "The label of the call to action button.",
+          "description": "The aria-label for the element.",
           "type": "string"
         },
         {
-          "name": "onClick",
-          "required": true,
-          "description": "The callback function for the call to action button.",
-          "type": "function"
+          "name": "readOnly",
+          "required": false,
+          "description": "Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).",
+          "default": false,
+          "type": "boolean"
         }
       ],
-      "id": "modal-call-to-action",
-      "components": [
-        "Modal"
-      ]
+      "id": "common-props-disabled-aria-label-read-only",
+      "components": []
     }
   ]
 }

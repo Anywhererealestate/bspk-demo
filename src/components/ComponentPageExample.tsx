@@ -5,7 +5,7 @@ import { ErrorLogContext } from '@bspk/ui/utils/errors';
 import { CodeExample } from 'components/CodeExample';
 import { updateComponentContext, useComponentContext } from 'components/ComponentProvider';
 import { TypeProps } from 'components/TypeProps';
-import { useId, useMemo } from 'react';
+import { useId } from 'react';
 import { components } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
 import { useComponentProps } from 'src/utils/useComponentProps';
@@ -18,12 +18,7 @@ export function ComponentPageExample() {
 
     const errorId = useId();
 
-    const componentProps = useMemo(() => {
-        //
-        return component.propControlsOverrides
-            ? component.props.map((prop) => ({ ...prop, ...component.propControlsOverrides?.[prop.name] }))
-            : component.props;
-    }, [component.props, component.propControlsOverrides]);
+    const renderId = useId();
 
     const containerStyle =
         typeof component.containerStyle === 'function' ? component.containerStyle(props) : component.containerStyle;
@@ -44,9 +39,13 @@ export function ComponentPageExample() {
                     data-main-example
                     data-show-touch-targets={showTouchTarget || undefined}
                 >
-                    {component.render?.({ props, preset, Component, setState: updateComponentContext }) || (
-                        <Component {...props} />
-                    )}
+                    {component.render?.({
+                        props,
+                        preset,
+                        Component,
+                        setState: updateComponentContext,
+                        id: renderId,
+                    }) || <Component {...props} />}
                 </CodeExample>
             </ErrorLogContext>
             <div data-example-settings>
@@ -82,7 +81,7 @@ export function ComponentPageExample() {
                 </h2>
                 {changed && <Button label="Reset" onClick={() => resetState()} size="small" variant="secondary" />}
             </div>
-            {componentProps && <TypeProps props={componentProps} state={state} />}
+            {component.props && <TypeProps props={component.props} state={state} />}
         </div>
     );
 }

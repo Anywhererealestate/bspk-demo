@@ -3,6 +3,7 @@ import { DemoPreset } from '@bspk/ui/demo/utils';
 import { useErrorLogger } from '@bspk/ui/utils/errors';
 import { Markup } from 'components//Markup';
 import { CodeExample } from 'components/CodeExample';
+import { useId } from 'react';
 import { updateComponentContext, useComponentContext } from 'src/components/ComponentProvider';
 import { components, TypeProperty } from 'src/meta';
 import { DemoComponent } from 'src/types';
@@ -91,21 +92,25 @@ function VariantExample({
     component: DemoComponent;
     preset: DemoPreset;
 }) {
-    const componentProps = useComponentProps(
-        {
-            [prop.name]: option,
-        },
-        {
-            variantValue: option,
-            variantName: prop.name,
-        },
-    );
+    const componentProps = useComponentProps({
+        [prop.name]: option,
+    });
+
+    const id = useId();
 
     return (
         <>
-            {component.render?.({ props: componentProps, preset, Component, setState: updateComponentContext }) || (
-                <Component {...componentProps} />
-            )}
+            {component.render?.({
+                props: componentProps,
+                preset,
+                Component,
+                setState: updateComponentContext,
+                context: {
+                    variantValue: option,
+                    variantName: prop.name,
+                },
+                id,
+            }) || <Component {...componentProps} />}
         </>
     );
 }

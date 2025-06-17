@@ -14,20 +14,23 @@ export function TypePropControl({
     prop,
     value,
     onChange,
+    readOnly = false,
 }: {
     value: any;
     onChange: (nextValue: any) => void;
     prop: TypePropertyDemoWithControls;
+    readOnly?: boolean;
 }) {
     if (!prop) return null;
 
-    const type = prop.type;
+    const type = prop.exampleType || prop.type;
 
     const controlProps = {
         'aria-label': prop.name,
         name: prop.name,
         value,
         onChange,
+        readOnly,
     };
 
     if (prop.multiline) return <Textarea id="" {...controlProps} textSize="small" />;
@@ -53,6 +56,7 @@ export function TypePropControl({
                         data-testid={`${prop.name}-Input`}
                         size="small"
                         {...controlProps}
+                        readOnly={readOnly}
                         style={{ marginTop: '10px' }}
                         value={typeof controlProps.value === 'string' ? controlProps.value : ''}
                     />
@@ -62,7 +66,16 @@ export function TypePropControl({
     }
 
     if (type === 'string')
-        return <TextInput data-testid={`${prop.name}-Input`} id="" size="small" type="text" {...controlProps} />;
+        return (
+            <TextInput
+                data-testid={`${prop.name}-Input`}
+                id=""
+                size="small"
+                type="text"
+                {...controlProps}
+                readOnly={readOnly}
+            />
+        );
 
     const controlOptions: string[] =
         type === 'BspkIcon' ? IconNameOptions : prop.options?.map((o) => o.toString()) || [];
@@ -81,13 +94,14 @@ export function TypePropControl({
                 data-testid={`${prop.name}-CheckboxGroup`}
                 options={options}
                 {...controlProps}
+                readOnly={readOnly}
                 values={controlProps.value}
             />
         );
     }
 
     if (controlOptions.length > 0) {
-        if (controlOptions.length > 2 || type === 'select')
+        if (controlOptions.length > 3 || type === 'select')
             return (
                 <>
                     <Select
@@ -97,6 +111,7 @@ export function TypePropControl({
                         size="small"
                         {...controlProps}
                         onChange={(next) => onChange(next[0])}
+                        readOnly={readOnly}
                         value={[controlProps.value].filter((v) => v !== undefined)}
                     />
                 </>
@@ -116,7 +131,7 @@ export function TypePropControl({
     if (type === 'boolean')
         return (
             <label data-testid={`${prop.name}-Switch`}>
-                <Switch checked={!!controlProps.value} {...controlProps} />
+                <Switch checked={!!controlProps.value} {...controlProps} disabled={readOnly} />
             </label>
         );
 

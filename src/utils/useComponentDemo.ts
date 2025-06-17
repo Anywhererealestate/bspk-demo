@@ -163,7 +163,6 @@ export function useComponentDemo(componentName: MetaComponentName) {
             dependencies: componentMeta.dependencies.map((d) => componentsMeta.find((c) => c.name === d)!),
             dependents: componentsMeta.flatMap((c) => (c.dependencies.includes(componentName) ? c : [])),
             presets,
-            propRenderOverrides: componentExample?.propRenderOverrides,
             references:
                 typeMeta?.references?.flatMap((name) => {
                     const referenceMeta = typesMeta.find((t) => t.name === name);
