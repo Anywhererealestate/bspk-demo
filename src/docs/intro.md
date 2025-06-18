@@ -12,7 +12,7 @@ Please report issues with this website or any of the following packages by email
 npm install @bspk/icons
 ```
 
-The icons package, available on Artifactory, contains all the icons that are available for development teams. You can see a list of icons available on the <a data-testid="icons-link" href="/icons">icons page</a>.
+The icons package contains all the icons that are available for development teams. You can see a list of icons available on the <a data-testid="icons-link" href="/icons">icons page</a>.
 
 ## @bspk/styles
 
