@@ -1,5 +1,5 @@
 {
-  "LAST_UPDATED": "2025-06-17T16:01:58.030Z",
+  "LAST_UPDATED": "2025-06-18T18:25:24.070Z",
   "VERSION": "1.1.32",
   "UI_HASH": "local",
   "BUILD": "0",
@@ -327,10 +327,7 @@
       "file": "/NumberField.tsx",
       "name": "NumberField",
       "slug": "number-field",
-      "dependencies": [
-        "FormField",
-        "NumberInput"
-      ],
+      "dependencies": [],
       "usage": {
         "code": "import React from 'react';\n\nimport { NumberField } from '@bspk/ui/NumberField';\n\nexport function Example() {\nconst [state, setState] = React.useState<number>();\n\nreturn (\n<NumberField\ncontrolId=\"Example controlId\"\nlabel=\"Example label\"\nname=\"Example name\"\nonChange={(nextValue) => setState(nextValue)}\nvalue={state}\n/>\n);\n}"
       },
@@ -1326,11 +1323,7 @@
         }
       ],
       "id": "call-to-action-button",
-      "components": [
-        "BannerAlert",
-        "EmptyState",
-        "Popover"
-      ]
+      "components": []
     },
     {
       "name": "CardProps",
@@ -2547,9 +2540,7 @@
         }
       ],
       "id": "field-control-props",
-      "components": [
-        "FormField"
-      ]
+      "components": []
     },
     {
       "name": "FormFieldProps",
@@ -2589,7 +2580,7 @@
         {
           "name": "children",
           "required": true,
-          "description": "The children of the form field. This should be a control such as TextInput, Select, DatePicker, or TimePicker.",
+          "description": "The children of the form field. This should be a control such as TextInput, Select, DatePicker, or\nTimePicker.",
           "type": "(childProps: FieldControlProps) => JSX.Element"
         },
         {
@@ -2606,9 +2597,7 @@
         }
       ],
       "id": "form-field-props",
-      "components": [
-        "FormField"
-      ],
+      "components": [],
       "references": [
         "FieldControlProps"
       ]
@@ -2669,9 +2658,7 @@
         }
       ],
       "id": "inline-alert-props",
-      "components": [
-        "InlineAlert"
-      ]
+      "components": []
     },
     {
       "name": "InvalidPropsLibrary",
@@ -2768,9 +2755,7 @@
         }
       ],
       "id": "layout-props",
-      "components": [
-        "Layout"
-      ]
+      "components": []
     },
     {
       "name": "LinkProps",
@@ -3263,47 +3248,19 @@
           "type": "string"
         },
         {
-          "name": "required",
-          "required": false,
-          "description": "Determines if the element is [required](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required).",
-          "default": false,
-          "type": "boolean"
-        },
-        {
-          "name": "label",
-          "required": true,
-          "description": "The label of the field.",
-          "type": "string"
-        },
-        {
-          "name": "errorMessage",
-          "required": false,
-          "description": "Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.",
-          "type": "string"
-        },
-        {
-          "name": "helperText",
-          "required": false,
-          "description": "The helperText of the field.",
-          "type": "string"
-        },
-        {
-          "name": "labelTrailing",
-          "required": false,
-          "description": "The trailing element of the label.",
-          "type": "React.ReactNode"
-        },
-        {
-          "name": "controlId",
-          "required": true,
-          "description": "The id of the control.",
-          "type": "string"
-        },
-        {
           "name": "name",
           "required": true,
           "description": "The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.",
           "type": "string"
+        },
+        {
+          "name": "max",
+          "required": false,
+          "description": "Defines the [maximum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/max) value that is\naccepted.",
+          "default": 99,
+          "type": "number",
+          "minimum": 1,
+          "maximum": 99
         },
         {
           "name": "id",
@@ -3312,10 +3269,18 @@
           "type": "string"
         },
         {
+          "name": "min",
+          "required": false,
+          "description": "Defines the [minimum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/min) value that is\naccepted.",
+          "default": 0,
+          "type": "number",
+          "minimum": 0
+        },
+        {
           "name": "value",
           "required": false,
           "description": "The value of the control.",
-          "type": "number"
+          "type": "string,number"
         },
         {
           "name": "disabled",
@@ -3366,6 +3331,43 @@
             "center",
             "left"
           ]
+        },
+        {
+          "name": "required",
+          "required": false,
+          "description": "Determines if the element is [required](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required).",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "label",
+          "required": true,
+          "description": "The label of the field.",
+          "type": "string"
+        },
+        {
+          "name": "errorMessage",
+          "required": false,
+          "description": "Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.",
+          "type": "string"
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "description": "The helperText of the field.",
+          "type": "string"
+        },
+        {
+          "name": "labelTrailing",
+          "required": false,
+          "description": "The trailing element of the label.",
+          "type": "React.ReactNode"
+        },
+        {
+          "name": "controlId",
+          "required": true,
+          "description": "The id of the control.",
+          "type": "string"
         }
       ],
       "id": "number-field-props",
@@ -3441,7 +3443,7 @@
           "name": "value",
           "required": false,
           "description": "The value of the control.",
-          "type": "number"
+          "type": "string,number"
         },
         {
           "name": "onChange",
@@ -3476,6 +3478,7 @@
           "name": "min",
           "required": false,
           "description": "Defines the [minimum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/min) value that is accepted.",
+          "default": 0,
           "type": "number",
           "minimum": 0
         }
@@ -6673,9 +6676,7 @@
         }
       ],
       "id": "txt-props",
-      "components": [
-        "Txt"
-      ]
+      "components": []
     },
     {
       "name": "TypePropertyDemo",
@@ -6970,6 +6971,98 @@
         }
       ],
       "id": "use-floating-props",
+      "components": []
+    },
+    {
+      "name": "Pick<NumberInputProps,\"name\"|\"max\"|\"id\"|\"min\"|\"value\"|\"disabled\"|\"size\"|\"onChange\"|\"readOnly\"|\"align\">",
+      "properties": [
+        {
+          "name": "name",
+          "required": true,
+          "description": "The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.",
+          "type": "string"
+        },
+        {
+          "name": "max",
+          "required": false,
+          "description": "Defines the [maximum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/max) value that is\naccepted.",
+          "default": 99,
+          "type": "number",
+          "minimum": 1,
+          "maximum": 99
+        },
+        {
+          "name": "id",
+          "required": false,
+          "description": "The id of the element. If not provided one will be generated.",
+          "type": "string"
+        },
+        {
+          "name": "min",
+          "required": false,
+          "description": "Defines the [minimum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/min) value that is\naccepted.",
+          "default": 0,
+          "type": "number",
+          "minimum": 0
+        },
+        {
+          "name": "value",
+          "required": false,
+          "description": "The value of the control.",
+          "type": "string,number"
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "description": "Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "size",
+          "required": false,
+          "description": "The size of the element.",
+          "default": "medium",
+          "type": [
+            "small",
+            "medium",
+            "large"
+          ],
+          "options": [
+            "small",
+            "medium",
+            "large"
+          ]
+        },
+        {
+          "name": "onChange",
+          "required": true,
+          "description": "Callback when the value changes.",
+          "type": "function"
+        },
+        {
+          "name": "readOnly",
+          "required": false,
+          "description": "Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "align",
+          "required": false,
+          "description": "The alignment of the input box. Centered between the plus and minus buttons or to the left of the buttons.",
+          "default": "center",
+          "type": [
+            "center",
+            "left"
+          ],
+          "options": [
+            "center",
+            "left"
+          ]
+        }
+      ],
+      "id": "pick-number-input-props-name-max-id-min-value-disabled-size-on-change-read-only-align",
       "components": []
     }
   ]
