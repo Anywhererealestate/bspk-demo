@@ -1,5 +1,5 @@
 {
-  "LAST_UPDATED": "2025-06-17T16:01:58.030Z",
+  "LAST_UPDATED": "2025-06-20T23:48:57.826Z",
   "VERSION": "1.1.32",
   "UI_HASH": "local",
   "BUILD": "0",
@@ -61,13 +61,23 @@
       "hasTouchTarget": false
     },
     {
+      "description": "Used to indicate the current page's location within a navigational hierarchy.",
+      "file": "/Breadcrumb.tsx",
+      "name": "Breadcrumb",
+      "slug": "breadcrumb",
+      "dependencies": [],
+      "usage": {
+        "code": "import { Breadcrumb } from '@bspk/ui/breadcrumb';\n\nfunction Example() {\nreturn (\n<Breadcrumb\nitems={[\n{ label: 'level 1', href: 'https://bspk.anywhere.re' },\n{ label: 'level 2', href: 'https://bspk.anywhere.re' },\n{ label: 'level 3', href: 'https://bspk.anywhere.re' },\n{ label: 'level 4', href: 'https://bspk.anywhere.re' },\n{ label: 'level 5', href: 'https://bspk.anywhere.re' },\n{ label: 'level 6', href: 'https://bspk.anywhere.re' },\n{ label: 'level 7', href: 'https://bspk.anywhere.re' },\n{ label: 'level 8', href: 'https://bspk.anywhere.re' },\n{ label: 'level 9', href: 'https://bspk.anywhere.re' },\n{ label: 'level 10', href: 'https://bspk.anywhere.re' },\n]}\n/>\n);\n}"
+      },
+      "css": "[data-bspk='breadcrumb'] {\n    width: 100%;\n\n    ol {\n        display: flex;\n        align-items: center;\n        flex-flow: row wrap;\n        list-style: none;\n        gap: var(--spacing-sizing-02);\n\n        li {\n            display: flex;\n            gap: var(--spacing-sizing-02);\n        }\n    }\n}\n",
+      "hasTouchTarget": false
+    },
+    {
       "description": "A clickable component that allows users to perform an action, make a choice or trigger a change in state.",
       "file": "/Button.tsx",
       "name": "Button",
       "slug": "button",
-      "dependencies": [
-        "Tooltip"
-      ],
+      "dependencies": [],
       "usage": {
         "code": "import { Button } from '@bspk/ui/Button';\nimport { SvgPerson } from '@bspk/icons/Person';\n\nfunction Example() {\nreturn (\n<Button\nlabel=\"Click Me\"\nsize=\"medium\"\nvariant=\"primary\"\nonClick={() => console.log('Button clicked')}\nicon={<SvgPerson />}\n/>\n);\n}"
       },
@@ -151,7 +161,7 @@
       "usage": {
         "code": "import { Dialog } from '@bspk/ui/Dialog';\nimport { Button } from '@bspk/ui/Button';\n\nfunction Example() {\nconst [open, setOpen] = React.useState(false);\n\nreturn (\n<>\n<Button label=\"Open Dialog\" onClick={() => setOpen(true)} />\n<Dialog open={open} onClose={() => setOpen(false)}>\n<h1>Dialog Title</h1>\n<p>This is the content of the dialog.</p>\n<button onClick={() => setOpen(false)}>Close</button>\n</Dialog>\n</>\n);\n}"
       },
-      "css": "[data-bspk='dialog'] {\n    position: fixed;\n    inset: 0;\n    z-index: var(--z-index-dialog);\n\n    [data-dialog-box] {\n        text-align: start;\n        position: relative;\n        border-radius: var(--radius-large);\n        box-shadow: var(--drop-shadow-float);\n        background: var(--surface-neutral-t1-base);\n        color: var(--foreground-neutral-on-surface);\n        max-height: calc(100vh - var(--spacing-sizing-24));\n        overflow: scroll;\n        z-index: 2;\n\n        > :first-of-type {\n            margin-top: 0;\n        }\n\n        > :last-child {\n            margin-bottom: 0;\n        }\n\n        width: calc(100% - var(--spacing-sizing-08));\n\n        // we make the width responsive to the viewport\n        @media (width >= 640px) {\n            width: 90%;\n        }\n\n        @media (width >= 768px) {\n            width: 80%;\n        }\n\n        @media (width >= 1024px) {\n            width: 60%;\n        }\n\n        @media (width >= 1280px) {\n            width: 50%;\n        }\n    }\n\n    [data-dialog-backdrop] {\n        z-index: 1;\n        position: fixed;\n        inset: 0;\n        background-color: var(--background-scrim);\n        opacity: 0;\n        transition: opacity 0.3s;\n    }\n\n    &[data-visibility='show'] {\n        [data-dialog-backdrop] {\n            opacity: 1;\n        }\n    }\n\n    &[data-placement='center'] {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n\n        [data-dialog-box] {\n            transition: opacity 1s;\n            opacity: 0;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                opacity: 1;\n            }\n        }\n    }\n\n    &[data-placement='bottom'] {\n        [data-dialog-box] {\n            position: absolute;\n            border-bottom-left-radius: 0;\n            border-bottom-right-radius: 0;\n            width: 600px;\n            left: 50%;\n            transform: translateX(-50%);\n            bottom: -100vh;\n            transition: bottom 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                bottom: 0;\n            }\n        }\n    }\n\n    &[data-placement='top'] {\n        [data-dialog-box] {\n            position: absolute;\n            border-top-left-radius: 0;\n            border-top-right-radius: 0;\n            width: 600px;\n            left: 50%;\n            transform: translateX(-50%);\n            top: -100vh;\n            transition: top 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                top: 0;\n            }\n        }\n    }\n\n    &[data-placement='left'] {\n        [data-dialog-box] {\n            position: absolute;\n            max-height: unset;\n            width: 280px;\n            height: 100vh;\n            border-bottom-left-radius: 0;\n            border-top-left-radius: 0;\n            left: -100vw;\n            transition: left 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                left: 0;\n            }\n        }\n    }\n\n    &[data-placement='right'] {\n        [data-dialog-box] {\n            position: absolute;\n            max-height: unset;\n            width: 280px;\n            height: 100vh;\n            border-bottom-right-radius: 0;\n            border-top-right-radius: 0;\n            right: -100vw;\n            transition: right 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                right: 0;\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+      "css": "[data-bspk='dialog'] {\n    position: fixed;\n    inset: 0;\n    z-index: var(--z-index-dialog);\n\n    [data-dialog-box] {\n        text-align: start;\n        position: relative;\n        border-radius: var(--radius-large);\n        box-shadow: var(--drop-shadow-float);\n        background: var(--surface-neutral-t1-base);\n        color: var(--foreground-neutral-on-surface);\n        max-height: calc(100vh - var(--spacing-sizing-24));\n        z-index: 2;\n\n        > :first-of-type {\n            margin-top: 0;\n        }\n\n        > :last-child {\n            margin-bottom: 0;\n        }\n\n        width: calc(100% - var(--spacing-sizing-08));\n\n        // we make the width responsive to the viewport\n        @media (width >= 640px) {\n            width: 90%;\n        }\n\n        @media (width >= 768px) {\n            width: 80%;\n        }\n\n        @media (width >= 1024px) {\n            width: 60%;\n        }\n\n        @media (width >= 1280px) {\n            width: 50%;\n        }\n    }\n\n    [data-dialog-backdrop] {\n        z-index: 1;\n        position: fixed;\n        inset: 0;\n        background-color: var(--background-scrim);\n        opacity: 0;\n        transition: opacity 0.3s;\n    }\n\n    &[data-visibility='show'] {\n        [data-dialog-backdrop] {\n            opacity: 1;\n        }\n    }\n\n    &[data-placement='center'] {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n\n        [data-dialog-box] {\n            transition: opacity 1s;\n            opacity: 0;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                opacity: 1;\n            }\n        }\n    }\n\n    &[data-placement='bottom'] {\n        [data-dialog-box] {\n            position: absolute;\n            border-bottom-left-radius: 0;\n            border-bottom-right-radius: 0;\n            width: 600px;\n            left: 50%;\n            transform: translateX(-50%);\n            bottom: -100vh;\n            transition: bottom 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                bottom: 0;\n            }\n        }\n    }\n\n    &[data-placement='top'] {\n        [data-dialog-box] {\n            position: absolute;\n            border-top-left-radius: 0;\n            border-top-right-radius: 0;\n            width: 600px;\n            left: 50%;\n            transform: translateX(-50%);\n            top: -100vh;\n            transition: top 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                top: 0;\n            }\n        }\n    }\n\n    &[data-placement='left'] {\n        [data-dialog-box] {\n            position: absolute;\n            max-height: unset;\n            width: 280px;\n            height: 100vh;\n            border-bottom-left-radius: 0;\n            border-top-left-radius: 0;\n            left: -100vw;\n            transition: left 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                left: 0;\n            }\n        }\n    }\n\n    &[data-placement='right'] {\n        [data-dialog-box] {\n            position: absolute;\n            max-height: unset;\n            width: 280px;\n            height: 100vh;\n            border-bottom-right-radius: 0;\n            border-top-right-radius: 0;\n            right: -100vw;\n            transition: right 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                right: 0;\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
       "hasTouchTarget": false
     },
     {
@@ -268,9 +278,7 @@
       "file": "/ListItem.tsx",
       "name": "ListItem",
       "slug": "list-item",
-      "dependencies": [
-        "Button"
-      ],
+      "dependencies": [],
       "usage": {
         "code": "import { SvgSquare } from '@bspk/icons/Square';\nimport { ListItem } from '@bspk/ui/ListItem';\n\nexport function Example() {\nreturn (\n<ListItem\nlabel=\"Example label\"\nleading={<SvgSquare />}\nsubText=\"Example subtest\"\ntrailing={<ListItem.Button label=\"Click me\" onClick={() => console.log('Hello world')} />}\n/>\n);\n}"
       },
@@ -282,10 +290,7 @@
       "file": "/Menu.tsx",
       "name": "Menu",
       "slug": "menu",
-      "dependencies": [
-        "Checkbox",
-        "ListItem"
-      ],
+      "dependencies": [],
       "usage": {
         "code": "import React from 'react';\n\nimport { Menu } from '@bspk/ui/Menu';\n\nexport function Example() {\nconst [selected, setSelected] = React.useState<string[]>([]);\n\nreturn (\n<Menu\nitems={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]}\nonChange={(selectedValues: string[]) => setSelected(selectedValues)}\nselectedValues={selected}\n/>\n);\n}"
       },
@@ -319,7 +324,7 @@
       "usage": {
         "code": "import React from 'react';\n\nimport { Button } from '@bspk/ui/Button';\nimport { Modal } from '@bspk/ui/Modal';\n\nexport function Example() {\nconst [open, setOpen] = React.useState(false);\n\nreturn (\n<>\n<Button label=\"Open Dialog\" onClick={() => setOpen(true)} />\n<Modal\ndescription=\"Example description\"\nheader=\"Example header\"\nonClose={() => setOpen(false)}\nopen={open}\n>\nExample Modal\n</Modal>\n</>\n);\n}"
       },
-      "css": "[data-bspk='modal'] {\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n    gap: var(--spacing-sizing-02);\n    padding: var(--spacing-sizing-04);\n\n    > header {\n        display: flex;\n        flex-direction: row;\n        justify-content: space-between;\n        align-items: center;\n        gap: var(--spacing-sizing-04);\n    }\n\n    main {\n        overflow: auto;\n        flex: 1;\n        padding: var(--spacing-sizing-04) 0;\n    }\n\n    > footer {\n        display: flex;\n        flex-direction: row-reverse;\n        justify-content: flex-start;\n        gap: var(--spacing-sizing-04);\n    }\n\n    // we make the width responsive to the viewport\n    @media (width < 640px) {\n        > footer {\n            [data-bspk='button'] {\n                width: 50%;\n            }\n\n            &[data-button-format='vertical'] {\n                flex-direction: column-reverse;\n\n                [data-bspk='button'] {\n                    width: 100%;\n                }\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+      "css": "[data-bspk='modal'] {\n    display: flex;\n    flex-direction: column;\n    gap: var(--spacing-sizing-02);\n    padding: var(--spacing-sizing-04);\n\n    > header {\n        display: flex;\n        flex-direction: row;\n        justify-content: space-between;\n        align-items: center;\n        gap: var(--spacing-sizing-04);\n    }\n\n    main {\n        flex: 1;\n        padding: var(--spacing-sizing-04) 0;\n    }\n\n    > footer {\n        display: flex;\n        flex-direction: row-reverse;\n        justify-content: flex-start;\n        gap: var(--spacing-sizing-04);\n    }\n\n    // we make the width responsive to the viewport\n    @media (width < 640px) {\n        > footer {\n            [data-bspk='button'] {\n                width: 50%;\n            }\n\n            &[data-button-format='vertical'] {\n                flex-direction: column-reverse;\n\n                [data-bspk='button'] {\n                    width: 100%;\n                }\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
       "hasTouchTarget": false
     },
     {
@@ -493,11 +498,7 @@
       "file": "/Select.tsx",
       "name": "Select",
       "slug": "select",
-      "dependencies": [
-        "ListItem",
-        "Menu",
-        "Portal"
-      ],
+      "dependencies": [],
       "usage": {
         "code": "import { Select } from '@bspk/ui/Select';\n\nexport function Example() {\nconst [selected, setSelected] = React.useState<string[]>([]);\nreturn (\n<Select\naria-label=\"Select an option\"\nitemCount={5}\nname=\"example-select\"\nonChange={setSelected}\noptions={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]}\nplaceholder=\"Select an option\"\nsize=\"medium\"\nvalue={selected}\n/>\n);\n}"
       },
@@ -1178,6 +1179,54 @@
       ]
     },
     {
+      "name": "BreadcrumbItem",
+      "properties": [
+        {
+          "name": "label",
+          "required": true,
+          "description": "The label of the breadcrumb item.",
+          "type": "string"
+        },
+        {
+          "name": "href",
+          "required": true,
+          "description": "The href of the breadcrumb item.",
+          "type": "string"
+        }
+      ],
+      "id": "breadcrumb-item",
+      "components": [
+        "Breadcrumb"
+      ]
+    },
+    {
+      "name": "BreadcrumbProps",
+      "properties": [
+        {
+          "name": "id",
+          "required": false,
+          "description": "The id of the element. If not provided one will be generated.",
+          "type": "string"
+        },
+        {
+          "name": "items",
+          "required": true,
+          "description": "The array of breadcrumb items.\n\nIf **less than 2** items are provided, the component will not render.",
+          "type": "Array<BreadcrumbItem>",
+          "minimum": 2,
+          "maximum": 10,
+          "example": "[\n{ label: 'level 1', href: 'https://bspk.anywhere.re' },\n{ label: 'level 2', href: 'https://bspk.anywhere.re' },\n{ label: 'level 3', href: 'https://bspk.anywhere.re' },\n{ label: 'level 4', href: 'https://bspk.anywhere.re' },\n{ label: 'level 5', href: 'https://bspk.anywhere.re' },\n{ label: 'level 6', href: 'https://bspk.anywhere.re' },\n{ label: 'level 7', href: 'https://bspk.anywhere.re' },\n{ label: 'level 8', href: 'https://bspk.anywhere.re' },\n{ label: 'level 9', href: 'https://bspk.anywhere.re' },\n{ label: 'level 10', href: 'https://bspk.anywhere.re' },\n]"
+        }
+      ],
+      "id": "breadcrumb-props",
+      "components": [
+        "Breadcrumb"
+      ],
+      "references": [
+        "BreadcrumbItem"
+      ]
+    },
+    {
       "name": "ButtonProps",
       "properties": [
         {
@@ -1285,12 +1334,16 @@
           "required": false,
           "description": "The function to call when the button is clicked.",
           "type": "function"
+        },
+        {
+          "name": "innerRef",
+          "required": false,
+          "description": "A ref to the Button element.",
+          "type": "object"
         }
       ],
       "id": "button-props",
-      "components": [
-        "Button"
-      ]
+      "components": []
     },
     {
       "name": "CallToActionButton",
@@ -1326,11 +1379,7 @@
         }
       ],
       "id": "call-to-action-button",
-      "components": [
-        "BannerAlert",
-        "EmptyState",
-        "Popover"
-      ]
+      "components": []
     },
     {
       "name": "CardProps",
@@ -1585,7 +1634,7 @@
         {
           "name": "indeterminate",
           "required": false,
-          "description": "If the checkbox is partially checked or [indeterminate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes).",
+          "description": "If the checkbox is partially checked or\n[indeterminate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes).",
           "default": false,
           "type": "boolean"
         },
@@ -1604,9 +1653,7 @@
         }
       ],
       "id": "checkbox-props",
-      "components": [
-        "Checkbox"
-      ]
+      "components": []
     },
     {
       "name": "ChipProps",
@@ -2807,8 +2854,7 @@
           "name": "href",
           "required": true,
           "description": "The [href](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#href) of the link.",
-          "type": "string",
-          "example": "https://bspk.dev"
+          "type": "string"
         },
         {
           "name": "size",
@@ -2829,7 +2875,7 @@
         {
           "name": "variant",
           "required": false,
-          "description": "Change the color of the link to a subtle color. This is useful for links that are not primary actions, for example footer menus.",
+          "description": "Change the color of the link to a subtle color. This is useful for links that are not primary actions, for\nexample footer menus.",
           "default": "default",
           "type": [
             "default",
@@ -2845,7 +2891,7 @@
         {
           "name": "target",
           "required": false,
-          "description": "The [target](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#target) of the link. If the `trailingIcon` is set to `external`, this will default to `_blank`.",
+          "description": "The [target](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#target) of the link. If the\n`trailingIcon` is set to `external`, this will default to `_blank`.",
           "default": "_self",
           "type": [
             "_blank",
@@ -2862,9 +2908,7 @@
         }
       ],
       "id": "link-props",
-      "components": [
-        "Link"
-      ]
+      "components": []
     },
     {
       "name": "ListItemProps",
@@ -2901,13 +2945,7 @@
           "name": "leading",
           "required": false,
           "description": "The leading element to display in the ListItem.\n\nLeading elements may only be one of the following [Icon](/icons), Img, Avatar.",
-          "type": "React.ReactNode",
-          "exampleType": "select",
-          "options": [
-            "Icon",
-            "Img",
-            "Avatar"
-          ]
+          "type": "React.ReactNode"
         },
         {
           "name": "label",
@@ -2924,24 +2962,18 @@
         {
           "name": "trailing",
           "required": false,
-          "description": "The trailing element to display in the ListItem.\n\nTrailing elements may only be one of the following [Icon](/icons), Checkbox, ListItemButton, Radio, Switch, Tag, Txt.",
-          "type": "React.ReactNode",
-          "exampleType": "select",
-          "options": [
-            "Checkbox",
-            "Icon",
-            "ListItemButton",
-            "Radio",
-            "Switch",
-            "Tag",
-            "Txt"
-          ]
+          "description": "The trailing element to display in the ListItem.\n\nTrailing elements may only be one of the following [Icon](/icons), Checkbox, ListItemButton, Radio, Switch, Tag,\nTxt.",
+          "type": "React.ReactNode"
+        },
+        {
+          "name": "href",
+          "required": false,
+          "description": "The [href](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#href) of the list item.\n\nIf the href is provided, the ListItem will render as an anchor element (`<a>`).",
+          "type": "string"
         }
       ],
       "id": "list-item-props",
-      "components": [
-        "ListItem"
-      ]
+      "components": []
     },
     {
       "name": "MenuButtonProps",
@@ -2983,7 +3015,7 @@
         },
         {
           "name": "value",
-          "required": true,
+          "required": false,
           "description": "The value of the menu item.",
           "type": "string"
         },
@@ -2992,14 +3024,17 @@
           "required": false,
           "description": "The unique id of the menu item.",
           "type": "string"
+        },
+        {
+          "name": "href",
+          "required": false,
+          "description": "The possible link href. This is handled in the ListItem.",
+          "type": "string"
         }
       ],
       "id": "menu-item",
       "description": "The props for the menu items.",
-      "components": [
-        "Menu",
-        "SearchBar"
-      ]
+      "components": []
     },
     {
       "name": "MenuProps",
@@ -3030,8 +3065,14 @@
           "name": "items",
           "required": false,
           "description": "Content to display in the menu.",
-          "type": "Array<MenuItem>",
-          "example": "[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]"
+          "type": "Array<MenuItem>"
+        },
+        {
+          "name": "itemsAs",
+          "required": false,
+          "description": "The element type to render menu items as.",
+          "default": "button",
+          "type": "ElementType"
         },
         {
           "name": "innerRef",
@@ -3073,7 +3114,7 @@
         {
           "name": "selectAll",
           "required": false,
-          "description": "The label for the \"Select All\" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to \"Select All\". If a string, it will be used as the label. If false the select all option will not be rendered.",
+          "description": "The label for the \"Select All\" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to \"Select All\". If a string, it will be used as the label. If false the select\nall option will not be rendered.",
           "default": false,
           "type": "string,boolean"
         },
@@ -3081,14 +3122,11 @@
           "name": "onChange",
           "required": false,
           "description": "The function to call when the selected values change.",
-          "type": "function",
-          "example": "(selectedValues, event) => setState({ selectedValues })"
+          "type": "function"
         }
       ],
       "id": "menu-props",
-      "components": [
-        "Menu"
-      ],
+      "components": [],
       "references": [
         "MenuItem",
         "RenderListItemParams"
@@ -3263,47 +3301,19 @@
           "type": "string"
         },
         {
-          "name": "required",
-          "required": false,
-          "description": "Determines if the element is [required](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required).",
-          "default": false,
-          "type": "boolean"
-        },
-        {
-          "name": "label",
-          "required": true,
-          "description": "The label of the field.",
-          "type": "string"
-        },
-        {
-          "name": "errorMessage",
-          "required": false,
-          "description": "Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.",
-          "type": "string"
-        },
-        {
-          "name": "helperText",
-          "required": false,
-          "description": "The helperText of the field.",
-          "type": "string"
-        },
-        {
-          "name": "labelTrailing",
-          "required": false,
-          "description": "The trailing element of the label.",
-          "type": "React.ReactNode"
-        },
-        {
-          "name": "controlId",
-          "required": true,
-          "description": "The id of the control.",
-          "type": "string"
-        },
-        {
           "name": "name",
           "required": true,
           "description": "The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.",
           "type": "string"
+        },
+        {
+          "name": "max",
+          "required": false,
+          "description": "Defines the [maximum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/max) value that is\naccepted.",
+          "default": 99,
+          "type": "number",
+          "minimum": 1,
+          "maximum": 99
         },
         {
           "name": "id",
@@ -3312,10 +3322,18 @@
           "type": "string"
         },
         {
+          "name": "min",
+          "required": false,
+          "description": "Defines the [minimum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/min) value that is\naccepted.",
+          "default": 0,
+          "type": "number",
+          "minimum": 0
+        },
+        {
           "name": "value",
           "required": false,
           "description": "The value of the control.",
-          "type": "number"
+          "type": "string,number"
         },
         {
           "name": "disabled",
@@ -3366,6 +3384,43 @@
             "center",
             "left"
           ]
+        },
+        {
+          "name": "required",
+          "required": false,
+          "description": "Determines if the element is [required](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required).",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "label",
+          "required": true,
+          "description": "The label of the field.",
+          "type": "string"
+        },
+        {
+          "name": "errorMessage",
+          "required": false,
+          "description": "Marks the element as invalid and displays error message.\n\nWhen an element is invalid it must display an error message explaining why it is invalid.",
+          "type": "string"
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "description": "The helperText of the field.",
+          "type": "string"
+        },
+        {
+          "name": "labelTrailing",
+          "required": false,
+          "description": "The trailing element of the label.",
+          "type": "React.ReactNode"
+        },
+        {
+          "name": "controlId",
+          "required": true,
+          "description": "The id of the control.",
+          "type": "string"
         }
       ],
       "id": "number-field-props",
@@ -3441,7 +3496,7 @@
           "name": "value",
           "required": false,
           "description": "The value of the control.",
-          "type": "number"
+          "type": "string,number"
         },
         {
           "name": "onChange",
@@ -3476,6 +3531,7 @@
           "name": "min",
           "required": false,
           "description": "Defines the [minimum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/min) value that is accepted.",
+          "default": 0,
           "type": "number",
           "minimum": 0
         }
@@ -3750,7 +3806,7 @@
       "components": []
     },
     {
-      "name": "Pick<MenuProps<T>,\"activeIndex\"|\"isMulti\"|\"selectedValues\">",
+      "name": "Pick<MenuProps<T,\"button\">,\"activeIndex\"|\"isMulti\"|\"selectedValues\">",
       "properties": [
         {
           "name": "activeIndex",
@@ -3772,8 +3828,47 @@
           "type": "array"
         }
       ],
-      "id": "pick-menu-props-t-active-index-is-multi-selected-values",
+      "id": "pick-menu-props-t-button-active-index-is-multi-selected-values",
       "components": []
+    },
+    {
+      "name": "Pick<MenuProps<T>,\"isMulti\"|\"itemCount\"|\"renderListItem\"|\"selectAll\">",
+      "properties": [
+        {
+          "name": "isMulti",
+          "required": false,
+          "description": "Whether the menu allows multiple selections.",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "itemCount",
+          "required": false,
+          "description": "The number of items to display in the menu",
+          "default": 5,
+          "type": "number",
+          "minimum": 3,
+          "maximum": 10
+        },
+        {
+          "name": "renderListItem",
+          "required": false,
+          "description": "A function which given data about the list item returns additional list item props used to render the list items.",
+          "type": "(props: RenderListItemParams) => ComponentProps<typeof ListItem> ;"
+        },
+        {
+          "name": "selectAll",
+          "required": false,
+          "description": "The label for the \"Select All\" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to \"Select All\". If a string, it will be used as the label. If false the select\nall option will not be rendered.",
+          "default": false,
+          "type": "string,boolean"
+        }
+      ],
+      "id": "pick-menu-props-t-is-multi-item-count-render-list-item-select-all",
+      "components": [],
+      "references": [
+        "RenderListItemParams"
+      ]
     },
     {
       "name": "Pick<MenuProps<T>,\"itemCount\"|\"noResultsMessage\">",
@@ -3798,46 +3893,7 @@
       "components": []
     },
     {
-      "name": "Pick<MenuProps<T>,\"selectAll\"|\"isMulti\"|\"itemCount\"|\"renderListItem\">",
-      "properties": [
-        {
-          "name": "selectAll",
-          "required": false,
-          "description": "The label for the \"Select All\" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to \"Select All\". If a string, it will be used as the label. If false the select\nall option will not be rendered.",
-          "default": false,
-          "type": "string,boolean"
-        },
-        {
-          "name": "isMulti",
-          "required": false,
-          "description": "Whether the menu allows multiple selections.",
-          "default": false,
-          "type": "boolean"
-        },
-        {
-          "name": "itemCount",
-          "required": false,
-          "description": "The number of items to display in the menu",
-          "default": 5,
-          "type": "number",
-          "minimum": 3,
-          "maximum": 10
-        },
-        {
-          "name": "renderListItem",
-          "required": false,
-          "description": "A function which given data about the list item returns additional list item props used to render the list items.",
-          "type": "(props: RenderListItemParams) => ComponentProps<typeof ListItem> ;"
-        }
-      ],
-      "id": "pick-menu-props-t-select-all-is-multi-item-count-render-list-item",
-      "components": [],
-      "references": [
-        "RenderListItemParams"
-      ]
-    },
-    {
-      "name": "Pick<NumberInputProps,\"name\"|\"id\"|\"value\"|\"disabled\"|\"size\"|\"onChange\"|\"readOnly\"|\"align\">",
+      "name": "Pick<NumberInputProps,\"name\"|\"max\"|\"id\"|\"min\"|\"value\"|\"disabled\"|\"size\"|\"onChange\"|\"readOnly\"|\"align\">",
       "properties": [
         {
           "name": "name",
@@ -3846,16 +3902,33 @@
           "type": "string"
         },
         {
+          "name": "max",
+          "required": false,
+          "description": "Defines the [maximum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/max) value that is\naccepted.",
+          "default": 99,
+          "type": "number",
+          "minimum": 1,
+          "maximum": 99
+        },
+        {
           "name": "id",
           "required": false,
           "description": "The id of the element. If not provided one will be generated.",
           "type": "string"
         },
         {
+          "name": "min",
+          "required": false,
+          "description": "Defines the [minimum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/min) value that is\naccepted.",
+          "default": 0,
+          "type": "number",
+          "minimum": 0
+        },
+        {
           "name": "value",
           "required": false,
           "description": "The value of the control.",
-          "type": "number"
+          "type": "string,number"
         },
         {
           "name": "disabled",
@@ -3908,7 +3981,7 @@
           ]
         }
       ],
-      "id": "pick-number-input-props-name-id-value-disabled-size-on-change-read-only-align",
+      "id": "pick-number-input-props-name-max-id-min-value-disabled-size-on-change-read-only-align",
       "components": []
     },
     {
@@ -4357,9 +4430,7 @@
         }
       ],
       "id": "portal-props",
-      "components": [
-        "Portal"
-      ]
+      "components": []
     },
     {
       "name": "Preset",
@@ -4856,7 +4927,6 @@
       "id": "render-list-item-params",
       "description": "The props for the renderListItem function. Useful for customizing menu list items.",
       "components": [
-        "Menu",
         "Select"
       ]
     },
@@ -5255,8 +5325,7 @@
       ],
       "id": "select-option",
       "components": [
-        "Select",
-        "SelectField"
+        "Select"
       ]
     },
     {
@@ -5324,13 +5393,6 @@
           "type": "string"
         },
         {
-          "name": "selectAll",
-          "required": false,
-          "description": "The label for the \"Select All\" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to \"Select All\". If a string, it will be used as the label. If false the select\nall option will not be rendered.",
-          "default": false,
-          "type": "string,boolean"
-        },
-        {
           "name": "isMulti",
           "required": false,
           "description": "Whether the menu allows multiple selections.",
@@ -5351,6 +5413,13 @@
           "required": false,
           "description": "A function which given data about the list item returns additional list item props used to render the list items.",
           "type": "(props: RenderListItemParams) => ComponentProps<typeof ListItem> ;"
+        },
+        {
+          "name": "selectAll",
+          "required": false,
+          "description": "The label for the \"Select All\" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to \"Select All\". If a string, it will be used as the label. If false the select\nall option will not be rendered.",
+          "default": false,
+          "type": "string,boolean"
         },
         {
           "name": "options",
@@ -5659,7 +5728,7 @@
         },
         {
           "name": "value",
-          "required": true,
+          "required": false,
           "description": "The value of the menu item.",
           "type": "string"
         },
@@ -5667,6 +5736,12 @@
           "name": "id",
           "required": false,
           "description": "The unique id of the menu item.",
+          "type": "string"
+        },
+        {
+          "name": "href",
+          "required": false,
+          "description": "The possible link href. This is handled in the ListItem.",
           "type": "string"
         }
       ],
@@ -6570,9 +6645,7 @@
         }
       ],
       "id": "tooltip-props",
-      "components": [
-        "Tooltip"
-      ]
+      "components": []
     },
     {
       "name": "TopNavigationProps",
@@ -6673,9 +6746,7 @@
         }
       ],
       "id": "txt-props",
-      "components": [
-        "Txt"
-      ]
+      "components": []
     },
     {
       "name": "TypePropertyDemo",
