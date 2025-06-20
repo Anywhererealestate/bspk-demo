@@ -11,7 +11,7 @@ export type ComponentRenderProps = {
 };
 
 export function ComponentRender({ overrideState, context }: ComponentRenderProps): React.ReactNode {
-    const { component, state, preset } = useComponentContext();
+    const { component, propState, preset } = useComponentContext();
     const id = useId();
 
     const Component = components[component.name as keyof typeof components];
@@ -23,9 +23,9 @@ export function ComponentRender({ overrideState, context }: ComponentRenderProps
 
     const renderProps = {
         ...component.functionProps,
-        ...state,
+        ...propState,
         ...overrideState,
-        ...getPropsFromState(component.props, state),
+        ...getPropsFromState(component.props, propState),
     };
 
     return component.render ? (
@@ -47,14 +47,16 @@ export function ComponentRender({ overrideState, context }: ComponentRenderProps
  *
  * This Just-in-time converts strings and other types to their correct types (like ReactNodes).
  */
-function getPropsFromState(props: TypePropertyDemo[], state: Record<string, any>): Record<string, any> {
+function getPropsFromState(props: TypePropertyDemo[], propState: Record<string, any>): Record<string, any> {
     const stateProps: Record<string, any> = {};
 
     const iconProp = props.find((prop) => prop.name === 'icon' && prop.type === 'BspkIcon');
 
     if (iconProp)
         stateProps.icon =
-            typeof state.icon === 'string' && state.icon in meta ? <SvgIcon name={state.icon as any} /> : undefined;
+            typeof propState.icon === 'string' && propState.icon in meta ? (
+                <SvgIcon name={propState.icon as any} />
+            ) : undefined;
 
     return stateProps;
 }

@@ -12,8 +12,8 @@ import {
 } from 'src/utils/globalState';
 import store from 'store';
 
-const setStoreState = (state: GlobalState) => {
-    store.set('bspkState', { ...state, version: VERSION });
+const setStoreState = (globalState: GlobalState) => {
+    store.set('bspkState', { ...globalState, version: VERSION });
 };
 
 const getStoreState = (): GlobalState => {
@@ -30,18 +30,18 @@ const getStoreState = (): GlobalState => {
 };
 
 export function GlobalStateProvider({ children }: PropsWithChildren) {
-    const [state, setState] = useState<GlobalState>(getStoreState());
+    const [globalState, setState] = useState<GlobalState>(getStoreState());
 
-    useEffect(() => setStoreState(state), [state]);
+    useEffect(() => setStoreState(globalState), [globalState]);
 
     const {
-        theme = state.theme,
-        brand = state.brand,
+        theme = globalState.theme,
+        brand = globalState.brand,
         showTouchTarget = false,
     } = useMemo(() => {
         const searchParams = Object.fromEntries(new URLSearchParams(globalThis.location.search).entries());
 
-        const nextState = { ...state };
+        const nextState = { ...globalState };
 
         if (searchParams.theme && COLOR_THEMES.includes(searchParams.theme as ColorTheme)) {
             nextState.theme = searchParams.theme as ColorTheme;
@@ -52,7 +52,7 @@ export function GlobalStateProvider({ children }: PropsWithChildren) {
         }
 
         return nextState;
-    }, [state]);
+    }, [globalState]);
 
     useEffect(() => {
         document.querySelectorAll('link[data-syntax-theme]').forEach((link) => link.setAttribute('disabled', 'true'));

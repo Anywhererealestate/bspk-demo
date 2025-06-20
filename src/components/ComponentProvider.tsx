@@ -1,26 +1,28 @@
 import { DemoPreset } from '@bspk/ui/demo/utils';
 import { type AxeResults } from 'axe-core';
 import { createContext, PropsWithChildren, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { CUSTOM_PRESET_VALUE } from 'src/components/ComponentPageExample';
+import { BUILD, VERSION } from 'src/meta';
 import { DemoComponent } from 'src/types';
-import { action } from 'src/utils/actions';
-import store from 'store';
+import { removeReactNodes } from 'src/utils/removeReactNodes';
+import { useStoreState } from 'src/utils/useStoreState';
 
 type ComponentContext<Props = Record<string, any>> = {
-    state: Record<string, any>;
-    setState: (state: Partial<Props>) => void;
-    resetState: () => void;
+    propState: Record<string, any>;
+    setPropState: (propState: Partial<Props>) => void;
+    resetAllState: () => void;
     changed: boolean;
     axeResults: Record<string, AxeResults>;
-    setAxeResults: (axeResult: AxeResults | undefined, html: string) => void;
-    setPreset: (index: string) => void;
+    setAxeResults: (param: { [html: string]: AxeResults | undefined }) => void;
+    setPreset: (presetValue?: string | null | undefined) => void;
     preset?: DemoPreset;
     component: DemoComponent;
 };
 
 const componentContext = createContext<ComponentContext>({
-    state: {},
-    setState: () => {},
-    resetState: () => {},
+    propState: {},
+    setPropState: () => {},
+    resetAllState: () => {},
     changed: false,
     axeResults: {},
     setAxeResults: () => {},
@@ -28,17 +30,15 @@ const componentContext = createContext<ComponentContext>({
     component: undefined as unknown as DemoComponent,
 });
 
-export type StateUpdate = Record<string, any>;
-
-export type StateUpdateDispatch = (state: StateUpdate) => StateUpdate;
+export type StateUpdate<S = Record<string, unknown>> = S | ((prev: S) => S);
 
 export const COMPONENT_STATE_EVENT = 'componentStateUpdateEvent' as const;
 
-function componentStateUpdateEvent(update: StateUpdate | StateUpdateDispatch | null) {
+function componentStateUpdateEvent<S = Record<string, unknown>>(update: StateUpdate<S> | null) {
     return new CustomEvent(COMPONENT_STATE_EVENT, { detail: update });
 }
 
-export function updateComponentContext<P extends Record<string, any>>(update: Partial<P> | ((state: P) => P)) {
+export function updateComponentContext<P extends Record<string, unknown>>(update: StateUpdate<P> | null) {
     document.dispatchEvent(componentStateUpdateEvent(update));
 }
 
@@ -63,37 +63,56 @@ function deepEqualObjects(obj1: Record<string, any>, obj2: Record<string, any>):
 
 export function ComponentProvider({ children, component }: PropsWithChildren<{ component: DemoComponent }>) {
     const { name, defaultState, presets, functionProps } = component;
+    const key = `bspk-${VERSION}.${BUILD}-${name}`;
 
-    const storeKey = useMemo(() => `bspk-${name}`, [name]);
-    const storeKeyAxeResults = useMemo(() => `bspk-${name}-axe-results`, [name]);
+    const [propState, setPropStateBase, resetPropState, hasPropStore] = useStoreState<Record<string, any>>(
+        `${key}-prop-state`,
+        defaultState,
+        removeReactNodes,
+    );
+
+    const [presetValue, setPreset, resetPreset] = useStoreState<string | undefined>(
+        `${key}-preset`,
+        CUSTOM_PRESET_VALUE,
+    );
+    const preset = useMemo(
+        () => presets?.find((p) => p.value === (presetValue || CUSTOM_PRESET_VALUE)),
+        [presets, presetValue],
+    );
+
+    // on load we set the prop state to the saved preset state, this ensures we load the react nodes
+    useEffect(() => {
+        if (preset?.propState) setPropStateBase(preset?.propState);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const [axeResults, setAxeResults, resetAxeResults] = useStoreState<Record<string, any>>(`${key}-axe-results`, {});
+
+    const [changed, setChanged] = useState(!deepEqualObjects(propState, defaultState));
 
     useEffect(() => {
-        const storeValue = store.get(storeKey);
-        if (storeValue) console.warn('Component state loaded from store. Reset state to clear.', storeValue);
-    }, [storeKey]);
+        if (hasPropStore())
+            console.warn('Component property state loaded from store. Reset all state to clear.', propState);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    const [state, setAllState] = useState<Record<string, any>>(store.get(storeKey) || defaultState);
-    const [axeResults, setAllAxeResults] = useState<Record<string, any>>(store.get(storeKeyAxeResults) || {});
-    const [presetValue, setPreset] = useState<string | undefined>('custom');
-    const [changed, setChanged] = useState(!deepEqualObjects(state, defaultState));
-
-    const preset = useMemo(() => presets?.find((p) => p.value === presetValue), [presets, presetValue]);
-
-    const resetState = useCallback(() => {
+    const resetAllState = useCallback(() => {
         setChanged(false);
-        setAllState(defaultState);
-        store.set(storeKey, defaultState);
-        store.set(storeKeyAxeResults, {});
-    }, [defaultState, storeKey, storeKeyAxeResults]);
+        resetPropState();
+        resetPreset();
+        resetAxeResults();
+    }, [resetPropState, resetPreset, resetAxeResults]);
 
-    const setState = useCallback(
-        (update: StateUpdate | StateUpdateDispatch | null, presetUpdate?: boolean) => {
+    const setPropState = useCallback(
+        (update: StateUpdate | null, presetUpdate?: boolean) => {
             if (update === null) {
-                resetState();
+                resetPropState();
                 return;
             }
 
-            setAllState(typeof update === 'function' ? update : (prev) => ({ ...prev, ...update }));
+            const nextState = typeof update === 'function' ? update(propState) : update;
+
+            setPropStateBase(nextState);
             setChanged(true);
 
             // this is a preset update so we don't want to set the preset
@@ -103,68 +122,45 @@ export function ComponentProvider({ children, component }: PropsWithChildren<{ c
                 // if the update is a function, we don't check for preset state overlap
                 typeof update === 'function' ||
                 // if there is no preset, we don't check for preset state overlap
-                (preset?.state &&
+                (preset?.propState &&
                     // if the preset state is empty, we don't check for preset state overlap
-                    Object.keys(preset.state).length > 0 &&
+                    Object.keys(preset.propState).length > 0 &&
                     // if the update overlaps with the preset state, we reset the preset to custom
                     update &&
                     // check if any property in the preset state is updated
-                    Object.entries(preset.state).some(
+                    Object.entries(preset.propState).some(
                         ([propName, value]) => update[propName] !== undefined && update[propName] !== value,
                     ));
 
             if (presetStateValueUpdated)
                 // hear we reset the preset to custom if the update overlaps with the preset state
-                setPreset('custom');
+                setPreset(CUSTOM_PRESET_VALUE);
         },
-        [preset?.state, resetState],
+        [propState, setPropStateBase, preset?.propState, setPreset, resetPropState],
     );
-
-    const setAxeResults = (axeResult: AxeResults | undefined, code: string) => {
-        setAllAxeResults((prev) => ({
-            ...prev,
-            [code]: axeResult,
-        }));
-    };
-
-    useEffect(() => {
-        store.set(storeKey, state);
-    }, [state, storeKey]);
-
-    useEffect(() => {
-        store.set(storeKeyAxeResults, axeResults);
-    }, [axeResults, storeKeyAxeResults]);
 
     useEffect(() => {
         const listener = (event: any) => {
-            // console.log('Component state update event received:', event.detail);
-            setState(event.detail as StateUpdate | StateUpdateDispatch);
+            setPropState(event.detail as StateUpdate);
         };
         document.addEventListener(COMPONENT_STATE_EVENT, listener);
         return () => document.removeEventListener(COMPONENT_STATE_EVENT, listener);
-    }, [setState, state, preset]);
+    }, [setPropState, propState, preset]);
 
     return (
         <componentContext.Provider
             value={{
                 component,
-                state,
-                setState,
-                resetState,
+                propState,
+                setPropState,
+                resetAllState,
                 changed,
                 axeResults,
                 setAxeResults,
-                setPreset: (nextPresetId) => {
-                    const nextPreset = presets?.find((p) => p.value === nextPresetId);
-                    if (!nextPreset) return;
-                    setPreset(nextPresetId);
-
-                    if (!nextPreset.state) return;
-
-                    action(`Preset ${nextPreset.label} state applied`, 'success');
-
-                    // we include functionProps
-                    setState({ ...functionProps, ...nextPreset.state }, true);
+                setPreset: (nextPresetValue) => {
+                    const nextPreset = presets?.find((p) => p.value === nextPresetValue);
+                    setPreset(nextPreset?.value || CUSTOM_PRESET_VALUE);
+                    setPropState({ ...functionProps, ...(nextPreset?.propState || defaultState) }, true);
                 },
                 preset,
             }}

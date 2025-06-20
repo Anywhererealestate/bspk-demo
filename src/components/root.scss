@@ -63,7 +63,7 @@ p {
 }
 
 :root {
-    --left-nav-width: 200px;
+    --left-nav-width: 260px;
     --nav-contents-width: 200px;
 }
 
@@ -724,6 +724,15 @@ code {
     [data-dialog-root] & {
         width: 100%;
         position: relative;
+    }
+}
+
+[data-dialog-box] {
+    [data-navigation] {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: var(--spacing-sizing-04) 0;
     }
 }
 

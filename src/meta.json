@@ -1,5 +1,5 @@
 {
-  "LAST_UPDATED": "2025-06-18T18:25:24.070Z",
+  "LAST_UPDATED": "2025-06-20T19:33:40.612Z",
   "VERSION": "1.1.32",
   "UI_HASH": "local",
   "BUILD": "0",
@@ -65,9 +65,7 @@
       "file": "/Button.tsx",
       "name": "Button",
       "slug": "button",
-      "dependencies": [
-        "Tooltip"
-      ],
+      "dependencies": [],
       "usage": {
         "code": "import { Button } from '@bspk/ui/Button';\nimport { SvgPerson } from '@bspk/icons/Person';\n\nfunction Example() {\nreturn (\n<Button\nlabel=\"Click Me\"\nsize=\"medium\"\nvariant=\"primary\"\nonClick={() => console.log('Button clicked')}\nicon={<SvgPerson />}\n/>\n);\n}"
       },
@@ -278,18 +276,15 @@
       "hasTouchTarget": false
     },
     {
-      "description": "A container housing a simple list of options presented to the user to select one option at a time.",
+      "description": "A container housing a simple list of options presented to the customer to select one option at a time.",
       "file": "/Menu.tsx",
       "name": "Menu",
       "slug": "menu",
-      "dependencies": [
-        "Checkbox",
-        "ListItem"
-      ],
+      "dependencies": [],
       "usage": {
-        "code": "import React from 'react';\n\nimport { Menu } from '@bspk/ui/Menu';\n\nexport function Example() {\nconst [selected, setSelected] = React.useState<string[]>([]);\n\nreturn (\n<Menu\nitems={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]}\nonChange={(selectedValues: string[]) => setSelected(selectedValues)}\nselectedValues={selected}\n/>\n);\n}"
+        "code": "import React from 'react';\n\nimport { Menu } from '@bspk/ui/Menu';\n\nexport function Example() {\nreturn (\n<Menu>\n<ListItem label=\"List Item\" />\n</Menu>\n);\n}"
       },
-      "css": "[data-bspk='menu'] {\n    /*! --item-count: is set via inline style */\n\n    width: 332px;\n    border: 1px solid var(--stroke-neutral-low);\n    background-color: var(--surface-neutral-t1-base);\n    box-shadow: var(--drop-shadow-float);\n    border-radius: var(--radius-large);\n    display: flex;\n    flex-direction: column;\n\n    --item-size: var(--spacing-sizing-12);\n\n    &[data-floating] {\n        z-index: var(--z-index-dropdown);\n    }\n\n    &[data-item-count] {\n        height: calc(var(--item-count) * var(--item-size));\n        overflow-y: scroll;\n    }\n\n    &[data-no-items] {\n        padding: var(--spacing-sizing-08) var(--spacing-sizing-04);\n        align-items: center;\n        justify-content: center;\n        gap: var(--spacing-sizing-03);\n    }\n\n    [data-bspk='list-item'] {\n        min-height: var(--item-size);\n        height: var(--item-size);\n\n        &[data-selected] {\n            background-color: var(--surface-brand-primary-highlight);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+      "css": "[data-bspk='menu'] {\n    /*! --item-count: is set via inline style */\n\n    width: 332px;\n    border: 1px solid var(--stroke-neutral-low);\n    background-color: var(--surface-neutral-t1-base);\n    box-shadow: var(--drop-shadow-float);\n    border-radius: var(--radius-large);\n    display: flex;\n    flex-direction: column;\n\n    --item-size: var(--spacing-sizing-12);\n\n    &[data-floating] {\n        z-index: var(--z-index-dropdown);\n    }\n\n    [data-bspk='list-item'] {\n        min-height: var(--item-size);\n        height: var(--item-size);\n\n        &[data-selected] {\n            background-color: var(--surface-brand-primary-highlight);\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
       "hasTouchTarget": false
     },
     {
@@ -490,11 +485,7 @@
       "file": "/Select.tsx",
       "name": "Select",
       "slug": "select",
-      "dependencies": [
-        "ListItem",
-        "Menu",
-        "Portal"
-      ],
+      "dependencies": [],
       "usage": {
         "code": "import { Select } from '@bspk/ui/Select';\n\nexport function Example() {\nconst [selected, setSelected] = React.useState<string[]>([]);\nreturn (\n<Select\naria-label=\"Select an option\"\nitemCount={5}\nname=\"example-select\"\nonChange={setSelected}\noptions={[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]}\nplaceholder=\"Select an option\"\nsize=\"medium\"\nvalue={selected}\n/>\n);\n}"
       },
@@ -738,9 +729,7 @@
       "file": "/Tooltip.tsx",
       "name": "Tooltip",
       "slug": "tooltip",
-      "dependencies": [
-        "Portal"
-      ],
+      "dependencies": [],
       "usage": {
         "code": "import { Tooltip } from '@bspk/ui/Tooltip';\nimport { Button } from '@bspk/ui/Button';\n\nexport function Example() {\nreturn (\n<Tooltip label=\"I explain what this button does\" placement=\"top\">\n<Button>Click me</Button>\n</Tooltip>\n);\n}"
       },
@@ -1282,12 +1271,15 @@
           "required": false,
           "description": "The function to call when the button is clicked.",
           "type": "function"
+        },
+        {
+          "name": "innerRef",
+          "required": false,
+          "description": "A ref to the button element."
         }
       ],
       "id": "button-props",
-      "components": [
-        "Button"
-      ]
+      "components": []
     },
     {
       "name": "CallToActionButton",
@@ -1578,7 +1570,7 @@
         {
           "name": "indeterminate",
           "required": false,
-          "description": "If the checkbox is partially checked or [indeterminate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes).",
+          "description": "If the checkbox is partially checked or\n[indeterminate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes).",
           "default": false,
           "type": "boolean"
         },
@@ -1597,9 +1589,7 @@
         }
       ],
       "id": "checkbox-props",
-      "components": [
-        "Checkbox"
-      ]
+      "components": []
     },
     {
       "name": "ChipProps",
@@ -2131,8 +2121,14 @@
         {
           "name": "presets",
           "required": false,
-          "description": "This is used to set the initial state of the component.\n\nSpecifically to highlight certain features of the component.",
+          "description": "This is used to set the initial propState of the component.\n\nSpecifically to highlight certain features of the component.",
           "type": "array"
+        },
+        {
+          "name": "defaultState",
+          "required": false,
+          "description": "This is used to set the initial propState of the component before any preset propState is applied.\n\nSpecifically to highlight certain features of the component.",
+          "type": "Partial<Props>_1"
         },
         {
           "name": "render",
@@ -2154,15 +2150,15 @@
           "type": "string"
         },
         {
-          "name": "state",
+          "name": "propState",
           "required": false,
           "description": "The props of the component. This is used to set props of the component. These values can't be changed in the UI.",
-          "type": "Partial<P>_1"
+          "type": "Partial<P>"
         },
         {
           "name": "isDefault",
           "required": false,
-          "description": "Determines if the preset is the default preset. This is used to set the initial state of the component.",
+          "description": "Determines if the preset is the default preset. This is used to set the initial propState of the component.",
           "type": "boolean"
         },
         {
@@ -2184,7 +2180,7 @@
           "type": "string"
         },
         {
-          "name": "state",
+          "name": "propState",
           "required": false,
           "description": "The props of the component. This is used to set props of the component. These values can't be changed in the UI.",
           "type": "Partial<Record<string,unknown>>"
@@ -2192,7 +2188,7 @@
         {
           "name": "isDefault",
           "required": false,
-          "description": "Determines if the preset is the default preset. This is used to set the initial state of the component.",
+          "description": "Determines if the preset is the default preset. This is used to set the initial propState of the component.",
           "type": "boolean"
         },
         {
@@ -2886,13 +2882,7 @@
           "name": "leading",
           "required": false,
           "description": "The leading element to display in the ListItem.\n\nLeading elements may only be one of the following [Icon](/icons), Img, Avatar.",
-          "type": "React.ReactNode",
-          "exampleType": "select",
-          "options": [
-            "Icon",
-            "Img",
-            "Avatar"
-          ]
+          "type": "React.ReactNode"
         },
         {
           "name": "label",
@@ -2909,24 +2899,18 @@
         {
           "name": "trailing",
           "required": false,
-          "description": "The trailing element to display in the ListItem.\n\nTrailing elements may only be one of the following [Icon](/icons), Checkbox, ListItemButton, Radio, Switch, Tag, Txt.",
-          "type": "React.ReactNode",
-          "exampleType": "select",
-          "options": [
-            "Checkbox",
-            "Icon",
-            "ListItemButton",
-            "Radio",
-            "Switch",
-            "Tag",
-            "Txt"
-          ]
+          "description": "The trailing element to display in the ListItem.\n\nTrailing elements may only be one of the following [Icon](/icons), Checkbox, ListItemButton, Radio, Switch, Tag,\nTxt.",
+          "type": "React.ReactNode"
+        },
+        {
+          "name": "href",
+          "required": false,
+          "description": "The [href](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#href) of the list item.\n\nIf the href is provided, the ListItem will render as an anchor element (`<a>`).",
+          "type": "string"
         }
       ],
       "id": "list-item-props",
-      "components": [
-        "ListItem"
-      ]
+      "components": []
     },
     {
       "name": "MenuButtonProps",
@@ -2996,88 +2980,20 @@
           "type": "string"
         },
         {
-          "name": "disabled",
-          "required": false,
-          "description": "Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).",
-          "default": false,
-          "type": "boolean"
-        },
-        {
-          "name": "itemCount",
-          "required": false,
-          "description": "The number of items to display in the menu",
-          "default": 5,
-          "type": "number",
-          "minimum": 3,
-          "maximum": 10
-        },
-        {
-          "name": "items",
-          "required": false,
-          "description": "Content to display in the menu.",
-          "type": "Array<MenuItem>",
-          "example": "[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]"
-        },
-        {
           "name": "innerRef",
           "required": false,
           "description": "A ref to the inner div element.",
           "type": "object"
         },
         {
-          "name": "noResultsMessage",
-          "required": false,
-          "description": "Message to display when no results are found",
+          "name": "children",
+          "required": true,
+          "description": "The items to display in the menu. These should be ListItem and Divider components.",
           "type": "React.ReactNode"
-        },
-        {
-          "name": "activeIndex",
-          "required": false,
-          "description": "The index of the currently highlighted item.",
-          "type": "number"
-        },
-        {
-          "name": "selectedValues",
-          "required": false,
-          "description": "The values of the selected items",
-          "type": "array"
-        },
-        {
-          "name": "renderListItem",
-          "required": false,
-          "description": "A function which given data about the list item returns additional list item props used to render the list items.",
-          "type": "(props: RenderListItemParams) => ComponentProps<typeof ListItem> ;"
-        },
-        {
-          "name": "isMulti",
-          "required": false,
-          "description": "Whether the menu allows multiple selections.",
-          "default": false,
-          "type": "boolean"
-        },
-        {
-          "name": "selectAll",
-          "required": false,
-          "description": "The label for the \"Select All\" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to \"Select All\". If a string, it will be used as the label. If false the select all option will not be rendered.",
-          "default": false,
-          "type": "string,boolean"
-        },
-        {
-          "name": "onChange",
-          "required": false,
-          "description": "The function to call when the selected values change.",
-          "type": "function",
-          "example": "(selectedValues, event) => setState({ selectedValues })"
         }
       ],
       "id": "menu-props",
-      "components": [
-        "Menu"
-      ],
-      "references": [
-        "MenuItem",
-        "RenderListItemParams"
-      ]
+      "components": []
     },
     {
       "name": "ModalCallToAction",
@@ -4360,9 +4276,7 @@
         }
       ],
       "id": "portal-props",
-      "components": [
-        "Portal"
-      ]
+      "components": []
     },
     {
       "name": "Preset",
@@ -4374,15 +4288,15 @@
           "type": "string"
         },
         {
-          "name": "state",
+          "name": "propState",
           "required": false,
           "description": "The props of the component. This is used to set props of the component. These values can't be changed in the UI.",
-          "type": "Partial<P>"
+          "type": "Partial<Props>_2"
         },
         {
           "name": "isDefault",
           "required": false,
-          "description": "Determines if the preset is the default preset. This is used to set the initial state of the component.",
+          "description": "Determines if the preset is the default preset. This is used to set the initial propState of the component.",
           "type": "boolean"
         }
       ],
@@ -5258,8 +5172,7 @@
       ],
       "id": "select-option",
       "components": [
-        "Select",
-        "SelectField"
+        "Select"
       ]
     },
     {
@@ -5327,33 +5240,33 @@
           "type": "string"
         },
         {
-          "name": "selectAll",
+          "name": "itemDisplayCount",
           "required": false,
-          "description": "The label for the \"Select All\" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to \"Select All\". If a string, it will be used as the label. If false the select\nall option will not be rendered.",
-          "default": false,
-          "type": "string,boolean"
-        },
-        {
-          "name": "isMulti",
-          "required": false,
-          "description": "Whether the menu allows multiple selections.",
-          "default": false,
-          "type": "boolean"
-        },
-        {
-          "name": "itemCount",
-          "required": false,
-          "description": "The number of items to display in the menu",
+          "description": "The number of items to display in the listbox",
           "default": 5,
           "type": "number",
           "minimum": 3,
           "maximum": 10
         },
         {
-          "name": "renderListItem",
+          "name": "listItemProps",
           "required": false,
-          "description": "A function which given data about the list item returns additional list item props used to render the list items.",
-          "type": "(props: RenderListItemParams) => ComponentProps<typeof ListItem> ;"
+          "description": "A function which returns additional ListItem props to apply to each ListItem.",
+          "type": "object"
+        },
+        {
+          "name": "isMulti",
+          "required": false,
+          "description": "Whether the listbox allows multiple selections.",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "selectAll",
+          "required": false,
+          "description": "The label for the \"Select All\" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to \"Select All\". If a string, it will be used as the label. If false the select\nall option will not be rendered.",
+          "default": false,
+          "type": "string,boolean"
         },
         {
           "name": "options",
@@ -5407,7 +5320,6 @@
         "Select"
       ],
       "references": [
-        "RenderListItemParams",
         "SelectOption"
       ]
     },
@@ -6573,9 +6485,7 @@
         }
       ],
       "id": "tooltip-props",
-      "components": [
-        "Tooltip"
-      ]
+      "components": []
     },
     {
       "name": "TopNavigationProps",
@@ -7063,6 +6973,212 @@
         }
       ],
       "id": "pick-number-input-props-name-max-id-min-value-disabled-size-on-change-read-only-align",
+      "components": []
+    },
+    {
+      "name": "ListboxItemProps",
+      "properties": [
+        {
+          "name": "disabled",
+          "required": false,
+          "description": "Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "active",
+          "required": false,
+          "description": "Marks the element as active and displays active state theme.",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "description": "Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "readOnly",
+          "required": false,
+          "description": "Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "as",
+          "required": false,
+          "description": "The element type to render as.",
+          "default": "div",
+          "type": "ElementType"
+        },
+        {
+          "name": "leading",
+          "required": false,
+          "description": "The leading element to display in the ListItem.\n\nLeading elements may only be one of the following [Icon](/icons), Img, Avatar.",
+          "type": "React.ReactNode"
+        },
+        {
+          "name": "label",
+          "required": true,
+          "description": "The label to display in the ListItem.",
+          "type": "string"
+        },
+        {
+          "name": "subText",
+          "required": false,
+          "description": "The subtext to display in the ListItem.",
+          "type": "string"
+        },
+        {
+          "name": "trailing",
+          "required": false,
+          "description": "The trailing element to display in the ListItem.\n\nTrailing elements may only be one of the following [Icon](/icons), Checkbox, ListItemButton, Radio, Switch, Tag,\nTxt.",
+          "type": "React.ReactNode"
+        },
+        {
+          "name": "href",
+          "required": false,
+          "description": "The [href](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#href) of the list item.\n\nIf the href is provided, the ListItem will render as an anchor element (`<a>`).",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "required": true,
+          "description": "The content to display in the listbox item.",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "required": true,
+          "description": "The value of the listbox item.",
+          "type": "string"
+        }
+      ],
+      "id": "listbox-item-props",
+      "description": "The props for the listbox items.",
+      "components": []
+    },
+    {
+      "name": "ListboxProps",
+      "properties": [
+        {
+          "name": "id",
+          "required": false,
+          "description": "The id of the element. If not provided one will be generated.",
+          "type": "string"
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "description": "Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "itemDisplayCount",
+          "required": false,
+          "description": "The number of items to display in the listbox",
+          "default": 5,
+          "type": "number",
+          "minimum": 3,
+          "maximum": 10
+        },
+        {
+          "name": "items",
+          "required": false,
+          "description": "Content to display in the listbox.",
+          "type": "Array<MenuItem>"
+        },
+        {
+          "name": "innerRef",
+          "required": false,
+          "description": "A ref to the inner div element.",
+          "type": "object"
+        },
+        {
+          "name": "activeIndex",
+          "required": false,
+          "description": "The index of the currently highlighted item.",
+          "type": "number"
+        },
+        {
+          "name": "selectedValues",
+          "required": false,
+          "description": "The values of the selected items",
+          "type": "array"
+        },
+        {
+          "name": "listItemProps",
+          "required": false,
+          "description": "A function which returns additional ListItem props to apply to each ListItem.",
+          "type": "object"
+        },
+        {
+          "name": "isMulti",
+          "required": false,
+          "description": "Whether the listbox allows multiple selections.",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "selectAll",
+          "required": false,
+          "description": "The label for the \"Select All\" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to \"Select All\". If a string, it will be used as the label. If false the select\nall option will not be rendered.",
+          "default": false,
+          "type": "string,boolean"
+        },
+        {
+          "name": "onChange",
+          "required": false,
+          "description": "The function to call when the selected values change.",
+          "type": "function"
+        },
+        {
+          "name": "children",
+          "required": false,
+          "description": "The children of the listbox added after the items.\n\nUsually only used for showing no items found.",
+          "type": "React.ReactNode"
+        }
+      ],
+      "id": "listbox-props",
+      "components": []
+    },
+    {
+      "name": "Pick<ListboxProps<T>,\"itemDisplayCount\"|\"listItemProps\"|\"isMulti\"|\"selectAll\">",
+      "properties": [
+        {
+          "name": "itemDisplayCount",
+          "required": false,
+          "description": "The number of items to display in the listbox",
+          "default": 5,
+          "type": "number",
+          "minimum": 3,
+          "maximum": 10
+        },
+        {
+          "name": "listItemProps",
+          "required": false,
+          "description": "A function which returns additional ListItem props to apply to each ListItem.",
+          "type": "object"
+        },
+        {
+          "name": "isMulti",
+          "required": false,
+          "description": "Whether the listbox allows multiple selections.",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "selectAll",
+          "required": false,
+          "description": "The label for the \"Select All\" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to \"Select All\". If a string, it will be used as the label. If false the select\nall option will not be rendered.",
+          "default": false,
+          "type": "string,boolean"
+        }
+      ],
+      "id": "pick-listbox-props-t-item-display-count-list-item-props-is-multi-select-all",
       "components": []
     }
   ]
