@@ -1,58 +1,45 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Brand, BRANDS } from '@bspk/ui';
-import { PropsWithChildren, useState, useMemo, useEffect } from 'react';
+import { PropsWithChildren, useMemo, useEffect } from 'react';
 import { StylesProvider } from 'src/components/StylesProvider';
-import { VERSION } from 'src/meta';
-import {
-    GlobalState,
-    GlobalStateContext,
-    ColorTheme,
-    COLOR_THEMES,
-    globalStateContext,
-    globalStateDefault,
-} from 'src/utils/globalState';
-import store from 'store';
-
-const setStoreState = (globalState: GlobalState) => {
-    store.set('bspkState', { ...globalState, version: VERSION });
-};
-
-const getStoreState = (): GlobalState => {
-    const storedState = store.get('bspkState') as (GlobalStateContext & { version: string }) | undefined;
-    if (!storedState) return globalStateDefault;
-
-    if (storedState.version !== VERSION) {
-        // If the stored state version does not match the current version, reset to default
-        setStoreState(globalStateDefault);
-        return globalStateDefault;
-    }
-
-    return storedState;
-};
+import { BUILD, VERSION } from 'src/meta';
+import { GlobalState, ColorTheme, COLOR_THEMES, globalStateContext, globalStateDefault } from 'src/utils/globalState';
+import { useStoreState } from 'src/utils/useStoreState';
 
 export function GlobalStateProvider({ children }: PropsWithChildren) {
-    const [globalState, setState] = useState<GlobalState>(getStoreState());
+    const [globalState, setState] = useStoreState<GlobalState>(`bspk-global-${VERSION}.${BUILD}`, globalStateDefault);
 
-    useEffect(() => setStoreState(globalState), [globalState]);
-
-    const {
-        theme = globalState.theme,
-        brand = globalState.brand,
-        showTouchTarget = false,
-    } = useMemo(() => {
+    useEffect(() => {
         const searchParams = Object.fromEntries(new URLSearchParams(globalThis.location.search).entries());
 
-        const nextState = { ...globalState };
+        let overrideTheme: ColorTheme | undefined;
+        let overrideBrand: Brand | undefined;
 
-        if (searchParams.theme && COLOR_THEMES.includes(searchParams.theme as ColorTheme)) {
-            nextState.theme = searchParams.theme as ColorTheme;
+        if (
+            searchParams.theme &&
+            COLOR_THEMES.includes(searchParams.theme as ColorTheme) &&
+            searchParams.theme !== globalState.theme
+        ) {
+            overrideTheme = searchParams.theme as ColorTheme;
         }
 
-        if (searchParams.brand && BRANDS.find((b) => b.slug === searchParams.brand)) {
-            nextState.brand = searchParams.brand as Brand;
+        if (
+            searchParams.brand &&
+            BRANDS.find((b) => b.slug === searchParams.brand) &&
+            searchParams.brand !== globalState.brand
+        ) {
+            overrideBrand = searchParams.brand as Brand;
         }
 
-        return nextState;
-    }, [globalState]);
+        if (overrideTheme || overrideBrand)
+            setState((prev) => ({
+                ...prev,
+                theme: overrideTheme || prev.theme,
+                brand: overrideBrand || prev.brand,
+            }));
+    }, []);
+
+    const { brand, theme, showTouchTarget } = globalState;
 
     useEffect(() => {
         document.querySelectorAll('link[data-syntax-theme]').forEach((link) => link.setAttribute('disabled', 'true'));
