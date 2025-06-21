@@ -66,6 +66,7 @@ export type MetaComponentName =
     | 'AvatarGroup'
     | 'Badge'
     | 'BannerAlert'
+    | 'Breadcrumb'
     | 'Button'
     | 'Card'
     | 'Checkbox'
@@ -129,6 +130,7 @@ export const components: Partial<Record<MetaComponentName, React.LazyExoticCompo
     AvatarGroup: React.lazy(() => import('@bspk/ui/AvatarGroup').then((module) => ({ default: module.AvatarGroup }))),
     Badge: React.lazy(() => import('@bspk/ui/Badge').then((module) => ({ default: module.Badge }))),
     BannerAlert: React.lazy(() => import('@bspk/ui/BannerAlert').then((module) => ({ default: module.BannerAlert }))),
+    Breadcrumb: React.lazy(() => import('@bspk/ui/Breadcrumb').then((module) => ({ default: module.Breadcrumb }))),
     Button: React.lazy(() => import('@bspk/ui/Button').then((module) => ({ default: module.Button }))),
     Card: React.lazy(() => import('@bspk/ui/Card').then((module) => ({ default: module.Card }))),
     Checkbox: React.lazy(() => import('@bspk/ui/Checkbox').then((module) => ({ default: module.Checkbox }))),

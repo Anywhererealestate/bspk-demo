@@ -1,5 +1,5 @@
 {
-  "LAST_UPDATED": "2025-06-18T18:25:24.070Z",
+  "LAST_UPDATED": "2025-06-21T00:03:23.320Z",
   "VERSION": "1.1.32",
   "UI_HASH": "local",
   "BUILD": "0",
@@ -58,6 +58,24 @@
         "description": "This example shows how to use the BannerAlert component with an error variant, a header, and a body message."
       },
       "css": "[data-bspk='banner-alert'] {\n    --color: var(--status-information);\n    --on-color: var(--status-on-information);\n\n    display: flex;\n    flex-direction: row;\n    border: 2px solid var(--color);\n    border-radius: var(--radius-medium);\n    box-sizing: border-box;\n    background-color: var(--surface-neutral-t1-base);\n    width: 100%;\n\n    &[data-variant='error'] {\n        --color: var(--status-error);\n        --on-color: var(--status-on-error);\n    }\n\n    &[data-variant='success'] {\n        --color: var(--status-success);\n        --on-color: var(--status-on-success);\n    }\n\n    &[data-variant='warning'] {\n        --color: var(--status-warning);\n        --on-color: var(--status-on-warning);\n    }\n\n    &[data-elevated] {\n        box-shadow: var(--drop-shadow-raise);\n    }\n\n    [data-icon-bar] {\n        flex: 1;\n        padding: var(--spacing-sizing-04) var(--spacing-sizing-03);\n        background: var(--color);\n        color: var(--on-color);\n\n        svg {\n            width: var(--spacing-sizing-06);\n            height: var(--spacing-sizing-06);\n        }\n    }\n\n    [data-content] {\n        flex: 100%;\n        display: flex;\n        flex-direction: column;\n        padding: var(--spacing-sizing-02) var(--spacing-sizing-02) var(--spacing-sizing-02) var(--spacing-sizing-04);\n\n        header {\n            display: flex;\n            flex-direction: row;\n            gap: var(--spacing-sizing-03);\n            height: var(--spacing-sizing-12);\n            align-items: center;\n\n            span {\n                flex: 1;\n                display: flex;\n                align-items: center;\n                color: var(--foreground-neutral-on-surface);\n                font: var(--heading-h6);\n\n                @media (any-pointer: coarse) {\n                    font: var(--heading-h6);\n                }\n            }\n\n            // close button\n            button {\n                background: none;\n                border: none;\n                cursor: pointer;\n                padding: 0;\n                margin: 0 0 0 auto;\n                color: var(--foreground-neutral-on-surface-variant-01);\n                height: var(--spacing-sizing-08);\n                width: var(--spacing-sizing-08);\n\n                @media (any-pointer: coarse) {\n                    height: var(--spacing-sizing-12);\n                    width: var(--spacing-sizing-12);\n                }\n\n                svg {\n                    width: var(--spacing-sizing-04);\n                    height: var(--spacing-sizing-04);\n                }\n            }\n        }\n\n        [data-body] {\n            display: flex;\n            flex-direction: column;\n            gap: var(--spacing-sizing-02);\n            padding: 0 var(--spacing-sizing-02) var(--spacing-sizing-02) 0;\n\n            span {\n                font: var(--body-base);\n            }\n\n            button {\n                margin-left: auto;\n                background: none;\n                border: none;\n                cursor: pointer;\n                padding: 0 var(--spacing-sizing-03);\n                height: var(--spacing-sizing-12);\n                font: var(--labels-small);\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+      "hasTouchTarget": false
+    },
+    {
+      "description": "Used to indicate the current page's location within a navigational hierarchy.",
+      "file": "/Breadcrumb.tsx",
+      "name": "Breadcrumb",
+      "slug": "breadcrumb",
+      "dependencies": [
+        "Button",
+        "Link",
+        "Menu",
+        "Portal",
+        "Txt"
+      ],
+      "usage": {
+        "code": "import { Breadcrumb } from '@bspk/ui/breadcrumb';\n\nfunction Example() {\nreturn (\n<Breadcrumb\nitems={[\n{ label: 'level 1', href: 'https://bspk.anywhere.re' },\n{ label: 'level 2', href: 'https://bspk.anywhere.re' },\n{ label: 'level 3', href: 'https://bspk.anywhere.re' },\n{ label: 'level 4', href: 'https://bspk.anywhere.re' },\n{ label: 'level 5', href: 'https://bspk.anywhere.re' },\n{ label: 'level 6', href: 'https://bspk.anywhere.re' },\n{ label: 'level 7', href: 'https://bspk.anywhere.re' },\n{ label: 'level 8', href: 'https://bspk.anywhere.re' },\n{ label: 'level 9', href: 'https://bspk.anywhere.re' },\n{ label: 'level 10', href: 'https://bspk.anywhere.re' },\n]}\n/>\n);\n}"
+      },
+      "css": "[data-bspk='breadcrumb'] {\n    width: 100%;\n\n    ol {\n        display: flex;\n        align-items: center;\n        flex-flow: row wrap;\n        list-style: none;\n        gap: var(--spacing-sizing-02);\n\n        li {\n            display: flex;\n            gap: var(--spacing-sizing-02);\n        }\n    }\n}\n",
       "hasTouchTarget": false
     },
     {
@@ -151,7 +169,7 @@
       "usage": {
         "code": "import { Dialog } from '@bspk/ui/Dialog';\nimport { Button } from '@bspk/ui/Button';\n\nfunction Example() {\nconst [open, setOpen] = React.useState(false);\n\nreturn (\n<>\n<Button label=\"Open Dialog\" onClick={() => setOpen(true)} />\n<Dialog open={open} onClose={() => setOpen(false)}>\n<h1>Dialog Title</h1>\n<p>This is the content of the dialog.</p>\n<button onClick={() => setOpen(false)}>Close</button>\n</Dialog>\n</>\n);\n}"
       },
-      "css": "[data-bspk='dialog'] {\n    position: fixed;\n    inset: 0;\n    z-index: var(--z-index-dialog);\n\n    [data-dialog-box] {\n        text-align: start;\n        position: relative;\n        border-radius: var(--radius-large);\n        box-shadow: var(--drop-shadow-float);\n        background: var(--surface-neutral-t1-base);\n        color: var(--foreground-neutral-on-surface);\n        max-height: calc(100vh - var(--spacing-sizing-24));\n        overflow: scroll;\n        z-index: 2;\n\n        > :first-of-type {\n            margin-top: 0;\n        }\n\n        > :last-child {\n            margin-bottom: 0;\n        }\n\n        width: calc(100% - var(--spacing-sizing-08));\n\n        // we make the width responsive to the viewport\n        @media (width >= 640px) {\n            width: 90%;\n        }\n\n        @media (width >= 768px) {\n            width: 80%;\n        }\n\n        @media (width >= 1024px) {\n            width: 60%;\n        }\n\n        @media (width >= 1280px) {\n            width: 50%;\n        }\n    }\n\n    [data-dialog-backdrop] {\n        z-index: 1;\n        position: fixed;\n        inset: 0;\n        background-color: var(--background-scrim);\n        opacity: 0;\n        transition: opacity 0.3s;\n    }\n\n    &[data-visibility='show'] {\n        [data-dialog-backdrop] {\n            opacity: 1;\n        }\n    }\n\n    &[data-placement='center'] {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n\n        [data-dialog-box] {\n            transition: opacity 1s;\n            opacity: 0;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                opacity: 1;\n            }\n        }\n    }\n\n    &[data-placement='bottom'] {\n        [data-dialog-box] {\n            position: absolute;\n            border-bottom-left-radius: 0;\n            border-bottom-right-radius: 0;\n            width: 600px;\n            left: 50%;\n            transform: translateX(-50%);\n            bottom: -100vh;\n            transition: bottom 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                bottom: 0;\n            }\n        }\n    }\n\n    &[data-placement='top'] {\n        [data-dialog-box] {\n            position: absolute;\n            border-top-left-radius: 0;\n            border-top-right-radius: 0;\n            width: 600px;\n            left: 50%;\n            transform: translateX(-50%);\n            top: -100vh;\n            transition: top 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                top: 0;\n            }\n        }\n    }\n\n    &[data-placement='left'] {\n        [data-dialog-box] {\n            position: absolute;\n            max-height: unset;\n            width: 280px;\n            height: 100vh;\n            border-bottom-left-radius: 0;\n            border-top-left-radius: 0;\n            left: -100vw;\n            transition: left 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                left: 0;\n            }\n        }\n    }\n\n    &[data-placement='right'] {\n        [data-dialog-box] {\n            position: absolute;\n            max-height: unset;\n            width: 280px;\n            height: 100vh;\n            border-bottom-right-radius: 0;\n            border-top-right-radius: 0;\n            right: -100vw;\n            transition: right 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                right: 0;\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+      "css": "[data-bspk='dialog'] {\n    position: fixed;\n    inset: 0;\n    z-index: var(--z-index-dialog);\n\n    [data-dialog-box] {\n        text-align: start;\n        position: relative;\n        border-radius: var(--radius-large);\n        box-shadow: var(--drop-shadow-float);\n        background: var(--surface-neutral-t1-base);\n        color: var(--foreground-neutral-on-surface);\n        max-height: calc(100vh - var(--spacing-sizing-24));\n        z-index: 2;\n\n        > :first-of-type {\n            margin-top: 0;\n        }\n\n        > :last-child {\n            margin-bottom: 0;\n        }\n\n        width: calc(100% - var(--spacing-sizing-08));\n\n        // we make the width responsive to the viewport\n        @media (width >= 640px) {\n            width: 90%;\n        }\n\n        @media (width >= 768px) {\n            width: 80%;\n        }\n\n        @media (width >= 1024px) {\n            width: 60%;\n        }\n\n        @media (width >= 1280px) {\n            width: 50%;\n        }\n    }\n\n    [data-dialog-backdrop] {\n        z-index: 1;\n        position: fixed;\n        inset: 0;\n        background-color: var(--background-scrim);\n        opacity: 0;\n        transition: opacity 0.3s;\n    }\n\n    &[data-visibility='show'] {\n        [data-dialog-backdrop] {\n            opacity: 1;\n        }\n    }\n\n    &[data-placement='center'] {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n\n        [data-dialog-box] {\n            transition: opacity 1s;\n            opacity: 0;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                opacity: 1;\n            }\n        }\n    }\n\n    &[data-placement='bottom'] {\n        [data-dialog-box] {\n            position: absolute;\n            border-bottom-left-radius: 0;\n            border-bottom-right-radius: 0;\n            width: 600px;\n            left: 50%;\n            transform: translateX(-50%);\n            bottom: -100vh;\n            transition: bottom 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                bottom: 0;\n            }\n        }\n    }\n\n    &[data-placement='top'] {\n        [data-dialog-box] {\n            position: absolute;\n            border-top-left-radius: 0;\n            border-top-right-radius: 0;\n            width: 600px;\n            left: 50%;\n            transform: translateX(-50%);\n            top: -100vh;\n            transition: top 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                top: 0;\n            }\n        }\n    }\n\n    &[data-placement='left'] {\n        [data-dialog-box] {\n            position: absolute;\n            max-height: unset;\n            width: 280px;\n            height: 100vh;\n            border-bottom-left-radius: 0;\n            border-top-left-radius: 0;\n            left: -100vw;\n            transition: left 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                left: 0;\n            }\n        }\n    }\n\n    &[data-placement='right'] {\n        [data-dialog-box] {\n            position: absolute;\n            max-height: unset;\n            width: 280px;\n            height: 100vh;\n            border-bottom-right-radius: 0;\n            border-top-right-radius: 0;\n            right: -100vw;\n            transition: right 0.3s;\n        }\n\n        &[data-visibility='show'] {\n            [data-dialog-box] {\n                right: 0;\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
       "hasTouchTarget": false
     },
     {
@@ -319,7 +337,7 @@
       "usage": {
         "code": "import React from 'react';\n\nimport { Button } from '@bspk/ui/Button';\nimport { Modal } from '@bspk/ui/Modal';\n\nexport function Example() {\nconst [open, setOpen] = React.useState(false);\n\nreturn (\n<>\n<Button label=\"Open Dialog\" onClick={() => setOpen(true)} />\n<Modal\ndescription=\"Example description\"\nheader=\"Example header\"\nonClose={() => setOpen(false)}\nopen={open}\n>\nExample Modal\n</Modal>\n</>\n);\n}"
       },
-      "css": "[data-bspk='modal'] {\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n    gap: var(--spacing-sizing-02);\n    padding: var(--spacing-sizing-04);\n\n    > header {\n        display: flex;\n        flex-direction: row;\n        justify-content: space-between;\n        align-items: center;\n        gap: var(--spacing-sizing-04);\n    }\n\n    main {\n        overflow: auto;\n        flex: 1;\n        padding: var(--spacing-sizing-04) 0;\n    }\n\n    > footer {\n        display: flex;\n        flex-direction: row-reverse;\n        justify-content: flex-start;\n        gap: var(--spacing-sizing-04);\n    }\n\n    // we make the width responsive to the viewport\n    @media (width < 640px) {\n        > footer {\n            [data-bspk='button'] {\n                width: 50%;\n            }\n\n            &[data-button-format='vertical'] {\n                flex-direction: column-reverse;\n\n                [data-bspk='button'] {\n                    width: 100%;\n                }\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
+      "css": "[data-bspk='modal'] {\n    display: flex;\n    flex-direction: column;\n    gap: var(--spacing-sizing-02);\n    padding: var(--spacing-sizing-04);\n\n    > header {\n        display: flex;\n        flex-direction: row;\n        justify-content: space-between;\n        align-items: center;\n        gap: var(--spacing-sizing-04);\n    }\n\n    main {\n        flex: 1;\n        padding: var(--spacing-sizing-04) 0;\n    }\n\n    > footer {\n        display: flex;\n        flex-direction: row-reverse;\n        justify-content: flex-start;\n        gap: var(--spacing-sizing-04);\n    }\n\n    // we make the width responsive to the viewport\n    @media (width < 640px) {\n        > footer {\n            [data-bspk='button'] {\n                width: 50%;\n            }\n\n            &[data-button-format='vertical'] {\n                flex-direction: column-reverse;\n\n                [data-bspk='button'] {\n                    width: 100%;\n                }\n            }\n        }\n    }\n}\n\n/** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */\n",
       "hasTouchTarget": false
     },
     {
@@ -327,7 +345,10 @@
       "file": "/NumberField.tsx",
       "name": "NumberField",
       "slug": "number-field",
-      "dependencies": [],
+      "dependencies": [
+        "FormField",
+        "NumberInput"
+      ],
       "usage": {
         "code": "import React from 'react';\n\nimport { NumberField } from '@bspk/ui/NumberField';\n\nexport function Example() {\nconst [state, setState] = React.useState<number>();\n\nreturn (\n<NumberField\ncontrolId=\"Example controlId\"\nlabel=\"Example label\"\nname=\"Example name\"\nonChange={(nextValue) => setState(nextValue)}\nvalue={state}\n/>\n);\n}"
       },
@@ -1175,6 +1196,54 @@
       ]
     },
     {
+      "name": "BreadcrumbItem",
+      "properties": [
+        {
+          "name": "label",
+          "required": true,
+          "description": "The label of the breadcrumb item.",
+          "type": "string"
+        },
+        {
+          "name": "href",
+          "required": true,
+          "description": "The href of the breadcrumb item.",
+          "type": "string"
+        }
+      ],
+      "id": "breadcrumb-item",
+      "components": [
+        "Breadcrumb"
+      ]
+    },
+    {
+      "name": "BreadcrumbProps",
+      "properties": [
+        {
+          "name": "id",
+          "required": false,
+          "description": "The id of the element. If not provided one will be generated.",
+          "type": "string"
+        },
+        {
+          "name": "items",
+          "required": true,
+          "description": "The array of breadcrumb items.\n\nIf **less than 2** items are provided, the component will not render.",
+          "type": "Array<BreadcrumbItem>",
+          "minimum": 2,
+          "maximum": 10,
+          "example": "[\n{ label: 'level 1', href: 'https://bspk.anywhere.re' },\n{ label: 'level 2', href: 'https://bspk.anywhere.re' },\n{ label: 'level 3', href: 'https://bspk.anywhere.re' },\n{ label: 'level 4', href: 'https://bspk.anywhere.re' },\n{ label: 'level 5', href: 'https://bspk.anywhere.re' },\n{ label: 'level 6', href: 'https://bspk.anywhere.re' },\n{ label: 'level 7', href: 'https://bspk.anywhere.re' },\n{ label: 'level 8', href: 'https://bspk.anywhere.re' },\n{ label: 'level 9', href: 'https://bspk.anywhere.re' },\n{ label: 'level 10', href: 'https://bspk.anywhere.re' },\n]"
+        }
+      ],
+      "id": "breadcrumb-props",
+      "components": [
+        "Breadcrumb"
+      ],
+      "references": [
+        "BreadcrumbItem"
+      ]
+    },
+    {
       "name": "ButtonProps",
       "properties": [
         {
@@ -1282,6 +1351,12 @@
           "required": false,
           "description": "The function to call when the button is clicked.",
           "type": "function"
+        },
+        {
+          "name": "innerRef",
+          "required": false,
+          "description": "A ref to the Button element.",
+          "type": "object"
         }
       ],
       "id": "button-props",
@@ -1323,7 +1398,11 @@
         }
       ],
       "id": "call-to-action-button",
-      "components": []
+      "components": [
+        "BannerAlert",
+        "EmptyState",
+        "Popover"
+      ]
     },
     {
       "name": "CardProps",
@@ -2540,7 +2619,9 @@
         }
       ],
       "id": "field-control-props",
-      "components": []
+      "components": [
+        "FormField"
+      ]
     },
     {
       "name": "FormFieldProps",
@@ -2580,7 +2661,7 @@
         {
           "name": "children",
           "required": true,
-          "description": "The children of the form field. This should be a control such as TextInput, Select, DatePicker, or\nTimePicker.",
+          "description": "The children of the form field. This should be a control such as TextInput, Select, DatePicker, or TimePicker.",
           "type": "(childProps: FieldControlProps) => JSX.Element"
         },
         {
@@ -2597,7 +2678,9 @@
         }
       ],
       "id": "form-field-props",
-      "components": [],
+      "components": [
+        "FormField"
+      ],
       "references": [
         "FieldControlProps"
       ]
@@ -2658,7 +2741,9 @@
         }
       ],
       "id": "inline-alert-props",
-      "components": []
+      "components": [
+        "InlineAlert"
+      ]
     },
     {
       "name": "InvalidPropsLibrary",
@@ -2755,7 +2840,9 @@
         }
       ],
       "id": "layout-props",
-      "components": []
+      "components": [
+        "Layout"
+      ]
     },
     {
       "name": "LinkProps",
@@ -2921,6 +3008,12 @@
             "Tag",
             "Txt"
           ]
+        },
+        {
+          "name": "href",
+          "required": false,
+          "description": "The [href](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#href) of the list item.\n\nIf the href is provided, the ListItem will render as an anchor element (`<a>`).",
+          "type": "string"
         }
       ],
       "id": "list-item-props",
@@ -2968,7 +3061,7 @@
         },
         {
           "name": "value",
-          "required": true,
+          "required": false,
           "description": "The value of the menu item.",
           "type": "string"
         },
@@ -2976,6 +3069,12 @@
           "name": "id",
           "required": false,
           "description": "The unique id of the menu item.",
+          "type": "string"
+        },
+        {
+          "name": "href",
+          "required": false,
+          "description": "The possible link href. This is handled in the ListItem.",
           "type": "string"
         }
       ],
@@ -3017,6 +3116,13 @@
           "description": "Content to display in the menu.",
           "type": "Array<MenuItem>",
           "example": "[\n{ value: '1', label: 'Option 1' },\n{ value: '2', label: 'Option 2' },\n{ value: '3', label: 'Option 3' },\n{ value: '4', label: 'Option 4' },\n{ value: '5', label: 'Option 5' },\n{ value: '6', label: 'Option 6' },\n{ value: '7', label: 'Option 7' },\n{ value: '8', label: 'Option 8' },\n{ value: '9', label: 'Option 9' },\n{ value: '10', label: 'Option 10' },\n]"
+        },
+        {
+          "name": "itemsAs",
+          "required": false,
+          "description": "The element type to render menu items as.",
+          "default": "button",
+          "type": "ElementType"
         },
         {
           "name": "innerRef",
@@ -3753,7 +3859,7 @@
       "components": []
     },
     {
-      "name": "Pick<MenuProps<T>,\"activeIndex\"|\"isMulti\"|\"selectedValues\">",
+      "name": "Pick<MenuProps<T,\"button\">,\"activeIndex\"|\"isMulti\"|\"selectedValues\">",
       "properties": [
         {
           "name": "activeIndex",
@@ -3775,8 +3881,47 @@
           "type": "array"
         }
       ],
-      "id": "pick-menu-props-t-active-index-is-multi-selected-values",
+      "id": "pick-menu-props-t-button-active-index-is-multi-selected-values",
       "components": []
+    },
+    {
+      "name": "Pick<MenuProps<T>,\"isMulti\"|\"itemCount\"|\"renderListItem\"|\"selectAll\">",
+      "properties": [
+        {
+          "name": "isMulti",
+          "required": false,
+          "description": "Whether the menu allows multiple selections.",
+          "default": false,
+          "type": "boolean"
+        },
+        {
+          "name": "itemCount",
+          "required": false,
+          "description": "The number of items to display in the menu",
+          "default": 5,
+          "type": "number",
+          "minimum": 3,
+          "maximum": 10
+        },
+        {
+          "name": "renderListItem",
+          "required": false,
+          "description": "A function which given data about the list item returns additional list item props used to render the list items.",
+          "type": "(props: RenderListItemParams) => ComponentProps<typeof ListItem> ;"
+        },
+        {
+          "name": "selectAll",
+          "required": false,
+          "description": "The label for the \"Select All\" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to \"Select All\". If a string, it will be used as the label. If false the select\nall option will not be rendered.",
+          "default": false,
+          "type": "string,boolean"
+        }
+      ],
+      "id": "pick-menu-props-t-is-multi-item-count-render-list-item-select-all",
+      "components": [],
+      "references": [
+        "RenderListItemParams"
+      ]
     },
     {
       "name": "Pick<MenuProps<T>,\"itemCount\"|\"noResultsMessage\">",
@@ -3801,46 +3946,7 @@
       "components": []
     },
     {
-      "name": "Pick<MenuProps<T>,\"selectAll\"|\"isMulti\"|\"itemCount\"|\"renderListItem\">",
-      "properties": [
-        {
-          "name": "selectAll",
-          "required": false,
-          "description": "The label for the \"Select All\" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to \"Select All\". If a string, it will be used as the label. If false the select\nall option will not be rendered.",
-          "default": false,
-          "type": "string,boolean"
-        },
-        {
-          "name": "isMulti",
-          "required": false,
-          "description": "Whether the menu allows multiple selections.",
-          "default": false,
-          "type": "boolean"
-        },
-        {
-          "name": "itemCount",
-          "required": false,
-          "description": "The number of items to display in the menu",
-          "default": 5,
-          "type": "number",
-          "minimum": 3,
-          "maximum": 10
-        },
-        {
-          "name": "renderListItem",
-          "required": false,
-          "description": "A function which given data about the list item returns additional list item props used to render the list items.",
-          "type": "(props: RenderListItemParams) => ComponentProps<typeof ListItem> ;"
-        }
-      ],
-      "id": "pick-menu-props-t-select-all-is-multi-item-count-render-list-item",
-      "components": [],
-      "references": [
-        "RenderListItemParams"
-      ]
-    },
-    {
-      "name": "Pick<NumberInputProps,\"name\"|\"id\"|\"value\"|\"disabled\"|\"size\"|\"onChange\"|\"readOnly\"|\"align\">",
+      "name": "Pick<NumberInputProps,\"name\"|\"max\"|\"id\"|\"min\"|\"value\"|\"disabled\"|\"size\"|\"onChange\"|\"readOnly\"|\"align\">",
       "properties": [
         {
           "name": "name",
@@ -3849,16 +3955,33 @@
           "type": "string"
         },
         {
+          "name": "max",
+          "required": false,
+          "description": "Defines the [maximum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/max) value that is\naccepted.",
+          "default": 99,
+          "type": "number",
+          "minimum": 1,
+          "maximum": 99
+        },
+        {
           "name": "id",
           "required": false,
           "description": "The id of the element. If not provided one will be generated.",
           "type": "string"
         },
         {
+          "name": "min",
+          "required": false,
+          "description": "Defines the [minimum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/min) value that is\naccepted.",
+          "default": 0,
+          "type": "number",
+          "minimum": 0
+        },
+        {
           "name": "value",
           "required": false,
           "description": "The value of the control.",
-          "type": "number"
+          "type": "string,number"
         },
         {
           "name": "disabled",
@@ -3911,7 +4034,7 @@
           ]
         }
       ],
-      "id": "pick-number-input-props-name-id-value-disabled-size-on-change-read-only-align",
+      "id": "pick-number-input-props-name-max-id-min-value-disabled-size-on-change-read-only-align",
       "components": []
     },
     {
@@ -5327,13 +5450,6 @@
           "type": "string"
         },
         {
-          "name": "selectAll",
-          "required": false,
-          "description": "The label for the \"Select All\" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to \"Select All\". If a string, it will be used as the label. If false the select\nall option will not be rendered.",
-          "default": false,
-          "type": "string,boolean"
-        },
-        {
           "name": "isMulti",
           "required": false,
           "description": "Whether the menu allows multiple selections.",
@@ -5354,6 +5470,13 @@
           "required": false,
           "description": "A function which given data about the list item returns additional list item props used to render the list items.",
           "type": "(props: RenderListItemParams) => ComponentProps<typeof ListItem> ;"
+        },
+        {
+          "name": "selectAll",
+          "required": false,
+          "description": "The label for the \"Select All\" option.\n\nIgnored if `isMulti` is false.\n\nIf `isMulti` is `true`, defaults to \"Select All\". If a string, it will be used as the label. If false the select\nall option will not be rendered.",
+          "default": false,
+          "type": "string,boolean"
         },
         {
           "name": "options",
@@ -5662,7 +5785,7 @@
         },
         {
           "name": "value",
-          "required": true,
+          "required": false,
           "description": "The value of the menu item.",
           "type": "string"
         },
@@ -5670,6 +5793,12 @@
           "name": "id",
           "required": false,
           "description": "The unique id of the menu item.",
+          "type": "string"
+        },
+        {
+          "name": "href",
+          "required": false,
+          "description": "The possible link href. This is handled in the ListItem.",
           "type": "string"
         }
       ],
@@ -6676,7 +6805,9 @@
         }
       ],
       "id": "txt-props",
-      "components": []
+      "components": [
+        "Txt"
+      ]
     },
     {
       "name": "TypePropertyDemo",
@@ -6971,98 +7102,6 @@
         }
       ],
       "id": "use-floating-props",
-      "components": []
-    },
-    {
-      "name": "Pick<NumberInputProps,\"name\"|\"max\"|\"id\"|\"min\"|\"value\"|\"disabled\"|\"size\"|\"onChange\"|\"readOnly\"|\"align\">",
-      "properties": [
-        {
-          "name": "name",
-          "required": true,
-          "description": "The [name](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name) of the control.",
-          "type": "string"
-        },
-        {
-          "name": "max",
-          "required": false,
-          "description": "Defines the [maximum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/max) value that is\naccepted.",
-          "default": 99,
-          "type": "number",
-          "minimum": 1,
-          "maximum": 99
-        },
-        {
-          "name": "id",
-          "required": false,
-          "description": "The id of the element. If not provided one will be generated.",
-          "type": "string"
-        },
-        {
-          "name": "min",
-          "required": false,
-          "description": "Defines the [minimum](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/min) value that is\naccepted.",
-          "default": 0,
-          "type": "number",
-          "minimum": 0
-        },
-        {
-          "name": "value",
-          "required": false,
-          "description": "The value of the control.",
-          "type": "string,number"
-        },
-        {
-          "name": "disabled",
-          "required": false,
-          "description": "Determines if the element is [disabled](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled).",
-          "default": false,
-          "type": "boolean"
-        },
-        {
-          "name": "size",
-          "required": false,
-          "description": "The size of the element.",
-          "default": "medium",
-          "type": [
-            "small",
-            "medium",
-            "large"
-          ],
-          "options": [
-            "small",
-            "medium",
-            "large"
-          ]
-        },
-        {
-          "name": "onChange",
-          "required": true,
-          "description": "Callback when the value changes.",
-          "type": "function"
-        },
-        {
-          "name": "readOnly",
-          "required": false,
-          "description": "Determines if the element is [readonly](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly).",
-          "default": false,
-          "type": "boolean"
-        },
-        {
-          "name": "align",
-          "required": false,
-          "description": "The alignment of the input box. Centered between the plus and minus buttons or to the left of the buttons.",
-          "default": "center",
-          "type": [
-            "center",
-            "left"
-          ],
-          "options": [
-            "center",
-            "left"
-          ]
-        }
-      ],
-      "id": "pick-number-input-props-name-max-id-min-value-disabled-size-on-change-read-only-align",
       "components": []
     }
   ]

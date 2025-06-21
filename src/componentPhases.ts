@@ -41,7 +41,7 @@ export const COMPONENT_PHASE: Record<BacklogComponentName | MetaComponentName, D
     BannerAlert: 'DesignReview',
     BottomNavigation: 'Backlog',
     BottomSheet: 'Backlog',
-    Breadcrumb: 'Backlog',
+    Breadcrumb: 'DesignReview',
     Button: 'DesignReview',
     ButtonDock: 'Backlog',
     Card: 'DesignReview',
