@@ -1,9 +1,7 @@
-import { examples } from '@bspk/ui/demo/examples';
-import { DevPhase, TypePropertyDemo } from '@bspk/ui/demo/utils';
-import { COMPONENT_PHASE } from 'src/componentPhases';
+import { TypePropertyDemo } from '@bspk/ui/demo/utils';
 import { CUSTOM_PRESET_VALUE } from 'src/components/ComponentPageExample';
 import { updateComponentContext } from 'src/components/ComponentProvider';
-import { DEV_PHASES } from 'src/constants';
+import { examples } from 'src/examples';
 import { TypeProperty, MetaComponentName, componentsMeta, typesMeta } from 'src/meta';
 import { DemoComponent } from 'src/types';
 import { action } from 'src/utils/actions';
@@ -141,14 +139,15 @@ export function useComponentDemo(componentName: MetaComponentName) {
 
         const typeMeta = typesMeta?.find((t) => t.name === `${componentName}Props`);
 
-        const componentExample =
-            examples[componentName] && typeof examples[componentName] === 'function'
-                ? examples[componentName]({ action, setState: updateComponentContext })
-                : examples[componentName];
+        const example = componentName in examples && examples[componentName as keyof typeof examples];
+
+        const componentExample = !example
+            ? {}
+            : typeof example === 'function'
+              ? example({ action, setState: updateComponentContext })
+              : example;
 
         const { props, functionProps, defaultState } = setPropExamples(typeMeta?.properties || []);
-
-        const componentPhaseId: DevPhase = COMPONENT_PHASE[componentName] || 'Backlog';
 
         const presets = componentExample?.presets?.map((p, index) => ({ ...p, value: `preset-${index}` }));
         if (presets && presets.length > 0) presets.unshift({ label: 'Custom', value: CUSTOM_PRESET_VALUE });
@@ -169,7 +168,6 @@ export function useComponentDemo(componentName: MetaComponentName) {
                     if (!referenceMeta || !referenceMeta.properties) return [];
                     return referenceMeta;
                 }) || [],
-            phase: DEV_PHASES[componentPhaseId],
         };
         return nextComponent;
     });

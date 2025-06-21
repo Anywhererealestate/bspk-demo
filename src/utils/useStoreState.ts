@@ -40,7 +40,7 @@ export function useStoreState<S = Record<string, unknown> | number | string>(
         },
         () => {
             setState(defaultValue);
-            store.set(key, defaultValue);
+            store.remove(key);
         },
         () => store.get(key) !== undefined && store.get(key) !== null,
     ];

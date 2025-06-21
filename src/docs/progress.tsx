@@ -2,17 +2,52 @@ import { Tag } from '@bspk/ui/Tag';
 import { Page } from 'components/Page';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { COMPONENT_PHASE } from 'src/componentPhases';
-import { DEV_PHASES } from 'src/constants';
-import { componentsMeta } from 'src/meta';
+import { COMPONENT_PHASES } from 'src/constants';
+import { ComponentPhase, componentsMeta } from 'src/meta';
 
-const componentExamplesList = Object.entries(COMPONENT_PHASE).map(([name, phase]) => ({
-    name,
-    phase,
-    slug: componentsMeta.find((c) => c.name === name)?.slug,
-}));
+const BACKLOG_COMPONENTS = [
+    'Accordion',
+    'AvatarGroup',
+    'BottomNavigation',
+    'BottomSheet',
+    'Breadcrumb',
+    'ButtonDock',
+    'Chart',
+    'DatePicker',
+    'Drawer',
+    'FileUpload',
+    'FormField',
+    'Image',
+    'Img',
+    'MultiSelection',
+    'NavigationRail',
+    'OTPInput',
+    'PageControl',
+    'PasswordInput',
+    'PhoneNumberInput',
+    'ProgressionStepper',
+    'Rating',
+    'SliderInput',
+    'Snackbar',
+    'Table',
+    'TimePicker',
+    'ToggleOption',
+    'TopNavigation',
+] as const;
 
-const progressData = Object.entries(DEV_PHASES).map(([, phase]) => {
+const componentExamplesList: { name: string; phase: ComponentPhase; slug?: string }[] = [
+    ...componentsMeta.map(({ name, phase, slug }) => ({
+        name,
+        phase,
+        slug,
+    })),
+    ...BACKLOG_COMPONENTS.map((name) => ({
+        name,
+        phase: COMPONENT_PHASES.Backlog.id,
+    })),
+];
+
+const progressData = Object.entries(COMPONENT_PHASES).map(([, phase]) => {
     const phaseComponents = componentExamplesList.filter((c) => c.phase === phase.id);
     return {
         ...phase,
@@ -42,7 +77,7 @@ export function Progress() {
                             }}
                         >
                             {phase.components.map((component, componentIndex) =>
-                                phase.title === 'Backlog' ? (
+                                phase.title === 'Backlog' || !component.slug ? (
                                     <Tag color={phase.color} key={componentIndex}>
                                         {component.name}
                                     </Tag>

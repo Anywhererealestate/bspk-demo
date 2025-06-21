@@ -3,7 +3,6 @@ import { ComponentPage } from 'components/ComponentPage';
 import { Markdown } from 'components/Markdown.tsx';
 import { Page } from 'components/Page';
 import { Page404 } from 'components/Page404.tsx';
-import { COMPONENT_PHASE } from 'src/componentPhases';
 import Changelog from 'src/docs/CHANGELOG.md?raw';
 import Contributing from 'src/docs/CONTRIBUTING.md?raw';
 import { Demo } from 'src/docs/demo';
@@ -60,9 +59,7 @@ export const routes: RouteLink[] = [
     {
         title: 'Components',
         children: componentsMeta.flatMap((component): RouteLink[] => {
-            const phase = COMPONENT_PHASE[component.name as MetaComponentName];
-
-            if (['Utility', 'Backlog'].includes(phase)) return [];
+            if (['Utility', 'Backlog'].includes(component.phase)) return [];
 
             return [
                 {
