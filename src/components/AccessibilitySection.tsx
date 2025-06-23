@@ -28,7 +28,7 @@ export function AccessibilitySection({ context }: AccessibilitySectionProps) {
 
         runTimeout.current = setTimeout(() => {
             axe.run(context).then((results) => {
-                setAxeResults(results, code);
+                setAxeResults({ code: results });
                 loadingRef.current = false;
             });
         }, 1000);

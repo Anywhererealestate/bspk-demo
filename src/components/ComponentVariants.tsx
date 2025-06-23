@@ -8,7 +8,7 @@ import { components, TypeProperty } from 'src/meta';
 import { kebabCase } from 'utils/kebabCase';
 
 export function ComponentVariants() {
-    const { component, state } = useComponentContext();
+    const { component, propState } = useComponentContext();
 
     const hiddenVariants = Array.isArray(component.hideVariants) ? component.hideVariants : [];
 
@@ -31,7 +31,7 @@ export function ComponentVariants() {
     }
 
     const containerStyle =
-        typeof component.containerStyle === 'function' ? component.containerStyle(state) : component.containerStyle;
+        typeof component.containerStyle === 'function' ? component.containerStyle(propState) : component.containerStyle;
 
     return (
         <>

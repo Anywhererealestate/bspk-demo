@@ -52,12 +52,21 @@ export type ComponentMeta = BaseMeta & {
         code: string;
         description?: string;
     };
+    phase: ComponentPhase;
 };
 
 export type UtilityMeta = BaseMeta & {
     param?: string;
     returns?: string;
 };
+
+export type ComponentPhase =
+    | 'AccessibilityReview'
+    | 'Backlog'
+    | 'DesignReview'
+    | 'ProductionReady'
+    | 'Utility'
+    | 'WorkInProgress';
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */
 
@@ -66,6 +75,7 @@ export type MetaComponentName =
     | 'AvatarGroup'
     | 'Badge'
     | 'BannerAlert'
+    | 'Breadcrumb'
     | 'Button'
     | 'Card'
     | 'Checkbox'
@@ -81,6 +91,7 @@ export type MetaComponentName =
     | 'InlineAlert'
     | 'Layout'
     | 'Link'
+    | 'Listbox'
     | 'ListItem'
     | 'Menu'
     | 'MenuButton'
@@ -129,6 +140,7 @@ export const components: Partial<Record<MetaComponentName, React.LazyExoticCompo
     AvatarGroup: React.lazy(() => import('@bspk/ui/AvatarGroup').then((module) => ({ default: module.AvatarGroup }))),
     Badge: React.lazy(() => import('@bspk/ui/Badge').then((module) => ({ default: module.Badge }))),
     BannerAlert: React.lazy(() => import('@bspk/ui/BannerAlert').then((module) => ({ default: module.BannerAlert }))),
+    Breadcrumb: React.lazy(() => import('@bspk/ui/Breadcrumb').then((module) => ({ default: module.Breadcrumb }))),
     Button: React.lazy(() => import('@bspk/ui/Button').then((module) => ({ default: module.Button }))),
     Card: React.lazy(() => import('@bspk/ui/Card').then((module) => ({ default: module.Card }))),
     Checkbox: React.lazy(() => import('@bspk/ui/Checkbox').then((module) => ({ default: module.Checkbox }))),
@@ -148,6 +160,7 @@ export const components: Partial<Record<MetaComponentName, React.LazyExoticCompo
     InlineAlert: React.lazy(() => import('@bspk/ui/InlineAlert').then((module) => ({ default: module.InlineAlert }))),
     Layout: React.lazy(() => import('@bspk/ui/Layout').then((module) => ({ default: module.Layout }))),
     Link: React.lazy(() => import('@bspk/ui/Link').then((module) => ({ default: module.Link }))),
+    Listbox: React.lazy(() => import('@bspk/ui/Listbox').then((module) => ({ default: module.Listbox }))),
     ListItem: React.lazy(() => import('@bspk/ui/ListItem').then((module) => ({ default: module.ListItem }))),
     Menu: React.lazy(() => import('@bspk/ui/Menu').then((module) => ({ default: module.Menu }))),
     MenuButton: React.lazy(() => import('@bspk/ui/MenuButton').then((module) => ({ default: module.MenuButton }))),

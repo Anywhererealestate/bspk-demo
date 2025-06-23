@@ -1,6 +1,5 @@
 import { type Page } from '@playwright/test';
-import { COMPONENT_PHASE } from 'src/componentPhases';
-import { componentsMeta } from 'tests/bspk-ui/meta';
+import { componentsMeta } from './bspk-ui/meta';
 
 const TEST_PORT = process.env.TEST_PORT || 8080;
 async function gotoUrl(page: Page, pathName: string) {
@@ -8,14 +7,7 @@ async function gotoUrl(page: Page, pathName: string) {
     return await page.waitForLoadState('networkidle');
 }
 
-const components = [
-    ...componentsMeta
-        .map((component) => ({
-            ...component,
-            phase: COMPONENT_PHASE[component.name],
-        }))
-        .filter((component) => component.phase !== 'Backlog'),
-];
+const components = [...componentsMeta.filter((component) => component.phase !== 'Backlog')];
 
 components.sort((a, b) => a.name.localeCompare(b.name));
 

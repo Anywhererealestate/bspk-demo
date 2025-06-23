@@ -10,15 +10,17 @@ import { ComponentRender } from 'src/components/ComponentRender';
 import { components } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
 
+export const CUSTOM_PRESET_VALUE = 'custom' as const;
+
 export function ComponentPageExample() {
-    const { state, resetState, changed, setPreset, preset, component } = useComponentContext();
+    const { propState, resetAllState, changed, setPreset, preset, component } = useComponentContext();
 
     const { setShowTouchTarget, showTouchTarget } = useGlobalState();
 
     const errorId = useId();
 
     const containerStyle =
-        typeof component.containerStyle === 'function' ? component.containerStyle(state) : component.containerStyle;
+        typeof component.containerStyle === 'function' ? component.containerStyle(propState) : component.containerStyle;
 
     if (!components[component.name as keyof typeof components]) {
         console.warn(`Component "${component.name}" not found in components meta.`);
@@ -39,11 +41,11 @@ export function ComponentPageExample() {
             </ErrorLogContext>
             <div data-example-settings>
                 <div data-presets>
-                    {component.presets && preset && (
+                    {component.presets && (
                         <SegmentedControl
-                            onChange={(nextValue) => nextValue && setPreset(nextValue)}
+                            onChange={(nextValue) => setPreset(nextValue)}
                             options={component.presets}
-                            value={preset.value}
+                            value={preset?.value || CUSTOM_PRESET_VALUE}
                         />
                     )}
                 </div>
@@ -68,9 +70,9 @@ export function ComponentPageExample() {
                 <h2 data-nav-target id="properties">
                     Properties
                 </h2>
-                {changed && <Button label="Reset" onClick={() => resetState()} size="small" variant="secondary" />}
+                {changed && <Button label="Reset" onClick={() => resetAllState()} size="small" variant="secondary" />}
             </div>
-            {component.props && <TypeProps props={component.props} state={state} />}
+            {component.props && <TypeProps props={component.props} state={propState} />}
         </div>
     );
 }

@@ -70,7 +70,13 @@ export function Nav() {
     }, [location.pathname]);
 
     useEffect(() => {
-        const element = location.hash && document.querySelector(location.hash);
+        let element;
+
+        try {
+            element = location.hash && document.querySelector(location.hash);
+        } catch {
+            // location.hash may not be a valid selector.
+        }
         if (!element) return;
         window.scrollTo({
             top: element.getBoundingClientRect()?.top + window.scrollY - 100,
