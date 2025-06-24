@@ -53,10 +53,10 @@ function getPropsFromState(props: TypePropertyDemo[], propState: Record<string, 
     const iconProps = props.filter((prop) => prop.type === 'BspkIcon');
 
     iconProps.forEach((prop) => {
+        const propValue = propState[prop.name];
+
         stateProps[prop.name] =
-            typeof propState[prop.name] === 'string' && propState[prop.name] in meta ? (
-                <SvgIcon name={propState.icon as any} />
-            ) : undefined;
+            typeof propValue === 'string' && propValue in meta ? <SvgIcon name={propValue as any} /> : undefined;
     });
 
     return stateProps;
