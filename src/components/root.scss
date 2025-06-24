@@ -186,9 +186,8 @@ body[data-screen-size='large'] {
     position: relative;
 
     [data-example-render] {
-        width: 300px;
+        width: 343px;
         margin: 0 auto;
-        min-width: 280px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -425,6 +424,7 @@ body[data-screen-size='large'] {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+
         [data-presets] {
             display: flex;
             flex-grow: 1;

@@ -50,13 +50,14 @@ export function ComponentRender({ overrideState, context }: ComponentRenderProps
 function getPropsFromState(props: TypePropertyDemo[], propState: Record<string, any>): Record<string, any> {
     const stateProps: Record<string, any> = {};
 
-    const iconProp = props.find((prop) => prop.name === 'icon' && prop.type === 'BspkIcon');
+    const iconProps = props.filter((prop) => prop.type === 'BspkIcon');
 
-    if (iconProp)
-        stateProps.icon =
-            typeof propState.icon === 'string' && propState.icon in meta ? (
+    iconProps.forEach((prop) => {
+        stateProps[prop.name] =
+            typeof propState[prop.name] === 'string' && propState[prop.name] in meta ? (
                 <SvgIcon name={propState.icon as any} />
             ) : undefined;
+    });
 
     return stateProps;
 }
