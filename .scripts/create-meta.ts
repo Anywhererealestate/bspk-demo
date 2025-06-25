@@ -2,7 +2,7 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 
-const demoRoot = path.resolve(__dirname, '../src');
+const outDir = path.resolve(__dirname, '../src/meta');
 
 console.log(`Running @bspk/ui meta generation script`);
 
@@ -13,11 +13,11 @@ const isLocalDev = execSync('npm ls @bspk/ui', { encoding: 'utf-8' }).trim().inc
 if (fs.existsSync(localUIPath) && isLocalDev) {
     const fileUpdated = process.argv[2] ? ` -- update=${process.argv[2]}` : '';
 
-    execSync(`cd ${localUIPath} && npm run meta hash=local out=${demoRoot} ${fileUpdated}`, {
+    execSync(`cd ${localUIPath} && npm run meta hash=local out=${outDir} ${fileUpdated}`, {
         stdio: 'inherit',
     });
 
-    if (!fileUpdated) execSync(`npx eslint --fix ${demoRoot}/meta.ts`, { stdio: 'inherit' });
+    if (!fileUpdated) execSync(`npx eslint --fix ${outDir}/index.ts`, { stdio: 'inherit' });
     process.exit(0);
 }
 
@@ -43,6 +43,6 @@ const build =
         encoding: 'utf-8',
     }).trim() || '0';
 
-execSync(`npm explore @bspk/ui -- npm run meta out=${demoRoot} hash=${hash} build=${build}`, { stdio: 'inherit' });
+execSync(`npm explore @bspk/ui -- npm run meta out=${outDir} hash=${hash} build=${build}`, { stdio: 'inherit' });
 
-execSync(`npx eslint --fix ${demoRoot}/meta.ts`, { stdio: 'inherit' });
+execSync(`npx eslint --fix ${outDir}/meta.ts`, { stdio: 'inherit' });

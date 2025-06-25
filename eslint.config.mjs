@@ -43,7 +43,7 @@ export default [
             '*.d.ts',
             '**/*.d.ts',
             'node_modules/**/*',
-            'src/search-index.ts',
+            'src/meta/search-index.ts',
             'src/accessibility-violations/**',
             'tests',
         ],
