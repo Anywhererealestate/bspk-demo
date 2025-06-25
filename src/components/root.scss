@@ -466,7 +466,7 @@ section[data-variants] {
     }
 }
 
-[data-nav-target] {
+a[data-nav-target] {
     display: block;
     position: relative;
     font: inherit !important;

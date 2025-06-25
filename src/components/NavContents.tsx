@@ -24,7 +24,11 @@ export function NavContents() {
 
     useEffect(() => {
         const targets = Array.from(
-            document.querySelector('main[data-main]')?.querySelectorAll<HTMLElement>('[data-nav-target]') || [],
+            document
+                .querySelector('main[data-main]')
+                ?.querySelectorAll<HTMLElement>(
+                    [1, 2, 3, 4, 5, 6].map((n) => `h${n}[id]:not([data-nav-target="false"])`).join(','),
+                ) || [],
         );
 
         if (!targets.length || mountedRef.current) return;
@@ -32,20 +36,15 @@ export function NavContents() {
         mountedRef.current = true;
 
         setMenuItems(
-            targets.flatMap((item) =>
-                item.dataset.navTarget === 'false'
-                    ? []
-                    : {
-                          title: item.dataset.navTargetLabel || item.textContent || item.id,
-                          hash: `#${item.id}`,
-                      },
-            ),
+            targets.map((item) => ({
+                title: item.dataset.navTargetLabel || item.textContent || item.id,
+                hash: `#${item.id}`,
+            })),
         );
 
         // add the link and link icon
         targets.forEach((item) => {
             const label = item.textContent;
-            item.removeAttribute('data-nav-target');
             const link = document.createElement('a');
             link.setAttribute('data-nav-target', '');
             link.textContent = label;

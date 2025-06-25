@@ -1,13 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Brand, BRANDS } from '@bspk/ui';
+import { useUIContext } from '@bspk/ui/hooks/useUIContext';
+import { COLOR_THEMES, ColorTheme } from '@bspk/ui/utils/uiContext';
 import { PropsWithChildren, useMemo, useEffect } from 'react';
 import { StylesProvider } from 'src/components/StylesProvider';
 import { BUILD, VERSION } from 'src/meta';
-import { GlobalState, ColorTheme, COLOR_THEMES, globalStateContext, globalStateDefault } from 'src/utils/globalState';
+import { GlobalState, globalStateContext, globalStateDefault } from 'src/utils/globalState';
 import { useStoreState } from 'src/utils/useStoreState';
 
 export function GlobalStateProvider({ children }: PropsWithChildren) {
     const [globalState, setState] = useStoreState<GlobalState>(`bspk-global-${VERSION}.${BUILD}`, globalStateDefault);
+
+    const { theme, setTheme } = useUIContext();
 
     useEffect(() => {
         const searchParams = Object.fromEntries(new URLSearchParams(globalThis.location.search).entries());
@@ -18,7 +22,7 @@ export function GlobalStateProvider({ children }: PropsWithChildren) {
         if (
             searchParams.theme &&
             COLOR_THEMES.includes(searchParams.theme as ColorTheme) &&
-            searchParams.theme !== globalState.theme
+            searchParams.theme !== theme
         ) {
             overrideTheme = searchParams.theme as ColorTheme;
         }
@@ -31,20 +35,20 @@ export function GlobalStateProvider({ children }: PropsWithChildren) {
             overrideBrand = searchParams.brand as Brand;
         }
 
-        if (overrideTheme || overrideBrand)
+        if (overrideBrand)
             setState((prev) => ({
                 ...prev,
-                theme: overrideTheme || prev.theme,
                 brand: overrideBrand || prev.brand,
             }));
+
+        if (overrideTheme) setTheme(overrideTheme);
     }, []);
 
-    const { brand, theme, showTouchTarget } = globalState;
+    const { brand, showTouchTarget } = globalState;
 
     useEffect(() => {
         document.querySelectorAll('link[data-syntax-theme]').forEach((link) => link.setAttribute('disabled', 'true'));
         document.querySelector(`link[data-syntax-theme="${theme}"]`)?.removeAttribute('disabled');
-        document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
     return (
@@ -56,7 +60,7 @@ export function GlobalStateProvider({ children }: PropsWithChildren) {
                         brand,
                         theme,
                         showTouchTarget,
-                        setTheme: (nextTheme: ColorTheme) => setState((prev) => ({ ...prev, theme: nextTheme })),
+                        setTheme,
                         setBrand: (nextBrand: Brand) => setState((prev) => ({ ...prev, brand: nextBrand })),
                         setShowTouchTarget: (show: boolean) => setState((prev) => ({ ...prev, showTouchTarget: show })),
                         resetGlobalState: () => {

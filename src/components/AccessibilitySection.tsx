@@ -1,7 +1,7 @@
 import { SvgCheck } from '@bspk/icons/Check';
 import { SvgRemove } from '@bspk/icons/Remove';
 import { ListItem } from '@bspk/ui/ListItem';
-import { Skeleton } from '@bspk/ui/Skeleton';
+import { SkeletonText } from '@bspk/ui/SkeletonText';
 import { Txt } from '@bspk/ui/Txt';
 import axe from 'axe-core';
 import { useComponentContext } from 'components/ComponentProvider';
@@ -28,7 +28,7 @@ export function AccessibilitySection({ context }: AccessibilitySectionProps) {
 
         runTimeout.current = setTimeout(() => {
             axe.run(context).then((results) => {
-                setAxeResults({ code: results });
+                setAxeResults({ [code]: results });
                 loadingRef.current = false;
             });
         }, 1000);
@@ -47,7 +47,7 @@ export function AccessibilitySection({ context }: AccessibilitySectionProps) {
                 Violations
             </Txt>
 
-            {!results && <Skeleton textLines={3} textVariant="body-base" />}
+            {!results && <SkeletonText lines={3} variant="body-base" />}
 
             {results?.violations.length === 0 ? (
                 <p style={{ color: 'var(--status-success)' }}>No accessibility violations found.</p>
@@ -70,7 +70,7 @@ export function AccessibilitySection({ context }: AccessibilitySectionProps) {
                 Passes
             </Txt>
 
-            {!results && <Skeleton textLines={3} textVariant="body-base" />}
+            {!results && <SkeletonText lines={3} variant="body-base" />}
 
             {results?.passes.length === 0 ? (
                 <p>No passes reported.</p>
