@@ -6,7 +6,7 @@
     "license": "CC-BY-4.0",
     "scripts": {
         "build": "npm run create-meta && vite-node ./.scripts/search-index.ts && vite build && cp dist/index.html dist/404.html",
-        "dev": "vite-node ./.scripts/dev.ts && npm run create-meta && rm -rf node_modules/.vite && vite --open",
+        "dev": "vite-node ./.scripts/dev.ts && npm run create-meta && vite-node ./.scripts/search-index.ts && rm -rf node_modules/.vite && vite --open",
         "lint": "eslint && tsc --noemit",
         "lint:fix": "eslint --fix",
         "create-meta": "vite-node ./.scripts/create-meta.ts",

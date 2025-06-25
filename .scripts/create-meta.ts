@@ -45,4 +45,4 @@ const build =
 
 execSync(`npm explore @bspk/ui -- npm run meta out=${outDir} hash=${hash} build=${build}`, { stdio: 'inherit' });
 
-execSync(`npx eslint --fix ${outDir}/meta.ts`, { stdio: 'inherit' });
+execSync(`npx eslint --fix ${outDir}/index.ts`, { stdio: 'inherit' });
