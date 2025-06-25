@@ -57,7 +57,7 @@ export function searchIndex() {
             }),
     );
 
-    const filePath = 'src/search-index.json';
+    const filePath = 'src/meta/search-index.json';
 
     fs.writeFileSync(filePath, JSON.stringify(index, null, 2)); // Pretty format JSON
 

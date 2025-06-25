@@ -1,8 +1,8 @@
 import { TypePropertyDemo } from '@bspk/ui/demo/utils';
 import { CUSTOM_PRESET_VALUE } from 'src/components/ComponentPageExample';
 import { updateComponentContext } from 'src/components/ComponentProvider';
-import { examples } from 'src/examples';
 import { TypeProperty, MetaComponentName, componentsMeta, typesMeta } from 'src/meta';
+import { examples } from 'src/meta/examples';
 import { DemoComponent } from 'src/types';
 import { action } from 'src/utils/actions';
 import { evalSafe } from 'src/utils/evalSafe';
