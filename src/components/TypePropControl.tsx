@@ -7,6 +7,7 @@ import { Switch } from '@bspk/ui/Switch';
 import { TextInput } from '@bspk/ui/TextInput';
 import { Textarea } from '@bspk/ui/Textarea';
 import { TypePropertyDemoWithControls } from '@bspk/ui/demo/utils';
+import { useId } from 'react';
 
 const IconNameOptions = Object.keys(iconMeta) as IconName[];
 
@@ -21,6 +22,8 @@ export function TypePropControl({
     prop: TypePropertyDemoWithControls;
     readOnly?: boolean;
 }) {
+    const baseId = useId();
+
     if (!prop) return null;
 
     const type = prop.exampleType || prop.type;
@@ -105,8 +108,8 @@ export function TypePropControl({
             return (
                 <>
                     <Select
-                        data-testid={`${prop.name}-Dropdown`}
-                        id=""
+                        data-testid={`${prop.name}-Select`}
+                        id={`${baseId}-Select-${prop.name}`}
                         options={options}
                         size="small"
                         {...controlProps}

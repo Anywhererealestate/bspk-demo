@@ -728,6 +728,7 @@ code {
 }
 
 [data-dialog-box] {
+    overflow: hidden;
     [data-navigation] {
         position: relative;
         width: 100%;
