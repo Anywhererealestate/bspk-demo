@@ -1,4 +1,5 @@
 import { Button } from '@bspk/ui/Button';
+import { SwitchOption } from '@bspk/ui/SwitchOption';
 import { Tag } from '@bspk/ui/Tag';
 import { ComponentPageExample } from 'components/ComponentPageExample';
 import { ComponentProvider, resetComponentContext } from 'components/ComponentProvider';
@@ -13,10 +14,12 @@ import { Link } from 'react-router-dom';
 import { COMPONENT_PHASES } from 'src/constants';
 import { MetaComponentName } from 'src/meta';
 import { kebabCase } from 'src/utils/kebabCase';
+import { useGlobalState } from 'src/utils/globalState';
 import { useComponentDemo } from 'src/utils/useComponentDemo';
 
 function ComponentPage({ componentName }: { componentName: MetaComponentName }) {
     const component = useComponentDemo(componentName);
+    const { setShowTouchTarget, showTouchTarget } = useGlobalState();
 
     if (!component) return <h1>Component not available.</h1>;
 
@@ -46,9 +49,28 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                             <Syntax code={component.usage.code} language="typescript" pretty />
                         </>
                     )}
-                    <h2 data-nav-target id="demo">
-                        Demo
-                    </h2>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            marginTop: 'var(--spacing-sizing-06)',
+                        }}
+                    >
+                        <h2 data-nav-target id="demo">
+                            Demo
+                        </h2>
+                        {component.hasTouchTarget && (
+                            <div data-touch-target-toggle>
+                                <SwitchOption
+                                    checked={showTouchTarget}
+                                    label="Show Touch Target"
+                                    name="data-touch-target"
+                                    onChange={(checked) => setShowTouchTarget(checked)}
+                                />
+                            </div>
+                        )}
+                    </div>
                     <ErrorBoundary
                         fallback={
                             <>

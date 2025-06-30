@@ -1,6 +1,5 @@
 import { Button } from '@bspk/ui/Button';
 import { SegmentedControl } from '@bspk/ui/SegmentedControl';
-import { SwitchOption } from '@bspk/ui/SwitchOption';
 import { ErrorLogContext } from '@bspk/ui/utils/errors';
 import { CodeExample } from 'components/CodeExample';
 import { useComponentContext } from 'components/ComponentProvider';
@@ -15,7 +14,7 @@ export const CUSTOM_PRESET_VALUE = 'custom' as const;
 export function ComponentPageExample() {
     const { propState, resetAllState, changed, setPreset, preset, component } = useComponentContext();
 
-    const { setShowTouchTarget, showTouchTarget } = useGlobalState();
+    const { showTouchTarget } = useGlobalState();
 
     const errorId = useId();
 
@@ -51,22 +50,12 @@ export function ComponentPageExample() {
                         />
                     )}
                 </div>
-                {component.hasTouchTarget && (
-                    <div data-touch-target-toggle>
-                        <SwitchOption
-                            checked={showTouchTarget}
-                            label="Show Touch Target"
-                            name="data-touch-target"
-                            onChange={(checked) => setShowTouchTarget(checked)}
-                        />
-                    </div>
-                )}
             </div>
             <div
                 style={{
                     display: 'flex',
                     justifyContent: 'space-between',
-                    margin: 'var(--spacing-sizing-04) 0',
+                    marginTop: 'var(--spacing-sizing-06)',
                 }}
             >
                 <h2 data-nav-target id="properties">
