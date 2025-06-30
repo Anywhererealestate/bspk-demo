@@ -10,7 +10,9 @@ import { kebabCase } from 'utils/kebabCase';
 export function ComponentVariants() {
     const { component, propState } = useComponentContext();
 
-    const hiddenVariants = Array.isArray(component.hideVariants) ? component.hideVariants : [];
+    // `hideVariants` is an array of property names that should not be displayed.
+    // always hide the 'open' variant
+    const hiddenVariants = [...(Array.isArray(component.hideVariants) ? component.hideVariants : []), 'open'];
 
     const variantProperties: TypeProperty[] =
         component.props?.filter(

@@ -7,6 +7,7 @@ import { Switch } from '@bspk/ui/Switch';
 import { TextInput } from '@bspk/ui/TextInput';
 import { Textarea } from '@bspk/ui/Textarea';
 import { TypePropertyDemoWithControls } from '@bspk/ui/demo/utils';
+import { useId } from 'react';
 
 const IconNameOptions = Object.keys(iconMeta) as IconName[];
 
@@ -21,11 +22,14 @@ export function TypePropControl({
     prop: TypePropertyDemoWithControls;
     readOnly?: boolean;
 }) {
+    const baseId = useId();
+
     if (!prop) return null;
 
     const type = prop.exampleType || prop.type;
 
     const controlProps = {
+        label: prop.name,
         'aria-label': prop.name,
         name: prop.name,
         value,
@@ -39,6 +43,7 @@ export function TypePropControl({
         return (
             <NumberInput
                 data-testid={`${prop.name}-Input`}
+                disabled={prop.disabled}
                 id=""
                 max={prop.maximum}
                 min={prop.minimum}
@@ -54,6 +59,7 @@ export function TypePropControl({
                 {!!controlProps.value && (
                     <TextInput
                         data-testid={`${prop.name}-Input`}
+                        disabled={prop.disabled}
                         size="small"
                         {...controlProps}
                         readOnly={readOnly}
@@ -69,6 +75,7 @@ export function TypePropControl({
         return (
             <TextInput
                 data-testid={`${prop.name}-Input`}
+                disabled={prop.disabled}
                 id=""
                 size="small"
                 type="text"
@@ -92,6 +99,7 @@ export function TypePropControl({
         return (
             <CheckboxGroup
                 data-testid={`${prop.name}-CheckboxGroup`}
+                disabled={prop.disabled}
                 options={options}
                 {...controlProps}
                 readOnly={readOnly}
@@ -105,8 +113,9 @@ export function TypePropControl({
             return (
                 <>
                     <Select
-                        data-testid={`${prop.name}-Dropdown`}
-                        id=""
+                        data-testid={`${prop.name}-Select`}
+                        disabled={prop.disabled}
+                        id={`${baseId}-Select-${prop.name}`}
                         options={options}
                         size="small"
                         {...controlProps}
@@ -118,20 +127,14 @@ export function TypePropControl({
             );
 
         return (
-            <RadioGroup
-                data-testid={`${prop.name}-RadioGroup`}
-                label={prop.name}
-                options={options}
-                showLabel={false}
-                {...controlProps}
-            />
+            <RadioGroup data-testid={`${prop.name}-RadioGroup`} options={options} showLabel={false} {...controlProps} />
         );
     }
 
     if (type === 'boolean')
         return (
             <label data-testid={`${prop.name}-Switch`}>
-                <Switch checked={!!controlProps.value} {...controlProps} disabled={readOnly} />
+                <Switch checked={!!controlProps.value} {...controlProps} disabled={readOnly || prop.disabled} />
             </label>
         );
 

@@ -86,7 +86,7 @@ export function Nav() {
 
     return (
         <>
-            <div data-navbar>
+            <div data-body-width data-navbar>
                 <span data-backdrop />
                 <div data-header>
                     {screenSize === 'small' && <MenuButton onClick={() => navModalState.onOpen()} />}
@@ -114,8 +114,8 @@ export function Nav() {
                     />
                     <div data-brand-dropdown>
                         <Select
-                            aria-label="Brand"
                             id={useId()}
+                            label="Brand"
                             name="brand"
                             onChange={(value) => {
                                 setBrand((value?.[0] || 'anywhere') as Brand);

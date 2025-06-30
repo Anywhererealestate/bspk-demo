@@ -27,6 +27,8 @@ export function ComponentPageExample() {
         return <h1>Component not available.</h1>;
     }
 
+    const props = component.props.map((p) => ({ ...p, disabled: component.disableProps?.includes(p.name) }));
+
     return (
         <div data-example-wrapper>
             <ErrorLogContext id={errorId}>
@@ -72,7 +74,7 @@ export function ComponentPageExample() {
                 </h2>
                 {changed && <Button label="Reset" onClick={() => resetAllState()} size="small" variant="secondary" />}
             </div>
-            {component.props && <TypeProps props={component.props} state={propState} />}
+            {component.props && <TypeProps props={props} state={propState} />}
         </div>
     );
 }
