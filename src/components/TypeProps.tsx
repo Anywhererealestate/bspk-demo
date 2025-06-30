@@ -50,6 +50,8 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
 
         if (!a.required !== !b.required) return !a.required > !b.required ? 1 : -1;
 
+        if (!a.disabled !== !b.disabled) return !a.disabled < !b.disabled ? 1 : -1;
+
         const propertyNameSort = PROPERTY_NAME_CUSTOM_SORT.find((arr) => arr.includes(a.name) && arr.includes(b.name));
 
         if (propertyNameSort) {
