@@ -61,7 +61,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                             Demo
                         </h2>
                         {component.hasTouchTarget && (
-                            <div data-touch-target-toggle>
+                            <div data-touch-target-toggle style={{ marginBottom: '0.75em' }}>
                                 <SwitchOption
                                     checked={showTouchTarget}
                                     label="Show Touch Target"
