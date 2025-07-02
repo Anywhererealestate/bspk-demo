@@ -1,6 +1,6 @@
 import { SvgIcon } from '@bspk/icons/SvgIcon';
 import { meta } from '@bspk/icons/meta';
-import { TypePropertyDemo } from '@bspk/ui/demo/utils';
+import { TypePropertyDemo } from '@bspk/ui/utils/demo';
 import { useId } from 'react';
 import { updateComponentContext, useComponentContext } from 'src/components/ComponentProvider';
 import { components } from 'src/meta';

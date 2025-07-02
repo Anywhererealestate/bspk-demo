@@ -1,4 +1,4 @@
-import { TypePropertyDemo } from '@bspk/ui/demo/utils';
+import { TypePropertyDemo } from '@bspk/ui/utils/demo';
 import { CUSTOM_PRESET_VALUE } from 'src/components/ComponentPageExample';
 import { updateComponentContext } from 'src/components/ComponentProvider';
 import { TypeProperty, MetaComponentName, componentsMeta, typesMeta } from 'src/meta';
@@ -152,7 +152,7 @@ export function useComponentDemo(componentName: MetaComponentName) {
         const presets = componentExample?.presets?.map((p, index) => ({ ...p, value: `preset-${index}` }));
         if (presets && presets.length > 0) presets.unshift({ label: 'Custom', value: CUSTOM_PRESET_VALUE });
 
-        const nextComponent: DemoComponent = {
+        const nextComponent: DemoComponent<any> = {
             ...componentMeta,
             ...componentExample,
             name: componentName,
@@ -169,6 +169,8 @@ export function useComponentDemo(componentName: MetaComponentName) {
                     return referenceMeta;
                 }) || [],
         };
+
+        console.log({ nextComponent });
         return nextComponent;
     });
 }

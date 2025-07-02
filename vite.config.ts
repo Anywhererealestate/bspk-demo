@@ -1,8 +1,25 @@
-import { execSync } from 'child_process';
+//import { execSync } from 'child_process';
 
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
-import { run } from 'vite-plugin-run';
+//import { run } from 'vite-plugin-run';
+
+// // This plugin will watch node_modules for changes and trigger a reload.
+// // Works only for build --watch mode.
+// // https://github.com/vitejs/vite/issues/8619
+// export function pluginWatchNodeModules(modules: string[]) {
+//     // Merge module into pipe separated string for RegExp() below.
+//     const pattern = `/node_modules\\/(?!${modules.join('|')}).*/`;
+//     return {
+//         name: 'watch-node-modules',
+//         configureServer: (server: ViteDevServer): void => {
+//             server.watcher.options = {
+//                 ...server.watcher.options,
+//                 ignored: [new RegExp(pattern), '**/.git/**'],
+//             };
+//         },
+//     };
+// }
 
 export default defineConfig({
     css: {
@@ -15,21 +32,26 @@ export default defineConfig({
     publicDir: './assets',
     plugins: [
         react(),
-        run([
-            {
-                name: 'UI Updates',
-                condition: (file) => {
-                    return file.includes('bspk-ui');
-                },
-                onFileChanged: ({ file }) => {
-                    console.log(`File changed: ${file}`);
-                    execSync(`npm run create-meta -- ${file.split('bspk-ui')[1]}`, { stdio: 'inherit' });
-                },
-            },
-        ]),
+        //
+        // pluginWatchNodeModules(['@bspk/ui']),
+        // run([
+        //     {
+        //         name: 'UI Updates',
+        //         condition: (file) => {
+        //             return file.includes('bspk-ui');                },
+        //         onFileChanged: ({ file }) => {
+        //             console.log(`File changed: ${file}`);
+        //             execSync(`npm run create-meta -- ${file.split('bspk-ui')[1]}`, { stdio: 'inherit' });
+        //         },
+        //     },
+        // ]),
     ],
+    optimizeDeps: {
+        exclude: ['@bspk/ui'],
+    },
     esbuild: {
         minifyIdentifiers: false,
+        drop: ['console', 'debugger'],
     },
     server: {
         hmr: {

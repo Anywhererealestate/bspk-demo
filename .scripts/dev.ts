@@ -16,15 +16,11 @@ if (!fs.existsSync(uiRootPath)) {
     throw new Error(`bspk-ui not found at ${uiRootPath}`);
 }
 
-const version = execSync('npm view @bspk/ui version', { encoding: 'utf-8' }).trim();
-
 execSync(
     [
         // add package json to the bspk-ui/src so we can link to src
         `cd "${uiRootPath}"`,
-        `echo '{ "name": "@bspk/ui", "version": "${version}007" }' > 'src/package.json'`,
-        // run npm link in bspk-ui/src
-        `cd "${uiRootPath}/src"`,
+        'npm run build force',
         `npm link`,
         // run npm link @bspk/ui in the demo repo
         `cd "${demoRootPath}"`,
@@ -57,3 +53,9 @@ if (linkedPath.endsWith('./../bspk-ui/src')) {
 
     console.log(`Your local development environment is setup! UI is pointing to: "${absolutePath}"`);
 }
+
+execSync('npm run create-meta && vite-node ./.scripts/search-index.ts && rm -rf node_modules/.vite && vite --open', {
+    stdio: 'inherit',
+});
+
+// process.exit(0);

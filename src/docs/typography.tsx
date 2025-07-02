@@ -1,5 +1,5 @@
 /* eslint-disable react/no-multi-comp */
-import { LinkDemo } from '@bspk/ui/demo/examples/Link';
+import { LinkDemo } from '@bspk/ui/components/Link/LinkExample';
 import { CodeExample } from 'components/CodeExample';
 import { Page } from 'components/Page';
 import { ComponentType } from 'react';

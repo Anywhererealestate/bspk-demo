@@ -6,7 +6,7 @@ import { Select } from '@bspk/ui/Select';
 import { Switch } from '@bspk/ui/Switch';
 import { TextInput } from '@bspk/ui/TextInput';
 import { Textarea } from '@bspk/ui/Textarea';
-import { TypePropertyDemoWithControls } from '@bspk/ui/demo/utils';
+import { TypePropertyDemoWithControls } from '@bspk/ui/utils/demo';
 import { useId } from 'react';
 
 const IconNameOptions = Object.keys(iconMeta) as IconName[];
