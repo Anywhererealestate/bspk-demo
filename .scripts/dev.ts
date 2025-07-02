@@ -54,8 +54,17 @@ if (linkedPath.endsWith('./../bspk-ui/src')) {
     console.log(`Your local development environment is setup! UI is pointing to: "${absolutePath}"`);
 }
 
-execSync('npm run create-meta && vite-node ./.scripts/search-index.ts && rm -rf node_modules/.vite && vite --open', {
+const fileUpdated = process.argv[2] ? ` -- update=${process.argv[2]}` : '';
+
+const localUIPath = path.resolve('../bspk-ui');
+const outDir = path.resolve(__dirname, '../src/meta');
+
+execSync(`cd ${localUIPath} && npm run meta hash=local out=${outDir} ${fileUpdated}`, {
     stdio: 'inherit',
 });
 
-// process.exit(0);
+if (!fileUpdated) execSync(`npx eslint --fix ${outDir}/index.ts`, { stdio: 'inherit' });
+
+execSync('vite-node ./.scripts/search-index.ts && rm -rf node_modules/.vite && vite --open', {
+    stdio: 'inherit',
+});
