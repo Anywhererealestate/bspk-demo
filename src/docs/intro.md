@@ -4,7 +4,7 @@ This website was built using the components, icons, stylesheets, tools, and util
 
 Repositories can be found at https://github.com/Anywhererealestate.
 
-Please report issues with this website or any of the following packages by emailing brian.reed@anywhere.re.
+Please report issues with this website or any of the following packages by emailing <a target="_blank" href="mailto:bspk.dev@anywhere.re">bspk.dev@anywhere.re</a>.
 
 ## @bspk/icons
 
