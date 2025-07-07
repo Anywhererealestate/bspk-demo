@@ -44,7 +44,7 @@ export function ComponentPageExample() {
                 <div data-presets>
                     {component.presets && (
                         <SegmentedControl
-                            onChange={(nextValue) => setPreset(nextValue)}
+                            onChange={setPreset}
                             options={component.presets}
                             value={preset?.value || CUSTOM_PRESET_VALUE}
                         />
