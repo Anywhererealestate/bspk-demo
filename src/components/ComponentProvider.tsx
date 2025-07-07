@@ -1,4 +1,4 @@
-import { DemoPreset } from '@bspk/ui/demo/utils';
+import { DemoPreset } from '@bspk/ui/utils/demo';
 import { type AxeResults } from 'axe-core';
 import { createContext, PropsWithChildren, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { CUSTOM_PRESET_VALUE } from 'src/components/ComponentPageExample';

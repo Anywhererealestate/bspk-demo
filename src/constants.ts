@@ -1,5 +1,5 @@
-import { ComponentPhase } from '@bspk/ui/demo/utils';
 import { ColorVariant } from '@bspk/ui/utils/colorVariants';
+import { ComponentPhase } from '@bspk/ui/utils/demo';
 
 export const COMPONENT_PHASES: Record<
     ComponentPhase,

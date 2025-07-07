@@ -1,27 +1,9 @@
 import { execSync } from 'child_process';
-import fs from 'fs';
 import path from 'path';
 
 const outDir = path.resolve(__dirname, '../src/meta');
 
 console.log(`Running @bspk/ui meta generation script`);
-
-const localUIPath = path.resolve('../bspk-ui');
-
-const isLocalDev = execSync('npm ls @bspk/ui', { encoding: 'utf-8' }).trim().includes('bspk-ui/src');
-
-if (fs.existsSync(localUIPath) && isLocalDev) {
-    const fileUpdated = process.argv[2] ? ` -- update=${process.argv[2]}` : '';
-
-    execSync(`cd ${localUIPath} && npm run meta hash=local out=${outDir} ${fileUpdated}`, {
-        stdio: 'inherit',
-    });
-
-    if (!fileUpdated) execSync(`npx eslint --fix ${outDir}/index.ts`, { stdio: 'inherit' });
-    process.exit(0);
-}
-
-// NOT LOCAL DEV MODE
 
 const DEV_GIT_TOKEN = process.env.DEV_GIT_TOKEN;
 

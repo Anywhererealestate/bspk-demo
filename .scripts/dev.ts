@@ -18,13 +18,27 @@ if (!fs.existsSync(uiRootPath)) {
 
 const version = execSync('npm view @bspk/ui version', { encoding: 'utf-8' }).trim();
 
+const packageFile: any = {
+    name: '@bspk/ui',
+    version: `${version}007`,
+    exports: {
+        './*': './*.ts',
+        '.': './index.ts',
+    },
+};
+
+fs.readdirSync(path.resolve(uiRootPath, './src/components'), { withFileTypes: true }).forEach((dirent) => {
+    if (!dirent.isDirectory() || dirent.name.startsWith('.')) return;
+    packageFile.exports[`./${dirent.name}/*`] = `./components/${dirent.name}/*.tsx`;
+    packageFile.exports[`./${dirent.name}`] = `./components/${dirent.name}/index.tsx`;
+});
+
 execSync(
     [
+        `vite-node ./.scripts/dev-meta.ts`,
         // add package json to the bspk-ui/src so we can link to src
-        `cd "${uiRootPath}"`,
-        `echo '{ "name": "@bspk/ui", "version": "${version}007" }' > 'src/package.json'`,
-        // run npm link in bspk-ui/src
         `cd "${uiRootPath}/src"`,
+        `echo '${JSON.stringify(packageFile, null, '\t')}' > 'package.json'`,
         `npm link`,
         // run npm link @bspk/ui in the demo repo
         `cd "${demoRootPath}"`,
@@ -57,3 +71,7 @@ if (linkedPath.endsWith('./../bspk-ui/src')) {
 
     console.log(`Your local development environment is setup! UI is pointing to: "${absolutePath}"`);
 }
+
+execSync('vite-node ./.scripts/search-index.ts && rm -rf node_modules/.vite && vite --open', {
+    stdio: 'inherit',
+});

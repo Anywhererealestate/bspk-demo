@@ -1,4 +1,5 @@
-import { execSync } from 'child_process';
+import { exec } from 'child_process';
+import { resolve } from 'path';
 
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
@@ -23,13 +24,17 @@ export default defineConfig({
                 },
                 onFileChanged: ({ file }) => {
                     console.log(`File changed: ${file}`);
-                    execSync(`npm run create-meta -- ${file.split('bspk-ui')[1]}`, { stdio: 'inherit' });
+                    exec(`vite-node ./.scripts/dev-meta.ts update=${file.split('bspk-ui')[1]}`);
                 },
             },
         ]),
     ],
+    optimizeDeps: {
+        exclude: ['@bspk/ui'],
+    },
     esbuild: {
         minifyIdentifiers: false,
+        drop: ['console', 'debugger'],
     },
     server: {
         hmr: {
@@ -55,6 +60,9 @@ export default defineConfig({
             components: '/src/components',
             utils: '/src/utils',
             tests: '/tests',
+            '-/components': resolve(__dirname, '../bspk-ui/src/components'),
+            '-/hooks': resolve(__dirname, '../bspk-ui/src/hooks'),
+            '-/utils': resolve(__dirname, '../bspk-ui/src/utils'),
         },
     },
 });

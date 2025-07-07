@@ -1,7 +1,7 @@
 import { Table, TableColumn } from '@bspk/ui/Table';
 import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
-import { TypePropertyDemo, TypePropertyDemoWithControls } from '@bspk/ui/demo/utils';
+import { TypePropertyDemo, TypePropertyDemoWithControls } from '@bspk/ui/utils/demo';
 import { updateComponentContext } from 'components/ComponentProvider';
 import { Markup } from 'components/Markup';
 import { TypePropControl } from 'components/TypePropControl';
