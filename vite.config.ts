@@ -1,25 +1,9 @@
-//import { execSync } from 'child_process';
+import { exec } from 'child_process';
+import { resolve } from 'path';
 
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
-//import { run } from 'vite-plugin-run';
-
-// // This plugin will watch node_modules for changes and trigger a reload.
-// // Works only for build --watch mode.
-// // https://github.com/vitejs/vite/issues/8619
-// export function pluginWatchNodeModules(modules: string[]) {
-//     // Merge module into pipe separated string for RegExp() below.
-//     const pattern = `/node_modules\\/(?!${modules.join('|')}).*/`;
-//     return {
-//         name: 'watch-node-modules',
-//         configureServer: (server: ViteDevServer): void => {
-//             server.watcher.options = {
-//                 ...server.watcher.options,
-//                 ignored: [new RegExp(pattern), '**/.git/**'],
-//             };
-//         },
-//     };
-// }
+import { run } from 'vite-plugin-run';
 
 export default defineConfig({
     css: {
@@ -32,19 +16,18 @@ export default defineConfig({
     publicDir: './assets',
     plugins: [
         react(),
-        //
-        // pluginWatchNodeModules(['@bspk/ui']),
-        // run([
-        //     {
-        //         name: 'UI Updates',
-        //         condition: (file) => {
-        //             return file.includes('bspk-ui');                },
-        //         onFileChanged: ({ file }) => {
-        //             console.log(`File changed: ${file}`);
-        //             execSync(`npm run create-meta -- ${file.split('bspk-ui')[1]}`, { stdio: 'inherit' });
-        //         },
-        //     },
-        // ]),
+        run([
+            {
+                name: 'UI Updates',
+                condition: (file) => {
+                    return file.includes('bspk-ui');
+                },
+                onFileChanged: ({ file }) => {
+                    console.log(`File changed: ${file}`);
+                    exec(`vite-node ./.scripts/dev-meta.ts update=${file.split('bspk-ui')[1]}`);
+                },
+            },
+        ]),
     ],
     optimizeDeps: {
         exclude: ['@bspk/ui'],
@@ -77,6 +60,9 @@ export default defineConfig({
             components: '/src/components',
             utils: '/src/utils',
             tests: '/tests',
+            '-/components': resolve(__dirname, '../bspk-ui/src/components'),
+            '-/hooks': resolve(__dirname, '../bspk-ui/src/hooks'),
+            '-/utils': resolve(__dirname, '../bspk-ui/src/utils'),
         },
     },
 });

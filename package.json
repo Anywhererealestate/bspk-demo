@@ -11,6 +11,8 @@
         "lint:fix": "eslint --fix",
         "create-meta": "vite-node ./.scripts/create-meta.ts",
         "prepare": "husky",
+        "preview:local": "vite-node ./.scripts/local-preview.ts && npm run preview",
+        "preview:prod": "npm un link @bspk/ui && npm i @bspk/ui && npm run build && vite preview --port 8080 --open",
         "preview": "npm run build && vite preview --port 8080 --open",
         "test": "TEST_PORT=8675 playwright test",
         "test:preview": "TEST_PORT=8080 playwright test",

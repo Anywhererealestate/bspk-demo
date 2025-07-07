@@ -38,6 +38,15 @@
             "tests/*": [
                 "./tests/*"
             ],
+            "-/components/*": [
+                "../bspk-ui/src/components/*"
+            ],
+            "-/hooks/*": [
+                "../bspk-ui/src/hooks/*"
+            ],
+            "-/utils/*": [
+                "../bspk-ui/src/utils/*"
+            ]
         }
     },
     "include": [

@@ -16,11 +16,29 @@ if (!fs.existsSync(uiRootPath)) {
     throw new Error(`bspk-ui not found at ${uiRootPath}`);
 }
 
+const version = execSync('npm view @bspk/ui version', { encoding: 'utf-8' }).trim();
+
+const packageFile: any = {
+    name: '@bspk/ui',
+    version: `${version}007`,
+    exports: {
+        './*': './*.ts',
+        '.': './index.ts',
+    },
+};
+
+fs.readdirSync(path.resolve(uiRootPath, './src/components'), { withFileTypes: true }).forEach((dirent) => {
+    if (!dirent.isDirectory() || dirent.name.startsWith('.')) return;
+    packageFile.exports[`./${dirent.name}/*`] = `./components/${dirent.name}/*.tsx`;
+    packageFile.exports[`./${dirent.name}`] = `./components/${dirent.name}/index.tsx`;
+});
+
 execSync(
     [
+        `vite-node ./.scripts/dev-meta.ts`,
         // add package json to the bspk-ui/src so we can link to src
-        `cd "${uiRootPath}"`,
-        'npm run build force',
+        `cd "${uiRootPath}/src"`,
+        `echo '${JSON.stringify(packageFile, null, '\t')}' > 'package.json'`,
         `npm link`,
         // run npm link @bspk/ui in the demo repo
         `cd "${demoRootPath}"`,
@@ -53,17 +71,6 @@ if (linkedPath.endsWith('./../bspk-ui/src')) {
 
     console.log(`Your local development environment is setup! UI is pointing to: "${absolutePath}"`);
 }
-
-const fileUpdated = process.argv[2] ? ` -- update=${process.argv[2]}` : '';
-
-const localUIPath = path.resolve('../bspk-ui');
-const outDir = path.resolve(__dirname, '../src/meta');
-
-execSync(`cd ${localUIPath} && npm run meta hash=local out=${outDir} ${fileUpdated}`, {
-    stdio: 'inherit',
-});
-
-if (!fileUpdated) execSync(`npx eslint --fix ${outDir}/index.ts`, { stdio: 'inherit' });
 
 execSync('vite-node ./.scripts/search-index.ts && rm -rf node_modules/.vite && vite --open', {
     stdio: 'inherit',
