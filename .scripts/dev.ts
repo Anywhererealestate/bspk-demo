@@ -33,9 +33,21 @@ fs.readdirSync(path.resolve(uiRootPath, './src/components'), { withFileTypes: tr
     packageFile.exports[`./${dirent.name}`] = `./components/${dirent.name}/index.tsx`;
 });
 
+const outDir = path.resolve(__dirname, '../src/meta');
+
+const build =
+    execSync(`cd ${uiRootPath} && git rev-list --count origin/main..origin/dev`, {
+        encoding: 'utf-8',
+    }).trim() || '0';
+
+execSync(`cd ${uiRootPath} && npm run meta out=${outDir} hash=local build=${build} ${process.argv[2]} `, {
+    stdio: 'inherit',
+});
+
+execSync(`npx eslint --fix ${outDir}/index.ts`, { stdio: 'inherit' });
+
 execSync(
     [
-        `vite-node ./.scripts/dev-meta.ts`,
         // add package json to the bspk-ui/src so we can link to src
         `cd "${uiRootPath}/src"`,
         `echo '${JSON.stringify(packageFile, null, '\t')}' > 'package.json'`,
