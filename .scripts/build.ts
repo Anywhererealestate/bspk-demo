@@ -13,6 +13,6 @@ if (DEV_GIT_TOKEN) {
     );
 }
 
-execSync(`npx run meta && vite-node ./.scripts/search-index.ts && vite build && cp dist/index.html dist/404.html`, {
+execSync(`npm run meta && vite-node ./.scripts/search-index.ts && vite build && cp dist/index.html dist/404.html`, {
     stdio: 'inherit',
 });

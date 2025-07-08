@@ -24,7 +24,7 @@ export default defineConfig({
                 },
                 onFileChanged: ({ file }) => {
                     console.log(`File changed: ${file}`);
-                    execSync(`npm run meta -- ${file}`, { stdio: 'inherit' });
+                    execSync(`npm run meta`, { stdio: 'inherit' });
                 },
             },
         ]),
