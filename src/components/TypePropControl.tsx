@@ -6,7 +6,8 @@ import { Select } from '@bspk/ui/Select';
 import { Switch } from '@bspk/ui/Switch';
 import { TextInput } from '@bspk/ui/TextInput';
 import { Textarea } from '@bspk/ui/Textarea';
-import { TypePropertyDemoWithControls } from '@bspk/ui/demo/examples';
+import { TypePropertyDemoWithControls } from '@bspk/ui/utils/demo';
+import { useId } from 'react';
 
 const IconNameOptions = Object.keys(iconMeta) as IconName[];
 
@@ -14,20 +15,26 @@ export function TypePropControl({
     prop,
     value,
     onChange,
+    readOnly = false,
 }: {
     value: any;
     onChange: (nextValue: any) => void;
     prop: TypePropertyDemoWithControls;
+    readOnly?: boolean;
 }) {
+    const baseId = useId();
+
     if (!prop) return null;
 
-    const type = prop.type;
+    const type = prop.exampleType || prop.type;
 
     const controlProps = {
+        label: prop.name,
         'aria-label': prop.name,
         name: prop.name,
         value,
         onChange,
+        readOnly,
     };
 
     if (prop.multiline) return <Textarea id="" {...controlProps} textSize="small" />;
@@ -36,6 +43,7 @@ export function TypePropControl({
         return (
             <NumberInput
                 data-testid={`${prop.name}-Input`}
+                disabled={prop.disabled}
                 id=""
                 max={prop.maximum}
                 min={prop.minimum}
@@ -44,8 +52,37 @@ export function TypePropControl({
             />
         );
 
-    if (type === 'string' || (Array.isArray(type) && type.join() === 'string,boolean'))
-        return <TextInput data-testid={`${prop.name}-Input`} id="" size="small" type="text" {...controlProps} />;
+    if (Array.isArray(type) && type.sort().join() === 'boolean,string') {
+        return (
+            <label data-testid={`${prop.name}-Switch`}>
+                <Switch checked={!!controlProps.value} {...controlProps} />
+                {!!controlProps.value && (
+                    <TextInput
+                        data-testid={`${prop.name}-Input`}
+                        disabled={prop.disabled}
+                        size="small"
+                        {...controlProps}
+                        readOnly={readOnly}
+                        style={{ marginTop: '10px' }}
+                        value={typeof controlProps.value === 'string' ? controlProps.value : ''}
+                    />
+                )}
+            </label>
+        );
+    }
+
+    if (type === 'string')
+        return (
+            <TextInput
+                data-testid={`${prop.name}-Input`}
+                disabled={prop.disabled}
+                id=""
+                size="small"
+                type="text"
+                {...controlProps}
+                readOnly={readOnly}
+            />
+        );
 
     const controlOptions: string[] =
         type === 'BspkIcon' ? IconNameOptions : prop.options?.map((o) => o.toString()) || [];
@@ -62,44 +99,42 @@ export function TypePropControl({
         return (
             <CheckboxGroup
                 data-testid={`${prop.name}-CheckboxGroup`}
+                disabled={prop.disabled}
                 options={options}
                 {...controlProps}
+                readOnly={readOnly}
                 values={controlProps.value}
             />
         );
     }
 
     if (controlOptions.length > 0) {
-        if (controlOptions.length > 5 || type === 'select')
+        if (controlOptions.length > 3 || type === 'select')
             return (
                 <>
                     <Select
-                        data-testid={`${prop.name}-Dropdown`}
-                        id=""
+                        data-testid={`${prop.name}-Select`}
+                        disabled={prop.disabled}
+                        id={`${baseId}-Select-${prop.name}`}
                         options={options}
                         size="small"
                         {...controlProps}
                         onChange={(next) => onChange(next[0])}
+                        readOnly={readOnly}
                         value={[controlProps.value].filter((v) => v !== undefined)}
                     />
                 </>
             );
 
         return (
-            <RadioGroup
-                data-testid={`${prop.name}-RadioGroup`}
-                label={prop.name}
-                options={options}
-                showLabel={false}
-                {...controlProps}
-            />
+            <RadioGroup data-testid={`${prop.name}-RadioGroup`} options={options} showLabel={false} {...controlProps} />
         );
     }
 
     if (type === 'boolean')
         return (
             <label data-testid={`${prop.name}-Switch`}>
-                <Switch checked={!!controlProps.value} {...controlProps} />
+                <Switch checked={!!controlProps.value} {...controlProps} disabled={readOnly || prop.disabled} />
             </label>
         );
 

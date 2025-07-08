@@ -5,13 +5,14 @@
     "type": "module",
     "license": "CC-BY-4.0",
     "scripts": {
-        "build": "npm run meta && vite build && cp dist/index.html dist/404.html",
-        "dev:vite": "rm -rf node_modules/.vite && vite --open",
+        "build": "vite-node ./.scripts/build.ts",
+        "meta": "vite-node ./.scripts/meta.ts",
         "dev": "vite-node ./.scripts/dev.ts",
         "lint": "eslint && tsc --noemit",
         "lint:fix": "eslint --fix",
-        "meta": "vite-node ./.scripts/create-meta.ts && vite-node ./.scripts/search-index.ts",
         "prepare": "husky",
+        "preview:local": "vite-node ./.scripts/preview-local.ts && npm run preview",
+        "preview:prod": "npm un link @bspk/ui && npm i @bspk/ui && npm run build && vite preview --port 8080 --open",
         "preview": "npm run build && vite preview --port 8080 --open",
         "test": "TEST_PORT=8675 playwright test",
         "test:preview": "TEST_PORT=8080 playwright test",
@@ -25,7 +26,7 @@
     "dependencies": {
         "@axe-core/playwright": "^4.10.1",
         "@bspk/icons": "^1.0.3",
-        "@bspk/ui": "^1.1.31",
+        "@bspk/ui": "^1.1.32",
         "axe-core": "^4.10.2",
         "highlight.js": "^11.11.1",
         "markdown-to-jsx": "^7.7.4",
@@ -68,6 +69,7 @@
         "typescript-json-schema": "^0.65.1",
         "vite": "^6.3.5",
         "vite-node": "^3.2.3",
+        "vite-plugin-run": "^0.6.1",
         "watcher": "^2.3.1"
     }
 }

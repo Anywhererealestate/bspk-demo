@@ -11,7 +11,7 @@ import { NavSide } from 'components/NavSide';
 import { SearchModal } from 'components/SearchModal';
 import { useEffect, useId, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { VERSION } from 'src/meta';
+import { MODE, VERSION, UI_HASH, BUILD } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
 import useHotkeys from 'src/utils/useHotkeys';
 
@@ -70,7 +70,13 @@ export function Nav() {
     }, [location.pathname]);
 
     useEffect(() => {
-        const element = location.hash && document.querySelector(location.hash);
+        let element;
+
+        try {
+            element = location.hash && document.querySelector(location.hash);
+        } catch {
+            // location.hash may not be a valid selector.
+        }
         if (!element) return;
         window.scrollTo({
             top: element.getBoundingClientRect()?.top + window.scrollY - 100,
@@ -80,13 +86,22 @@ export function Nav() {
 
     return (
         <>
-            <div data-navbar>
+            <div data-body-width data-navbar>
                 <span data-backdrop />
                 <div data-header>
                     {screenSize === 'small' && <MenuButton onClick={() => navModalState.onOpen()} />}
                     <h1 data-logo>
                         <img alt="Bespoke" src="/logo.png" style={{ height: 32 }} />
-                        <span>Version: {VERSION}</span>
+                        <span>
+                            Version: {VERSION}
+                            {BUILD ? `.${BUILD}` : ''}
+                        </span>
+                        {MODE === 'development' && (
+                            <span>
+                                DEV
+                                {UI_HASH ? ` (${UI_HASH})` : ''}
+                            </span>
+                        )}
                     </h1>
                 </div>
                 <div data-navbar-right="">
@@ -99,8 +114,8 @@ export function Nav() {
                     />
                     <div data-brand-dropdown>
                         <Select
-                            aria-label="Brand"
                             id={useId()}
+                            label="Brand"
                             name="brand"
                             onChange={(value) => {
                                 setBrand((value?.[0] || 'anywhere') as Brand);

@@ -1,39 +1,32 @@
 import { Button } from '@bspk/ui/Button';
 import { SegmentedControl } from '@bspk/ui/SegmentedControl';
-import { SwitchOption } from '@bspk/ui/SwitchOption';
-import { ErrorLogContext } from '@bspk/ui/utils/errors';
 import { CodeExample } from 'components/CodeExample';
 import { useComponentContext } from 'components/ComponentProvider';
+import { ErrorLogContext } from 'components/ErrorLogContext';
 import { TypeProps } from 'components/TypeProps';
-import { useId, useMemo } from 'react';
+import { useId } from 'react';
+import { ComponentRender } from 'src/components/ComponentRender';
 import { components } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
-import { useComponentProps } from 'src/utils/useComponentProps';
+
+export const CUSTOM_PRESET_VALUE = 'custom' as const;
 
 export function ComponentPageExample() {
-    const { state, resetState, changed, setPreset, preset, component } = useComponentContext();
+    const { propState, resetAllState, changed, setPreset, preset, component } = useComponentContext();
 
-    const { setShowTouchTarget, showTouchTarget } = useGlobalState();
-    const props = useComponentProps({ 'data-example-component': true });
+    const { showTouchTarget } = useGlobalState();
 
     const errorId = useId();
 
-    const componentProps = useMemo(() => {
-        //
-        return component.propControlsOverrides
-            ? component.props.map((prop) => ({ ...prop, ...component.propControlsOverrides?.[prop.name] }))
-            : component.props;
-    }, [component.props, component.propControlsOverrides]);
-
     const containerStyle =
-        typeof component.containerStyle === 'function' ? component.containerStyle(props) : component.containerStyle;
+        typeof component.containerStyle === 'function' ? component.containerStyle(propState) : component.containerStyle;
 
-    const Component = components[component.name as keyof typeof components];
-
-    if (!Component) {
+    if (!components[component.name as keyof typeof components]) {
         console.warn(`Component "${component.name}" not found in components meta.`);
         return <h1>Component not available.</h1>;
     }
+
+    const props = component.props.map((p) => ({ ...p, disabled: component.disableProps?.includes(p.name) }));
 
     return (
         <div data-example-wrapper>
@@ -44,43 +37,33 @@ export function ComponentPageExample() {
                     data-main-example
                     data-show-touch-targets={showTouchTarget || undefined}
                 >
-                    {component.render?.({ props, preset, Component }) || <Component {...props} />}
+                    <ComponentRender />
                 </CodeExample>
             </ErrorLogContext>
             <div data-example-settings>
                 <div data-presets>
-                    {component.presets && preset && (
+                    {component.presets && (
                         <SegmentedControl
-                            onChange={(nextValue) => nextValue && setPreset(nextValue)}
+                            onChange={setPreset}
                             options={component.presets}
-                            value={preset.value}
+                            value={preset?.value || CUSTOM_PRESET_VALUE}
                         />
                     )}
                 </div>
-                {component.hasTouchTarget && (
-                    <div data-touch-target-toggle>
-                        <SwitchOption
-                            checked={showTouchTarget}
-                            label="Show Touch Target"
-                            name="data-touch-target"
-                            onChange={(checked) => setShowTouchTarget(checked)}
-                        />
-                    </div>
-                )}
             </div>
             <div
                 style={{
                     display: 'flex',
                     justifyContent: 'space-between',
-                    margin: 'var(--spacing-sizing-04) 0',
+                    marginTop: 'var(--spacing-sizing-06)',
                 }}
             >
                 <h2 data-nav-target id="properties">
                     Properties
                 </h2>
-                {changed && <Button label="Reset" onClick={() => resetState()} size="small" variant="secondary" />}
+                {changed && <Button label="Reset" onClick={() => resetAllState()} size="small" variant="secondary" />}
             </div>
-            {componentProps && <TypeProps props={componentProps} state={state} />}
+            {component.props && <TypeProps props={props} state={propState} />}
         </div>
     );
 }

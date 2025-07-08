@@ -1,5 +1,9 @@
+import { execSync } from 'child_process';
+import { resolve } from 'path';
+
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
+import { run } from 'vite-plugin-run';
 
 export default defineConfig({
     css: {
@@ -10,9 +14,27 @@ export default defineConfig({
         },
     },
     publicDir: './assets',
-    plugins: [react()],
+    plugins: [
+        react(),
+        run([
+            {
+                name: 'UI Updates',
+                condition: (file) => {
+                    return file.includes('bspk-ui');
+                },
+                onFileChanged: ({ file }) => {
+                    console.log(`File changed: ${file}`);
+                    execSync(`npm run meta`, { stdio: 'inherit' });
+                },
+            },
+        ]),
+    ],
+    optimizeDeps: {
+        exclude: ['@bspk/ui'],
+    },
     esbuild: {
         minifyIdentifiers: false,
+        drop: ['console', 'debugger'],
     },
     server: {
         hmr: {
@@ -33,6 +55,9 @@ export default defineConfig({
             components: '/src/components',
             utils: '/src/utils',
             tests: '/tests',
+            '-/components': resolve(__dirname, '../bspk-ui/src/components'),
+            '-/hooks': resolve(__dirname, '../bspk-ui/src/hooks'),
+            '-/utils': resolve(__dirname, '../bspk-ui/src/utils'),
         },
     },
 });

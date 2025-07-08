@@ -1,9 +1,8 @@
-import { DevPhase, TypePropertyDemo } from '@bspk/ui/demo/examples';
-import { COMPONENT_PHASE } from 'src/componentPhases';
+import { TypePropertyDemo } from '@bspk/ui/utils/demo';
+import { CUSTOM_PRESET_VALUE } from 'src/components/ComponentPageExample';
 import { updateComponentContext } from 'src/components/ComponentProvider';
-import { DEV_PHASES } from 'src/constants';
-import { componentExamples } from 'src/examples';
 import { TypeProperty, MetaComponentName, componentsMeta, typesMeta } from 'src/meta';
+import { examples } from 'src/meta/examples';
 import { DemoComponent } from 'src/types';
 import { action } from 'src/utils/actions';
 import { evalSafe } from 'src/utils/evalSafe';
@@ -49,7 +48,9 @@ const getDefaultState = (prop: TypePropertyDemo): any => {
 const getExample = (prop: TypeProperty, propNames: string[]): any => {
     const setState = updateComponentContext;
 
-    const defaultValue = typeof prop.example === 'undefined' ? prop.default : prop.example;
+    let defaultValue = typeof prop.example === 'undefined' ? prop.default : prop.example;
+
+    if (typeof defaultValue === 'string') defaultValue = defaultValue.trim();
 
     if (prop.type === 'BspkIcon' && typeof defaultValue === 'string') {
         const matchedIcon = defaultValue.match(/<Svg(.*?) \/>/);
@@ -70,7 +71,7 @@ const getExample = (prop: TypeProperty, propNames: string[]): any => {
                     setState({ value });
                 };
 
-            return () => action(`onChange function called without value or checked`);
+            return () => action(`onChange function called without value or checked`, 'warning');
         };
 
         return evalSafe(defaultValue, defaultExample()) as () => void;
@@ -78,6 +79,11 @@ const getExample = (prop: TypeProperty, propNames: string[]): any => {
 
     if (typeof prop.type === 'string' && prop.type.startsWith('Array<')) {
         return evalSafe(defaultValue, []);
+    }
+
+    if (typeof defaultValue === 'string' && defaultValue.startsWith('{') && defaultValue.endsWith('}')) {
+        const evaluated = evalSafe(`(${defaultValue})`, {});
+        return evaluated;
     }
 
     if (defaultValue) return defaultValue;
@@ -101,19 +107,18 @@ function setPropExamples(props: TypeProperty[]): {
 } {
     const propNames = props.map((prop) => prop.name);
 
-    // set examples
-    const nextProps = props.map((prop) => {
-        const example = getExample(prop, propNames);
-        return { ...prop, example, libraryDefault: prop.default } as TypePropertyDemo;
-    });
-
     const nextFunctionProps: Record<string, () => void> = {};
     const defaultState: Record<string, any> = {};
 
-    // set default state and function props
-    nextProps.forEach((prop) => {
-        if (typeof prop.example === 'function') nextFunctionProps[prop.name] = prop.example;
-        else defaultState[prop.name] = getDefaultState(prop);
+    // set props, default state and function props
+    const nextProps = props.map((prop) => {
+        const example = getExample(prop, propNames);
+        const nextProp = { ...prop, example, libraryDefault: prop.default } as TypePropertyDemo;
+
+        if (typeof example === 'function') nextFunctionProps[prop.name] = example;
+        else defaultState[prop.name] = getDefaultState(nextProp);
+
+        return nextProp;
     });
 
     return {
@@ -133,34 +138,39 @@ export function useComponentDemo(componentName: MetaComponentName) {
         }
 
         const typeMeta = typesMeta?.find((t) => t.name === `${componentName}Props`);
-        const componentExample = componentExamples[componentName];
+
+        const example = componentName in examples && examples[componentName as keyof typeof examples];
+
+        const componentExample = !example
+            ? {}
+            : typeof example === 'function'
+              ? example({ action, setState: updateComponentContext })
+              : example;
 
         const { props, functionProps, defaultState } = setPropExamples(typeMeta?.properties || []);
 
-        const componentPhaseId: DevPhase = COMPONENT_PHASE[componentName] || 'Backlog';
-
         const presets = componentExample?.presets?.map((p, index) => ({ ...p, value: `preset-${index}` }));
-        if (presets && presets.length > 0) presets.unshift({ label: 'Custom', value: 'custom' });
+        if (presets && presets.length > 0) presets.unshift({ label: 'Custom', value: CUSTOM_PRESET_VALUE });
 
-        const nextComponent: DemoComponent = {
+        const nextComponent: DemoComponent<any> = {
             ...componentMeta,
             ...componentExample,
             name: componentName,
             props,
             functionProps,
-            defaultState,
+            defaultState: { ...defaultState, ...componentExample?.defaultState },
             dependencies: componentMeta.dependencies.map((d) => componentsMeta.find((c) => c.name === d)!),
             dependents: componentsMeta.flatMap((c) => (c.dependencies.includes(componentName) ? c : [])),
             presets,
-            propRenderOverrides: componentExample?.propRenderOverrides,
             references:
                 typeMeta?.references?.flatMap((name) => {
                     const referenceMeta = typesMeta.find((t) => t.name === name);
                     if (!referenceMeta || !referenceMeta.properties) return [];
                     return referenceMeta;
                 }) || [],
-            phase: DEV_PHASES[componentPhaseId],
         };
+
+        console.log({ nextComponent });
         return nextComponent;
     });
 }

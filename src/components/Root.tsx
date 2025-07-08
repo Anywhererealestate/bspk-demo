@@ -1,3 +1,4 @@
+import { UIProvider } from '@bspk/ui/UIProvider';
 import { ErrorBoundary } from 'components/ErrorBoundary';
 import { Nav } from 'components/Nav';
 import { Outlet } from 'react-router';
@@ -8,14 +9,16 @@ import 'src/components/root.scss';
 export function Root() {
     return (
         <>
-            <GlobalStateProvider>
-                <Nav />
-                <main data-main>
-                    <ErrorBoundary>
-                        <Outlet />
-                    </ErrorBoundary>
-                </main>
-            </GlobalStateProvider>
+            <UIProvider>
+                <GlobalStateProvider>
+                    <Nav />
+                    <main data-main>
+                        <ErrorBoundary>
+                            <Outlet />
+                        </ErrorBoundary>
+                    </main>
+                </GlobalStateProvider>
+            </UIProvider>
         </>
     );
 }

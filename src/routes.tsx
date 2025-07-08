@@ -3,7 +3,6 @@ import { ComponentPage } from 'components/ComponentPage';
 import { Markdown } from 'components/Markdown.tsx';
 import { Page } from 'components/Page';
 import { Page404 } from 'components/Page404.tsx';
-import { COMPONENT_PHASE } from 'src/componentPhases';
 import Changelog from 'src/docs/CHANGELOG.md?raw';
 import Contributing from 'src/docs/CONTRIBUTING.md?raw';
 import { Demo } from 'src/docs/demo';
@@ -13,7 +12,7 @@ import Intro from 'src/docs/intro.md?raw';
 import { Progress } from 'src/docs/progress';
 import { Stylesheets } from 'src/docs/styles';
 import { Typography } from 'src/docs/typography.tsx';
-import { componentsMeta, MetaComponentName } from 'src/meta';
+import { componentsMeta, MetaComponentName, MODE } from 'src/meta';
 import { RouteLink } from 'src/types';
 
 export const routes: RouteLink[] = [
@@ -56,13 +55,10 @@ export const routes: RouteLink[] = [
             { path: '/demo', Component: Demo, title: 'Demo', hide: true },
         ],
     },
-
     {
         title: 'Components',
         children: componentsMeta.flatMap((component): RouteLink[] => {
-            const phase = COMPONENT_PHASE[component.name as MetaComponentName];
-
-            if (['Utility', 'Backlog'].includes(phase)) return [];
+            if (['Utility', 'Backlog'].includes(component.phase)) return [];
 
             return [
                 {
@@ -82,5 +78,23 @@ export const routes: RouteLink[] = [
         noIndex: true,
     },
 ];
+
+if (MODE === 'development') {
+    routes.push({
+        title: 'Utilities',
+        children: componentsMeta.flatMap((component): RouteLink[] => {
+            if (component.phase !== 'Utility') return [];
+
+            return [
+                {
+                    path: `/${component.slug}`,
+                    id: component.slug,
+                    title: component.name,
+                    Component: () => <ComponentPage componentName={component.name as MetaComponentName} />,
+                },
+            ];
+        }),
+    });
+}
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */

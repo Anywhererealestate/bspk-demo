@@ -1,5 +1,4 @@
-import { ComponentExample, DemoPreset, DevPhase, TypePropertyDemo } from '@bspk/ui/demo/examples';
-import { ColorVariant } from '@bspk/ui/utils/colorVariants';
+import { ComponentExample, DemoPreset, TypePropertyDemo } from '@bspk/ui/utils/demo';
 import type { RouteObject } from 'react-router-dom';
 import { ComponentMeta, TypeMeta } from 'src/meta';
 
@@ -16,7 +15,7 @@ export type RouteLink = RouteObject & {
     noIndex?: boolean;
 };
 
-export type DemoComponent = Omit<ComponentExample, 'presets'> &
+export type DemoComponent<P extends Record<string, unknown> = any> = Omit<ComponentExample<P>, 'presets'> &
     Omit<ComponentMeta, 'dependencies'> & {
         name: string;
         props: TypePropertyDemo[];
@@ -26,13 +25,6 @@ export type DemoComponent = Omit<ComponentExample, 'presets'> &
         presets?: DemoPreset[];
         functionProps: Record<string, () => void>;
         defaultState: Record<string, any>;
-        phase: {
-            title: string;
-            id: DevPhase | 'Utility';
-            description: string;
-            descriptor: string;
-            color: ColorVariant;
-        };
     };
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */

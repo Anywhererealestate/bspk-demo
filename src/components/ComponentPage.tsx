@@ -1,4 +1,5 @@
 import { Button } from '@bspk/ui/Button';
+import { SwitchOption } from '@bspk/ui/SwitchOption';
 import { Tag } from '@bspk/ui/Tag';
 import { ComponentPageExample } from 'components/ComponentPageExample';
 import { ComponentProvider, resetComponentContext } from 'components/ComponentProvider';
@@ -10,16 +11,19 @@ import { Syntax } from 'components/Syntax';
 import { TypeProps } from 'components/TypeProps';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { COMPONENT_PHASE } from 'src/componentPhases';
-import { DEV_PHASES } from 'src/constants';
+import { COMPONENT_PHASES } from 'src/constants';
 import { MetaComponentName } from 'src/meta';
 import { kebabCase } from 'src/utils/kebabCase';
+import { useGlobalState } from 'src/utils/globalState';
 import { useComponentDemo } from 'src/utils/useComponentDemo';
 
 function ComponentPage({ componentName }: { componentName: MetaComponentName }) {
     const component = useComponentDemo(componentName);
+    const { setShowTouchTarget, showTouchTarget } = useGlobalState();
 
     if (!component) return <h1>Component not available.</h1>;
+
+    const componentPhase = COMPONENT_PHASES[component.phase || 'Backlog'];
 
     return (
         <>
@@ -29,8 +33,8 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                         {component.name}
                     </h1>
                     {component.phase && (
-                        <Tag as="div" color={component.phase.color}>
-                            {component.phase.title}
+                        <Tag as="div" color={componentPhase.color}>
+                            {componentPhase.title}
                         </Tag>
                     )}
                 </header>
@@ -45,9 +49,28 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                             <Syntax code={component.usage.code} language="typescript" pretty />
                         </>
                     )}
-                    <h2 data-nav-target id="demo">
-                        Demo
-                    </h2>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            marginTop: 'var(--spacing-sizing-06)',
+                        }}
+                    >
+                        <h2 data-nav-target id="demo">
+                            Demo
+                        </h2>
+                        {component.hasTouchTarget && (
+                            <div data-touch-target-toggle style={{ marginBottom: '0.75em' }}>
+                                <SwitchOption
+                                    checked={showTouchTarget}
+                                    label="Show Touch Target"
+                                    name="data-touch-target"
+                                    onChange={(checked) => setShowTouchTarget(checked)}
+                                />
+                            </div>
+                        )}
+                    </div>
                     <ErrorBoundary
                         fallback={
                             <>
@@ -99,11 +122,9 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                 }}
                             >
                                 {component.dependencies.map((d, index) => {
-                                    const dependencyPhaseId = COMPONENT_PHASE[d.name as MetaComponentName] || 'Backlog';
+                                    const dependencyPhase = COMPONENT_PHASES[d.phase || 'Backlog'];
 
-                                    const dependencyPhase = DEV_PHASES[dependencyPhaseId];
-
-                                    return dependencyPhaseId === 'Backlog' ? (
+                                    return dependencyPhase.id === 'Backlog' ? (
                                         <Tag color="grey" key={index}>
                                             {d.name}
                                         </Tag>
@@ -137,9 +158,9 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                 }}
                             >
                                 {component.dependents.map((d, index) => {
-                                    const dependencyPhaseId = COMPONENT_PHASE[d.name as MetaComponentName] || 'Backlog';
+                                    const dependencyPhaseId = d.phase || 'Backlog';
 
-                                    const dependencyPhase = DEV_PHASES[dependencyPhaseId];
+                                    const dependencyPhase = COMPONENT_PHASES[dependencyPhaseId];
 
                                     return dependencyPhaseId === 'Backlog' ? (
                                         <Tag color="grey" key={index}>

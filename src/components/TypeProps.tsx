@@ -1,18 +1,16 @@
 import { Table, TableColumn } from '@bspk/ui/Table';
 import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
-import { TypePropertyDemo, TypePropertyDemoWithControls } from '@bspk/ui/demo/examples';
+import { TypePropertyDemo, TypePropertyDemoWithControls } from '@bspk/ui/utils/demo';
 import { updateComponentContext } from 'components/ComponentProvider';
-import { LinkUp } from 'components/LinkUp';
 import { Markup } from 'components/Markup';
 import { TypePropControl } from 'components/TypePropControl';
-import { Fragment, useMemo } from 'react';
+import { useMemo } from 'react';
 import { PROPERTY_NAME_CUSTOM_SORT } from 'src/config';
 
 const hasPropTypeControl = (prop: TypePropertyDemo) =>
     Boolean(
-        prop.properties ||
-            prop.type === 'icon' ||
+        prop.type === 'icon' ||
             prop.type === 'multiline' ||
             prop.type === 'string' ||
             prop.type === 'string,boolean' ||
@@ -28,7 +26,6 @@ const propsWithControls = (prop: TypePropertyDemo) => {
         typeOptions: [],
         haveControl: hasPropTypeControl(prop),
         multiline: prop.type === 'multiline',
-        properties: prop.properties?.map(propsWithControls),
         libraryDefault: prop.default,
     };
     if (nextProp.type === 'multiline') nextProp.type = 'string';
@@ -52,6 +49,8 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
         if (!a.haveControl !== !b.haveControl) return !a.haveControl > !b.haveControl ? 1 : -1;
 
         if (!a.required !== !b.required) return !a.required > !b.required ? 1 : -1;
+
+        if (!a.disabled !== !b.disabled) return !a.disabled < !b.disabled ? 1 : -1;
 
         const propertyNameSort = PROPERTY_NAME_CUSTOM_SORT.find((arr) => arr.includes(a.name) && arr.includes(b.name));
 
@@ -128,7 +127,7 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
                                             variant="flat"
                                             wrap={typeof o === 'string' && o?.includes('=>')}
                                         >
-                                            <LinkUp>{o.toString()}</LinkUp>
+                                            {o.toString()}
                                         </Tag>
                                     ))}
                                 </div>
@@ -168,37 +167,11 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
                             </>
                         ),
                         controls: showControls && (
-                            <>
-                                {prop.properties ? (
-                                    (prop.properties as TypePropertyDemoWithControls[]).map(
-                                        (childProp) =>
-                                            childProp?.haveControl && (
-                                                <Fragment key={childProp.name}>
-                                                    {/* {!childProp.type?.endsWith('Field') && <Txt variant="labels-small">{childProp.name}</Txt>} */}
-                                                    <TypePropControl
-                                                        onChange={(nextValue) =>
-                                                            updateComponentContext({
-                                                                ...state,
-                                                                [prop.name]: {
-                                                                    ...state[prop.name],
-                                                                    [childProp.name]: nextValue,
-                                                                },
-                                                            })
-                                                        }
-                                                        prop={childProp}
-                                                        value={state[prop.name]?.[childProp.name]}
-                                                    />
-                                                </Fragment>
-                                            ),
-                                    )
-                                ) : (
-                                    <TypePropControl
-                                        onChange={(nextValue) => updateComponentContext({ [prop.name]: nextValue })}
-                                        prop={prop}
-                                        value={state[prop.name]}
-                                    />
-                                )}
-                            </>
+                            <TypePropControl
+                                onChange={(nextValue) => updateComponentContext({ [prop.name]: nextValue })}
+                                prop={prop}
+                                value={state[prop.name]}
+                            />
                         ),
                     };
                 })}

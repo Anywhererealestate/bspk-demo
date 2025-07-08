@@ -32,6 +32,7 @@ export const NavSide = () => {
                                             <Link
                                                 data-link
                                                 data-selected={location.pathname === r.path || undefined}
+                                                data-subtle
                                                 key={r.path}
                                                 to={r.path!}
                                             >

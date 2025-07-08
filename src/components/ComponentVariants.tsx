@@ -1,19 +1,18 @@
 import { Tag } from '@bspk/ui/Tag';
-import { DemoPreset } from '@bspk/ui/demo/examples';
 import { useErrorLogger } from '@bspk/ui/utils/errors';
 import { Markup } from 'components//Markup';
 import { CodeExample } from 'components/CodeExample';
 import { useComponentContext } from 'src/components/ComponentProvider';
+import { ComponentRender } from 'src/components/ComponentRender';
 import { components, TypeProperty } from 'src/meta';
-import { DemoComponent } from 'src/types';
-import { useComponentProps } from 'src/utils/useComponentProps';
 import { kebabCase } from 'utils/kebabCase';
 
 export function ComponentVariants() {
-    const { component, preset } = useComponentContext();
-    const componentProps = useComponentProps();
+    const { component, propState } = useComponentContext();
 
-    const hiddenVariants = Array.isArray(component.hideVariants) ? component.hideVariants : [];
+    // `hideVariants` is an array of property names that should not be displayed.
+    // always hide the 'open' variant
+    const hiddenVariants = [...(Array.isArray(component.hideVariants) ? component.hideVariants : []), 'open'];
 
     const variantProperties: TypeProperty[] =
         component.props?.filter(
@@ -34,9 +33,7 @@ export function ComponentVariants() {
     }
 
     const containerStyle =
-        typeof component.containerStyle === 'function'
-            ? component.containerStyle(componentProps)
-            : component.containerStyle;
+        typeof component.containerStyle === 'function' ? component.containerStyle(propState) : component.containerStyle;
 
     return (
         <>
@@ -60,12 +57,14 @@ export function ComponentVariants() {
                             {variants?.map((option) => (
                                 <div data-option-container key={`${prop.name}-${option}`}>
                                     <Tag color="grey">{option.toString()}</Tag>
-                                    <VariantExample
-                                        Component={Component}
-                                        component={component as DemoComponent}
-                                        option={option}
-                                        preset={preset as DemoPreset}
-                                        prop={prop}
+                                    <ComponentRender
+                                        context={{
+                                            variantValue: option,
+                                            variantName: prop.name,
+                                        }}
+                                        overrideState={{
+                                            [prop.name]: option,
+                                        }}
                                     />
                                 </div>
                             ))}
@@ -75,33 +74,6 @@ export function ComponentVariants() {
             })}
         </>
     );
-}
-
-// eslint-disable-next-line react/no-multi-comp
-function VariantExample({
-    option,
-    prop,
-    Component,
-    component,
-    preset,
-}: {
-    option: boolean | number | string;
-    prop: TypeProperty;
-    Component: React.ComponentType<any>;
-    component: DemoComponent;
-    preset: DemoPreset;
-}) {
-    const componentProps = useComponentProps(
-        {
-            [prop.name]: option,
-        },
-        {
-            variantValue: option,
-            variantName: prop.name,
-        },
-    );
-
-    return <>{component.render?.({ props: componentProps, preset, Component }) || <Component {...componentProps} />}</>;
 }
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */

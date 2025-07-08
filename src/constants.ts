@@ -1,7 +1,16 @@
-import { DevPhase } from '@bspk/ui/demo/examples';
-import { DemoComponent } from 'src/types';
+import { ColorVariant } from '@bspk/ui/utils/colorVariants';
+import { ComponentPhase } from '@bspk/ui/utils/demo';
 
-export const DEV_PHASES: Record<DevPhase, DemoComponent['phase']> = {
+export const COMPONENT_PHASES: Record<
+    ComponentPhase,
+    {
+        title: string;
+        id: ComponentPhase;
+        description: string;
+        descriptor: string;
+        color: ColorVariant;
+    }
+> = {
     Backlog: {
         title: 'Backlog',
         id: 'Backlog',

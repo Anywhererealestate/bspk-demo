@@ -1,63 +1,55 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Brand, BRANDS } from '@bspk/ui';
-import { PropsWithChildren, useState, useMemo, useEffect } from 'react';
+import { useUIContext } from '@bspk/ui/hooks/useUIContext';
+import { COLOR_THEMES, ColorTheme } from '@bspk/ui/utils/uiContext';
+import { PropsWithChildren, useMemo, useEffect } from 'react';
 import { StylesProvider } from 'src/components/StylesProvider';
-import { VERSION } from 'src/meta';
-import {
-    GlobalState,
-    GlobalStateContext,
-    ColorTheme,
-    COLOR_THEMES,
-    globalStateContext,
-    globalStateDefault,
-} from 'src/utils/globalState';
+import { BUILD, VERSION } from 'src/meta';
+import { GlobalState, globalStateContext, globalStateDefault } from 'src/utils/globalState';
+import { useStoreState } from 'src/utils/useStoreState';
 import store from 'store';
 
-const setStoreState = (state: GlobalState) => {
-    store.set('bspkState', { ...state, version: VERSION });
-};
-
-const getStoreState = (): GlobalState => {
-    const storedState = store.get('bspkState') as (GlobalStateContext & { version: string }) | undefined;
-    if (!storedState) return globalStateDefault;
-
-    if (storedState.version !== VERSION) {
-        // If the stored state version does not match the current version, reset to default
-        setStoreState(globalStateDefault);
-        return globalStateDefault;
-    }
-
-    return storedState;
-};
-
 export function GlobalStateProvider({ children }: PropsWithChildren) {
-    const [state, setState] = useState<GlobalState>(getStoreState());
+    const [globalState, setState] = useStoreState<GlobalState>(`bspk-global-${VERSION}.${BUILD}`, globalStateDefault);
 
-    useEffect(() => setStoreState(state), [state]);
+    const { theme, setTheme } = useUIContext();
 
-    const {
-        theme = state.theme,
-        brand = state.brand,
-        showTouchTarget = false,
-    } = useMemo(() => {
+    useEffect(() => {
         const searchParams = Object.fromEntries(new URLSearchParams(globalThis.location.search).entries());
 
-        const nextState = { ...state };
+        let overrideTheme: ColorTheme | undefined;
+        let overrideBrand: Brand | undefined;
 
-        if (searchParams.theme && COLOR_THEMES.includes(searchParams.theme as ColorTheme)) {
-            nextState.theme = searchParams.theme as ColorTheme;
+        if (
+            searchParams.theme &&
+            COLOR_THEMES.includes(searchParams.theme as ColorTheme) &&
+            searchParams.theme !== theme
+        ) {
+            overrideTheme = searchParams.theme as ColorTheme;
         }
 
-        if (searchParams.brand && BRANDS.find((b) => b.slug === searchParams.brand)) {
-            nextState.brand = searchParams.brand as Brand;
+        if (
+            searchParams.brand &&
+            BRANDS.find((b) => b.slug === searchParams.brand) &&
+            searchParams.brand !== globalState.brand
+        ) {
+            overrideBrand = searchParams.brand as Brand;
         }
 
-        return nextState;
-    }, [state]);
+        if (overrideBrand)
+            setState((prev) => ({
+                ...prev,
+                brand: overrideBrand || prev.brand,
+            }));
+
+        if (overrideTheme) setTheme(overrideTheme);
+    }, []);
+
+    const { brand, showTouchTarget } = globalState;
 
     useEffect(() => {
         document.querySelectorAll('link[data-syntax-theme]').forEach((link) => link.setAttribute('disabled', 'true'));
         document.querySelector(`link[data-syntax-theme="${theme}"]`)?.removeAttribute('disabled');
-        document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
     return (
@@ -69,7 +61,7 @@ export function GlobalStateProvider({ children }: PropsWithChildren) {
                         brand,
                         theme,
                         showTouchTarget,
-                        setTheme: (nextTheme: ColorTheme) => setState((prev) => ({ ...prev, theme: nextTheme })),
+                        setTheme,
                         setBrand: (nextBrand: Brand) => setState((prev) => ({ ...prev, brand: nextBrand })),
                         setShowTouchTarget: (show: boolean) => setState((prev) => ({ ...prev, showTouchTarget: show })),
                         resetGlobalState: () => {
