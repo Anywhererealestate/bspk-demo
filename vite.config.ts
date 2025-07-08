@@ -1,4 +1,4 @@
-import { exec } from 'child_process';
+import { execSync } from 'child_process';
 import { resolve } from 'path';
 
 import react from '@vitejs/plugin-react';
@@ -24,7 +24,7 @@ export default defineConfig({
                 },
                 onFileChanged: ({ file }) => {
                     console.log(`File changed: ${file}`);
-                    exec(`vite-node ./.scripts/dev-meta.ts update=${file.split('bspk-ui')[1]}`);
+                    execSync(`npm run meta -- ${file}`, { stdio: 'inherit' });
                 },
             },
         ]),
@@ -41,11 +41,6 @@ export default defineConfig({
             host: 'localhost',
         },
         port: 8675,
-        watch: {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-expect-error
-            paths: ['../bspk-ui/src/**/*'],
-        },
     },
     preview: {
         port: 8080,

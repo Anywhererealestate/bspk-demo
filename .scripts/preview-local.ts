@@ -1,7 +1,7 @@
 /**
- * Build script for the BSPK demo project.
+ * Local preview script builds the bspk-ui library and links it to the demo project.
  *
- * $ vite-node ./.scripts/build.ts
+ * $ vite-node .scripts/preview-local.ts
  */
 import { execSync } from 'child_process';
 import fs from 'fs';
