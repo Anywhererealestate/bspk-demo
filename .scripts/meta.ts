@@ -21,8 +21,13 @@ if (fs.existsSync(uiRootPath)) {
 }
 
 function runMetaCommand({ prefix, hash, updated }: { prefix: string; hash: string; updated?: string }) {
-    const build =
-        execSync(`${prefix} git rev-list --count origin/main..origin/dev`, { encoding: 'utf-8' }).trim() || '0';
+    let build = '';
+
+    try {
+        build = execSync(`${prefix} git rev-list --count origin/main..origin/dev`, { encoding: 'utf-8' }).trim() || '0';
+    } catch {
+        // If the git command fails, we assume no new commits have been made
+    }
 
     console.log({ prefix });
     execSync(`${prefix} npm run meta out=${outDir} hash=${hash} build=${build} ${updated ? `update=${updated}` : ''}`, {
