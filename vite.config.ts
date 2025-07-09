@@ -32,10 +32,6 @@ export default defineConfig({
     optimizeDeps: {
         exclude: ['@bspk/ui'],
     },
-    esbuild: {
-        minifyIdentifiers: false,
-        drop: ['console', 'debugger'],
-    },
     server: {
         hmr: {
             host: 'localhost',

@@ -24,7 +24,6 @@ function runMetaCommand({ prefix, hash, updated }: { prefix: string; hash: strin
     const build =
         execSync(`${prefix} git rev-list --count origin/main..origin/dev`, { encoding: 'utf-8' }).trim() || '0';
 
-    console.log({ prefix });
     execSync(`${prefix} npm run meta out=${outDir} hash=${hash} build=${build} ${updated ? `update=${updated}` : ''}`, {
         stdio: 'inherit',
     });

@@ -68,7 +68,7 @@ if (linkedPath.endsWith('./../bspk-ui/src')) {
  *
  * This script generates the search index for the BSPK UI components and then starts the Vite server.
  */
-execSync('vite-node ./.scripts/search-index.ts && rm -rf node_modules/.vite && vite --open', {
+execSync('vite-node ./.scripts/search-index.ts && rm -rf node_modules/.vite && vite dev --force --open', {
     stdio: 'inherit',
 });
 
