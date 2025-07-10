@@ -54,6 +54,9 @@ export default defineConfig({
             '-/components': resolve(__dirname, '../bspk-ui/src/components'),
             '-/hooks': resolve(__dirname, '../bspk-ui/src/hooks'),
             '-/utils': resolve(__dirname, '../bspk-ui/src/utils'),
+            '-/constants': resolve(__dirname, '../bspk-ui/src/constants'),
+            '-/styles': resolve(__dirname, '../bspk-ui/src/styles'),
+            '-/types': resolve(__dirname, '../bspk-ui/src/types'),
         },
     },
 });

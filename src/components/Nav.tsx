@@ -1,12 +1,13 @@
 import { SvgDarkMode } from '@bspk/icons/DarkMode';
 import { SvgDarkModeFill } from '@bspk/icons/DarkModeFill';
 import { SvgSearch } from '@bspk/icons/Search';
-import { Brand, BRANDS } from '@bspk/ui';
 import { Button } from '@bspk/ui/Button';
 import { Dialog } from '@bspk/ui/Dialog';
 import { MenuButton } from '@bspk/ui/MenuButton';
 import { Select } from '@bspk/ui/Select';
+import { BRANDS } from '@bspk/ui/constants/brands';
 import { useModalState } from '@bspk/ui/hooks/useModalState';
+import { Brand } from '@bspk/ui/types/common';
 import { NavSide } from 'components/NavSide';
 import { SearchModal } from 'components/SearchModal';
 import { useEffect, useId, useState } from 'react';

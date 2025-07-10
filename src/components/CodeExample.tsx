@@ -1,5 +1,5 @@
-import { ElementProps } from '@bspk/ui';
 import { TabGroup } from '@bspk/ui/TabGroup';
+import { ElementProps } from '@bspk/ui/types/common';
 import { AccessibilitySection } from 'components/AccessibilitySection';
 import ComponentLogs from 'components/ComponentLogs';
 import { ErrorBoundary } from 'components/ErrorBoundary';
