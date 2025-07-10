@@ -9,7 +9,8 @@ import eraCss from '@bspk/styles/era.css?raw';
 import sothebysCss from '@bspk/styles/sothebys.css?raw';
 import { Brand } from '@bspk/ui/types/common';
 import { useEffect, useRef } from 'react';
-import '-/styles/base.scss';
+
+import baseCss from '-/styles/base.scss?raw';
 
 const BRAND_STYLES: Record<Brand, string> = {
     anywhere: anywhereCss,
@@ -32,6 +33,14 @@ function StylesProvider({ brand = 'anywhere' }: { brand: Brand }) {
     const styleElement = useRef<HTMLStyleElement | null>(null);
 
     useEffect(() => {
+        // add baseCss
+        const baseStyleElement = document.createElement('style');
+        baseStyleElement.textContent = baseCss;
+        baseStyleElement.setAttribute('data-bspk-base', 'true');
+        document.head.appendChild(baseStyleElement);
+    });
+
+    useEffect(() => {
         if (!styleElement.current) {
             styleElement.current = document.createElement('style');
             document.head.appendChild(styleElement.current);
@@ -40,6 +49,9 @@ function StylesProvider({ brand = 'anywhere' }: { brand: Brand }) {
         if (styleElement.current) {
             styleElement.current.textContent = BRAND_STYLES[brand] || BRAND_STYLES.anywhere;
         }
+
+        console.log(brand);
+
         return () => {
             if (styleElement.current) {
                 document.head.removeChild(styleElement.current);

@@ -19,9 +19,21 @@ if (!fs.existsSync(uiRootPath)) {
     throw new Error(`bspk-ui not found at ${uiRootPath}`);
 }
 
-const mode = process.argv[2] === 'prod' ? 'prod' : 'local';
+const mode = process.argv[2] || 'local';
 
 console.log(`${ORANGE}Running in ${mode.toUpperCase()} preview mode${RESET}`);
+
+if (mode === 'dev') {
+    execSync(`npm install https:/github.com/Anywhererealestate/bspk-ui#dev && npm explore @bspk/ui -- npm run build`, {
+        stdio: 'inherit',
+    });
+}
+
+if (mode === 'prod') {
+    execSync(`npm unlink @bspk/ui && npm install @bspk/ui@latest`, {
+        stdio: 'inherit',
+    });
+}
 
 if (mode === 'prod') {
     execSync(`npm unlink @bspk/ui && npm install @bspk/ui@latest`, {

@@ -169,8 +169,6 @@ export function useComponentDemo(componentName: MetaComponentName) {
                     return referenceMeta;
                 }) || [],
         };
-
-        console.log({ nextComponent });
         return nextComponent;
     });
 }

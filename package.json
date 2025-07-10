@@ -13,6 +13,7 @@
         "prepare": "husky",
         "preview:local": "vite-node ./.scripts/preview.ts local",
         "preview:prod": "vite-node ./.scripts/preview.ts prod",
+        "preview:dev": "vite-node ./.scripts/preview.ts dev",
         "test": "TEST_PORT=8675 playwright test",
         "test:preview": "TEST_PORT=8080 playwright test",
         "tasks": "vite-node ./.scripts/tasks.ts"
