@@ -13,8 +13,8 @@ import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { COMPONENT_PHASES } from 'src/constants';
 import { MetaComponentName } from 'src/meta';
-import { kebabCase } from 'src/utils/kebabCase';
 import { useGlobalState } from 'src/utils/globalState';
+import { kebabCase } from 'src/utils/kebabCase';
 import { useComponentDemo } from 'src/utils/useComponentDemo';
 
 function ComponentPage({ componentName }: { componentName: MetaComponentName }) {

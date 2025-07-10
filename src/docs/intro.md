@@ -2,7 +2,7 @@
 
 This website was built using the components, icons, stylesheets, tools, and utilities based on the Bespoke Design System. This website is constantly updated as new components, icons, and designs are added to Bespoke.
 
-Repositories can be found at https://github.com/Anywhererealestate.
+Repositories can be found at [https://github.com/Anywhererealestate](https://github.com/Anywhererealestate).
 
 Please report issues with this website or any of the following packages by emailing <a target="_blank" href="mailto:bspk.dev@anywhere.re">bspk.dev@anywhere.re</a>.
 
