@@ -49,9 +49,6 @@ function StylesProvider({ brand = 'anywhere' }: { brand: Brand }) {
         if (styleElement.current) {
             styleElement.current.textContent = BRAND_STYLES[brand] || BRAND_STYLES.anywhere;
         }
-
-        console.log(brand);
-
         return () => {
             if (styleElement.current) {
                 document.head.removeChild(styleElement.current);

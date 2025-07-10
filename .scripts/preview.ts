@@ -34,12 +34,6 @@ if (mode === 'prod') {
         stdio: 'inherit',
     });
 }
-
-if (mode === 'prod') {
-    execSync(`npm unlink @bspk/ui && npm install @bspk/ui@latest`, {
-        stdio: 'inherit',
-    });
-}
 if (mode === 'local') {
     execSync(`cd "${uiRootPath}" && npm run build && npm link && cd "${demoRootPath}" && npm link @bspk/ui`, {
         stdio: 'inherit',
