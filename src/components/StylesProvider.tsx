@@ -9,6 +9,7 @@ import eraCss from '@bspk/styles/era.css?raw';
 import sothebysCss from '@bspk/styles/sothebys.css?raw';
 import { Brand } from '@bspk/ui/types/common';
 import { useEffect, useRef } from 'react';
+import '-/styles/base.scss';
 
 const BRAND_STYLES: Record<Brand, string> = {
     anywhere: anywhereCss,
