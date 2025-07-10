@@ -1,4 +1,4 @@
-import { AlertVariant } from '@bspk/ui';
+import { AlertVariant } from '@bspk/ui/types/common';
 import { DemoAction } from '@bspk/ui/utils/demo';
 import { useEffect, useMemo, useState } from 'react';
 import { kebabCase } from 'src/utils/kebabCase';

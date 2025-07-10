@@ -1,4 +1,4 @@
-import { Brand } from '@bspk/ui';
+import { Brand } from '@bspk/ui/types/common';
 import { lazy, LazyExoticComponent, Suspense, ComponentType } from 'react';
 
 const BRAND_STYLES_PROVIDERS: Record<Brand, LazyExoticComponent<ComponentType>> = {

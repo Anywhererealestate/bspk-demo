@@ -46,7 +46,16 @@
             ],
             "-/utils/*": [
                 "../bspk-ui/src/utils/*"
-            ]
+            ],
+            "-/types/*": [
+                "../bspk-ui/src/types/*"
+            ],
+            "-/constants/*": [
+                "../bspk-ui/src/constants/*"
+            ],
+            "-/styles/*": [
+                "../bspk-ui/src/styles/*"
+            ],
         }
     },
     "include": [
