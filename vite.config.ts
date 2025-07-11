@@ -73,8 +73,12 @@ function debounceMetaOnChange() {
     return () => {
         if (debouncedMetaTimeout) clearTimeout(debouncedMetaTimeout);
         debouncedMetaTimeout = setTimeout(() => {
-            execSync(`npm run meta`, { stdio: 'inherit' });
-        }, 1000);
+            try {
+                execSync(`npm run meta`, { stdio: 'inherit' });
+            } catch (error) {
+                console.error('Error occurred while running meta:', error);
+            }
+        }, 3000);
     };
 }
 
