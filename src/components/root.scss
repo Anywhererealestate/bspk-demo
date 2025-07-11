@@ -367,14 +367,6 @@ body[data-screen-size='large'] {
         grid-template-columns: auto 1fr;
     }
 
-    > div {
-        padding: var(--spacing-sizing-04) var(--spacing-sizing-02);
-
-        &:not([data-row-last]) {
-            border-bottom: var(--stroke-neutral-low-contrast) solid 1px;
-        }
-    }
-
     /* [data-cell='default'] {
     &[data-none] {
       > [data-txt] {
