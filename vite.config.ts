@@ -5,6 +5,8 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { run } from 'vite-plugin-run';
 
+const debouncedMetaBuild = debounceMetaOnChange();
+
 export default defineConfig({
     css: {
         preprocessorOptions: {
@@ -24,7 +26,7 @@ export default defineConfig({
                 },
                 onFileChanged: ({ file }) => {
                     console.log(`File changed: ${file}`);
-                    execSync(`npm run meta`, { stdio: 'inherit' });
+                    debouncedMetaBuild();
                 },
             },
         ]),
@@ -60,5 +62,20 @@ export default defineConfig({
         },
     },
 });
+
+/**
+ * This function debounces the meta file rebuild process.
+ *
+ * @returns A debounced function that rebuilds the meta files.
+ */
+function debounceMetaOnChange() {
+    let debouncedMetaTimeout: NodeJS.Timeout | null = null;
+    return () => {
+        if (debouncedMetaTimeout) clearTimeout(debouncedMetaTimeout);
+        debouncedMetaTimeout = setTimeout(() => {
+            execSync(`npm run meta`, { stdio: 'inherit' });
+        }, 1000);
+    };
+}
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */
