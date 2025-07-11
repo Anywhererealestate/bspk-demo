@@ -70,14 +70,10 @@ export default defineConfig({
  */
 function debounceMetaOnChange() {
     let debouncedMetaTimeout: NodeJS.Timeout | null = null;
-    let debouncedCount = 0;
     return () => {
         if (debouncedMetaTimeout) clearTimeout(debouncedMetaTimeout);
-        debouncedCount++;
         debouncedMetaTimeout = setTimeout(() => {
-            console.log(`Meta build starting after ${debouncedCount} changes.`);
             execSync(`npm run meta`, { stdio: 'inherit' });
-            debouncedCount = 0;
         }, 1000);
     };
 }
