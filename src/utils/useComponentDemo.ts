@@ -170,7 +170,6 @@ export function useComponentDemo(componentName: MetaComponentName) {
                 }) || [],
         };
 
-        console.log({ nextComponent });
         return nextComponent;
     });
 }

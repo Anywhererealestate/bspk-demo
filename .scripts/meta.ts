@@ -28,8 +28,6 @@ function runMetaCommand({ prefix, hash, updated }: { prefix: string; hash: strin
     } catch {
         // If the git command fails, we assume no new commits have been made
     }
-
-    console.log({ prefix });
     execSync(`${prefix} npm run meta out=${outDir} hash=${hash} build=${build} ${updated ? `update=${updated}` : ''}`, {
         stdio: 'inherit',
     });

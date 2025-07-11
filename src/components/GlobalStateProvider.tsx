@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { StylesProviderDemo as StylesProvider } from '@bspk/ui/StylesProviderDemo';
 import { BRANDS } from '@bspk/ui/constants/brands';
 import { useUIContext } from '@bspk/ui/hooks/useUIContext';
 import { Brand } from '@bspk/ui/types/common';
 import { COLOR_THEMES, ColorTheme } from '@bspk/ui/utils/uiContext';
 import { PropsWithChildren, useMemo, useEffect } from 'react';
-import { StylesProvider } from 'src/components/StylesProvider';
 import { BUILD, VERSION } from 'src/meta';
 import { GlobalState, globalStateContext, globalStateDefault } from 'src/utils/globalState';
 import { useStoreState } from 'src/utils/useStoreState';
