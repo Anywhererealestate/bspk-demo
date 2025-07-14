@@ -63,27 +63,34 @@ export function Demo() {
     return (
         <Page>
             <Txt as="h1" style={{ margin: '16px 0' }} variant="heading-h3">
-                Home Journey Mobile Demo
+                Home Journey Mobile Experience
             </Txt>
             <div style={{ display: 'flex', gap: 24 }}>
                 <div data-content-demo style={{ flex: 1, padding: '16px', backgroundColor: '#fff' }}>
-                    <p>This is a demo of the Home Journey Mobile component.</p>
-                    <p>Frontend development time:</p>
-                    <Txt as="p" variant="subheader-medium">
-                        1 hour 10 minutes and 3 seconds.
-                    </Txt>
+                    <p>
+                        Frontend development time:{' '}
+                        <Txt as="span" variant="subheader-medium">
+                            1 hour 10 minutes and 3 seconds.
+                        </Txt>
+                    </p>
 
-                    <p>We started creating this by copying and pasting the PNG for this screen into Copilot.</p>
+                    <p>
+                        We started creating this by copying and pasting the screen from Figma as a PNG into CoPilot and
+                        added the following prompt:
+                    </p>
 
-                    <p>We started with the following prompt:</p>
                     <blockquote>
-                        Create a React component that looks like the Home Journey Mobile screen in the screenshot. Use
-                        the BSPK UI components where possible.
+                        Create a React page that looks like the screenshot. Use the BSPK UI components.
                     </blockquote>
+
+                    <p>
+                        The CoPilot result was a great starting point using BSPK components and without prompting even
+                        added BSPK Icons.
+                    </p>
 
                     <Divider />
 
-                    <p>The component is built using the following BSPK UI components:</p>
+                    <p>The experience is built using the following BSPK UI components:</p>
                     <ul>
                         <li>Avatar</li>
                         <li>Button</li>
@@ -95,25 +102,34 @@ export function Demo() {
                         <li>Txt</li>
                     </ul>
 
-                    <p>The component is built using the following BSPK Icons:</p>
+                    <p>The experience is built using the following BSPK Icons:</p>
                     <ul>
                         <li>SvgChevronLeft</li>
                         <li>SvgChevronRight</li>
                         <li>SvgMenu</li>
                     </ul>
 
-                    <p>The Show All button using the BSPK UI library:</p>
+                    <p>
+                        After an additional hour of development, we had a working front-end experience that matches the
+                        Figma design, follows all Bespoke Design System guidelines, and includes accessibility built-in.
+                    </p>
+
+                    <p>
+                        The <b>Show All</b> button using the BSPK UI library:
+                    </p>
 
                     <Syntax
-                        code={`<Button label="Show all" onClick={handleShowAllClick} size="small" />
+                        code={`import { Button } from '@bspk/ui/Button';\n\n<Button label="Show all" onClick={handleShowAllClick} size="small" />
 `}
                         language="typescript"
                     />
 
-                    <p>What the Show All button looks like in Figma:</p>
+                    <p>
+                        What the <b>Show All</b> button looks like in Figma property panel:
+                    </p>
                     <img alt="Show All button in Figma" src="demo-show-all-button.png" style={{ maxWidth: '300px' }} />
                 </div>
-                <div style={{ flex: 1, maxWidth: 375, margin: '0 auto', padding: '16px' }}>
+                <div style={{ flex: 1, maxWidth: 375, margin: '0 auto' }}>
                     <HomeJourneyMobile />
                 </div>
             </div>
