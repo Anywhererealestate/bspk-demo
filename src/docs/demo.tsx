@@ -133,6 +133,181 @@ export function Demo() {
                     <HomeJourneyMobile />
                 </div>
             </div>
+            <div style={{ marginTop: 24, backgroundColor: '#fff', padding: '16px' }}>
+                <Txt as="h2" variant="heading-h4">
+                    Source Code
+                </Txt>
+                <p>This is a very rough draft with the intent for speed and not accuracy or completeness.</p>
+                <p>
+                    Styles would normally be defined in a separate CSS file, but for the sake of this demo, they are
+                    included inline.
+                </p>
+                <p>We are still developing the Carousel component, so we used a static example.</p>
+                <Syntax
+                    code={`export default function HomeJourneyMobile() {
+    const [carouselIndex] = useState(1);
+
+    const handleShowAllClick = () => {
+        // Handle the show all click event
+        console.log('Show all clicked');
+    };
+
+    return (
+        <div style={{ background: '#fff', minHeight: '100vh', fontFamily: 'inherit' }}>
+            <div
+                style={{
+                    background: 'var(--foreground-brand-primary-depth)',
+                }}
+            >
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        width: '100%',
+                        color: 'var(--foreground-brand-on-primary)',
+                        padding: '12px',
+                    }}
+                >
+                    <Txt style={{ flex: 1, textAlign: 'center' }} variant="heading-h6">
+                        Home Journey
+                    </Txt>
+                    <Button
+                        icon={<SvgMenu />}
+                        label="Menu"
+                        showLabel={false}
+                        style={{ color: 'var(--foreground-brand-on-primary)' }}
+                        variant="tertiary"
+                    />
+                </div>
+                <div
+                    style={{
+                        padding: 16,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'start',
+                        borderTopLeftRadius: 'var(--radius-xlg)',
+                        borderTopRightRadius: 'var(--radius-xlg)',
+                        background: '#fff',
+                    }}
+                >
+                    <Txt style={{ fontWeight: 600 }} variant="heading-h5">
+                        Good morning, Sheri
+                    </Txt>
+                    <Txt variant="body-base">Thursday, July 3</Txt>
+                </div>
+            </div>
+            <div style={{ margin: 0, borderRadius: 0, boxShadow: 'none', padding: 0 }}>
+                <div style={{ position: 'relative' }}>
+                    <img
+                        alt="Home"
+                        src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+                        style={{ width: '100%', height: 180, objectFit: 'cover' }}
+                    />
+                    <div
+                        style={{
+                            width: '100%',
+                            position: 'absolute',
+                            top: '30%',
+                            height: '48px',
+                        }}
+                    >
+                        <Fab
+                            icon={<SvgChevronLeft />}
+                            label="previous"
+                            placement="top-left"
+                            showLabel={false}
+                            variant="neutral"
+                        />
+                        <Fab
+                            icon={<SvgChevronRight />}
+                            label="next"
+                            placement="top-right"
+                            showLabel={false}
+                            variant="neutral"
+                        />
+                    </div>
+
+                    <div style={{ position: 'absolute', bottom: 16, left: '50%', transform: 'translateX(-50%)' }}>
+                        <PageControl numPages={20} value={carouselIndex} />
+                    </div>
+                </div>
+                <div>
+                    {items.map((item, index) => (
+                        <Fragment key={item.label}>
+                            {index > 0 && <Divider />}
+                            <ListItem {...item} />
+                        </Fragment>
+                    ))}
+                </div>
+            </div>
+            <div style={{ width: '100%', height: '8px', background: 'var(--surface-neutral-t2-lowest)' }} />
+            <div style={{ padding: 8 }}>
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: 8, height: 56 }}>
+                    <Txt style={{ fontWeight: 600, flex: 1 }} variant="heading-h5">
+                        Milestones
+                    </Txt>
+                    <Button label="Show all" onClick={handleShowAllClick} size="small" />
+                </div>
+                <TabGroup
+                    onChange={() => {}}
+                    options={[
+                        { label: 'Upcoming', value: 'upcoming' },
+                        { label: 'Completed', value: 'completed', badge: 2 },
+                    ]}
+                    value="upcoming"
+                />
+                <div style={{ boxShadow: 'none', padding: '8px 0 0' }}>
+                    {milestones.map((m, i) => (
+                        <Fragment key={i}>
+                            {i > 0 && <Divider />}
+                            <ListItem key={i} {...m} />
+                        </Fragment>
+                    ))}
+                </div>
+            </div>
+            <div style={{ width: '100%', height: '8px', background: 'var(--surface-neutral-t2-lowest)' }} />
+            <div style={{ padding: 16 }}>
+                <Txt style={{ fontWeight: 600, marginBottom: 8 }} variant="heading-h6">
+                    Your team
+                </Txt>
+                <div data-style={{ boxShadow: 'none', padding: 0 }}>
+                    {team.map((member, index) => (
+                        <div
+                            key={index}
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                padding: '12px 0',
+                                borderBottom: '1px solid #eee',
+                            }}
+                        >
+                            <ListItem {...member} />
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <div style={{ padding: 16, fontSize: 14, background: 'var(--surface-neutral-t2-lowest)' }}>
+                <ListItem href="#/terms-of-use" label="Terms of use" />
+                <ListItem href="#/privacy-notice" label="Privacy Notice" />
+                <ListItem
+                    href="#/do-not-sell-or-share-my-personal-information"
+                    label="Do Not Sell or Share My Personal Information"
+                />
+                <ListItem href="#/cookie-preferences" label="Cookie Preferences" />
+
+                <ListItem label="Having trouble? Call us at 1-800-873-8111" />
+                <Txt as="div" style={{ textAlign: 'center', marginTop: 16 }} variant="subheader-medium">
+                    © 2025 Anywhere, Inc.
+                </Txt>
+            </div>
+        </div>
+    );
+}`}
+                    language="typescript"
+                />
+            </div>
         </Page>
     );
 }
