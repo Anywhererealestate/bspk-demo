@@ -66,7 +66,7 @@ export function Demo() {
                 Home Journey Mobile Experience
             </Txt>
             <div style={{ display: 'flex', gap: 24 }}>
-                <div data-content-demo style={{ flex: 1, padding: '16px', backgroundColor: '#fff' }}>
+                <div data-content-demo style={{ flex: 1, padding: '16px', backgroundColor: '#fff', width: '500px' }}>
                     <p>
                         Frontend development time:{' '}
                         <Txt as="span" variant="subheader-medium">
