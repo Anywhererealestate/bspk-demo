@@ -11,7 +11,8 @@ import { PageControl } from '@bspk/ui/PageControl';
 import { TabGroup } from '@bspk/ui/TabGroup/index';
 import { Txt } from '@bspk/ui/Txt';
 import { Page } from 'components/Page';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
+import { Syntax } from 'src/components/Syntax';
 
 const milestones: ListItemProps[] = [
     { label: 'Inspection', subText: 'July 7' },
@@ -50,12 +51,72 @@ const team: ListItemProps[] = [
 ];
 
 export function Demo() {
+    useEffect(() => {
+        document.title = 'BSPK UI Demo';
+        document.body.setAttribute('data-bspk-code-demo', '');
+
+        return () => {
+            document.body.removeAttribute('data-bspk-code-demo');
+        };
+    }, []);
+
     return (
         <Page>
-            <div style={{ maxWidth: 375, margin: '0 auto', padding: '16px' }}>
-                <HomeJourneyMobile />
+            <Txt as="h1" style={{ margin: '16px 0' }} variant="heading-h3">
+                Home Journey Mobile Demo
+            </Txt>
+            <div style={{ display: 'flex', gap: 24 }}>
+                <div data-content-demo style={{ flex: 1, padding: '16px', backgroundColor: '#fff' }}>
+                    <p>This is a demo of the Home Journey Mobile component.</p>
+                    <p>Frontend development time:</p>
+                    <Txt as="p" variant="subheader-medium">
+                        1 hour 10 minutes and 3 seconds.
+                    </Txt>
+
+                    <p>We started creating this by copying and pasting the PNG for this screen into Copilot.</p>
+
+                    <p>We started with the following prompt:</p>
+                    <blockquote>
+                        Create a React component that looks like the Home Journey Mobile screen in the screenshot. Use
+                        the BSPK UI components where possible.
+                    </blockquote>
+
+                    <Divider />
+
+                    <p>The component is built using the following BSPK UI components:</p>
+                    <ul>
+                        <li>Avatar</li>
+                        <li>Button</li>
+                        <li>Divider</li>
+                        <li>Fab</li>
+                        <li>ListItem</li>
+                        <li>PageControl</li>
+                        <li>TabGroup</li>
+                        <li>Txt</li>
+                    </ul>
+
+                    <p>The component is built using the following BSPK Icons:</p>
+                    <ul>
+                        <li>SvgChevronLeft</li>
+                        <li>SvgChevronRight</li>
+                        <li>SvgMenu</li>
+                    </ul>
+
+                    <p>The Show All button using the BSPK UI library:</p>
+
+                    <Syntax
+                        code={`<Button label="Show all" onClick={handleShowAllClick} size="small" />
+`}
+                        language="typescript"
+                    />
+
+                    <p>What the Show All button looks like in Figma:</p>
+                    <img alt="Show All button in Figma" src="demo-show-all-button.png" style={{ maxWidth: '300px' }} />
+                </div>
+                <div style={{ flex: 1, maxWidth: 375, margin: '0 auto', padding: '16px' }}>
+                    <HomeJourneyMobile />
+                </div>
             </div>
-            <style>{'body[data-bspk] { background-color: #e0e0e0; !important }'}</style>
         </Page>
     );
 }
@@ -63,6 +124,11 @@ export function Demo() {
 // eslint-disable-next-line react/no-multi-comp
 export default function HomeJourneyMobile() {
     const [carouselIndex] = useState(1);
+
+    const handleShowAllClick = () => {
+        // Handle the show all click event
+        console.log('Show all clicked');
+    };
 
     return (
         <div style={{ background: '#fff', minHeight: '100vh', fontFamily: 'inherit' }}>
@@ -173,7 +239,7 @@ export default function HomeJourneyMobile() {
                     <Txt style={{ fontWeight: 600, flex: 1 }} variant="heading-h5">
                         Milestones
                     </Txt>
-                    <Button label="Show all" size="small" />
+                    <Button label="Show all" onClick={handleShowAllClick} size="small" />
                 </div>
                 <TabGroup
                     onChange={() => {}}
