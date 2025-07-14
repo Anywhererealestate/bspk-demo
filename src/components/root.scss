@@ -652,6 +652,7 @@ code {
 }
 
 [data-navigation] {
+    background-color: var(--surface-neutral-t1-base);
     height: calc(100vh - var(--spacing-sizing-16));
     width: var(--left-nav-width);
     position: fixed;
