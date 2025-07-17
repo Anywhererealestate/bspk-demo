@@ -18,7 +18,11 @@ if (!fs.existsSync(uiRootPath)) {
     throw new Error(`bspk-ui not found at ${uiRootPath}`);
 }
 
-execSync(`npm run meta`, { stdio: 'inherit' });
+const args = process.argv.slice(2);
+
+const updateMeta = !args.includes('no-meta');
+
+if (updateMeta) execSync(`npm run meta`, { stdio: 'inherit' });
 
 /**
  * Set up the local development environment by linking the bspk-ui package to src folder with a package.json
@@ -68,9 +72,17 @@ if (linkedPath.endsWith('./../bspk-ui/src')) {
  *
  * This script generates the search index for the BSPK UI components and then starts the Vite server.
  */
-execSync('vite-node ./.scripts/search-index.ts && rm -rf node_modules/.vite && vite dev --force --open', {
-    stdio: 'inherit',
-});
+
+execSync(
+    [
+        `vite-node ./.scripts/search-index.ts`,
+        `rm -rf node_modules/.vite`,
+        `UPDATE_META=${updateMeta} vite dev --force --open`,
+    ].join(' && '),
+    {
+        stdio: 'inherit',
+    },
+);
 
 function createPackageJson() {
     const version = execSync('npm view @bspk/ui version', { encoding: 'utf-8' }).trim();
