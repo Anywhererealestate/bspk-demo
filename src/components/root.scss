@@ -196,7 +196,7 @@ body[data-screen-size='large'] {
         z-index: 2;
     }
 
-    section:not([data-active-tab]) {
+    > section:not([data-active-tab]) {
         position: absolute;
         opacity: 0;
         left: -9999px;
