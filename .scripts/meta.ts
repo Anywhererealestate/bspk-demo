@@ -12,8 +12,6 @@ import path from 'path';
 const outDir = path.resolve(__dirname, '../src/meta');
 const uiRootPath = path.resolve(__dirname, '../../bspk-ui');
 
-const { DEV_GIT_TOKEN } = process.env;
-
 if (fs.existsSync(uiRootPath)) {
     console.log(`Running @bspk/ui meta generation script for local development\n\n`);
     runMetaLocal();
@@ -22,29 +20,18 @@ if (fs.existsSync(uiRootPath)) {
     runMeta();
 }
 
-function runMetaCommand({ prefix, hash, updated }: { prefix: string; hash: string; updated?: string }) {
-    let build = '';
+function runMetaCommand({ prefix, hash, updated: update }: { prefix: string; hash: string; updated?: string }) {
+    const build = getBuild({ prefix });
 
-    if (DEV_GIT_TOKEN)
-        try {
-            const responseJson = execSync(
-                `curl -L \
-      -H "Accept: application/vnd.github+json" \
-      -H "Authorization: Bearer ${DEV_GIT_TOKEN}" \
-      -H "X-GitHub-Api-Version: 2022-11-28" \
-      https://api.github.com/repos/Anywhererealestate/bspk-ui/compare/main...dev
-    `,
-                { encoding: 'utf8' },
-            );
-            const responseData = JSON.parse(responseJson);
-            build = responseData.ahead_by;
-        } catch {
-            // If the API call fails, we assume no new build is available.
-        }
+    const mode = process.env.MODE || 'production';
 
-    console.log(`Building @bspk/ui meta with prefix: ${prefix}, hash: ${hash}, updated: ${updated}, build: ${build}`);
+    const flags = Object.entries({ hash, build, update, mode, out: outDir })
+        .filter(([, value]) => value !== undefined && value !== '')
+        .map(([key, value]) => `${key}=${value}`);
 
-    execSync(`${prefix} npm run meta out=${outDir} hash=${hash} build=${build} ${updated ? `update=${updated}` : ''}`, {
+    console.log(`Building @bspk/ui meta with flags: ${flags}`);
+
+    execSync(`${prefix} npm run meta ${flags.join(' ')}`, {
         stdio: 'inherit',
     });
 
@@ -59,4 +46,13 @@ function runMeta() {
 function runMetaLocal() {
     const updated = process.argv?.[2];
     runMetaCommand({ prefix: `cd ${uiRootPath} &&`, hash: 'local', updated });
+}
+
+function getBuild({ prefix }: { prefix: string }) {
+    try {
+        return execSync(`${prefix} git rev-list --count origin/main..origin/dev`, { encoding: 'utf-8' }).trim() || '0';
+    } catch {
+        // If the git command fails, we assume no new commits have been made
+    }
+    return '';
 }
