@@ -21,7 +21,7 @@ if (fs.existsSync(uiRootPath)) {
 }
 
 function runMetaCommand({ prefix, hash, updated: update }: { prefix: string; hash: string; updated?: string }) {
-    const build = getBuild({ prefix });
+    const build = getBuild();
 
     const mode = process.env.MODE || 'production';
 
@@ -48,11 +48,23 @@ function runMetaLocal() {
     runMetaCommand({ prefix: `cd ${uiRootPath} &&`, hash: 'local', updated });
 }
 
-function getBuild({ prefix }: { prefix: string }) {
-    try {
-        return execSync(`${prefix} git rev-list --count origin/main..origin/dev`, { encoding: 'utf-8' }).trim() || '0';
-    } catch {
-        // If the git command fails, we assume no new commits have been made
-    }
+function getBuild() {
+    if (process.env.DEV_GIT_TOKEN)
+        try {
+            const responseJson = execSync(
+                `curl -L \
+      -H "Accept: application/vnd.github+json" \
+      -H "Authorization: Bearer ${process.env.DEV_GIT_TOKEN}" \
+      -H "X-GitHub-Api-Version: 2022-11-28" \
+      https://api.github.com/repos/Anywhererealestate/bspk-ui/compare/main...dev
+    `,
+                { encoding: 'utf8' },
+            );
+            const responseData = JSON.parse(responseJson);
+            return responseData.ahead_by;
+        } catch {
+            // If the API call fails, we assume no new build is available.
+        }
+
     return '';
 }
