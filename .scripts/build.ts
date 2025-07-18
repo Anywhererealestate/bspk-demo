@@ -1,12 +1,16 @@
 import { execSync } from 'child_process';
 
-const { DEV_GIT_TOKEN } = process.env;
+const { DEV_GIT_TOKEN, MODE } = process.env;
 
-if (DEV_GIT_TOKEN && DEV_GIT_TOKEN !== 'none') {
-    console.log('Installing dev branch of bspk-ui package and building\n\n');
+if (MODE !== 'production') {
+    let branch = '';
+    if (MODE === 'development') branch = 'dev';
+    else if (MODE === 'test') branch = 'test';
+
+    console.log(`Installing ${branch} branch of bspk-ui package and building\n\n`);
 
     execSync(
-        `npm install https://${DEV_GIT_TOKEN}@github.com/Anywhererealestate/bspk-ui#dev && npm explore @bspk/ui -- npm run build`,
+        `npm install https://${DEV_GIT_TOKEN}@github.com/Anywhererealestate/bspk-ui#${branch} && npm explore @bspk/ui -- npm run build`,
         {
             stdio: 'inherit',
         },
