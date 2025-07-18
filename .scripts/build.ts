@@ -2,7 +2,7 @@ import { execSync } from 'child_process';
 
 const { DEV_GIT_TOKEN } = process.env;
 
-if (DEV_GIT_TOKEN) {
+if (DEV_GIT_TOKEN && DEV_GIT_TOKEN !== 'none') {
     console.log('Installing dev branch of bspk-ui package and building\n\n');
 
     execSync(
