@@ -103,6 +103,12 @@ export function Nav() {
                                 {UI_HASH ? ` (${UI_HASH})` : ''}
                             </span>
                         )}
+                        {MODE === 'test' && (
+                            <span>
+                                TEST
+                                {UI_HASH ? ` (${UI_HASH})` : ''}
+                            </span>
+                        )}
                     </h1>
                 </div>
                 <div data-navbar-right="">
