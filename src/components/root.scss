@@ -361,31 +361,6 @@ body[data-screen-size='large'] {
 }
 
 [data-type-props] {
-    //grid-template-columns: ;
-
-    &[data-hide-controls='true'] {
-        grid-template-columns: auto 1fr;
-    }
-
-    /* [data-cell='default'] {
-    &[data-none] {
-      > [data-txt] {
-        color: var(--foreground-neutral-disabled-on-surface);
-      }
-    }
-  } */
-
-    /* [data-cell='name'] {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-
-    [data-txt] {
-      color: var(--foreground-neutral-on-surface);
-      font-weight: 500;
-    }
-  } */
-
     [data-cell='controls'] {
         display: flex;
         flex-direction: column;

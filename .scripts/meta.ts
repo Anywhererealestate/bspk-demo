@@ -23,7 +23,8 @@ if (fs.existsSync(uiRootPath)) {
 function runMetaCommand({ prefix, hash, updated: update }: { prefix: string; hash: string; updated?: string }) {
     const build = getBuild();
 
-    const mode = process.env.MODE || 'production';
+    let mode = process.env.MODE || 'production';
+    if (hash === 'local') mode = 'development';
 
     const flags = Object.entries({ hash, build, update, mode, out: outDir })
         .filter(([, value]) => value !== undefined && value !== '')
