@@ -27,6 +27,14 @@ export const COMPONENT_PHASES: Record<
         descriptor: 'currently being worked on',
         color: 'yellow',
     },
+    EngineeringReview: {
+        title: 'Engineering Review',
+        id: 'EngineeringReview',
+        description:
+            'The component is being carefully evaluated by our Bespoke Engineering team. They are ensuring that it aligns with our high standards of functionality and performance.',
+        descriptor: 'Engineering QA review',
+        color: 'teal',
+    },
     DesignReview: {
         title: 'Design Review',
         id: 'DesignReview',
