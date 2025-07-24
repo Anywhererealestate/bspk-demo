@@ -134,51 +134,6 @@ body[data-screen-size='large'] {
     }
 }
 
-[data-page-icons] {
-    [data-filters] {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-items: center;
-        gap: var(--spacing-sizing-12);
-        font-size: var(--spacing-sizing-12);
-        margin-bottom: var(--spacing-sizing-02);
-
-        [data-textfield] {
-            margin-left: var(--spacing-sizing-12);
-            max-width: 300px;
-        }
-    }
-
-    [data-icons] {
-        width: auto;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin-bottom: var(--spacing-sizing-18);
-
-        h3 {
-            flex: 1 1 100%;
-        }
-
-        button[data-icon] {
-            border: none;
-            background: none;
-            padding: 0;
-            margin: 0;
-            position: relative;
-            padding: var(--spacing-sizing-06);
-            border-radius: var(--radius-sm);
-            color: var(--foreground-neutral-on-surface);
-
-            &:hover {
-                background-color: var(--interactions-hover-opacity);
-                outline: solid 1px var(--surface-brand-primary-highlight);
-            }
-        }
-    }
-}
-
 [data-example-code] {
     background: var(--surface-neutral-t1-base);
     border: solid 1px var(--stroke-neutral-low-contrast);

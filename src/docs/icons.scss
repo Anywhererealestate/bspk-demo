@@ -1,0 +1,222 @@
+[data-page-icons] {
+    [data-filters] {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-items: center;
+        gap: var(--spacing-sizing-12);
+        font-size: var(--spacing-sizing-12);
+        margin-bottom: var(--spacing-sizing-02);
+
+        [data-search] {
+        }
+
+        [data-type] {
+            max-width: 300px;
+        }
+    }
+
+    [data-icons] {
+        width: auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(var(--spacing-sizing-24), 1fr));
+        margin-bottom: var(--spacing-sizing-18);
+
+        h3 {
+            flex: 1 1 100%;
+        }
+
+        [data-icon] {
+            border: none;
+            background: none;
+            padding: 0;
+            margin: 0;
+            padding: var(--spacing-sizing-01);
+            color: var(--foreground-neutral-on-surface);
+            border: solid 1px var(--surface-brand-primary-highlight);
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            aspect-ratio: 1 / 1;
+            font: var(--labels-small);
+
+            &[data-type='brand'][data-name$='White'] {
+                background-color: var(--surface-neutral-t3-low);
+            }
+
+            [data-svg][data-filled] {
+                display: none;
+            }
+
+            [data-title] {
+                font: var(--labels-x-small);
+                width: 100%;
+                padding: var(--spacing-sizing-01);
+                text-align: left;
+            }
+
+            [data-no-fill],
+            [data-no-variant] {
+                width: 100%;
+                text-align: right;
+                font: var(--labels-x-small);
+                color: var(--foreground-neutral-on-surface-variant-03);
+            }
+
+            [data-no-variant] {
+                opacity: 0;
+            }
+
+            &:hover {
+                background-color: var(--interactions-hover-opacity);
+                outline: solid 1px var(--surface-brand-primary-highlight);
+
+                &[data-has-variant] {
+                    [data-svg] {
+                        display: none;
+                    }
+
+                    [data-svg][data-filled] {
+                        display: flex;
+                    }
+                }
+
+                [data-no-fill] span {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    [data-type-header] {
+        font: var(--heading-h2);
+        margin: 0.75em 0 0.5em;
+    }
+}
+
+[data-selected-icon] {
+    header {
+        display: flex;
+        flex-direction: row;
+        align-items: end;
+        justify-content: space-between;
+        padding: var(--spacing-sizing-05);
+        width: 100%;
+
+        [data-title] {
+            font: var(--heading-h2);
+        }
+
+        [data-type] {
+            font: var(--labels-base);
+            color: var(--foreground-neutral-on-surface-variant-03);
+        }
+    }
+
+    [data-preview] {
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+        gap: var(--spacing-sizing-05);
+        padding: 0 var(--spacing-sizing-05) var(--spacing-sizing-05);
+
+        [data-preview-large] {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+
+            [data-checkered] {
+                width: 200;
+                height: 200;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: var(--spacing-sizing-05);
+            }
+
+            label {
+                width: fit-content;
+            }
+        }
+
+        [data-sizes-color] {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sizing-05);
+            flex: 1;
+            align-items: center;
+            justify-content: center;
+
+            [data-sizes] {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: var(--spacing-sizing-02);
+
+                [data-checkered] {
+                    padding: var(--spacing-sizing-02);
+                    aspect-ratio: 1 / 1;
+                    width: var(--size);
+                    height: var(--size);
+                }
+            }
+
+            [data-colors] {
+                display: grid;
+                grid-template-columns: 1fr repeat(2, auto);
+                gap: var(--spacing-sizing-02);
+                align-items: center;
+                justify-content: end;
+                text-align: right;
+
+                [data-color-variant] {
+                    padding: var(--spacing-sizing-02);
+                    aspect-ratio: 1 / 1;
+                    width: 38px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        }
+    }
+
+    [data-search-terms] {
+        font: var(--body-small);
+        padding: 0 var(--spacing-sizing-05) var(--spacing-sizing-05);
+        color: var(--foreground-neutral-on-surface-variant-03);
+
+        span {
+            color: var(--foreground-neutral-on-surface-variant-01);
+        }
+    }
+}
+
+[data-checkered] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-sizing-02);
+    background-color: var(--background1);
+    background-image:
+        linear-gradient(45deg, var(--background2) 25%, transparent 25%),
+        linear-gradient(-45deg, var(--background2) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, var(--background2) 75%),
+        linear-gradient(-45deg, transparent 75%, var(--background2) 75%);
+    background-size: 32px 32px;
+    background-position:
+        0 0,
+        0 16px,
+        16px -16px,
+        -16px 0px;
+}
+
+[data-color='original'] {
+    --foreground: var(--foreground-neutral-on-surface);
+    --background: var(--surface-neutral-t1-base);
+}
