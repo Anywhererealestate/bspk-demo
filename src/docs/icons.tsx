@@ -34,7 +34,7 @@ export function Icons() {
         type?: IconType | 'all';
     }>({});
 
-    const [selectedIcon, setSelectedIcon] = useState<IconName | null>('AccountCircle');
+    const [selectedIcon, setSelectedIcon] = useState<IconName | null>(null);
 
     const filtered = icons
         .filter((icon) => {
