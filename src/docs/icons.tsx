@@ -1,95 +1,69 @@
+/* eslint-disable react/no-multi-comp */
+import { SvgSearch } from '@bspk/icons/Search';
 import { SvgIcon } from '@bspk/icons/SvgIcon';
 import { IconName, meta as iconsMeta } from '@bspk/icons/meta';
-import { CheckboxOption } from '@bspk/ui/CheckboxOption';
-import { Layout } from '@bspk/ui/Layout';
+import { Dialog } from '@bspk/ui/Dialog';
+import { Select } from '@bspk/ui/Select';
+import { Switch } from '@bspk/ui/Switch';
 import { TextInput as TextInput } from '@bspk/ui/TextInput';
-import { Tooltip } from '@bspk/ui/Tooltip';
+import { ToggleOption } from '@bspk/ui/ToggleOption';
+import { useUIContext } from '@bspk/ui/hooks/useUIContext';
+import { cssWithVars } from '@bspk/ui/utils/cwv';
 import { Page } from 'components/Page';
-import { Fragment, useMemo, useState, useRef, useEffect } from 'react';
+import { Fragment, HTMLProps, ReactNode, useState } from 'react';
+import { Syntax } from 'src/components/Syntax';
+
+import 'src/docs/icons.scss';
 
 const titleCase = (word: string) => word[0].toUpperCase() + word.slice(1);
 
-const icons = Object.entries(iconsMeta).map(([name, v]) => ({
+const icons = iconsMeta.map(({ name, ...v }) => ({
     name: name as IconName,
     ...v,
-    description: name.replace(/([A-Z])/g, ' $1'),
 }));
+
+const iconTypes = ['material', 'anywhere', 'country', 'brand'] as const;
+
+type IconType = (typeof iconTypes)[number];
 
 export type IconMeta = (typeof icons)[number];
 
 export function Icons() {
-    const [filter, setFilter] = useState({
-        search: '',
-        unfilled: true,
-        filled: true,
-    });
+    const [filter, setFilter] = useState<{
+        search?: string;
+        type?: IconType | 'all';
+    }>({});
 
-    const filtered = useMemo(() => {
-        const searchBlob = filter.search.toLowerCase().trim();
-        return icons
-            .filter(
-                (icon) =>
-                    `${icon.name} ${icon.description} ${icon.type}`.toLowerCase().includes(searchBlob) &&
-                    (icon.filled ? filter.filled : filter.unfilled),
-            )
-            .sort((a, b) => a.name.localeCompare(b.name));
-    }, [filter.filled, filter.search, filter.unfilled]);
+    const [selectedIcon, setSelectedIcon] = useState<IconName | null>('AccountCircle');
 
-    const importText = (icon: IconMeta) => `import { Svg${icon.name} } from '@bspk/icons/${icon.name}';`;
+    const filtered = icons
+        .filter((icon) => {
+            // don't show duplicate icons filled or unfilled
+            return !icon.variantUnfilled;
+        })
+        .filter((icon) => {
+            // filter by search and type
+            const search = filter.search?.toLowerCase() || '';
+            const type = filter.type ? filter.type : 'all';
 
-    const [clippedIcon, setClippedIcon] = useState('');
+            const searchFilter = !search || `${icon.name} ${icon.type} ${icon.alias}`.toLowerCase().includes(search);
+            const typeFilter = !type || type === 'all' || icon.type === type;
 
-    const clipTimeout = useRef<ReturnType<typeof setTimeout> | undefined>();
-
-    const clip = (icon: IconMeta) => {
-        // copy text to clipboard
-
-        setClippedIcon(icon.name);
-
-        if (clipTimeout.current) clearTimeout(clipTimeout.current);
-
-        clipTimeout.current = setTimeout(() => setClippedIcon(''), 3000);
-
-        navigator.clipboard.writeText(importText(icon));
-    };
-
-    useEffect(() => {
-        return () => {
-            if (clipTimeout.current) clearTimeout(clipTimeout.current);
-        };
-    }, []);
+            return searchFilter && typeFilter;
+        });
 
     return (
         <Page>
             <h1>Icons</h1>
             <p>Click an icon to copy it&apos;s import code.</p>
+            <SelectedIconDialog icon={icons.find((i) => i.name === selectedIcon)} setSelectedIcon={setSelectedIcon} />
             <div data-page-icons>
                 <div data-filters>
-                    <Layout align="center">
-                        <CheckboxOption
-                            aria-label="Unfilled"
-                            checked={filter.unfilled}
-                            label="Unfilled"
-                            name="unfilled"
-                            onChange={(checked) => {
-                                setFilter((p) => ({ ...p, unfilled: checked }));
-                            }}
-                            value="unfilled"
-                        />
-                        <CheckboxOption
-                            aria-label="Filled"
-                            checked={filter.filled}
-                            label="Filled"
-                            name="filled"
-                            onChange={(checked) => {
-                                setFilter((p) => ({ ...p, filled: checked }));
-                            }}
-                            value="filled"
-                        />
-                    </Layout>
                     <TextInput
                         aria-label="Search icons"
+                        data-search
                         id=""
+                        leading={<SvgSearch />}
                         name="icon-search"
                         onChange={(search) => {
                             setFilter((p) => ({
@@ -100,35 +74,69 @@ export function Icons() {
                         placeholder="Search for an icon"
                         value={filter.search}
                     />
+                    <Select
+                        data-type
+                        label="Icon type"
+                        name="icon-type"
+                        onChange={(value) => {
+                            setFilter((p) => ({
+                                ...p,
+                                type: value[0] as IconType,
+                            }));
+                        }}
+                        options={[
+                            { label: 'All types', value: 'all' },
+                            ...iconTypes.map((type) => ({
+                                label: titleCase(type),
+                                value: type,
+                            })),
+                        ]}
+                        value={filter.type ? [filter.type] : ['all']}
+                    />
                 </div>
-                {(filter.filled !== filter.unfilled || filter.search) && (
+                {(filter.search || filter.type) && (
                     <p>
                         {filtered.length} item{filtered.length === 1 ? '' : 's'}
                         {filter.search && ` matching "${filter.search}"`}
-                        {filter.filled !== filter.unfilled &&
-                            ((filter.unfilled && ' unfilled') || (filter.filled && ' filled'))}
+                        {filter.type && filter.type !== 'all' && ` of type "${filter.type}"`}
                     </p>
                 )}
-                {['material', 'anywhere', 'country'].map((type) => {
+                {iconTypes.map((type) => {
                     const byType = filtered.filter((icon) => icon.type === type);
 
                     if (byType.length === 0) return null;
 
                     return (
                         <Fragment key={type}>
-                            <h2 style={{ margin: '0.75em 0 0.5em' }}>{titleCase(type)}</h2>
+                            <div data-type-header>{titleCase(type)}</div>
                             <div data-icons>
                                 {byType.map((icon, index) => {
                                     return (
-                                        <Tooltip
-                                            key={index}
-                                            label={clippedIcon === icon.name ? 'Import code copied' : icon.name}
-                                            placement="top"
+                                        <button
+                                            data-has-variant={!!icon.variantFill || !!icon.variantUnfilled || undefined}
+                                            data-icon
+                                            data-name={icon.name}
+                                            data-type={icon.type}
+                                            key={icon.name + index}
+                                            onClick={() => setSelectedIcon(icon.name)}
                                         >
-                                            <button data-icon onClick={() => clip(icon)}>
-                                                <SvgIcon name={icon.name} width={48} />
-                                            </button>
-                                        </Tooltip>
+                                            <span data-title>{icon.title}</span>
+                                            <span data-svg>{icon.name && <SvgIcon name={icon.name} width={48} />}</span>
+                                            {icon.variantFill ? (
+                                                <>
+                                                    <span data-filled data-svg>
+                                                        {icon.variantFill && (
+                                                            <SvgIcon name={icon.variantFill} width={48} />
+                                                        )}
+                                                    </span>
+                                                    <span data-no-fill>
+                                                        <span>Not </span>Filled
+                                                    </span>
+                                                </>
+                                            ) : (
+                                                <span data-no-variant>No Variant</span>
+                                            )}
+                                        </button>
                                     );
                                 })}
                             </div>
@@ -137,6 +145,125 @@ export function Icons() {
                 })}
             </div>
         </Page>
+    );
+}
+
+const CheckeredBackgroundContainer = ({ children, ...props }: HTMLProps<HTMLDivElement> & { children: ReactNode }) => {
+    const { theme } = useUIContext();
+    return (
+        <div
+            data-checkered
+            {...props}
+            style={{
+                ...props.style,
+                ...cssWithVars({
+                    '--background1': theme === 'dark' ? '#23272f' : '#fff',
+                    '--background2': theme === 'dark' ? '#2c2f38' : '#f3f3f3',
+                }),
+            }}
+        >
+            {children}
+        </div>
+    );
+};
+
+function SelectedIconDialog({
+    icon,
+    setSelectedIcon,
+}: {
+    icon: IconMeta | undefined;
+    setSelectedIcon: (nextIcon: IconName | null) => void;
+}) {
+    const [showFilled, setShowFilled] = useState(false);
+
+    if (!icon) return null;
+
+    const iconFilled = icon.variantFill ? icons.find((i) => i.name === icon.variantFill) : undefined;
+
+    return (
+        <Dialog onClose={() => setSelectedIcon(null)} open={!!icon}>
+            <div data-selected-icon>
+                <header>
+                    <span data-title>{icon.title}</span>
+                    <span data-type>{titleCase(icon.type)}</span>
+                </header>
+                {[showFilled && iconFilled ? iconFilled : icon].map(({ name: iconName }) => (
+                    <Fragment key={iconName}>
+                        <Syntax
+                            code={`import { Svg${iconName} } from '@bspk/icons/${iconName}';`}
+                            language="typescript"
+                        />
+                        <div data-preview>
+                            <div data-preview-large>
+                                <CheckeredBackgroundContainer>
+                                    <SvgIcon name={iconName} width={120} />
+                                </CheckeredBackgroundContainer>
+                                {iconFilled && (
+                                    <ToggleOption label={showFilled ? 'Show Original' : 'Show Filled'}>
+                                        <Switch
+                                            aria-label="Filled"
+                                            checked={showFilled}
+                                            name="filled"
+                                            onChange={setShowFilled}
+                                        />
+                                    </ToggleOption>
+                                )}
+                            </div>
+                            <div data-sizes-color>
+                                <div data-sizes>
+                                    {[32, 48, 64].map((size) => (
+                                        <CheckeredBackgroundContainer
+                                            data-icon-wrapper
+                                            key={`size-${size}`}
+                                            style={cssWithVars({
+                                                '--size': `${size}px`,
+                                            })}
+                                        >
+                                            <SvgIcon name={iconName} width={size} />
+                                        </CheckeredBackgroundContainer>
+                                    ))}
+                                </div>
+                                <div data-colors>
+                                    {['original', 'primary', 'secondary'].map((color) => {
+                                        return (
+                                            <Fragment key={color}>
+                                                <span>{color}</span>
+                                                {['background', 'foreground'].map((variant) => {
+                                                    return (
+                                                        <div
+                                                            data-color={color}
+                                                            data-color-variant
+                                                            data-variant={variant}
+                                                            key={color + variant}
+                                                            style={{
+                                                                backgroundColor:
+                                                                    variant === 'background'
+                                                                        ? 'var(--background)'
+                                                                        : 'var(--foreground)',
+                                                                color:
+                                                                    variant === 'background'
+                                                                        ? 'var(--foreground)'
+                                                                        : 'var(--background)',
+                                                            }}
+                                                        >
+                                                            <SvgIcon name={iconName} />
+                                                        </div>
+                                                    );
+                                                })}
+                                            </Fragment>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                    </Fragment>
+                ))}
+                <div data-search-terms>
+                    <span>Search terms: </span>
+                    {icon.alias || 'None'}
+                </div>
+            </div>
+        </Dialog>
     );
 }
 
