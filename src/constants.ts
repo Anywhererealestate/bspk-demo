@@ -9,7 +9,7 @@ export const COMPONENT_PHASE_COLORS: Record<ComponentPhase, ColorVariant> = {
     QA: 'yellow',
     UXReview: 'purple',
     Stable: 'green',
-    Utility: 'grey',
+    Utility: 'magenta',
 };
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */

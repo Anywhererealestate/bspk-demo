@@ -133,7 +133,6 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                             )}
                         </ComponentProvider>
                     </ErrorBoundary>
-
                     {[
                         {
                             id: 'dependencies',
