@@ -1,7 +1,6 @@
 /* eslint-disable react/no-multi-comp */
 import { SvgSearch } from '@bspk/icons/Search';
 import { SvgIcon } from '@bspk/icons/SvgIcon';
-import { IconName, meta as iconsMeta } from '@bspk/icons/meta';
 import { Dialog } from '@bspk/ui/Dialog';
 import { Select } from '@bspk/ui/Select';
 import { Switch } from '@bspk/ui/Switch';
@@ -12,21 +11,15 @@ import { cssWithVars } from '@bspk/ui/utils/cwv';
 import { Page } from 'components/Page';
 import { Fragment, HTMLProps, ReactNode, useState } from 'react';
 import { Syntax } from 'src/components/Syntax';
+import { ICON_META, IconMeta, IconName, ICONS } from 'src/utils/icons';
 
 import 'src/docs/icons.scss';
 
 const titleCase = (word: string) => word[0].toUpperCase() + word.slice(1);
 
-const icons = iconsMeta.map(({ name, ...v }) => ({
-    name: name as IconName,
-    ...v,
-}));
-
 const iconTypes = ['material', 'anywhere', 'country', 'brand'] as const;
 
 type IconType = (typeof iconTypes)[number];
-
-export type IconMeta = (typeof icons)[number];
 
 export function Icons() {
     const [filter, setFilter] = useState<{
@@ -36,27 +29,25 @@ export function Icons() {
 
     const [selectedIcon, setSelectedIcon] = useState<IconName | null>(null);
 
-    const filtered = icons
-        .filter((icon) => {
-            // don't show duplicate icons filled or unfilled
-            return !icon.variantUnfilled;
-        })
-        .filter((icon) => {
-            // filter by search and type
-            const search = filter.search?.toLowerCase() || '';
-            const type = filter.type ? filter.type : 'all';
+    const filtered = ICONS.filter((icon) => {
+        // don't show duplicate icons filled or unfilled
+        return !icon.variantUnfilled;
+    }).filter((icon) => {
+        // filter by search and type
+        const search = filter.search?.toLowerCase() || '';
+        const type = filter.type ? filter.type : 'all';
 
-            const searchFilter = !search || `${icon.name} ${icon.type} ${icon.alias}`.toLowerCase().includes(search);
-            const typeFilter = !type || type === 'all' || icon.type === type;
+        const searchFilter = !search || `${icon.name} ${icon.type} ${icon.alias}`.toLowerCase().includes(search);
+        const typeFilter = !type || type === 'all' || icon.type === type;
 
-            return searchFilter && typeFilter;
-        });
+        return searchFilter && typeFilter;
+    });
 
     return (
         <Page>
             <h1>Icons</h1>
-            <p>Click an icon to copy it&apos;s import code.</p>
-            <SelectedIconDialog icon={icons.find((i) => i.name === selectedIcon)} setSelectedIcon={setSelectedIcon} />
+            <p>Click an icon to see the variants, color options, and copy import code.</p>
+            <SelectedIconDialog icon={selectedIcon && ICON_META[selectedIcon]} setSelectedIcon={setSelectedIcon} />
             <div data-page-icons>
                 <div data-filters>
                     <TextInput
@@ -171,14 +162,14 @@ function SelectedIconDialog({
     icon,
     setSelectedIcon,
 }: {
-    icon: IconMeta | undefined;
+    icon: IconMeta | null | undefined;
     setSelectedIcon: (nextIcon: IconName | null) => void;
 }) {
     const [showFilled, setShowFilled] = useState(false);
 
     if (!icon) return null;
 
-    const iconFilled = icon.variantFill ? icons.find((i) => i.name === icon.variantFill) : undefined;
+    const iconFilled = icon.variantFill ? ICON_META[icon.variantFill] : undefined;
 
     return (
         <Dialog onClose={() => setSelectedIcon(null)} open={!!icon}>
