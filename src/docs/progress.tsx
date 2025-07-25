@@ -2,7 +2,7 @@ import { Tag } from '@bspk/ui/Tag';
 import { Page } from 'components/Page';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { COMPONENT_PHASES } from 'src/constants';
+import { COMPONENT_PHASE_COLORS, COMPONENT_PHASES } from 'src/constants';
 import { ComponentPhase, componentsMeta } from 'src/meta';
 
 const BACKLOG_COMPONENTS = [
@@ -61,13 +61,14 @@ export function Progress() {
         <Page>
             <h1>Progress</h1>
             {progressData.map((phase) => {
+                const phaseColor = COMPONENT_PHASE_COLORS[phase.id];
                 return (
                     <Fragment key={phase.id}>
                         <h2>{phase.title}</h2>
 
                         <p>{phase.description}</p>
 
-                        <p>{`There ${phase.count === 1 ? 'is' : 'are'} ${phase.count === 0 ? 'no' : phase.count} component${phase.count === 1 ? '' : 's'} ${phase.descriptor}.`}</p>
+                        <p>{`There ${phase.count === 1 ? 'is' : 'are'} ${phase.count === 0 ? 'no' : phase.count} component${phase.count === 1 ? '' : 's'} in this phase.`}</p>
 
                         <div
                             style={{
@@ -78,13 +79,13 @@ export function Progress() {
                         >
                             {phase.components.map((component, componentIndex) =>
                                 phase.title === 'Backlog' || !component.slug ? (
-                                    <Tag color={phase.color} key={componentIndex}>
+                                    <Tag color={phaseColor} key={componentIndex}>
                                         {component.name}
                                     </Tag>
                                 ) : (
                                     <Tag
                                         as={Link}
-                                        color={phase.color}
+                                        color={phaseColor}
                                         key={componentIndex}
                                         to={{
                                             pathname: `/${component.slug}`,

@@ -11,7 +11,7 @@ import { Syntax } from 'components/Syntax';
 import { TypeProps } from 'components/TypeProps';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { COMPONENT_PHASES } from 'src/constants';
+import { COMPONENT_PHASES, COMPONENT_PHASE_COLORS } from 'src/constants';
 import { components, MetaComponentName } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
 import { kebabCase } from 'src/utils/kebabCase';
@@ -35,7 +35,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                         {component.name}
                     </h1>
                     {component.phase && (
-                        <Tag as="div" color={componentPhase.color}>
+                        <Tag as="div" color={COMPONENT_PHASE_COLORS[component.phase]}>
                             {componentPhase.title}
                         </Tag>
                     )}
@@ -157,7 +157,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                     ) : (
                                         <Tag
                                             as={Link}
-                                            color={dependencyPhase?.color}
+                                            color={COMPONENT_PHASE_COLORS[dependencyPhase.id]}
                                             key={index}
                                             to={{
                                                 pathname: `/${d.slug}`,
@@ -195,7 +195,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                     ) : (
                                         <Tag
                                             as={Link}
-                                            color={dependencyPhase?.color}
+                                            color={COMPONENT_PHASE_COLORS[dependencyPhase.id]}
                                             key={index}
                                             to={{
                                                 pathname: `/${d.slug}`,
