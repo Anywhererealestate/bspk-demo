@@ -94,7 +94,7 @@ export function TypePropControl({
 
     if (!prop.required && !prop.default) options.unshift({ value: undefined as unknown as string, label: 'None' });
 
-    if (type === 'BspkIcon') return <BspkIcon onChange={onChange} value={controlProps.value} />;
+    if (type === 'BspkIcon') return <BspkIconSelect onChange={onChange} value={controlProps.value} />;
 
     if (type === 'checkboxes') {
         return (
@@ -143,7 +143,7 @@ export function TypePropControl({
 }
 
 // eslint-disable-next-line react/no-multi-comp
-function BspkIcon({ onChange, value }: { onChange: (next: string) => void; value?: string }) {
+function BspkIconSelect({ onChange, value }: { onChange: (next: string) => void; value?: string }) {
     const [searchValue, setSearchValue] = useState<string>(value || '');
 
     return (
