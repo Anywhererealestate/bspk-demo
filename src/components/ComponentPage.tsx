@@ -12,7 +12,7 @@ import { TypeProps } from 'components/TypeProps';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { COMPONENT_PHASES } from 'src/constants';
-import { MetaComponentName } from 'src/meta';
+import { components, MetaComponentName } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
 import { kebabCase } from 'src/utils/kebabCase';
 import { useComponentDemo } from 'src/utils/useComponentDemo';
@@ -24,6 +24,8 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
     if (!component) return <h1>Component not available.</h1>;
 
     const componentPhase = COMPONENT_PHASES[component.phase || 'Backlog'];
+
+    const Component = components[component.name as keyof typeof components];
 
     return (
         <>
@@ -49,6 +51,30 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                             <Syntax code={component.usage.code} language="typescript" pretty />
                         </>
                     )}
+                    {component.sections?.map(({ content: Content, title }, index) => (
+                        <div
+                            key={index}
+                            style={{
+                                marginTop: 'var(--spacing-sizing-06)',
+                            }}
+                        >
+                            <h2 data-nav-target id={`section-${index}`}>
+                                {title}
+                            </h2>
+                            <div
+                                style={{
+                                    padding: 'var(--spacing-sizing-06)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    border: '1px solid var(--surface-neutral-t3-low)',
+                                    borderRadius: 'var(--radius-sm)',
+                                }}
+                            >
+                                <Content Component={Component as typeof Content} props={component.defaultState || {}} />
+                            </div>
+                        </div>
+                    ))}
                     <div
                         style={{
                             display: 'flex',

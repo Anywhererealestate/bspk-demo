@@ -35,12 +35,29 @@ export function ComponentVariants() {
     const containerStyle =
         typeof component.containerStyle === 'function' ? component.containerStyle(propState) : component.containerStyle;
 
+    const Content = component.variantsExample;
+
     return (
         <>
             <h2 data-nav-target id="variants">
                 Variants
             </h2>
-            <p>These are all the possible variants of the component.</p>
+
+            <p>These are possible variants of the component.</p>
+            {Content && (
+                <div
+                    style={{
+                        padding: 'var(--spacing-sizing-06)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        border: '1px solid var(--surface-neutral-t3-low)',
+                        borderRadius: 'var(--radius-sm)',
+                    }}
+                >
+                    <Content Component={Component as typeof Content} props={component.defaultState || {}} />
+                </div>
+            )}
             {variantProperties.map((prop) => {
                 const variants = prop.options || [true, false];
                 return (

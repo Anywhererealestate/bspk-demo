@@ -1,9 +1,8 @@
-import { SvgIcon } from '@bspk/icons/SvgIcon';
-import { meta } from '@bspk/icons/meta';
 import { TypePropertyDemo } from '@bspk/ui/utils/demo';
 import { useId } from 'react';
 import { updateComponentContext, useComponentContext } from 'src/components/ComponentProvider';
 import { components } from 'src/meta';
+import { isIconName, SvgIcon } from 'src/utils/icons';
 
 export type ComponentRenderProps = {
     overrideState?: Record<string, any>;
@@ -55,8 +54,7 @@ function getPropsFromState(props: TypePropertyDemo[], propState: Record<string, 
     iconProps.forEach((prop) => {
         const propValue = propState[prop.name];
 
-        stateProps[prop.name] =
-            typeof propValue === 'string' && propValue in meta ? <SvgIcon name={propValue as any} /> : undefined;
+        stateProps[prop.name] = isIconName(propValue) ? <SvgIcon name={propValue} /> : undefined;
     });
 
     return stateProps;
