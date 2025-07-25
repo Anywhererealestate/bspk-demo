@@ -11,7 +11,7 @@ import { Syntax } from 'components/Syntax';
 import { TypeProps } from 'components/TypeProps';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { COMPONENT_PHASES } from 'src/constants';
+import { COMPONENT_PHASES, COMPONENT_PHASE_COLORS } from 'src/constants';
 import { components, MetaComponentName } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
 import { kebabCase } from 'src/utils/kebabCase';
@@ -35,7 +35,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                         {component.name}
                     </h1>
                     {component.phase && (
-                        <Tag as="div" color={componentPhase.color}>
+                        <Tag as="div" color={COMPONENT_PHASE_COLORS[component.phase]}>
                             {componentPhase.title}
                         </Tag>
                     )}
@@ -133,81 +133,60 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                             )}
                         </ComponentProvider>
                     </ErrorBoundary>
+                    {[
+                        {
+                            id: 'dependencies',
+                            title: 'Dependencies',
+                            description: 'Dependencies are components that this component relies on.',
+                            components: component.dependencies,
+                        },
+                        {
+                            id: 'dependents',
+                            title: 'Dependents',
+                            description: 'Dependents are components that rely on this component.',
+                            components: component.dependents,
+                        },
+                    ].map((section) => {
+                        return (
+                            !!section.components.length && (
+                                <Fragment key={section.title}>
+                                    <h3 data-nav-target id={section.id}>
+                                        {section.title}
+                                    </h3>
+                                    <p>{section.description}</p>
+                                    <p
+                                        style={{
+                                            display: 'flex',
+                                            gap: '8px',
+                                            flexWrap: 'wrap',
+                                        }}
+                                    >
+                                        {section.components.map((d, index) => {
+                                            const dependencyPhase = COMPONENT_PHASES[d.phase || 'Backlog'];
+                                            const dependencyPhaseColor = COMPONENT_PHASE_COLORS[dependencyPhase.id];
 
-                    {!!component.dependencies.length && (
-                        <>
-                            <h3 data-nav-target id="dependencies">
-                                Dependencies
-                            </h3>
-                            <p>Dependencies are components that this component relies on.</p>
-                            <p
-                                style={{
-                                    display: 'flex',
-                                    gap: '8px',
-                                    flexWrap: 'wrap',
-                                }}
-                            >
-                                {component.dependencies.map((d, index) => {
-                                    const dependencyPhase = COMPONENT_PHASES[d.phase || 'Backlog'];
-
-                                    return dependencyPhase.id === 'Backlog' ? (
-                                        <Tag color="grey" key={index}>
-                                            {d.name}
-                                        </Tag>
-                                    ) : (
-                                        <Tag
-                                            as={Link}
-                                            color={dependencyPhase?.color}
-                                            key={index}
-                                            to={{
-                                                pathname: `/${d.slug}`,
-                                            }}
-                                        >
-                                            {d.name}
-                                        </Tag>
-                                    );
-                                })}
-                            </p>
-                        </>
-                    )}
-                    {!!component.dependents.length && (
-                        <>
-                            <h3 data-nav-target id="dependents">
-                                Dependents
-                            </h3>
-                            <p>Dependents are components that rely on this component.</p>
-                            <p
-                                style={{
-                                    display: 'flex',
-                                    gap: '8px',
-                                    flexWrap: 'wrap',
-                                }}
-                            >
-                                {component.dependents.map((d, index) => {
-                                    const dependencyPhaseId = d.phase || 'Backlog';
-
-                                    const dependencyPhase = COMPONENT_PHASES[dependencyPhaseId];
-
-                                    return dependencyPhaseId === 'Backlog' ? (
-                                        <Tag color="grey" key={index}>
-                                            {d.name}
-                                        </Tag>
-                                    ) : (
-                                        <Tag
-                                            as={Link}
-                                            color={dependencyPhase?.color}
-                                            key={index}
-                                            to={{
-                                                pathname: `/${d.slug}`,
-                                            }}
-                                        >
-                                            {d.name}
-                                        </Tag>
-                                    );
-                                })}
-                            </p>
-                        </>
-                    )}
+                                            return dependencyPhase.id === 'Backlog' ? (
+                                                <Tag color="grey" key={index}>
+                                                    {d.name}
+                                                </Tag>
+                                            ) : (
+                                                <Tag
+                                                    as={Link}
+                                                    color={dependencyPhaseColor}
+                                                    key={index}
+                                                    to={{
+                                                        pathname: `/${d.slug}`,
+                                                    }}
+                                                >
+                                                    {d.name}
+                                                </Tag>
+                                            );
+                                        })}
+                                    </p>
+                                </Fragment>
+                            )
+                        );
+                    })}
                     <h3 data-nav-target id="style">
                         Style
                     </h3>
