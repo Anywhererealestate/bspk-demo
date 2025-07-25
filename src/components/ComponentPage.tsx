@@ -136,23 +136,25 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
 
                     {[
                         {
+                            id: 'dependencies',
                             title: 'Dependencies',
                             description: 'Dependencies are components that this component relies on.',
                             components: component.dependencies,
                         },
                         {
+                            id: 'dependents',
                             title: 'Dependents',
                             description: 'Dependents are components that rely on this component.',
                             components: component.dependents,
                         },
-                    ].map((componentSection) => {
+                    ].map((section) => {
                         return (
-                            !!componentSection.components.length && (
-                                <Fragment key={componentSection.title}>
-                                    <h3 data-nav-target id="dependencies">
-                                        {componentSection.title}
+                            !!section.components.length && (
+                                <Fragment key={section.title}>
+                                    <h3 data-nav-target id={section.id}>
+                                        {section.title}
                                     </h3>
-                                    <p>{componentSection.description}</p>
+                                    <p>{section.description}</p>
                                     <p
                                         style={{
                                             display: 'flex',
@@ -160,7 +162,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                             flexWrap: 'wrap',
                                         }}
                                     >
-                                        {componentSection.components.map((d, index) => {
+                                        {section.components.map((d, index) => {
                                             const dependencyPhase = COMPONENT_PHASES[d.phase || 'Backlog'];
                                             const dependencyPhaseColor = COMPONENT_PHASE_COLORS[dependencyPhase.id];
 
