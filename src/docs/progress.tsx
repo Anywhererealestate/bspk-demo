@@ -1,7 +1,6 @@
 import { Tag } from '@bspk/ui/Tag';
 import { Page } from 'components/Page';
 import { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import { COMPONENT_PHASE_COLORS, COMPONENT_PHASES } from 'src/constants';
 import { ComponentPhase, componentsMeta } from 'src/meta';
 
@@ -79,20 +78,9 @@ export function Progress() {
                         >
                             {phase.components.map((component, componentIndex) =>
                                 phase.title === 'Backlog' || !component.slug ? (
-                                    <Tag color={phaseColor} key={componentIndex}>
-                                        {component.name}
-                                    </Tag>
+                                    <Tag color={phaseColor} key={componentIndex} label={component.name} />
                                 ) : (
-                                    <Tag
-                                        as={Link}
-                                        color={phaseColor}
-                                        key={componentIndex}
-                                        to={{
-                                            pathname: `/${component.slug}`,
-                                        }}
-                                    >
-                                        {component.name}
-                                    </Tag>
+                                    <Tag color={phaseColor} key={componentIndex} label={component.name} />
                                 ),
                             )}
                         </div>

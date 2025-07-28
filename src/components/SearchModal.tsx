@@ -142,9 +142,7 @@ export function SearchModal(props: DialogProps) {
                                     }}
                                 >
                                     <h5>{result.title}</h5>
-                                    <Tag color="grey" size="x-small" style={{ marginBottom: 'auto' }}>
-                                        {result.kind}
-                                    </Tag>
+                                    <Tag color="grey" label={result.kind} size="x-small" />
                                 </header>
 
                                 <div>

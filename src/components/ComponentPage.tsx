@@ -35,9 +35,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                         {component.name}
                     </h1>
                     {component.phase && (
-                        <Tag as="div" color={COMPONENT_PHASE_COLORS[component.phase]}>
-                            {componentPhase.title}
-                        </Tag>
+                        <Tag label={componentPhase.title} color={COMPONENT_PHASE_COLORS[component.phase]} />
                     )}
                 </header>
                 <article>
@@ -166,20 +164,16 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                             const dependencyPhaseColor = COMPONENT_PHASE_COLORS[dependencyPhase.id];
 
                                             return dependencyPhase.id === 'Backlog' ? (
-                                                <Tag color="grey" key={index}>
-                                                    {d.name}
-                                                </Tag>
+                                                <Tag color="grey" key={index} label={d.name} />
                                             ) : (
                                                 <Tag
-                                                    as={Link}
                                                     color={dependencyPhaseColor}
                                                     key={index}
-                                                    to={{
-                                                        pathname: `/${d.slug}`,
-                                                    }}
-                                                >
-                                                    {d.name}
-                                                </Tag>
+                                                    label={d.name}
+                                                    // to={{
+                                                    //     pathname: `/${d.slug}`,
+                                                    // }}
+                                                />
                                             );
                                         })}
                                     </p>

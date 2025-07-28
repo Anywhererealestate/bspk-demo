@@ -47,7 +47,7 @@ export const createChildrenElement = (state: Record<string, any>, name: string) 
     if (componentName === 'Avatar') return <Avatar name="List Item" showTooltip={false} />;
 
     if (componentName === 'Tag') {
-        return <Tag>Tag</Tag>;
+        return <Tag label="Tag" />;
     }
 
     if (componentName === 'Txt') return <Txt>Text</Txt>;
