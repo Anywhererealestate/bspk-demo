@@ -80,7 +80,16 @@ export function Progress() {
                                 phase.title === 'Backlog' || !component.slug ? (
                                     <Tag color={phaseColor} key={componentIndex} label={component.name} />
                                 ) : (
-                                    <Tag color={phaseColor} key={componentIndex} label={component.name} />
+                                    <a
+                                        href={`/${component.slug}`}
+                                        key={componentIndex}
+                                        style={{
+                                            textDecoration: 'none',
+                                        }}
+                                        title={component.name}
+                                    >
+                                        <Tag color={phaseColor} key={componentIndex} label={component.name} />
+                                    </a>
                                 ),
                             )}
                         </div>
