@@ -166,14 +166,16 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                             return dependencyPhase.id === 'Backlog' ? (
                                                 <Tag color="grey" key={index} label={d.name} />
                                             ) : (
-                                                <Tag
-                                                    color={dependencyPhaseColor}
+                                                <a
+                                                    href={`/${d.slug}`}
                                                     key={index}
-                                                    label={d.name}
-                                                    // to={{
-                                                    //     pathname: `/${d.slug}`,
-                                                    // }}
-                                                />
+                                                    style={{
+                                                        textDecoration: 'none',
+                                                    }}
+                                                    title={d.name}
+                                                >
+                                                    <Tag color={dependencyPhaseColor} key={index} label={d.name} />
+                                                </a>
                                             );
                                         })}
                                     </p>
