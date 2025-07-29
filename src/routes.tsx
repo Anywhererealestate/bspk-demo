@@ -12,7 +12,7 @@ import Intro from 'src/docs/intro.md?raw';
 import { Progress } from 'src/docs/progress';
 import { Stylesheets } from 'src/docs/styles';
 import { Typography } from 'src/docs/typography.tsx';
-import { componentsMeta, MetaComponentName, MODE } from 'src/meta';
+import { componentsMeta, MetaComponentName, MODE, typesMeta } from 'src/meta';
 import { RouteLink } from 'src/types';
 
 export const routes: RouteLink[] = [
@@ -84,6 +84,9 @@ if (MODE === 'development') {
         title: 'Utilities',
         children: componentsMeta.flatMap((component): RouteLink[] => {
             if (component.phase !== 'Utility') return [];
+
+            const componentProps = typesMeta.find((t) => t.name === `${component.name}Props`);
+            if (!componentProps?.properties?.length) return [];
 
             return [
                 {

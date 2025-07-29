@@ -1,7 +1,7 @@
-import { Tag } from '@bspk/ui/Tag';
 import { Page } from 'components/Page';
 import { Fragment } from 'react';
-import { COMPONENT_PHASE_COLORS, COMPONENT_PHASES } from 'src/constants';
+import { TagComponent } from 'src/components/TagComponent';
+import { COMPONENT_PHASES } from 'src/constants';
 import { ComponentPhase, componentsMeta } from 'src/meta';
 
 const BACKLOG_COMPONENTS = [
@@ -60,7 +60,6 @@ export function Progress() {
         <Page>
             <h1>Progress</h1>
             {progressData.map((phase) => {
-                const phaseColor = COMPONENT_PHASE_COLORS[phase.id];
                 return (
                     <Fragment key={phase.id}>
                         <h2>{phase.title}</h2>
@@ -76,22 +75,9 @@ export function Progress() {
                                 flexWrap: 'wrap',
                             }}
                         >
-                            {phase.components.map((component, componentIndex) =>
-                                phase.title === 'Backlog' || !component.slug ? (
-                                    <Tag color={phaseColor} key={componentIndex} label={component.name} />
-                                ) : (
-                                    <a
-                                        href={`/${component.slug}`}
-                                        key={componentIndex}
-                                        style={{
-                                            textDecoration: 'none',
-                                        }}
-                                        title={component.name}
-                                    >
-                                        <Tag color={phaseColor} key={componentIndex} label={component.name} />
-                                    </a>
-                                ),
-                            )}
+                            {phase.components.map((component, componentIndex) => (
+                                <TagComponent component={component} key={componentIndex} />
+                            ))}
                         </div>
                     </Fragment>
                 );

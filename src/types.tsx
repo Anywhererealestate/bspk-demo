@@ -25,6 +25,7 @@ export type DemoComponent<P extends Record<string, unknown> = any> = Omit<Compon
         presets?: DemoPreset[];
         functionProps: Record<string, () => void>;
         defaultState: Record<string, any>;
+        showExample: boolean;
     };
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */

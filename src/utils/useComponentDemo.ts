@@ -168,6 +168,7 @@ export function useComponentDemo(componentName: MetaComponentName) {
                     if (!referenceMeta || !referenceMeta.properties) return [];
                     return referenceMeta;
                 }) || [],
+            showExample: !!componentExample.render || componentMeta.phase !== 'Utility',
         };
 
         return nextComponent;
