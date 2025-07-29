@@ -11,7 +11,7 @@ import { TypeProps } from 'components/TypeProps';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { TagComponent } from 'src/components/TagComponent';
-import { components, MetaComponentName } from 'src/meta';
+import { COMPONENT_PHASES, components, MetaComponentName } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
 import { kebabCase } from 'src/utils/kebabCase';
 import { useComponentDemo } from 'src/utils/useComponentDemo';
@@ -31,7 +31,9 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                     <h1 data-nav-target data-nav-target-label="Introduction" id="introduction">
                         {component.name}
                     </h1>
-                    {component.phase && <TagComponent component={component} />}
+                    {component.phase && (
+                        <TagComponent component={{ ...component, name: COMPONENT_PHASES[component.phase].title }} />
+                    )}
                 </header>
                 <article>
                     <Markup>{component.description}</Markup>
