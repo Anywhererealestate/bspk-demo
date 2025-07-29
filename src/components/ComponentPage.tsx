@@ -1,6 +1,5 @@
 import { Button } from '@bspk/ui/Button';
 import { SwitchOption } from '@bspk/ui/SwitchOption';
-import { Tag } from '@bspk/ui/Tag';
 import { ComponentPageExample } from 'components/ComponentPageExample';
 import { ComponentProvider, resetComponentContext } from 'components/ComponentProvider';
 import { ComponentVariants } from 'components/ComponentVariants';
@@ -11,7 +10,7 @@ import { Syntax } from 'components/Syntax';
 import { TypeProps } from 'components/TypeProps';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { COMPONENT_PHASES, COMPONENT_PHASE_COLORS } from 'src/constants';
+import { TagComponent } from 'src/components/TagComponent';
 import { components, MetaComponentName } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
 import { kebabCase } from 'src/utils/kebabCase';
@@ -23,8 +22,6 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
 
     if (!component) return <h1>Component not available.</h1>;
 
-    const componentPhase = COMPONENT_PHASES[component.phase || 'Backlog'];
-
     const Component = components[component.name as keyof typeof components];
 
     return (
@@ -34,11 +31,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                     <h1 data-nav-target data-nav-target-label="Introduction" id="introduction">
                         {component.name}
                     </h1>
-                    {component.phase && (
-                        <Tag as="div" color={COMPONENT_PHASE_COLORS[component.phase]}>
-                            {componentPhase.title}
-                        </Tag>
-                    )}
+                    {component.phase && <TagComponent component={component} />}
                 </header>
                 <article>
                     <Markup>{component.description}</Markup>
@@ -83,18 +76,22 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                             marginTop: 'var(--spacing-sizing-06)',
                         }}
                     >
-                        <h2 data-nav-target id="demo">
-                            Demo
-                        </h2>
-                        {component.hasTouchTarget && (
-                            <div data-touch-target-toggle style={{ marginBottom: '0.75em' }}>
-                                <SwitchOption
-                                    checked={showTouchTarget}
-                                    label="Show Touch Target"
-                                    name="data-touch-target"
-                                    onChange={(checked) => setShowTouchTarget(checked)}
-                                />
-                            </div>
+                        {component.showExample && (
+                            <>
+                                <h2 data-nav-target id="demo">
+                                    Demo
+                                </h2>
+                                {component.hasTouchTarget && (
+                                    <div data-touch-target-toggle style={{ marginBottom: '0.75em' }}>
+                                        <SwitchOption
+                                            checked={showTouchTarget}
+                                            label="Show Touch Target"
+                                            name="data-touch-target"
+                                            onChange={(checked) => setShowTouchTarget(checked)}
+                                        />
+                                    </div>
+                                )}
+                            </>
                         )}
                     </div>
                     <ErrorBoundary
@@ -128,9 +125,10 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                     ))}
                                 </>
                             )}
-                            {(!component.hideVariants || Array.isArray(component.hideVariants)) && (
-                                <ComponentVariants />
-                            )}
+                            {component.showExample &&
+                                (!component.hideVariants || Array.isArray(component.hideVariants)) && (
+                                    <ComponentVariants />
+                                )}
                         </ComponentProvider>
                     </ErrorBoundary>
                     {[
@@ -162,25 +160,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                         }}
                                     >
                                         {section.components.map((d, index) => {
-                                            const dependencyPhase = COMPONENT_PHASES[d.phase || 'Backlog'];
-                                            const dependencyPhaseColor = COMPONENT_PHASE_COLORS[dependencyPhase.id];
-
-                                            return dependencyPhase.id === 'Backlog' ? (
-                                                <Tag color="grey" key={index}>
-                                                    {d.name}
-                                                </Tag>
-                                            ) : (
-                                                <Tag
-                                                    as={Link}
-                                                    color={dependencyPhaseColor}
-                                                    key={index}
-                                                    to={{
-                                                        pathname: `/${d.slug}`,
-                                                    }}
-                                                >
-                                                    {d.name}
-                                                </Tag>
-                                            );
+                                            return <TagComponent component={d} key={index} />;
                                         })}
                                     </p>
                                 </Fragment>

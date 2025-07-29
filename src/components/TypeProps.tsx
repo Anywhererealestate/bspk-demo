@@ -108,11 +108,7 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
                                 <Txt as="div" variant="labels-small">
                                     {prop.name}
                                 </Txt>
-                                {prop.required && (
-                                    <Tag color="red" size="x-small">
-                                        required
-                                    </Tag>
-                                )}
+                                {prop.required && <Tag color="red" label="required" size="x-small" />}
                             </>
                         ),
                         'description-type': (
@@ -123,12 +119,10 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
                                         <Tag
                                             color="grey"
                                             key={`${o}1`}
+                                            label={o.toString()}
                                             size="x-small"
                                             variant="flat"
-                                            wrap={typeof o === 'string' && o?.includes('=>')}
-                                        >
-                                            {o.toString()}
-                                        </Tag>
+                                        />
                                     ))}
                                 </div>
                                 {'minimum' in prop && (
@@ -156,13 +150,14 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
                         default: (
                             <>
                                 {typeof prop.libraryDefault === 'undefined' ? (
-                                    <Tag color="grey" size="x-small" variant="flat">
-                                        None
-                                    </Tag>
+                                    <Tag color="grey" label="None" size="x-small" variant="flat" />
                                 ) : (
-                                    <Tag color="primary" size="x-small" variant="flat">
-                                        {prop.libraryDefault?.toString()}
-                                    </Tag>
+                                    <Tag
+                                        color="primary"
+                                        label={prop.libraryDefault != null ? prop.libraryDefault.toString() : ''}
+                                        size="x-small"
+                                        variant="flat"
+                                    />
                                 )}
                             </>
                         ),

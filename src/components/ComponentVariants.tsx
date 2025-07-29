@@ -73,7 +73,7 @@ export function ComponentVariants() {
                         >
                             {variants?.map((option) => (
                                 <div data-option-container key={`${prop.name}-${option}`}>
-                                    <Tag color="grey">{option.toString()}</Tag>
+                                    <Tag color="grey" label={option.toString()} />
                                     <ComponentRender
                                         context={{
                                             variantValue: option,
