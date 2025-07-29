@@ -27,7 +27,7 @@ export function ComponentRender({ overrideState, context }: ComponentRenderProps
         ...getPropsFromState(component.props, propState),
     };
 
-    return component.render ? (
+    return typeof component.render === 'function' ? (
         component.render({
             Component,
             props: renderProps,

@@ -29,42 +29,52 @@ export function ComponentPageExample() {
     const props = component.props.map((p) => ({ ...p, disabled: component.disableProps?.includes(p.name) }));
 
     return (
-        <div data-example-wrapper>
-            <ErrorLogContext id={errorId}>
-                <CodeExample
-                    accessibility
-                    containerStyle={containerStyle}
-                    data-main-example
-                    data-show-touch-targets={showTouchTarget || undefined}
-                >
-                    <ComponentRender />
-                </CodeExample>
-            </ErrorLogContext>
-            <div data-example-settings>
-                <div data-presets>
-                    {component.presets && (
-                        <SegmentedControl
-                            onChange={setPreset}
-                            options={component.presets}
-                            value={preset?.value || CUSTOM_PRESET_VALUE}
-                        />
-                    )}
+        <>
+            {component.showExample && (
+                <div data-example-wrapper>
+                    <ErrorLogContext id={errorId}>
+                        <CodeExample
+                            accessibility
+                            containerStyle={containerStyle}
+                            data-main-example
+                            data-show-touch-targets={showTouchTarget || undefined}
+                        >
+                            <ComponentRender />
+                        </CodeExample>
+                    </ErrorLogContext>
+                    <div data-example-settings>
+                        <div data-presets>
+                            {component.presets && (
+                                <SegmentedControl
+                                    onChange={setPreset}
+                                    options={component.presets}
+                                    value={preset?.value || CUSTOM_PRESET_VALUE}
+                                />
+                            )}
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    marginTop: 'var(--spacing-sizing-06)',
-                }}
-            >
-                <h2 data-nav-target id="properties">
-                    Properties
-                </h2>
-                {changed && <Button label="Reset" onClick={() => resetAllState()} size="small" variant="secondary" />}
-            </div>
-            {component.props && <TypeProps props={props} state={propState} />}
-        </div>
+            )}
+            {component.props?.length > 0 && (
+                <>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            marginTop: 'var(--spacing-sizing-06)',
+                        }}
+                    >
+                        <h2 data-nav-target id="properties">
+                            Properties
+                        </h2>
+                        {component.showExample && changed && (
+                            <Button label="Reset" onClick={() => resetAllState()} size="small" variant="secondary" />
+                        )}
+                    </div>
+                    <TypeProps props={props} state={component.showExample ? propState : undefined} />
+                </>
+            )}
+        </>
     );
 }
 
