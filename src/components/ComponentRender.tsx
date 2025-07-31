@@ -1,4 +1,5 @@
 import { TypePropertyDemo } from '@bspk/ui/utils/demo';
+import { randomString } from '@bspk/ui/utils/random';
 import { useId } from 'react';
 import { updateComponentContext, useComponentContext } from 'src/components/ComponentProvider';
 import { components } from 'src/meta';
@@ -26,6 +27,11 @@ export function ComponentRender({ overrideState, context }: ComponentRenderProps
         ...overrideState,
         ...getPropsFromState(component.props, propState),
     };
+
+    // change any id props to a random string
+    Object.keys(renderProps).forEach((key) => {
+        if (key === 'id' || key.endsWith('Id')) renderProps[key] = `example-${randomString()}`;
+    });
 
     return typeof component.render === 'function' ? (
         component.render({
