@@ -26,6 +26,9 @@ export function TypePropControl({
 
     if (!prop) return null;
 
+    // id props should not be in state as we need to generate a random id when the component is rendered
+    if (prop.type === 'string' && (prop.name === 'id' || prop.name.endsWith('Id'))) return null;
+
     const type = prop.exampleType || prop.type;
 
     const controlProps = {
@@ -90,9 +93,11 @@ export function TypePropControl({
         controlOptions?.map((option) => ({
             value: option,
             label: option,
+            name: option,
         })) || [];
 
-    if (!prop.required && !prop.default) options.unshift({ value: undefined as unknown as string, label: 'None' });
+    if (!prop.required && !prop.default)
+        options.unshift({ value: undefined as unknown as string, label: 'None', name: 'none' });
 
     if (type === 'BspkIcon') return <BspkIconSelect onChange={onChange} value={controlProps.value} />;
 
