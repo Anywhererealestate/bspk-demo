@@ -1,4 +1,5 @@
 import { Tag } from '@bspk/ui/Tag';
+import { ComponentVariantOverrides } from '@bspk/ui/utils/demo';
 import { useErrorLogger } from '@bspk/ui/utils/errors';
 import { Markup } from 'components//Markup';
 import { CodeExample } from 'components/CodeExample';
@@ -9,19 +10,19 @@ import { kebabCase } from 'utils/kebabCase';
 
 export function ComponentVariants() {
     const { component, propState } = useComponentContext();
+    const { logError } = useErrorLogger();
 
-    // `hideVariants` is an array of property names that should not be displayed.
-    // always hide the 'open' variant
-    const hiddenVariants = [...(Array.isArray(component.hideVariants) ? component.hideVariants : []), 'open'];
+    if (component.variants === false) return <></>;
+
+    let variantOverrides: ComponentVariantOverrides = {};
+    if (typeof component.variants === 'object') variantOverrides = component.variants;
 
     const variantProperties: TypeProperty[] =
         component.props?.filter(
             (prop) =>
-                !hiddenVariants.includes(prop.name) &&
-                (prop.type === 'boolean' || (prop.options && prop.options?.length > 1)),
+                variantOverrides[prop.name] !== false &&
+                (prop.type === 'boolean' || (prop.options && prop.options?.length > 1) || variantOverrides[prop.name]),
         ) || [];
-
-    const { logError } = useErrorLogger();
 
     if (!variantProperties.length) return <></>;
 
@@ -35,8 +36,6 @@ export function ComponentVariants() {
     const containerStyle =
         typeof component.containerStyle === 'function' ? component.containerStyle(propState) : component.containerStyle;
 
-    const Content = component.variantsExample;
-
     return (
         <>
             <h2 data-nav-target id="variants">
@@ -44,22 +43,18 @@ export function ComponentVariants() {
             </h2>
 
             <p>These are possible variants of the component.</p>
-            {Content && (
-                <div
-                    style={{
-                        padding: 'var(--spacing-sizing-06)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        border: '1px solid var(--surface-neutral-t3-low)',
-                        borderRadius: 'var(--radius-sm)',
-                    }}
-                >
-                    <Content Component={Component as typeof Content} props={component.defaultState || {}} />
-                </div>
-            )}
+
             {variantProperties.map((prop) => {
-                const variants = prop.options || [true, false];
+                let options: unknown[] = prop.options || [true, false];
+
+                const variantStateOverrides = variantOverrides[prop.name];
+                if (
+                    typeof variantStateOverrides === 'object' &&
+                    'propOptions' in variantStateOverrides &&
+                    Array.isArray(variantStateOverrides.propOptions)
+                )
+                    options = variantStateOverrides.propOptions;
+
                 return (
                     <section data-variants key={prop.name} style={{ margin: 'var(--spacing-sizing-08) 0' }}>
                         <h4 data-nav-target="false" id={kebabCase(`variant-${prop.name}`)}>
@@ -71,20 +66,55 @@ export function ComponentVariants() {
                             containerStyle={containerStyle}
                             style={{ marginBottom: 'var(--spacing-sizing-02)' }}
                         >
-                            {variants?.map((option) => (
-                                <div data-option-container key={`${prop.name}-${option}`}>
-                                    <Tag color="grey" label={option.toString()} />
-                                    <ComponentRender
-                                        context={{
-                                            variantValue: option,
-                                            variantName: prop.name,
-                                        }}
-                                        overrideState={{
-                                            [prop.name]: option,
-                                        }}
-                                    />
-                                </div>
-                            ))}
+                            {options?.map((option) => {
+                                const overrideState = { [prop.name]: option };
+
+                                const secondaryOverrides: Record<string, unknown>[] = [];
+
+                                if (variantStateOverrides) {
+                                    let overrides: Record<string, unknown> = {};
+                                    if (typeof variantStateOverrides === 'function')
+                                        overrides = variantStateOverrides(overrideState);
+                                    else overrides = variantStateOverrides;
+
+                                    Object.entries(overrides).map(([key, value]) => {
+                                        if (
+                                            value &&
+                                            typeof value === 'object' &&
+                                            'options' in value &&
+                                            Array.isArray(value.options)
+                                        ) {
+                                            secondaryOverrides.push(
+                                                ...value.options.map((optionValue) => ({
+                                                    [key]: optionValue,
+                                                })),
+                                            );
+                                        } else {
+                                            overrideState[key] = value;
+                                        }
+                                    });
+                                }
+
+                                return (
+                                    <div data-option-container key={`${prop.name}-${option}`}>
+                                        <Tag color="grey" label={String(option)} />
+                                        <div data-option-render>
+                                            {(secondaryOverrides.length ? secondaryOverrides : [{}]).map(
+                                                (secondaryOverride, index) => (
+                                                    <ComponentRender
+                                                        context={{
+                                                            variantValue: option,
+                                                            variantName: prop.name,
+                                                        }}
+                                                        key={`${prop.name}-${option}-${index}`}
+                                                        overrideState={{ ...overrideState, ...secondaryOverride }}
+                                                    />
+                                                ),
+                                            )}
+                                        </div>
+                                    </div>
+                                );
+                            })}
                         </CodeExample>
                     </section>
                 );

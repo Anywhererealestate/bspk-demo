@@ -176,7 +176,7 @@ export function Demo() {
                     <Button
                         icon={<SvgMenu />}
                         label="Menu"
-                        showLabel={false}
+                        iconOnly
                         style={{ color: 'var(--foreground-brand-on-primary)' }}
                         variant="tertiary"
                     />
@@ -217,14 +217,14 @@ export function Demo() {
                             icon={<SvgChevronLeft />}
                             label="previous"
                             placement="top-left"
-                            showLabel={false}
+                            iconOnly
                             variant="neutral"
                         />
                         <Fab
                             icon={<SvgChevronRight />}
                             label="next"
                             placement="top-right"
-                            showLabel={false}
+                            iconOnly
                             variant="neutral"
                         />
                     </div>
@@ -344,8 +344,8 @@ export default function HomeJourneyMobile() {
                     </Txt>
                     <Button
                         icon={<SvgMenu />}
+                        iconOnly
                         label="Menu"
-                        showLabel={false}
                         style={{ color: 'var(--foreground-brand-on-primary)' }}
                         variant="tertiary"
                     />
@@ -384,18 +384,12 @@ export default function HomeJourneyMobile() {
                     >
                         <Fab
                             icon={<SvgChevronLeft />}
+                            iconOnly
                             label="previous"
                             placement="top-left"
-                            showLabel={false}
                             variant="neutral"
                         />
-                        <Fab
-                            icon={<SvgChevronRight />}
-                            label="next"
-                            placement="top-right"
-                            showLabel={false}
-                            variant="neutral"
-                        />
+                        <Fab icon={<SvgChevronRight />} iconOnly label="next" placement="top-right" variant="neutral" />
                     </div>
 
                     <div style={{ position: 'absolute', bottom: 16, left: '50%', transform: 'translateX(-50%)' }}>

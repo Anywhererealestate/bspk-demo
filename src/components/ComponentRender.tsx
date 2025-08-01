@@ -1,6 +1,6 @@
+import { useId } from '@bspk/ui/hooks/useId';
 import { TypePropertyDemo } from '@bspk/ui/utils/demo';
 import { randomString } from '@bspk/ui/utils/random';
-import { useId } from 'react';
 import { updateComponentContext, useComponentContext } from 'src/components/ComponentProvider';
 import { components } from 'src/meta';
 import { isIconName, SvgIcon } from 'src/utils/icons';

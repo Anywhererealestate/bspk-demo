@@ -127,10 +127,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                     ))}
                                 </>
                             )}
-                            {component.showExample &&
-                                (!component.hideVariants || Array.isArray(component.hideVariants)) && (
-                                    <ComponentVariants />
-                                )}
+                            {component.showExample && component.variants !== false && <ComponentVariants />}
                         </ComponentProvider>
                     </ErrorBoundary>
                     {[
