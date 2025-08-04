@@ -7,8 +7,9 @@ import { Select } from '@bspk/ui/Select';
 import { Switch } from '@bspk/ui/Switch';
 import { TextInput } from '@bspk/ui/TextInput';
 import { Textarea } from '@bspk/ui/Textarea';
+import { useId } from '@bspk/ui/hooks/useId';
 import { TypePropertyDemoWithControls } from '@bspk/ui/utils/demo';
-import { useId, useState } from 'react';
+import { useState } from 'react';
 import { ICONS } from 'src/utils/icons';
 
 export function TypePropControl({
@@ -132,9 +133,7 @@ export function TypePropControl({
                 </>
             );
 
-        return (
-            <RadioGroup data-testid={`${prop.name}-RadioGroup`} options={options} showLabel={false} {...controlProps} />
-        );
+        return <RadioGroup data-testid={`${prop.name}-RadioGroup`} hideLabel options={options} {...controlProps} />;
     }
 
     if (type === 'boolean')

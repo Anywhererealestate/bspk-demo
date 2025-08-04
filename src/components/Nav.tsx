@@ -10,7 +10,7 @@ import { useModalState } from '@bspk/ui/hooks/useModalState';
 import { Brand } from '@bspk/ui/types/common';
 import { NavSide } from 'components/NavSide';
 import { SearchModal } from 'components/SearchModal';
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { MODE, VERSION, UI_HASH, BUILD } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
@@ -20,7 +20,6 @@ function useScreenSize<T extends { size: string; minWidth: number }[]>(
     sizesProp: T,
 ): keyof T[number]['size'] | undefined {
     const [screenSize, setScreenSize] = useState<keyof T[number]['size'] | undefined>(undefined);
-
     const sizes = sizesProp.sort((a, b) => a.minWidth - b.minWidth);
 
     useEffect(() => {
@@ -114,14 +113,14 @@ export function Nav() {
                 <div data-navbar-right="">
                     <Button
                         icon={theme === 'light' ? <SvgDarkMode /> : <SvgDarkModeFill />}
+                        iconOnly
                         label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
                         onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-                        showLabel={false}
                         variant="secondary"
                     />
                     <div data-brand-dropdown>
                         <Select
-                            id={useId()}
+                            id="brand-dropdown"
                             label="Brand"
                             name="brand"
                             onChange={(value) => {

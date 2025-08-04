@@ -1,7 +1,8 @@
 import { Fab } from '@bspk/ui/Fab';
+import { useId } from '@bspk/ui/hooks/useId';
 import { useTimeout } from '@bspk/ui/hooks/useTimeout';
 import hljs from 'highlight.js';
-import { CSSProperties, useEffect, useId, useRef, useState } from 'react';
+import { CSSProperties, useEffect, useRef, useState } from 'react';
 import { pretty, PrettyParser } from 'utils/pretty';
 import useMountedState from 'utils/useMountState';
 

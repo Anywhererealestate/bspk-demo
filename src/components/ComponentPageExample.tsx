@@ -1,10 +1,10 @@
 import { Button } from '@bspk/ui/Button';
 import { SegmentedControl } from '@bspk/ui/SegmentedControl';
+import { useId } from '@bspk/ui/hooks/useId';
 import { CodeExample } from 'components/CodeExample';
 import { useComponentContext } from 'components/ComponentProvider';
 import { ErrorLogContext } from 'components/ErrorLogContext';
 import { TypeProps } from 'components/TypeProps';
-import { useId } from 'react';
 import { ComponentRender } from 'src/components/ComponentRender';
 import { components } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
