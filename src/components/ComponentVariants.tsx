@@ -102,12 +102,12 @@ export function ComponentVariants() {
                                             {(secondaryOverrides.length ? secondaryOverrides : [{}]).map(
                                                 (secondaryOverride, index) => (
                                                     <ComponentRender
-                                                        context={{
-                                                            variantValue: option,
-                                                            variantName: prop.name,
-                                                        }}
                                                         key={`${prop.name}-${option}-${index}`}
                                                         overrideState={{ ...overrideState, ...secondaryOverride }}
+                                                        variant={{
+                                                            value: option,
+                                                            name: prop.name,
+                                                        }}
                                                     />
                                                 ),
                                             )}

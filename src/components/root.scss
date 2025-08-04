@@ -387,6 +387,7 @@ section[data-variants] {
                 [data-option-render] {
                     display: flex;
                     flex-direction: row;
+                    flex-wrap: wrap;
                     align-items: center;
                     justify-content: start;
                     width: 100%;

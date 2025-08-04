@@ -1,5 +1,5 @@
 import { useId } from '@bspk/ui/hooks/useId';
-import { TypePropertyDemo } from '@bspk/ui/utils/demo';
+import { ComponentExampleRenderProps, TypePropertyDemo } from '@bspk/ui/utils/demo';
 import { randomString } from '@bspk/ui/utils/random';
 import { updateComponentContext, useComponentContext } from 'src/components/ComponentProvider';
 import { components } from 'src/meta';
@@ -7,10 +7,10 @@ import { isIconName, SvgIcon } from 'src/utils/icons';
 
 export type ComponentRenderProps = {
     overrideState?: Record<string, any>;
-    context?: Record<string, any>;
+    variant?: ComponentExampleRenderProps<any>['variant'];
 };
 
-export function ComponentRender({ overrideState, context }: ComponentRenderProps): React.ReactNode {
+export function ComponentRender({ overrideState, variant }: ComponentRenderProps): React.ReactNode {
     const { component, propState, preset } = useComponentContext();
     const id = useId();
 
@@ -40,7 +40,7 @@ export function ComponentRender({ overrideState, context }: ComponentRenderProps
             preset,
             setState: updateComponentContext,
             id,
-            context,
+            variant,
         })
     ) : (
         <Component {...renderProps} />
