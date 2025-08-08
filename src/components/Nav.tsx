@@ -135,7 +135,7 @@ export function Nav() {
                     </div>
                     <Button
                         data-search-button
-                        label='Search for components (Press "⌘K" to focus)'
+                        label="Search... ⌘K"
                         onClick={(event) => {
                             (event.target as HTMLInputElement).blur();
                             onOpen();
@@ -143,8 +143,8 @@ export function Nav() {
                         variant="secondary"
                     >
                         <SvgSearch />
-                        Search...
-                        <span data-shortcut>⌘K</span>
+                        Search... ⌘K
+                        {/* <span data-shortcut>⌘K</span> */}
                     </Button>
                     <SearchModal {...searchModalProps} />
                 </div>
