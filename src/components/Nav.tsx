@@ -144,7 +144,6 @@ export function Nav() {
                     >
                         <SvgSearch />
                         Search... ⌘K
-                        {/* <span data-shortcut>⌘K</span> */}
                     </Button>
                     <SearchModal {...searchModalProps} />
                 </div>
