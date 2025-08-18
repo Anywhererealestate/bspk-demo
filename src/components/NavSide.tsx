@@ -34,6 +34,7 @@ export const NavSide = () => {
                                                 data-selected={location.pathname === r.path || undefined}
                                                 data-subtle
                                                 key={r.path}
+                                                role="menuitem"
                                                 to={r.path!}
                                             >
                                                 {r.title}
