@@ -89,7 +89,7 @@ export function Nav() {
             <div data-body-width data-navbar>
                 <span data-backdrop />
                 <div data-header>
-                    {screenSize === 'small' && <MenuButton onClick={() => navModalState.onOpen()} />}
+                    {screenSize === 'small' && <MenuButton aria-label="Menu" onClick={() => navModalState.onOpen()} />}
                     <h1 data-logo>
                         <img alt="Bespoke" src="/logo.png" style={{ height: 32 }} />
                         <span>
