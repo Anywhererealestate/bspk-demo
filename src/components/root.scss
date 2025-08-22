@@ -443,6 +443,34 @@ a[data-nav-target] {
     position: relative;
     margin-bottom: var(--spacing-sizing-06);
 
+    .hljs-doctag,
+    .hljs-keyword,
+    .hljs-meta .hljs-keyword,
+    .hljs-template-tag,
+    .hljs-template-variable,
+    .hljs-type,
+    .hljs-variable.language_ {
+        color: #ce3745;
+    }
+
+    .hljs-name,
+    .hljs-quote,
+    .hljs-selector-tag,
+    .hljs-selector-pseudo {
+        color: #22804b;
+    }
+
+    .hljs-built_in,
+    .hljs-symbol {
+        color: #bb5006;
+    }
+
+    .hljs-comment,
+    .hljs-code,
+    .hljs-formula {
+        color: #69717b;
+    }
+
     pre code.hljs {
         background-color: var(--background-shade) !important;
         font-size: 14px;
