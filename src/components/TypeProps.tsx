@@ -1,4 +1,4 @@
-import { Table, TableColumn } from '@bspk/ui/Table';
+import { Table } from '@bspk/ui/Table';
 import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
 import { TypePropertyDemo, TypePropertyDemoWithControls } from '@bspk/ui/utils/demo';
@@ -63,46 +63,41 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
         return a.name.localeCompare(b.name);
     });
 
-    const columns: TableColumn[] = useMemo(
-        // auto 1fr auto 180px
-        () => [
-            {
-                key: 'name',
-                label: 'Name',
-                width: 'auto',
-            },
-            {
-                key: 'description-type',
-                label: 'Description / Type',
-                width: '1fr',
-            },
-            {
-                key: 'default',
-                label: 'Default',
-                width: 'auto',
-            },
-            ...(showControls
-                ? [
-                      {
-                          key: 'controls',
-                          label: 'Controls',
-                          width: '180px',
-                      },
-                  ]
-                : []),
-        ],
-        [showControls],
-    );
-
     return (
         <>
             <Table
-                columns={columns}
+                columnDefs={[
+                    {
+                        key: 'name',
+                        label: 'Name',
+                        width: 'auto',
+                    },
+                    {
+                        key: 'description-type',
+                        label: 'Description / Type',
+                        width: '1fr',
+                    },
+                    {
+                        key: 'default',
+                        label: 'Default',
+                        width: 'auto',
+                    },
+                    ...(showControls
+                        ? [
+                              {
+                                  key: 'controls',
+                                  label: 'Controls',
+                                  width: '180px',
+                              },
+                          ]
+                        : []),
+                ]}
                 data-hide-controls={!showControls}
                 data-props
                 data-type-props
-                rows={propsWithControl.map((prop) => {
+                data={propsWithControl.map((prop) => {
                     return {
+                        id: prop.name,
                         name: (
                             <>
                                 <Txt as="div" variant="labels-small">
