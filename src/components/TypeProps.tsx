@@ -66,7 +66,7 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
     return (
         <>
             <Table
-                columnDefs={[
+                columns={[
                     {
                         key: 'name',
                         label: 'Name',
