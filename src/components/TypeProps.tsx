@@ -71,26 +71,36 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
                         key: 'name',
                         label: 'Name',
                         width: 'auto',
+                        valign: 'top',
+                        formatter: (row) => (
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sizing-02)' }}>
+                                {row.name}
+                            </div>
+                        ),
                     },
                     {
                         key: 'description-type',
                         label: 'Description / Type',
                         width: '1fr',
+                        valign: 'top',
+                        formatter: (row) => (
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sizing-02)' }}>
+                                {row['description-type']}
+                            </div>
+                        ),
                     },
                     {
                         key: 'default',
                         label: 'Default',
                         width: 'auto',
+                        valign: 'top',
                     },
-                    ...(showControls
-                        ? [
-                              {
-                                  key: 'controls',
-                                  label: 'Controls',
-                                  width: '180px',
-                              },
-                          ]
-                        : []),
+                    !!showControls || {
+                        key: 'controls',
+                        label: 'Controls',
+                        width: '180px',
+                        valign: 'top',
+                    },
                 ]}
                 data-hide-controls={!showControls}
                 data-props
