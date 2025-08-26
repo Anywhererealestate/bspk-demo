@@ -36,9 +36,15 @@ const propsWithControls = (prop: TypePropertyDemo) => {
     return nextProp;
 };
 
-export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?: Record<string, any> }) {
-    const showControls = !!state;
-
+export function TypeProps({
+    props,
+    state,
+    hideControls = false,
+}: {
+    props: TypePropertyDemo[];
+    state?: Record<string, any>;
+    hideControls?: boolean;
+}) {
     const propsWithControl = useMemo(() => props.map(propsWithControls), [props]);
 
     // Sort props by
@@ -62,6 +68,8 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
 
         return a.name.localeCompare(b.name);
     });
+
+    console.log({ hideControls, c: propsWithControl[0].name });
 
     return (
         <>
@@ -95,14 +103,13 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
                         width: 'auto',
                         valign: 'top',
                     },
-                    !!showControls || {
+                    !hideControls && {
                         key: 'controls',
                         label: 'Controls',
                         width: '180px',
                         valign: 'top',
                     },
                 ]}
-                data-hide-controls={!showControls}
                 data-props
                 data-type-props
                 data={propsWithControl.map((prop) => {
@@ -166,11 +173,11 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
                                 )}
                             </>
                         ),
-                        controls: showControls && (
+                        controls: !hideControls && (
                             <TypePropControl
                                 onChange={(nextValue) => updateComponentContext({ [prop.name]: nextValue })}
                                 prop={prop}
-                                value={state[prop.name]}
+                                value={state?.[prop.name]}
                             />
                         ),
                     };
