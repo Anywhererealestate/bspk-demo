@@ -104,7 +104,7 @@ export function TypeProps({
                     !hideControls && {
                         key: 'controls',
                         label: 'Controls',
-                        width: '180px',
+                        width: 'auto',
                         valign: 'top',
                     },
                 ]}
@@ -127,7 +127,7 @@ export function TypeProps({
                                 <div data-type-options>
                                     {prop.typeOptions?.map((o) => (
                                         <Tag
-                                            color="grey"
+                                            color="blue"
                                             key={`${o}1`}
                                             label={o.toString()}
                                             size="x-small"
@@ -160,10 +160,10 @@ export function TypeProps({
                         default: (
                             <>
                                 {typeof prop.libraryDefault === 'undefined' ? (
-                                    <Tag color="grey" label="None" size="x-small" variant="flat" />
+                                    <Tag color="yellow" label="None" size="x-small" variant="flat" />
                                 ) : (
                                     <Tag
-                                        color="primary"
+                                        color="green"
                                         label={prop.libraryDefault != null ? prop.libraryDefault.toString() : ''}
                                         size="x-small"
                                         variant="flat"
