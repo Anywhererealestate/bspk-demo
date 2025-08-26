@@ -17,44 +17,40 @@ import { RouteLink } from 'src/types';
 
 export const routes: RouteLink[] = [
     {
-        title: 'General',
-        children: [
-            {
-                path: '/',
-                Component: () => (
-                    <Page>
-                        <Markdown md={Intro} />
-                    </Page>
-                ),
-                title: 'Introduction',
-            },
-            { path: '/icons', Component: Icons, title: 'Icons', noIndex: true },
-            { path: '/styles', Component: Stylesheets, title: 'Styles' },
-            { path: '/hooks', Component: Hooks, title: 'Hooks', noIndex: true },
-            { path: '/progress', Component: Progress, title: 'Progress' },
-            { path: '/typography', Component: Typography, title: 'Typography' },
-
-            {
-                path: '/changelog',
-                Component: () => (
-                    <Page>
-                        <Markdown md={Changelog} />
-                    </Page>
-                ),
-                title: 'Changelog',
-            },
-            {
-                path: '/contributing',
-                Component: () => (
-                    <Page>
-                        <Markdown md={Contributing} />
-                    </Page>
-                ),
-                title: 'Contributing',
-            },
-            { path: '/demo', Component: Demo, title: 'Demo', hide: true },
-        ],
+        path: '/',
+        Component: () => (
+            <Page>
+                <Markdown md={Intro} />
+            </Page>
+        ),
+        title: 'Introduction',
     },
+    { path: '/icons', Component: Icons, title: 'Icons', noIndex: true },
+    { path: '/styles', Component: Stylesheets, title: 'Styles' },
+    { path: '/hooks', Component: Hooks, title: 'Hooks', noIndex: true },
+    { path: '/progress', Component: Progress, title: 'Progress' },
+    { path: '/typography', Component: Typography, title: 'Typography' },
+
+    {
+        path: '/changelog',
+        Component: () => (
+            <Page>
+                <Markdown md={Changelog} />
+            </Page>
+        ),
+        title: 'Changelog',
+    },
+    {
+        path: '/contributing',
+        Component: () => (
+            <Page>
+                <Markdown md={Contributing} />
+            </Page>
+        ),
+        title: 'Contributing',
+    },
+    { path: '/demo', Component: Demo, title: 'Demo', hide: true },
+
     {
         title: 'Components',
         children: componentsMeta.flatMap((component): RouteLink[] => {

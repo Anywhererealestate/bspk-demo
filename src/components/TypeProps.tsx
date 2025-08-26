@@ -72,6 +72,7 @@ export function TypeProps({
     return (
         <>
             <Table
+                pageSize={99}
                 columns={[
                     {
                         key: 'name',
