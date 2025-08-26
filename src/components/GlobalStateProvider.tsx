@@ -44,6 +44,8 @@ export function GlobalStateProvider({ children }: PropsWithChildren) {
             }));
 
         if (overrideTheme) setTheme(overrideTheme);
+
+        if (globalState.theme) setTheme(globalState.theme);
     }, []);
 
     const { brand, showTouchTarget } = globalState;
@@ -51,6 +53,8 @@ export function GlobalStateProvider({ children }: PropsWithChildren) {
     useEffect(() => {
         document.querySelectorAll('link[data-syntax-theme]').forEach((link) => link.setAttribute('disabled', 'true'));
         document.querySelector(`link[data-syntax-theme="${theme}"]`)?.removeAttribute('disabled');
+
+        if (theme !== globalState.theme) setState((prev) => ({ ...prev, theme }));
     }, [theme]);
 
     return (

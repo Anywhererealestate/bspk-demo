@@ -69,8 +69,6 @@ export function TypeProps({
         return a.name.localeCompare(b.name);
     });
 
-    console.log({ hideControls, c: propsWithControl[0].name });
-
     return (
         <>
             <Table
