@@ -9,11 +9,13 @@ export const globalStateDefault: GlobalStateContext = {
     setBrand: () => {},
     setShowTouchTarget: () => {},
     resetGlobalState: () => {},
+    theme: 'light',
 } as const;
 
 export type GlobalState = {
     brand: Brand;
     showTouchTarget?: boolean;
+    theme: ColorTheme;
 };
 
 export type GlobalStateContext = GlobalState & {

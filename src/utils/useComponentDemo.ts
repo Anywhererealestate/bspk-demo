@@ -1,4 +1,4 @@
-import { TypePropertyDemo } from '@bspk/ui/utils/demo';
+import { DemoPreset, TypePropertyDemo } from '@bspk/ui/utils/demo';
 import { CUSTOM_PRESET_VALUE } from 'src/components/ComponentPageExample';
 import { updateComponentContext } from 'src/components/ComponentProvider';
 import { TypeProperty, MetaComponentName, componentsMeta, typesMeta } from 'src/meta';
@@ -144,13 +144,18 @@ export function useComponentDemo(componentName: MetaComponentName) {
         const componentExample = !example
             ? {}
             : typeof example === 'function'
-              ? example({ action, setState: updateComponentContext })
+              ? example({ action, setState: updateComponentContext, componentsMeta })
               : example;
 
         const { props, functionProps, defaultState } = setPropExamples(typeMeta?.properties || []);
 
-        const presets = componentExample?.presets?.map((p, index) => ({ ...p, value: `preset-${index}` }));
-        if (presets && presets.length > 0) presets.unshift({ label: 'Custom', value: CUSTOM_PRESET_VALUE });
+        let presets: DemoPreset<any>[] | undefined;
+        if (Array.isArray(componentExample?.presets) && componentExample.presets.length > 0) {
+            presets = [
+                { label: 'Custom', value: CUSTOM_PRESET_VALUE },
+                ...componentExample?.presets?.map((p, index) => ({ ...p, value: `preset-${index}` })),
+            ];
+        }
 
         const nextComponent: DemoComponent<any> = {
             ...componentMeta,

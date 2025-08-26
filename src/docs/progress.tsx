@@ -1,8 +1,7 @@
 import { Page } from 'components/Page';
 import { Fragment } from 'react';
 import { TagComponent } from 'src/components/TagComponent';
-import { COMPONENT_PHASES } from 'src/constants';
-import { ComponentPhase, componentsMeta } from 'src/meta';
+import { ComponentPhase, componentsMeta, COMPONENT_PHASES } from 'src/meta';
 
 const BACKLOG_COMPONENTS = [
     'Accordion',

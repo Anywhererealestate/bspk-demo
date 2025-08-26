@@ -1,4 +1,4 @@
-import { Table, TableColumn } from '@bspk/ui/Table';
+import { Table } from '@bspk/ui/Table';
 import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
 import { TypePropertyDemo, TypePropertyDemoWithControls } from '@bspk/ui/utils/demo';
@@ -36,9 +36,15 @@ const propsWithControls = (prop: TypePropertyDemo) => {
     return nextProp;
 };
 
-export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?: Record<string, any> }) {
-    const showControls = !!state;
-
+export function TypeProps({
+    props,
+    state,
+    hideControls = false,
+}: {
+    props: TypePropertyDemo[];
+    state?: Record<string, any>;
+    hideControls?: boolean;
+}) {
     const propsWithControl = useMemo(() => props.map(propsWithControls), [props]);
 
     // Sort props by
@@ -63,46 +69,50 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
         return a.name.localeCompare(b.name);
     });
 
-    const columns: TableColumn[] = useMemo(
-        // auto 1fr auto 180px
-        () => [
-            {
-                key: 'name',
-                label: 'Name',
-                width: 'auto',
-            },
-            {
-                key: 'description-type',
-                label: 'Description / Type',
-                width: '1fr',
-            },
-            {
-                key: 'default',
-                label: 'Default',
-                width: 'auto',
-            },
-            ...(showControls
-                ? [
-                      {
-                          key: 'controls',
-                          label: 'Controls',
-                          width: '180px',
-                      },
-                  ]
-                : []),
-        ],
-        [showControls],
-    );
-
     return (
         <>
             <Table
-                columns={columns}
-                data-hide-controls={!showControls}
+                columns={[
+                    {
+                        key: 'name',
+                        label: 'Name',
+                        width: 'auto',
+                        valign: 'top',
+                        formatter: (row) => (
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sizing-02)' }}>
+                                {row.name}
+                            </div>
+                        ),
+                    },
+                    {
+                        key: 'description-type',
+                        label: 'Description / Type',
+                        width: '1fr',
+                        valign: 'top',
+                        formatter: (row) => (
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sizing-02)' }}>
+                                {row['description-type']}
+                            </div>
+                        ),
+                    },
+                    {
+                        key: 'default',
+                        label: 'Default',
+                        width: 'auto',
+                        valign: 'top',
+                    },
+                    !hideControls && {
+                        key: 'controls',
+                        label: 'Controls',
+                        width: 'auto',
+                        valign: 'top',
+                    },
+                ]}
                 data-props
                 data-type-props
-                rows={propsWithControl.map((prop) => {
+                data={propsWithControl.map((prop) => {
                     return {
+                        id: prop.name,
                         name: (
                             <>
                                 <Txt as="div" variant="labels-small">
@@ -117,7 +127,7 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
                                 <div data-type-options>
                                     {prop.typeOptions?.map((o) => (
                                         <Tag
-                                            color="grey"
+                                            color="blue"
                                             key={`${o}1`}
                                             label={o.toString()}
                                             size="x-small"
@@ -150,10 +160,10 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
                         default: (
                             <>
                                 {typeof prop.libraryDefault === 'undefined' ? (
-                                    <Tag color="grey" label="None" size="x-small" variant="flat" />
+                                    <Tag color="yellow" label="None" size="x-small" variant="flat" />
                                 ) : (
                                     <Tag
-                                        color="primary"
+                                        color="green"
                                         label={prop.libraryDefault != null ? prop.libraryDefault.toString() : ''}
                                         size="x-small"
                                         variant="flat"
@@ -161,11 +171,11 @@ export function TypeProps({ props, state }: { props: TypePropertyDemo[]; state?:
                                 )}
                             </>
                         ),
-                        controls: showControls && (
+                        controls: !hideControls && (
                             <TypePropControl
                                 onChange={(nextValue) => updateComponentContext({ [prop.name]: nextValue })}
                                 prop={prop}
-                                value={state[prop.name]}
+                                value={state?.[prop.name]}
                             />
                         ),
                     };
