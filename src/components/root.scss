@@ -518,19 +518,6 @@ a[data-nav-target] {
     &:hover [data-copy-code] {
         opacity: 0.7;
     }
-
-    /* pre[style] {
-min-height: var(--spacing-sizing-17);
-margin: 0 !important;
-padding: var(--spacing-sizing-04) var(--spacing-sizing-16) var(--spacing-sizing-04) var(--spacing-sizing-04) !important;
-width: 100% !important;
-
-code {
-  span {
-    background-color: var(--background-shade) !important;
-  }
-}
-} */
 }
 
 [data-navbar] {
