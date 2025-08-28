@@ -10,13 +10,16 @@
         "dev": "vite-node ./.scripts/dev.ts",
         "lint": "eslint && tsc --noemit",
         "lint:fix": "eslint --fix",
+        "lint:css": "npx stylelint '**/*.scss'",
+        "lint:css:fix": "npx stylelint '**/*.scss' --fix",
         "prepare": "husky",
         "preview:local": "vite-node ./.scripts/preview.ts local",
         "preview:prod": "vite-node ./.scripts/preview.ts prod",
         "preview:dev": "vite-node ./.scripts/preview.ts dev",
         "test": "TEST_PORT=8675 playwright test",
         "test:preview": "TEST_PORT=8080 playwright test",
-        "tasks": "vite-node ./.scripts/tasks.ts"
+        "tasks": "vite-node ./.scripts/tasks.ts",
+        "pr-check": "npm run lint && npm run lint:css"
     },
     "peerDependencies": {
         "react": "^18.3.1",
@@ -62,6 +65,9 @@
         "puppeteer": "^23.11.1",
         "sass": "^1.82.0",
         "sass-embedded": "^1.81.0",
+        "stylelint": "^16.19.1",
+        "stylelint-config-standard": "^38.0.0",
+        "stylelint-config-standard-scss": "^14.0.0",
         "simple-git": "^3.27.0",
         "tsx": "^4.19.4",
         "typescript": "5.6.3",

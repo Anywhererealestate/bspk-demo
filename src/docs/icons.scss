@@ -2,14 +2,10 @@
     [data-filters] {
         display: flex;
         flex-direction: row;
-        align-items: center;
-        justify-items: center;
+        place-items: center center;
         gap: var(--spacing-sizing-12);
         font-size: var(--spacing-sizing-12);
         margin-bottom: var(--spacing-sizing-02);
-
-        [data-search] {
-        }
 
         [data-type] {
             max-width: 300px;
@@ -27,9 +23,7 @@
         }
 
         [data-icon] {
-            border: none;
             background: none;
-            padding: 0;
             margin: 0;
             padding: var(--spacing-sizing-01);
             color: var(--foreground-neutral-on-surface);
@@ -213,7 +207,7 @@
         0 0,
         0 16px,
         16px -16px,
-        -16px 0px;
+        -16px 0;
 }
 
 [data-color='original'] {
