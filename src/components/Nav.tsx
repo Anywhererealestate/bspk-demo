@@ -120,6 +120,9 @@ export function Nav() {
                     />
                     <div data-brand-dropdown>
                         <Select
+                            attr={{
+                                style: { width: '280px' },
+                            }}
                             id="brand-dropdown"
                             label="Brand"
                             name="brand"
@@ -129,12 +132,13 @@ export function Nav() {
                             options={BRANDS.map((b) => {
                                 return { label: b.title, value: b.slug };
                             })}
-                            style={{ width: '280px' }}
                             value={[brand]}
                         />
                     </div>
                     <Button
-                        data-search-button
+                        attr={{
+                            'data-search-button': true,
+                        }}
                         label="Search... ⌘K"
                         onClick={(event) => {
                             (event.target as HTMLInputElement).blur();

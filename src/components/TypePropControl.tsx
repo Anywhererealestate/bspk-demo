@@ -67,8 +67,9 @@ export function TypePropControl({
                         {...controlProps}
                         attr={{
                             style: { marginTop: '10px' },
+                            'data-testid': `${prop.name}-Input`,
                         }}
-                        data-testid={`${prop.name}-Input`}
+
                         disabled={prop.disabled}
                         readOnly={readOnly}
                         size="small"
@@ -83,7 +84,9 @@ export function TypePropControl({
         return (
             <TextInput
                 {...controlProps}
-                data-testid={`${prop.name}-Input`}
+                attr={{
+                    'data-testid': `${prop.name}-Input`,
+                }}
                 disabled={prop.disabled}
                 id={`${baseId}-Input-${prop.name}`}
                 readOnly={readOnly}
@@ -109,10 +112,12 @@ export function TypePropControl({
     if (type === 'checkboxes') {
         return (
             <CheckboxGroup
-                data-testid={`${prop.name}-CheckboxGroup`}
+                {...controlProps}
+                attr={{
+                    'data-testid': `${prop.name}-CheckboxGroup`,
+                }}
                 disabled={prop.disabled}
                 options={options}
-                {...controlProps}
                 readOnly={readOnly}
                 values={controlProps.value}
             />

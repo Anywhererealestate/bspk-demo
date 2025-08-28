@@ -67,7 +67,9 @@ export function NavContents() {
                             !!link && (
                                 <ListItem
                                     as="a"
-                                    data-selected={location.hash === link.hash || undefined}
+                                    attr={{
+                                        'data-selected': location.hash === link.hash || undefined,
+                                    }}
                                     href={link.hash}
                                     key={link.hash}
                                     label={link.title}
