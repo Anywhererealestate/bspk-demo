@@ -69,6 +69,7 @@ export function TypePropControl({
                             style: { marginTop: '10px' },
                             'data-testid': `${prop.name}-Input`,
                         }}
+
                         disabled={prop.disabled}
                         readOnly={readOnly}
                         size="small"

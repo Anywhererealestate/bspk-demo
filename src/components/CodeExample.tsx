@@ -36,7 +36,7 @@ export function CodeExample({
     const exampleRef = useRef<HTMLDivElement | null>(null);
 
     return (
-        <div {...attr} data-example-code>
+            <div {...attr} data-example-code>
             <TabGroup
                 label="Example navigation"
                 onChange={(nextDemoTab) => setDemoTab(nextDemoTab)}
