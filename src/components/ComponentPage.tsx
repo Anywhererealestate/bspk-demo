@@ -122,7 +122,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                                 {ref.name}
                                             </h4>
                                             <Markup>{ref.description}</Markup>
-                                            <TypeProps props={ref.properties!} hideControls />
+                                            <TypeProps hideControls props={ref.properties!} />
                                         </Fragment>
                                     ))}
                                 </>

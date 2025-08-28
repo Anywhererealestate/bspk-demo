@@ -1,5 +1,5 @@
 import { TabGroup } from '@bspk/ui/TabGroup';
-import { ElementProps } from '@bspk/ui/types/common';
+import { ElementAttributes } from '@bspk/ui/types/common';
 import { AccessibilitySection } from 'components/AccessibilitySection';
 import ComponentLogs from 'components/ComponentLogs';
 import { ErrorBoundary } from 'components/ErrorBoundary';
@@ -12,8 +12,9 @@ export function CodeExample({
     containerStyle,
     accessibility,
     code,
-    ...elementProps
-}: ElementProps<
+    elementAttributes,
+}: ElementAttributes<
+    'div',
     {
         containerStyle?: CSSProperties;
         children: ReactNode;
@@ -22,8 +23,7 @@ export function CodeExample({
             language?: PrettyParser | undefined;
             str: string;
         };
-    },
-    'div'
+    }
 >) {
     const TABS = [{ label: 'Example', value: 'example' }];
 
@@ -36,9 +36,10 @@ export function CodeExample({
     const exampleRef = useRef<HTMLDivElement | null>(null);
 
     return (
-        <div data-example-code {...elementProps}>
+        <div data-example-code {...elementAttributes}>
             <TabGroup
-                onChange={(nextDemoTab) => setDemoTab(nextDemoTab as any)}
+                label="Example navigation"
+                onChange={(nextDemoTab) => setDemoTab(nextDemoTab)}
                 options={[...TABS].filter((tab) => tab.value !== 'accessibility' || exampleRef)}
                 showTrail
                 style={{ width: '100%' }}

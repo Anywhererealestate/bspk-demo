@@ -153,7 +153,7 @@ export function useComponentDemo(componentName: MetaComponentName) {
         if (Array.isArray(componentExample?.presets) && componentExample.presets.length > 0) {
             presets = [
                 { label: 'Custom', value: CUSTOM_PRESET_VALUE },
-                ...componentExample?.presets?.map((p, index) => ({ ...p, value: `preset-${index}` })),
+                ...componentExample.presets.map((p, index) => ({ ...p, value: `preset-${index}` })),
             ];
         }
 

@@ -72,7 +72,6 @@ export function TypeProps({
     return (
         <>
             <Table
-                pageSize={99}
                 columns={[
                     {
                         key: 'name',
@@ -109,8 +108,6 @@ export function TypeProps({
                         valign: 'top',
                     },
                 ]}
-                data-props
-                data-type-props
                 data={propsWithControl.map((prop) => {
                     return {
                         id: prop.name,
@@ -181,6 +178,9 @@ export function TypeProps({
                         ),
                     };
                 })}
+                data-props
+                data-type-props
+                pageSize={99}
             />
         </>
     );
