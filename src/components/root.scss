@@ -145,7 +145,8 @@ body[data-screen-size='large'] {
 [data-example-code] {
     background: var(--surface-neutral-t1-base);
     border: solid 1px var(--stroke-neutral-low-contrast);
-    border-radius: var(--radius-md);
+    border-top-left-radius: var(--radius-md);
+    border-top-right-radius: var(--radius-md);
     position: relative;
 
     [data-example-render] {

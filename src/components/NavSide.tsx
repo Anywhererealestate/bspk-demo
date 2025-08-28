@@ -21,7 +21,7 @@ export const NavSide = () => {
                                 {route.children && route.children.length > 0 && (
                                     <>
                                         {index > 0 && <Divider />}
-                                        <Txt data-header variant="labels-base">
+                                        <Txt attr={{ 'data-header': '' }} variant="labels-base">
                                             {route.title}
                                         </Txt>
                                     </>

@@ -12,7 +12,7 @@ export function CodeExample({
     containerStyle,
     accessibility,
     code,
-    elementAttributes,
+    attr,
 }: ElementAttributes<
     'div',
     {
@@ -36,7 +36,7 @@ export function CodeExample({
     const exampleRef = useRef<HTMLDivElement | null>(null);
 
     return (
-        <div data-example-code {...elementAttributes}>
+        <div data-example-code {...attr}>
             <TabGroup
                 label="Example navigation"
                 onChange={(nextDemoTab) => setDemoTab(nextDemoTab)}

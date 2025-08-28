@@ -46,7 +46,9 @@ export function TypePropControl({
     if (type === 'number')
         return (
             <NumberInput
-                data-testid={`${prop.name}-Input`}
+                attr={{
+                    'data-testid': `${prop.name}-Input`,
+                }}
                 disabled={prop.disabled}
                 id=""
                 max={prop.maximum}
@@ -62,12 +64,14 @@ export function TypePropControl({
                 <Switch checked={!!controlProps.value} {...controlProps} />
                 {!!controlProps.value && (
                     <TextInput
+                        {...controlProps}
+                        attr={{
+                            style: { marginTop: '10px' },
+                        }}
                         data-testid={`${prop.name}-Input`}
                         disabled={prop.disabled}
-                        size="small"
-                        {...controlProps}
                         readOnly={readOnly}
-                        style={{ marginTop: '10px' }}
+                        size="small"
                         value={typeof controlProps.value === 'string' ? controlProps.value : ''}
                     />
                 )}
@@ -78,13 +82,13 @@ export function TypePropControl({
     if (type === 'string')
         return (
             <TextInput
+                {...controlProps}
                 data-testid={`${prop.name}-Input`}
                 disabled={prop.disabled}
-                id=""
+                id={`${baseId}-Input-${prop.name}`}
+                readOnly={readOnly}
                 size="small"
                 type="text"
-                {...controlProps}
-                readOnly={readOnly}
             />
         );
 
