@@ -136,7 +136,9 @@ export function Nav() {
                         />
                     </div>
                     <Button
-                        data-search-button
+                        attr={{
+                            'data-search-button': true,
+                        }}
                         label="Search... ⌘K"
                         onClick={(event) => {
                             (event.target as HTMLInputElement).blur();

@@ -52,7 +52,9 @@ export function Icons() {
                 <div data-filters>
                     <TextInput
                         aria-label="Search icons"
-                        data-search
+                        attr={{
+                            'data-search': true,
+                        }}
                         id=""
                         leading={<SvgSearch />}
                         name="icon-search"
@@ -66,7 +68,9 @@ export function Icons() {
                         value={filter.search}
                     />
                     <Select
-                        data-type
+                        attr={{
+                            'data-type': true,
+                        }}
                         label="Icon type"
                         name="icon-type"
                         onChange={(value) => {

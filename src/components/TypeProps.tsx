@@ -72,6 +72,10 @@ export function TypeProps({
     return (
         <>
             <Table
+                attr={{
+                    'data-props': true,
+                    'data-type-props': true,
+                }}
                 columns={[
                     {
                         key: 'name',
@@ -178,8 +182,6 @@ export function TypeProps({
                         ),
                     };
                 })}
-                data-props
-                data-type-props
                 pageSize={99}
             />
         </>
