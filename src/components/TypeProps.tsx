@@ -8,17 +8,20 @@ import { TypePropControl } from 'components/TypePropControl';
 import { useMemo } from 'react';
 import { PROPERTY_NAME_CUSTOM_SORT } from 'src/config';
 
-const hasPropTypeControl = (prop: TypePropertyDemo) =>
-    Boolean(
-        prop.type === 'icon' ||
-            prop.type === 'multiline' ||
-            prop.type === 'string' ||
-            prop.type === 'string,boolean' ||
-            prop.type === 'number' ||
-            prop.type === 'boolean' ||
-            (Array.isArray(prop.type) && prop.type.join() === 'string,boolean') ||
+const hasPropTypeControl = (prop: TypePropertyDemo) => {
+    const type = prop.exampleType || prop.type;
+
+    return Boolean(
+        type === 'icon' ||
+            type === 'multiline' ||
+            type === 'string' ||
+            type === 'string,boolean' ||
+            type === 'number' ||
+            type === 'boolean' ||
+            (Array.isArray(type) && type.join() === 'string,boolean') ||
             prop.options,
     );
+};
 
 const propsWithControls = (prop: TypePropertyDemo) => {
     const nextProp: TypePropertyDemoWithControls = {
@@ -57,6 +60,10 @@ export function TypeProps({
         if (!a.required !== !b.required) return !a.required > !b.required ? 1 : -1;
 
         if (!a.disabled !== !b.disabled) return !a.disabled < !b.disabled ? 1 : -1;
+
+        // ensure value props are always first
+        if (a.name === 'value') return -1;
+        if (b.name === 'value') return 1;
 
         const propertyNameSort = PROPERTY_NAME_CUSTOM_SORT.find((arr) => arr.includes(a.name) && arr.includes(b.name));
 
