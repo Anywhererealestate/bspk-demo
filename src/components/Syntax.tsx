@@ -57,7 +57,7 @@ export function Syntax({
     return (
         <div data-syntax style={propStyle}>
             <Fab
-                attr={{ 'data-copy-code': true, style: { marginTop: '-10px', marginRight: '-10px' } }}
+                data-copy-code
                 label={copyLabel}
                 onClick={() => {
                     if (!navigator?.clipboard?.writeText) return;
@@ -68,6 +68,7 @@ export function Syntax({
                 }}
                 placement="top-right"
                 size="small"
+                style={{ marginTop: '-10px', marginRight: '-10px' }}
                 variant="neutral"
             />
             <pre id={preId}>

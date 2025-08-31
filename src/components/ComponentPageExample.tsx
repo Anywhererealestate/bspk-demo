@@ -35,11 +35,9 @@ export function ComponentPageExample() {
                     <ErrorLogContext id={errorId}>
                         <CodeExample
                             accessibility
-                            attr={{
-                                'data-main-example': true,
-                                'data-show-touch-targets': showTouchTarget || undefined,
-                            }}
                             containerStyle={containerStyle}
+                            data-main-example={true}
+                            data-show-touch-targets={showTouchTarget || undefined}
                         >
                             <ComponentRender />
                         </CodeExample>

@@ -46,9 +46,7 @@ export function TypePropControl({
     if (type === 'number')
         return (
             <NumberInput
-                attr={{
-                    'data-testid': `${prop.name}-Input`,
-                }}
+                data-testid={`${prop.name}-Input`}
                 disabled={prop.disabled}
                 id=""
                 max={prop.maximum}
@@ -65,14 +63,11 @@ export function TypePropControl({
                 {!!controlProps.value && (
                     <TextInput
                         {...controlProps}
-                        attr={{
-                            style: { marginTop: '10px' },
-                            'data-testid': `${prop.name}-Input`,
-                        }}
-
+                        data-testid={`${prop.name}-Input`}
                         disabled={prop.disabled}
                         readOnly={readOnly}
                         size="small"
+                        style={{ marginTop: '10px' }}
                         value={typeof controlProps.value === 'string' ? controlProps.value : ''}
                     />
                 )}
@@ -84,9 +79,7 @@ export function TypePropControl({
         return (
             <TextInput
                 {...controlProps}
-                attr={{
-                    'data-testid': `${prop.name}-Input`,
-                }}
+                data-testid={`${prop.name}-Input`}
                 disabled={prop.disabled}
                 id={`${baseId}-Input-${prop.name}`}
                 readOnly={readOnly}
@@ -113,9 +106,7 @@ export function TypePropControl({
         return (
             <CheckboxGroup
                 {...controlProps}
-                attr={{
-                    'data-testid': `${prop.name}-CheckboxGroup`,
-                }}
+                data-testid={`${prop.name}-CheckboxGroup`}
                 disabled={prop.disabled}
                 options={options}
                 readOnly={readOnly}

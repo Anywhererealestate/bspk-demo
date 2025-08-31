@@ -108,7 +108,7 @@ export function SearchModal(props: DialogProps) {
     };
 
     return (
-        <Dialog attr={{ 'data-search-modal': '' }} {...props} placement="top">
+        <Dialog data-search-modal {...props} placement="top">
             <TextInput
                 aria-label="Search"
                 name="search"
