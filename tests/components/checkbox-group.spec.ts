@@ -2,13 +2,16 @@ import { test, expect } from '@playwright/test';
 
 import { gotoUrl } from '../utils';
 
-test.skip(`checkbox group`, async ({ page }) => {
+test(`checkbox group`, async ({ page }) => {
     const getGroupCheckbox = (nth: number) =>
-        page.locator(`[data-main-example] [data-toggle-option]:nth-child(${nth})`);
+        page.locator(`[data-main-example] [data-bspk="toggle-option"]:nth-child(${nth})`);
 
     await gotoUrl(page, '/checkbox-group');
 
     await page.waitForLoadState('networkidle');
+
+    // Locate the element
+    const element = page.locator('[data-main-example] [data-example-render]');
 
     const selectAllSwitch = await page.waitForSelector('[data-testid="selectAll-Switch"]');
     await selectAllSwitch.click();
@@ -31,6 +34,8 @@ test.skip(`checkbox group`, async ({ page }) => {
     expect(getGroupCheckbox(3).locator('input:checked')).toHaveCount(1);
     // The fourth checkbox should be checked.
     expect(getGroupCheckbox(4).locator('input:checked')).toHaveCount(1);
+
+    await expect(element).toHaveScreenshot();
 
     console.info('Pass checkbox group, select all is indeterminate');
 });

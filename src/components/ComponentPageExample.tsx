@@ -36,7 +36,7 @@ export function ComponentPageExample() {
                         <CodeExample
                             accessibility
                             containerStyle={containerStyle}
-                            data-main-example={true}
+                            data-main-example
                             data-show-touch-targets={showTouchTarget || undefined}
                         >
                             <ComponentRender />
