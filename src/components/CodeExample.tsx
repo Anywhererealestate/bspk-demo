@@ -1,5 +1,5 @@
 import { TabGroup } from '@bspk/ui/TabGroup';
-import { ElementAttributes } from '@bspk/ui/types/common';
+import { DataProps } from '@bspk/ui/types/common';
 import { AccessibilitySection } from 'components/AccessibilitySection';
 import ComponentLogs from 'components/ComponentLogs';
 import { ErrorBoundary } from 'components/ErrorBoundary';
@@ -12,19 +12,16 @@ export function CodeExample({
     containerStyle,
     accessibility,
     code,
-    attr,
-}: ElementAttributes<
-    'div',
-    {
-        containerStyle?: CSSProperties;
-        children: ReactNode;
-        accessibility?: boolean;
-        code?: {
-            language?: PrettyParser | undefined;
-            str: string;
-        };
-    }
->) {
+    ...props
+}: DataProps & {
+    containerStyle?: CSSProperties;
+    children: ReactNode;
+    accessibility?: boolean;
+    code?: {
+        language?: PrettyParser | undefined;
+        str: string;
+    };
+}) {
     const TABS = [{ label: 'Example', value: 'example' }];
 
     if (accessibility) TABS.push({ label: 'Accessibility', value: 'accessibility' });
@@ -36,7 +33,7 @@ export function CodeExample({
     const exampleRef = useRef<HTMLDivElement | null>(null);
 
     return (
-            <div {...attr} data-example-code>
+        <div data-example-code {...props}>
             <TabGroup
                 label="Example navigation"
                 onChange={(nextDemoTab) => setDemoTab(nextDemoTab)}
