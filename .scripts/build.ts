@@ -2,6 +2,8 @@ import { execSync } from 'child_process';
 
 const { DEV_GIT_TOKEN, MODE } = process.env;
 
+console.log(`Building in ${MODE} mode`);
+
 if (MODE !== 'production') {
     let branch = '';
     if (MODE === 'development') branch = 'dev';
