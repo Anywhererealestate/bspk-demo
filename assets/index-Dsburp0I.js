@@ -1,0 +1,1 @@
+import{j as t,T as n,C as x}from"./index-DhaZVVcF.js";function i({label:o,description:a,disabled:s,...b}){const e=o||a,l=a?`${o} - ${a}`:o;return e&&t.jsx(n,{"data-bspk":"checkbox-option",description:a,disabled:s,label:e,children:t.jsx(x,{...b,"aria-label":l})})}export{i as CheckboxOption};
