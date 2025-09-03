@@ -89,7 +89,7 @@ function createPackageJson() {
 
     const packageFile: any = {
         name: '@bspk/ui',
-        version: `${version}007`,
+        version: `${version}`,
         exports: {
             './*': './*.ts',
             '.': './index.ts',
