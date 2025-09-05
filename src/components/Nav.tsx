@@ -92,21 +92,27 @@ export function Nav() {
                     {screenSize === 'small' && <MenuButton aria-label="Menu" onClick={() => navModalState.onOpen()} />}
                     <h1 data-logo>
                         <img alt="Bespoke" src="/logo.png" style={{ height: 32 }} />
-                        <span>
-                            Version: {VERSION}
-                            {BUILD ? `.${BUILD}` : ''}
-                        </span>
-                        {MODE === 'development' && (
-                            <span>
-                                DEV
-                                {UI_HASH ? ` (${UI_HASH})` : ''}
-                            </span>
-                        )}
-                        {MODE === 'test' && (
-                            <span>
-                                TEST
-                                {UI_HASH ? ` (${UI_HASH})` : ''}
-                            </span>
+                        {BUILD === 'local' ? (
+                            <span>LOCAL ({UI_HASH})</span>
+                        ) : (
+                            <>
+                                <span>
+                                    Version: {VERSION}
+                                    {BUILD !== '0' ? `.${BUILD}` : ''}
+                                </span>
+                                {MODE === 'development' && (
+                                    <span>
+                                        DEV
+                                        {UI_HASH ? ` (${UI_HASH})` : ''}
+                                    </span>
+                                )}
+                                {MODE === 'test' && (
+                                    <span>
+                                        TEST
+                                        {UI_HASH ? ` (${UI_HASH})` : ''}
+                                    </span>
+                                )}
+                            </>
                         )}
                     </h1>
                 </div>
