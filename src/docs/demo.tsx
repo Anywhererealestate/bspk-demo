@@ -230,7 +230,7 @@ export function Demo() {
                     </div>
 
                     <div style={{ position: 'absolute', bottom: 16, left: '50%', transform: 'translateX(-50%)' }}>
-                        <PageControl numPages={20} value={carouselIndex} />
+                        <PageControl currentPage={carouselIndex} numPages={20} />
                     </div>
                 </div>
                 <div>
@@ -251,6 +251,7 @@ export function Demo() {
                     <Button label="Show all" onClick={handleShowAllClick} size="small" />
                 </div>
                 <TabGroup
+                    label="Milestone filter"
                     onChange={() => {}}
                     options={[
                         { label: 'Upcoming', value: 'upcoming' },
@@ -393,7 +394,7 @@ export default function HomeJourneyMobile() {
                     </div>
 
                     <div style={{ position: 'absolute', bottom: 16, left: '50%', transform: 'translateX(-50%)' }}>
-                        <PageControl numPages={20} value={carouselIndex} />
+                        <PageControl currentPage={carouselIndex} numPages={20} />
                     </div>
                 </div>
                 <div>
@@ -427,6 +428,7 @@ export default function HomeJourneyMobile() {
                     <Button label="Show all" onClick={handleShowAllClick} size="small" />
                 </div>
                 <TabGroup
+                    label="Milestone filter"
                     onChange={() => {}}
                     options={[
                         { label: 'Upcoming', value: 'upcoming' },

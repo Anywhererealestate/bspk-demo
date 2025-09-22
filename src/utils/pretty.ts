@@ -1,10 +1,9 @@
-import { format, type BuiltInParserName } from 'prettier';
+import { PrettyParser } from '@bspk/ui/utils/demo';
+import { format } from 'prettier';
 import prettierPluginEstree from 'prettier/plugins/estree';
 import prettierPluginHtml from 'prettier/plugins/html';
 import prettierPluginCss from 'prettier/plugins/postcss';
 import prettierPluginTypescript from 'prettier/plugins/typescript';
-
-export type PrettyParser = Extract<BuiltInParserName, 'css' | 'estree' | 'html' | 'scss' | 'typescript'> | 'none';
 
 export async function pretty(source: string, parser: PrettyParser) {
     return await format(source, {

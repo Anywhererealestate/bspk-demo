@@ -10,6 +10,7 @@ import { Syntax } from 'components/Syntax';
 import { TypeProps } from 'components/TypeProps';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { CodeExample } from 'src/components/CodeExample';
 import { TagComponent } from 'src/components/TagComponent';
 import { COMPONENT_PHASES, components, MetaComponentName } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
@@ -56,17 +57,13 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                             <h2 data-nav-target id={`section-${index}`}>
                                 {title}
                             </h2>
-                            <div
-                                style={{
-                                    padding: 'var(--spacing-sizing-06)',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    border: '1px solid var(--surface-neutral-t3-low)',
-                                    borderRadius: 'var(--radius-sm)',
-                                }}
-                            >
-                                <Content Component={Component as typeof Content} props={component.defaultState || {}} />
+                            <div>
+                                <Content
+                                    CodeExample={CodeExample}
+                                    Component={Component as typeof Content}
+                                    Syntax={Syntax}
+                                    props={component.defaultState || {}}
+                                />
                             </div>
                         </div>
                     ))}
@@ -122,7 +119,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                                 {ref.name}
                                             </h4>
                                             <Markup>{ref.description}</Markup>
-                                            <TypeProps hideControls props={ref.properties!} />
+                                            <TypeProps props={ref.properties!} />
                                         </Fragment>
                                     ))}
                                 </>
