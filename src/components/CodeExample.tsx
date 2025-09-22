@@ -21,6 +21,7 @@ export function CodeExample({
         language?: PrettyParser | undefined;
         str: string;
     };
+    style?: CSSProperties;
 }) {
     const TABS = [{ label: 'Example', value: 'example' }];
 
