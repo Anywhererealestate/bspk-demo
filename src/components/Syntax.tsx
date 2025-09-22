@@ -1,9 +1,10 @@
 import { Fab } from '@bspk/ui/Fab';
 import { useId } from '@bspk/ui/hooks/useId';
 import { useTimeout } from '@bspk/ui/hooks/useTimeout';
+import { PrettyParser } from '@bspk/ui/utils/demo';
 import hljs from 'highlight.js';
 import { CSSProperties, useEffect, useRef, useState } from 'react';
-import { pretty, PrettyParser } from 'utils/pretty';
+import { pretty } from 'utils/pretty';
 import useMountedState from 'utils/useMountState';
 
 export function Syntax({

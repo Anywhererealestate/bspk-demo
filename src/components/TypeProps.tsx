@@ -2,7 +2,6 @@ import { Table } from '@bspk/ui/Table';
 import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
 import { TypePropertyDemo, TypePropertyDemoWithControls } from '@bspk/ui/utils/demo';
-import { updateComponentContext } from 'components/ComponentProvider';
 import { Markup } from 'components/Markup';
 import { TypePropControl } from 'components/TypePropControl';
 import { useMemo } from 'react';
@@ -42,11 +41,11 @@ const propsWithControls = (prop: TypePropertyDemo) => {
 export function TypeProps({
     props,
     state,
-    hideControls = false,
+    onChange,
 }: {
     props: TypePropertyDemo[];
     state?: Record<string, any>;
-    hideControls?: boolean;
+    onChange?: (nextState: Record<string, any>) => void;
 }) {
     const propsWithControl = useMemo(() => props.map(propsWithControls), [props]);
 
@@ -108,10 +107,10 @@ export function TypeProps({
                         width: 'auto',
                         valign: 'top',
                     },
-                    !hideControls && {
+                    !!onChange && {
                         key: 'controls',
                         label: 'Controls',
-                        width: 'auto',
+                        width: '200px',
                         valign: 'top',
                     },
                 ]}
@@ -176,12 +175,14 @@ export function TypeProps({
                                 )}
                             </>
                         ),
-                        controls: !hideControls && (
-                            <TypePropControl
-                                onChange={(nextValue) => updateComponentContext({ [prop.name]: nextValue })}
-                                prop={prop}
-                                value={state?.[prop.name]}
-                            />
+                        controls: onChange && (
+                            <div style={{ width: '180px' }}>
+                                <TypePropControl
+                                    onChange={(nextValue) => onChange({ [prop.name]: nextValue })}
+                                    prop={prop}
+                                    value={state?.[prop.name]}
+                                />
+                            </div>
                         ),
                     };
                 })}
