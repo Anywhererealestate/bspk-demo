@@ -40,7 +40,10 @@ export function ComponentPageExample() {
         return <h1>Component not available.</h1>;
     }
 
-    const props = component.props.map((p) => ({ ...p, disabled: component.disableProps?.includes(p.name) }));
+    const props = component.props.map((p) => ({
+        ...p,
+        disabled: component.disableProps === true || component.disableProps?.includes(p.name),
+    }));
 
     return (
         <>
@@ -110,7 +113,7 @@ export function ComponentPageExample() {
                         )}
                     </div>
                     <TypeProps
-                        onChange={onChange}
+                        onChange={component.disableProps !== true ? onChange : undefined}
                         props={props}
                         state={component.showExample ? localState : undefined}
                     />
