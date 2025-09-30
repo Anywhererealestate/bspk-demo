@@ -160,6 +160,7 @@ function BspkIconSelect({ onChange, value }: { onChange: (next: string) => void;
                 .filter((_, index) => index < 10)
                 .map((icon) => ({
                     id: icon.name,
+                    value: icon.name,
                     label: icon.name,
                 }))}
             name=""
