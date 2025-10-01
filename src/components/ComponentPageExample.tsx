@@ -113,7 +113,7 @@ export function ComponentPageExample() {
                         )}
                     </div>
                     <TypeProps
-                        onChange={component.disableProps !== true ? onChange : undefined}
+                        onChange={component.disableProps !== true && component.showExample ? onChange : undefined}
                         props={props}
                         state={component.showExample ? localState : undefined}
                     />
