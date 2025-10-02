@@ -8,7 +8,7 @@ import { TypeProps } from 'components/TypeProps';
 import { useEffect, useState } from 'react';
 import { ComponentRender } from 'src/components/ComponentRender';
 import { Flex } from 'src/components/Flex';
-import { components } from 'src/meta';
+import { components } from 'src/meta/componentManifest';
 import { useGlobalState } from 'src/utils/globalState';
 
 export const CUSTOM_PRESET_VALUE = 'custom' as const;

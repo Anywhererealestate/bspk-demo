@@ -1,7 +1,8 @@
+import { COMPONENT_PHASES, type ComponentPhase } from '@bspk/ui/types/meta';
 import { Page } from 'components/Page';
 import { Fragment } from 'react';
+import { useMetaContext } from 'src/components/MetaProvider';
 import { TagComponent } from 'src/components/TagComponent';
-import { ComponentPhase, componentsMeta, COMPONENT_PHASES } from 'src/meta';
 
 const BACKLOG_COMPONENTS = [
     'Chart',
@@ -12,28 +13,30 @@ const BACKLOG_COMPONENTS = [
     'TopNavigation',
 ] as const;
 
-const componentExamplesList: { name: string; phase: ComponentPhase; slug?: string }[] = [
-    ...componentsMeta.map(({ name, phase, slug }) => ({
-        name,
-        phase,
-        slug,
-    })),
-    ...BACKLOG_COMPONENTS.map((name) => ({
-        name,
-        phase: COMPONENT_PHASES.Backlog.id,
-    })),
-];
-
-const progressData = Object.entries(COMPONENT_PHASES).map(([, phase]) => {
-    const phaseComponents = componentExamplesList.filter((c) => c.phase === phase.id);
-    return {
-        ...phase,
-        components: phaseComponents,
-        count: phaseComponents.length,
-    };
-});
-
 export function Progress() {
+    const { componentsMeta } = useMetaContext();
+
+    const componentExamplesList: { name: string; phase: ComponentPhase; slug?: string }[] = [
+        ...componentsMeta.map(({ name, phase, slug }) => ({
+            name,
+            phase,
+            slug,
+        })),
+        ...BACKLOG_COMPONENTS.map((name) => ({
+            name,
+            phase: COMPONENT_PHASES.Backlog.id,
+        })),
+    ];
+
+    const progressData = Object.entries(COMPONENT_PHASES).map(([, phase]) => {
+        const phaseComponents = componentExamplesList.filter((c) => c.phase === phase.id);
+        return {
+            ...phase,
+            components: phaseComponents,
+            count: phaseComponents.length,
+        };
+    });
+
     return (
         <Page>
             <h1>Progress</h1>

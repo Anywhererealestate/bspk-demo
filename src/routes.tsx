@@ -12,7 +12,7 @@ import Intro from 'src/docs/intro.md?raw';
 import { Progress } from 'src/docs/progress';
 import { Stylesheets } from 'src/docs/styles';
 import { Typography } from 'src/docs/typography.tsx';
-import { componentsMeta, MetaComponentName, MODE, typesMeta } from 'src/meta';
+import { MODE, componentsMeta, typesMeta } from 'src/meta';
 import { RouteLink } from 'src/types';
 
 export const routes: RouteLink[] = [
@@ -61,7 +61,7 @@ export const routes: RouteLink[] = [
                     path: `/${component.slug}`,
                     id: component.slug,
                     title: component.name,
-                    Component: () => <ComponentPage componentName={component.name as MetaComponentName} />,
+                    Component: () => <ComponentPage componentName={component.name} />,
                 },
             ];
         }),
@@ -89,7 +89,7 @@ if (MODE === 'development') {
                     path: `/${component.slug}`,
                     id: component.slug,
                     title: component.name,
-                    Component: () => <ComponentPage componentName={component.name as MetaComponentName} />,
+                    Component: () => <ComponentPage componentName={component.name} />,
                 },
             ];
         }),

@@ -1,17 +1,18 @@
 import { Markup } from 'components/Markup';
 import { Page } from 'components/Page';
 import { Syntax } from 'components/Syntax';
-import { utilitiesMeta } from 'src/meta';
+import { useMetaContext } from 'src/components/MetaProvider';
 import { kebabCase } from 'utils/kebabCase';
 
-const hooks = utilitiesMeta
-    .filter((utility) => utility.name.startsWith('use'))
-    .map((utility) => ({
-        ...utility,
-        hash: kebabCase(utility.name),
-    }));
-
 export function Hooks() {
+    const { utilitiesMeta } = useMetaContext();
+
+    const hooks = utilitiesMeta
+        .filter((utility) => utility.name.startsWith('use'))
+        .map((utility) => ({
+            ...utility,
+            hash: kebabCase(utility.name),
+        }));
     return (
         <>
             <Page>

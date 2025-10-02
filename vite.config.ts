@@ -25,23 +25,27 @@ export default ({ mode }: { mode: string }) => {
                 {
                     name: 'UI Updates',
                     condition: (file) => {
-                        return file.includes('bspk-ui');
+                        return file.includes('bspk-ui') && !file.match('.scss');
                     },
                     onFileChanged: ({ file }) => {
                         console.log(`File changed: ${file}`);
+
                         if (process.env.UPDATE_META === 'true') debouncedMetaBuild();
                     },
                 },
             ]),
         ],
         optimizeDeps: {
-            exclude: ['@bspk/ui'],
+            exclude: ['@bspk/ui/*', 'node_modules/@bspk/ui/*'],
         },
         server: {
             hmr: {
                 host: 'localhost',
             },
             port: 8675,
+            watch: {
+                ignored: ['**/meta/**'],
+            },
         },
         preview: {
             port: 8080,

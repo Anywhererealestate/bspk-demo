@@ -1,7 +1,8 @@
+import { TypeProperty } from '@bspk/ui/types/meta';
 import { DemoPreset, TypePropertyDemo } from '@bspk/ui/utils/demo';
 import { CUSTOM_PRESET_VALUE } from 'src/components/ComponentPageExample';
 import { updateComponentContext } from 'src/components/ComponentProvider';
-import { TypeProperty, MetaComponentName, componentsMeta, typesMeta } from 'src/meta';
+import { useMetaContext } from 'src/components/MetaProvider';
 import { examples } from 'src/meta/examples';
 import { DemoComponent } from 'src/types';
 import { action } from 'src/utils/actions';
@@ -128,7 +129,9 @@ function setPropExamples(props: TypeProperty[]): {
     };
 }
 
-export function useComponentDemo(componentName: MetaComponentName) {
+export function useComponentDemo(componentName: string) {
+    const { componentsMeta, typesMeta } = useMetaContext();
+
     return useMountMemo(() => {
         const componentMeta = componentsMeta.find((c) => c.name === componentName);
 

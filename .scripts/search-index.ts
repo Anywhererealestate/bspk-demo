@@ -7,10 +7,14 @@
 import { execSync } from 'child_process';
 import fs from 'fs';
 
-import { componentsMeta, typesMeta, utilitiesMeta } from 'src/meta';
+import { ComponentMeta, TypeMeta, UtilityMeta } from '@bspk/ui/types/meta';
+import meta from 'src/meta/data.json';
 import { kebabCase } from 'src/utils/kebabCase';
 
 export function searchIndex() {
+    const componentsMeta = meta.componentsMeta as ComponentMeta[];
+    const typesMeta = meta.typesMeta as TypeMeta[];
+    const utilitiesMeta = meta.utilitiesMeta as UtilityMeta[];
     const index: { title?: string; content?: string; url?: string; kind: string }[] = [];
 
     index.push(

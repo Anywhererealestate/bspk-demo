@@ -3,22 +3,24 @@ import { ErrorBoundary } from 'components/ErrorBoundary';
 import { Nav } from 'components/Nav';
 import { Outlet } from 'react-router';
 import { GlobalStateProvider } from 'src/components/GlobalStateProvider';
-
 import 'src/components/root.scss';
+import { MetaProvider } from 'src/components/MetaProvider';
 
 export function Root() {
     return (
         <>
-            <UIProvider>
-                <GlobalStateProvider>
-                    <Nav />
-                    <main data-main>
-                        <ErrorBoundary>
-                            <Outlet />
-                        </ErrorBoundary>
-                    </main>
-                </GlobalStateProvider>
-            </UIProvider>
+            <MetaProvider>
+                <UIProvider>
+                    <GlobalStateProvider>
+                        <Nav />
+                        <main data-main>
+                            <ErrorBoundary>
+                                <Outlet />
+                            </ErrorBoundary>
+                        </main>
+                    </GlobalStateProvider>
+                </UIProvider>
+            </MetaProvider>
         </>
     );
 }

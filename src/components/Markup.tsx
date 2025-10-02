@@ -1,6 +1,7 @@
 import { marked } from 'marked';
 import { ComponentProps, ElementType, ReactNode } from 'react';
-import { LINKS } from 'utils/links';
+import { useMetaContext } from 'src/components/MetaProvider';
+import { kebabCase } from 'src/utils/kebabCase';
 
 export type WrapHtmlProps<As extends ElementType> = {
     as?: As;
@@ -18,9 +19,24 @@ export function Markup<As extends ElementType>({
     as: As = 'div',
     ...otherProps
 }: ComponentProps<As> & WrapHtmlProps<As>): ReactNode {
+    const { componentsMeta, utilitiesMeta, typesMeta } = useMetaContext();
     if (!children) return children;
 
-    const sourceWithLinks = Object.entries(LINKS).reduce((acc, [word, link]) => {
+    const links = {
+        ...Object.fromEntries(componentsMeta.map((m) => [m.name, `/${kebabCase(m.name)}`])),
+        ...Object.fromEntries(
+            utilitiesMeta.filter((u) => u.name.startsWith('use')).map((m) => [m.name, `/hooks/#${kebabCase(m.name)}`]),
+        ),
+        'aria-label': 'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label',
+        'aria-errormessage':
+            'https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-errormessage',
+        ref: 'https://react.dev/learn/referencing-values-with-refs#refs-and-the-dom',
+        'input control name': 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name',
+        ...Object.fromEntries(typesMeta.map((m) => [m.name, `#${kebabCase(m.name)}`])),
+        'React.ReactNode': 'https://reactnative.dev/docs/react-node',
+    };
+
+    const sourceWithLinks = Object.entries(links).reduce((acc, [word, link]) => {
         return acc.replace(new RegExp(`\\b${word}\\b`, 'g'), `[${word}](${link})`);
     }, children);
 

@@ -1,7 +1,7 @@
 import { Tag } from '@bspk/ui/Tag/Tag';
 import { COMPONENT_PHASE_COLORS as color } from '@bspk/ui/constants/phases';
+import { type ComponentMeta } from '@bspk/ui/types/meta';
 import { Link } from 'react-router-dom';
-import { ComponentMeta } from 'src/meta';
 
 export function TagComponent({
     component: { name, slug, phase },

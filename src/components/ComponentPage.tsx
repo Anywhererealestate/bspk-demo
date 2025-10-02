@@ -5,6 +5,7 @@ import { ComponentProvider, resetComponentContext } from 'components/ComponentPr
 import { ComponentVariants } from 'components/ComponentVariants';
 import { ErrorBoundary } from 'components/ErrorBoundary';
 import { Markup } from 'components/Markup';
+import { useMetaContext } from 'components/MetaProvider';
 import { NavContents } from 'components/NavContents';
 import { Syntax } from 'components/Syntax';
 import { TypeProps } from 'components/TypeProps';
@@ -12,42 +13,46 @@ import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { CodeExample } from 'src/components/CodeExample';
 import { TagComponent } from 'src/components/TagComponent';
-import { COMPONENT_PHASES, components, MetaComponentName } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
 import { kebabCase } from 'src/utils/kebabCase';
 import { useComponentDemo } from 'src/utils/useComponentDemo';
 
-function ComponentPage({ componentName }: { componentName: MetaComponentName }) {
-    const component = useComponentDemo(componentName);
+function ComponentPage({ componentName }: { componentName: string }) {
+    const { getComponentMeta } = useMetaContext();
+    const componentDemo = useComponentDemo(componentName);
     const { setShowTouchTarget, showTouchTarget } = useGlobalState();
 
-    if (!component) return <h1>Component not available.</h1>;
+    if (!componentDemo) return <h1>Component not available.</h1>;
 
-    const Component = components[component.name as keyof typeof components];
+    const componentMeta = getComponentMeta(componentDemo.name);
+
+    if (!componentMeta) return <h1>Component meta not available.</h1>;
+
+    console.log(!!componentDemo.sections, !!componentDemo.sections?.length, componentDemo);
 
     return (
         <>
             <div data-component-page data-page>
                 <header data-header>
                     <h1 data-nav-target data-nav-target-label="Introduction" id="introduction">
-                        {component.name}
+                        {componentDemo.name}
                     </h1>
-                    {component.phase && (
-                        <TagComponent component={{ ...component, name: COMPONENT_PHASES[component.phase].title }} />
+                    {componentDemo.phase && (
+                        <TagComponent component={{ ...componentDemo, phase: componentMeta.phase }} />
                     )}
                 </header>
                 <article>
-                    <Markup>{component.description}</Markup>
-                    {component.usage && (
+                    <Markup>{componentDemo.description}</Markup>
+                    {componentDemo.usage && (
                         <>
                             <h2 data-nav-target id="usage">
                                 Usage
                             </h2>
-                            {!!component.usage.description && <Markup>{component.usage.description}</Markup>}
-                            <Syntax code={component.usage.code} language="typescript" pretty />
+                            {!!componentDemo.usage.description && <Markup>{componentDemo.usage.description}</Markup>}
+                            <Syntax code={componentDemo.usage.code} language="typescript" pretty />
                         </>
                     )}
-                    {component.sections?.map(({ content: Content, title }, index) => (
+                    {componentDemo.sections?.map(({ content: Content, title }, index) => (
                         <div
                             key={index}
                             style={{
@@ -60,9 +65,9 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                             <div>
                                 <Content
                                     CodeExample={CodeExample}
-                                    Component={Component as typeof Content}
+                                    Component={Content}
                                     Syntax={Syntax}
-                                    props={component.defaultState || {}}
+                                    props={componentDemo.defaultState || {}}
                                 />
                             </div>
                         </div>
@@ -75,12 +80,12 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                             marginTop: 'var(--spacing-sizing-06)',
                         }}
                     >
-                        {component.showExample && (
+                        {componentDemo.showExample && (
                             <>
                                 <h2 data-nav-target id="demo">
                                     Demo
                                 </h2>
-                                {component.hasTouchTarget && (
+                                {componentDemo.hasTouchTarget && (
                                     <div data-touch-target-toggle style={{ marginBottom: '0.75em' }}>
                                         <SwitchOption
                                             checked={showTouchTarget}
@@ -106,14 +111,14 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                             </>
                         }
                     >
-                        <ComponentProvider component={component}>
+                        <ComponentProvider component={componentDemo}>
                             <ComponentPageExample />
-                            {!!component.references?.length && (
+                            {!!componentDemo.references?.length && (
                                 <>
                                     <h3 data-nav-target id="references">
                                         References
                                     </h3>
-                                    {component.references.map((ref) => (
+                                    {componentDemo.references.map((ref) => (
                                         <Fragment key={ref.id}>
                                             <h4 data-nav-target="false" id={kebabCase(ref.name)}>
                                                 {ref.name}
@@ -124,7 +129,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                     ))}
                                 </>
                             )}
-                            {component.showExample && component.variants !== false && <ComponentVariants />}
+                            {componentDemo.showExample && componentDemo.variants !== false && <ComponentVariants />}
                         </ComponentProvider>
                     </ErrorBoundary>
                     {[
@@ -132,13 +137,13 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                             id: 'dependencies',
                             title: 'Dependencies',
                             description: 'Dependencies are components that this component relies on.',
-                            components: component.dependencies,
+                            components: componentDemo.dependencies,
                         },
                         {
                             id: 'dependents',
                             title: 'Dependents',
                             description: 'Dependents are components that rely on this component.',
-                            components: component.dependents,
+                            components: componentDemo.dependents,
                         },
                     ].map((section) => {
                         return (
@@ -166,7 +171,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                     <h3 data-nav-target id="style">
                         Style
                     </h3>
-                    {component.css ? (
+                    {componentDemo.css ? (
                         <p>
                             This is the CSS for the component. The css variables used within are available in the{' '}
                             <Link to={{ pathname: '/styles' }}>styles package</Link>.
@@ -174,15 +179,15 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                     ) : (
                         <p>This component does not have any specific styles.</p>
                     )}
-                    {!!component.dependencies.length && (
+                    {!!componentDemo.dependencies.length && (
                         <p>
                             This component may inherit styles from one of it&apos;s{' '}
                             <a href="#dependencies">dependencies</a>.
                         </p>
                     )}
-                    {component.css && (
+                    {componentDemo.css && (
                         <Syntax
-                            code={component.css}
+                            code={componentDemo.css}
                             language="scss"
                             style={{ maxHeight: '400px', overflowY: 'scroll' }}
                         />

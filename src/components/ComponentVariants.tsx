@@ -1,11 +1,12 @@
 import { Tag } from '@bspk/ui/Tag';
+import { TypeProperty } from '@bspk/ui/types/meta';
 import { ComponentVariantOverrides } from '@bspk/ui/utils/demo';
 import { useErrorLogger } from '@bspk/ui/utils/errors';
 import { Markup } from 'components//Markup';
 import { CodeExample } from 'components/CodeExample';
 import { useComponentContext } from 'src/components/ComponentProvider';
 import { ComponentRender } from 'src/components/ComponentRender';
-import { components, TypeProperty } from 'src/meta';
+import { components } from 'src/meta/componentManifest.ts';
 import { kebabCase } from 'utils/kebabCase';
 
 export function ComponentVariants() {

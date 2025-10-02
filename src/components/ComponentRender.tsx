@@ -2,7 +2,7 @@ import { useId } from '@bspk/ui/hooks/useId';
 import { ComponentExampleRenderProps, TypePropertyDemo } from '@bspk/ui/utils/demo';
 import { randomString } from '@bspk/ui/utils/random';
 import { updateComponentContext, useComponentContext } from 'src/components/ComponentProvider';
-import { components } from 'src/meta';
+import { components } from 'src/meta/componentManifest.ts';
 import { isIconName, SvgIcon } from 'src/utils/icons';
 
 export type ComponentRenderProps = {
