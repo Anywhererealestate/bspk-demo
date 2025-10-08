@@ -42,7 +42,9 @@ export function ComponentPageExample() {
 
     const props = component.props.map((p) => ({
         ...p,
-        disabled: component.disableProps === true || component.disableProps?.includes(p.name),
+        disabled:
+            component.disableProps === true ||
+            (Array.isArray(component.disableProps) && component.disableProps.includes(p.name)),
     }));
 
     return (
