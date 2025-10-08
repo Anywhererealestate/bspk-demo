@@ -1,11 +1,11 @@
 import { TabGroup } from '@bspk/ui/TabGroup';
 import { DataProps } from '@bspk/ui/types/common';
+import { PrettyParser } from '@bspk/ui/utils/demo';
 import { AccessibilitySection } from 'components/AccessibilitySection';
 import ComponentLogs from 'components/ComponentLogs';
 import { ErrorBoundary } from 'components/ErrorBoundary';
 import { CSSProperties, ReactNode, useRef, useState } from 'react';
 import { Syntax } from 'src/components/Syntax';
-import { PrettyParser } from 'src/utils/pretty';
 
 export function CodeExample({
     children,
@@ -21,6 +21,7 @@ export function CodeExample({
         language?: PrettyParser | undefined;
         str: string;
     };
+    style?: CSSProperties;
 }) {
     const TABS = [{ label: 'Example', value: 'example' }];
 

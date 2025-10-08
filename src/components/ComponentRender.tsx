@@ -43,7 +43,7 @@ export function ComponentRender({ overrideState, variant }: ComponentRenderProps
             variant,
         })
     ) : (
-        <Component {...renderProps} />
+        <Component key={preset?.label || ''} {...renderProps} />
     );
 }
 

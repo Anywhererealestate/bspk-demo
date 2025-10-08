@@ -1,7 +1,7 @@
-import { CheckboxGroup } from '@bspk/ui/CheckboxGroup';
-import { ListboxItemProps } from '@bspk/ui/Listbox/Listbox';
+import { CheckboxGroup, CheckboxGroupOption } from '@bspk/ui/CheckboxGroup';
+import { MenuListItem } from '@bspk/ui/ListItemMenu/ListItemMenu';
 import { NumberInput } from '@bspk/ui/NumberInput';
-import { RadioGroup } from '@bspk/ui/RadioGroup';
+import { RadioGroup, RadioGroupOption } from '@bspk/ui/RadioGroup';
 import { SearchBar } from '@bspk/ui/SearchBar/SearchBar';
 import { Select } from '@bspk/ui/Select';
 import { Switch } from '@bspk/ui/Switch';
@@ -90,15 +90,16 @@ export function TypePropControl({
 
     const controlOptions: string[] = prop.options?.map((o) => o.toString()) || [];
 
-    const options =
+    const options: (CheckboxGroupOption & MenuListItem & RadioGroupOption)[] =
         controlOptions?.map((option) => ({
-            value: option,
+            id: option,
             label: option,
+            value: option,
             name: option,
         })) || [];
 
     if (!prop.required && !prop.default)
-        options.unshift({ value: undefined as unknown as string, label: 'None', name: 'none' });
+        options.unshift({ id: undefined as unknown as string, label: 'None', value: '', name: 'None' });
 
     if (type === 'BspkIcon') return <BspkIconSelect onChange={onChange} value={controlProps.value} />;
 
@@ -156,15 +157,16 @@ function BspkIconSelect({ onChange, value }: { onChange: (next: string) => void;
             items={ICONS.filter((icon) => {
                 return !searchValue || `${icon.name} ${icon.type} ${icon.alias}`.includes(searchValue);
             })
-                .filter((icon, index) => index < 10)
+                .filter((_, index) => index < 10)
                 .map((icon) => ({
+                    id: icon.name,
                     value: icon.name,
                     label: icon.name,
                 }))}
             name=""
             onChange={setSearchValue}
-            onSelect={function (item?: ListboxItemProps): void {
-                onChange(item?.value || '');
+            onSelect={(item) => {
+                onChange(item?.id || '');
                 setSearchValue(item?.label || '');
             }}
             placeholder=""

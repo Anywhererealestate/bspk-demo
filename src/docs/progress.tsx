@@ -4,32 +4,11 @@ import { TagComponent } from 'src/components/TagComponent';
 import { ComponentPhase, componentsMeta, COMPONENT_PHASES } from 'src/meta';
 
 const BACKLOG_COMPONENTS = [
-    'Accordion',
-    'AvatarGroup',
-    'BottomNavigation',
-    'BottomSheet',
-    'Breadcrumb',
-    'ButtonDock',
     'Chart',
-    'DatePicker',
-    'Drawer',
-    'FileUpload',
     'FormField',
     'Image',
-    'Img',
     'MultiSelection',
     'NavigationRail',
-    'OTPInput',
-    'PageControl',
-    'PasswordInput',
-    'PhoneNumberInput',
-    'ProgressionStepper',
-    'Rating',
-    'SliderInput',
-    'Snackbar',
-    'Table',
-    'TimePicker',
-    'ToggleOption',
     'TopNavigation',
 ] as const;
 

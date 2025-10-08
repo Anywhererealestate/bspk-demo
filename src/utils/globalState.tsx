@@ -9,7 +9,7 @@ export const globalStateDefault: GlobalStateContext = {
     setBrand: () => {},
     setShowTouchTarget: () => {},
     resetGlobalState: () => {},
-    theme: 'light',
+    theme: 'dark',
 } as const;
 
 export type GlobalState = {

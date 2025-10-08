@@ -12,21 +12,27 @@ import path from 'path';
 const outDir = path.resolve(__dirname, '../src/meta');
 const uiRootPath = path.resolve(__dirname, '../../bspk-ui');
 
-if (fs.existsSync(uiRootPath)) {
-    console.log(`Running @bspk/ui meta generation script for local development\n\n`);
-    runMetaLocal();
-} else {
-    console.log(`Running @bspk/ui meta generation script\n\n`);
-    runMeta();
-}
-
-function runMetaCommand({ prefix, hash, updated: update }: { prefix: string; hash: string; updated?: string }) {
-    const build = getBuild();
-
+/** Runs the meta command */
+function runMetaCommand() {
+    let hash = '';
+    let prefix = ``;
     let mode = process.env.MODE || 'production';
-    if (hash === 'local') mode = 'development';
+    let build = '';
 
-    const flags = Object.entries({ hash, build, update, mode, out: outDir })
+    if (fs.existsSync(uiRootPath)) {
+        prefix = `cd ${uiRootPath} &&`;
+        // running locally we use the branch name as the hash
+        hash = execSync(`${prefix} git branch --show-current`, { encoding: 'utf-8' }).trim();
+        mode = 'development';
+        build = 'local';
+    } else {
+        // running in CI we use the last commit hash
+        hash = execSync('npm list @bspk/ui', { encoding: 'utf-8' }).trim().split('#')[1]?.substring(0, 7);
+        prefix = 'npm explore @bspk/ui -- ';
+        build = getBuild();
+    }
+
+    const flags = Object.entries({ hash, build, mode, out: outDir })
         .filter(([, value]) => value !== undefined && value !== '')
         .map(([key, value]) => `${key}=${value}`);
 
@@ -37,16 +43,6 @@ function runMetaCommand({ prefix, hash, updated: update }: { prefix: string; has
     });
 
     execSync(`npx eslint --fix ${outDir}/index.ts`, { stdio: 'inherit' });
-}
-
-function runMeta() {
-    const hash = execSync('npm list @bspk/ui', { encoding: 'utf-8' }).trim().split('#')[1]?.substring(0, 7);
-    runMetaCommand({ prefix: 'npm explore @bspk/ui -- ', hash });
-}
-
-function runMetaLocal() {
-    const updated = process.argv?.[2];
-    runMetaCommand({ prefix: `cd ${uiRootPath} &&`, hash: 'local', updated });
 }
 
 function getBuild() {
@@ -69,3 +65,5 @@ function getBuild() {
 
     return '';
 }
+
+runMetaCommand();

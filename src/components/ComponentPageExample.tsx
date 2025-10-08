@@ -5,14 +5,28 @@ import { CodeExample } from 'components/CodeExample';
 import { useComponentContext } from 'components/ComponentProvider';
 import { ErrorLogContext } from 'components/ErrorLogContext';
 import { TypeProps } from 'components/TypeProps';
+import { useEffect, useState } from 'react';
 import { ComponentRender } from 'src/components/ComponentRender';
+import { Flex } from 'src/components/Flex';
 import { components } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
 
 export const CUSTOM_PRESET_VALUE = 'custom' as const;
 
 export function ComponentPageExample() {
-    const { propState, resetAllState, changed, setPreset, preset, component } = useComponentContext();
+    const { propState, resetAllState, setPreset, changed, preset, component, setPropState } = useComponentContext();
+    const [localState, setLocalState] = useState(propState);
+    useEffect(() => setLocalState(propState), [propState]);
+
+    const [localChanged, setChanged] = useState(false);
+
+    const onChange = (nextState: Record<string, any>) => {
+        setChanged(true);
+        setLocalState((prev) => {
+            const next = { ...prev, ...nextState };
+            return next;
+        });
+    };
 
     const { showTouchTarget } = useGlobalState();
 
@@ -26,7 +40,12 @@ export function ComponentPageExample() {
         return <h1>Component not available.</h1>;
     }
 
-    const props = component.props.map((p) => ({ ...p, disabled: component.disableProps?.includes(p.name) }));
+    const props = component.props.map((p) => ({
+        ...p,
+        disabled:
+            component.disableProps === true ||
+            (Array.isArray(component.disableProps) && component.disableProps.includes(p.name)),
+    }));
 
     return (
         <>
@@ -68,11 +87,38 @@ export function ComponentPageExample() {
                         <h2 data-nav-target id="properties">
                             Properties
                         </h2>
-                        {component.showExample && changed && (
-                            <Button label="Reset" onClick={() => resetAllState()} size="small" variant="secondary" />
+                        {component.showExample && (
+                            <Flex>
+                                {changed && (
+                                    <Button
+                                        label="Reset"
+                                        onClick={() => {
+                                            resetAllState();
+                                            setChanged(false);
+                                        }}
+                                        size="small"
+                                        variant="secondary"
+                                    />
+                                )}
+                                {localChanged && (
+                                    <Button
+                                        label="Save"
+                                        onClick={() => {
+                                            setPropState(localState);
+                                            setChanged(false);
+                                        }}
+                                        size="small"
+                                        variant="primary"
+                                    />
+                                )}
+                            </Flex>
                         )}
                     </div>
-                    <TypeProps props={props} state={component.showExample ? propState : undefined} />
+                    <TypeProps
+                        onChange={component.disableProps !== true && component.showExample ? onChange : undefined}
+                        props={props}
+                        state={component.showExample ? localState : undefined}
+                    />
                 </>
             )}
         </>
