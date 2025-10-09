@@ -61,7 +61,8 @@ const getExample = (prop: TypeProperty, propNames: string[]): any => {
     // check if we need to evaluate a function or array
     if (prop.name.match(/^on[A-Z]/)) {
         const defaultExample = () => {
-            if (prop.name !== 'onChange') return () => action(`Called "${prop.name}" function`);
+            if (prop.name !== 'onChange')
+                return prop.required ? () => action(`Called "${prop.name}" function`) : undefined;
 
             // some props have value and checked properties - we look for checked first
             if (propNames.includes('checked')) return (checked: boolean) => setState({ checked });
