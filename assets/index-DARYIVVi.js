@@ -1,1 +1,0 @@
-import{j as n,T as x,C as c}from"./index-BDnGPAyG.js";function r({label:e,description:a,disabled:o,readOnly:t,...s}){const l=e||a,b=a?`${e} - ${a}`:e;return l&&n.jsx(x,{"data-bspk":"checkbox-option",description:a,disabled:o,label:l,readOnly:t,children:n.jsx(c,{...s,"aria-label":b,disabled:o,readOnly:t})})}export{r as CheckboxOption};
