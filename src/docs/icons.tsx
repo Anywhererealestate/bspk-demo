@@ -72,7 +72,7 @@ export function Icons() {
                         onChange={(value) => {
                             setFilter((p) => ({
                                 ...p,
-                                type: value[0] as IconType,
+                                type: value as IconType,
                             }));
                         }}
                         options={[
@@ -82,7 +82,7 @@ export function Icons() {
                                 value: type,
                             })),
                         ]}
-                        value={filter.type ? [filter.type] : ['all']}
+                        value={filter.type || 'all'}
                     />
                 </div>
                 {(filter.search || filter.type) && (

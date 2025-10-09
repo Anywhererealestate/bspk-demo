@@ -127,9 +127,9 @@ export function TypePropControl({
                         options={options}
                         size="small"
                         {...controlProps}
-                        onChange={(next) => onChange(next[0])}
+                        onChange={onChange}
                         readOnly={readOnly}
-                        value={[controlProps.value].filter((v) => v !== undefined)}
+                        value={controlProps.value}
                     />
                 </>
             );

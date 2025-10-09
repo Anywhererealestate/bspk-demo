@@ -130,13 +130,13 @@ export function Nav() {
                             label="Brand"
                             name="brand"
                             onChange={(value) => {
-                                setBrand((value?.[0] || 'anywhere') as Brand);
+                                setBrand((value || 'anywhere') as Brand);
                             }}
                             options={BRANDS.map((b) => {
                                 return { label: b.title, value: b.slug };
                             })}
                             style={{ width: '280px' }}
-                            value={[brand]}
+                            value={brand}
                         />
                     </div>
                     <Button
