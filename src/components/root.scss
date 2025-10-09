@@ -569,10 +569,18 @@ a[data-nav-target] {
 
         span {
             display: block;
-            padding: 6px 0 0 var(--spacing-sizing-03);
-            margin-left: var(--spacing-sizing-03);
-            height: var(--spacing-sizing-08);
-            border-left: solid 1px var(--stroke-neutral-low);
+
+            & + span {
+                margin-left: var(--spacing-sizing-03);
+                padding: 0 0 0 var(--spacing-sizing-03);
+                border-left: solid 1px var(--stroke-neutral-low);
+            }
+        }
+
+        [data-name] {
+            font: var(--heading-h5);
+            font-weight: 600;
+            letter-spacing: var(--spacing-sizing-01);
         }
     }
 

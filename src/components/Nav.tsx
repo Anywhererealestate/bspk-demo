@@ -91,7 +91,7 @@ export function Nav() {
                 <div data-header>
                     {screenSize === 'small' && <MenuButton aria-label="Menu" onClick={() => navModalState.onOpen()} />}
                     <h1 data-logo>
-                        <img alt="Bespoke" src="/logo.png" style={{ height: 32 }} />
+                        <span data-name>BSPK</span>
                         {BUILD === 'local' ? (
                             <span>LOCAL ({UI_HASH})</span>
                         ) : (
