@@ -155,7 +155,7 @@ function BspkIconSelect({ onChange, value }: { onChange: (next: string) => void;
         <SearchBar
             aria-label="icon search"
             items={ICONS.filter((icon) => {
-                return !searchValue || `${icon.name} ${icon.type} ${icon.alias}`.includes(searchValue);
+                return !searchValue || icon.name.toLowerCase().includes(searchValue.toLowerCase());
             })
                 .filter((_, index) => index < 10)
                 .map((icon) => ({
@@ -165,7 +165,7 @@ function BspkIconSelect({ onChange, value }: { onChange: (next: string) => void;
                 }))}
             name="icon"
             onChange={(next, item) => {
-                if (item) onChange(item.id);
+                if (item) onChange(item.label);
                 setSearchValue(next);
             }}
             placeholder=""
