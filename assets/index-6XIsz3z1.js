@@ -1,1 +1,0 @@
-import{j as i,F as x,S as c}from"./index-DwG5tqeq.js";function j({label:e,helperText:s,controlId:r,labelTrailing:t,required:a,invalid:l,errorMessage:d,...n}){return i.jsx(x,{controlId:r,"data-bspk":"select-field",errorMessage:d,helperText:s,invalid:l,label:e,labelTrailing:t,required:a,children:o=>i.jsx(c,{...n,...o,id:r,invalid:l,label:e})})}export{j as SelectField};
