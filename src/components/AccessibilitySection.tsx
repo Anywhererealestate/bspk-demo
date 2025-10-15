@@ -1,7 +1,7 @@
 import { SvgCheck } from '@bspk/icons/Check';
 import { SvgRemove } from '@bspk/icons/Remove';
 import { ListItem } from '@bspk/ui/ListItem';
-import { SkeletonText } from '@bspk/ui/SkeletonText';
+import { SkeletonText } from '@bspk/ui/Skeleton/Text';
 import { Txt } from '@bspk/ui/Txt';
 import axe from 'axe-core';
 import { useComponentContext } from 'components/ComponentProvider';

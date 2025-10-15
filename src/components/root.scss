@@ -637,6 +637,7 @@ a[data-nav-target] {
         display: flex;
         flex-direction: column;
         background-color: var(--surface-neutral-t1-base);
+        gap: calc(var(--spacing-sizing-01) * 0.5);
 
         [data-divider] {
             margin: var(--spacing-sizing-02) var(--spacing-sizing-03);
@@ -646,7 +647,7 @@ a[data-nav-target] {
             display: flex;
             flex-direction: row;
             align-items: center;
-            height: var(--spacing-sizing-09);
+            height: var(--spacing-sizing-08);
             padding: 0 var(--spacing-sizing-03);
             font: var(--body-small);
             color: var(--foreground-neutral-on-surface-variant-01);
@@ -656,7 +657,7 @@ a[data-nav-target] {
             display: flex;
             flex-direction: row;
             align-items: center;
-            height: var(--spacing-sizing-12);
+            height: var(--spacing-sizing-08);
             position: relative;
             margin: 0;
             text-decoration: none;

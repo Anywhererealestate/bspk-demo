@@ -4,7 +4,7 @@ import { Avatar } from '@bspk/ui/Avatar';
 import { Button } from '@bspk/ui/Button';
 import { Checkbox } from '@bspk/ui/Checkbox';
 import { Img } from '@bspk/ui/Img';
-import { Radio } from '@bspk/ui/Radio';
+import { RadioGroupItem } from '@bspk/ui/RadioGroupItem';
 import { Switch } from '@bspk/ui/Switch';
 import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
@@ -14,9 +14,9 @@ import { action } from 'src/utils/actions';
 export const createChildrenElement = (state: Record<string, any>, name: string) => {
     const componentName = state[name];
 
-    if (componentName === 'Checkbox' || componentName === 'Radio' || componentName === 'Switch') {
-        let As: typeof Checkbox | typeof Radio | typeof Switch = Checkbox;
-        if (componentName === 'Radio') As = Radio;
+    if (componentName === 'Checkbox' || componentName === 'RadioGroupItem' || componentName === 'Switch') {
+        let As: typeof Checkbox | typeof RadioGroupItem | typeof Switch = Checkbox;
+        if (componentName === 'RadioGroupItem') As = RadioGroupItem;
         else if (componentName === 'Switch') As = Switch;
 
         return (

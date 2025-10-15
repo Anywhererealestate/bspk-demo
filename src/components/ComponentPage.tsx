@@ -1,5 +1,6 @@
 import { Button } from '@bspk/ui/Button';
-import { SwitchOption } from '@bspk/ui/SwitchOption';
+import { ListItem } from '@bspk/ui/ListItem/ListItem';
+import { Switch } from '@bspk/ui/Switch/Switch';
 import { ComponentPageExample } from 'components/ComponentPageExample';
 import { ComponentProvider, resetComponentContext } from 'components/ComponentProvider';
 import { ComponentVariants } from 'components/ComponentVariants';
@@ -82,11 +83,16 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                 </h2>
                                 {component.hasTouchTarget && (
                                     <div data-touch-target-toggle style={{ marginBottom: '0.75em' }}>
-                                        <SwitchOption
-                                            checked={showTouchTarget}
+                                        <ListItem
+                                            as="label"
                                             label="Show Touch Target"
-                                            name="data-touch-target"
-                                            onChange={(checked) => setShowTouchTarget(checked)}
+                                            trailing={
+                                                <Switch
+                                                    checked={showTouchTarget}
+                                                    name="data-touch-target"
+                                                    onChange={(checked) => setShowTouchTarget(checked)}
+                                                />
+                                            }
                                         />
                                     </div>
                                 )}

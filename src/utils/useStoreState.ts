@@ -5,8 +5,8 @@ import store from 'store';
  * This hook is used to manage a state that is also stored in a key-value store.
  *
  * @param key {string} - The key to use for the store
- * @param initialState {S} - The initial state to use for the store
- * @param filterState {(state: S) => S | undefined} - Filter the state before setting it in the store.
+ * @param initialState {S} - The initial state to use for the store * @param filterState {(state: S) => S | undefined} -
+ *   Filter the state before setting it in the store. * *
  * @returns
  */
 export function useStoreState<S = Record<string, unknown> | number | string>(
