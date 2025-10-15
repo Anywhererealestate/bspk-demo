@@ -8,7 +8,7 @@ import { Divider } from '@bspk/ui/Divider';
 import { Fab } from '@bspk/ui/Fab/Fab';
 import { ListItem, ListItemProps } from '@bspk/ui/ListItem';
 import { PageControl } from '@bspk/ui/PageControl';
-import { TabGroup } from '@bspk/ui/TabGroup/index';
+import { TabGroup } from '@bspk/ui/TabGroup';
 import { Txt } from '@bspk/ui/Txt';
 import { Page } from 'components/Page';
 import { Fragment, useEffect, useState } from 'react';
