@@ -1,6 +1,5 @@
 import { Button } from '@bspk/ui/Button';
 import { Divider } from '@bspk/ui/Divider';
-import { Txt } from '@bspk/ui/Txt';
 import { Fragment } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { routes } from 'src/routes';
@@ -21,9 +20,7 @@ export const NavSide = () => {
                                 {route.children && route.children.length > 0 && (
                                     <>
                                         {index > 0 && <Divider />}
-                                        <Txt data-header variant="labels-base">
-                                            {route.title}
-                                        </Txt>
+                                        <div data-header>{route.title}</div>
                                     </>
                                 )}
                                 {(route.children || [route]).map(

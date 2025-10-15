@@ -648,6 +648,8 @@ a[data-nav-target] {
             align-items: center;
             height: var(--spacing-sizing-09);
             padding: 0 var(--spacing-sizing-03);
+            font: var(--body-small);
+            color: var(--foreground-neutral-on-surface-variant-01);
         }
 
         a[data-link] {

@@ -1,6 +1,6 @@
 import { Dialog, DialogProps } from '@bspk/ui/Dialog';
+import { Input } from '@bspk/ui/Input';
 import { Tag } from '@bspk/ui/Tag';
-import { TextInput } from '@bspk/ui/TextInput';
 import { Txt } from '@bspk/ui/Txt';
 import { useTimeout } from '@bspk/ui/hooks/useTimeout';
 import { Fragment, useRef, useState } from 'react';
@@ -109,7 +109,7 @@ export function SearchModal(props: DialogProps) {
 
     return (
         <Dialog data-search-modal {...props} placement="top">
-            <TextInput
+            <Input
                 aria-label="Search"
                 name="search"
                 onChange={updateSearch}

@@ -3,14 +3,7 @@ import { Fragment } from 'react';
 import { TagComponent } from 'src/components/TagComponent';
 import { ComponentPhase, componentsMeta, COMPONENT_PHASES } from 'src/meta';
 
-const BACKLOG_COMPONENTS = [
-    'Chart',
-    'FormField',
-    'Image',
-    'MultiSelection',
-    'NavigationRail',
-    'TopNavigation',
-] as const;
+const BACKLOG_COMPONENTS = ['Chart', 'Image', 'MultiSelection', 'NavigationRail', 'TopNavigation'] as const;
 
 const componentExamplesList: { name: string; phase: ComponentPhase; slug?: string }[] = [
     ...componentsMeta.map(({ name, phase, slug }) => ({
