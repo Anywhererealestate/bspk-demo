@@ -40,4 +40,3 @@ tests/bspk-ui/meta.ts
 src/meta/*
 !src/meta/README.md
 .tmp/
-assets
