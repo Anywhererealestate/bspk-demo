@@ -9,7 +9,9 @@ if (MODE !== 'production') {
     if (MODE === 'development') branch = 'dev';
     else if (MODE === 'test') branch = 'test';
 
-    console.log(`Installing ${branch} branch of bspk-ui package and building\n\n`);
+    console.log(
+        `Installing ${branch} branch of bspk-ui package and building with token: "${DEV_GIT_TOKEN?.substring(0, 4)}"...\n\n`,
+    );
 
     execSync(
         `npm install https://${DEV_GIT_TOKEN}@github.com/Anywhererealestate/bspk-ui#${branch} && npm explore @bspk/ui -- npm run build`,
