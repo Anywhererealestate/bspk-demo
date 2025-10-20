@@ -30,7 +30,6 @@ export const routes: RouteLink[] = [
     { path: '/hooks', Component: Hooks, title: 'Hooks', noIndex: true },
     { path: '/progress', Component: Progress, title: 'Progress' },
     { path: '/typography', Component: Typography, title: 'Typography' },
-
     {
         path: '/changelog',
         Component: () => (
@@ -62,6 +61,7 @@ export const routes: RouteLink[] = [
                     id: component.slug,
                     title: component.name,
                     Component: () => <ComponentPage componentName={component.name as MetaComponentName} />,
+                    hide: component.generated,
                 },
             ];
         }),
