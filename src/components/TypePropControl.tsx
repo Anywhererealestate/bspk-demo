@@ -1,11 +1,11 @@
 import { CheckboxGroup, CheckboxGroupOption } from '@bspk/ui/CheckboxGroup';
+import { Input } from '@bspk/ui/Input';
 import { MenuListItem } from '@bspk/ui/ListItemMenu/ListItemMenu';
 import { NumberInput } from '@bspk/ui/NumberInput';
 import { RadioGroup, RadioGroupOption } from '@bspk/ui/RadioGroup';
 import { SearchBar } from '@bspk/ui/SearchBar/SearchBar';
 import { Select } from '@bspk/ui/Select';
 import { Switch } from '@bspk/ui/Switch';
-import { TextInput } from '@bspk/ui/TextInput';
 import { Textarea } from '@bspk/ui/Textarea';
 import { useId } from '@bspk/ui/hooks/useId';
 import { TypePropertyDemoWithControls } from '@bspk/ui/utils/demo';
@@ -61,7 +61,7 @@ export function TypePropControl({
             <label data-testid={`${prop.name}-Switch`}>
                 <Switch checked={!!controlProps.value} {...controlProps} />
                 {!!controlProps.value && (
-                    <TextInput
+                    <Input
                         {...controlProps}
                         data-testid={`${prop.name}-Input`}
                         disabled={prop.disabled}
@@ -77,7 +77,7 @@ export function TypePropControl({
 
     if (type === 'string')
         return (
-            <TextInput
+            <Input
                 {...controlProps}
                 data-testid={`${prop.name}-Input`}
                 disabled={prop.disabled}
