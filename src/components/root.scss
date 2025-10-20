@@ -554,7 +554,7 @@ a[data-nav-target] {
         margin: 0;
     }
 
-    [data-logo] {
+    [data-brand] {
         margin: 0;
         display: flex;
         align-items: center;
@@ -580,12 +580,8 @@ a[data-nav-target] {
         [data-name] {
             font: var(--heading-h5);
             font-weight: 600;
-            letter-spacing: var(--spacing-sizing-01);
+            margin: 0 var(--spacing-sizing-03) 0 0;
         }
-    }
-
-    [data-theme='dark'] & [data-logo] img {
-        filter: brightness(0) invert(1);
     }
 
     [data-navbar-right] {

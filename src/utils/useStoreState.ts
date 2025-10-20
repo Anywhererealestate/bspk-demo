@@ -6,7 +6,7 @@ import store from 'store';
  *
  * @param key {string} - The key to use for the store
  * @param initialState {S} - The initial state to use for the store * @param filterState {(state: S) => S | undefined} -
- *   Filter the state before setting it in the store. * *
+ *   Filter the state before setting it in the store.
  * @returns
  */
 export function useStoreState<S = Record<string, unknown> | number | string>(

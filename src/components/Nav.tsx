@@ -3,6 +3,7 @@ import { SvgDarkModeFill } from '@bspk/icons/DarkModeFill';
 import { SvgSearch } from '@bspk/icons/Search';
 import { Button } from '@bspk/ui/Button';
 import { Dialog } from '@bspk/ui/Dialog';
+import { Link } from '@bspk/ui/Link/Link';
 import { MenuButton } from '@bspk/ui/MenuButton';
 import { Select } from '@bspk/ui/Select';
 import { BRANDS } from '@bspk/ui/constants/brands';
@@ -62,6 +63,7 @@ export function Nav() {
     useHotkeys('meta+k', onOpen);
 
     const location = useLocation();
+
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -89,9 +91,11 @@ export function Nav() {
             <div data-body-width data-navbar>
                 <span data-backdrop />
                 <div data-header>
-                    {screenSize === 'small' && <MenuButton aria-label="Menu" onClick={() => navModalState.onOpen()} />}
-                    <h1 data-logo>
-                        <span data-name>BSPK</span>
+                    {(screenSize === 'small' || location?.pathname === '/') && (
+                        <MenuButton aria-label="Menu" onClick={() => navModalState.onOpen()} />
+                    )}
+                    <h1 data-brand>
+                        <Link data-name href="/" label="BSPK" variant="subtle" />
                         {BUILD === 'local' ? (
                             <span>LOCAL ({UI_HASH})</span>
                         ) : (
@@ -154,7 +158,7 @@ export function Nav() {
                     <SearchModal {...searchModalProps} />
                 </div>
             </div>
-            {screenSize === 'small' ? (
+            {screenSize === 'small' || location?.pathname === '/' ? (
                 <Dialog aria-label="Navigation" {...navModalState} placement="left">
                     <NavSide />
                 </Dialog>

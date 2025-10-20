@@ -6,7 +6,7 @@ import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { routes } from 'src/routes';
 
-const router = createBrowserRouter([{ Component: Root, children: routes }]);
+const router = createBrowserRouter([{ Component: Root, children: routes.map((r) => ({ ...r, state: r })) }]);
 
 const root = document.getElementById('root')!;
 
