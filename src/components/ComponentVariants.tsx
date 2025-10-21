@@ -1,8 +1,8 @@
 import { Tag } from '@bspk/ui/Tag';
 import { ComponentVariantOverrides } from '@bspk/ui/utils/demo';
 import { useErrorLogger } from '@bspk/ui/utils/errors';
-import { Markup } from 'components//Markup';
 import { CodeExample } from 'components/CodeExample';
+import { Markup } from 'components/Markup';
 import { useComponentContext } from 'src/components/ComponentProvider';
 import { ComponentRender } from 'src/components/ComponentRender';
 import { components, TypeProperty } from 'src/meta';
