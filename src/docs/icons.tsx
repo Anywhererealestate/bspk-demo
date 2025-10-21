@@ -2,9 +2,9 @@
 import { SvgSearch } from '@bspk/icons/Search';
 import { SvgIcon } from '@bspk/icons/SvgIcon';
 import { Dialog } from '@bspk/ui/Dialog';
+import { Input as Input } from '@bspk/ui/Input';
 import { Select } from '@bspk/ui/Select';
 import { Switch } from '@bspk/ui/Switch';
-import { TextInput as TextInput } from '@bspk/ui/TextInput';
 import { ToggleOption } from '@bspk/ui/ToggleOption';
 import { useUIContext } from '@bspk/ui/hooks/useUIContext';
 import { cssWithVars } from '@bspk/ui/utils/cwv';
@@ -50,7 +50,7 @@ export function Icons() {
             <SelectedIconDialog icon={selectedIcon && ICON_META[selectedIcon]} setSelectedIcon={setSelectedIcon} />
             <div data-page-icons>
                 <div data-filters>
-                    <TextInput
+                    <Input
                         aria-label="Search icons"
                         data-search
                         id="icon-search"
@@ -66,8 +66,8 @@ export function Icons() {
                         value={filter.search}
                     />
                     <Select
+                        aria-label="Icon type"
                         data-type
-                        label="Icon type"
                         name="icon-type"
                         onChange={(value) => {
                             setFilter((p) => ({

@@ -85,7 +85,7 @@ export function ComponentPageExample() {
                         }}
                     >
                         <h2 data-nav-target id="properties">
-                            Properties
+                            {component.name}Props
                         </h2>
                         {component.showExample && (
                             <Flex>

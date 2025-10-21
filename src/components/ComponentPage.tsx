@@ -47,26 +47,28 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                             <Syntax code={component.usage.code} language="typescript" pretty />
                         </>
                     )}
-                    {component.sections?.map(({ content: Content, title }, index) => (
-                        <div
-                            key={index}
-                            style={{
-                                marginTop: 'var(--spacing-sizing-06)',
-                            }}
-                        >
-                            <h2 data-nav-target id={`section-${index}`}>
-                                {title}
-                            </h2>
-                            <div>
-                                <Content
-                                    CodeExample={CodeExample}
-                                    Component={Component as typeof Content}
-                                    Syntax={Syntax}
-                                    props={component.defaultState || {}}
-                                />
+                    {component.sections
+                        ?.filter((s) => !s.location || s.location === 'beforeDemo')
+                        .map(({ content: Content, title }, index) => (
+                            <div
+                                key={index}
+                                style={{
+                                    marginTop: 'var(--spacing-sizing-06)',
+                                }}
+                            >
+                                <h2 data-nav-target id={`section-${index}`}>
+                                    {title}
+                                </h2>
+                                <div>
+                                    <Content
+                                        CodeExample={CodeExample}
+                                        Component={Component as typeof Content}
+                                        Syntax={Syntax}
+                                        props={component.defaultState || {}}
+                                    />
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
                     <div
                         style={{
                             display: 'flex',
@@ -127,6 +129,28 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                             {component.showExample && component.variants !== false && <ComponentVariants />}
                         </ComponentProvider>
                     </ErrorBoundary>
+                    {component.sections
+                        ?.filter((s) => !s.location || s.location === 'afterDemo')
+                        .map(({ content: Content, title }, index) => (
+                            <div
+                                key={index}
+                                style={{
+                                    marginTop: 'var(--spacing-sizing-06)',
+                                }}
+                            >
+                                <h2 data-nav-target id={`section-${index}`}>
+                                    {title}
+                                </h2>
+                                <div>
+                                    <Content
+                                        CodeExample={CodeExample}
+                                        Component={Component as typeof Content}
+                                        Syntax={Syntax}
+                                        props={component.defaultState || {}}
+                                    />
+                                </div>
+                            </div>
+                        ))}
                     {[
                         {
                             id: 'dependencies',
