@@ -1,7 +1,7 @@
 import { CheckboxGroup, CheckboxGroupOption } from '@bspk/ui/CheckboxGroup';
 import { Input } from '@bspk/ui/Input';
+import { InputNumber } from '@bspk/ui/InputNumber';
 import { MenuListItem } from '@bspk/ui/ListItemMenu/ListItemMenu';
-import { NumberInput } from '@bspk/ui/NumberInput';
 import { RadioGroup, RadioGroupOption } from '@bspk/ui/RadioGroup';
 import { SearchBar } from '@bspk/ui/SearchBar/SearchBar';
 import { Select } from '@bspk/ui/Select';
@@ -45,7 +45,7 @@ export function TypePropControl({
 
     if (type === 'number')
         return (
-            <NumberInput
+            <InputNumber
                 data-testid={`${prop.name}-Input`}
                 disabled={prop.disabled}
                 id=""
