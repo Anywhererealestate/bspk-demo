@@ -567,7 +567,7 @@ a[data-nav-target] {
             width: auto;
         }
 
-        span {
+        > span {
             display: block;
 
             & + span {

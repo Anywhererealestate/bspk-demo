@@ -1,6 +1,7 @@
 import { SvgDarkMode } from '@bspk/icons/DarkMode';
 import { SvgDarkModeFill } from '@bspk/icons/DarkModeFill';
 import { SvgSearch } from '@bspk/icons/Search';
+import { SvgSync } from '@bspk/icons/Sync';
 import { Button } from '@bspk/ui/Button';
 import { Dialog } from '@bspk/ui/Dialog';
 import { MenuButton } from '@bspk/ui/MenuButton';
@@ -93,7 +94,23 @@ export function Nav() {
                     <h1 data-logo>
                         <span data-name>BSPK</span>
                         {BUILD === 'local' ? (
-                            <span>LOCAL ({UI_HASH})</span>
+                            <>
+                                <span>LOCAL ({UI_HASH})</span>
+                                <Button
+                                    icon={<SvgSync />}
+                                    iconOnly
+                                    label="Refresh Meta"
+                                    onClick={() => {
+                                        if ((import.meta as any).hot) {
+                                            (import.meta as any).hot.send('request-meta-refresh', {
+                                                message: 'Hello from the browser!',
+                                            });
+                                        }
+                                    }}
+                                    size="small"
+                                    variant="tertiary"
+                                />
+                            </>
                         ) : (
                             <>
                                 <span>
@@ -126,8 +143,8 @@ export function Nav() {
                     />
                     <div data-brand-dropdown>
                         <Select
+                            aria-label="Brand"
                             id="brand-dropdown"
-                            label="Brand"
                             name="brand"
                             onChange={(value) => {
                                 setBrand((value || 'anywhere') as Brand);
