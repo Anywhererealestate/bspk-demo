@@ -1,7 +1,7 @@
 import { CheckboxGroup, CheckboxGroupOption } from '@bspk/ui/CheckboxGroup';
 import { Input } from '@bspk/ui/Input';
 import { InputNumber } from '@bspk/ui/InputNumber';
-import { MenuListItem } from '@bspk/ui/ListItemMenu/ListItemMenu';
+import { ListItemProps } from '@bspk/ui/ListItem';
 import { RadioGroup, RadioGroupOption } from '@bspk/ui/RadioGroup';
 import { SearchBar } from '@bspk/ui/SearchBar/SearchBar';
 import { Select } from '@bspk/ui/Select';
@@ -90,7 +90,7 @@ export function TypePropControl({
 
     const controlOptions: string[] = prop.options?.map((o) => o.toString()) || [];
 
-    const options: (CheckboxGroupOption & MenuListItem & RadioGroupOption)[] =
+    const options: (CheckboxGroupOption & ListItemProps & RadioGroupOption)[] =
         controlOptions?.map((option) => ({
             id: option,
             label: option,
