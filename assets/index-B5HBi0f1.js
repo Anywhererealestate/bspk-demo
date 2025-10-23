@@ -1,0 +1,1 @@
+import{j as e,e as o,k as t}from"./index-jcbivK3E.js";function n({label:r,helperText:i,labelTrailing:l,errorMessage:s,...a}){return e.jsx(o,{errorMessage:s,helperText:i,label:r,labelTrailing:l,children:e.jsx(t,{...a})})}export{n as TimePickerField};

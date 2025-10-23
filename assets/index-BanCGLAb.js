@@ -1,0 +1,1 @@
+import{j as e,e as t,h as i}from"./index-jcbivK3E.js";function p({label:r,helperText:n,labelTrailing:l,errorMessage:o,...s}){return e.jsx(t,{errorMessage:o,helperText:n,label:r,labelTrailing:l,children:e.jsx(i,{...s})})}export{p as InputPhoneField};

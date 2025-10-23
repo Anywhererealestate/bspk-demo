@@ -1,0 +1,1 @@
+import{j as i,F as e,a as r,R as o,b as c,c as j}from"./index-jcbivK3E.js";function x({label:d,helperText:s,labelTrailing:a,errorMessage:l,...n}){return i.jsxs(e,{as:"fieldset",children:[i.jsx(r,{as:"legend",labelTrailing:a,children:d}),i.jsx(o,{...n}),!l&&s&&i.jsx(c,{children:s}),l&&i.jsx(j,{children:l})]})}export{x as RadioGroupField};

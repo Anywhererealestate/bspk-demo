@@ -1,0 +1,1 @@
+import{j as e,e as t,D as o}from"./index-jcbivK3E.js";function x({label:r,helperText:i,labelTrailing:a,errorMessage:l,...s}){return e.jsx(t,{errorMessage:l,helperText:i,label:r,labelTrailing:a,children:e.jsx(o,{...s})})}export{x as DatePickerField};

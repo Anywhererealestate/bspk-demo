@@ -1,0 +1,1 @@
+import{j as i,F as a,a as r,C as c,b as o,c as x}from"./index-jcbivK3E.js";function t({label:e,helperText:s,labelTrailing:d,errorMessage:l,...n}){return i.jsxs(a,{as:"fieldset",children:[i.jsx(r,{as:"legend",labelTrailing:d,children:e}),i.jsx(c,{...n}),!l&&s&&i.jsx(o,{children:s}),l&&i.jsx(x,{children:l})]})}export{t as CheckboxGroupField};
