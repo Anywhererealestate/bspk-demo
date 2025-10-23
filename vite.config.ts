@@ -33,6 +33,14 @@ export default ({ mode }: { mode: string }) => {
                     },
                 },
             ]),
+            {
+                name: 'custom-dev-events',
+                configureServer(server) {
+                    server.ws.on('request-meta-refresh', () => {
+                        execSync(`npm run meta`, { stdio: 'inherit' });
+                    });
+                },
+            },
         ],
         optimizeDeps: {
             exclude: ['@bspk/ui'],
