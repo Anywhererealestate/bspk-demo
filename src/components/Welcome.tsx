@@ -323,7 +323,10 @@ export function Welcome() {
                             ]}
                             value={(state['time-period'] as string) || 'present'}
                         />
-                        <Menu style={{ padding: 'var(--spacing-sizing-02) var(--spacing-sizing-02)' }} width="100%">
+                        <Menu
+                            style={{ zIndex: 'unset', padding: 'var(--spacing-sizing-02) var(--spacing-sizing-02)' }}
+                            width="100%"
+                        >
                             <ListItem
                                 label="Michael Scott"
                                 leading={<Avatar image="/avatar-01.png" name="Michael Scott" />}
