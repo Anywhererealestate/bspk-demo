@@ -204,12 +204,16 @@ export function Welcome() {
                         >
                             <AvatarGroup
                                 items={[
-                                    { name: 'Alice Johnson', image: 'https://i.pravatar.cc/300' },
-                                    { name: 'Bob Smith', image: 'https://i.pravatar.cc/301' },
-                                    { name: 'Charlie Brown', image: 'https://i.pravatar.cc/302' },
-                                    { name: 'Diana Prince', image: 'https://i.pravatar.cc/303' },
+                                    { name: 'Alice Johnson', image: '/avatar-01.png' },
+                                    { name: 'Bob Smith', image: '/avatar-02.png' },
+                                    { name: 'Diana Prince', image: '/avatar-05.png' },
+                                    { name: 'Ethan Hunt', initials: 'EH', color: 'blue' },
+                                    { name: 'Charlie Brown', image: '/avatar-03.png' },
+                                    { name: 'Frank Underwood', image: '/avatar-04.png' },
+                                    { name: 'Fiona Glenanne', initials: 'FG', color: 'red' },
                                 ]}
                                 size="medium"
+                                style={{ opacity: 0.8 }}
                             />
                             <Txt variant="subheader-medium">Team Members</Txt>
                             <Txt variant="body-small">Manage your team and permissions here. Lorem ipsum dolor.</Txt>
@@ -219,7 +223,6 @@ export function Welcome() {
                             gap="var(--spacing-sizing-04)"
                             style={{ padding: 'var(--spacing-sizing-04)', alignContent: 'start' }}
                         >
-                            <ProgressCircle label="Loading..." labelPosition="right" size="small" />
                             <ProgressBar completion={75} label="Uploading Files..." size="large" />
                             <Slider
                                 {...stateProps<number>('volume')}
@@ -250,6 +253,9 @@ export function Welcome() {
                                     </Tooltip>
                                 }
                             />
+                        </Flex>
+                        <Flex justify="center">
+                            <ProgressCircle label="Loading..." labelPosition="right" size="small" />
                         </Flex>
                         <Divider />
                         <RadioGroupField
