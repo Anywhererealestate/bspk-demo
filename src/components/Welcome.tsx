@@ -30,7 +30,7 @@ import { TextareaField } from '@bspk/ui/TextareaField/TextareaField';
 import { TimePickerField } from '@bspk/ui/TimePickerField/TimePickerField';
 import { Tooltip } from '@bspk/ui/Tooltip/Tooltip';
 import { Txt } from '@bspk/ui/Txt/Txt';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Flex } from 'src/components/Flex';
 import { Grid } from 'src/components/Grid';
 import { Layout } from 'src/components/Layout';
@@ -58,10 +58,23 @@ export function Welcome() {
 
     const { theme, setTheme } = useGlobalState();
 
-    console.log('Current state:', state);
+    const audioRef = useRef<HTMLAudioElement>(null);
+
+    useEffect(() => {
+        if (audioRef.current && state.volume) {
+            const volume = Number(state.volume) / 11;
+            audioRef.current.volume = volume;
+            if (volume > 0.1) audioRef.current.play();
+            else audioRef.current.pause();
+        }
+    }, [state.volume]);
 
     return (
         <Page style={{ padding: '0' }}>
+            <audio autoPlay={!!state.volume} controls loop={!!state.volume} ref={audioRef} style={{ display: 'none' }}>
+                <track kind="captions" />
+                <source src="/audio-test.mp3" type="audio/ogg" />
+            </audio>
             <section
                 style={{
                     display: 'flex',
