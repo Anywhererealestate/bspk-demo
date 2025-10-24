@@ -326,7 +326,7 @@ export function Welcome() {
                         <Menu style={{ padding: 'var(--spacing-sizing-02) var(--spacing-sizing-02)' }} width="100%">
                             <ListItem
                                 label="Michael Scott"
-                                leading={<Avatar image="/profile2.jpg" name="Michael Scott" />}
+                                leading={<Avatar image="/avatar-01.png" name="Michael Scott" />}
                                 subText="michael.scott@email.com"
                             />
                             <Divider inset={2} padding />
