@@ -12,13 +12,15 @@ export function Flex({
 }) {
     return (
         <div
+            data-demo-flex
+            {...rest}
             style={{
+                ...rest.style,
                 display: 'flex',
                 gap: gap || 'var(--spacing-sizing-02)',
                 flexWrap: wrap ? 'wrap' : 'nowrap',
-                flexDirection: direction,
+                flexDirection: direction || 'row',
             }}
-            {...rest}
         >
             {children}
         </div>

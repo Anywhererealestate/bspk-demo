@@ -98,8 +98,8 @@ export function TypePropControl({
             name: option,
         })) || [];
 
-    if (!prop.required && !prop.default)
-        options.unshift({ id: undefined as unknown as string, label: 'None', value: '', name: 'None' });
+    // if (!prop.required && !prop.default)
+    //     options.unshift({ id: undefined as unknown as string, label: 'None', value: '', name: 'None' });
 
     if (type === 'BspkIcon') return <BspkIconSelect onChange={onChange} value={controlProps.value} />;
 
@@ -111,7 +111,7 @@ export function TypePropControl({
                 disabled={prop.disabled}
                 options={options}
                 readOnly={readOnly}
-                values={controlProps.value}
+                value={controlProps.value}
             />
         );
     }
@@ -134,7 +134,7 @@ export function TypePropControl({
                 </>
             );
 
-        return <RadioGroup data-testid={`${prop.name}-RadioGroup`} hideLabel options={options} {...controlProps} />;
+        return <RadioGroup data-testid={`${prop.name}-RadioGroup`} options={options} {...controlProps} />;
     }
 
     if (type === 'boolean')
@@ -149,7 +149,7 @@ export function TypePropControl({
 
 // eslint-disable-next-line react/no-multi-comp
 function BspkIconSelect({ onChange, value }: { onChange: (next: string) => void; value?: string }) {
-    const [searchValue, setSearchValue] = useState<string>(value || '');
+    const [searchValue, setSearchValue] = useState<string | undefined>(value);
 
     return (
         <SearchBar

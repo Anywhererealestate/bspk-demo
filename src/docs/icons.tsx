@@ -196,6 +196,7 @@ function SelectedIconDialog({
                                             checked={showFilled}
                                             name="filled"
                                             onChange={setShowFilled}
+                                            value="filled"
                                         />
                                     </ToggleOption>
                                 )}

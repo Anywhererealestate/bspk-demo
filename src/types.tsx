@@ -13,6 +13,7 @@ export type RouteLink = RouteObject & {
     children?: RouteLink[];
     active?: boolean;
     noIndex?: boolean;
+    hideSideNav?: boolean;
 };
 
 /**
