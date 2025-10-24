@@ -1,21 +1,29 @@
-export function Flex({
+import { ElementProps } from '@bspk/ui/types/common';
+import { CSSProperties, ElementType } from 'react';
+
+export type FlexProps<As extends ElementType = ElementType> = {
+    children: React.ReactNode;
+    gap?: string;
+    direction?: 'column' | 'row';
+    wrap?: boolean;
+    justify?: string;
+    align?: CSSProperties['alignItems'];
+    as?: As;
+};
+
+export function Flex<As extends ElementType = ElementType>({
     children,
     gap = 'var(--spacing-sizing-02)',
     direction = 'row',
     wrap = true,
     justify = 'flex-start',
     align = 'stretch',
+    as,
     ...rest
-}: React.HTMLAttributes<HTMLDivElement> & {
-    children: React.ReactNode;
-    gap?: string;
-    direction?: 'column' | 'row';
-    wrap?: boolean;
-    justify?: string;
-    align?: string;
-}) {
+}: ElementProps<FlexProps<As>, As>) {
+    const As = as || 'div';
     return (
-        <div
+        <As
             data-demo-flex
             {...rest}
             style={{
@@ -29,6 +37,6 @@ export function Flex({
             }}
         >
             {children}
-        </div>
+        </As>
     );
 }

@@ -4,10 +4,8 @@ import { Markdown } from 'components/Markdown.tsx';
 import { Page } from 'components/Page';
 import { Page404 } from 'components/Page404.tsx';
 import { Welcome } from 'src/components/Welcome';
-import Changelog from 'src/docs/CHANGELOG.md?raw';
 import Contributing from 'src/docs/CONTRIBUTING.md?raw';
 import { Components } from 'src/docs/components';
-import { Demo } from 'src/docs/demo';
 import { Hooks } from 'src/docs/hooks';
 import { Icons } from 'src/docs/icons';
 import Intro from 'src/docs/intro.md?raw';
@@ -38,18 +36,8 @@ export const routes: RouteLink[] = [
             },
             { path: '/icons', Component: Icons, title: 'Icons', noIndex: true },
             { path: '/styles', Component: Stylesheets, title: 'Styles' },
-            { path: '/components', Component: Components, title: 'Progress' },
+            { path: '/components', Component: Components, title: 'Components' },
             { path: '/typography', Component: Typography, title: 'Typography' },
-            {
-                path: '/changelog',
-                Component: () => (
-                    <Page>
-                        <Markdown md={Changelog} />
-                    </Page>
-                ),
-                title: 'Changelog',
-                hide: true,
-            },
             {
                 path: '/contributing',
                 Component: () => (
@@ -59,7 +47,6 @@ export const routes: RouteLink[] = [
                 ),
                 title: 'Contributing',
             },
-            { path: '/demo', Component: Demo, title: 'Demo', hide: true },
         ],
     },
     {

@@ -1,14 +1,14 @@
 import React, { ReactNode } from 'react';
 
 type GridProps = {
-    columnWidths: number[]; // in fr
+    columnWidths?: number[]; // in fr
     children: ReactNode;
     gap?: string;
     style?: React.CSSProperties;
 };
 
 export function Grid({ columnWidths, children, gap = '1rem', style }: GridProps) {
-    const gridTemplateColumns = columnWidths.map((width) => `${width}fr`).join(' ');
+    const gridTemplateColumns = columnWidths?.map((width) => `${width}fr`).join(' ') || 'auto';
 
     return (
         <div
