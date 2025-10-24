@@ -20,7 +20,6 @@ import { ListItem } from '@bspk/ui/ListItem/ListItem';
 import { Menu } from '@bspk/ui/Menu/Menu';
 import { ProgressBar } from '@bspk/ui/ProgressBar/ProgressBar';
 import { ProgressCircle } from '@bspk/ui/ProgressCircle/ProgressCircle';
-import { RadioGroup } from '@bspk/ui/RadioGroup/RadioGroup';
 import { RadioGroupField } from '@bspk/ui/RadioGroupField/RadioGroupField';
 import { SearchBar } from '@bspk/ui/SearchBar/SearchBar';
 import { SegmentedControl } from '@bspk/ui/SegmentedControl/SegmentedControl';
@@ -31,7 +30,7 @@ import { TextareaField } from '@bspk/ui/TextareaField/TextareaField';
 import { TimePickerField } from '@bspk/ui/TimePickerField/TimePickerField';
 import { Tooltip } from '@bspk/ui/Tooltip/Tooltip';
 import { Txt } from '@bspk/ui/Txt/Txt';
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import { Flex } from 'src/components/Flex';
 import { Grid } from 'src/components/Grid';
 import { Layout } from 'src/components/Layout';
@@ -204,6 +203,7 @@ export function Welcome() {
                         >
                             <AvatarGroup
                                 items={[
+                                    { name: 'George Costanza', initials: 'GC', color: 'yellow' },
                                     { name: 'Alice Johnson', image: '/avatar-01.png' },
                                     { name: 'Bob Smith', image: '/avatar-02.png' },
                                     { name: 'Diana Prince', image: '/avatar-05.png' },
@@ -211,9 +211,12 @@ export function Welcome() {
                                     { name: 'Charlie Brown', image: '/avatar-03.png' },
                                     { name: 'Frank Underwood', image: '/avatar-04.png' },
                                     { name: 'Fiona Glenanne', initials: 'FG', color: 'red' },
+                                    { name: 'Hannah Baker', initials: 'HB', color: 'purple' },
+                                    { name: 'Irene Adler', initials: 'IA', color: 'pink' },
                                 ]}
+                                max={5}
                                 size="medium"
-                                style={{ opacity: 0.8 }}
+                                variant="stacked"
                             />
                             <Txt variant="subheader-medium">Team Members</Txt>
                             <Txt variant="body-small">Manage your team and permissions here. Lorem ipsum dolor.</Txt>
@@ -280,15 +283,34 @@ export function Welcome() {
                         />
                     </Flex>
                     <Flex>
-                        <DatePickerField
-                            label="Destination Time"
-                            {...stateProps<Date>('destination-date', new Date('1985-10-26'))}
-                        />
-                        <DatePickerField label="Present Time" {...stateProps<Date>('present-time', new Date())} />
-                        <DatePickerField
-                            label="Last Time Departed"
-                            {...stateProps<Date>('last-time-departed', new Date('1985-10-26T12:00:00'))}
-                        />
+                        <Grid columnWidths={[1, 1]} gap="16px">
+                            <DatePickerField
+                                label="Destination Date"
+                                {...stateProps<Date>('destination-date', new Date('1985-10-26'))}
+                            />
+                            <TimePickerField label="Time" {...stateProps<string>('destination-time', '01:21')} />
+                        </Grid>
+                        <Grid columnWidths={[1, 1]} gap="16px">
+                            <DatePickerField label="Present Date" {...stateProps<Date>('present-time', new Date())} />
+                            <TimePickerField
+                                label="Time"
+                                {...stateProps<string>(
+                                    'present-time-2',
+                                    new Date().toLocaleTimeString([], {
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                        hour12: false,
+                                    }),
+                                )}
+                            />
+                        </Grid>
+                        <Grid columnWidths={[1, 1]} gap="16px">
+                            <DatePickerField
+                                label="Last Date Departed"
+                                {...stateProps<Date>('last-time-departed', new Date('1985-10-26T12:00:00'))}
+                            />
+                            <TimePickerField label="Time" {...stateProps<string>('last-time-departed-2', '01:20')} />
+                        </Grid>
 
                         <SegmentedControl
                             {...stateProps<string>('time-period', 'present')}
@@ -301,7 +323,7 @@ export function Welcome() {
                             ]}
                             value={(state['time-period'] as string) || 'present'}
                         />
-                        <Menu style={{ width: '100%', padding: 'var(--spacing-sizing-02) var(--spacing-sizing-02)' }}>
+                        <Menu style={{ padding: 'var(--spacing-sizing-02) var(--spacing-sizing-02)' }} width="100%">
                             <ListItem
                                 label="Michael Scott"
                                 leading={<Avatar image="/profile2.jpg" name="Michael Scott" />}
