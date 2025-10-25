@@ -11,7 +11,7 @@ import { Icons } from 'src/docs/icons';
 import Intro from 'src/docs/intro.md?raw';
 import { Stylesheets } from 'src/docs/styles';
 import { Typography } from 'src/docs/typography.tsx';
-import { componentsMeta, MetaComponentName, MODE, typesMeta } from 'src/meta';
+import { componentsMeta, MetaComponentName, typesMeta } from 'src/meta';
 import { RouteLink } from 'src/types';
 
 export const routes: RouteLink[] = [
