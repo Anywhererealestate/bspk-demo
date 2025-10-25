@@ -53,7 +53,7 @@ export const routes: RouteLink[] = [
         title: 'Components',
         children: [
             ...componentsMeta.flatMap((component): RouteLink[] => {
-                if (['Utility', 'Backlog'].includes(component.phase)) return [];
+                if (['Utility', 'Backlog'].includes(component.phase) || component.generated) return [];
 
                 return [
                     {
@@ -75,29 +75,27 @@ export const routes: RouteLink[] = [
     },
 ];
 
-if (MODE === 'development') {
-    routes.push({
-        title: 'Utilities',
-        children: [
-            ...componentsMeta.flatMap((component): RouteLink[] => {
-                if (component.phase !== 'Utility') return [];
+routes.push({
+    title: 'Utilities',
+    children: [
+        { path: '/hooks', Component: Hooks, title: 'Hooks', noIndex: true },
+        ...componentsMeta.flatMap((component): RouteLink[] => {
+            if (component.phase !== 'Utility') return [];
 
-                const componentProps = typesMeta.find((t) => t.name === `${component.name}Props`);
-                if (!componentProps?.properties?.length) return [];
+            const componentProps = typesMeta.find((t) => t.name === `${component.name}Props`);
+            if (!componentProps?.properties?.length) return [];
 
-                return [
-                    {
-                        path: `/${component.slug}`,
-                        id: component.slug,
-                        title: pascalCaseToTitleCase(component.name),
-                        Component: () => <ComponentPage componentName={component.name as MetaComponentName} />,
-                    },
-                ];
-            }),
-            { path: '/hooks', Component: Hooks, title: 'Hooks', noIndex: true },
-        ],
-    });
-}
+            return [
+                {
+                    path: `/${component.slug}`,
+                    id: component.slug,
+                    title: pascalCaseToTitleCase(component.name),
+                    Component: () => <ComponentPage componentName={component.name as MetaComponentName} />,
+                },
+            ];
+        }),
+    ],
+});
 
 // pascal case to title case regex js handle sequential uppercase letters and keep them uppercase
 function pascalCaseToTitleCase(str?: string) {
