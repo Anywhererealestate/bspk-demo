@@ -1,19 +1,29 @@
+import 'src/components/searchModal.scss';
 import { Dialog, DialogProps } from '@bspk/ui/Dialog';
 import { Input } from '@bspk/ui/Input';
 import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
+import { useArrowNavigation } from '@bspk/ui/hooks/useArrowNavigation';
 import { useTimeout } from '@bspk/ui/hooks/useTimeout';
+import { ComponentMeta } from '@bspk/ui/types/meta';
+import { handleKeyDown } from '@bspk/ui/utils/handleKeyDown';
 import { Fragment, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import searchIndex from 'src/meta/search-index.json';
+import { TypeMeta, UtilityMeta } from 'src/meta';
+import { componentsMeta, typesMeta, utilitiesMeta } from 'src/meta/data.json';
 
-import 'src/components/searchModal.scss';
+type Meta =
+    | (ComponentMeta & { kind: 'component' })
+    | (TypeMeta & { kind: 'type' })
+    | (UtilityMeta & { kind: 'utility' });
 
 export type Result = {
-    title: string;
+    name: string;
     url: string;
     content: (string | { match: string })[];
     kind: string;
+    score: number;
+    id: string;
 };
 
 const EXCERPT_LENGTH = 150;
@@ -56,8 +66,8 @@ export function SearchModal(props: DialogProps) {
     const timeout = useTimeout();
     const navigate = useNavigate();
 
-    const updateSearch = (next: string) => {
-        setSearch(next);
+    const updateSearch = (next: string | undefined) => {
+        setSearch(next || '');
 
         timeout.clear();
 
@@ -71,28 +81,43 @@ export function SearchModal(props: DialogProps) {
         timeout.set(() => {
             const searchString = search.toLowerCase().trim();
 
-            const nextResultIndexes = searchIndex
-                .flatMap((page) => {
-                    const titleMatch = page.title.toLowerCase().includes(searchString);
+            const nextResultIndexes = (
+                [
+                    //
+                    ...componentsMeta.map((m) => ({ ...m, kind: 'component' })),
+                    ...typesMeta.map((m) => ({ ...m, kind: 'type' })),
+                    ...utilitiesMeta.map((m) => ({ ...m, kind: 'utility' })),
+                ] as Meta[]
+            )
+                .flatMap((meta): Result | [] => {
+                    const titleMatch = meta.name.toLowerCase().includes(searchString);
 
-                    const match = page.content.match(new RegExp(searchString, 'i')) || { index: 0, 0: '' };
-
-                    const trimmedContent = trimContent(page.content, match.index || 0);
+                    let trimmedContent = '';
+                    let match: RegExpMatchArray | null = null;
+                    if (meta.description) {
+                        match = meta.description?.match(new RegExp(searchString, 'i'));
+                        if (match) trimmedContent = trimContent(meta.description, match.index || 0);
+                    }
 
                     let content: Result['content'] = [trimmedContent];
 
-                    if (match[0]) {
+                    if (match && match[0]) {
                         content = trimmedContent.split(match[0]);
                         content.splice(1, 0, {
                             match: match[0],
                         });
                     }
 
-                    return match[0] || titleMatch
+                    const url = (match || titleMatch) && getUrlForMeta(meta);
+
+                    return url
                         ? {
-                              ...page,
+                              ...meta,
                               content,
                               score: titleMatch ? 1 : 0.5,
+                              kind: meta.kind || 'component',
+                              url,
+                              id: `result-${meta.name}`,
                           }
                         : [];
                 })
@@ -100,12 +125,17 @@ export function SearchModal(props: DialogProps) {
 
             setResults(nextResultIndexes);
 
+            setActiveElementId(nextResultIndexes[0]?.id || null);
+
             resultsRef?.current?.scrollTo({
                 top: 0,
                 behavior: 'smooth',
             });
         }, 500);
     };
+    const { activeElementId, setActiveElementId, arrowKeyCallbacks } = useArrowNavigation({
+        ids: (Array.isArray(results) ? results : []).map((i) => i.id),
+    });
 
     return (
         <Dialog data-search-modal {...props} placement="top">
@@ -113,6 +143,20 @@ export function SearchModal(props: DialogProps) {
                 aria-label="Search"
                 name="search"
                 onChange={updateSearch}
+                onKeyDown={handleKeyDown({
+                    ...arrowKeyCallbacks,
+                    Enter: () => {
+                        if (activeElementId) {
+                            const activeResult = Array.isArray(results)
+                                ? results.find((r) => r.id === activeElementId)
+                                : null;
+                            if (activeResult) {
+                                navigate(activeResult.url);
+                                props.onClose();
+                            }
+                        }
+                    },
+                })}
                 trailing={
                     <Txt style={{ color: 'var(--colors-neutral-48)' }} variant="labels-x-small">
                         ESC
@@ -127,8 +171,10 @@ export function SearchModal(props: DialogProps) {
                     results?.map((result) => {
                         return (
                             <div
+                                data-active={activeElementId === result.id || undefined}
                                 data-search-result
-                                key={result.url}
+                                id={result.id}
+                                key={result.name}
                                 onClickCapture={() => {
                                     navigate(result.url);
                                     props.onClose();
@@ -141,7 +187,7 @@ export function SearchModal(props: DialogProps) {
                                         marginBottom: 'var(--spacing-sizing-02)',
                                     }}
                                 >
-                                    <h5>{result.title}</h5>
+                                    <h5>{result.name}</h5>
                                     <Tag color="grey" label={result.kind} size="x-small" />
                                 </header>
 
@@ -162,6 +208,24 @@ export function SearchModal(props: DialogProps) {
             </div>
         </Dialog>
     );
+}
+
+function getUrlForMeta(meta: Meta): string | null {
+    switch (meta.kind) {
+        case 'component':
+            return `/${meta.slug}`;
+        case 'type': {
+            let parentSlug;
+            const parentComponent = meta.components?.[0];
+            if (parentComponent) parentSlug = componentsMeta.find((c) => c.name === parentComponent)?.slug;
+            if (parentSlug) return `/${parentSlug}`;
+            return null;
+        }
+        case 'utility':
+            return `/hooks`;
+        default:
+            return '/hooks';
+    }
 }
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */

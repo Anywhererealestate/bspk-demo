@@ -46,19 +46,30 @@ export function resetComponentContext() {
     document.dispatchEvent(componentStateUpdateEvent(null));
 }
 
-function deepEqualObjects(obj1: Record<string, any>, obj2: Record<string, any>): boolean {
+function deepEqualObjects(obj1: Record<string, any>, obj2: Record<string, any>, seen = new WeakMap()): boolean {
     if (obj1 === obj2) return true;
 
     if (!obj1 || !obj2) return false;
 
     if (typeof obj1 !== 'object' || typeof obj2 !== 'object') return false;
 
+    if (seen.has(obj1) && seen.get(obj1) === obj2) return true;
+    seen.set(obj1, obj2);
+
     const keys1 = Object.keys(obj1);
     const keys2 = Object.keys(obj2);
 
     if (keys1.length !== keys2.length) return false;
 
-    return keys1.every((key) => keys2.includes(key) && deepEqualObjects(obj1[key], obj2[key]));
+    return keys1.every((key) => {
+        if (!keys2.includes(key)) return false;
+        const val1 = obj1[key];
+        const val2 = obj2[key];
+        if (typeof val1 === 'object' && typeof val2 === 'object' && val1 !== null && val2 !== null) {
+            return deepEqualObjects(val1, val2, seen);
+        }
+        return val1 === val2;
+    });
 }
 
 export function ComponentProvider({ children, component }: PropsWithChildren<{ component: DemoComponent }>) {

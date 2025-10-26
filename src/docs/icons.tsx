@@ -1,6 +1,8 @@
 /* eslint-disable react/no-multi-comp */
+import { SvgClose } from '@bspk/icons/Close';
 import { SvgSearch } from '@bspk/icons/Search';
 import { SvgIcon } from '@bspk/icons/SvgIcon';
+import { Button } from '@bspk/ui/Button/Button';
 import { Dialog } from '@bspk/ui/Dialog';
 import { Input as Input } from '@bspk/ui/Input';
 import { Select } from '@bspk/ui/Select';
@@ -14,6 +16,7 @@ import { Syntax } from 'src/components/Syntax';
 import { ICON_META, IconMeta, IconName, ICONS } from 'src/utils/icons';
 
 import 'src/docs/icons.scss';
+import { Flex } from 'src/components/Flex';
 
 const titleCase = (word: string) => word[0].toUpperCase() + word.slice(1);
 
@@ -174,10 +177,19 @@ function SelectedIconDialog({
     return (
         <Dialog onClose={() => setSelectedIcon(null)} open={!!icon}>
             <div data-selected-icon>
-                <header>
+                <Flex align="end" as="header" gap="16px">
                     <span data-title>{icon.title}</span>
                     <span data-type>{titleCase(icon.type)}</span>
-                </header>
+                    <Button
+                        icon={<SvgClose />}
+                        iconOnly
+                        label="Close"
+                        onClick={() => setSelectedIcon(null)}
+                        size="small"
+                        style={{ marginLeft: 'auto' }}
+                        variant="tertiary"
+                    />
+                </Flex>
                 {[showFilled && iconFilled ? iconFilled : icon].map(({ name: iconName }) => (
                     <Fragment key={iconName}>
                         <Syntax
@@ -196,6 +208,7 @@ function SelectedIconDialog({
                                             checked={showFilled}
                                             name="filled"
                                             onChange={setShowFilled}
+                                            value="filled"
                                         />
                                     </ToggleOption>
                                 )}

@@ -18,7 +18,7 @@ import { useMountMemo } from 'src/utils/useMountMemo';
 const getDefaultState = (prop: TypePropertyDemo): any => {
     if (prop.example) return prop.example;
 
-    // if the prop is not required, we don't need to set a default value
+    // if the prop is not required we don't need to set a default value
     if (!prop.required) return;
 
     if (prop.type === 'string' || prop.type === 'multiline') return `Example ${prop.name}`;

@@ -4,22 +4,19 @@
 
 ### Basics
 
-- Use `type` over `interface` to define object shapes. Types are more flexible and can define primitive, intersection,
+- Prefer `type` over `interface` for defining object shapes. `type` is more flexible: it can represent primitives, unions, intersections, tuples, and more, while `interface` is limited to describing object structures.
 
 ```typescript
-export type CheckboxOptionProps = Pick<
-    CheckboxProps,
-    'checked' | 'disabled' | 'indeterminate' | 'invalid' | 'name' | 'onChange' | 'readOnly' | 'value'
-> &
-    Pick<ToggleOptionProps, 'description' | 'aria-label'>;
+export type ComponentProps = CommonProps<'name' | 'onChange' | 'value'> & {
+    size: 'small' | 'medium' | 'large';
+};
 ```
-
-union, tuple, or different types of data. Interfaces can only be used to describe the shape of an object.
 
 - Use `unknown` instead of `any` when the type is not known.
 - Use `Object.freeze` to mark properties that should not be reassigned.
 - Use `as const` over `enum` for related constants.
 - Use `handleClick` over `onClick` for event handlers. See: https://react.dev/learn/responding-to-events#adding-event-handlers
+- Use `-/hooks/useId` for generating unique IDs instead of React's built-in `useId` - The library's implementation allows for a default.
 
 ## Components
 
