@@ -19,6 +19,14 @@
 
             background-color: var(--surface-brand-primary-highlight);
         }
+
+        &[data-active] {
+            background-color: var(--surface-brand-primary-highlight);
+
+            h5 {
+                color: var(--foreground-brand-primary);
+            }
+        }
     }
 }
 

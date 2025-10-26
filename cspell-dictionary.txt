@@ -17,6 +17,7 @@ inversed
 Yoshi
 Wario
 Waluigi
+Costanza
 
 # BRANDS
 

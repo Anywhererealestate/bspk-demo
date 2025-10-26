@@ -1,10 +1,10 @@
 import { SvgDarkMode } from '@bspk/icons/DarkMode';
 import { SvgDarkModeFill } from '@bspk/icons/DarkModeFill';
+import { SvgMenu } from '@bspk/icons/Menu';
 import { SvgSearch } from '@bspk/icons/Search';
-import { SvgSync } from '@bspk/icons/Sync';
 import { Button } from '@bspk/ui/Button';
 import { Dialog } from '@bspk/ui/Dialog';
-import { MenuButton } from '@bspk/ui/MenuButton';
+import { Link } from '@bspk/ui/Link/Link';
 import { Select } from '@bspk/ui/Select';
 import { BRANDS } from '@bspk/ui/constants/brands';
 import { useModalState } from '@bspk/ui/hooks/useModalState';
@@ -63,6 +63,7 @@ export function Nav() {
     useHotkeys('meta+k', onOpen);
 
     const location = useLocation();
+
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -90,27 +91,21 @@ export function Nav() {
             <div data-body-width data-navbar>
                 <span data-backdrop />
                 <div data-header>
-                    {screenSize === 'small' && <MenuButton aria-label="Menu" onClick={() => navModalState.onOpen()} />}
-                    <h1 data-logo>
-                        <span data-name>BSPK</span>
+                    {(screenSize === 'small' || location?.pathname === '/') && (
+                        <Button
+                            icon={<SvgMenu />}
+                            iconOnly
+                            label="Menu"
+                            onClick={() => navModalState.onOpen()}
+                            size="large"
+                            style={{ padding: 0 }}
+                            variant="tertiary"
+                        />
+                    )}
+                    <h1 data-brand>
+                        <Link data-name href="/" label="BSPK" variant="subtle" />
                         {BUILD === 'local' ? (
-                            <>
-                                <span>LOCAL ({UI_HASH})</span>
-                                <Button
-                                    icon={<SvgSync />}
-                                    iconOnly
-                                    label="Refresh Meta"
-                                    onClick={() => {
-                                        if ((import.meta as any).hot) {
-                                            (import.meta as any).hot.send('request-meta-refresh', {
-                                                message: 'Hello from the browser!',
-                                            });
-                                        }
-                                    }}
-                                    size="small"
-                                    variant="tertiary"
-                                />
-                            </>
+                            <span>LOCAL ({UI_HASH})</span>
                         ) : (
                             <>
                                 <span>
@@ -171,7 +166,7 @@ export function Nav() {
                     <SearchModal {...searchModalProps} />
                 </div>
             </div>
-            {screenSize === 'small' ? (
+            {screenSize === 'small' || location?.pathname === '/' ? (
                 <Dialog aria-label="Navigation" {...navModalState} placement="left">
                     <NavSide />
                 </Dialog>

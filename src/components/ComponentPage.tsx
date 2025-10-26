@@ -5,7 +5,6 @@ import { ComponentProvider, resetComponentContext } from 'components/ComponentPr
 import { ComponentVariants } from 'components/ComponentVariants';
 import { ErrorBoundary } from 'components/ErrorBoundary';
 import { Markup } from 'components/Markup';
-import { NavContents } from 'components/NavContents';
 import { Syntax } from 'components/Syntax';
 import { TypeProps } from 'components/TypeProps';
 import { Fragment } from 'react';
@@ -89,6 +88,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                             label="Show Touch Target"
                                             name="data-touch-target"
                                             onChange={(checked) => setShowTouchTarget(checked)}
+                                            value="data-touch-target"
                                         />
                                     </div>
                                 )}
@@ -213,7 +213,6 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                     )}
                 </article>
             </div>
-            <NavContents />
         </>
     );
 }

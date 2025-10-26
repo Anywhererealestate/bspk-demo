@@ -1,6 +1,5 @@
 import { Button } from '@bspk/ui/Button';
 import { Divider } from '@bspk/ui/Divider';
-import { Txt } from '@bspk/ui/Txt';
 import { Fragment } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { routes } from 'src/routes';
@@ -14,36 +13,30 @@ export const NavSide = () => {
     return (
         <nav data-navigation>
             <div role="menu">
-                {routes.map(
-                    (route, index) =>
-                        !route.hide && (
-                            <Fragment key={route.title}>
-                                {route.children && route.children.length > 0 && (
-                                    <>
-                                        {index > 0 && <Divider />}
-                                        <Txt data-header variant="labels-base">
-                                            {route.title}
-                                        </Txt>
-                                    </>
-                                )}
-                                {(route.children || [route]).map(
-                                    (r: RouteLink) =>
-                                        !r.hide && (
-                                            <Link
-                                                data-link
-                                                data-selected={location.pathname === r.path || undefined}
-                                                data-subtle
-                                                key={r.path}
-                                                role="menuitem"
-                                                to={r.path!}
-                                            >
-                                                {r.title}
-                                            </Link>
-                                        ),
-                                )}
-                            </Fragment>
-                        ),
-                )}
+                {routes
+                    .filter((r) => !r.hide)
+                    .map((route, index) => (
+                        <Fragment key={route.title}>
+                            {route.children && route.children.length > 0 && (
+                                <>
+                                    {index > 0 && <Divider />}
+                                    <div data-header>{route.title}</div>
+                                </>
+                            )}
+                            {(route.children || [route]).map((r: RouteLink) => (
+                                <Link
+                                    data-link
+                                    data-selected={location.pathname === r.path || undefined}
+                                    data-subtle
+                                    key={r.path}
+                                    role="menuitem"
+                                    to={r.path!}
+                                >
+                                    {r.title}
+                                </Link>
+                            ))}
+                        </Fragment>
+                    ))}
             </div>
             <Button
                 destructive
