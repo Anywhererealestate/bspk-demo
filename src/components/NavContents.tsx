@@ -55,7 +55,7 @@ export function NavContents() {
         });
     }, []);
 
-    return (
+    return menuItems.length === 0 ? null : (
         <>
             <div data-nav-contents>
                 <Txt as="div" variant="heading-h4">

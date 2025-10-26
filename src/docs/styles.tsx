@@ -77,7 +77,9 @@ createRoot(document.getElementById('root')!).render(
                 of the variable.
             </p>
 
-            <h2>MUI Theme</h2>
+            <h2 data-nav-target id="mui-theming">
+                MUI Theming
+            </h2>
             <p>
                 While we don&apos;t use MUI in our components, we understand that until the component library is
                 officially released some projects use MUI for their components. We are currently working on a MUI theme

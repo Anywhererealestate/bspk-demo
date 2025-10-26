@@ -10,6 +10,7 @@ import { TypeProps } from 'components/TypeProps';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { CodeExample } from 'src/components/CodeExample';
+import { NavContents } from 'src/components/NavContents';
 import { TagComponent } from 'src/components/TagComponent';
 import { COMPONENT_PHASES, components, MetaComponentName } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
@@ -26,6 +27,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
 
     return (
         <>
+            <NavContents />
             <div data-component-page data-page>
                 <header data-header>
                     <h1 data-nav-target data-nav-target-label="Introduction" id="introduction">

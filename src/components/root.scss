@@ -110,6 +110,8 @@ p {
         [data-bspk='list-item'] {
             border-left: 3px solid transparent;
 
+            --list-item-height: 'auto';
+
             &[data-selected] {
                 border-left-color: var(--interactions-neutral-press-opacity);
             }
