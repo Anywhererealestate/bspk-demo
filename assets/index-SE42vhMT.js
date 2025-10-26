@@ -1,1 +1,0 @@
-import{j as e,e as t,i as x}from"./index-jcbivK3E.js";function n({label:r,helperText:a,labelTrailing:i,errorMessage:l,...s}){return e.jsx(t,{errorMessage:l,helperText:a,label:r,labelTrailing:i,children:e.jsx(x,{...s})})}export{n as TextareaField};

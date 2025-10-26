@@ -1,1 +1,0 @@
-import{j as e,e as n,g as a}from"./index-jcbivK3E.js";function u({label:r,helperText:l,labelTrailing:s,errorMessage:t,...i}){return e.jsx(n,{errorMessage:t,helperText:l,label:r,labelTrailing:s,children:e.jsx(a,{...i})})}export{u as InputNumberField};

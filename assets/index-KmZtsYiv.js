@@ -1,1 +1,0 @@
-import{j as e,e as i,P as t}from"./index-jcbivK3E.js";function x({label:r,helperText:s,labelTrailing:a,errorMessage:l,...o}){return e.jsx(i,{errorMessage:l,helperText:s,label:r,labelTrailing:a,children:e.jsx(t,{...o})})}export{x as PasswordField};

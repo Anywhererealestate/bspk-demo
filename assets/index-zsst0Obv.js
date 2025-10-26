@@ -1,1 +1,0 @@
-import{j as e,e as a,S as o}from"./index-jcbivK3E.js";function x({label:r,helperText:l,labelTrailing:s,errorMessage:t,...i}){return e.jsx(a,{errorMessage:t,helperText:l,label:r,labelTrailing:s,children:e.jsx(o,{...i})})}export{x as SelectField};
