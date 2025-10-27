@@ -7,7 +7,6 @@ import { Dialog } from '@bspk/ui/Dialog';
 import { Link } from '@bspk/ui/Link/Link';
 import { Select } from '@bspk/ui/Select';
 import { BRANDS } from '@bspk/ui/constants/brands';
-import { useModalState } from '@bspk/ui/hooks/useModalState';
 import { Brand } from '@bspk/ui/types/common';
 import { NavSide } from 'components/NavSide';
 import { SearchModal } from 'components/SearchModal';
@@ -41,8 +40,8 @@ function useScreenSize<T extends { size: string; minWidth: number }[]>(
 }
 
 export function Nav() {
-    const { onOpen, ...searchModalProps } = useModalState();
-    const navModalState = useModalState();
+    const [searchModalOpen, setSearchModalOpen] = useState<boolean>(false);
+    const [navModalOpen, setNavModalOpen] = useState<boolean>(false);
     const { brand, theme, setBrand, setTheme } = useGlobalState();
 
     const screenSize = useScreenSize([
@@ -60,7 +59,7 @@ export function Nav() {
         },
     ]);
 
-    useHotkeys('meta+k', onOpen);
+    useHotkeys('meta+k', () => setSearchModalOpen(true));
 
     const location = useLocation();
 
@@ -96,7 +95,7 @@ export function Nav() {
                             icon={<SvgMenu />}
                             iconOnly
                             label="Menu"
-                            onClick={() => navModalState.onOpen()}
+                            onClick={() => setNavModalOpen(true)}
                             size="large"
                             style={{ padding: 0 }}
                             variant="tertiary"
@@ -156,18 +155,23 @@ export function Nav() {
                         label="Search... ⌘K"
                         onClick={(event) => {
                             (event.target as HTMLInputElement).blur();
-                            onOpen();
+                            setSearchModalOpen(true);
                         }}
                         variant="secondary"
                     >
                         <SvgSearch />
                         Search... ⌘K
                     </Button>
-                    <SearchModal {...searchModalProps} />
+                    <SearchModal onClose={() => setSearchModalOpen(false)} open={searchModalOpen} />
                 </div>
             </div>
             {screenSize === 'small' || location?.pathname === '/' ? (
-                <Dialog aria-label="Navigation" {...navModalState} placement="left">
+                <Dialog
+                    aria-label="Navigation"
+                    onClose={() => setNavModalOpen(false)}
+                    open={navModalOpen}
+                    placement="left"
+                >
                     <NavSide />
                 </Dialog>
             ) : (
