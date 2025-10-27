@@ -1,0 +1,1 @@
+import{j as e,d as t,P as d}from"./index-BjWHQFAY.js";function x({label:r,helperText:s,labelTrailing:l,errorMessage:a,style:o,...i}){return e.jsx(t,{errorMessage:a,helperText:s,label:r,labelTrailing:l,style:o,children:e.jsx(d,{...i})})}export{x as PasswordField};

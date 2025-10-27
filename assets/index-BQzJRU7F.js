@@ -1,0 +1,1 @@
+import{j as e,d as i,e as a}from"./index-BjWHQFAY.js";function x({label:r,helperText:l,labelTrailing:n,errorMessage:s,style:t,...o}){return e.jsx(i,{errorMessage:s,helperText:l,label:r,labelTrailing:n,style:t,children:e.jsx(a,{...o})})}export{x as InputPhoneField};
