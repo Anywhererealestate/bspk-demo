@@ -1,1 +1,0 @@
-import{j as c}from"./index-BjWHQFAY.js";function u({children:s,column:e,gap:t="16",style:n,as:o,align:r="flex-start",justify:x="flex-start",...l}){const i=o||"div",f=r||"flex-start",a=x||"flex-start";return c.jsx(i,{...l,style:{...n,display:"flex",flexDirection:e?"column":"row",gap:t?`${t}px`:"px",alignItems:f,justifyContent:a},children:s})}export{u as Layout};
