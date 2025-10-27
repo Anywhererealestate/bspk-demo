@@ -160,14 +160,18 @@ H<sub>2</sub>O
 
     return (
         <Page>
-            <h1>Typography</h1>
+            <h1 data-nav-target id="typography">
+                Typography
+            </h1>
             <p>
                 Without using any additional CSS, you can use the following standard HTML elements and have the bespoke
                 styles applied.
             </p>
             {sections.map(({ title, Content: Content, code: content }, index) => (
                 <section key={index} style={{ margin: '2rem 0' }}>
-                    <h3>{title}</h3>
+                    <h3 data-nav-target id={`typography-${title.toLowerCase().replace(/\s+/g, '-')}`}>
+                        {title}
+                    </h3>
                     {content ? (
                         <CodeExample
                             code={{

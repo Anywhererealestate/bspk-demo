@@ -82,8 +82,7 @@ routes.push({
         ...componentsMeta.flatMap((component): RouteLink[] => {
             if (component.phase !== 'Utility') return [];
 
-            const componentProps = typesMeta.find((t) => t.name === `${component.name}Props`);
-            if (!componentProps?.properties?.length) return [];
+            if (!showUtilityComponent(component)) return [];
 
             return [
                 {
@@ -96,6 +95,11 @@ routes.push({
         }),
     ],
 });
+
+export function showUtilityComponent(component: (typeof componentsMeta)[number]) {
+    const componentProps = typesMeta.find((t) => t.name === `${component.name}Props`);
+    return !!componentProps?.properties?.length;
+}
 
 // pascal case to title case regex js handle sequential uppercase letters and keep them uppercase
 function pascalCaseToTitleCase(str?: string) {
