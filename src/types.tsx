@@ -6,7 +6,7 @@ export type ActionCallback = (message: string) => void;
 
 export type Noop = () => void;
 
-export type RouteLink = RouteObject & {
+export type RouteLink = Omit<RouteObject, 'children'> & {
     title: string;
     hide?: boolean;
     description?: string;

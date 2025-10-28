@@ -53,7 +53,7 @@ export const routes: RouteLink[] = [
         title: 'Components',
         children: [
             ...componentsMeta.flatMap((component): RouteLink[] => {
-                if (['Utility', 'Backlog'].includes(component.phase) || component.generated) return [];
+                if (['Utility', 'Backlog'].includes(component.phase)) return [];
 
                 return [
                     {
@@ -61,6 +61,7 @@ export const routes: RouteLink[] = [
                         id: component.slug,
                         title: pascalCaseToTitleCase(component.name),
                         Component: () => <ComponentPage componentName={component.name as MetaComponentName} />,
+                        hide: !!component.generated,
                     },
                 ];
             }),
