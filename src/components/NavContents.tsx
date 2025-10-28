@@ -63,13 +63,13 @@ export function NavContents() {
                 </Txt>
                 <nav>
                     {menuItems.flatMap(
-                        (link) =>
+                        (link, index) =>
                             !!link && (
                                 <ListItem
                                     as="a"
                                     data-selected={location.hash === link.hash || undefined}
                                     href={link.hash}
-                                    key={link.hash}
+                                    key={`${link.hash}-${index}`}
                                     label={link.title}
                                 />
                             ),
