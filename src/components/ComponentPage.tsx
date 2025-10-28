@@ -57,7 +57,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                     marginTop: 'var(--spacing-sizing-06)',
                                 }}
                             >
-                                <h2 data-nav-target id={`section-${index}`}>
+                                <h2 data-nav-target id={`section-beforeDemo-${index}`}>
                                     {title}
                                 </h2>
                                 <div>
@@ -140,7 +140,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                                     marginTop: 'var(--spacing-sizing-06)',
                                 }}
                             >
-                                <h2 data-nav-target id={`section-${index}`}>
+                                <h2 data-nav-target id={`section-afterDemo-${index}`}>
                                     {title}
                                 </h2>
                                 <div>

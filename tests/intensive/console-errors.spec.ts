@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import { components, gotoUrl } from '../utils';
+import { components, gotoUrl } from './utils';
 
 for (const component of components) {
     test(`should not have any console error ${component.name}`, async ({ page }) => {

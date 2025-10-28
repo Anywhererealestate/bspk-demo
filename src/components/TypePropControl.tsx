@@ -110,7 +110,6 @@ export function TypePropControl({
                 data-testid={`${prop.name}-CheckboxGroup`}
                 disabled={prop.disabled}
                 options={options}
-                readOnly={readOnly}
                 value={controlProps.value}
             />
         );

@@ -12,11 +12,11 @@ import { useUIContext } from '@bspk/ui/hooks/useUIContext';
 import { cssWithVars } from '@bspk/ui/utils/cwv';
 import { Page } from 'components/Page';
 import { Fragment, HTMLProps, ReactNode, useState } from 'react';
+import { Flex } from 'src/components/Flex';
 import { Syntax } from 'src/components/Syntax';
 import { ICON_META, IconMeta, IconName, ICONS } from 'src/utils/icons';
 
 import 'src/docs/icons.scss';
-import { Flex } from 'src/components/Flex';
 
 const titleCase = (word: string) => word[0].toUpperCase() + word.slice(1);
 
