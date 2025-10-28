@@ -41,7 +41,7 @@ export function TypePropControl({
         readOnly,
     };
 
-    if (prop.multiline) return <Textarea id="" {...controlProps} textSize="small" />;
+    if (prop.multiline) return <Textarea id="" {...controlProps} size="small" />;
 
     if (type === 'number')
         return (
