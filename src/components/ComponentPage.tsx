@@ -49,7 +49,7 @@ function ComponentPage({ componentName }: { componentName: MetaComponentName }) 
                         </>
                     )}
                     {component.sections
-                        ?.filter((s) => !s.location || s.location === 'beforeDemo')
+                        ?.filter((s) => s.location === 'beforeDemo')
                         .map(({ content: Content, title }, index) => (
                             <div
                                 key={index}
