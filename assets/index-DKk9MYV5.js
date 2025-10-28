@@ -1,1 +1,0 @@
-import{j as i,F as r,a as c,C as o,b as x,c as t}from"./index-OS27vsWI.js";function F({label:d,helperText:s,labelTrailing:n,errorMessage:l,style:e,...a}){return i.jsxs(r,{as:"fieldset",style:e,children:[i.jsx(c,{as:"legend",labelTrailing:n,style:e,children:d}),i.jsx(o,{...a}),!l&&s&&i.jsx(x,{children:s}),l&&i.jsx(t,{children:l})]})}export{F as CheckboxGroupField};
