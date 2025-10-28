@@ -23,18 +23,20 @@ export const NavSide = () => {
                                     <div data-header>{route.title}</div>
                                 </>
                             )}
-                            {(route.children || [route]).map((r: RouteLink) => (
-                                <Link
-                                    data-link
-                                    data-selected={location.pathname === r.path || undefined}
-                                    data-subtle
-                                    key={r.path}
-                                    role="menuitem"
-                                    to={r.path!}
-                                >
-                                    {r.title}
-                                </Link>
-                            ))}
+                            {(route.children || [route])
+                                .filter((r) => !r.hide)
+                                .map((r: RouteLink) => (
+                                    <Link
+                                        data-link
+                                        data-selected={location.pathname === r.path || undefined}
+                                        data-subtle
+                                        key={r.path}
+                                        role="menuitem"
+                                        to={r.path!}
+                                    >
+                                        {r.title}
+                                    </Link>
+                                ))}
                         </Fragment>
                     ))}
             </div>
