@@ -1,5 +1,4 @@
 import { DemoPreset, TypePropertyDemo } from '@bspk/ui/utils/demo';
-import { CUSTOM_PRESET_VALUE } from 'src/components/ComponentPageExample';
 import { updateComponentContext } from 'src/components/ComponentProvider';
 import { TypeProperty, MetaComponentName, componentsMeta, typesMeta } from 'src/meta';
 import { examples } from 'src/meta/examples';
@@ -150,12 +149,22 @@ export function useComponentDemo(componentName: MetaComponentName) {
 
         const { props, functionProps, defaultState } = setPropExamples(typeMeta?.properties || []);
 
-        let presets: DemoPreset<any>[] | undefined;
-        if (Array.isArray(componentExample?.presets) && componentExample.presets.length > 0) {
-            presets = [
-                { label: 'Custom', value: CUSTOM_PRESET_VALUE, propState: componentExample.defaultState || {} },
-                ...componentExample.presets.map((p, index) => ({ ...p, value: `preset-${index}` })),
-            ];
+        const presets: DemoPreset<any>[] = [];
+
+        if (componentExample.presets) {
+            // map presets to have value property
+
+            presets.push(
+                {
+                    label: 'No Preset',
+                    value: 'preset-default',
+                    propState: { ...defaultState, ...componentExample?.defaultState },
+                },
+                ...componentExample.presets.map((p, index) => ({
+                    ...p,
+                    value: `preset-${index}`,
+                })),
+            );
         }
 
         const nextComponent: DemoComponent<any> = {

@@ -1,86 +1,137 @@
 import { SvgLink } from '@bspk/icons/Link';
-import { ListItem } from '@bspk/ui/ListItem';
+import { SvgMenu } from '@bspk/icons/Menu';
+import { Card } from '@bspk/ui/Card/Card';
+import { Fab } from '@bspk/ui/Fab/Fab';
+import { Portal } from '@bspk/ui/Portal/Portal';
 import { Txt } from '@bspk/ui/Txt';
+import { useFloating } from '@bspk/ui/hooks/useFloating';
 import { useEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { kebabCase } from 'src/utils/kebabCase';
+
+type NavItem = {
+    title: string;
+    hash: string;
+    level: number;
+    element: HTMLElement;
+};
 
 /**
  * Displays the nav targets in the screen.
  *
- * To make an element a nav target, add the attribute data-nav-target to it and ensure the unique element id is set.
+ * All headers (h1-h6) within the main content area are used to build the nav.
  *
- * The nav target must only contain a string.
+ * Use title attribute on headers to set the text used in the nav. If title is not set, the text content of the header
+ * is used.
  *
- * To make the nav target a link but not add it to the nav contents, add the attribute data-nav-target="false" to it.
+ * If id is not set on the header, it will be generated from the title or text content.
  *
  * @name NavContents
  */
 export function NavContents() {
-    const mountedRef = useRef(false);
-    const templateRef = useRef<HTMLTemplateElement | null>(null);
     const location = useLocation();
-
-    const [menuItems, setMenuItems] = useState<{ title: string; hash: string }[]>([]);
+    const [menuItems, setMenuItems] = useState<NavItem[]>([]);
 
     useEffect(() => {
-        const targets = Array.from(
-            document
-                .querySelector('main[data-main]')
-                ?.querySelectorAll<HTMLElement>(
-                    [1, 2, 3, 4, 5, 6].map((n) => `h${n}[id]:not([data-nav-target="false"])`).join(','),
-                ) || [],
-        );
+        const mainElement = document.querySelector<HTMLElement>('[data-main]');
 
-        if (!targets.length || mountedRef.current) return;
-
-        mountedRef.current = true;
-
-        setMenuItems(
-            targets.map((item) => ({
-                title: item.dataset.navTargetLabel || item.textContent || item.id,
-                hash: `#${item.id}`,
-            })),
-        );
-
-        // add the link and link icon
-        targets.forEach((item) => {
-            const label = item.textContent;
-            const link = document.createElement('a');
-            link.setAttribute('data-nav-target', '');
-            link.textContent = label;
-            link.href = `#${item.id}`;
-            if (templateRef.current?.firstChild)
-                link.appendChild(templateRef.current?.firstChild.cloneNode(true) as Node);
-            item.replaceChildren(link);
+        const nextMenuItems: NavItem[] = Array.from(
+            mainElement?.querySelectorAll<HTMLElement>(`h1, h2, h3, h4, h5, h6`) || [],
+        ).map((element) => {
+            const title = element.title || element.textContent;
+            element.id = element.id || kebabCase(title);
+            const next = {
+                title: title,
+                hash: `#${element.id}`,
+                level: parseInt(element.tagName.substring(1), 10) - 2,
+                element,
+            };
+            element.dataset.navTarget = 'true';
+            return next;
         });
-    }, []);
+
+        setMenuItems(nextMenuItems);
+    }, [location.pathname]);
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const { elements, floatingStyles } = useFloating({
+        placement: 'bottom-end',
+    });
+
+    const [transitionStyles, setTransitionStyles] = useState<React.CSSProperties>({});
+
+    const previousIsOpen = useRef(isOpen);
+
+    useEffect(() => {
+        if (previousIsOpen.current !== isOpen) {
+            if (isOpen) {
+                setTransitionStyles({
+                    opacity: 1,
+                    transform: 'translateY(0)',
+                    transition: 'opacity 300ms ease-in, transform 300ms ease-in',
+                });
+            } else {
+                setTransitionStyles({
+                    opacity: 0,
+                    transform: 'translateY(-10px)',
+                    transition: 'opacity 300ms ease-out, transform 300ms ease-out',
+                });
+            }
+            previousIsOpen.current = isOpen;
+        }
+    }, [isOpen]);
 
     return menuItems.length === 0 ? null : (
         <>
-            <div data-nav-contents>
-                <Txt as="div" variant="heading-h4">
-                    Content
-                </Txt>
-                <nav>
-                    {menuItems.flatMap(
-                        (link, index) =>
-                            !!link && (
-                                <ListItem
-                                    as="a"
-                                    data-selected={location.hash === link.hash || undefined}
-                                    href={link.hash}
-                                    key={`${link.hash}-${index}`}
-                                    label={link.title}
-                                />
-                            ),
-                    )}
-                </nav>
-            </div>
-            <template ref={templateRef}>
-                <span data-link>
-                    <SvgLink />
-                </span>
-            </template>
+            <Fab
+                container="page"
+                data-nav-button
+                icon={<SvgMenu />}
+                iconOnly
+                innerRef={elements.setReference}
+                label="On this page"
+                onClick={() => setIsOpen(!isOpen)}
+                onMouseOver={() => setIsOpen(true)}
+                placement="top-right"
+                variant="neutral"
+            />
+            {isOpen && (
+                <Card
+                    data-nav-contents
+                    innerRef={elements.setFloating}
+                    onMouseLeave={() => setIsOpen(false)}
+                    style={{ ...floatingStyles, ...transitionStyles }}
+                >
+                    <Txt as="div" variant="body-small">
+                        On this page
+                    </Txt>
+                    <nav>
+                        {menuItems.flatMap(
+                            (link, index) =>
+                                !!link && (
+                                    <Link
+                                        data-bspk="link"
+                                        data-level={link.level}
+                                        data-selected={location.hash === link.hash || undefined}
+                                        data-subtle
+                                        key={`${link.hash}-${index}`}
+                                        to={link.hash}
+                                    >
+                                        {link.title}
+                                    </Link>
+                                ),
+                        )}
+                    </nav>
+                </Card>
+            )}
+            {menuItems.map((link, index) => (
+                <Portal container={link.element} key={index}>
+                    <a aria-label={link.title} data-nav-link href={link.hash} id={link.hash.substring(1)}>
+                        <SvgLink />
+                    </a>
+                </Portal>
+            ))}
         </>
     );
 }

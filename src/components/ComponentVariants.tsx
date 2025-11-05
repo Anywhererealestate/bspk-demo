@@ -1,12 +1,12 @@
+import { Card } from '@bspk/ui/Card/Card';
 import { Tag } from '@bspk/ui/Tag';
 import { ComponentVariantOverrides } from '@bspk/ui/utils/demo';
 import { useErrorLogger } from '@bspk/ui/utils/errors';
-import { CodeExample } from 'components/CodeExample';
 import { Markup } from 'components/Markup';
 import { useComponentContext } from 'src/components/ComponentProvider';
 import { ComponentRender } from 'src/components/ComponentRender';
 import { components, TypeProperty } from 'src/meta';
-import { kebabCase } from 'utils/kebabCase';
+import { kebabCase } from 'src/utils/kebabCase';
 
 export function ComponentVariants() {
     const { component, propState } = useComponentContext();
@@ -33,14 +33,9 @@ export function ComponentVariants() {
         return <p>Component not found.</p>;
     }
 
-    const containerStyle =
-        typeof component.containerStyle === 'function' ? component.containerStyle(propState) : component.containerStyle;
-
     return (
         <>
-            <h2 data-nav-target id="variants">
-                Variants
-            </h2>
+            <h2>Variants</h2>
 
             <p>These are possible variants of the component.</p>
 
@@ -56,26 +51,18 @@ export function ComponentVariants() {
                     options = variantStateOverrides.propOptions;
 
                 return (
-                    <section data-variants key={prop.name} style={{ margin: 'var(--spacing-sizing-08) 0' }}>
-                        <h4 data-nav-target="false" id={kebabCase(`variant-${prop.name}`)}>
-                            {prop.name}
-                        </h4>
+                    <section data-variants key={prop.name}>
+                        <h3 id={kebabCase(`Variant-${prop.name}`)}>{prop.name}</h3>
                         <Markup data-description>{prop.description}</Markup>
 
-                        <CodeExample
-                            containerStyle={containerStyle}
-                            style={{ marginBottom: 'var(--spacing-sizing-02)' }}
-                        >
+                        <Card variant="outlined">
                             {options?.map((option) => {
-                                const overrideState = { [prop.name]: option };
+                                const overrideState = { ...component.defaultState, ...propState, [prop.name]: option };
 
                                 const secondaryOverrides: Record<string, unknown>[] = [];
 
                                 if (variantStateOverrides) {
-                                    let overrides: Record<string, unknown> = {};
-                                    if (typeof variantStateOverrides === 'function')
-                                        overrides = variantStateOverrides(overrideState);
-                                    else overrides = variantStateOverrides;
+                                    const overrides = variantStateOverrides;
 
                                     Object.entries(overrides).map(([key, value]) => {
                                         if (
@@ -115,7 +102,7 @@ export function ComponentVariants() {
                                     </div>
                                 );
                             })}
-                        </CodeExample>
+                        </Card>
                     </section>
                 );
             })}

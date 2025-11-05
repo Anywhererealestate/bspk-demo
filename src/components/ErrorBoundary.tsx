@@ -17,7 +17,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, { error?: Error
             return (
                 this.props.fallback || (
                     <>
-                        <h1>Something went wrong.</h1>
+                        <h2>Something went wrong.</h2>
                         <p>{this.state.error.toString()}</p>
                         <p>{this.state.errorInfo?.componentStack}</p>
                     </>
