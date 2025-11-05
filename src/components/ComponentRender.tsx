@@ -1,7 +1,9 @@
+import { Button } from '@bspk/ui/Button/Button';
 import { useId } from '@bspk/ui/hooks/useId';
 import { ComponentExampleRenderProps, TypePropertyDemo } from '@bspk/ui/utils/demo';
 import { randomString } from '@bspk/ui/utils/random';
-import { updateComponentContext, useComponentContext } from 'src/components/ComponentProvider';
+import { resetComponentContext, updateComponentContext, useComponentContext } from 'src/components/ComponentProvider';
+import { ErrorBoundary } from 'src/components/ErrorBoundary';
 import { components } from 'src/meta';
 import { isIconName, SvgIcon } from 'src/utils/icons';
 
@@ -33,17 +35,28 @@ export function ComponentRender({ overrideState, variant }: ComponentRenderProps
         if (key === 'id' || key.endsWith('Id')) renderProps[key] = `example-${randomString()}`;
     });
 
-    return typeof component.render === 'function' ? (
-        component.render({
-            Component,
-            props: renderProps,
-            preset,
-            setState: updateComponentContext,
-            id,
-            variant,
-        })
-    ) : (
-        <Component key={preset?.label || ''} {...renderProps} />
+    return (
+        <ErrorBoundary
+            fallback={
+                <>
+                    <p>Failed to render component.</p>
+                    <Button label="Reset" onClick={() => resetComponentContext()} size="small" variant="secondary" />
+                </>
+            }
+        >
+            {typeof component.render === 'function' ? (
+                component.render({
+                    Component,
+                    props: renderProps,
+                    preset,
+                    setState: updateComponentContext,
+                    id,
+                    variant,
+                })
+            ) : (
+                <Component key={preset?.label || ''} {...renderProps} />
+            )}
+        </ErrorBoundary>
     );
 }
 
