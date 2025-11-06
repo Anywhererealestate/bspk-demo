@@ -44,7 +44,7 @@ export function ComponentPageExample() {
                             data-main-example
                             data-show-touch-targets={showTouchTarget || undefined}
                         >
-                            <ComponentRender />
+                            <ComponentRender isolated={false} overrideState={propState} />
                         </CodeExample>
                     </ErrorLogContext>
                 </>

@@ -24,8 +24,8 @@ export function ComponentRender({ overrideState, variant, isolated }: ComponentR
         return;
     }
 
-    // Use deep clone of overrideState if isolated, otherwise merge as before
-    const baseState = isolated ? JSON.parse(JSON.stringify(overrideState ?? {})) : { ...propState, ...overrideState };
+    // Merge overrideState with propState for non-isolated renders
+    const baseState = isolated ? { ...overrideState } : { ...propState, ...overrideState };
 
     const renderProps = {
         ...component.functionProps,
@@ -37,6 +37,9 @@ export function ComponentRender({ overrideState, variant, isolated }: ComponentR
     Object.keys(renderProps).forEach((key) => {
         if (key === 'id' || key.endsWith('Id')) renderProps[key] = `example-${randomString()}`;
     });
+
+    // Pass a no-op setState for isolated demos
+    const setState = isolated ? () => {} : updateComponentContext;
 
     return (
         <ErrorBoundary
@@ -52,7 +55,7 @@ export function ComponentRender({ overrideState, variant, isolated }: ComponentR
                     Component,
                     props: renderProps,
                     preset,
-                    setState: updateComponentContext,
+                    setState,
                     id,
                     variant,
                 })
