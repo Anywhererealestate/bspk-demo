@@ -58,7 +58,11 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                                     <h2 id={kebabCase(`Design-pattern-${preset.label}`)}>{preset.label}</h2>
                                     <p>{preset.designPattern}</p>
                                     <Card style={{ padding: '24px' }} variant="outlined">
-                                        <ComponentRender overrideState={preset.propState} />
+                                        <ComponentRender
+                                            isolated={!!preset.designPattern}
+                                            key={`${preset.label}-${index}`}
+                                            overrideState={preset.propState}
+                                        />
                                     </Card>
                                 </div>
                             ))}
