@@ -13,7 +13,7 @@ export type ComponentRenderProps = {
     isolated?: boolean;
 };
 
-export function ComponentRender({ overrideState, variant, isolated }: ComponentRenderProps): React.ReactNode {
+export function ComponentRender({ overrideState, variant, isolated = false }: ComponentRenderProps): React.ReactNode {
     const { component, propState, preset } = useComponentContext();
     const id = useId();
 
