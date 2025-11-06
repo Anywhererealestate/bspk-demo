@@ -10,9 +10,10 @@ import { isIconName, SvgIcon } from 'src/utils/icons';
 export type ComponentRenderProps = {
     overrideState?: Record<string, any>;
     variant?: ComponentExampleRenderProps<any>['variant'];
+    isolated?: boolean;
 };
 
-export function ComponentRender({ overrideState, variant }: ComponentRenderProps): React.ReactNode {
+export function ComponentRender({ overrideState, variant, isolated }: ComponentRenderProps): React.ReactNode {
     const { component, propState, preset } = useComponentContext();
     const id = useId();
 
@@ -23,11 +24,13 @@ export function ComponentRender({ overrideState, variant }: ComponentRenderProps
         return;
     }
 
+    // Use deep clone of overrideState if isolated, otherwise merge as before
+    const baseState = isolated ? JSON.parse(JSON.stringify(overrideState ?? {})) : { ...propState, ...overrideState };
+
     const renderProps = {
         ...component.functionProps,
-        ...propState,
-        ...overrideState,
-        ...getPropsFromState(component.props, propState),
+        ...baseState,
+        ...getPropsFromState(component.props, isolated ? baseState : propState),
     };
 
     // change any id props to a random string
