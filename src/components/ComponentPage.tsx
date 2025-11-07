@@ -64,7 +64,6 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                                     <p>{preset.designPattern}</p>
                                     <Card style={{ padding: '24px' }} variant="outlined">
                                         <ComponentRender
-                                            isolated={true}
                                             key={`${preset.label}-${index}`}
                                             overrideState={preset.propState}
                                         />

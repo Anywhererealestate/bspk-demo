@@ -10,10 +10,9 @@ import { isIconName, SvgIcon } from 'src/utils/icons';
 export type ComponentRenderProps = {
     overrideState?: Record<string, any>;
     variant?: ComponentExampleRenderProps<any>['variant'];
-    isolated?: boolean;
 };
 
-export function ComponentRender({ overrideState, variant, isolated }: ComponentRenderProps): React.ReactNode {
+export function ComponentRender({ overrideState, variant }: ComponentRenderProps): React.ReactNode {
     const { component, propState, preset } = useComponentContext();
     const id = useId();
 
