@@ -436,6 +436,10 @@ section[data-variants] {
         transition: opacity 0.3s ease-in-out;
         text-decoration: none;
 
+        &:focus {
+            opacity: 1;
+        }
+
         svg {
             width: var(--spacing-sizing-05);
             height: var(--spacing-sizing-05);
