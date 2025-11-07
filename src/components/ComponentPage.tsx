@@ -10,6 +10,7 @@ import { TypeProps } from 'components/TypeProps';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { CodeExample } from 'src/components/CodeExample';
+import { CodePlayground } from 'src/components/CodePlayground';
 import { ComponentRender } from 'src/components/ComponentRender';
 import { TagComponent } from 'src/components/TagComponent';
 import { COMPONENT_PHASES, components, MetaComponentName } from 'src/meta';
@@ -35,15 +36,19 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                         <TagComponent component={{ ...component, name: COMPONENT_PHASES[component.phase].title }} />
                     )}
                 </header>
-
                 <ComponentProvider component={component}>
                     <article>
                         <Markup>{component.description}</Markup>
                         {component.usage && (
                             <>
-                                <h2>Usage</h2>
+                                <h2>Basic Usage</h2>
                                 {!!component.usage.description && <Markup>{component.usage.description}</Markup>}
-                                <Syntax code={component.usage.code} language="typescript" pretty />
+                                <CodePlayground
+                                    code={component.usage.code}
+                                    scope={{ ...component.scope, [component.name]: Component, ...component }}
+                                />
+                                {/* 
+                                <Syntax code={component.usage.code} language="typescript" pretty /> */}
                             </>
                         )}
                         {component.presets
@@ -59,7 +64,7 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                                     <p>{preset.designPattern}</p>
                                     <Card style={{ padding: '24px' }} variant="outlined">
                                         <ComponentRender
-                                            isolated={!!preset.designPattern}
+                                            isolated={true}
                                             key={`${preset.label}-${index}`}
                                             overrideState={preset.propState}
                                         />

@@ -157,6 +157,35 @@ p {
     }
 }
 
+[data-code-editor] {
+    [data-preview] {
+        padding: var(--spacing-sizing-04);
+        border-bottom: solid 1px var(--stroke-neutral-low-contrast);
+    }
+
+    [data-error] {
+        color: var(--status-on-error);
+        background-color: var(--status-error);
+        margin: 0;
+        padding: var(--spacing-sizing-03);
+        opacity: 0.9;
+    }
+
+    [data-editor] {
+        height: 100%;
+        width: 100%;
+        font-family: monospace;
+        padding: 0;
+        border: none;
+        font-size: inherit;
+        min-height: var(--spacing-sizing-24);
+
+        span:hover {
+            background-color: var(--background-shade);
+        }
+    }
+}
+
 [data-example-code] {
     background: var(--surface-neutral-t1-base);
     border: solid 1px var(--stroke-neutral-low-contrast);
