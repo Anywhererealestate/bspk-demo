@@ -23,12 +23,11 @@ export function ComponentRender({ overrideState, variant }: ComponentRenderProps
         return;
     }
 
-    const mergedState = { ...propState, ...overrideState };
+    const mergedState = convertIconProps(component.props, { ...propState, ...overrideState });
 
     const renderProps = {
         ...component.functionProps,
         ...mergedState,
-        ...convertIconProps(component.props, mergedState),
     };
 
     // change any id props to a random string
