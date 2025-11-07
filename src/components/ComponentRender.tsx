@@ -69,28 +69,37 @@ export function ComponentRender({ overrideState, variant }: ComponentRenderProps
  */
 function convertIconProps(props: TypePropertyDemo[], propState: Record<string, any>): Record<string, any> {
     return Object.fromEntries(
-        Object.entries(propState).map(([key, value]) => {
-            const propertyMeta = props.find((prop) => prop.name === key);
+        Object.entries(propState)
+            .map(([key, value]) => {
+                const propertyMeta = props.find((prop) => prop.name === key);
 
-            // no property meta, return the value as is
-            if (!propertyMeta) return [key, value];
+                // no property meta, return the value as is
+                if (!propertyMeta) return [key, value];
 
-            // handle BspkIcon type
-            if (propertyMeta.type === 'BspkIcon')
-                return [key, isIconName(value) ? <SvgIcon name={value} /> : undefined];
+                // handle BspkIcon type
+                if (propertyMeta.type === 'BspkIcon') {
+                    if (isIconName(value)) {
+                        return [
+                            [`${key}:icon-name`, value],
+                            [key, <SvgIcon key={value} name={value} />],
+                        ];
+                    }
+                    return [key, undefined];
+                }
 
-            // handle array of objects with potential icon props
-            if (propertyMeta?.arrayType && Array.isArray(value)) {
-                const properties = typesMeta.find((t) => t.name === propertyMeta.arrayType)?.properties;
+                // handle array of objects with potential icon props
+                if (propertyMeta?.arrayType && Array.isArray(value)) {
+                    const properties = typesMeta.find((t) => t.name === propertyMeta.arrayType)?.properties;
 
-                // if no properties or no icon type props, return value as is
-                if (!properties || properties.every((p) => p.type !== 'BspkIcon')) return [key, value];
+                    // if no properties or no icon type props, return value as is
+                    if (!properties || properties.every((p) => p.type !== 'BspkIcon')) return [key, value];
 
-                // convert icon props in each object of the array
-                return [key, value.map((v: any) => convertIconProps(properties, v))];
-            }
+                    // convert icon props in each object of the array
+                    return [key, value.map((v: any) => convertIconProps(properties, v))];
+                }
 
-            return [key, value];
-        }),
+                return [key, value];
+            })
+            .flatMap((returnValue) => (Array.isArray(returnValue[0]) ? returnValue : [returnValue])),
     );
 }
