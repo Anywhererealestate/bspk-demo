@@ -4,7 +4,7 @@ import { ComponentExampleRenderProps, TypePropertyDemo } from '@bspk/ui/utils/de
 import { randomString } from '@bspk/ui/utils/random';
 import { resetComponentContext, updateComponentContext, useComponentContext } from 'src/components/ComponentProvider';
 import { ErrorBoundary } from 'src/components/ErrorBoundary';
-import { components } from 'src/meta';
+import { components, typesMeta } from 'src/meta';
 import { isIconName, SvgIcon } from 'src/utils/icons';
 
 export type ComponentRenderProps = {
@@ -24,13 +24,12 @@ export function ComponentRender({ overrideState, variant, isolated }: ComponentR
         return;
     }
 
-    // Use deep clone of overrideState if isolated, otherwise merge as before
-    const baseState = isolated ? JSON.parse(JSON.stringify(overrideState ?? {})) : { ...propState, ...overrideState };
+    const mergedState = convertIconProps(component.props, { ...propState, ...overrideState });
 
     const renderProps = {
         ...component.functionProps,
-        ...baseState,
-        ...getPropsFromState(component.props, isolated ? baseState : propState),
+        ...propState,
+        ...mergedState,
     };
 
     // change any id props to a random string
@@ -64,20 +63,45 @@ export function ComponentRender({ overrideState, variant, isolated }: ComponentR
 }
 
 /**
- * Certins props we don't want top put into state (like ReactNodes)
+ * We don't want to put ReactNodes in the demo state, so we use icon names instead.
  *
- * This Just-in-time converts strings and other types to their correct types (like ReactNodes).
+ * This function converts those icon names to actual icon components.
+ *
+ * It also handles arrays of objects with icon props.
  */
-function getPropsFromState(props: TypePropertyDemo[], propState: Record<string, any>): Record<string, any> {
-    const stateProps: Record<string, any> = {};
+function convertIconProps(props: TypePropertyDemo[], propState: Record<string, any>): Record<string, any> {
+    return Object.fromEntries(
+        Object.entries(propState)
+            .map(([key, value]) => {
+                const propertyMeta = props.find((prop) => prop.name === key);
 
-    const iconProps = props.filter((prop) => prop.type === 'BspkIcon');
+                // no property meta, return the value as is
+                if (!propertyMeta) return [key, value];
 
-    iconProps.forEach((prop) => {
-        const propValue = propState[prop.name];
+                // handle BspkIcon type
+                if (propertyMeta.type === 'BspkIcon') {
+                    if (isIconName(value)) {
+                        return [
+                            [`${key}:icon-name`, value],
+                            [key, <SvgIcon key={value} name={value} />],
+                        ];
+                    }
+                    return [key, undefined];
+                }
 
-        stateProps[prop.name] = isIconName(propValue) ? <SvgIcon name={propValue} /> : undefined;
-    });
+                // handle array of objects with potential icon props
+                if (propertyMeta?.arrayType && Array.isArray(value)) {
+                    const properties = typesMeta.find((t) => t.name === propertyMeta.arrayType)?.properties;
 
-    return stateProps;
+                    // if no properties or no icon type props, return value as is
+                    if (!properties || properties.every((p) => p.type !== 'BspkIcon')) return [key, value];
+
+                    // convert icon props in each object of the array
+                    return [key, value.map((v: any) => convertIconProps(properties, v))];
+                }
+
+                return [key, value];
+            })
+            .flatMap((returnValue) => (Array.isArray(returnValue[0]) ? returnValue : [returnValue])),
+    );
 }

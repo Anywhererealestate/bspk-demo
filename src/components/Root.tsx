@@ -1,3 +1,4 @@
+import { SnackbarManager } from '@bspk/ui/Snackbar/Manager';
 import { UIProvider } from '@bspk/ui/UIProvider';
 import { ErrorBoundary } from 'components/ErrorBoundary';
 import { Nav } from 'components/Nav';
@@ -19,6 +20,7 @@ export function Root() {
                         </ErrorBoundary>
                         <NavContents />
                     </main>
+                    <SnackbarManager defaultTimeout={5000} />
                 </GlobalStateProvider>
             </UIProvider>
         </>

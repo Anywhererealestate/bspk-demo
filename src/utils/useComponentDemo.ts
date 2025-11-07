@@ -151,7 +151,7 @@ export function useComponentDemo(componentName: MetaComponentName) {
 
         const presets: DemoPreset<any>[] = [];
 
-        if (componentExample.presets) {
+        if (Array.isArray(componentExample?.presets) && componentExample.presets.length > 0) {
             // map presets to have value property
 
             presets.push(
