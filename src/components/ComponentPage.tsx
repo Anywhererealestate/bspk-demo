@@ -43,10 +43,7 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                             <>
                                 <h2>Basic Usage</h2>
                                 {!!component.usage.description && <Markup>{component.usage.description}</Markup>}
-                                <CodePlayground
-                                    code={component.usage.code}
-                                    scope={{ ...component.scope, [component.name]: Component, ...component }}
-                                />
+                                <CodePlayground defaultCode={component.usage.code} />
                                 {/* 
                                 <Syntax code={component.usage.code} language="typescript" pretty /> */}
                             </>
