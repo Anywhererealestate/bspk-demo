@@ -1,9 +1,9 @@
 import { SvgContentCopy } from '@bspk/icons/ContentCopy';
 import { SvgDiamond } from '@bspk/icons/Diamond';
 import { Avatar } from '@bspk/ui/Avatar';
+import { Button } from '@bspk/ui/Button';
 import { Checkbox } from '@bspk/ui/Checkbox';
 import { Img } from '@bspk/ui/Img';
-import { ListItem } from '@bspk/ui/ListItem';
 import { Radio } from '@bspk/ui/Radio';
 import { Switch } from '@bspk/ui/Switch';
 import { Tag } from '@bspk/ui/Tag';
@@ -33,14 +33,8 @@ export const createChildrenElement = (state: Record<string, any>, name: string) 
         );
     }
 
-    if (componentName === 'ListItemButton')
-        return (
-            <ListItem.Button
-                icon={<SvgContentCopy />}
-                label="LI Button"
-                onClick={() => action('ListItem button clicked')}
-            />
-        );
+    if (componentName === 'Button')
+        return <Button icon={<SvgContentCopy />} label="LI Button" onClick={() => action('ListItem button clicked')} />;
 
     if (componentName === 'Img') return <Img alt="placeholder" src="/placeholder.svg" />;
 

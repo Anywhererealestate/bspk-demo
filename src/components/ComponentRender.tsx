@@ -27,6 +27,7 @@ export function ComponentRender({ overrideState, variant }: ComponentRenderProps
 
     const renderProps = {
         ...component.functionProps,
+        ...propState,
         ...mergedState,
     };
 
