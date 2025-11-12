@@ -1,5 +1,5 @@
 import { type Page } from '@playwright/test';
-import data from './.tmp/meta';
+import data from '../src/meta/data.json' with { type: 'json' };
 
 const { componentsMeta } = data;
 
