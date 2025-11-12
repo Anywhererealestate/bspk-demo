@@ -4,6 +4,7 @@ import { createContext, PropsWithChildren, useCallback, useContext, useEffect, u
 import { BUILD, VERSION } from 'src/meta';
 import { DemoComponent } from 'src/types';
 import { removeReactNodes } from 'src/utils/removeReactNodes';
+import { NO_PRESET_VALUE } from 'src/utils/useComponentDemo';
 import { useStoreState } from 'src/utils/useStoreState';
 
 type ComponentContext<Props = Record<string, any>> = {
@@ -83,7 +84,10 @@ export function ComponentProvider({ children, component }: PropsWithChildren<{ c
 
     const [presetValue, setPreset, resetPreset] = useStoreState<string | undefined>(`${key}-preset`, undefined);
 
-    const preset = useMemo(() => presets?.find((p) => p.value === presetValue), [presets, presetValue]);
+    const preset = useMemo(
+        () => presets?.find((p) => p.value === (presetValue || NO_PRESET_VALUE)),
+        [presets, presetValue],
+    );
 
     // on load we set the prop state to the saved preset state, this ensures we load the react nodes
     useEffect(() => {

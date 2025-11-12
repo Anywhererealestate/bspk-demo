@@ -7,6 +7,8 @@ import { action } from 'src/utils/actions';
 import { evalSafe } from 'src/utils/evalSafe';
 import { useMountMemo } from 'src/utils/useMountMemo';
 
+export const NO_PRESET_VALUE = 'preset-default';
+
 /**
  * Generates a default state value for a given property based on its type and requirements.
  *
@@ -157,7 +159,7 @@ export function useComponentDemo(componentName: MetaComponentName) {
             presets.push(
                 {
                     label: 'No Preset',
-                    value: 'preset-default',
+                    value: NO_PRESET_VALUE,
                     propState: { ...defaultState, ...componentExample?.defaultState },
                 },
                 ...componentExample.presets.map((p, index) => ({
