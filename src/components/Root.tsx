@@ -1,6 +1,8 @@
+import { SnackbarManager } from '@bspk/ui/Snackbar/Manager';
 import { UIProvider } from '@bspk/ui/UIProvider';
 import { ErrorBoundary } from 'components/ErrorBoundary';
 import { Nav } from 'components/Nav';
+import { NavContents } from 'components/NavContents';
 import { Outlet } from 'react-router';
 import { GlobalStateProvider } from 'src/components/GlobalStateProvider';
 
@@ -16,7 +18,9 @@ export function Root() {
                         <ErrorBoundary>
                             <Outlet />
                         </ErrorBoundary>
+                        <NavContents />
                     </main>
+                    <SnackbarManager defaultTimeout={5000} />
                 </GlobalStateProvider>
             </UIProvider>
         </>

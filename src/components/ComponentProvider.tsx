@@ -1,10 +1,10 @@
 import { DemoPreset } from '@bspk/ui/utils/demo';
 import { type AxeResults } from 'axe-core';
 import { createContext, PropsWithChildren, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { CUSTOM_PRESET_VALUE } from 'src/components/ComponentPageExample';
 import { BUILD, VERSION } from 'src/meta';
 import { DemoComponent } from 'src/types';
 import { removeReactNodes } from 'src/utils/removeReactNodes';
+import { NO_PRESET_VALUE } from 'src/utils/useComponentDemo';
 import { useStoreState } from 'src/utils/useStoreState';
 
 type ComponentContext<Props = Record<string, any>> = {
@@ -82,12 +82,10 @@ export function ComponentProvider({ children, component }: PropsWithChildren<{ c
         removeReactNodes,
     );
 
-    const [presetValue, setPreset, resetPreset] = useStoreState<string | undefined>(
-        `${key}-preset`,
-        CUSTOM_PRESET_VALUE,
-    );
+    const [presetValue, setPreset, resetPreset] = useStoreState<string | undefined>(`${key}-preset`, undefined);
+
     const preset = useMemo(
-        () => presets?.find((p) => p.value === (presetValue || CUSTOM_PRESET_VALUE)),
+        () => presets?.find((p) => p.value === (presetValue || NO_PRESET_VALUE)),
         [presets, presetValue],
     );
 
@@ -145,7 +143,7 @@ export function ComponentProvider({ children, component }: PropsWithChildren<{ c
 
             if (presetStateValueUpdated)
                 // hear we reset the preset to custom if the update overlaps with the preset state
-                setPreset(CUSTOM_PRESET_VALUE);
+                setPreset(undefined);
         },
         [propState, setPropStateBase, preset?.propState, setPreset, resetPropState],
     );
@@ -170,7 +168,7 @@ export function ComponentProvider({ children, component }: PropsWithChildren<{ c
                 setAxeResults,
                 setPreset: (nextPresetValue) => {
                     const nextPreset = presets?.find((p) => p.value === nextPresetValue);
-                    setPreset(nextPreset?.value || CUSTOM_PRESET_VALUE);
+                    setPreset(nextPreset?.value);
                     setPropState({ ...functionProps, ...(nextPreset?.propState || defaultState) }, true);
                 },
                 preset,

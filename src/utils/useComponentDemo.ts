@@ -1,5 +1,4 @@
 import { DemoPreset, TypePropertyDemo } from '@bspk/ui/utils/demo';
-import { CUSTOM_PRESET_VALUE } from 'src/components/ComponentPageExample';
 import { updateComponentContext } from 'src/components/ComponentProvider';
 import { TypeProperty, MetaComponentName, componentsMeta, typesMeta } from 'src/meta';
 import { examples } from 'src/meta/examples';
@@ -7,6 +6,8 @@ import { DemoComponent } from 'src/types';
 import { action } from 'src/utils/actions';
 import { evalSafe } from 'src/utils/evalSafe';
 import { useMountMemo } from 'src/utils/useMountMemo';
+
+export const NO_PRESET_VALUE = 'preset-default';
 
 /**
  * Generates a default state value for a given property based on its type and requirements.
@@ -150,12 +151,22 @@ export function useComponentDemo(componentName: MetaComponentName) {
 
         const { props, functionProps, defaultState } = setPropExamples(typeMeta?.properties || []);
 
-        let presets: DemoPreset<any>[] | undefined;
+        const presets: DemoPreset<any>[] = [];
+
         if (Array.isArray(componentExample?.presets) && componentExample.presets.length > 0) {
-            presets = [
-                { label: 'Custom', value: CUSTOM_PRESET_VALUE, propState: componentExample.defaultState || {} },
-                ...componentExample.presets.map((p, index) => ({ ...p, value: `preset-${index}` })),
-            ];
+            // map presets to have value property
+
+            presets.push(
+                {
+                    label: 'No Preset',
+                    value: NO_PRESET_VALUE,
+                    propState: { ...defaultState, ...componentExample?.defaultState },
+                },
+                ...componentExample.presets.map((p, index) => ({
+                    ...p,
+                    value: `preset-${index}`,
+                })),
+            );
         }
 
         const nextComponent: DemoComponent<any> = {

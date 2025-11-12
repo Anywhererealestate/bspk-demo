@@ -1,3 +1,4 @@
+import { SvgDeleteForever } from '@bspk/icons/DeleteForever';
 import { Button } from '@bspk/ui/Button';
 import { Divider } from '@bspk/ui/Divider';
 import { Fragment } from 'react';
@@ -42,13 +43,14 @@ export const NavSide = () => {
             </div>
             <Button
                 destructive
-                label="Reset All"
+                icon={<SvgDeleteForever />}
+                label="Reset All State"
                 onClick={() => {
                     resetGlobalState();
                     setTimeout(() => window.location.reload(), 100);
                 }}
                 size="x-small"
-                style={{ marginTop: 'var(--spacing-sizing-04)' }}
+                style={{ margin: 'var(--spacing-sizing-02)' }}
             />
         </nav>
     );

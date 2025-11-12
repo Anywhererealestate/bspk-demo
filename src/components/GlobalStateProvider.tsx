@@ -8,6 +8,7 @@ import { PropsWithChildren, useMemo, useEffect } from 'react';
 import { BUILD, VERSION } from 'src/meta';
 import { GlobalState, globalStateContext, globalStateDefault } from 'src/utils/globalState';
 import { useStoreState } from 'src/utils/useStoreState';
+import store from 'store';
 
 export function GlobalStateProvider({ children }: PropsWithChildren) {
     const [globalState, setState] = useStoreState<GlobalState>(`bspk-global-${VERSION}.${BUILD}`, globalStateDefault);

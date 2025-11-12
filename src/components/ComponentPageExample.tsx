@@ -1,32 +1,18 @@
-import { Button } from '@bspk/ui/Button';
-import { SegmentedControl } from '@bspk/ui/SegmentedControl';
+import { Select } from '@bspk/ui/Select/Select';
+import { Tag } from '@bspk/ui/Tag/Tag';
+import { Tooltip } from '@bspk/ui/Tooltip/Tooltip';
 import { useId } from '@bspk/ui/hooks/useId';
 import { CodeExample } from 'components/CodeExample';
 import { useComponentContext } from 'components/ComponentProvider';
 import { ErrorLogContext } from 'components/ErrorLogContext';
 import { TypeProps } from 'components/TypeProps';
-import { useEffect, useState } from 'react';
 import { ComponentRender } from 'src/components/ComponentRender';
 import { Flex } from 'src/components/Flex';
 import { components } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
 
-export const CUSTOM_PRESET_VALUE = 'custom' as const;
-
 export function ComponentPageExample() {
-    const { propState, resetAllState, setPreset, changed, preset, component, setPropState } = useComponentContext();
-    const [localState, setLocalState] = useState(propState);
-    useEffect(() => setLocalState(propState), [propState]);
-
-    const [localChanged, setChanged] = useState(false);
-
-    const onChange = (nextState: Record<string, any>) => {
-        setChanged(true);
-        setLocalState((prev) => {
-            const next = { ...prev, ...nextState };
-            return next;
-        });
-    };
+    const { propState, setPreset, preset, component, setPropState } = useComponentContext();
 
     const { showTouchTarget } = useGlobalState();
 
@@ -37,7 +23,7 @@ export function ComponentPageExample() {
 
     if (!components[component.name as keyof typeof components]) {
         console.warn(`Component "${component.name}" not found in components meta.`);
-        return <h1>Component not available.</h1>;
+        return <h2>Component not available.</h2>;
     }
 
     const props = component.props.map((p) => ({
@@ -50,7 +36,7 @@ export function ComponentPageExample() {
     return (
         <>
             {component.showExample && (
-                <div data-example-wrapper>
+                <>
                     <ErrorLogContext id={errorId}>
                         <CodeExample
                             accessibility
@@ -61,19 +47,7 @@ export function ComponentPageExample() {
                             <ComponentRender />
                         </CodeExample>
                     </ErrorLogContext>
-                    <div data-example-settings>
-                        <div data-presets>
-                            {component.presets && (
-                                <SegmentedControl
-                                    label="Presets"
-                                    onChange={setPreset}
-                                    options={component.presets}
-                                    value={preset?.value || CUSTOM_PRESET_VALUE}
-                                />
-                            )}
-                        </div>
-                    </div>
-                </div>
+                </>
             )}
             {component.props?.length > 0 && (
                 <>
@@ -84,40 +58,48 @@ export function ComponentPageExample() {
                             marginTop: 'var(--spacing-sizing-06)',
                         }}
                     >
-                        <h2 data-nav-target id="properties">
-                            {component.name}Props
-                        </h2>
+                        <h2 title="Props">{component.name}Props</h2>
                         {component.showExample && (
                             <Flex>
-                                {changed && (
-                                    <Button
-                                        label="Reset"
-                                        onClick={() => {
-                                            resetAllState();
-                                            setChanged(false);
-                                        }}
-                                        size="small"
-                                        variant="secondary"
-                                    />
-                                )}
-                                {localChanged && (
-                                    <Button
-                                        label="Save"
-                                        onClick={() => {
-                                            setPropState(localState);
-                                            setChanged(false);
-                                        }}
-                                        size="small"
-                                        variant="primary"
-                                    />
+                                {!!component.presets?.length && (
+                                    <div>
+                                        <Select
+                                            aria-label="Preset"
+                                            menuWidth="max-content"
+                                            name="preset-select"
+                                            onChange={(value) => setPreset(value as string)}
+                                            options={
+                                                component.presets.map((p) => ({
+                                                    label: p.label,
+                                                    value: p.value,
+                                                    id: p.value,
+                                                    trailing: p.designPattern ? (
+                                                        <Tooltip label={p.designPattern}>
+                                                            {(...triggerProps) => (
+                                                                <Tag
+                                                                    {...triggerProps}
+                                                                    color="blue"
+                                                                    label="Design Pattern"
+                                                                    size="x-small"
+                                                                />
+                                                            )}
+                                                        </Tooltip>
+                                                    ) : null,
+                                                })) || []
+                                            }
+                                            placeholder="Select Preset"
+                                            size="small"
+                                            value={preset?.value}
+                                        />
+                                    </div>
                                 )}
                             </Flex>
                         )}
                     </div>
                     <TypeProps
-                        onChange={component.disableProps !== true && component.showExample ? onChange : undefined}
+                        onChange={component.disableProps !== true && component.showExample ? setPropState : undefined}
                         props={props}
-                        state={component.showExample ? localState : undefined}
+                        state={component.showExample ? propState : undefined}
                     />
                 </>
             )}

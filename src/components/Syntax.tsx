@@ -38,7 +38,7 @@ export function Syntax({
             setCode(preCode);
             return;
         }
-        pretty(preCode, language).then((next) => {
+        pretty(preCode, { parser: language }).then((next) => {
             if (isMounted()) setCode(next);
             delete element.current!.dataset.highlighted;
         });

@@ -4,7 +4,7 @@ import { Syntax } from 'components/Syntax';
 export function Stylesheets() {
     return (
         <Page>
-            <h1>Style</h1>
+            <h3>Style</h3>
             <p>
                 The stylesheets are built with CSS variables, so you can easily switch between light and dark themes.
                 The default theme is light and does not require a data-theme attribute.
@@ -17,9 +17,7 @@ export function Stylesheets() {
                 <Syntax code='<body data-theme="dark">' language="html" />
             </div>
 
-            <h2 data-nav-target id="style-providers">
-                Providers
-            </h2>
+            <h3 title="Style Providers">Providers</h3>
             <p>
                 If you are using <strong>@bspk/ui</strong> React components you only need to bring in your brand&apos;s
                 style provider. The provider will automatically add the correct stylesheets to your project.
@@ -40,9 +38,7 @@ createRoot(document.getElementById('root')!).render(
                 language="typescript"
             />
 
-            <h2 data-nav-target id="stylesheets">
-                Stylesheets
-            </h2>
+            <h3>Stylesheets</h3>
             <p>
                 If you are not using <strong>@bspk/ui</strong> React components you can use the stylesheets directly
                 from the
@@ -62,9 +58,7 @@ createRoot(document.getElementById('root')!).render(
                 language="typescript"
             />
 
-            <h4 data-nav-target id="vs-code-plugins-for-css-variables">
-                CSS Variables Plugin
-            </h4>
+            <h3>CSS Variables Plugin</h3>
             <p>
                 For Bspk UI development we use{' '}
                 <a href="https://marketplace.visualstudio.com/items?itemName=vunguyentuan.vscode-css-variables">
@@ -77,9 +71,7 @@ createRoot(document.getElementById('root')!).render(
                 of the variable.
             </p>
 
-            <h2 data-nav-target id="mui-theming">
-                MUI Theming
-            </h2>
+            <h3>MUI Theming</h3>
             <p>
                 While we don&apos;t use MUI in our components, we understand that until the component library is
                 officially released some projects use MUI for their components. We are currently working on a MUI theme

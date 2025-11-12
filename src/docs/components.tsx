@@ -15,9 +15,7 @@ export function Components() {
     return (
         <Page>
             <Flex direction="column" gap="var(--spacing-sizing-10)">
-                <h1 data-nav-target id="components">
-                    Components
-                </h1>
+                <h2 id="components">Components</h2>
                 <p>
                     Here you can find all the components available in the library. We are working on adding more
                     components.
@@ -52,9 +50,7 @@ export function Components() {
                     </span>
                 </Flex>
                 <Divider />
-                <h2 data-nav-target id="utility-components">
-                    Utility Components
-                </h2>
+                <h2>Utility Components</h2>
                 <p>
                     Utility components are used to build complex components by composing simpler ones. These are not
                     meant to be used directly in applications but can be useful in prototyping and building new

@@ -22,9 +22,7 @@ export function Hooks() {
                 </p>
                 {hooks.map((hook, index) => (
                     <div key={index} style={{ marginTop: 'var(--spacing-sizing-10)' }}>
-                        <h2 data-nav-target id={hook.hash}>
-                            {hook.name}
-                        </h2>
+                        <h2>{hook.name}</h2>
                         <Markup>{hook.description}</Markup>
                         {hook.example && <Syntax code={hook.example} />}
                     </div>
