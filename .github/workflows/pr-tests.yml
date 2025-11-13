@@ -21,12 +21,10 @@ jobs:
               run: npm ci
             - name: Install Playwright browsers
               run: npx playwright install --with-deps
-            - name: Build meta
-              run: npm run meta
             - name: Build Vite project
               run: npm run build
             - name: Run Localhost
-              run: npx http-server ./dist -p 8080 &
+              run: npx http-server ./dist -p 8080 --fallback 404.html &
             - name: Run Playwright tests
               run: npm run test:preview
             - name: Upload Playwright Report
