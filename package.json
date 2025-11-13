@@ -5,6 +5,7 @@
     "type": "module",
     "license": "CC-BY-4.0",
     "scripts": {
+        "build:dev": "vite-node ./.scripts/build.ts",
         "build": "vite-node ./.scripts/build.ts",
         "meta": "vite-node ./.scripts/meta.ts",
         "dev": "vite-node ./.scripts/dev.ts",
@@ -16,8 +17,9 @@
         "preview:local": "vite-node ./.scripts/preview.ts local",
         "preview:prod": "vite-node ./.scripts/preview.ts prod",
         "preview:dev": "vite-node ./.scripts/preview.ts dev",
-        "test": "vite-node ./.scripts/test.ts && TEST_PORT=8675 playwright test",
-        "test:preview": "TEST_PORT=8080 playwright test",
+        "test:dev": "TEST_URL=http://localhost:8675 playwright test",
+        "test:local:setup": "vite-node ./.scripts/build-test-local.ts",
+        "test:local": "TEST_URL=http://localhost:8080 playwright test",
         "tasks": "vite-node ./.scripts/tasks.ts",
         "pr-check": "npm run lint && npm run lint:css"
     },
@@ -59,6 +61,7 @@
         "eslint-plugin-react": "^7.37.2",
         "eslint-plugin-react-hooks": "^5.0.0",
         "globals": "^15.11.0",
+        "http-server": "^14.1.1",
         "husky": "^9.1.7",
         "json-schema": "^0.4.0",
         "prettier": "^3.4.2",

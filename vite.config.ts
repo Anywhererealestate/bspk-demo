@@ -64,6 +64,7 @@ export default ({ mode }: { mode: string }) => {
                 components: '/src/components',
                 utils: '/src/utils',
                 tests: '/tests',
+                // these are for local bspk-ui development
                 '-/components': resolve(__dirname, '../bspk-ui/src/components'),
                 '-/hooks': resolve(__dirname, '../bspk-ui/src/hooks'),
                 '-/utils': resolve(__dirname, '../bspk-ui/src/utils'),
