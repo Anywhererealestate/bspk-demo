@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 import { gotoUrl } from '../utils';
 
 test('text input element screenshot comparison', async ({ page, browserName }) => {
-    test.skip(browserName.toLowerCase() !== 'chromium', `Test only for chromium!`);
+    //  test.skip(browserName.toLowerCase() !== 'chromium', `Test only for chromium!`);
 
     await gotoUrl(page, '/input');
 

@@ -4,7 +4,7 @@ import { components, gotoUrl } from './utils';
 
 for (const component of components) {
     test(`should not have any console error ${component.name}`, async ({ page, browserName }) => {
-        test.skip(browserName.toLowerCase() !== 'chromium', `Test only for chromium!`);
+        // test.skip(browserName.toLowerCase() !== 'chromium', `Test only for chromium!`);
 
         const errors: string[] = [];
         page.on('console', (msg) => {

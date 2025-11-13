@@ -13,6 +13,8 @@ const metaDataPath = path.join(demoRootPath, 'src/meta/data.json');
 
 function main() {
     if (!fs.existsSync(metaDataPath)) execSync('npm run meta', { stdio: 'inherit' });
+
+    execSync('npm run preview:prod', { stdio: 'inherit' });
 }
 
 main();

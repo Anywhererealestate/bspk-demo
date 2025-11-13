@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 import { gotoUrl } from '../utils';
 
 test(`checkbox group`, async ({ page, browserName }) => {
-    test.skip(browserName.toLowerCase() !== 'chromium', `Test only for chromium!`);
+    // test.skip(browserName.toLowerCase() !== 'chromium', `Test only for chromium!`);
 
     const getGroupCheckbox = (nth: number) =>
         page.locator(`[data-main-example] [data-bspk-owner="toggle-option"]:nth-child(${nth})`);
