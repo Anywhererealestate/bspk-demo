@@ -1,7 +1,7 @@
 /**
  * Local preview script builds the bspk-ui library and links it to the demo project.
  *
- * $ vite-node .scripts/preview-local.ts
+ * $ vite-node .scripts/preview.ts
  */
 import { execSync } from 'child_process';
 import fs from 'fs';
@@ -35,9 +35,12 @@ if (mode === 'prod') {
     });
 }
 if (mode === 'local') {
-    execSync(`cd "${uiRootPath}" && npm run build && npm link && cd "${demoRootPath}" && npm link @bspk/ui`, {
-        stdio: 'inherit',
-    });
+    execSync(
+        `cd "${uiRootPath}" && npm run build && cp package.json dist/ && cd dist && npm link && cd "${demoRootPath}" && npm link @bspk/ui && npm run meta`,
+        {
+            stdio: 'inherit',
+        },
+    );
 }
 
 execSync(`vite preview --port 8080 --open`, {

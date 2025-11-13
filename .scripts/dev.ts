@@ -73,16 +73,9 @@ if (linkedPath.endsWith('./../bspk-ui/src')) {
  * This script generates the search index for the BSPK UI components and then starts the Vite server.
  */
 
-execSync(
-    [
-        `vite-node ./.scripts/search-index.ts`,
-        `rm -rf node_modules/.vite`,
-        `UPDATE_META=${updateMeta} vite dev --force --open`,
-    ].join(' && '),
-    {
-        stdio: 'inherit',
-    },
-);
+execSync([`rm -rf node_modules/.vite`, `UPDATE_META=${updateMeta} vite dev --force --open`].join(' && '), {
+    stdio: 'inherit',
+});
 
 function createPackageJson() {
     const version = execSync('npm view @bspk/ui version', { encoding: 'utf-8' }).trim();

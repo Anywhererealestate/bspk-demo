@@ -24,9 +24,9 @@ jobs:
             - name: Build Vite project
               run: npm run build
             - name: Run Localhost
-              run: npx http-server ./dist -p 8080 --fallback 404.html &
+              run: npx http-server ./dist -p 8080 --fallback 404.html & # mimic gh pages behavior
             - name: Run Playwright tests
-              run: npm run test:preview
+              run: TEST_PORT=8080 npx playwright test
             - name: Upload Playwright Report
               if: always()
               uses: actions/upload-artifact@v4

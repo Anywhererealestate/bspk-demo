@@ -11,9 +11,6 @@ test('text input element screenshot comparison', async ({ page, browserName }) =
     const input = page.locator('[data-main-example] [data-example-render] input');
 
     await input.fill('Response');
-
-    // Compare against the reference image
-    // await expect(element).toHaveScreenshot();
 });
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */

@@ -15,8 +15,14 @@ test(`checkbox group`, async ({ page, browserName }) => {
     // Locate the element
     const element = page.locator('[data-main-example] [data-example-render]');
 
-    const selectAllSwitch = await page.waitForSelector('[data-testid="selectAll-Checkbox"]');
-    await selectAllSwitch.click();
+    // click the select all switch in the prop table
+    const selectAllSwitch = page.locator('[data-testid="selectAll-Switch"]');
+
+    // ensure it's on
+    const selectAllSwitchChecked = selectAllSwitch.locator('input:checked');
+
+    // If it's not checked, click it to check it.
+    if (!(await selectAllSwitchChecked.count())) await selectAllSwitch.click();
 
     const selectAllCheckbox = getGroupCheckbox(1);
     expect(selectAllCheckbox).toHaveCount(1);
@@ -38,8 +44,6 @@ test(`checkbox group`, async ({ page, browserName }) => {
     expect(getGroupCheckbox(3).locator('input:checked')).toHaveCount(1);
     // The fourth checkbox should be checked.
     expect(getGroupCheckbox(4).locator('input:checked')).toHaveCount(1);
-
-    // await expect(element).toHaveScreenshot();
 
     console.info('Pass checkbox group, select all is indeterminate');
 });
