@@ -1,11 +1,12 @@
 import { type Page } from '@playwright/test';
-import data from './.tmp/meta';
+import data from '../src/meta/data.json' with { type: 'json' };
 
 const { componentsMeta } = data;
 
-const TEST_PORT = process.env.TEST_PORT || 8080;
+const TEST_URL = process.env.TEST_URL || `http://127.0.0.1:8080`;
+
 async function gotoUrl(page: Page, pathName: string) {
-    await page.goto(`http://localhost:${TEST_PORT}${pathName}`);
+    await page.goto(`${TEST_URL}${pathName}`);
     return await page.waitForLoadState('networkidle');
 }
 

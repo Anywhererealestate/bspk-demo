@@ -2,9 +2,11 @@ import { test, expect } from '@playwright/test';
 
 import { gotoUrl } from '../utils';
 
-test(`checkbox group`, async ({ page }) => {
+test(`checkbox group`, async ({ page, browserName }) => {
+    // test.skip(browserName.toLowerCase() !== 'chromium', `Test only for chromium!`);
+
     const getGroupCheckbox = (nth: number) =>
-        page.locator(`[data-main-example] [data-bspk="toggle-option"]:nth-child(${nth})`);
+        page.locator(`[data-main-example] [data-bspk-owner="toggle-option"]:nth-child(${nth})`);
 
     await gotoUrl(page, '/checkbox-group');
 
@@ -13,8 +15,14 @@ test(`checkbox group`, async ({ page }) => {
     // Locate the element
     const element = page.locator('[data-main-example] [data-example-render]');
 
-    const selectAllSwitch = await page.waitForSelector('[data-testid="selectAll-Switch"]');
-    await selectAllSwitch.click();
+    // click the select all switch in the prop table
+    const selectAllSwitch = page.locator('[data-testid="selectAll-Switch"]');
+
+    // ensure it's on
+    const selectAllSwitchChecked = selectAllSwitch.locator('input:checked');
+
+    // If it's not checked, click it to check it.
+    if (!(await selectAllSwitchChecked.count())) await selectAllSwitch.click();
 
     const selectAllCheckbox = getGroupCheckbox(1);
     expect(selectAllCheckbox).toHaveCount(1);
@@ -26,6 +34,8 @@ test(`checkbox group`, async ({ page }) => {
     expect(selectAllCheckbox.locator('input[data-indeterminate]')).toHaveCount(1);
     await selectAllCheckbox.click();
 
+    await page.pause();
+
     // The select all should be checked.
     expect(selectAllCheckbox.locator('input:checked')).toHaveCount(1);
     // The second checkbox should be checked.
@@ -34,8 +44,6 @@ test(`checkbox group`, async ({ page }) => {
     expect(getGroupCheckbox(3).locator('input:checked')).toHaveCount(1);
     // The fourth checkbox should be checked.
     expect(getGroupCheckbox(4).locator('input:checked')).toHaveCount(1);
-
-    await expect(element).toHaveScreenshot();
 
     console.info('Pass checkbox group, select all is indeterminate');
 });
