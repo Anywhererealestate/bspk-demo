@@ -5,8 +5,8 @@ import { InputElement } from '@bspk/ui/Input';
 import { sendSnackbar } from '@bspk/ui/Snackbar';
 import { DemoAction } from '@bspk/ui/utils/demo';
 import { themes } from 'prism-react-renderer';
-import { useEffect, useState } from 'react';
-import { LiveProvider, LiveError, LivePreview, LiveEditor } from 'react-live';
+import { useContext, useEffect, useState } from 'react';
+import { LiveProvider, LiveError, LivePreview, LiveEditor, LiveContext } from 'react-live';
 import { components } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
 import { pretty } from 'src/utils/pretty';
@@ -32,12 +32,10 @@ export function CodePlayground({ defaultCode }: { defaultCode: string }) {
 
     // this is the code shown in the editor, should be updated immediately when externalCode changes
 
-    const [code, setCode] = useState('');
+    const [code, setCode] = useState<string>(defaultCode);
 
     useEffect(() => {
-        pretty(defaultCode || '', {
-            parser: 'typescript',
-        }).then(setCode);
+        pretty(defaultCode || '', { parser: 'typescript' }).then(setCode);
     }, [defaultCode]);
 
     return (
@@ -58,6 +56,7 @@ export function CodePlayground({ defaultCode }: { defaultCode: string }) {
                         InputElement,
                     }}
                 >
+                    <LogErrors />
                     <LivePreview data-preview />
                     <LiveError data-error />
                 </LiveProvider>
@@ -74,13 +73,22 @@ export function CodePlayground({ defaultCode }: { defaultCode: string }) {
     );
 }
 
-function transformPreviewCode(code: string) {
+function transformPreviewCode(code: string | undefined) {
     const next = code
-        .replace(/import [^;]+;?\n/g, '')
-        //
+        // Remove import statements
+        ?.replace(/import [^;]+;?\n/g, '')
+        // Replace individual SVG imports with SvgIcon usage
         .replace(/<Svg([^ ]+) \/>/g, '<SvgIcon name="$1" />')
-        // remove comments
-        .replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '');
+        //replace comment lines
+        .replace(/\n[\s]+\/\/.*/g, '')
+        .trim();
 
     return next;
+}
+
+// eslint-disable-next-line react/no-multi-comp
+function LogErrors() {
+    const { error, code } = useContext(LiveContext);
+    if (error) console.error('CodePlayground Error:', { error, code });
+    return null;
 }
