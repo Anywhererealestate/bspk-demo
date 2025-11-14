@@ -1,1 +1,0 @@
-import{j as e,d as a,I as o}from"./index-BpjZrP1f.js";function m({label:r,helperText:l,labelTrailing:s,errorMessage:t,style:i,...n}){return e.jsx(a,{errorMessage:t,helperText:l,label:r,labelTrailing:s,style:i,children:e.jsx(o,{...n})})}export{m as InputNumberField};
