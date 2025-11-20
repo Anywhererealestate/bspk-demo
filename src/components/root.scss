@@ -179,9 +179,23 @@ p {
         border: none;
         font-size: inherit;
         min-height: var(--spacing-sizing-24);
+        border-bottom: solid 1px var(--stroke-neutral-low-contrast);
 
         span:hover {
             background-color: var(--background-shade);
+        }
+    }
+
+    [data-code-options] {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        gap: var(--spacing-sizing-01);
+        padding: var(--spacing-sizing-01);
+        justify-content: flex-end;
+
+        [data-variant='secondary'] {
+            margin-right: var(--spacing-sizing-02);
         }
     }
 }
@@ -389,7 +403,7 @@ p {
 }
 
 [data-component-page] {
-    [data-header] {
+    > [data-header] {
         margin: 0 0 var(--spacing-sizing-03) 0;
     }
 }
