@@ -1,4 +1,3 @@
-import { Card } from '@bspk/ui/Card/Card';
 import { SwitchOption } from '@bspk/ui/SwitchOption';
 import { ComponentPageSection } from '@bspk/ui/utils/demo';
 import { ComponentPageExample } from 'components/ComponentPageExample';
@@ -11,10 +10,10 @@ import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { CodeExample } from 'src/components/CodeExample';
 import { CodePlayground } from 'src/components/CodePlayground';
-import { ComponentRender } from 'src/components/ComponentRender';
 import { TagComponent } from 'src/components/TagComponent';
 import { COMPONENT_PHASES, components, MetaComponentName } from 'src/meta';
 import { DemoComponent } from 'src/types';
+import { generateComponentCode } from 'src/utils/generateComponentCode';
 import { useGlobalState } from 'src/utils/globalState';
 import { kebabCase } from 'src/utils/kebabCase';
 import { useComponentDemo } from 'src/utils/useComponentDemo';
@@ -43,7 +42,10 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                             <>
                                 <h2>Basic Usage</h2>
                                 {!!component.usage.description && <Markup>{component.usage.description}</Markup>}
-                                <CodePlayground defaultCode={component.usage.code} />
+                                <CodePlayground
+                                    defaultCode={component.usage.code}
+                                    githubLink={`https://github.com/Anywhererealestate/bspk-ui/blob/main/src/components/${component.name}/${component.name}.tsx`}
+                                />
                                 {/* 
                                 <Syntax code={component.usage.code} language="typescript" pretty /> */}
                             </>
@@ -59,12 +61,10 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                                 >
                                     <h2 id={kebabCase(`Design-pattern-${preset.label}`)}>{preset.label}</h2>
                                     <p>{preset.designPattern}</p>
-                                    <Card style={{ padding: '24px' }} variant="outlined">
-                                        <ComponentRender
-                                            key={`${preset.label}-${index}`}
-                                            overrideState={preset.propState}
-                                        />
-                                    </Card>
+                                    <CodePlayground
+                                        defaultCode={generateComponentCode(component.name, preset.propState)}
+                                        githubLink={`https://github.com/Anywhererealestate/bspk-ui/blob/main/src/components/${component.name}/${component.name}.tsx`}
+                                    />
                                 </div>
                             ))}
                         {component.sections
