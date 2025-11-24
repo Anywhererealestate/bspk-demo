@@ -5,15 +5,33 @@ import { useUIContext } from '@bspk/ui/hooks/useUIContext';
 import { Brand } from '@bspk/ui/types/common';
 import { COLOR_THEMES, ColorTheme } from '@bspk/ui/utils/uiContext';
 import { PropsWithChildren, useMemo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { BUILD, VERSION } from 'src/meta';
 import { GlobalState, globalStateContext, globalStateDefault } from 'src/utils/globalState';
 import { useStoreState } from 'src/utils/useStoreState';
 import store from 'store';
 
+declare global {
+    interface Window {
+        gtag?: (...args: any[]) => void;
+    }
+}
+
 export function GlobalStateProvider({ children }: PropsWithChildren) {
     const [globalState, setState] = useStoreState<GlobalState>(`bspk-global-${VERSION}.${BUILD}`, globalStateDefault);
 
     const { theme, setTheme } = useUIContext();
+
+    const location = useLocation();
+
+    useEffect(() => {
+        if (window.gtag) {
+            window.gtag('event', 'page_view', {
+                page_path: location.pathname + location.search,
+                page_title: document.title,
+            });
+        }
+    }, [location]);
 
     useEffect(() => {
         const searchParams = Object.fromEntries(new URLSearchParams(globalThis.location.search).entries());
