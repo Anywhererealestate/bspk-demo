@@ -14,7 +14,7 @@ const hooks = utilitiesMeta
 export function Hooks() {
     return (
         <>
-            <Page>
+            <Page title="Hooks">
                 <h1>Hooks</h1>
                 <p>
                     <code>@bspk/ui</code> comes with a few hooks to help build your components. These hooks help make

@@ -70,7 +70,7 @@ export function Welcome() {
     }, [state.volume]);
 
     return (
-        <Page style={{ padding: '0' }}>
+        <Page style={{ padding: '0' }} title="Home">
             <audio autoPlay={!!state.volume} controls loop={!!state.volume} ref={audioRef} style={{ display: 'none' }}>
                 <track kind="captions" />
                 <source src="/audio-test.mp3" type="audio/ogg" />
@@ -84,7 +84,7 @@ export function Welcome() {
                     textAlign: 'center',
                 }}
             >
-                <h2>BSPK: The Foundation for Your Next Project</h2>
+                <h2>BSPK: The Foundation for your next Project</h2>
                 <p>
                     A set of custom designed components that you can extend and build on. BSPK makes following the
                     Bespoke Design System easier than ever. Open Source. Open Code.

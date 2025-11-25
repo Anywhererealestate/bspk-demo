@@ -402,12 +402,6 @@ p {
     margin: var(--spacing-sizing-01) auto 0 auto;
 }
 
-[data-component-page] {
-    > [data-header] {
-        margin: 0 0 var(--spacing-sizing-03) 0;
-    }
-}
-
 section[data-variants] {
     [data-bspk='card'] {
         display: flex;

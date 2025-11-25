@@ -1,10 +1,15 @@
-import { PropsWithChildren, CSSProperties } from 'react';
+import { PropsWithChildren, CSSProperties, useEffect } from 'react';
 
 interface PageProps extends PropsWithChildren {
     style?: CSSProperties;
+    title: string;
 }
 
-export function Page({ children, style }: PageProps) {
+export function Page({ children, style, title }: PageProps) {
+    useEffect(() => {
+        document.title = `BSPK - ${title}`;
+    }, [title]);
+
     return (
         <div data-page style={style}>
             {children}

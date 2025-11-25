@@ -28,7 +28,7 @@ export const routes: RouteLink[] = [
             {
                 path: '/get-started',
                 Component: () => (
-                    <Page>
+                    <Page title="Getting Started">
                         <Markdown md={Intro} />
                     </Page>
                 ),
@@ -41,7 +41,7 @@ export const routes: RouteLink[] = [
             {
                 path: '/contributing',
                 Component: () => (
-                    <Page>
+                    <Page title="Contributing">
                         <Markdown md={Contributing} />
                     </Page>
                 ),
