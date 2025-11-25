@@ -47,7 +47,7 @@ export function Icons() {
     });
 
     return (
-        <Page>
+        <Page title="Icons">
             <h2>Icons</h2>
             <p>Click an icon to see the variants, color options, and copy import code.</p>
             <SelectedIconDialog icon={selectedIcon && ICON_META[selectedIcon]} setSelectedIcon={setSelectedIcon} />

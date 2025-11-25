@@ -13,7 +13,7 @@ import { showUtilityComponent } from 'src/routes';
 
 export function Components() {
     return (
-        <Page>
+        <Page title="Components">
             <Flex direction="column" gap="var(--spacing-sizing-10)">
                 <h2 id="components">Components</h2>
                 <p>
