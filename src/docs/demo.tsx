@@ -61,7 +61,7 @@ export function Demo() {
     }, []);
 
     return (
-        <Page title="BSPK UI Demo">
+        <Page>
             <Txt as="h1" style={{ margin: '16px 0' }} variant="heading-h3">
                 Home Journey Mobile Experience
             </Txt>

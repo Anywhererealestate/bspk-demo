@@ -1,3 +1,4 @@
+import { Layout } from '@bspk/ui/Layout';
 import { Select } from '@bspk/ui/Select/Select';
 import { Tag } from '@bspk/ui/Tag/Tag';
 import { Tooltip } from '@bspk/ui/Tooltip/Tooltip';
@@ -7,7 +8,6 @@ import { useComponentContext } from 'components/ComponentProvider';
 import { ErrorLogContext } from 'components/ErrorLogContext';
 import { TypeProps } from 'components/TypeProps';
 import { ComponentRender } from 'src/components/ComponentRender';
-import { Flex } from 'src/components/Flex';
 import { components } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
 
@@ -60,7 +60,7 @@ export function ComponentPageExample() {
                     >
                         <h2 title="Props">{component.name}Props</h2>
                         {component.showExample && (
-                            <Flex>
+                            <Layout>
                                 {!!component.presets?.length && (
                                     <div>
                                         <Select
@@ -93,7 +93,7 @@ export function ComponentPageExample() {
                                         />
                                     </div>
                                 )}
-                            </Flex>
+                            </Layout>
                         )}
                     </div>
                     <TypeProps

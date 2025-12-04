@@ -159,7 +159,7 @@ H<sub>2</sub>O
     ];
 
     return (
-        <Page title="Typography">
+        <Page>
             <h2>Typography</h2>
             <p>
                 Without using any additional CSS, you can use the following standard HTML elements and have the bespoke

@@ -3,7 +3,7 @@ import { Syntax } from 'components/Syntax';
 
 export function Stylesheets() {
     return (
-        <Page title="Styles">
+        <Page>
             <h3>Style</h3>
             <p>
                 The stylesheets are built with CSS variables, so you can easily switch between light and dark themes.

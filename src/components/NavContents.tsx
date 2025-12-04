@@ -82,7 +82,7 @@ export function NavContents() {
         }
     }, [isOpen]);
 
-    return menuItems.length === 0 ? null : (
+    return menuItems.length < 2 ? null : (
         <>
             <Fab
                 container="page"

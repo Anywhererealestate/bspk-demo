@@ -485,14 +485,6 @@ section[data-variants] {
     }
 }
 
-[data-example-placeholder] {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--surface-neutral-t3-low);
-    column-gap: var(--spacing-sizing-01);
-}
-
 [data-search-modal] {
     [data-dialog-box] {
         padding: var(--spacing-sizing-03);

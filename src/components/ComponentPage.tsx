@@ -28,7 +28,7 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
     const Component = components[component.name as keyof typeof components];
 
     return (
-        <Page data-component-page title={component.name}>
+        <Page data-component-page>
             <header data-header>
                 <h2 title="Introduction">{component.name}</h2>
                 {component.phase && (

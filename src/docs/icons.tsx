@@ -5,6 +5,7 @@ import { SvgIcon } from '@bspk/icons/SvgIcon';
 import { Button } from '@bspk/ui/Button/Button';
 import { Dialog } from '@bspk/ui/Dialog';
 import { Input as Input } from '@bspk/ui/Input';
+import { Layout } from '@bspk/ui/Layout';
 import { Select } from '@bspk/ui/Select';
 import { Switch } from '@bspk/ui/Switch';
 import { ToggleOption } from '@bspk/ui/ToggleOption';
@@ -12,7 +13,6 @@ import { useUIContext } from '@bspk/ui/hooks/useUIContext';
 import { cssWithVars } from '@bspk/ui/utils/cwv';
 import { Page } from 'components/Page';
 import { Fragment, HTMLProps, ReactNode, useState } from 'react';
-import { Flex } from 'src/components/Flex';
 import { Syntax } from 'src/components/Syntax';
 import { ICON_META, IconMeta, IconName, ICONS } from 'src/utils/icons';
 
@@ -47,7 +47,7 @@ export function Icons() {
     });
 
     return (
-        <Page title="Icons">
+        <Page>
             <h2>Icons</h2>
             <p>Click an icon to see the variants, color options, and copy import code.</p>
             <SelectedIconDialog icon={selectedIcon && ICON_META[selectedIcon]} setSelectedIcon={setSelectedIcon} />
@@ -177,7 +177,7 @@ function SelectedIconDialog({
     return (
         <Dialog onClose={() => setSelectedIcon(null)} open={!!icon}>
             <div data-selected-icon>
-                <Flex align="end" as="header" gap="16px">
+                <Layout align="end" as="header" gap="16">
                     <span data-title>{icon.title}</span>
                     <span data-type>{titleCase(icon.type)}</span>
                     <Button
@@ -189,7 +189,7 @@ function SelectedIconDialog({
                         style={{ marginLeft: 'auto' }}
                         variant="tertiary"
                     />
-                </Flex>
+                </Layout>
                 {[showFilled && iconFilled ? iconFilled : icon].map(({ name: iconName }) => (
                     <Fragment key={iconName}>
                         <Syntax

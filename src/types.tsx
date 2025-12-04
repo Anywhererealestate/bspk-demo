@@ -15,6 +15,11 @@ export type RouteLink = Omit<RouteObject, 'children'> & {
     noIndex?: boolean;
     hideSideNav?: boolean;
 };
+export type BlockExample = {
+    name: string;
+    description?: string;
+    examples: { label: string; code: string }[];
+};
 
 /**
  * Represents a component that can be used in the demo system. It extends the ComponentExample type with additional
