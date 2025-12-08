@@ -8,6 +8,7 @@
         "build:dev": "vite-node ./.scripts/build.ts",
         "build": "vite-node ./.scripts/build.ts",
         "meta": "vite-node ./.scripts/meta.ts",
+        "meta:blocks": "vite-node .scripts/tasks/generateBlocksMeta.ts",
         "dev": "vite-node ./.scripts/dev.ts",
         "lint": "eslint && tsc --noemit",
         "lint:fix": "eslint --fix",

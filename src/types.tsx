@@ -66,7 +66,7 @@ export type DemoComponent<P extends Record<string, unknown> = any> = Omit<Compon
          * The style of the component's container, which can be a CSSProperties object or a function that returns a
          * CSSProperties object based on the component's propState.
          */
-        containerStyle?: React.CSSProperties | ((propState: P) => React.CSSProperties);
+        containerStyle?: React.CSSProperties;
         /** The initial state of the component's properties. This is a record of property names and their default values. */
         defaultState: Record<string, any>;
         /**

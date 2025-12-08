@@ -1,49 +1,39 @@
-import { Button } from '@bspk/ui/Button';
-import { Layout } from '@bspk/ui/Layout';
-import { useState } from 'react';
+import { CodePlayground } from 'src/components/CodePlayground';
 import { Page } from 'src/components/Page';
-import { useGlobalState } from 'src/utils/globalState';
+import blocks from 'src/meta/blocks-meta.json';
 
-const blocks = ['Page Headers', 'Cards', 'EmptyState'];
+const blocksSorted: Block[] = blocks.sort((a, b) => {
+    if ((a.order ?? 99) !== (b.order ?? 99)) return (a.order ?? 99) - (b.order ?? 99);
+    return a.name.localeCompare(b.name);
+});
+
+type Block = {
+    order?: number;
+    name: string;
+    description?: string;
+    examples: { name: string; description?: string; code: string }[];
+};
 
 export function Blocks() {
-    useGlobalState();
-
-    const [section, setSection] = useState(blocks[0]);
-
     return (
-        <Page style={{ padding: '0' }}>
-            <section
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    padding: 'var(--spacing-sizing-10)',
-                    textAlign: 'center',
-                }}
-            >
-                <h2>Building Blocks for BSPK</h2>
-                <p>Building blocks you can copy and paste into your apps.</p>
-            </section>
-            <section
-                style={{
-                    width: '100%',
-                    maxWidth: '1280px',
-                    padding: 'var(--spacing-sizing-10)',
-                }}
-            >
-                <Layout align="start" gap="4">
-                    {blocks.map((block) => (
-                        <Button
-                            key={block}
-                            label={block}
-                            onClick={() => setSection(block)}
-                            style={{ fontWeight: section === block ? 'bold' : undefined }}
-                            variant="tertiary"
-                        />
+        <Page style={{ padding: 'var(--spacing-sizing-09) var(--spacing-sizing-05)' }}>
+            <h2 title="Intro">Building Blocks for BSPK</h2>
+
+            <p>The following blocks are design patterns consisting of reusable components and examples.</p>
+
+            {blocksSorted.map((block) => (
+                <div key={block.name} style={{ marginTop: 'var(--spacing-sizing-14)' }}>
+                    <h3>{block.name}</h3>
+                    {block.description && <p>{block.description}</p>}
+                    {block.examples.map((example) => (
+                        <div key={example.name} style={{ marginTop: 'var(--spacing-sizing-08)' }}>
+                            <h4>{example.name}</h4>
+                            {example.description && <p>{example.description}</p>}
+                            <CodePlayground defaultCode={example.code} />
+                        </div>
                     ))}
-                </Layout>
-            </section>
+                </div>
+            ))}
         </Page>
     );
 }

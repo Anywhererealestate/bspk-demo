@@ -4,8 +4,8 @@ import { SvgSearch } from '@bspk/icons/Search';
 import { SvgIcon } from '@bspk/icons/SvgIcon';
 import { Button } from '@bspk/ui/Button/Button';
 import { Dialog } from '@bspk/ui/Dialog';
+import { Flex } from '@bspk/ui/Flex';
 import { Input as Input } from '@bspk/ui/Input';
-import { Layout } from '@bspk/ui/Layout';
 import { Select } from '@bspk/ui/Select';
 import { Switch } from '@bspk/ui/Switch';
 import { ToggleOption } from '@bspk/ui/ToggleOption';
@@ -177,7 +177,7 @@ function SelectedIconDialog({
     return (
         <Dialog onClose={() => setSelectedIcon(null)} open={!!icon}>
             <div data-selected-icon>
-                <Layout align="end" as="header" gap="16">
+                <Flex align="end" as="header" gap="16">
                     <span data-title>{icon.title}</span>
                     <span data-type>{titleCase(icon.type)}</span>
                     <Button
@@ -189,7 +189,7 @@ function SelectedIconDialog({
                         style={{ marginLeft: 'auto' }}
                         variant="tertiary"
                     />
-                </Layout>
+                </Flex>
                 {[showFilled && iconFilled ? iconFilled : icon].map(({ name: iconName }) => (
                     <Fragment key={iconName}>
                         <Syntax

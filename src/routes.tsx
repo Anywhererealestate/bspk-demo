@@ -55,6 +55,7 @@ export const routes: RouteLink[] = [
                 path: '/colors',
                 Component: Colors,
                 title: 'Colors',
+                hideSideNav: true,
             },
         ],
     },

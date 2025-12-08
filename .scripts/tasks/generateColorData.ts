@@ -1,12 +1,54 @@
+import { execSync } from 'child_process';
+import { writeFileSync } from 'fs';
+import { join } from 'path';
+
+// Brightness utilities: perceived brightness (HSP) and WCAG relative luminance
+
+// Example: integrate into existing color generation
+// If this script produces a JSON of colors, include brightness fields.
+// Use getPerceivedBrightness for UI thresholding; getRelativeLuminance for WCAG checks.
 /**
  * Generate color data from @bspk/styles/anywhere.css
  *
  * $ npx vite-node .scripts/tasks/generateColorData.ts
  */
 
-import { execSync } from 'child_process';
-import { writeFileSync } from 'fs';
-import { join } from 'path';
+function parseHex(hex: string): { r: number; g: number; b: number } {
+    const h = hex.trim().replace(/^#/, '');
+    if (![3, 6].includes(h.length)) throw new Error(`Invalid hex: ${hex}`);
+    const full =
+        h.length === 3
+            ? h
+                  .split('')
+                  .map((c) => c + c)
+                  .join('')
+            : h;
+    const num = parseInt(full, 16);
+    const r = (num >> 16) & 0xff;
+    const g = (num >> 8) & 0xff;
+    const b = num & 0xff;
+    return { r, g, b };
+}
+
+export function getPerceivedBrightness(hex: string): number {
+    const { r, g, b } = parseHex(hex);
+    const brightness = Math.sqrt(0.299 * r * r + 0.587 * g * g + 0.114 * b * b);
+    return +((brightness / 255) * 100).toFixed(0); // percent 0-100
+}
+
+function srgbToLinear(c: number): number {
+    const s = c / 255;
+    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+}
+
+export function getRelativeLuminance(hex: string): number {
+    const { r, g, b } = parseHex(hex);
+    const R = srgbToLinear(r);
+    const G = srgbToLinear(g);
+    const B = srgbToLinear(b);
+    const L = 0.2126 * R + 0.7152 * G + 0.0722 * B; // 0-1
+    return +(L * 100).toFixed(2); // percent 0-100
+}
 
 type ColorInfo = {
     brightnessLevel?: number;
@@ -62,7 +104,7 @@ lines.forEach((line) => {
                     // Update existing entry
                     varMap[varName][parent] = {
                         value: hexMatch[0],
-                        brightnessLevel: getBrightnessLevel(hexMatch[0]),
+                        brightnessLevel: getPerceivedBrightness(hexMatch[0]),
                         r: parseInt(hexMatch[0].slice(1, 3), 16),
                         g: parseInt(hexMatch[0].slice(3, 5), 16),
                         b: parseInt(hexMatch[0].slice(5, 7), 16),
@@ -74,13 +116,13 @@ lines.forEach((line) => {
                     name: currentComment || varName,
                     [parent]: {
                         value: hexMatch[0],
-                        brightnessLevel: getBrightnessLevel(hexMatch[0]),
+                        brightnessLevel: getPerceivedBrightness(hexMatch[0]),
                         r: parseInt(hexMatch[0].slice(1, 3), 16),
                         g: parseInt(hexMatch[0].slice(3, 5), 16),
                         b: parseInt(hexMatch[0].slice(5, 7), 16),
                     },
                     description: currentDescription || undefined,
-                    [`${parent}BrightnessLevel`]: getBrightnessLevel(hexMatch[0]),
+                    [`${parent}BrightnessLevel`]: getPerceivedBrightness(hexMatch[0]),
                     var: `--${varName}`,
                 };
                 currentComment = '';
@@ -89,14 +131,6 @@ lines.forEach((line) => {
         }
     }
 });
-
-function getBrightnessLevel(hex: string): number {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-    return Math.round((brightness / 255) * 100);
-}
 
 const colorRows: ColorRow[] = Object.values(varMap);
 

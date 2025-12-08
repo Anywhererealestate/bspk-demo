@@ -14,10 +14,10 @@ import { Card } from '@bspk/ui/Card/Card';
 import { CheckboxOption } from '@bspk/ui/CheckboxOption/CheckboxOption';
 import { DatePickerField } from '@bspk/ui/DatePickerField/DatePickerField';
 import { Divider } from '@bspk/ui/Divider/Divider';
+import { Flex } from '@bspk/ui/Flex';
 import { Grid } from '@bspk/ui/Grid';
 import { Input } from '@bspk/ui/Input/Input';
 import { InputField } from '@bspk/ui/InputField/InputField';
-import { Layout } from '@bspk/ui/Layout';
 import { ListItem } from '@bspk/ui/ListItem/ListItem';
 import { Menu } from '@bspk/ui/Menu/Menu';
 import { ProgressBar } from '@bspk/ui/ProgressBar/ProgressBar';
@@ -102,11 +102,7 @@ export function Welcome() {
                 </div>
             </section>
             <section style={{ width: '100%', maxWidth: '1280px', padding: 'var(--spacing-sizing-10)' }}>
-                <Grid
-                    gap="24"
-                    minColumnWidth="300px"
-                    //style={{ marginTop: 'var(--spacing-sizing-10)', width: '100%', maxWidth: '800px' }}
-                >
+                <Grid columns={3} gap="24" minColumnWidth="300px">
                     <Card
                         style={{
                             display: 'flex',
@@ -194,13 +190,13 @@ export function Welcome() {
                                 {...stateProps<string>('comments')}
                                 placeholder="Add any additional comments here..."
                             />
-                            <Layout>
+                            <Flex gap="8">
                                 <Button label="Submit" type="submit" variant="primary" />
                                 <Button label="Cancel" onClick={() => {}} type="button" variant="secondary" />
-                            </Layout>
+                            </Flex>
                         </form>
                     </Card>
-                    <Layout direction="column">
+                    <Flex direction="column" gap="8">
                         <Card
                             style={{
                                 display: 'flex',
@@ -234,7 +230,12 @@ export function Welcome() {
                             <Txt variant="body-small">Manage your team and permissions here. Lorem ipsum dolor.</Txt>
                             <Button label="Manage Team" variant="secondary" />
                         </Card>
-                        <Layout gap="16" style={{ padding: 'var(--spacing-sizing-04)', alignContent: 'start' }}>
+                        <Flex
+                            align="center"
+                            direction="column"
+                            gap="16"
+                            style={{ padding: 'var(--spacing-sizing-04)', alignContent: 'start' }}
+                        >
                             <ProgressBar completion={75} label="Uploading Files..." size="large" />
                             <Slider
                                 {...stateProps<number>('volume')}
@@ -265,10 +266,10 @@ export function Welcome() {
                                     </Tooltip>
                                 }
                             />
-                        </Layout>
-                        <Layout justify="center">
+                        </Flex>
+                        <Flex justify="center">
                             <ProgressCircle label="Loading..." labelPosition="right" size="small" />
-                        </Layout>
+                        </Flex>
                         <Divider />
                         <RadioGroupField
                             label="Select your preferred contact method"
@@ -290,16 +291,16 @@ export function Welcome() {
                             ]}
                             {...stateProps<string>('radio-example', 'phone')}
                         />
-                    </Layout>
-                    <Layout>
-                        <Grid columns={[1, 1]} gap="16">
+                    </Flex>
+                    <Flex direction="column" gap="16">
+                        <Grid columns={[2, 1]} gap="16">
                             <DatePickerField
                                 label="Destination Date"
                                 {...stateProps<string>('destination-date', '10/26/1985')}
                             />
                             <TimePickerField label="Time" {...stateProps<string>('destination-time', '01:21')} />
                         </Grid>
-                        <Grid columns={[1, 1]} gap="16">
+                        <Grid columns={[2, 1]} gap="16">
                             <DatePickerField
                                 label="Present Date"
                                 {...stateProps<string>('present-time', new Date().toLocaleDateString())}
@@ -316,7 +317,7 @@ export function Welcome() {
                                 )}
                             />
                         </Grid>
-                        <Grid columns={[1, 1]} gap="16">
+                        <Grid columns={[2, 1]} gap="16">
                             <DatePickerField
                                 label="Last Date Departed"
                                 {...stateProps<string>('last-time-departed', '10/26/1985')}
@@ -377,7 +378,7 @@ export function Welcome() {
                                 role="button"
                             />
                         </Menu>
-                    </Layout>
+                    </Flex>
                 </Grid>
             </section>
         </Page>

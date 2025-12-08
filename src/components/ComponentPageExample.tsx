@@ -1,4 +1,4 @@
-import { Layout } from '@bspk/ui/Layout';
+import { Flex } from '@bspk/ui/Flex';
 import { Select } from '@bspk/ui/Select/Select';
 import { Tag } from '@bspk/ui/Tag/Tag';
 import { Tooltip } from '@bspk/ui/Tooltip/Tooltip';
@@ -17,9 +17,6 @@ export function ComponentPageExample() {
     const { showTouchTarget } = useGlobalState();
 
     const errorId = useId();
-
-    const containerStyle =
-        typeof component.containerStyle === 'function' ? component.containerStyle(propState) : component.containerStyle;
 
     if (!components[component.name as keyof typeof components]) {
         console.warn(`Component "${component.name}" not found in components meta.`);
@@ -40,7 +37,7 @@ export function ComponentPageExample() {
                     <ErrorLogContext id={errorId}>
                         <CodeExample
                             accessibility
-                            containerStyle={containerStyle}
+                            containerStyle={component.containerStyle}
                             data-main-example
                             data-show-touch-targets={showTouchTarget || undefined}
                         >
@@ -60,7 +57,7 @@ export function ComponentPageExample() {
                     >
                         <h2 title="Props">{component.name}Props</h2>
                         {component.showExample && (
-                            <Layout>
+                            <Flex>
                                 {!!component.presets?.length && (
                                     <div>
                                         <Select
@@ -74,7 +71,13 @@ export function ComponentPageExample() {
                                                     value: p.value,
                                                     id: p.value,
                                                     trailing: p.designPattern ? (
-                                                        <Tooltip label={p.designPattern}>
+                                                        <Tooltip
+                                                            label={
+                                                                typeof p.designPattern === 'string'
+                                                                    ? p.designPattern
+                                                                    : ''
+                                                            }
+                                                        >
                                                             {(...triggerProps) => (
                                                                 <Tag
                                                                     {...triggerProps}
@@ -93,7 +96,7 @@ export function ComponentPageExample() {
                                         />
                                     </div>
                                 )}
-                            </Layout>
+                            </Flex>
                         )}
                     </div>
                     <TypeProps

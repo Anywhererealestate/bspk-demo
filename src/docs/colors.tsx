@@ -126,7 +126,7 @@ export function Colors() {
     const { theme } = useGlobalState();
 
     return (
-        <Page style={{ padding: '0' }}>
+        <Page>
             <h2>Colors</h2>
 
             <h3>Theme Colors</h3>

@@ -2,7 +2,7 @@
 import { Button } from '@bspk/ui/Button/Button';
 import { Divider } from '@bspk/ui/Divider/Divider';
 import { Grid } from '@bspk/ui/Grid';
-import { Layout } from '@bspk/ui/Layout';
+import { Flex } from '@bspk/ui/Flex';
 import { Tooltip } from '@bspk/ui/Tooltip/Tooltip';
 import { COMPONENT_PHASE_COLORS as colors } from '@bspk/ui/constants/phases';
 import { ElementProps } from '@bspk/ui/types/common';
@@ -14,7 +14,7 @@ import { showUtilityComponent } from 'src/routes';
 export function Components() {
     return (
         <Page>
-            <Layout direction="column" gap="40">
+            <Flex direction="column" gap="40">
                 <h2 id="components">Components</h2>
                 <p>
                     Here you can find all the components available in the library. We are working on adding more
@@ -41,14 +41,14 @@ export function Components() {
                             </div>
                         ))}
                 </Grid>
-                <Layout>
+                <Flex>
                     <span>
                         UX Review <Dot color={colors.UXReview} />
                     </span>
                     <span>
                         Development <Dot color={colors.Dev} />
                     </span>
-                </Layout>
+                </Flex>
                 <Divider />
                 <h2>Utility Components</h2>
                 <p>
@@ -74,7 +74,7 @@ export function Components() {
                             </div>
                         ))}
                 </Grid>
-            </Layout>
+            </Flex>
         </Page>
     );
 }
