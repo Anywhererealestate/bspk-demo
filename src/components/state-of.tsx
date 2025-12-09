@@ -86,9 +86,12 @@ export function StateOf() {
                     <strong>@bspk/styles</strong> - <Tag color="green" label="Released" /> Stylesheets and other assets
                     built for each Brand generated directly from the Figma Design tokens.
                 </p>
+                <ul>
+                    <li>9 Brand themes</li>
+                </ul>
                 <p>
-                    <strong>@bspk/icons</strong> - <Tag color="green" label="Released" /> A comprehensive set of SVG
-                    icons for use in applications.
+                    <strong>@bspk/icons</strong> - <Tag color="green" label="Released" /> A curated library of SVG
+                    icons, provided as ready-to-use React components and standalone SVGs for use across applications.
                 </p>
                 <ul>
                     <li>65 custom icons built by the BSPK Design team</li>
@@ -97,7 +100,7 @@ export function StateOf() {
                 </ul>
                 <p>
                     <strong>@bspk/ui-ngx</strong> - <Tag color="orange" label="Prerelease" /> The core Angular component
-                    library used across web applications.
+                    library used across web applications; includes all icons provided as Angular components.
                 </p>
             </Slide>
             <Slide>
@@ -113,8 +116,8 @@ export function StateOf() {
                         Improved component accessibility
                         <ul>
                             <li>ARIA live region support for Pagination component</li>
-                            <li>Better keyboard navigation for Modal and Dropdown components</li>
-                            <li>Improved screen reader support across multiple components</li>
+                            <li>Better keyboard navigation for Dropdowns, DatePicker, and TimePicker components</li>
+                            <li>Improved screen reader support across all components</li>
                         </ul>
                     </li>
                     <li>Improved component testing coverage</li>
