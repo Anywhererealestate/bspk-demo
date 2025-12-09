@@ -1,0 +1,56 @@
+[data-state-of-bspk] {
+    [data-slide] {
+        min-height: 100vh;
+        padding: var(--spacing-sizing-20);
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        font: var(--subheader-large);
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        backdrop-filter: blur(12px);
+        outline: 100px solid var(--surface-brand-shade);
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--background-shade);
+            opacity: 0.8;
+            z-index: -1;
+        }
+
+        &[data-center] {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        p,
+        ul,
+        a {
+            font: var(--subheader-x-large);
+        }
+
+        ul {
+            margin-top: var(--spacing-sizing-06);
+            padding-left: var(--spacing-sizing-10);
+            list-style-type: disc;
+
+            li {
+                margin-bottom: var(--spacing-sizing-06);
+            }
+        }
+
+        h2 {
+            margin-bottom: var(--spacing-sizing-10);
+            font: var(--subheader-xxx-large);
+        }
+    }
+}

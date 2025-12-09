@@ -3,6 +3,7 @@ import { ComponentPage } from 'components/ComponentPage';
 import { Markdown } from 'components/Markdown.tsx';
 import { Page } from 'components/Page';
 import { Page404 } from 'components/Page404.tsx';
+import { StateOf } from 'src/components/state-of';
 import Contributing from 'src/docs/CONTRIBUTING.md?raw';
 import { Blocks } from 'src/docs/blocks';
 import { Colors } from 'src/docs/colors';
@@ -56,6 +57,13 @@ export const routes: RouteLink[] = [
                 Component: Colors,
                 title: 'Colors',
                 hideSideNav: true,
+            },
+            {
+                path: '/state-of',
+                Component: StateOf,
+                title: 'State of BSPK UI',
+                hideSideNav: true,
+                hide: true,
             },
         ],
     },

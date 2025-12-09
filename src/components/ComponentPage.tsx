@@ -220,7 +220,6 @@ function Section({
                 <Content
                     CodeExample={CodeExample}
                     Component={Component}
-                    Playground={CodePlayground}
                     Syntax={Syntax}
                     props={component.defaultState || {}}
                 />
