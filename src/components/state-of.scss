@@ -8,23 +8,6 @@
         justify-content: flex-start;
         align-items: flex-start;
         font: var(--subheader-large);
-        position: sticky;
-        top: 0;
-        left: 0;
-        width: 100%;
-        backdrop-filter: blur(12px);
-        outline: 100px solid var(--surface-brand-shade);
-
-        &::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--background-shade);
-            opacity: 0.8;
-            z-index: -1;
-        }
 
         &[data-center] {
             justify-content: center;

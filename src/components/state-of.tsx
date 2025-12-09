@@ -1,33 +1,40 @@
 /* eslint-disable @cspell/spellchecker */
-import { SvgChevronLeft } from '@bspk/icons/ChevronLeft';
-import { SvgChevronRight } from '@bspk/icons/ChevronRight';
 import { SvgContactSupport } from '@bspk/icons/ContactSupport';
 import { SvgDescription } from '@bspk/icons/Description';
 import { SvgEvent } from '@bspk/icons/Event';
-import { Fab } from '@bspk/ui/Fab';
 import { Flex } from '@bspk/ui/Flex/Flex';
 import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
 import { useEventListener } from '@bspk/ui/hooks/useEventListener';
 import { handleKeyDown } from '@bspk/ui/utils/handleKeyDown';
-import { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import 'src/components/state-of.scss';
 import { GitHubIcon } from 'src/utils/githubIcon';
 
 export function StateOf() {
     const [slideIndex, setSlideIndex] = useState(0);
 
+    const slides = useRef<NodeListOf<Element> | null>(null);
+
     useLayoutEffect(() => {
-        document.querySelectorAll('[data-slide]')[slideIndex]?.scrollIntoView({ behavior: 'smooth' });
+        slides.current = document.querySelectorAll('[data-slide]');
+    }, []);
+
+    useLayoutEffect(() => {
+        slides.current?.[slideIndex]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'center' });
     }, [slideIndex]);
+
+    const next = () => setSlideIndex((prev) => Math.min((slides.current?.length || 1) - 1, prev + 1));
+
+    const prev = () => setSlideIndex((prev) => Math.max(0, prev - 1));
 
     useEventListener('keydown', (e) =>
         handleKeyDown(
             {
-                ArrowRight: () => setSlideIndex((i) => i + 1),
-                ArrowLeft: () => setSlideIndex((i) => Math.max(0, i - 1)),
-                ArrowUp: () => setSlideIndex((i) => Math.max(0, i - 1)),
-                ArrowDown: () => setSlideIndex((i) => i + 1),
+                ArrowRight: () => next(),
+                ArrowLeft: () => prev(),
+                ArrowUp: () => prev(),
+                ArrowDown: () => next(),
             },
             {
                 preventDefault: true,
@@ -37,26 +44,6 @@ export function StateOf() {
 
     return (
         <div data-state-of-bspk>
-            <Fab
-                container="page"
-                icon={<SvgChevronRight />}
-                iconOnly
-                label="next"
-                onClick={() => setSlideIndex((i) => i + 1)}
-                placement="bottom-right"
-                size="medium"
-                variant="neutral"
-            />
-            <Fab
-                container="page"
-                icon={<SvgChevronLeft />}
-                iconOnly
-                label="previous"
-                onClick={() => setSlideIndex((i) => Math.max(0, i - 1))}
-                placement="bottom-left"
-                size="medium"
-                variant="neutral"
-            />
             <Slide data-center style={{ padding: 24 }}>
                 <h2 style={{ fontSize: '200%' }}>Bespoke Design System Development Updates</h2>
                 <h3 style={{ fontSize: '150%' }}>December 2025</h3>
