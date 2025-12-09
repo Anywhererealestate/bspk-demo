@@ -99,6 +99,7 @@ export function Welcome() {
                 >
                     <Button as="a" href="/get-started" label="Get Started" size="small" variant="secondary" />
                     <Button as="a" href="/components" label="View Components" size="small" variant="secondary" />
+                    <Button as="a" href="/state-of" label="State of BSPK" size="small" variant="secondary" />
                 </div>
             </section>
             <section style={{ width: '100%', maxWidth: '1280px', padding: 'var(--spacing-sizing-10)' }}>

@@ -54,7 +54,7 @@ export function StateOf() {
 
                 <p>
                     The Bespoke Design System is a comprehensive, central toolkit of reusable components, standards, and
-                    guidelines.
+                    guidelines for use on internal web applications across Anywhere Real Estate.
                 </p>
 
                 <p>
