@@ -4,6 +4,8 @@ export function generateComponentCode<Props extends Record<string, unknown>>(
     component: DemoComponent<Props>,
     propState: Record<string, any>,
 ): string {
+    // TODO: add state management
+
     return componentToString(component.name, propState, component.props);
 }
 
@@ -15,8 +17,6 @@ function componentToString<Props extends Record<string, unknown>>(
     const propsString = Object.entries(propState)
         .map(([key, value]) => {
             const propMeta = propsMeta?.find((prop) => prop.name === key);
-
-            console.log({ key, value, propMeta, str: typeof value === 'string' });
 
             let formattedValue;
             if (typeof value === 'string') {

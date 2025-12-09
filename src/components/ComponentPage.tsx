@@ -33,7 +33,7 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
     return (
         <Page data-component-page>
             <Flex align="center" justify="space-between" style={{ width: '100%' }}>
-                <h3 title="Introduction">{component.name}</h3>
+                <h2 title="Introduction">{component.name}</h2>
                 <Flex align="center" gap="8">
                     <Button
                         as="a"

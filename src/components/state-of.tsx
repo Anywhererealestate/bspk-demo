@@ -24,9 +24,9 @@ export function StateOf() {
         slides.current?.[slideIndex]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'center' });
     }, [slideIndex]);
 
-    const next = () => setSlideIndex((prev) => Math.min((slides.current?.length || 1) - 1, prev + 1));
+    const next = () => setSlideIndex((i) => Math.min((slides.current?.length || 1) - 1, i + 1));
 
-    const prev = () => setSlideIndex((prev) => Math.max(0, prev - 1));
+    const prev = () => setSlideIndex((i) => Math.max(0, i - 1));
 
     useEventListener('keydown', (e) =>
         handleKeyDown(
@@ -77,6 +77,11 @@ export function StateOf() {
                     <strong>@bspk/ui</strong> - <Tag color="green" label="Released" /> The core React component library
                     used across web applications.
                 </p>
+                <ul>
+                    <li>
+                        70+ <strong>stable*</strong> components
+                    </li>
+                </ul>
                 <p>
                     <strong>@bspk/styles</strong> - <Tag color="green" label="Released" /> Stylesheets and other assets
                     built for each Brand generated directly from the Figma Design tokens.

@@ -1,16 +1,13 @@
 import { SvgContentCopy } from '@bspk/icons/ContentCopy';
-import { SvgDesktopWindows } from '@bspk/icons/DesktopWindows';
 import { SvgRefresh } from '@bspk/icons/Refresh';
-import { SvgSmartphone } from '@bspk/icons/Smartphone';
 import { SvgIcon } from '@bspk/icons/SvgIcon';
-import { SvgTablet } from '@bspk/icons/Tablet';
 import { Button } from '@bspk/ui/Button/Button';
 import { Card } from '@bspk/ui/Card';
 import { ExamplePlaceholder } from '@bspk/ui/ExamplePlaceholder';
 import { FieldDescription, FieldError, FieldLabel } from '@bspk/ui/Field';
 import { InputElement } from '@bspk/ui/Input';
 import { sendSnackbar } from '@bspk/ui/Snackbar';
-import { CodePlaygroundProps, DemoAction } from '@bspk/ui/utils/demo';
+import { DemoAction } from '@bspk/ui/utils/demo';
 import { themes } from 'prism-react-renderer';
 import React, { Suspense, useContext, useEffect, useState } from 'react';
 import { LiveProvider, LiveError, LivePreview, LiveEditor, LiveContext } from 'react-live';
@@ -26,6 +23,11 @@ const action: DemoAction = (message: string) => {
     });
 };
 
+type CodePlaygroundProps = {
+    defaultCode: string;
+    githubLink?: string;
+};
+
 /**
  * A code playground component that provides an editor and live preview for code snippets.
  *
@@ -36,7 +38,7 @@ const action: DemoAction = (message: string) => {
  * 5. If errors in preview, previewCode is set back to lastValidCodeRef
  * 6. When externalCode changes, editorCode and previewCode are updated immediately
  */
-export function CodePlayground({ defaultCode, githubLink, responsive, checkered }: CodePlaygroundProps) {
+export function CodePlayground({ defaultCode, githubLink }: CodePlaygroundProps) {
     const { theme } = useGlobalState();
 
     // this is the code shown in the editor, should be updated immediately when externalCode changes
@@ -70,7 +72,7 @@ export function CodePlayground({ defaultCode, githubLink, responsive, checkered 
                         }}
                     >
                         <LogErrors />
-                        <LivePreview data-dotted={checkered || undefined} data-preview />
+                        <LivePreview data-preview />
                         <LiveError data-error />
                     </LiveProvider>
                     {showCode && (

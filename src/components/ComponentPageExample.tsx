@@ -66,29 +66,31 @@ export function ComponentPageExample() {
                                             name="preset-select"
                                             onChange={(value) => setPreset(value as string)}
                                             options={
-                                                component.presets.map((p) => ({
-                                                    label: p.label,
-                                                    value: p.value,
-                                                    id: p.value,
-                                                    trailing: p.designPattern ? (
-                                                        <Tooltip
-                                                            label={
-                                                                typeof p.designPattern === 'string'
-                                                                    ? p.designPattern
-                                                                    : ''
-                                                            }
-                                                        >
-                                                            {(...triggerProps) => (
-                                                                <Tag
-                                                                    {...triggerProps}
-                                                                    color="blue"
-                                                                    label="Design Pattern"
-                                                                    size="x-small"
-                                                                />
-                                                            )}
-                                                        </Tooltip>
-                                                    ) : null,
-                                                })) || []
+                                                component.presets
+                                                    .filter((p) => !p.hideDemo)
+                                                    .map((p) => ({
+                                                        label: p.label,
+                                                        value: p.value,
+                                                        id: p.value,
+                                                        trailing: p.designPattern ? (
+                                                            <Tooltip
+                                                                label={
+                                                                    typeof p.designPattern === 'string'
+                                                                        ? p.designPattern
+                                                                        : ''
+                                                                }
+                                                            >
+                                                                {(...triggerProps) => (
+                                                                    <Tag
+                                                                        {...triggerProps}
+                                                                        color="blue"
+                                                                        label="Design Pattern"
+                                                                        size="x-small"
+                                                                    />
+                                                                )}
+                                                            </Tooltip>
+                                                        ) : null,
+                                                    })) || []
                                             }
                                             placeholder="Select Preset"
                                             size="small"
