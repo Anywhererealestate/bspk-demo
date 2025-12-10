@@ -11,8 +11,8 @@ import { Switch } from '@bspk/ui/Switch';
 import { ToggleOption } from '@bspk/ui/ToggleOption';
 import { useUIContext } from '@bspk/ui/hooks/useUIContext';
 import { cssWithVars } from '@bspk/ui/utils/cwv';
-import { Page } from 'components/Page';
 import { Fragment, HTMLProps, ReactNode, useState } from 'react';
+import { Page } from 'components/Page';
 import { Syntax } from 'src/components/Syntax';
 import { ICON_META, IconMeta, IconName, ICONS } from 'src/utils/icons';
 

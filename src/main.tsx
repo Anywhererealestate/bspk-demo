@@ -1,9 +1,9 @@
 import 'src/utils/wydr';
 
-import { Root } from 'components/Root';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Root } from 'components/Root';
 import { routes } from 'src/routes';
 
 const router = createBrowserRouter([{ Component: Root, children: routes as any }]);

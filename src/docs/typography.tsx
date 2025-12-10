@@ -1,8 +1,8 @@
 /* eslint-disable react/no-multi-comp */
 import { LinkDemo } from '@bspk/ui/Link/LinkExample';
+import { ComponentType } from 'react';
 import { CodeExample } from 'components/CodeExample';
 import { Page } from 'components/Page';
-import { ComponentType } from 'react';
 
 export function Typography() {
     const sections: { title: string; code?: string; Content?: ComponentType }[] = [

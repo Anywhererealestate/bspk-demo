@@ -2,10 +2,10 @@ import { execSync } from 'child_process';
 import fs from 'fs';
 
 import { AxeBuilder } from '@axe-core/playwright';
+import { BRANDS } from '@bspk/ui/constants/brands';
 import { test, expect } from '@playwright/test';
 
 import { gotoUrl, components } from '../utils';
-import { BRANDS } from '@bspk/ui/constants/brands';
 
 for (const component of components) {
     for (const brand of BRANDS.map((b) => b.slug)) {

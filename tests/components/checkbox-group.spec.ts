@@ -2,18 +2,13 @@ import { test, expect } from '@playwright/test';
 
 import { gotoUrl } from '../utils';
 
-test(`checkbox group`, async ({ page, browserName }) => {
-    // test.skip(browserName.toLowerCase() !== 'chromium', `Test only for chromium!`);
-
+test(`checkbox group`, async ({ page }) => {
     const getGroupCheckbox = (nth: number) =>
         page.locator(`[data-main-example] [data-bspk-owner="toggle-option"]:nth-child(${nth})`);
 
     await gotoUrl(page, '/checkbox-group');
 
     await page.waitForLoadState('networkidle');
-
-    // Locate the element
-    const element = page.locator('[data-main-example] [data-example-render]');
 
     // click the select all switch in the prop table
     const selectAllSwitch = page.locator('[data-testid="selectAll-Switch"]');

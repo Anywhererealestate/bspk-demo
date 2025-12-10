@@ -33,8 +33,7 @@ export function ComponentPageExample() {
     return (
         <>
             {component.showExample && (
-                <>
-                    <ErrorLogContext id={errorId}>
+                <ErrorLogContext id={errorId}>
                         <CodeExample
                             accessibility
                             containerStyle={component.containerStyle}
@@ -44,7 +43,6 @@ export function ComponentPageExample() {
                             <ComponentRender />
                         </CodeExample>
                     </ErrorLogContext>
-                </>
             )}
             {component.props?.length > 0 && (
                 <>

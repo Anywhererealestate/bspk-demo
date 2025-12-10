@@ -1,10 +1,8 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 
 import { gotoUrl } from '../utils';
 
-test('text input element screenshot comparison', async ({ page, browserName }) => {
-    //  test.skip(browserName.toLowerCase() !== 'chromium', `Test only for chromium!`);
-
+test('text input element screenshot comparison', async ({ page }) => {
     await gotoUrl(page, '/input');
 
     // Locate the element

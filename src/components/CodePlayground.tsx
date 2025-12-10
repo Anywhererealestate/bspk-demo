@@ -52,8 +52,7 @@ export function CodePlayground({ defaultCode, githubLink }: CodePlaygroundProps)
     const [showCode, setShowCode] = useState<boolean>(false);
 
     return (
-        <>
-            <Card data-code-editor variant="outlined">
+        <Card data-code-editor variant="outlined">
                 <Suspense fallback={<div>Loading Playground...</div>}>
                     <LiveProvider
                         code={transformPreviewCode(code)}
@@ -129,7 +128,6 @@ export function CodePlayground({ defaultCode, githubLink }: CodePlaygroundProps)
                     </div>
                 </Suspense>
             </Card>
-        </>
     );
 }
 

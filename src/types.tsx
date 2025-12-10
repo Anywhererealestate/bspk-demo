@@ -1,5 +1,5 @@
 import { ComponentExample, DemoPreset, TypePropertyDemo } from '@bspk/ui/utils/demo';
-import type { RouteObject } from 'react-router-dom';
+import { RouteObject } from 'react-router-dom';
 import { ComponentMeta, TypeMeta } from 'src/meta';
 
 export type ActionCallback = (message: string) => void;
