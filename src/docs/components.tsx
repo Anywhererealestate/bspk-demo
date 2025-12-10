@@ -1,8 +1,8 @@
 /* eslint-disable react/no-multi-comp */
 import { Button } from '@bspk/ui/Button/Button';
 import { Divider } from '@bspk/ui/Divider/Divider';
-import { Grid } from '@bspk/ui/Grid';
 import { Flex } from '@bspk/ui/Flex';
+import { Grid } from '@bspk/ui/Grid';
 import { Tooltip } from '@bspk/ui/Tooltip/Tooltip';
 import { COMPONENT_PHASE_COLORS as colors } from '@bspk/ui/constants/phases';
 import { ElementProps } from '@bspk/ui/types/common';

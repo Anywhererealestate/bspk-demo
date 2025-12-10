@@ -73,6 +73,11 @@ export function StateOf() {
 
             <Slide>
                 <h2>Our Libraries</h2>
+
+                <p>
+                    Our design system development assets are the first open-source project within the Anywhere Real
+                    Estate ecosystem. These assets include the following libraries:
+                </p>
                 <p>
                     <strong>@bspk/ui</strong> - <Tag color="green" label="Released" /> The core React component library
                     used across web applications.
