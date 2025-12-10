@@ -1,5 +1,5 @@
 import { ComponentExample, DemoPreset, TypePropertyDemo } from '@bspk/ui/utils/demo';
-import type { RouteObject } from 'react-router-dom';
+import { RouteObject } from 'react-router-dom';
 import { ComponentMeta, TypeMeta } from 'src/meta';
 
 export type ActionCallback = (message: string) => void;
@@ -14,6 +14,11 @@ export type RouteLink = Omit<RouteObject, 'children'> & {
     active?: boolean;
     noIndex?: boolean;
     hideSideNav?: boolean;
+};
+export type BlockExample = {
+    name: string;
+    description?: string;
+    examples: { label: string; code: string }[];
 };
 
 /**
@@ -61,7 +66,7 @@ export type DemoComponent<P extends Record<string, unknown> = any> = Omit<Compon
          * The style of the component's container, which can be a CSSProperties object or a function that returns a
          * CSSProperties object based on the component's propState.
          */
-        containerStyle?: React.CSSProperties | ((propState: P) => React.CSSProperties);
+        containerStyle?: React.CSSProperties;
         /** The initial state of the component's properties. This is a record of property names and their default values. */
         defaultState: Record<string, any>;
         /**

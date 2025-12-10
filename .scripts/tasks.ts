@@ -13,19 +13,14 @@ export const TASKS: Task[] = [
         exec: 'npm run create-meta',
     },
     {
-        description: 'Report missing CSS variables',
-        name: 'reportMissingVariables',
-        exec: 'npx tsx ./.scripts/tasks/reportMissingVariables.ts',
-    },
-    {
         description: 'Ensure latest version of @bspk/ui is installed',
         name: 'ensureLatestUIVersion',
         exec: 'npx tsx ./.scripts/tasks/ensureLatestUIVersion.ts run',
     },
     {
-        description: 'Update the @bspk/ui package to the latest version / run css vars checker',
+        description: 'Update the @bspk/ui package to the latest version',
         name: 'updateUI',
-        exec: 'npm unlink @bspk/ui && npm un @bspk/ui && npm i @bspk/ui && npx tsx ./.scripts/tasks/reportMissingVariables.ts',
+        exec: 'npm unlink @bspk/ui && npm un @bspk/ui && npm i @bspk/ui',
     },
 ] as const;
 

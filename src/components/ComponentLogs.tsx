@@ -6,7 +6,7 @@ export default function ComponentLogs() {
     const { errors } = useErrorLog();
     const { actions } = useActionLog();
 
-    if (!(errors.length + actions.length)) return <></>;
+    if (!(errors.length + actions.length)) return null;
 
     return (
         <div data-actions-errors>

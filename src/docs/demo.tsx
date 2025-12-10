@@ -10,8 +10,8 @@ import { ListItem, ListItemProps } from '@bspk/ui/ListItem';
 import { PageControl } from '@bspk/ui/PageControl';
 import { TabGroup } from '@bspk/ui/TabGroup/index';
 import { Txt } from '@bspk/ui/Txt';
-import { Page } from 'components/Page';
 import { Fragment, useEffect, useState } from 'react';
+import { Page } from 'components/Page';
 import { Syntax } from 'src/components/Syntax';
 
 const milestones: ListItemProps[] = [
@@ -61,7 +61,7 @@ export function Demo() {
     }, []);
 
     return (
-        <Page title="BSPK UI Demo">
+        <Page>
             <Txt as="h1" style={{ margin: '16px 0' }} variant="heading-h3">
                 Home Journey Mobile Experience
             </Txt>

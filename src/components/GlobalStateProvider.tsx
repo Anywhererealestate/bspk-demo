@@ -6,10 +6,10 @@ import { Brand } from '@bspk/ui/types/common';
 import { COLOR_THEMES, ColorTheme } from '@bspk/ui/utils/uiContext';
 import { PropsWithChildren, useMemo, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import store from 'store';
 import { BUILD, VERSION } from 'src/meta';
 import { GlobalState, globalStateContext, globalStateDefault } from 'src/utils/globalState';
 import { useStoreState } from 'src/utils/useStoreState';
-import store from 'store';
 
 declare global {
     interface Window {

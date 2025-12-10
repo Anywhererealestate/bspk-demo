@@ -1,10 +1,10 @@
 import { TabGroup } from '@bspk/ui/TabGroup';
 import { DataProps } from '@bspk/ui/types/common';
 import { PrettyParser } from '@bspk/ui/utils/demo';
+import { CSSProperties, ReactNode, useRef, useState } from 'react';
 import { AccessibilitySection } from 'components/AccessibilitySection';
 import ComponentLogs from 'components/ComponentLogs';
 import { ErrorBoundary } from 'components/ErrorBoundary';
-import { CSSProperties, ReactNode, useRef, useState } from 'react';
 import { Syntax } from 'src/components/Syntax';
 
 export function CodeExample({

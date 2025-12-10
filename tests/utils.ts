@@ -1,4 +1,4 @@
-import { type Page } from '@playwright/test';
+import { Page } from '@playwright/test';
 import data from '../src/meta/data.json' with { type: 'json' };
 
 const { componentsMeta } = data;

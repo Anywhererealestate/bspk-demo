@@ -2,9 +2,9 @@ import { Table } from '@bspk/ui/Table';
 import { Tag } from '@bspk/ui/Tag';
 import { Txt } from '@bspk/ui/Txt';
 import { TypePropertyDemo, TypePropertyDemoWithControls } from '@bspk/ui/utils/demo';
+import { useMemo } from 'react';
 import { Markup } from 'components/Markup';
 import { TypePropControl } from 'components/TypePropControl';
-import { useMemo } from 'react';
 import { PROPERTY_NAME_CUSTOM_SORT } from 'src/config';
 
 const hasPropTypeControl = (prop: TypePropertyDemo) => {
@@ -76,121 +76,116 @@ export function TypeProps({
     });
 
     return (
-        <>
-            <Table
-                columns={[
-                    {
-                        key: 'name',
-                        label: 'Name',
-                        width: 'auto',
-                        valign: 'top',
-                        formatter: (row) => (
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sizing-02)' }}>
-                                {row.name}
-                            </div>
-                        ),
-                    },
-                    {
-                        key: 'description-type',
-                        label: 'Description / Type',
-                        width: '1fr',
-                        valign: 'top',
-                        formatter: (row) => (
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sizing-02)' }}>
-                                {row['description-type']}
-                            </div>
-                        ),
-                    },
-                    {
-                        key: 'default',
-                        label: 'Default',
-                        width: 'auto',
-                        valign: 'top',
-                    },
-                    !!onChange && {
-                        key: 'controls',
-                        label: 'Controls',
-                        width: '200px',
-                        valign: 'top',
-                    },
-                ]}
-                data={propsWithControl.map((prop) => {
-                    return {
-                        id: prop.name,
-                        name: (
-                            <>
-                                <Txt as="div" variant="labels-small">
-                                    {prop.name}
-                                </Txt>
-                                {prop.required && <Tag color="red" label="required" size="x-small" />}
-                            </>
-                        ),
-                        'description-type': (
-                            <>
-                                <Markup data-description>{prop.description}</Markup>
-                                <div data-type-options>
-                                    {prop.typeOptions?.map((o) => (
-                                        <Tag
-                                            color="blue"
-                                            key={`${o}1`}
-                                            label={o.toString()}
-                                            size="x-small"
-                                            variant="flat"
-                                        />
-                                    ))}
-                                </div>
-                                {'minimum' in prop && (
-                                    <Txt
-                                        as="div"
-                                        style={{
-                                            fontStyle: 'italic',
-                                            color: 'var(--foreground-neutral-on-surface-variant-02)',
-                                        }}
-                                        variant="labels-small"
-                                    >{`Minimum: ${prop.minimum}`}</Txt>
-                                )}
-                                {'maximum' in prop && (
-                                    <Txt
-                                        as="div"
-                                        style={{
-                                            fontStyle: 'italic',
-                                            color: 'var(--foreground-neutral-on-surface-variant-02)',
-                                        }}
-                                        variant="labels-small"
-                                    >{`Maximum: ${prop.maximum}`}</Txt>
-                                )}
-                            </>
-                        ),
-                        default: (
-                            <>
-                                {typeof prop.libraryDefault === 'undefined' ? (
-                                    <Tag color="yellow" label="None" size="x-small" variant="flat" />
-                                ) : (
+        <Table
+            columns={[
+                {
+                    key: 'name',
+                    label: 'Name',
+                    width: 'auto',
+                    valign: 'top',
+                    formatter: (row) => (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sizing-02)' }}>
+                            {row.name}
+                        </div>
+                    ),
+                },
+                {
+                    key: 'description-type',
+                    label: 'Description / Type',
+                    width: '1fr',
+                    valign: 'top',
+                    formatter: (row) => (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sizing-02)' }}>
+                            {row['description-type']}
+                        </div>
+                    ),
+                },
+                {
+                    key: 'default',
+                    label: 'Default',
+                    width: 'auto',
+                    valign: 'top',
+                },
+                !!onChange && {
+                    key: 'controls',
+                    label: 'Controls',
+                    width: '200px',
+                    valign: 'top',
+                },
+            ]}
+            data={propsWithControl.map((prop) => {
+                return {
+                    id: prop.name,
+                    name: (
+                        <>
+                            <Txt as="div" variant="labels-small">
+                                {prop.name}
+                            </Txt>
+                            {prop.required && <Tag color="red" label="required" size="x-small" />}
+                        </>
+                    ),
+                    'description-type': (
+                        <>
+                            <Markup data-description>{prop.description}</Markup>
+                            <div data-type-options>
+                                {prop.typeOptions?.map((o) => (
                                     <Tag
-                                        color="green"
-                                        label={prop.libraryDefault != null ? prop.libraryDefault.toString() : ''}
+                                        color="blue"
+                                        key={`${o}1`}
+                                        label={o.toString()}
                                         size="x-small"
                                         variant="flat"
                                     />
-                                )}
-                            </>
-                        ),
-                        controls: onChange && (
-                            <div style={{ width: '180px' }}>
-                                <TypePropControl
-                                    onChange={(nextValue) => onChange({ [prop.name]: nextValue })}
-                                    prop={prop}
-                                    value={state?.[prop.name]}
-                                />
+                                ))}
                             </div>
+                            {'minimum' in prop && (
+                                <Txt
+                                    as="div"
+                                    style={{
+                                        fontStyle: 'italic',
+                                        color: 'var(--foreground-neutral-on-surface-variant-02)',
+                                    }}
+                                    variant="labels-small"
+                                >{`Minimum: ${prop.minimum}`}</Txt>
+                            )}
+                            {'maximum' in prop && (
+                                <Txt
+                                    as="div"
+                                    style={{
+                                        fontStyle: 'italic',
+                                        color: 'var(--foreground-neutral-on-surface-variant-02)',
+                                    }}
+                                    variant="labels-small"
+                                >{`Maximum: ${prop.maximum}`}</Txt>
+                            )}
+                        </>
+                    ),
+                    default:
+                        typeof prop.libraryDefault === 'undefined' ? (
+                            <Tag color="yellow" label="None" size="x-small" variant="flat" />
+                        ) : (
+                            <Tag
+                                color="green"
+                                label={prop.libraryDefault != null ? prop.libraryDefault.toString() : ''}
+                                size="x-small"
+                                variant="flat"
+                            />
                         ),
-                    };
-                })}
-                data-props
-                data-type-props
-                pageSize={99}
-            />
-        </>
+                    controls: onChange && (
+                        <div style={{ width: '180px' }}>
+                            <TypePropControl
+                                onChange={(nextValue) => onChange({ [prop.name]: nextValue })}
+                                prop={prop}
+                                value={state?.[prop.name]}
+                            />
+                        </div>
+                    ),
+                };
+            })}
+            data-props
+            data-type-props
+            pageSize={99}
+        />
     );
 }
 

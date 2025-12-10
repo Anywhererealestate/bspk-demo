@@ -1,3 +1,4 @@
+import { Flex } from '@bspk/ui/Flex';
 import { Select } from '@bspk/ui/Select/Select';
 import { Tag } from '@bspk/ui/Tag/Tag';
 import { Tooltip } from '@bspk/ui/Tooltip/Tooltip';
@@ -7,7 +8,6 @@ import { useComponentContext } from 'components/ComponentProvider';
 import { ErrorLogContext } from 'components/ErrorLogContext';
 import { TypeProps } from 'components/TypeProps';
 import { ComponentRender } from 'src/components/ComponentRender';
-import { Flex } from 'src/components/Flex';
 import { components } from 'src/meta';
 import { useGlobalState } from 'src/utils/globalState';
 
@@ -17,9 +17,6 @@ export function ComponentPageExample() {
     const { showTouchTarget } = useGlobalState();
 
     const errorId = useId();
-
-    const containerStyle =
-        typeof component.containerStyle === 'function' ? component.containerStyle(propState) : component.containerStyle;
 
     if (!components[component.name as keyof typeof components]) {
         console.warn(`Component "${component.name}" not found in components meta.`);
@@ -36,18 +33,16 @@ export function ComponentPageExample() {
     return (
         <>
             {component.showExample && (
-                <>
-                    <ErrorLogContext id={errorId}>
+                <ErrorLogContext id={errorId}>
                         <CodeExample
                             accessibility
-                            containerStyle={containerStyle}
+                            containerStyle={component.containerStyle}
                             data-main-example
                             data-show-touch-targets={showTouchTarget || undefined}
                         >
                             <ComponentRender />
                         </CodeExample>
                     </ErrorLogContext>
-                </>
             )}
             {component.props?.length > 0 && (
                 <>
@@ -69,23 +64,31 @@ export function ComponentPageExample() {
                                             name="preset-select"
                                             onChange={(value) => setPreset(value as string)}
                                             options={
-                                                component.presets.map((p) => ({
-                                                    label: p.label,
-                                                    value: p.value,
-                                                    id: p.value,
-                                                    trailing: p.designPattern ? (
-                                                        <Tooltip label={p.designPattern}>
-                                                            {(...triggerProps) => (
-                                                                <Tag
-                                                                    {...triggerProps}
-                                                                    color="blue"
-                                                                    label="Design Pattern"
-                                                                    size="x-small"
-                                                                />
-                                                            )}
-                                                        </Tooltip>
-                                                    ) : null,
-                                                })) || []
+                                                component.presets
+                                                    .filter((p) => !p.hideDemo)
+                                                    .map((p) => ({
+                                                        label: p.label,
+                                                        value: p.value,
+                                                        id: p.value,
+                                                        trailing: p.designPattern ? (
+                                                            <Tooltip
+                                                                label={
+                                                                    typeof p.designPattern === 'string'
+                                                                        ? p.designPattern
+                                                                        : ''
+                                                                }
+                                                            >
+                                                                {(...triggerProps) => (
+                                                                    <Tag
+                                                                        {...triggerProps}
+                                                                        color="blue"
+                                                                        label="Design Pattern"
+                                                                        size="x-small"
+                                                                    />
+                                                                )}
+                                                            </Tooltip>
+                                                        ) : null,
+                                                    })) || []
                                             }
                                             placeholder="Select Preset"
                                             size="small"

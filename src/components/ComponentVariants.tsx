@@ -12,7 +12,7 @@ export function ComponentVariants() {
     const { component, propState } = useComponentContext();
     const { logError } = useErrorLogger();
 
-    if (component.variants === false) return <></>;
+    if (component.variants === false) return null;
 
     let variantOverrides: ComponentVariantOverrides = {};
     if (typeof component.variants === 'object') variantOverrides = component.variants;
@@ -24,7 +24,7 @@ export function ComponentVariants() {
                 (prop.type === 'boolean' || (prop.options && prop.options?.length > 1) || variantOverrides[prop.name]),
         ) || [];
 
-    if (!variantProperties.length) return <></>;
+    if (!variantProperties.length) return null;
 
     const Component = components[component.name as keyof typeof components];
 

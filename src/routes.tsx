@@ -3,20 +3,24 @@ import { ComponentPage } from 'components/ComponentPage';
 import { Markdown } from 'components/Markdown.tsx';
 import { Page } from 'components/Page';
 import { Page404 } from 'components/Page404.tsx';
-import { Welcome } from 'src/components/Welcome';
+import { StateOf } from 'src/components/state-of';
 import Contributing from 'src/docs/CONTRIBUTING.md?raw';
+import { Blocks } from 'src/docs/blocks';
+import { Colors } from 'src/docs/colors';
 import { Components } from 'src/docs/components';
 import { Hooks } from 'src/docs/hooks';
 import { Icons } from 'src/docs/icons';
 import Intro from 'src/docs/intro.md?raw';
 import { Stylesheets } from 'src/docs/styles';
 import { Typography } from 'src/docs/typography.tsx';
+import { Welcome } from 'src/docs/welcome';
 import { componentsMeta, MetaComponentName, typesMeta } from 'src/meta';
 import { RouteLink } from 'src/types';
+import { pascalCaseToTitleCase } from 'src/utils/strings';
 
 export const routes: RouteLink[] = [
     {
-        title: 'BSPK',
+        title: '',
         path: '/',
         Component: Welcome,
         hide: true,
@@ -28,24 +32,38 @@ export const routes: RouteLink[] = [
             {
                 path: '/get-started',
                 Component: () => (
-                    <Page title="Getting Started">
+                    <Page>
                         <Markdown md={Intro} />
                     </Page>
                 ),
                 title: 'Get Started',
             },
+            { path: '/components', Component: Components, title: 'Components' },
+            { path: '/blocks', Component: Blocks, title: 'Blocks', hideSideNav: true },
             { path: '/icons', Component: Icons, title: 'Icons', noIndex: true },
             { path: '/styles', Component: Stylesheets, title: 'Styles' },
-            { path: '/components', Component: Components, title: 'Components' },
             { path: '/typography', Component: Typography, title: 'Typography' },
             {
                 path: '/contributing',
                 Component: () => (
-                    <Page title="Contributing">
+                    <Page>
                         <Markdown md={Contributing} />
                     </Page>
                 ),
                 title: 'Contributing',
+            },
+            {
+                path: '/colors',
+                Component: Colors,
+                title: 'Colors',
+                hideSideNav: true,
+            },
+            {
+                path: '/state-of',
+                Component: StateOf,
+                title: 'State of BSPK UI',
+                hideSideNav: true,
+                hide: true,
             },
         ],
     },
@@ -100,15 +118,6 @@ routes.push({
 export function showUtilityComponent(component: (typeof componentsMeta)[number]) {
     const componentProps = typesMeta.find((t) => t.name === `${component.name}Props`);
     return !!componentProps?.properties?.length;
-}
-
-// pascal case to title case regex js handle sequential uppercase letters and keep them uppercase
-function pascalCaseToTitleCase(str?: string) {
-    if (!str) return '';
-    return str
-        .replace(/([a-z])([A-Z])/g, '$1 $2') // Add space between camelCase words
-        .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2') // Add space between sequential uppercase letters followed by lowercase
-        .replace(/^./, (char) => char.toUpperCase()); // Capitalize the first letter
 }
 
 /** Copyright 2025 Anywhere Real Estate - CC BY 4.0 */
