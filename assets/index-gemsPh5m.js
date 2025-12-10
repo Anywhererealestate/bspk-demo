@@ -1,0 +1,1 @@
+import{j as e,e as t,P as n}from"./index-BojzlPhd.js";function d({label:r,helperText:s,labelTrailing:l,errorMessage:a,style:o,...i}){return e.jsx(t,{errorMessage:a,helperText:s,label:r,labelTrailing:l,style:o,children:e.jsx(n,{...i})})}export{d as PasswordField};
