@@ -1,0 +1,43 @@
+[data-state-of-bspk] {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+
+    [data-slide] {
+        min-height: 100vh;
+        padding: var(--spacing-sizing-20);
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        font: var(--subheader-large);
+
+        &[data-center] {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        p,
+        ul,
+        a {
+            font: var(--subheader-x-large);
+        }
+
+        ul {
+            margin: var(--spacing-sizing-01) 0 var(--spacing-sizing-02) 0;
+            padding-left: var(--spacing-sizing-10);
+            list-style-type: disc;
+
+            li {
+                margin-bottom: var(--spacing-sizing-06);
+            }
+        }
+
+        h2 {
+            margin-bottom: var(--spacing-sizing-10);
+            font: var(--subheader-xxx-large);
+        }
+    }
+}

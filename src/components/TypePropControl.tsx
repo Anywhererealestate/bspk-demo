@@ -118,19 +118,17 @@ export function TypePropControl({
     if (controlOptions.length > 0) {
         if (controlOptions.length > 3 || type === 'select')
             return (
-                <>
-                    <Select
-                        data-testid={`${prop.name}-Select`}
-                        disabled={prop.disabled}
-                        id={`${baseId}-Select-${prop.name}`}
-                        options={options}
-                        size="small"
-                        {...controlProps}
-                        onChange={onChange}
-                        readOnly={readOnly}
-                        value={controlProps.value}
-                    />
-                </>
+                <Select
+                    data-testid={`${prop.name}-Select`}
+                    disabled={prop.disabled}
+                    id={`${baseId}-Select-${prop.name}`}
+                    options={options}
+                    size="small"
+                    {...controlProps}
+                    onChange={onChange}
+                    readOnly={readOnly}
+                    value={controlProps.value}
+                />
             );
 
         return <RadioGroup data-testid={`${prop.name}-RadioGroup`} options={options} {...controlProps} />;
@@ -138,8 +136,13 @@ export function TypePropControl({
 
     if (type === 'boolean')
         return (
-            <label data-testid={`${prop.name}-Switch`}>
-                <Switch checked={!!controlProps.value} {...controlProps} disabled={readOnly || prop.disabled} />
+            <label data-testid={`${prop.name}-Switch`} htmlFor={`${prop.name}-Switch`}>
+                <Switch
+                    checked={!!controlProps.value}
+                    id={`${prop.name}-Switch`}
+                    {...controlProps}
+                    disabled={readOnly || prop.disabled}
+                />
             </label>
         );
 

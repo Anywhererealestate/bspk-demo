@@ -1,14 +1,20 @@
 import { PropsWithChildren, CSSProperties, useEffect } from 'react';
+import { useRouteMeta } from 'src/utils/useRouteMeta';
 
 interface PageProps extends PropsWithChildren {
     style?: CSSProperties;
-    title: string;
 }
 
-export function Page({ children, style, title }: PageProps) {
+export function Page({ children, style }: PageProps) {
+    const routeMeta = useRouteMeta();
+
     useEffect(() => {
-        document.title = `BSPK - ${title}`;
-    }, [title]);
+        if (routeMeta?.title) {
+            document.title = `BSPK - ${routeMeta.title} `;
+        } else {
+            document.title = 'BSPK';
+        }
+    }, [routeMeta?.title]);
 
     return (
         <div data-page style={style}>

@@ -37,18 +37,23 @@ export function NavContents() {
 
         const nextMenuItems: NavItem[] = Array.from(
             mainElement?.querySelectorAll<HTMLElement>(`h1, h2, h3, h4, h5, h6`) || [],
-        ).map((element) => {
-            const title = element.title || element.textContent;
-            element.id = element.id || kebabCase(title);
-            const next = {
-                title: title,
-                hash: `#${element.id}`,
-                level: parseInt(element.tagName.substring(1), 10) - 2,
-                element,
-            };
-            element.dataset.navTarget = 'true';
-            return next;
-        });
+        )
+            .filter((element) => {
+                // element does not exist in code playgrounds
+                return !element.closest('[data-code-editor]') && !element.closest('[data-example]');
+            })
+            .map((element) => {
+                const title = element.title || element.textContent;
+                element.id = element.id || kebabCase(title);
+                const next = {
+                    title: title,
+                    hash: `#${element.id}`,
+                    level: parseInt(element.tagName.substring(1), 10) - 2,
+                    element,
+                };
+                element.dataset.navTarget = 'true';
+                return next;
+            });
 
         setMenuItems(nextMenuItems);
     }, [location.pathname]);
@@ -82,7 +87,7 @@ export function NavContents() {
         }
     }, [isOpen]);
 
-    return menuItems.length === 0 ? null : (
+    return menuItems.length < 2 ? null : (
         <>
             <Fab
                 container="page"

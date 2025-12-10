@@ -4,9 +4,9 @@ import { ListItem } from '@bspk/ui/ListItem';
 import { SkeletonText } from '@bspk/ui/SkeletonText';
 import { Txt } from '@bspk/ui/Txt';
 import axe from 'axe-core';
+import { useEffect, useMemo, useRef } from 'react';
 import { useComponentContext } from 'components/ComponentProvider';
 import { Syntax } from 'components/Syntax';
-import { useEffect, useMemo, useRef } from 'react';
 
 export type AccessibilitySectionProps = {
     context: HTMLElement | null;

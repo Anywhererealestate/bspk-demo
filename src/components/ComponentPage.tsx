@@ -1,13 +1,15 @@
+import { Button } from '@bspk/ui/Button/Button';
+import { Flex } from '@bspk/ui/Flex/Flex';
 import { SwitchOption } from '@bspk/ui/SwitchOption';
 import { ComponentPageSection } from '@bspk/ui/utils/demo';
+import { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { ComponentPageExample } from 'components/ComponentPageExample';
 import { ComponentProvider } from 'components/ComponentProvider';
 import { ComponentVariants } from 'components/ComponentVariants';
 import { Markup } from 'components/Markup';
 import { Syntax } from 'components/Syntax';
 import { TypeProps } from 'components/TypeProps';
-import { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import { CodeExample } from 'src/components/CodeExample';
 import { CodePlayground } from 'src/components/CodePlayground';
 import { Page } from 'src/components/Page';
@@ -15,6 +17,7 @@ import { TagComponent } from 'src/components/TagComponent';
 import { COMPONENT_PHASES, components, MetaComponentName } from 'src/meta';
 import { DemoComponent } from 'src/types';
 import { generateComponentCode } from 'src/utils/generateComponentCode';
+import { GitHubIcon } from 'src/utils/githubIcon';
 import { useGlobalState } from 'src/utils/globalState';
 import { kebabCase } from 'src/utils/kebabCase';
 import { useComponentDemo } from 'src/utils/useComponentDemo';
@@ -23,29 +26,41 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
     const component = useComponentDemo(componentName);
     const { setShowTouchTarget, showTouchTarget } = useGlobalState();
 
-    if (!component) return <h2>Component not available.</h2>;
+    if (!component) return <h3>Component not available.</h3>;
 
     const Component = components[component.name as keyof typeof components];
 
     return (
-        <Page data-component-page title={component.name}>
-            <header data-header>
+        <Page data-component-page>
+            <Flex align="center" justify="space-between" style={{ width: '100%' }}>
                 <h2 title="Introduction">{component.name}</h2>
-                {component.phase && (
-                    <TagComponent component={{ ...component, name: COMPONENT_PHASES[component.phase].title }} />
-                )}
-            </header>
+                <Flex align="center" gap="8">
+                    <Button
+                        as="a"
+                        href={`https://github.com/Anywhererealestate/bspk-ui/blob/main/src/components/${component.name}/${component.name}.tsx`}
+                        iconOnly
+                        label="View Source on GitHub"
+                        rel="noopener noreferrer"
+                        size="small"
+                        target="_blank"
+                        tooltip="View Source on GitHub"
+                        variant="tertiary"
+                    >
+                        <GitHubIcon height={24} width={24} />
+                    </Button>
+                    {component.phase && (
+                        <TagComponent component={{ ...component, name: COMPONENT_PHASES[component.phase].title }} />
+                    )}
+                </Flex>
+            </Flex>
             <ComponentProvider component={component}>
                 <article>
                     <Markup>{component.description}</Markup>
                     {component.usage && (
                         <>
-                            <h2>Basic Usage</h2>
+                            <h3>Basic usage</h3>
                             {!!component.usage.description && <Markup>{component.usage.description}</Markup>}
-                            <CodePlayground
-                                defaultCode={component.usage.code}
-                                githubLink={`https://github.com/Anywhererealestate/bspk-ui/blob/main/src/components/${component.name}/${component.name}.tsx`}
-                            />
+                            <CodePlayground defaultCode={component.usage.code} />
                             {/* 
                                 <Syntax code={component.usage.code} language="typescript" pretty /> */}
                         </>
@@ -59,12 +74,9 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                                     marginTop: 'var(--spacing-sizing-06)',
                                 }}
                             >
-                                <h2 id={kebabCase(`Design-pattern-${preset.label}`)}>{preset.label}</h2>
-                                <p>{preset.designPattern}</p>
-                                <CodePlayground
-                                    defaultCode={generateComponentCode(component.name, preset.propState)}
-                                    githubLink={`https://github.com/Anywhererealestate/bspk-ui/blob/main/src/components/${component.name}/${component.name}.tsx`}
-                                />
+                                <h3 id={kebabCase(`Design-pattern-${preset.label}`)}>{preset.label}</h3>
+                                {typeof preset.designPattern === 'string' && <p>{preset.designPattern}</p>}
+                                <CodePlayground defaultCode={generateComponentCode(component, preset.propState)} />
                             </div>
                         ))}
                     {component.sections
@@ -88,7 +100,7 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                     >
                         {component.showExample && (
                             <>
-                                <h2>Demo</h2>
+                                <h3>Demo</h3>
                                 {component.hasTouchTarget && (
                                     <div data-touch-target-toggle style={{ marginBottom: '0.75em' }}>
                                         <SwitchOption
@@ -106,7 +118,7 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                     <ComponentPageExample />
                     {!!component.references?.length && (
                         <>
-                            <h2>References</h2>
+                            <h3>References</h3>
                             {component.references.map((ref) => (
                                 <Fragment key={ref.id}>
                                     <h4 id={kebabCase(`reference-${ref.name}`)}>{ref.name}</h4>
@@ -145,7 +157,7 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                         return (
                             !!section.components.length && (
                                 <Fragment key={section.title}>
-                                    <h2>{section.title}</h2>
+                                    <h3>{section.title}</h3>
                                     <p>{section.description}</p>
                                     <p
                                         style={{
@@ -162,7 +174,7 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                             )
                         );
                     })}
-                    <h2>Stylesheet</h2>
+                    <h3>Stylesheet</h3>
                     {component.css ? (
                         <p>
                             This is the CSS for the component. The css variables used within are available in the{' '}
@@ -203,7 +215,7 @@ function Section({
                 marginTop: 'var(--spacing-sizing-06)',
             }}
         >
-            <h2 id={kebabCase(`section-${title}`)}>{title}</h2>
+            <h3 id={kebabCase(`section-${title}`)}>{title}</h3>
             <div>
                 <Content
                     CodeExample={CodeExample}

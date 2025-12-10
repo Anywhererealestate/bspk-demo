@@ -2,7 +2,7 @@ import { Page } from 'components/Page';
 
 export function Page404() {
     return (
-        <Page title="404 Not Found">
+        <Page>
             <h2>404&apos;d</h2>
             <p>Page not found</p>
 

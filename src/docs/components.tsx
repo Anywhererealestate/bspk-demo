@@ -1,26 +1,26 @@
 /* eslint-disable react/no-multi-comp */
 import { Button } from '@bspk/ui/Button/Button';
 import { Divider } from '@bspk/ui/Divider/Divider';
+import { Flex } from '@bspk/ui/Flex';
+import { Grid } from '@bspk/ui/Grid';
 import { Tooltip } from '@bspk/ui/Tooltip/Tooltip';
 import { COMPONENT_PHASE_COLORS as colors } from '@bspk/ui/constants/phases';
 import { ElementProps } from '@bspk/ui/types/common';
 import { COMPONENT_PHASES } from '@bspk/ui/types/meta';
 import { Page } from 'components/Page';
-import { Flex } from 'src/components/Flex';
-import { Grid } from 'src/components/Grid';
 import { componentsMeta } from 'src/meta';
 import { showUtilityComponent } from 'src/routes';
 
 export function Components() {
     return (
-        <Page title="Components">
-            <Flex direction="column" gap="var(--spacing-sizing-10)">
+        <Page>
+            <Flex direction="column" gap="40">
                 <h2 id="components">Components</h2>
                 <p>
                     Here you can find all the components available in the library. We are working on adding more
                     components.
                 </p>
-                <Grid columnWidths={[1, 1, 1]} gap="var(--spacing-sizing-08)" style={{ maxWidth: '900px' }}>
+                <Grid columns={[1, 1, 1]} gap="24" style={{ maxWidth: '900px' }}>
                     {componentsMeta
                         .filter(({ phase }) => phase !== 'Utility' && phase !== 'Backlog')
                         .map((component) => (
@@ -56,7 +56,7 @@ export function Components() {
                     meant to be used directly in applications but can be useful in prototyping and building new
                     components.
                 </p>
-                <Grid columnWidths={[1, 1, 1]} gap="var(--spacing-sizing-08)" style={{ maxWidth: '900px' }}>
+                <Grid columns={[1, 1, 1]} gap="32" style={{ maxWidth: '900px' }}>
                     {componentsMeta
                         .filter((component) => component.phase === 'Utility' && showUtilityComponent(component))
                         .map((component) => (

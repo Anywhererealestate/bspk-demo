@@ -1,8 +1,8 @@
 /* eslint-disable react/no-multi-comp */
 import { LinkDemo } from '@bspk/ui/Link/LinkExample';
+import { ComponentType } from 'react';
 import { CodeExample } from 'components/CodeExample';
 import { Page } from 'components/Page';
-import { ComponentType } from 'react';
 
 export function Typography() {
     const sections: { title: string; code?: string; Content?: ComponentType }[] = [
@@ -159,7 +159,7 @@ H<sub>2</sub>O
     ];
 
     return (
-        <Page title="Typography">
+        <Page>
             <h2>Typography</h2>
             <p>
                 Without using any additional CSS, you can use the following standard HTML elements and have the bespoke
