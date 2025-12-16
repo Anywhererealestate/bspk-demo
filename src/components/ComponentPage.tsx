@@ -50,7 +50,7 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                     >
                         <GitHubIcon height={24} width={24} />
                     </Button>
-                    {!!component.blockExamples && (
+                    {!!component.blockConfigs && (
                         <Popover
                             content="Blocks are reusable, higher-order design patterns built from multiple components that form
                             common product layouts and workflows. Blocks provide a structured starting point for
@@ -75,7 +75,7 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                             <CodePlayground defaultCode={component.usage.code} />
                         </>
                     )}
-                    {!!component.blockExamples?.length && (
+                    {!!component.blockConfigs?.length && (
                         <>
                             <p>
                                 These examples show common design patterns implemented two ways: directly with this
@@ -83,8 +83,13 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                                 demonstrate how different approaches can produce the same UI.The patterns are a starting
                                 point and can be adapted as needed.
                             </p>
-                            {component.blockExamples.map((p) => (
-                                <BlockExampleSection key={p.name} {...p} />
+                            {component.blockConfigs.map((p, index) => (
+                                <BlockExampleSection
+                                    //
+                                    index={index}
+                                    key={p.name}
+                                    {...p}
+                                />
                             ))}
                         </>
                     )}

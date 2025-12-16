@@ -1,11 +1,11 @@
 import { Flex } from '@bspk/ui/Flex';
 import { SegmentedControl } from '@bspk/ui/SegmentedControl';
-import { BlockExample } from '@bspk/ui/types/meta';
+import { BlockConfig } from '@bspk/ui/types/meta';
 import { kebabCase } from '@bspk/ui/utils/demo';
 import { useState } from 'react';
 import { CodePlayground } from './CodePlayground';
 
-export function BlockExampleSection({ name, component, pattern }: BlockExample) {
+export function BlockExampleSection({ name, component, pattern, index }: BlockConfig & { index: number }) {
     const [value, setValue] = useState('component' as 'component' | 'pattern');
 
     return (
@@ -22,7 +22,7 @@ export function BlockExampleSection({ name, component, pattern }: BlockExample) 
                     value={value}
                 />
             </Flex>
-            <CodePlayground defaultCode={value === 'component' ? component : pattern} />
+            <CodePlayground defaultCode={value === 'component' ? component : pattern} defaultShowCode={index === 0} />
         </Flex>
     );
 }

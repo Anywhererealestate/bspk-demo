@@ -32,7 +32,7 @@ const action: DemoAction = (message: string) => {
  * 5. If errors in preview, previewCode is set back to lastValidCodeRef
  * 6. When externalCode changes, editorCode and previewCode are updated immediately
  */
-export function CodePlayground({ defaultCode }: CodePlaygroundProps) {
+export function CodePlayground({ defaultCode, defaultShowCode }: CodePlaygroundProps) {
     const { theme } = useGlobalState();
 
     // this is the code shown in the editor, should be updated immediately when externalCode changes
@@ -43,7 +43,7 @@ export function CodePlayground({ defaultCode }: CodePlaygroundProps) {
         pretty(defaultCode || '', { parser: 'typescript' }).then(setCode);
     }, [defaultCode]);
 
-    const [showCode, setShowCode] = useState<boolean>(false);
+    const [showCode, setShowCode] = useState<boolean>(defaultShowCode || false);
 
     return (
         <Card data-code-editor variant="outlined">
