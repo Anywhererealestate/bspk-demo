@@ -29,7 +29,7 @@
         "test:local:setup": "vite-node ./.scripts/build-test-local.ts",
         "test:local": "TEST_URL=http://localhost:8080 playwright test",
         "tasks": "vite-node ./.scripts/tasks.ts",
-        "pr-check": "npm run lint && npm run lint:css"
+        "pr": "npm run lint && npm run lint:css && npm run build && git push --set-upstream origin $(git symbolic-ref --short HEAD) && open \"https://github.com/Anywhererealestate/bspk-demo/compare/dev...$(git symbolic-ref --short HEAD)\""
     },
     "peerDependencies": {
         "react": "^18.3.1",
