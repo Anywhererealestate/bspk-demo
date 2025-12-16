@@ -1,5 +1,5 @@
-import { Flex } from '-/components/Flex';
-import { SegmentedControl } from '-/components/SegmentedControl';
+import { Flex } from '@bspk/ui/Flex';
+import { SegmentedControl } from '@bspk/ui/SegmentedControl';
 import { BlockExample } from '@bspk/ui/types/meta';
 import { kebabCase } from '@bspk/ui/utils/demo';
 import { useState } from 'react';
