@@ -106,7 +106,7 @@ export const routes: RouteLink[] = [
     {
         title: 'Utilities',
         children: [
-            //
+            // utility components and other utilities
             { path: '/hooks', Component: Hooks, title: 'Hooks', noIndex: true },
             ...componentRoutes.utility,
         ],
