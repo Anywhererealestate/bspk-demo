@@ -14,11 +14,7 @@ export type RouteLink = Omit<RouteObject, 'children'> & {
     active?: boolean;
     noIndex?: boolean;
     hideSideNav?: boolean;
-};
-export type BlockExample = {
-    name: string;
-    description?: string;
-    examples: { label: string; code: string }[];
+    hideTitle?: boolean;
 };
 
 /**
