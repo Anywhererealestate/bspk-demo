@@ -26,7 +26,7 @@ const componentRoutes = componentsMeta.reduce(
         standard: RouteLink[];
         utility: RouteLink[];
     } => {
-        const kind = component.block ? 'block' : component.phase === 'Utility' ? 'utility' : 'standard';
+        const kind = component.blockExamples ? 'block' : component.phase === 'Utility' ? 'utility' : 'standard';
         acc[kind].push({
             path: `/${component.slug}`,
             id: component.slug,
