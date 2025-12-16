@@ -34,15 +34,15 @@ export function ComponentPageExample() {
         <>
             {component.showExample && (
                 <ErrorLogContext id={errorId}>
-                        <CodeExample
-                            accessibility
-                            containerStyle={component.containerStyle}
-                            data-main-example
-                            data-show-touch-targets={showTouchTarget || undefined}
-                        >
-                            <ComponentRender />
-                        </CodeExample>
-                    </ErrorLogContext>
+                    <CodeExample
+                        accessibility
+                        containerStyle={component.containerStyle}
+                        data-main-example
+                        data-show-touch-targets={showTouchTarget || undefined}
+                    >
+                        <ComponentRender />
+                    </CodeExample>
+                </ErrorLogContext>
             )}
             {component.props?.length > 0 && (
                 <>
@@ -65,7 +65,7 @@ export function ComponentPageExample() {
                                             onChange={(value) => setPreset(value as string)}
                                             options={
                                                 component.presets
-                                                    .filter((p) => !p.hideDemo)
+                                                    .filter((p) => !p.hideDemoOption)
                                                     .map((p) => ({
                                                         label: p.label,
                                                         value: p.value,
@@ -78,7 +78,7 @@ export function ComponentPageExample() {
                                                                         : ''
                                                                 }
                                                             >
-                                                                {(...triggerProps) => (
+                                                                {(triggerProps) => (
                                                                     <Tag
                                                                         {...triggerProps}
                                                                         color="blue"
