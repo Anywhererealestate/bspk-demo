@@ -7,12 +7,11 @@ import { ExamplePlaceholder } from '@bspk/ui/ExamplePlaceholder';
 import { FieldDescription, FieldError, FieldLabel } from '@bspk/ui/Field';
 import { InputElement } from '@bspk/ui/Input';
 import { sendSnackbar } from '@bspk/ui/Snackbar';
-import { DemoAction } from '@bspk/ui/utils/demo';
+import { CodePlaygroundProps, DemoAction } from '@bspk/ui/utils/demo';
 import { themes } from 'prism-react-renderer';
 import React, { Suspense, useContext, useEffect, useState } from 'react';
 import { LiveProvider, LiveError, LivePreview, LiveEditor, LiveContext } from 'react-live';
 import { components } from 'src/meta';
-import { GitHubIcon } from 'src/utils/githubIcon';
 import { useGlobalState } from 'src/utils/globalState';
 import { pretty } from 'src/utils/pretty';
 
@@ -21,11 +20,6 @@ const action: DemoAction = (message: string) => {
         text: message,
         timeout: 1000,
     });
-};
-
-type CodePlaygroundProps = {
-    defaultCode: string;
-    githubLink?: string;
 };
 
 /**
@@ -38,7 +32,7 @@ type CodePlaygroundProps = {
  * 5. If errors in preview, previewCode is set back to lastValidCodeRef
  * 6. When externalCode changes, editorCode and previewCode are updated immediately
  */
-export function CodePlayground({ defaultCode, githubLink }: CodePlaygroundProps) {
+export function CodePlayground({ defaultCode, defaultShowCode }: CodePlaygroundProps) {
     const { theme } = useGlobalState();
 
     // this is the code shown in the editor, should be updated immediately when externalCode changes
@@ -49,85 +43,87 @@ export function CodePlayground({ defaultCode, githubLink }: CodePlaygroundProps)
         pretty(defaultCode || '', { parser: 'typescript' }).then(setCode);
     }, [defaultCode]);
 
-    const [showCode, setShowCode] = useState<boolean>(false);
+    const [showCode, setShowCode] = useState<boolean>(defaultShowCode || false);
 
     return (
         <Card data-code-editor variant="outlined">
-                <Suspense fallback={<div>Loading Playground...</div>}>
-                    <LiveProvider
-                        code={transformPreviewCode(code)}
-                        enableTypeScript
-                        scope={{
-                            ...components,
-                            ...React,
-                            action,
-                            sendSnackbar,
-                            SvgIcon,
-                            FieldLabel,
-                            FieldDescription,
-                            FieldError,
-                            InputElement,
-                            Slot: ExamplePlaceholder,
-                        }}
-                    >
-                        <LogErrors />
-                        <LivePreview data-preview />
-                        <LiveError data-error />
-                    </LiveProvider>
-                    {showCode && (
-                        <div data-editor>
-                            <LiveEditor
-                                code={code}
-                                language="typescript"
-                                onChange={(newCode) => setCode(newCode)}
-                                theme={theme === 'dark' ? themes.vsDark : themes.vsLight}
-                            />
-                        </div>
-                    )}
-                    <div data-code-options>
-                        <Button
-                            label={showCode ? 'Collapse code' : 'Expand code'}
-                            onClick={() => setShowCode((p) => !p)}
-                            size="x-small"
-                            style={{ borderRadius: 'var(--radius-full)' }}
-                            variant="secondary"
+            <Suspense fallback={<div>Loading Playground...</div>}>
+                <LiveProvider
+                    code={transformPreviewCode(code)}
+                    enableTypeScript
+                    scope={{
+                        ...components,
+                        ...React,
+                        action,
+                        sendSnackbar,
+                        SvgIcon,
+                        FieldLabel,
+                        FieldDescription,
+                        FieldError,
+                        InputElement,
+                        Slot: ExamplePlaceholder,
+                    }}
+                >
+                    <LogErrors />
+                    <LivePreview data-preview />
+                    <LiveError data-error />
+                </LiveProvider>
+                {showCode && (
+                    <div data-editor>
+                        <LiveEditor
+                            code={code}
+                            language="typescript"
+                            onChange={(newCode) => setCode(newCode)}
+                            theme={theme === 'dark' ? themes.vsDark : themes.vsLight}
                         />
-                        <Button
-                            icon={<SvgContentCopy />}
-                            iconOnly
-                            label="Copy code"
-                            onClick={() => {
-                                navigator.clipboard.writeText(code || '');
-                                sendSnackbar({ text: 'Code copied to clipboard', timeout: 3000 });
-                            }}
-                            size="small"
-                            variant="tertiary"
-                        />
-                        <Button
-                            icon={<SvgRefresh />}
-                            iconOnly
-                            label="Reset"
-                            onClick={() => {
-                                pretty(defaultCode || '', { parser: 'typescript' }).then(setCode);
-                            }}
-                            size="small"
-                            variant="tertiary"
-                        />
-                        {githubLink && (
-                            <Button
-                                as="a"
-                                href={githubLink}
-                                icon={<GitHubIcon />}
-                                iconOnly
-                                label="View on GitHub"
-                                size="small"
-                                target="_blank"
-                                variant="tertiary"
-                            />
-                        )}
                     </div>
-                </Suspense>
-            </Card>
+                )}
+                <div data-code-options>
+                    <Button
+                        label={showCode ? 'Collapse code' : 'Expand code'}
+                        onClick={() => setShowCode((p) => !p)}
+                        size="x-small"
+                        style={{ borderRadius: 'var(--radius-full)' }}
+                        variant="secondary"
+                    />
+                    <Button
+                        icon={<SvgContentCopy />}
+                        iconOnly
+                        label="Copy code"
+                        onClick={() => {
+                            navigator.clipboard.writeText(code || '');
+                            sendSnackbar({ text: 'Code copied to clipboard', timeout: 3000 });
+                        }}
+                        size="small"
+                        variant="tertiary"
+                    />
+                    <Button
+                        icon={<SvgRefresh />}
+                        iconOnly
+                        label="Reset"
+                        onClick={() => {
+                            pretty(defaultCode || '', { parser: 'typescript' }).then(setCode);
+                        }}
+                        size="small"
+                        variant="tertiary"
+                    />
+                    {/* 
+                    todo: add back github link when we have a way to map code snippets to files
+                    {githubLink && (
+                        <Button
+                            as="a"
+                            href={githubLink}
+                            icon={<GitHubIcon />}
+                            iconOnly
+                            label="View on GitHub"
+                            size="small"
+                            target="_blank"
+                            variant="tertiary"
+                        />
+                    )} */}
+                </div>
+            </Suspense>
+        </Card>
     );
 }
 

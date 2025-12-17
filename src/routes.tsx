@@ -5,7 +5,6 @@ import { Page } from 'components/Page';
 import { Page404 } from 'components/Page404.tsx';
 import { StateOf } from 'src/components/state-of';
 import Contributing from 'src/docs/CONTRIBUTING.md?raw';
-import { Blocks } from 'src/docs/blocks';
 import { Colors } from 'src/docs/colors';
 import { Components } from 'src/docs/components';
 import { Hooks } from 'src/docs/hooks';
@@ -18,6 +17,27 @@ import { componentsMeta, MetaComponentName, typesMeta } from 'src/meta';
 import { RouteLink } from 'src/types';
 import { pascalCaseToTitleCase } from 'src/utils/strings';
 
+const componentRoutes = componentsMeta.reduce(
+    (
+        acc,
+        component,
+    ): {
+        block: RouteLink[];
+        standard: RouteLink[];
+        utility: RouteLink[];
+    } => {
+        const kind = component.blockConfigs ? 'block' : component.phase === 'Utility' ? 'utility' : 'standard';
+        acc[kind].push({
+            path: `/${component.slug}`,
+            id: component.slug,
+            title: pascalCaseToTitleCase(component.name),
+            Component: () => <ComponentPage componentName={component.name as MetaComponentName} />,
+            hide: !!component.generated,
+        });
+        return acc;
+    },
+    { block: [], standard: [], utility: [] },
+);
 export const routes: RouteLink[] = [
     {
         title: '',
@@ -28,6 +48,7 @@ export const routes: RouteLink[] = [
     },
     {
         title: 'Sections',
+        hideTitle: true,
         children: [
             {
                 path: '/get-started',
@@ -39,7 +60,6 @@ export const routes: RouteLink[] = [
                 title: 'Get Started',
             },
             { path: '/components', Component: Components, title: 'Components' },
-            { path: '/blocks', Component: Blocks, title: 'Blocks', hideSideNav: true },
             { path: '/icons', Component: Icons, title: 'Icons', noIndex: true },
             { path: '/styles', Component: Stylesheets, title: 'Styles' },
             { path: '/typography', Component: Typography, title: 'Typography' },
@@ -68,22 +88,13 @@ export const routes: RouteLink[] = [
         ],
     },
     {
-        title: 'Components',
-        children: [
-            ...componentsMeta.flatMap((component): RouteLink[] => {
-                if (['Utility', 'Backlog'].includes(component.phase)) return [];
+        title: 'Blocks',
+        children: componentRoutes.block,
+    },
 
-                return [
-                    {
-                        path: `/${component.slug}`,
-                        id: component.slug,
-                        title: pascalCaseToTitleCase(component.name),
-                        Component: () => <ComponentPage componentName={component.name as MetaComponentName} />,
-                        hide: !!component.generated,
-                    },
-                ];
-            }),
-        ],
+    {
+        title: 'Components',
+        children: componentRoutes.standard,
     },
     {
         path: '*',
@@ -92,28 +103,19 @@ export const routes: RouteLink[] = [
         Component: Page404,
         noIndex: true,
     },
+    {
+        title: 'Utilities',
+        children: [
+            {
+                path: '/hooks',
+                Component: Hooks,
+                title: 'Hooks',
+                noIndex: true,
+            },
+            ...componentRoutes.utility,
+        ],
+    },
 ];
-
-routes.push({
-    title: 'Utilities',
-    children: [
-        { path: '/hooks', Component: Hooks, title: 'Hooks', noIndex: true },
-        ...componentsMeta.flatMap((component): RouteLink[] => {
-            if (component.phase !== 'Utility') return [];
-
-            if (!showUtilityComponent(component)) return [];
-
-            return [
-                {
-                    path: `/${component.slug}`,
-                    id: component.slug,
-                    title: pascalCaseToTitleCase(component.name),
-                    Component: () => <ComponentPage componentName={component.name as MetaComponentName} />,
-                },
-            ];
-        }),
-    ],
-});
 
 export function showUtilityComponent(component: (typeof componentsMeta)[number]) {
     const componentProps = typesMeta.find((t) => t.name === `${component.name}Props`);

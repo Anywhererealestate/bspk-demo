@@ -1,9 +1,12 @@
 import { Button } from '@bspk/ui/Button/Button';
 import { Flex } from '@bspk/ui/Flex/Flex';
+import { Popover } from '@bspk/ui/Popover/Popover';
 import { SwitchOption } from '@bspk/ui/SwitchOption';
-import { ComponentPageSection } from '@bspk/ui/utils/demo';
+import { Tag } from '@bspk/ui/Tag/Tag';
+import { ComponentPageSection, componentToString } from '@bspk/ui/utils/demo';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { BlockExampleSection } from './BlockExampleSection';
 import { ComponentPageExample } from 'components/ComponentPageExample';
 import { ComponentProvider } from 'components/ComponentProvider';
 import { ComponentVariants } from 'components/ComponentVariants';
@@ -16,7 +19,6 @@ import { Page } from 'src/components/Page';
 import { TagComponent } from 'src/components/TagComponent';
 import { COMPONENT_PHASES, components, MetaComponentName } from 'src/meta';
 import { DemoComponent } from 'src/types';
-import { generateComponentCode } from 'src/utils/generateComponentCode';
 import { GitHubIcon } from 'src/utils/githubIcon';
 import { useGlobalState } from 'src/utils/globalState';
 import { kebabCase } from 'src/utils/kebabCase';
@@ -48,6 +50,16 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                     >
                         <GitHubIcon height={24} width={24} />
                     </Button>
+                    {!!component.blockConfigs && (
+                        <Popover
+                            content="Blocks are reusable, higher-order design patterns built from multiple components that form
+                            common product layouts and workflows. Blocks provide a structured starting point for
+                            creating experiences across our product ecosystem."
+                            header="Blocks"
+                        >
+                            {(props) => <Tag {...props} color="grey" label="Block" variant="pill" />}
+                        </Popover>
+                    )}
                     {component.phase && (
                         <TagComponent component={{ ...component, name: COMPONENT_PHASES[component.phase].title }} />
                     )}
@@ -56,17 +68,33 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
             <ComponentProvider component={component}>
                 <article>
                     <Markup>{component.description}</Markup>
-                    {component.usage && (
+                    {!component.hideUsage && component.usage && (
                         <>
                             <h3>Basic usage</h3>
                             {!!component.usage.description && <Markup>{component.usage.description}</Markup>}
                             <CodePlayground defaultCode={component.usage.code} />
-                            {/* 
-                                <Syntax code={component.usage.code} language="typescript" pretty /> */}
+                        </>
+                    )}
+                    {!!component.blockConfigs?.length && (
+                        <>
+                            <p>
+                                These examples show common design patterns implemented two ways: directly with this
+                                component and with a more flexible pattern. Both are intended to look identical, to
+                                demonstrate how different approaches can produce the same UI.The patterns are a starting
+                                point and can be adapted as needed.
+                            </p>
+                            {component.blockConfigs.map((p, index) => (
+                                <BlockExampleSection
+                                    //
+                                    index={index}
+                                    key={p.name}
+                                    {...p}
+                                />
+                            ))}
                         </>
                     )}
                     {component.presets
-                        ?.filter((p) => p.designPattern)
+                        ?.filter((p) => !p.block && p.designPattern && !p.hidePlayground)
                         .map((preset, index) => (
                             <div
                                 key={index}
@@ -76,9 +104,12 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                             >
                                 <h3 id={kebabCase(`Design-pattern-${preset.label}`)}>{preset.label}</h3>
                                 {typeof preset.designPattern === 'string' && <p>{preset.designPattern}</p>}
-                                <CodePlayground defaultCode={generateComponentCode(component, preset.propState)} />
+                                <CodePlayground
+                                    defaultCode={componentToString(component.name, preset.propState, component.props)}
+                                />
                             </div>
                         ))}
+
                     {component.sections
                         ?.filter((s) => s.location === 'beforeDemo')
                         .map(({ content: Content, title }, index) => (
@@ -204,23 +235,28 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
 
 // eslint-disable-next-line react/no-multi-comp
 function Section({
-    content: Content,
+    content,
     title,
     component,
     Component,
 }: ComponentPageSection & { component: DemoComponent; Component?: React.ComponentType<any> }) {
+    if (!content) return null;
+
+    const Content = content;
+
     return (
         <div
             style={{
                 marginTop: 'var(--spacing-sizing-06)',
             }}
         >
-            <h3 id={kebabCase(`section-${title}`)}>{title}</h3>
+            {title && <h3 id={kebabCase(`section-${title}`)}>{title}</h3>}
             <div>
                 <Content
                     CodeExample={CodeExample}
+                    CodePlayground={CodePlayground as any}
                     Component={Component}
-                    Syntax={Syntax}
+                    Syntax={Syntax as any}
                     props={component.defaultState || {}}
                 />
             </div>
