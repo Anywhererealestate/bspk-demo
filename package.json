@@ -15,7 +15,6 @@
         "build:dev": "vite-node ./.scripts/build.ts",
         "build": "vite-node ./.scripts/build.ts",
         "meta": "vite-node ./.scripts/meta.ts",
-        "meta:blocks": "vite-node ./.scripts/tasks/generateBlocksMeta.ts",
         "meta:colors": "vite-node ./.scripts/tasks/generateColorData.ts",
         "dev": "vite-node ./.scripts/dev.ts",
         "lint": "eslint && tsc --noemit",
@@ -30,7 +29,7 @@
         "test:local:setup": "vite-node ./.scripts/build-test-local.ts",
         "test:local": "TEST_URL=http://localhost:8080 playwright test",
         "tasks": "vite-node ./.scripts/tasks.ts",
-        "pr-check": "npm run lint && npm run lint:css"
+        "pr": "npm run lint && npm run lint:css && npm run build && git push --set-upstream origin $(git symbolic-ref --short HEAD) && open \"https://github.com/Anywhererealestate/bspk-demo/compare/dev...$(git symbolic-ref --short HEAD)\""
     },
     "peerDependencies": {
         "react": "^18.3.1",
@@ -41,7 +40,7 @@
         "@axe-core/playwright": "^4.10.1",
         "@bspk/icons": "^1.0.4",
         "@bspk/styles": "^1.0.2",
-        "@bspk/ui": "^1.3.19",
+        "@bspk/ui": "^1.3.22",
         "axe-core": "^4.10.2",
         "highlight.js": "^11.11.1",
         "markdown-to-jsx": "^7.7.4",

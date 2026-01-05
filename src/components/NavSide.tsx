@@ -21,7 +21,7 @@ export const NavSide = () => {
                             {route.children && route.children.length > 0 && (
                                 <>
                                     {index > 0 && <Divider />}
-                                    <div data-header>{route.title}</div>
+                                    {!route.hideTitle && <div data-header>{route.title}</div>}
                                 </>
                             )}
                             {(route.children || [route])
