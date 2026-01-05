@@ -4,8 +4,7 @@ import { SvgIcon } from '@bspk/icons/SvgIcon';
 import { Button } from '@bspk/ui/Button/Button';
 import { Card } from '@bspk/ui/Card';
 import { ExamplePlaceholder } from '@bspk/ui/ExamplePlaceholder';
-import { FieldDescription, FieldError, FieldLabel } from '@bspk/ui/Field';
-import { InputElement } from '@bspk/ui/Input';
+import { Input } from '@bspk/ui/Input';
 import { sendSnackbar } from '@bspk/ui/Snackbar';
 import { CodePlaygroundProps, DemoAction } from '@bspk/ui/utils/demo';
 import { themes } from 'prism-react-renderer';
@@ -57,10 +56,7 @@ export function CodePlayground({ defaultCode, defaultShowCode }: CodePlaygroundP
                         action,
                         sendSnackbar,
                         SvgIcon,
-                        FieldLabel,
-                        FieldDescription,
-                        FieldError,
-                        InputElement,
+                        Input,
                         Slot: ExamplePlaceholder,
                     }}
                 >
