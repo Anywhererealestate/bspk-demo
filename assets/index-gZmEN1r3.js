@@ -1,0 +1,1 @@
+import{u as p,j as n,b as d,c as u,p as c}from"./index-CTwuUkWD.js";function h({label:t,helperText:s,labelTrailing:o,errorMessage:e,style:r,id:l,...a}){const i=p(l);return n.jsx(d,{controlId:i,errorMessage:e,helperText:s,label:t,labelTrailing:o,style:r,children:n.jsx(u,{...c({id:i,controlProps:a,errorMessage:e,helperText:s})})})}export{h as InputPhoneField};

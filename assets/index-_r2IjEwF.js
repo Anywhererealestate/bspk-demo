@@ -1,0 +1,1 @@
+import{u,j as i,b as p,I as d,p as b}from"./index-CTwuUkWD.js";function x({label:t,helperText:r,labelTrailing:l,errorMessage:s,style:n,id:a,...o}){const e=u(a);return i.jsx(p,{controlId:e,errorMessage:s,helperText:r,label:t,labelTrailing:l,style:n,children:i.jsx(d,{...b({id:e,controlProps:o,errorMessage:s,helperText:r})})})}export{x as InputNumberField};
