@@ -239,6 +239,8 @@ p {
 
     [data-bspk='tab-group'] {
         background: var(--surface-neutral-t1-base);
+        border-top-left-radius: var(--radius-md);
+        border-top-right-radius: var(--radius-md);
     }
 
     [data-example-render] {
