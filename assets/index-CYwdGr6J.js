@@ -1,1 +1,0 @@
-import{u as p,j as r,F as d,C as u,p as x}from"./index-CTwuUkWD.js";function b({label:i,helperText:s,labelTrailing:t,errorMessage:e,style:l,id:a,...n}){const o=p(a);return r.jsx(d,{controlId:o,errorMessage:e,helperText:s,label:i,labelTrailing:t,style:l,children:r.jsx(u,{...x({controlProps:n,id:o,errorMessage:e,helperText:s})})})}export{b as CheckboxGroupField};
