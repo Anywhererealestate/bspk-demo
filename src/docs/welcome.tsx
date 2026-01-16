@@ -175,13 +175,15 @@ export function Welcome() {
                             <Divider />
                             <Txt variant="labels-base">Billing Address</Txt>
                             <Txt variant="body-small">The billing address associated with your payment method</Txt>
-                            <CheckboxOption
-                                label="Same as Shipping Address"
-                                {...stateProps<boolean>('same-as-shipping')}
-                                checked={state['same-as-shipping'] as boolean}
-                                style={{ '--list-item-height': 'auto' }}
-                                value="true"
-                            />
+                            <div>
+                                <CheckboxOption
+                                    label="Same as Shipping Address"
+                                    {...stateProps<boolean>('same-as-shipping')}
+                                    checked={state['same-as-shipping'] as boolean}
+                                    style={{ '--list-item-height': 'auto' }}
+                                    value="true"
+                                />
+                            </div>
                             <Divider />
                             <TextareaField
                                 label="Comments"
@@ -272,26 +274,32 @@ export function Welcome() {
                             <ProgressCircle label="Loading..." labelPosition="right" size="small" />
                         </Flex>
                         <Divider />
-                        <RadioGroupField
-                            label="Select your preferred contact method"
-                            {...stateProps<string>('contact-method')}
-                            aria-label="Choose a contact method"
-                            helperText="How should we reach you for important updates?"
-                            options={[
-                                {
-                                    label: 'Email',
-                                    value: 'email',
-                                    description: 'We will send notifications to your email.',
-                                },
-                                {
-                                    label: 'Phone',
-                                    value: 'phone',
-                                    description: 'We will call or text your phone number.',
-                                },
-                                { label: 'None', value: 'none', description: 'You will not receive notifications.' },
-                            ]}
-                            {...stateProps<string>('radio-example', 'phone')}
-                        />
+                        <div>
+                            <RadioGroupField
+                                label="Select your preferred contact method"
+                                {...stateProps<string>('contact-method')}
+                                aria-label="Choose a contact method"
+                                helperText="How should we reach you for important updates?"
+                                options={[
+                                    {
+                                        label: 'Email',
+                                        value: 'email',
+                                        description: 'We will send notifications to your email.',
+                                    },
+                                    {
+                                        label: 'Phone',
+                                        value: 'phone',
+                                        description: 'We will call or text your phone number.',
+                                    },
+                                    {
+                                        label: 'None',
+                                        value: 'none',
+                                        description: 'You will not receive notifications.',
+                                    },
+                                ]}
+                                {...stateProps<string>('radio-example', 'phone')}
+                            />
+                        </div>
                     </Flex>
                     <Flex direction="column" gap="16">
                         <Grid columns={[2, 1]} gap="16">
