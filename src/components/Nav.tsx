@@ -113,9 +113,11 @@ export function Nav() {
                             onChange={(value) => {
                                 setBrand((value || 'anywhere') as Brand);
                             }}
-                            options={BRANDS.map((b) => {
-                                return { label: b.title, value: b.slug };
-                            })}
+                            options={[...BRANDS]
+                                .sort((a, b) => a.title.localeCompare(b.title))
+                                .map((b) => {
+                                    return { label: b.title, value: b.slug };
+                                })}
                             style={{ width: '280px' }}
                             value={brand}
                         />
