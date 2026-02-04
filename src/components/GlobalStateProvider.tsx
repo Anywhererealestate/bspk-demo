@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { BRANDS } from '@bspk/styles/brands';
 import { StylesProviderDemo as StylesProvider } from '@bspk/ui/StylesProviderDemo';
-import { BRANDS } from '@bspk/ui/constants/brands';
 import { useUIContext } from '@bspk/ui/hooks/useUIContext';
 import { Brand } from '@bspk/ui/types/common';
 import { COLOR_THEMES, ColorTheme } from '@bspk/ui/utils/uiContext';
