@@ -39,8 +39,8 @@
     "dependencies": {
         "@axe-core/playwright": "^4.10.1",
         "@bspk/icons": "^1.1.1",
-        "@bspk/styles": "^1.1.6",
-        "@bspk/ui": "^1.4.0",
+        "@bspk/styles": "^1.1.7",
+        "@bspk/ui": "^1.4.1",
         "axe-core": "^4.10.2",
         "highlight.js": "^11.11.1",
         "markdown-to-jsx": "^7.7.4",
