@@ -10,12 +10,14 @@ import { useMemo, useState } from 'react';
 import { Page } from 'src/components/Page';
 
 const COLOR_ROWS = META.filter(
-    (m) => m.type === 'token' && (m.cssValue?.startsWith('#') || m.cssValues?.[0].value.startsWith('#')),
+    (m) =>
+        m.type === 'token' &&
+        (m.cssValue?.toString().startsWith('#') || m.cssValues?.[0].value.toString().startsWith('#')),
 ).map((color) => {
     return {
         ...color,
         id: color.varName,
-        root: Boolean(color.cssValues?.every((v) => !v.modes.includes('dark'))) || Boolean(color.cssValue),
+        root: Boolean(color.cssValues?.every((v) => !v.modes.find((m) => m === 'dark'))) || Boolean(color.cssValue),
     };
 });
 
@@ -105,9 +107,9 @@ export function Colors() {
                 (color.description && color.description.toLowerCase().includes(filter.search.toLowerCase()));
             const matchesType =
                 !filter.type ||
-                (filter.type === 'Theme' && color.cssValues?.some((v) => v.modes.includes('dark'))) ||
+                (filter.type === 'Theme' && color.cssValues?.some((v) => v.modes.find((m) => m === 'dark'))) ||
                 (filter.type === 'Root' &&
-                    (color.cssValues?.every((v) => !v.modes.includes('dark')) || Boolean(color.cssValue)));
+                    (color.cssValues?.every((v) => !v.modes.find((m) => m === 'dark')) || Boolean(color.cssValue)));
 
             return matchesSearch && matchesType;
         });
