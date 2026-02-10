@@ -15,7 +15,6 @@
         "build:dev": "vite-node ./.scripts/build.ts",
         "build": "vite-node ./.scripts/build.ts",
         "meta": "vite-node ./.scripts/meta.ts",
-        "meta:colors": "vite-node ./.scripts/tasks/generateColorData.ts",
         "dev": "vite-node ./.scripts/dev.ts",
         "lint": "eslint && tsc --noemit",
         "lint:fix": "eslint --fix",
