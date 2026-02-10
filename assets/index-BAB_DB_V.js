@@ -1,1 +1,0 @@
-import{u as n,j as t,b as p,I as o,p as b}from"./index-XsTDPv75.js";function x({label:u,helperText:e,labelTrailing:a,errorMessage:r,style:d,id:l,...i}){const s=n(l);return t.jsx(p,{controlId:s,errorMessage:r,helperText:e,label:u,labelTrailing:a,required:i.required,style:d,children:t.jsx(o,{...b({id:s,controlProps:i,errorMessage:r,helperText:e})})})}export{x as InputNumberField};
