@@ -24,8 +24,6 @@ const updateMeta = !args.includes('no-meta');
 
 if (updateMeta) execSync(`npm run meta`, { stdio: 'inherit' });
 
-execSync(`npm run meta:colors`, { stdio: 'inherit' });
-
 /**
  * Set up the local development environment by linking the bspk-ui package to src folder with a package.json
  *
