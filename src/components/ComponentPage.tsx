@@ -17,7 +17,7 @@ import { CodeExample } from 'src/components/CodeExample';
 import { CodePlayground } from 'src/components/CodePlayground';
 import { Page } from 'src/components/Page';
 import { TagComponent } from 'src/components/TagComponent';
-import { COMPONENT_PHASES, components, MetaComponentName } from 'src/meta';
+import { components, MetaComponentName } from 'src/meta';
 import { DemoComponent } from 'src/types';
 import { GitHubIcon } from 'src/utils/githubIcon';
 import { useGlobalState } from 'src/utils/globalState';
@@ -60,9 +60,7 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                             {(props) => <Tag {...props} color="grey" label="Block" variant="pill" />}
                         </Popover>
                     )}
-                    {component.phase && (
-                        <TagComponent component={{ ...component, name: COMPONENT_PHASES[component.phase].title }} />
-                    )}
+                    {component.phase && <TagComponent component={{ phase: component.phase, name: component.phase }} />}
                 </Flex>
             </Flex>
             <ComponentProvider component={component}>
@@ -197,9 +195,9 @@ export function ComponentPage({ componentName }: { componentName: MetaComponentN
                                             flexWrap: 'wrap',
                                         }}
                                     >
-                                        {section.components.map((d, index) => {
-                                            return <TagComponent component={d} key={index} />;
-                                        })}
+                                        {section.components.map((d, index) => (
+                                            <TagComponent component={d} key={index} />
+                                        ))}
                                     </p>
                                 </Fragment>
                             )

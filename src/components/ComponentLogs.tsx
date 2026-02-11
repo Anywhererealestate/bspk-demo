@@ -11,15 +11,11 @@ export default function ComponentLogs() {
     return (
         <div data-actions-errors>
             {errors.map((error, index) => (
-                <InlineAlert key={index} variant="error">
-                    {error.message}
-                </InlineAlert>
+                <InlineAlert key={index} label={error.message} variant="error" />
             ))}
             <div data-informational>
                 {actions.map(({ key, message, variant }) => (
-                    <InlineAlert id={key} key={key} variant={variant || 'informational'}>
-                        {message}
-                    </InlineAlert>
+                    <InlineAlert id={key} key={key} label={message} variant={variant || 'informational'} />
                 ))}
             </div>
         </div>
